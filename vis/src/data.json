@@ -1,0 +1,118 @@
+[
+  {
+    "name": "HasIdenticalProperties",
+    "clusters": [
+      {
+        "name": "Dict",
+        "properties": [
+          {
+            "key": "string",
+            "value": "string",
+            "type": "StringKeyword"
+          }
+        ],
+        "files": [
+          {
+            "pos": [304, 330],
+            "file": "../src/index.ts"
+          },
+          {
+            "pos": [634, 658],
+            "file": "../src/types.ts"
+          }
+        ],
+        "names": {
+          "Dict": 7,
+          "anonymous": 9
+        }
+      },
+      {
+        "name": "LogArgs",
+        "properties": [
+          {
+            "key": "msg",
+            "value": "any",
+            "type": "AnyKeyword"
+          }
+        ],
+        "files": [
+          {
+            "pos": [1469, 1500],
+            "file": "./src/utils.ts"
+          },
+          {
+            "pos": [1781, 1800],
+            "file": "../src/types.ts"
+          }
+        ],
+        "names": {
+          "LogArgs": 3,
+          "anonymous": 1
+        }
+      }
+    ]
+  },
+  {
+    "name": "Identical",
+    "clusters": [
+      {
+        "name": "Dict",
+        "properties": [
+          {
+            "key": "string",
+            "value": "string",
+            "type": "StringKeyword"
+          }
+        ],
+        "files": [
+          {
+            "pos": [304, 330],
+            "file": "../src/index.ts"
+          },
+          {
+            "pos": [634, 658],
+            "file": "../src/types.ts"
+          }
+        ],
+        "names": {
+          "Dict": 7,
+          "anonymous": 9
+        }
+      },
+      {
+        "name": "LogArgs",
+        "properties": [
+          {
+            "key": "msg",
+            "value": "any",
+            "type": "AnyKeyword"
+          }
+        ],
+        "files": [
+          {
+            "pos": [1469, 1500],
+            "file": "./src/utils.ts"
+          },
+          {
+            "pos": [1781, 1800],
+            "file": "../src/types.ts"
+          }
+        ],
+        "names": {
+          "LogArgs": 3,
+          "anonymous": 1
+        }
+      }
+    ]
+  },
+  {
+    "name": "HasSubsetOfProperties",
+    "clusters": [
+    ]
+  },
+  {
+    "name": "HasSimilarProperties",
+    "clusters": [
+    ]
+  }
+]
