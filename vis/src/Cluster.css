@@ -1,0 +1,61 @@
+.name-freq {
+  background-color: aliceblue;
+  padding: 4px 12px;
+  margin: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.cluster {
+  display: grid;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: white;
+  gap: 1rem;
+  grid-template:
+    "properties files"
+    "properties files"
+    "names files"
+  ;
+  grid-template-columns: 1fr 2fr;
+}
+
+.names {
+  grid-area: names;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.properties {
+  grid-area: properties;
+}
+
+.pre {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  line-height: 2;
+}
+
+.properties .pre {
+  background-color: aliceblue;
+  padding: 0.5rem 1rem;
+}
+
+.property.key {
+  color: rgb(54, 54, 156);
+}
+
+.property.value {
+  color: rgb(63, 130, 63);
+}
+
+.files {
+  grid-area: files;
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.files pre {
+  line-height: 1.4;
+}

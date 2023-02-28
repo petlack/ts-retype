@@ -1,0 +1,79 @@
+{
+  "name": "ts-retype",
+  "version": "0.1.0-rc.1",
+  "description": "",
+  "license": "MIT",
+  "author": "petlack",
+  "main": "index.js",
+  "bin": {
+    "ts-retype": "dist/ts-retype.js"
+  },
+  "scripts": {
+    "bin": "./dist/ts-retype.js",
+    "build": "rollup -c",
+    "clean": "rm -rf dist",
+    "format": "prettier --write './**/*.{js,ts,md,json}' --config ./.prettierrc",
+    "format:check": "prettier --check .",
+    "link": "cd dist && npm link",
+    "lint": "npm run lint:docs && npm --no-bail run lint:json && npm run lint:package && npm run lint:js",
+    "lint:docs": "prettier --write **/*.md",
+    "lint:js": "eslint --cache src bin tests vis/src --ext .js,.ts,.mjs",
+    "lint:json": "prettier --write **/tsconfig.json",
+    "lint:package": "prettier --write **/package.json",
+    "postbuild": "npm run vis:build && node config/prepare.cjs",
+    "postinstall": "npm run vis:install",
+    "prebuild": "npm run clean",
+    "prepare": "husky install",
+    "publish": "cd dist && npm publish",
+    "security": "npm audit --audit-level=high",
+    "test": "jest --coverage",
+    "test:watchAll": "jest --coverage --watchAll",
+    "transpile": "tsc",
+    "vis:build": "cd vis && npm run build",
+    "vis:clean": "cd vis && npm run clean",
+    "vis:dev": "cd vis && npm run dev",
+    "vis:install": "cd vis && npm i"
+  },
+  "dependencies": {
+    "glob": "^9.1.0",
+    "ramda": "^0.28.0",
+    "rimraf": "^4.3.0",
+    "typescript": "^4.9.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.4.0",
+    "@types/ramda": "^0.28.23",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-rollup": "^3.0.0",
+    "husky": "^8.0.1",
+    "jest": "^29.4.3",
+    "lint-staged": "^11.0.1",
+    "magic-string": "^0.30.0",
+    "prettier": "^2.8.4",
+    "rollup": "^3.17.0",
+    "rollup-plugin-dts": "^5.2.0",
+    "rollup-plugin-esbuild": "^5.0.0",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "**/(package|tsconfig(.*)?).json": [
+      "prettier --write"
+    ],
+    "((README)|(**/(README))).md": [
+      "prettier --write"
+    ]
+  }
+}
