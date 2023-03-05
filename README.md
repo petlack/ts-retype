@@ -1,6 +1,6 @@
 # TypeScript Retype
 
-Utility that finds duplicates of Literal and Interface types.
+Discover duplicate TypeScript types in your codebase. TypeScript retype finds duplicates of Literal and Interface types.
 
 ## Usage
 

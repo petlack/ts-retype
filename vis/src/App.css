@@ -1,19 +1,25 @@
 #app {
   min-height: 100vh;
   background-color: var(--clr-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .navbar {
   position: sticky;
   top: 0;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 3rem;
   padding: 12px 3rem;
   /* background-color: #297373; */
-  background-image: linear-gradient(to right top, #297373, #276d6d, #246666, #226060, #205a5a);
+  /* background-image: linear-gradient(to right top, #297373, #276d6d, #246666, #226060, #205a5a); */
+  background-image: linear-gradient(to left bottom, #297373, #276d6d, #246666, #226060, #205a5a);
   /* background-image: linear-gradient(to right top, #1b4b4b, #1c4f4f, #1e5252, #1f5656, #205a5a); */
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .left {
@@ -30,8 +36,15 @@
   font-size: 1.5rem;
   font-weight: 800;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  position: relative;
+  flex-direction: row;
+  gap: .1rem;
+}
+
+.logo span:nth-of-type(1) {
+  font-size: 2.5rem;
+  color: #ffffff40;
 }
 
 .search {
@@ -50,6 +63,7 @@
   font-size: 1.1rem;
   padding: .75rem 1rem;
   padding-left: 4rem;
+  transition: background-color 150ms ease-in;
 }
 
 .search input::placeholder {
@@ -66,9 +80,11 @@
   top: 0;
   bottom: 0;
   color: white;
-  background: none;
+  background-color: transparent;
   border: none;
   border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  transition: background-color 150ms ease-in;
 }
 
 .search button:hover {
@@ -95,11 +111,48 @@
 
 .nav.selected {
   background-color: #1B4B4B;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  /* border-radius: 16px; */
   color: white;
 }
 
 .main {
+  max-width: 1200px;
   padding: 2rem;
+  /* padding-top: 0; */
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.listing {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+@media only screen and (min-width: 1200px) {
+  .main {
+    width: 1200px;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  gap: 4rem;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.filter span {
+  color: #606060;
 }
 
 .clusters {
