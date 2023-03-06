@@ -1,26 +1,34 @@
 # TypeScript Retype
 
-Discover duplicate TypeScript types in your codebase. TypeScript retype finds duplicates of Literal and 
+Discover duplicate TypeScript types in your codebase. TypeScript retype finds duplicates of Literal and
 Interface types.
 
 ## Install
+
 ```bash
 npm install -g ts-retype
 ```
+
 or
+
 ```bash
 yarn global add ts-retype
 ```
+
 ## Usage with CLI
 
 ```bash
 ts-retype /path/to/project
 ```
-or 
+
+or
+
 ```bash
 npx ts-retype /path/to/project
 ```
+
 ## Usage with Library
+
 ```typescript
 import { createTypeClusters } from 'ts-retype';
 
@@ -34,7 +42,9 @@ console.log(groups);
 ```
 
 ## Data Format
+
 Defined in [SimilarityGroup](src/types.ts)
+
 ```typescript
 [
   {
@@ -45,7 +55,7 @@ Defined in [SimilarityGroup](src/types.ts)
         files: [
           {
             file: string,
-            pos: [number, number]
+            pos: [number, number],
           },
         ],
         names: Map<string, number>,
@@ -53,16 +63,17 @@ Defined in [SimilarityGroup](src/types.ts)
           {
             key: string,
             value: string,
-            type: string
-          }
-        ]
-      }
-    ]
-  }
-]
+            type: string,
+          },
+        ],
+      },
+    ],
+  },
+];
 ```
 
 ## Configuration
+
 Following options are available
 
 - `--ignore=**/node_modules/**`

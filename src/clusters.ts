@@ -25,7 +25,11 @@ function freq(list: (string | number | symbol)[]) {
   }, <Freq>{});
 }
 
-function clusterValue(types: SourceLiteralType[], cluster: Set<number>, filesLengths: { [file: string]: number[] }): TypeCluster {
+function clusterValue(
+  types: SourceLiteralType[],
+  cluster: Set<number>,
+  filesLengths: { [file: string]: number[] },
+): TypeCluster {
   const values = [...cluster.values()].filter((val) => types[val]);
   const firstVal = values[0];
   const toLine = (file: string) => posToLine(filesLengths[file]);
@@ -61,7 +65,10 @@ export function createTypeClusters({
     const file = path.join(dir, relPath);
     console.log(`= loading ${file}`);
     const srcFile = loadFile(file);
-    const lengths = srcFile.getFullText().split('\n').map(l => l.length);
+    const lengths = srcFile
+      .getFullText()
+      .split('\n')
+      .map((l) => l.length);
     filesLengths[file] = lengths;
     const types = toSourceLiteralTypes(file, getAllLiteralTypes(srcFile));
     allTypes = [...allTypes, ...types];
