@@ -11,6 +11,7 @@
   "scripts": {
     "bin": "./dist/ts-retype.js",
     "build": "rollup -c",
+    "bump": "node config/bump.cjs",
     "clean": "rm -rf dist",
     "format": "prettier --write './**/*.{js,ts,md,json}' --config ./.prettierrc",
     "format:check": "prettier --check .",
