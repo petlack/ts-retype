@@ -5,7 +5,7 @@ const config: Config.InitialOptions = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
-  collectCoverageFrom: ['<rootDir>/src/**', '<rootDir>/tests/**', '<rootDir>/bin/**'],
+  collectCoverageFrom: ['<rootDir>/src/**', '<rootDir>/tests/**'],
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   coverageReporters: ['json-summary', 'lcov'],
 };
