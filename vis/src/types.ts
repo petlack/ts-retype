@@ -18,8 +18,14 @@ export interface SourceLiteralType extends LiteralType {
   file: string;
 }
 
+export type SourceFile = {
+  pos: [number, number];
+  lines: number[];
+  file: string;
+}
+
 export type TypeCluster = Pick<LiteralType, 'name' | 'properties'> & {
-  files: { pos: number[]; file: string }[];
+  files: SourceFile[];
   names: Freq;
   group: string;
 };
@@ -33,3 +39,7 @@ export enum Similarity {
 }
 
 export type Data = { name: string; clusters: TypeCluster[] };
+export type SimilarityGroup = {
+  name: string;
+  clusters: TypeCluster[];
+};
