@@ -111,5 +111,14 @@
 }
 
 .files pre {
-  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+}
+
+.file {
+  cursor: pointer;
+}
+
+.file:hover {
+  background-color: rgb(0, 0, 0, 0.1);
 }
