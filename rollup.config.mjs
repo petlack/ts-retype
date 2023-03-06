@@ -14,7 +14,7 @@ const config = [
     plugins: [esbuild()]
   },
   {
-    input: 'bin/ts-retype.ts',
+    input: 'src/ts-retype.ts',
     output: {
       file: 'dist/ts-retype.js',
       format: 'cjs',
@@ -32,7 +32,7 @@ const config = [
     plugins: [dts()]
   },
   {
-    input: 'bin/ts-retype.ts',
+    input: 'src/ts-retype.ts',
     output: {
       file: 'dist/ts-retype.d.ts',
       format: 'es'

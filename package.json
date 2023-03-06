@@ -17,7 +17,7 @@
     "link": "cd dist && npm link",
     "lint": "npm run lint:docs && npm --no-bail run lint:json && npm run lint:package && npm run lint:js",
     "lint:docs": "prettier --write **/*.md",
-    "lint:js": "eslint --cache src bin tests vis/src --ext .js,.ts,.mjs",
+    "lint:js": "eslint --cache src config tests vis/src --ext .js,.ts,.mjs,.cjs",
     "lint:json": "prettier --write **/tsconfig.json",
     "lint:package": "prettier --write **/package.json",
     "postbuild": "npm run vis:build && node config/prepare.cjs",
