@@ -15,3 +15,18 @@ export function createFile(sourceText: string) {
 export function loadFile(path: string) {
   return ts.createSourceFile(path, readFileSync(path).toString(), ts.ScriptTarget.Latest);
 }
+
+export function posToLine(lengths: number[]) {
+  return function(pos: number) {
+    let offset = 0;
+    let line = 1;
+    for (const len of lengths) {
+      offset += len;
+      if (pos <= offset) {
+        return line;
+      }
+      line += 1;
+    }
+    return line;
+  };
+}

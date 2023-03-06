@@ -11,15 +11,21 @@ export interface Property {
 export interface LiteralType {
   name: string;
   properties: Property[];
-  pos?: [number, number];
+  pos: [number, number];
 }
 
 export interface SourceLiteralType extends LiteralType {
   file: string;
 }
 
+export type SourceFile = {
+  pos: [number, number];
+  lines: number[];
+  file: string;
+}
+
 export type TypeCluster = Pick<LiteralType, 'name' | 'properties'> & {
-  files: { pos?: [number, number]; file: string }[];
+  files: SourceFile[];
   names: Freq;
 };
 
