@@ -1,8 +1,8 @@
-import { TypeCluster } from "./types"
+import { TypeCluster } from './types'
 
 import './Cluster.css';
 
-export function Cluster({ name, group, files, properties, names }: TypeCluster) {
+export function Cluster({ name, files, properties, names }: TypeCluster) {
   const namesMarkup = Object.entries(names).sort((a, b) => b[1] - a[1]).map(([name, freq]) => (
     <span key={name} className="name-freq mono">{name} ({freq}x)</span>
   ))
@@ -23,7 +23,7 @@ export function Cluster({ name, group, files, properties, names }: TypeCluster) 
       <br />
     </span>
   ))
-  const filesMarkup = files.map(({ file, pos }) => `${file} (${pos[0]} - ${pos[1]})`).join('\n')
+  const filesMarkup = files.map(({ file, lines }) => `${file} (${lines[0]} - ${lines[1]})`).join('\n')
   return (
     <div className="cluster">
       <div className="title">

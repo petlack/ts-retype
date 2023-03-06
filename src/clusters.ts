@@ -9,8 +9,9 @@ import {
   Similarity,
   TypeCluster,
   SimilarityGroup,
+  SourceFile,
 } from './types';
-import { loadFile } from './utils';
+import { loadFile, posToLine } from './utils';
 import { similarityMatrix, pairsToClusters, indexPairsBySimilarity } from './similarity';
 
 function toSourceLiteralTypes(file: string, types: LiteralType[]) {
@@ -24,11 +25,16 @@ function freq(list: (string | number | symbol)[]) {
   }, <Freq>{});
 }
 
-function clusterValue(types: SourceLiteralType[], cluster: Set<number>): TypeCluster {
+function clusterValue(types: SourceLiteralType[], cluster: Set<number>, filesLengths: { [file: string]: number[] }): TypeCluster {
   const values = [...cluster.values()].filter((val) => types[val]);
   const firstVal = values[0];
+  const toLine = (file: string) => posToLine(filesLengths[file]);
   const files = values
-    .map((val) => ({ pos: types[val].pos, file: types[val].file }))
+    .map((val) => ({
+      pos: types[val].pos,
+      lines: types[val].pos.map(toLine(types[val].file)),
+      file: types[val].file,
+    }))
     .sort((a, b) => (a.file < b.file ? -1 : 1));
   const names = freq(values.map((val) => types[val].name));
   return {
@@ -49,11 +55,14 @@ export function createTypeClusters({
 }) {
   const files = globSync(glob, { cwd: dir, ignore });
 
+  const filesLengths: { [file: string]: number[] } = {};
   let allTypes: SourceLiteralType[] = [];
   for (const relPath of files) {
     const file = path.join(dir, relPath);
     console.log(`= loading ${file}`);
     const srcFile = loadFile(file);
+    const lengths = srcFile.getFullText().split('\n').map(l => l.length);
+    filesLengths[file] = lengths;
     const types = toSourceLiteralTypes(file, getAllLiteralTypes(srcFile));
     allTypes = [...allTypes, ...types];
   }
@@ -67,7 +76,7 @@ export function createTypeClusters({
     name: Similarity[Number(k)],
     clusters: pairsToClusters(v)
       .sort((a, b) => b.size - a.size)
-      .map((c) => clusterValue(allTypes, c)),
+      .map((c) => clusterValue(allTypes, c, filesLengths)),
   }));
 
   return clusters;
