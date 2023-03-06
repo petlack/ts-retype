@@ -17,7 +17,7 @@ export function loadFile(path: string) {
 }
 
 export function posToLine(lengths: number[]) {
-  return function(pos: number) {
+  return function (pos: number) {
     let offset = 0;
     let line = 1;
     for (const len of lengths) {

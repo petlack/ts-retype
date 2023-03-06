@@ -22,7 +22,7 @@ export type SourceFile = {
   pos: [number, number];
   lines: number[];
   file: string;
-}
+};
 
 export type TypeCluster = Pick<LiteralType, 'name' | 'properties'> & {
   files: SourceFile[];
