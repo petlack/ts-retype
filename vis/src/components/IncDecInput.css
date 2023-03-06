@@ -1,0 +1,31 @@
+.incdec {
+  display: flex;
+  flex-direction: row;
+}
+
+.incdec input {
+  background: none;
+  border: none;
+  color: black;
+  outline: none;
+  padding: 0.5rem 1rem;
+  font-size: 1.4rem;
+  width: 7ch;
+  text-align: center;
+}
+
+.incdec button {
+  background-color: #f4f4f4;
+  color: #242424;
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 100vw;
+  align-items: center;
+  border: none;
+}
+
+.incdec button:hover {
+  background-color: #ffffff;
+  border: none;
+}

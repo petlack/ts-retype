@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import MiniSearch from 'minisearch';
-import './App.css'
 import { Cluster } from './Cluster'
+import { IncDecInput } from './components/IncDecInput';
+import { Empty } from './components/Empty';
+import { Logo } from './components/Logo';
 import { Data, TypeCluster } from './types'
+import './App.css'
 
 function Category({ clusters }: Data) {
   const clustersMarkup = clusters.map((c, idx) => (
     <Cluster key={idx} {...c} />
   ))
+
   return (
     <>
       <div className="clusters">
@@ -35,6 +39,8 @@ function App() {
   const [allData, setAllData] = useState([] as TypeCluster[]);
   const [query, setQuery] = useState('');
   const [selectedTab, setSelectedTab] = useState('Identical');
+  const [minProperties, setMinProperties] = useState(2);
+  const [minFiles, setMinFiles] = useState(3);
   
   useEffect(() => {
     let i = 0;
@@ -59,33 +65,72 @@ function App() {
     miniSearch.addAll(allData);
   }, [allData]);
 
-  const filteredData = query.trim().length ? miniSearch.search(query, { fuzzy: true, prefix: true }) : allData;
+  const filteredData = query.trim().length ? miniSearch.search(query, { fuzzy: true, prefix: true }) as unknown as TypeCluster[] : allData;
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  // const data = filteredData.filter(({ group, properties }) => group === selectedTab && properties.length > 1);
-  const data = filteredData.filter(({ group }) => group === selectedTab);
+  const data = filteredData.filter(
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    ({ group, files, properties }) =>
+      group === selectedTab &&
+      properties.length >= minProperties &&
+      files.length >= minFiles
+  );
 
   const nav = [
-    ['Identical', null, 'Consider defining following types just once.'],
+    ['Identical', '', 'Consider defining following types just once.'],
     ['HasIdenticalProperties', 'Renamed', ''],
     // ['HasSimilarProperties', 'Similar', ''],
+  ];
+
+  const NavItem = ({ displayName, num, isSelected, setSelected }: { displayName: string, num: number, isSelected: boolean, setSelected: () => void }) => (
+    <a
+      className={`nav ${isSelected ? 'selected' : ''}`}
+      onClick={setSelected}
+    >{displayName} ({num})</a>
+  );
+
+  const nums = [
+    filteredData.filter(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      ({ group, files, properties }) =>
+        group === nav[0][0] &&
+        properties.length >= minProperties &&
+        files.length >= minFiles
+    ).length,
+    filteredData.filter(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      ({ group, files, properties }) =>
+        group === nav[1][0] &&
+        properties.length >= minProperties &&
+        files.length >= minFiles
+    ).length,
   ]
 
-  const navMarkup = nav.map(name => (
-    <a
-      key={name[0]}
-      className={`nav ${name[0] === selectedTab ? 'selected' : ''}`}
-      onClick={() => setSelectedTab(name[0] as string)}
-    >{name[1] || name[0]} ({data[name[0]]?.length})</a>
+  const navMarkup = nav.map((val, idx) => (
+    <NavItem
+      key={val[0]}
+      displayName={val[1] || val[0]}
+      num={nums[idx]}
+      isSelected={val[0] === selectedTab}
+      setSelected={() => setSelectedTab(val[0])}
+    />
   ));
 
-  const dataMarkup = <Category name={selectedTab} clusters={data} />;
+  const dataMarkup = data.length === 0 ?
+    <Empty /> :
+    <Category name={selectedTab} clusters={data} />;
 
   return (
     <div id="app">
       <div className="navbar">
         <span className="left">
-          <span className="logo">retype</span>
+          <span className="logo">
+            <span>TS</span>
+            <span>retype</span>
+          </span>
           <span className="search">
             <input
               type="text"
@@ -105,7 +150,19 @@ function App() {
         </div>
       </div>
       <div className="main">
-        {dataMarkup}
+        <div className="filters">
+          <div className="filter">
+            <span>Min number of Type properties</span>
+            <IncDecInput value={minProperties} onChange={(value: number) => setMinProperties(value)} />
+          </div>
+          <div className="filter">
+            <span>Min number of files</span>
+            <IncDecInput value={minFiles} onChange={(value: number) => setMinFiles(value)} />
+          </div>
+        </div>
+        <div className="listing">
+          {dataMarkup}
+        </div>
       </div>
     </div>
   )

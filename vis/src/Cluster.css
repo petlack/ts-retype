@@ -1,24 +1,36 @@
 .name-freq {
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
+  background-color: rgb(240, 242, 240);
+  color: rgb(74, 74, 74);
+  font-weight: 800;
   padding: 4px 12px;
   margin: 4px 8px;
-  border-radius: 4px;
+  border-radius: 6px;
   display: inline-block;
+}
+
+.mono {
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .cluster {
   display: grid;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 8px;
   background-color: white;
-  gap: 1rem;
+  gap: 2rem;
   grid-template:
+    "title title"
     "properties files"
     "properties files"
     "names files"
   ;
   grid-template-columns: 1fr 2fr;
+}
+
+.cluster h3 {
+  color: rgb(156, 156, 156);
 }
 
 .names {
@@ -27,18 +39,57 @@
   overflow-y: scroll;
 }
 
+.title {
+  grid-area: title;
+  display: grid;
+  flex-direction: row;
+  column-gap: 2rem;
+  grid-template:
+    "icon title"
+    "icon also"
+  ;
+  place-content: start;
+  place-items: baseline;
+  /* color: rgb(63, 130, 63); */
+}
+
+.title h2 {
+  grid-area: title;
+  display: flex;
+  line-height: 2;
+  align-self: center;
+}
+
+.title>span {
+  grid-area: icon;
+  font-size: 2rem;
+  font-weight: 800;
+  color:rgb(214, 214, 214);
+}
+
+.title>div {
+  grid-area: also;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .properties {
   grid-area: properties;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .pre {
-  font-family: 'Courier New', Courier, monospace;
   font-weight: 600;
   line-height: 2;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
 
 .properties .pre {
-  background-color: aliceblue;
+  /* background-color: #f0fafa; */
+  background-image: linear-gradient(to left bottom, #f0fafa, #ecf9f9, #e9f7f7, #e5f6f6, #e1f4f4);
   padding: 0.5rem 1rem;
 }
 
@@ -54,6 +105,9 @@
   grid-area: files;
   max-height: 400px;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .files pre {
