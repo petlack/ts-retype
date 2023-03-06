@@ -74,11 +74,22 @@ Defined in [SimilarityGroup](src/types.ts)
 
 ## Configuration
 
-Following options are available
+### CLI options
+```
+ts-retype PATH [-c [config-file.json]] [-o report-file.html]
+```
+- `-c` - loads configuration from `./.retyperc`
+- `-c config-file.json` - loads configuration from `config-file.json`
+- `-o report.html` - writes report to `report.html`
 
-- `--ignore=**/node_modules/**`
-- `--glob=**/*.ts`
-- `--out=/path/to/dir`
+### .retyperc
+```json
+{
+  "glob": "**/*.ts",
+  "ignore": ["**/node_modules/**", "**/dist/**", "**/*.d.ts"],
+  "output": "./retype-report.html"
+}
+```
 
 ## Development
 

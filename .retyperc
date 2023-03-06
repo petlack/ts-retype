@@ -1,0 +1,5 @@
+{
+  "glob": "**/*.ts",
+  "ignore": ["**/node_modules/**", "**/dist/**", "**/*.d.ts"],
+  "output": "./retype-report.html"
+}
