@@ -1,18 +1,30 @@
 # TypeScript Retype
 
-Utility that finds duplicates of Literal and Interface types.
+Discover duplicate TypeScript types in your codebase. TypeScript retype finds duplicates of Literal and 
+Interface types.
 
-## Usage
+## Install
+```bash
+npm install -g ts-retype
+```
+or
+```bash
+yarn global add ts-retype
+```
+## Usage with CLI
 
 ```bash
-npm add -D ts-retype
+ts-retype /path/to/project
+```
+or 
+```bash
 npx ts-retype /path/to/project
 ```
-
+## Usage with Library
 ```typescript
-import { findDuplicates, SimilarityGroup } from 'ts-retype';
+import { createTypeClusters } from 'ts-retype';
 
-const groups: SimilarityGroup[] = findDuplicates({
+const groups = findDuplicates({
   dir: '/path/to/dir',
   glob = '**/*.ts',
   ignore = ['**/node_modules/**', '**/dist/**'],
@@ -21,7 +33,41 @@ const groups: SimilarityGroup[] = findDuplicates({
 console.log(groups);
 ```
 
+## Data Format
+Defined in [SimilarityGroup](src/types.ts)
+```typescript
+[
+  {
+    name: Identical | HasIdenticalProperties,
+    clusters: [
+      {
+        name: string,
+        files: [
+          {
+            file: string,
+            pos: [number, number]
+          },
+        ],
+        names: Map<string, number>,
+        properties: [
+          {
+            key: string,
+            value: string,
+            type: string
+          }
+        ]
+      }
+    ]
+  }
+]
+```
+
 ## Configuration
+Following options are available
+
+- `--ignore=**/node_modules/**`
+- `--glob=**/*.ts`
+- `--out=/path/to/dir`
 
 ## Development
 

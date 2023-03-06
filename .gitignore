@@ -4,3 +4,4 @@ dist
 tsd-report
 .husky
 .ignored
+.eslintcache
