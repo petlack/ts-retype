@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import MiniSearch from 'minisearch';
-import { Cluster } from './Cluster'
+import { Cluster } from './components/Cluster'
 import { IncDecInput } from './components/IncDecInput';
 import { Empty } from './components/Empty';
 import { Logo } from './components/Logo';
@@ -127,10 +127,7 @@ function App() {
     <div id="app">
       <div className="navbar">
         <span className="left">
-          <span className="logo">
-            <span>TS</span>
-            <span>retype</span>
-          </span>
+          <Logo />
           <span className="search">
             <input
               type="text"

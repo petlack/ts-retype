@@ -1,7 +1,7 @@
-import { TypeCluster } from './types'
+import { TypeCluster } from '../types'
 
 import './Cluster.css';
-import { useCopyToClipboard } from './hooks/useCopy';
+import { useCopyToClipboard } from '../hooks/useCopy';
 
 export function Cluster({ name, files, properties, names }: TypeCluster) {
   const [_copyValue, copyToClipboard] = useCopyToClipboard();

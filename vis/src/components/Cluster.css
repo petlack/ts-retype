@@ -1,7 +1,7 @@
 .name-freq {
   /* background-color: aliceblue; */
-  background-color: rgb(240, 242, 240);
-  color: rgb(74, 74, 74);
+  background-color: var(--clr-card-badge-bg);
+  color: var(--clr-card-badge-fg);
   font-weight: 800;
   padding: 4px 12px;
   margin: 4px 8px;
@@ -18,7 +18,7 @@
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 2rem;
   border-radius: 8px;
-  background-color: white;
+  background-color: var(--clr-card-bg);
   gap: 2rem;
   grid-template:
     "title title"
@@ -30,7 +30,7 @@
 }
 
 .cluster h3 {
-  color: rgb(156, 156, 156);
+  color: var(--clr-card-title-fg);
 }
 
 .names {
@@ -89,16 +89,18 @@
 
 .properties .pre {
   /* background-color: #f0fafa; */
-  background-image: linear-gradient(to left bottom, #f0fafa, #ecf9f9, #e9f7f7, #e5f6f6, #e1f4f4);
+  /* background-image: linear-gradient(to left bottom, #f0fafa, #ecf9f9, #e9f7f7, #e5f6f6, #e1f4f4); */
+  background-color: var(--clr-code-bg);
+  color: var(--clr-code-fg);
   padding: 0.5rem 1rem;
 }
 
 .property.key {
-  color: rgb(54, 54, 156);
+  color: var(--clr-code-key)
 }
 
 .property.value {
-  color: rgb(63, 130, 63);
+  color: var(--clr-code-value);
 }
 
 .files {
