@@ -67,10 +67,11 @@
   color:rgb(214, 214, 214);
 }
 
-.title>div {
+.title .row {
   grid-area: also;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
 }
 
