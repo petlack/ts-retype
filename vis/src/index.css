@@ -4,8 +4,6 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,6 +12,39 @@
   -webkit-text-size-adjust: 100%;
 
   --clr-bg: #242424;
+  --clr-fg: white;
+  --clr-card-bg: rgb(74, 74, 74);
+  --clr-card-fg: rgb(240, 242, 240);
+  --clr-card-title-fg: rgb(156, 156, 156);
+  --clr-card-badge-bg: rgb(55, 55, 62);
+  --clr-card-badge-fg: rgb(224, 222, 213);
+  --clr-code-bg: #2c2e30;
+  --clr-code-fg: #e2e5e7;
+  --clr-code-key: rgb(99, 99, 180);
+  --clr-code-value: rgb(90, 184, 90);
+  --clr-btn-primary-bg: rgb(74, 74, 74);
+  --clr-btn-primary-bg-hover: rgb(99, 101, 99);
+  --clr-btn-primary-fg: #f4f4f4;
+
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --clr-bg: #E6E6E6;
+    --clr-fg: #213547;
+    --clr-card-bg: white;
+    --clr-card-fg: rgb(74, 74, 74);
+    --clr-card-title-fg: rgb(126, 126, 126);
+    --clr-card-badge-bg: rgb(231, 226, 217);
+    --clr-card-badge-fg: #2e3139;
+    --clr-code-bg: #eef1f9;
+    --clr-code-fg: #213547;
+    --clr-code-key: rgb(54, 54, 156);
+    --clr-code-value: rgb(63, 130, 63);
+    --clr-btn-primary-bg: #f4f4f4;
+    --clr-btn-primary-bg-hover: #ffffff;
+    --clr-btn-primary-fg: #242424;
+  }
 }
 
 * {
@@ -35,6 +66,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  color: var(--clr-fg);
+  background-color: var(--clr-bg);
 }
 
 h1 {
@@ -57,17 +90,3 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-
-    --clr-bg: #E6E6E6;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}

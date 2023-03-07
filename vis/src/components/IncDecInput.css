@@ -6,7 +6,7 @@
 .incdec input {
   background: none;
   border: none;
-  color: black;
+  color: var(--clr-fg);
   outline: none;
   padding: 0.5rem 1rem;
   font-size: 1.4rem;
@@ -15,8 +15,8 @@
 }
 
 .incdec button {
-  background-color: #f4f4f4;
-  color: #242424;
+  background-color: var(--clr-btn-primary-bg);
+  color: var(--clr-btn-primary-fg);
   font-size: 32px;
   width: 48px;
   height: 48px;
@@ -26,6 +26,6 @@
 }
 
 .incdec button:hover {
-  background-color: #ffffff;
+  background-color: var(--clr-btn-primary-bg-hover);
   border: none;
 }
