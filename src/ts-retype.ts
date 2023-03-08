@@ -48,6 +48,8 @@ function main() {
   let config = {
     dir: appDir,
     output: './retype-report.html',
+    glob: '**/*.ts',
+    ignore: ['**/node_modules/**', '**/dist/**', '**/generated/**'],
   };
 
   if (loadsConfig) {
