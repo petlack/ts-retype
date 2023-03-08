@@ -100,8 +100,13 @@ async function run() {
 
   const distRoot = path.join(__dirname, '..');
 
-  const level = process.argv[2] || 'rc';
+  const level = process.argv[2] || 'info';
   const version = packageJson.version;
+
+  if (level === 'info') {
+    console.log(`current version v${version}`);
+    return;
+  }
 
   const oldVersion = version;
   const newVersion = bump(version, level);
