@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import MiniSearch from 'minisearch';
-import { Cluster } from './components/Cluster'
+import { Cluster } from './components/Cluster';
 import { IncDecInput } from './components/IncDecInput';
 import { Empty } from './components/Empty';
 import { Logo } from './components/Logo';
-import { Data, TypeCluster } from './types'
-import './App.css'
+import { Data, TypeCluster } from './types';
+import './App.css';
 
 function Category({ clusters }: Data) {
   const clustersMarkup = clusters.map((c, idx) => (
     <Cluster key={idx} {...c} />
-  ))
+  ));
 
   return (
     <>
@@ -18,13 +18,13 @@ function Category({ clusters }: Data) {
         {clustersMarkup}
       </div>
     </>
-  )
+  );
 }
 
 const miniSearch = new MiniSearch({
   fields: ['name', 'fulltext'],
   storeFields: ['name', 'names', 'files', 'properties', 'group', 'fulltext'],
-})
+});
 
 function fulltext(cluster: TypeCluster): string {
   return [
@@ -39,8 +39,8 @@ function App() {
   const [allData, setAllData] = useState([] as TypeCluster[]);
   const [query, setQuery] = useState('');
   const [selectedTab, setSelectedTab] = useState('Identical');
-  const [minProperties, setMinProperties] = useState(2);
-  const [minFiles, setMinFiles] = useState(3);
+  const [minProperties, setMinProperties] = useState(3);
+  const [minFiles, setMinFiles] = useState(2);
   
   useEffect(() => {
     let i = 0;
@@ -57,7 +57,7 @@ function App() {
           )],
           [] as TypeCluster[],
         )
-    )
+    );
   }, []);
   
   useEffect(() => {
@@ -83,14 +83,7 @@ function App() {
     // ['HasSimilarProperties', 'Similar', ''],
   ];
 
-  const NavItem = ({ displayName, num, isSelected, setSelected }: { displayName: string, num: number, isSelected: boolean, setSelected: () => void }) => (
-    <a
-      className={`nav ${isSelected ? 'selected' : ''}`}
-      onClick={setSelected}
-    >{displayName} ({num})</a>
-  );
-
-  const nums = [
+  const groupsCounts = [
     filteredData.filter(
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
@@ -107,13 +100,26 @@ function App() {
         properties.length >= minProperties &&
         files.length >= minFiles
     ).length,
-  ]
+  ];
+
+  useEffect(() => {
+    if (groupsCounts[0] === 0 && groupsCounts[1] != 0) {
+      setSelectedTab('HasIdenticalProperties');
+    }
+  }, [groupsCounts, setSelectedTab]);
+
+  const NavItem = ({ displayName, num, isSelected, setSelected }: { displayName: string, num: number, isSelected: boolean, setSelected: () => void }) => (
+    <a
+      className={`nav ${isSelected ? 'selected' : ''}`}
+      onClick={setSelected}
+    >{displayName} ({num})</a>
+  );
 
   const navMarkup = nav.map((val, idx) => (
     <NavItem
       key={val[0]}
       displayName={val[1] || val[0]}
-      num={nums[idx]}
+      num={groupsCounts[idx]}
       isSelected={val[0] === selectedTab}
       setSelected={() => setSelectedTab(val[0])}
     />
@@ -162,7 +168,7 @@ function App() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
