@@ -70,7 +70,10 @@ export function indexPairsBySimilarity(m: Similarity[][]) {
       if (i >= j) {
         continue;
       }
-      const s: number = m[i][j];
+      const s = m[i][j];
+      if (s === Similarity.Different) {
+        continue;
+      }
       if (!res[s]) {
         res[s] = [];
       }
