@@ -1,0 +1,48 @@
+@import "../utils.styl"
+@import "../vars.styl"
+
+clrCodeBg ?= darken(clrBg, 10)
+clrCodeFg ?= darken(clrBg, 80)
+clrLineBashBg ?= darken(clrCodeBg, 20)
+clrLineBashFg ?= lighten(clrCodeBg, 20)
+
+.code-lang
+  flexColumn()
+  .lang-menu
+    flexRow()
+    gap: gapMedium;
+    padding: gapSmall gapMedium;
+    border-top-left-radius: borderRadiusMedium;
+    border-top-right-radius: borderRadiusMedium;
+    background-color: darken(clrCodeBg, 20);
+    span
+      cursor: pointer;
+      color: lighten(clrCodeFg, 20);
+      transition: color transRegular;
+      &:hover
+        color: lighten(clrCodeFg, 40);
+  .code
+    border-radius: 0;
+    border-bottom-left-radius: borderRadiusMedium;
+    border-bottom-right-radius: borderRadiusMedium;
+
+.code
+  background-color: clrCodeBg;
+  border-radius: borderRadiusMedium;
+  boxShadowLight();
+  p
+    &.line
+      color: clrCodeFg;
+      position: relative;
+      padding: .5rem 1rem;
+      &.bash
+        flexRow();
+        gap: .5rem;
+        align-items: center;
+        &:before
+          content: '$';
+          left: 0rem;
+          color: lighten(clrCodeFg, 30);
+
+.code
+  font-family: fontMono;
