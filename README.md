@@ -1,6 +1,6 @@
-# TypeScript Retype
+# TS retype
 
-Discover duplicate TypeScript types in your codebase. TypeScript retype finds duplicates of Literal and
+Discover duplicate TypeScript types in your codebase. TS retype finds duplicates of Literal and
 Interface types.
 
 ## Install
