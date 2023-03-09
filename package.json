@@ -14,6 +14,7 @@
     "bump": "node config/bump.cjs",
     "clean": "rm -rf dist",
     "docs:build": "cd docs && npm ci && npm run build",
+    "docs:dev": "cd docs && npm run dev",
     "format": "prettier --write './**/*.{js,ts,md,json}' --config ./.prettierrc",
     "format:check": "prettier --check .",
     "link": "cd dist && npm link",
