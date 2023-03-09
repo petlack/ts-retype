@@ -1,9 +1,18 @@
 {
   "name": "ts-retype",
   "version": "0.2.0",
-  "description": "",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Discover duplicate TypeScript types in your codebase.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petlack/ts-retype"
+  },
   "author": "petlack",
+  "homepage": "https://petlack.github.io/ts-retype/",
+  "bugs": "https://github.com/petlack/ts-retype/issues",
   "main": "index.js",
   "bin": {
     "ts-retype": "dist/ts-retype.js"
