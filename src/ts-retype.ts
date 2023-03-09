@@ -2,101 +2,104 @@
 
 import fs from 'fs';
 import path from 'path';
-import { rimrafSync } from 'rimraf';
+import { createCommand } from 'commander';
 
 import { createTypeClusters } from '../src/clusters';
+import { DEFAULT_OPTIONS, RetypeConfig, RetypeOptions } from './types';
 
-const cwd = (p: string) => path.join(process.cwd(), p);
+const pwd = (p: string) => path.join(process.cwd(), p);
 const dir = (p: string) => path.join(__dirname, p);
 
-function parseArgs(argv: string[]) {
-  let option = null;
-  const result: { [key: string]: boolean | string | null } = {};
-  for (const arg of argv) {
-    if (!arg.length) {
-      continue;
-    }
-    if (arg[0] === '-') {
-      if (option) {
-        result[option] = true;
-      }
-      option = arg.slice(1);
-    }
-    else {
-      if (option) {
-        result[option] = arg;
-        option = null;
-      }
-    }
-  }
-  if (option) {
-    result[option] = true;
-  }
-  return result;
+const { version, name, description } = JSON.parse(fs.readFileSync(dir('./package.json')).toString());
+const program = createCommand();
+
+program.name(name)
+  .description(description)
+  .version(version)
+  .argument('<path-to-project>', 'path to project')
+  .option('-c, --config [path]', 'load config - if no path provided, loads .retyperc from current directory. if not set, use default config')
+  .option('-o, --output <file-path|dir-path>', 'output file name - if provided with directory, it will create index.html file inside', './retype-report.html')
+  .option('-i, --include [glob...]', 'glob patterns that will be included in search')
+  .option('-x, --exclude [glob...]', 'glob patterns that will be ignored');
+
+function parseOptions(defaultOptions: RetypeConfig): RetypeOptions {
+  program.parse();
+  const options = program.opts();
+  const args = program.processedArgs;
+  return {
+    project: args[0],
+    ...defaultOptions,
+    ...options,
+  };
 }
 
-function main() {
-  const appDir = process.argv[2] || process.cwd();
-  const options = parseArgs(process.argv);
-  const loadsConfig = <boolean>options.c;
-  let configFile = cwd('.retyperc');
-  
-  if (!!options.c !== options.c) {
-    configFile = <string>options.c;
+function resolveConfig(configOption: boolean | string | undefined): RetypeConfig {
+  if (!configOption) {
+    return DEFAULT_OPTIONS;
   }
-
-  let config = {
-    dir: appDir,
-    output: './retype-report.html',
-    glob: '**/*.ts',
-    ignore: ['**/node_modules/**', '**/dist/**', '**/generated/**'],
+  let configFile = pwd('.retyperc');
+  if (typeof configOption === 'string') {
+    configFile = configOption;
+  }
+  const configFileData = <RetypeConfig>JSON.parse(fs.readFileSync(configFile).toString());
+  return {
+    ...DEFAULT_OPTIONS,
+    ...configFileData,
   };
+}
 
-  if (loadsConfig) {
-    config = {
-      ...config,
-      ...JSON.parse(fs.readFileSync(configFile).toString()),
-    };
-  }
-
-  if (options.o && typeof options.o === 'string') {
-    config.output = <string>options.o;
-  }
-
-  const outputFile = config.output;
-
-  console.log(`searching for duplicates in ${appDir}`);
-
-  const clusters = createTypeClusters(config);
-
-  const data = JSON.stringify(clusters);
-
-  let htmlFile = outputFile;
+function resolveOutputFilePath(configOutput: string): string {
+  let htmlFile = configOutput;
   let isDir = false;
-  if (!fs.existsSync(outputFile)) {
-    if (!outputFile.endsWith('.html')) {
+  if (!fs.existsSync(configOutput)) {
+    if (!configOutput.endsWith('.html')) {
       isDir = true;
     }
   } else {
-    if (fs.lstatSync(outputFile).isDirectory()) {
+    if (fs.lstatSync(configOutput).isDirectory()) {
       isDir = true;
     }
   }
   if (isDir) {
-    htmlFile = path.join(outputFile, 'index.html');
-    if (!fs.existsSync(outputFile)) {
-      fs.mkdirSync(outputFile, { recursive: true });
-    } else {
-      rimrafSync(outputFile, { preserveRoot: true });
+    htmlFile = path.join(configOutput, 'index.html');
+    if (!fs.existsSync(configOutput)) {
+      fs.mkdirSync(configOutput, { recursive: true });
     }
   }
   else {
-    htmlFile = outputFile;
+    htmlFile = configOutput;
     const parentDir = path.dirname(htmlFile);
     if (!fs.existsSync(parentDir)) {
       fs.mkdirSync(parentDir, { recursive: true });
     }
   }
+  return htmlFile;
+}
+
+function main() {
+  const options = parseOptions(DEFAULT_OPTIONS);
+  const project = options.project;
+  const config = resolveConfig(options.config);
+
+  console.log(`searching for duplicates in ${project}`);
+
+  const args = {
+    ...config,
+    ...options,
+  };
+
+  const { clusters, allTypes } = createTypeClusters(args);
+
+  console.log();
+  console.log(`found ${allTypes.length} types definitions`);
+  console.log();
+  for (const cluster of clusters) {
+    console.log(`- ${cluster.clusters.length} instances of ${cluster.name}`);
+  }
+
+  const data = JSON.stringify(clusters);
+
+  const htmlFile = resolveOutputFilePath(args.output);
 
   fs.cpSync(dir('./vis/dist/index.html'), htmlFile);
 
