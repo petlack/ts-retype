@@ -9,10 +9,23 @@ boxShadowMedium()
 boxShadowStrong()
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 
-flexRow()
+// safari < 14.4, IE 11 does not support gap property on flex
+// https://caniuse.com/flexbox-gap
+// https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/
+// tl;dr; select every element that follows another one, do not select the first
+flexGapRow(size)
+  & > * + *
+    margin-left: size;
+flexGapColumn(size)
+  & > * + *
+    margin-top: size;
+
+flexRow(gap = 0)
   display: flex;
   flex-direction: row;
+  flexGapRow(gap);
 
-flexColumn()
+flexColumn(gap = 0)
   display: flex;
   flex-direction: column;
+  flexGapColumn(gap);

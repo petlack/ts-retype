@@ -20,7 +20,10 @@ export default function App() {
       <section>
         <h2>Install</h2>
         <Code
-          code="npm add -D ts-retype"
+          codes={[
+            { lang: 'npm', code: 'npm add -D ts-retype' },
+            { lang: 'yarn', code: 'yarn add -D ts-retype' },
+          ]}
         />
         <p>or install globally</p>
         <Code

@@ -9,18 +9,17 @@ clrLineBashFg ?= lighten(clrCodeBg, 20)
 .code-lang
   flexColumn()
   .lang-menu
-    flexRow()
-    gap: gapMedium;
+    flexRow(gapMedium);
     padding: gapSmall gapMedium;
     border-top-left-radius: borderRadiusMedium;
     border-top-right-radius: borderRadiusMedium;
     background-color: darken(clrCodeBg, 20);
     span
       cursor: pointer;
-      color: lighten(clrCodeFg, 20);
+      color: lighten(clrCodeFg, 15);
       transition: color transRegular;
       &:hover
-        color: lighten(clrCodeFg, 40);
+        color: darken(clrCodeFg, 10);
   .code
     border-radius: 0;
     border-bottom-left-radius: borderRadiusMedium;
@@ -36,13 +35,13 @@ clrLineBashFg ?= lighten(clrCodeBg, 20)
       position: relative;
       padding: .5rem 1rem;
       &.bash
-        flexRow();
-        gap: .5rem;
+        flexRow(.5rem);
         align-items: center;
         &:before
           content: '$';
           left: 0rem;
           color: lighten(clrCodeFg, 30);
+          margin-right: .5rem;
 
 .code
   font-family: fontMono;

@@ -25,8 +25,12 @@ function MultilangCode({ codes }: MultilangCodeProps) {
     <div className="code-lang">
       <div className="lang-menu">
         {Object.keys(langsToCodes)
-          .map((lang) => (
-            <span key={lang} onClick={() => setLang(lang)}>{lang}</span>
+          .map((lg) => (
+            <span
+              key={lg}
+              className={lang === lg ? 'active' : ''}
+              onClick={() => setLang(lang)}
+            >{lang}</span>
           ))
         }
       </div>
