@@ -81,17 +81,15 @@ function main() {
   const project = options.project;
   const config = resolveConfig(options.config);
 
-  console.log(`searching for duplicates in ${project}`);
+  console.log(`discovering duplicates in ${project}`);
 
   const args = {
     ...config,
     ...options,
   };
 
-  const { clusters, allTypes } = createTypeClusters(args);
+  const clusters = createTypeClusters(args);
 
-  console.log();
-  console.log(`found ${allTypes.length} types definitions`);
   console.log();
   for (const cluster of clusters) {
     console.log(`- ${cluster.clusters.length} instances of ${cluster.name}`);

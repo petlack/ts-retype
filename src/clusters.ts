@@ -59,7 +59,9 @@ export function createTypeClusters({
   const files = globSync(include, { cwd: project, ignore: exclude });
 
   const filesLengths: { [file: string]: number[] } = {};
+  const locs = Object.values(filesLengths).reduce((a, b) => [sum(a) + sum(b)]);
   let allTypes: SourceLiteralType[] = [];
+  console.log(`searching in ${files.length.toLocaleString()} files and ${locs.toLocaleString()} LOCs`);
   for (const relPath of files) {
     const file = path.join(project, relPath);
     process.stdout.clearLine(0);
@@ -74,10 +76,9 @@ export function createTypeClusters({
     const types = toSourceLiteralTypes(file, getAllLiteralTypes(srcFile));
     allTypes = [...allTypes, ...types];
   }
-  const locs = Object.values(filesLengths).reduce((a, b) => [sum(a) + sum(b)]);
   process.stdout.clearLine(0);
   process.stdout.cursorTo(0);
-  console.log(`📖 searched ${files.length.toLocaleString()} files and ${locs.toLocaleString()} LOCs`);
+  console.log(`found ${allTypes.length} types definitions`);
 
   const matrix = similarityMatrix(allTypes);
   // printMatrix(matrix)
@@ -91,5 +92,5 @@ export function createTypeClusters({
       .map((c) => clusterValue(allTypes, c, filesLengths)),
   }));
 
-  return { clusters, filesLengths, allTypes, files };
+  return clusters;
 }
