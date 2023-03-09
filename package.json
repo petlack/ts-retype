@@ -5,6 +5,7 @@
     "access": "public"
   },
   "description": "Discover duplicate TypeScript types in your codebase.",
+  "keywords": ["typescript", "static-analysis"],
   "license": "MIT",
   "repository": {
     "type": "git",
