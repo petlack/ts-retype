@@ -18,6 +18,9 @@ clrLineBashFg ?= lighten(clrCodeBg, 20)
       cursor: pointer;
       color: lighten(clrCodeFg, 15);
       transition: color transRegular;
+      &.active
+        color: darken(clrCodeFg, 10);
+        text-decoration: underline;
       &:hover
         color: darken(clrCodeFg, 10);
   .code

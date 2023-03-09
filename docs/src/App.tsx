@@ -9,8 +9,8 @@ export default function App() {
           <span>TS</span><span>retype</span>
         </div>
         <div className="links">
-          <a href="https://github.com/petlack/ts-retype">See on Github</a>
-          <a href="https://www.npmjs.com/package/ts-retype">See on NPM</a>
+          <a href="https://github.com/petlack/ts-retype" target="_blank">See on Github</a>
+          <a href="https://www.npmjs.com/package/ts-retype" target="_blank">See on NPM</a>
         </div>
       </header>
       <section>
@@ -19,6 +19,7 @@ export default function App() {
       </section>
       <section>
         <h2>Install</h2>
+        <p>Install as a dev dependency</p>
         <Code
           codes={[
             { lang: 'npm', code: 'npm add -D ts-retype' },
@@ -42,7 +43,7 @@ export default function App() {
             { lang: 'npx', code: 'npx ts-retype .' },
           ]}
         />
-        <p>Then open the report HTML file</p>
+        <p>Then open the report HTML file (this file is self contained and offline)</p>
         <Code
           code="open retype-report.html"
         />
@@ -51,9 +52,9 @@ export default function App() {
         <h2>Examples</h2>
         <p>See example reports for following projects</p>
         <ul>
-          <li><a href="./report-ts-retype.html">github.com/petlack/ts-retype</a></li>
-          <li><a href="./report-apollo-client.html">github.com/apollographql/apollo-client</a></li>
-          <li><a href="./report-apollo-server.html">github.com/apollographql/apollo-server</a></li>
+          <li><a href="./report-ts-retype.html" target="_blank">petlack/ts-retype</a></li>
+          <li><a href="./report-apollo-client.html" target="_blank">apollographql/apollo-client</a></li>
+          <li><a href="./report-apollo-server.html" target="_blank">apollographql/apollo-server</a></li>
         </ul>
       </section>
       <footer>
