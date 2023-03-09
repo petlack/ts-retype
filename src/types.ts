@@ -41,3 +41,23 @@ export type SimilarityGroup = {
   name: string;
   clusters: TypeCluster[];
 };
+
+export type RetypeConfig = {
+  exclude: string[];
+  include: string[];
+  output: string;
+}
+
+export type RetypeArgs = RetypeConfig & {
+  project: string;
+}
+
+export type RetypeOptions = RetypeArgs & {
+  config?: string;
+}
+
+export const DEFAULT_OPTIONS: RetypeConfig = {
+  output: './retype-report.html',
+  include: ['**/*.ts'],
+  exclude: ['**/node_modules/**', '**/dist/**', '**/generated/**'],
+};

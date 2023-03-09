@@ -1,5 +1,5 @@
 import path from 'path';
-import { omit } from 'ramda';
+import { omit, sum } from 'ramda';
 import { globSync } from 'glob';
 import { getAllLiteralTypes } from './parse';
 import {
@@ -9,7 +9,6 @@ import {
   Similarity,
   TypeCluster,
   SimilarityGroup,
-  SourceFile,
 } from './types';
 import { loadFile, posToLine } from './utils';
 import { similarityMatrix, pairsToClusters, indexPairsBySimilarity } from './similarity';
@@ -49,21 +48,23 @@ function clusterValue(
 }
 
 export function createTypeClusters({
-  dir,
-  glob = '**/*.ts',
-  ignore = ['**/node_modules/**', '**/dist/**'],
+  project,
+  include,
+  exclude,
 }: {
-  dir: string;
-  glob?: string;
-  ignore?: string[];
+  project: string;
+  include: string[];
+  exclude: string[];
 }) {
-  const files = globSync(glob, { cwd: dir, ignore });
+  const files = globSync(include, { cwd: project, ignore: exclude });
 
   const filesLengths: { [file: string]: number[] } = {};
   let allTypes: SourceLiteralType[] = [];
   for (const relPath of files) {
-    const file = path.join(dir, relPath);
-    console.log(`= loading ${file}`);
+    const file = path.join(project, relPath);
+    process.stdout.clearLine(0);
+    process.stdout.cursorTo(0);
+    process.stdout.write(`⏳ loading ${file}`);
     const srcFile = loadFile(file);
     const lengths = srcFile
       .getFullText()
@@ -73,6 +74,10 @@ export function createTypeClusters({
     const types = toSourceLiteralTypes(file, getAllLiteralTypes(srcFile));
     allTypes = [...allTypes, ...types];
   }
+  const locs = Object.values(filesLengths).reduce((a, b) => [sum(a) + sum(b)]);
+  process.stdout.clearLine(0);
+  process.stdout.cursorTo(0);
+  console.log(`📖 searched ${files.length.toLocaleString()} files and ${locs.toLocaleString()} LOCs`);
 
   const matrix = similarityMatrix(allTypes);
   // printMatrix(matrix)
@@ -86,5 +91,5 @@ export function createTypeClusters({
       .map((c) => clusterValue(allTypes, c, filesLengths)),
   }));
 
-  return clusters;
+  return { clusters, filesLengths, allTypes, files };
 }
