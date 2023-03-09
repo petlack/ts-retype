@@ -71,7 +71,7 @@ Options:
 ```json
 {
   "include": ["**/*.ts"],
-  "exclude": ["**/node_modules/**", "**/dist/**", "**/*.d.ts"],
+  "exclude": ["**/node_modules/**", "**/dist/**"],
   "output": "./retype-report.html"
 }
 ```
