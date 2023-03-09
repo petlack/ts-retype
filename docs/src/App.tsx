@@ -34,6 +34,20 @@ export default function App() {
         />
       </section>
       <section>
+        <h2>Usage</h2>
+        <p>To create a report for your project, run</p>
+        <Code
+          codes={[
+            { lang: 'bash', code: 'ts-retype .' },
+            { lang: 'npx', code: 'npx ts-retype .' },
+          ]}
+        />
+        <p>Then open the report HTML file</p>
+        <Code
+          code="open retype-report.html"
+        />
+      </section>
+      <section>
         <h2>Examples</h2>
         <p>See example reports for following projects</p>
         <ul>
