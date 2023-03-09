@@ -29,8 +29,8 @@ function MultilangCode({ codes }: MultilangCodeProps) {
             <span
               key={lg}
               className={lang === lg ? 'active' : ''}
-              onClick={() => setLang(lang)}
-            >{lang}</span>
+              onClick={() => setLang(lg)}
+            >{lg}</span>
           ))
         }
       </div>
