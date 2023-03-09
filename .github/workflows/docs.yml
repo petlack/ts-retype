@@ -18,7 +18,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - run: npm ci 
     - run: npm run docs:build
+
+    - run: npm run test
+    - run: npm i coverage-badges-cli -g
+    - run: coverage-badges --output ./docs/dist/badge-coverage.svg
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
