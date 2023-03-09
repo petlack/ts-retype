@@ -47,6 +47,16 @@ function clusterValue(
   };
 }
 
+function formatFileName(file: string, maxLength = 120) {
+  if (file.length > maxLength) {
+    const ellipsis = '..';
+    const extra = file.length - maxLength + ellipsis.length;
+    const half = Math.floor(extra / 2);
+    return file.slice(0, half) + ellipsis + file.slice(half + extra);
+  }
+  return file;
+}
+
 export function createTypeClusters({
   project,
   include,
@@ -65,7 +75,7 @@ export function createTypeClusters({
     const file = path.join(project, relPath);
     process.stdout.clearLine(0);
     process.stdout.cursorTo(0);
-    process.stdout.write(`⏳ loading ${file}`);
+    process.stdout.write(`⏳ loading ${formatFileName(file)}`);
     const srcFile = loadFile(file);
     const lengths = srcFile
       .getFullText()
