@@ -80,12 +80,22 @@ Defined in [SimilarityGroup](src/types.ts)
 ## Configuration
 
 ### CLI options
+```console
+Usage: ts-retype [options] <path-to-project>
+
+Arguments:
+  path-to-project                    path to project
+
+Options:
+  -V, --version                      output the version number
+  -c, --config [path]                load config - if no path provided, loads .retyperc from current directory. if not set,
+                                     use default config
+  -o, --output <file-path|dir-path>  output file name - if provided with directory, it will create index.html file inside
+                                     (default: "./retype-report.html")
+  -i, --include [glob...]            glob patterns that will be included in search
+  -x, --exclude [glob...]            glob patterns that will be ignored
+  -h, --help                         display help for command
 ```
-ts-retype PATH [-c [config-file.json]] [-o report-file.html]
-```
-- `-c` - loads configuration from `./.retyperc`
-- `-c config-file.json` - loads configuration from `config-file.json`
-- `-o report.html` - writes report to `report.html`
 
 ### .retyperc
 ```json
