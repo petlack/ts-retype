@@ -10,6 +10,7 @@
   },
   "scripts": {
     "bin": "./dist/ts-retype.js",
+    "bin:dev": "ts-node ./src/ts-retype.ts",
     "build": "rollup -c",
     "bump": "node config/bump.cjs",
     "clean": "rm -rf dist",
@@ -38,9 +39,9 @@
     "vis:install": "cd vis && npm i"
   },
   "dependencies": {
+    "commander": "^10.0.0",
     "glob": "^9.1.0",
     "ramda": "^0.28.0",
-    "rimraf": "^4.3.0",
     "typescript": "^4.9.5"
   },
   "devDependencies": {
