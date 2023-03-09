@@ -18,7 +18,8 @@ program.name(name)
   .version(version)
   .argument('<path-to-project>', 'path to project')
   .option('-c, --config [path]', 'load config - if no path provided, loads .retyperc from current directory. if not set, use default config')
-  .option('-o, --output <file-path|dir-path>', 'output file name - if provided with directory, it will create index.html file inside', './retype-report.html')
+  .option('-o, --output <file-path|dir-path>', 'HTML report file name - if provided with directory, it will create index.html file inside', './retype-report.html')
+  .option('-j, --json <file-path>', 'JSON report file name. if not provided, does not export JSON.')
   .option('-i, --include [glob...]', 'glob patterns that will be included in search')
   .option('-x, --exclude [glob...]', 'glob patterns that will be ignored');
 
@@ -107,7 +108,9 @@ function main() {
     .replace('window.__datajson__="DATA_JSON"', `window.__data__ = ${data}`);
   fs.writeFileSync(htmlFile, replaced);
 
-  // fs.writeFileSync(path.join(reportDir, '/report.json'), data);
+  if (args.json) {
+    fs.writeFileSync(args.json, data);
+  }
 }
 
 if (require.main === module) {

@@ -46,6 +46,7 @@ export type RetypeConfig = {
   exclude: string[];
   include: string[];
   output: string;
+  json?: string;
 }
 
 export type RetypeArgs = RetypeConfig & {
