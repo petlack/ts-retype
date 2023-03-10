@@ -1,11 +1,14 @@
 {
   "name": "ts-retype",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "publishConfig": {
     "access": "public"
   },
   "description": "Discover duplicate TypeScript types in your codebase.",
-  "keywords": ["typescript", "static-analysis"],
+  "keywords": [
+    "typescript",
+    "static-analysis"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
