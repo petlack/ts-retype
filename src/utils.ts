@@ -1,4 +1,5 @@
 import { readFileSync } from 'fs';
+import path from 'path';
 import ts from 'typescript';
 
 export function toName(node: ts.Node): string {
@@ -30,3 +31,12 @@ export function posToLine(lengths: number[]) {
     return line;
   };
 }
+
+export const pwd = (p: string) => path.join(process.cwd(), p);
+export const dir = (p: string) => path.join(__dirname, p);
+
+export const stringify = (args: unknown) => JSON.stringify(
+  args,
+  (_key, value) => Array.isArray(value) ? `[${value.map(v => '"' + v + '"').join(',')}]` : value,
+  2,
+).replace(/"\[/g, '[').replace(/\]"/g, ']').replace(/\\"/g, '"');

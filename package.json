@@ -20,7 +20,8 @@
   },
   "scripts": {
     "bin": "./dist/ts-retype.js",
-    "bin:dev": "ts-node ./src/ts-retype.ts",
+    "bin:rebuild": "npm run build && ./dist/ts-retype.js",
+    "bin:dev": "rollup -c && ./dist/ts-retype.js",
     "bin:perf": "npm run build && node --stack-size=2000 --max-old-space-size=32768 dist/ts-retype.js",
     "build": "rollup -c",
     "bump": "node config/bump.cjs",

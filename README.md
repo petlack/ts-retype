@@ -62,7 +62,7 @@ Options:
                                      use default config
   -o, --output <file-path|dir-path>  HTML report file name - if provided with directory, it will create index.html file
                                      inside (default: "./retype-report.html")
-  -j, --json <file-path>             JSON report file name. if not provided, does not export JSON.
+  -j, --json <file-path>             JSON report file name. if not set, does not export JSON.
   -i, --include [glob...]            glob patterns that will be included in search
   -x, --exclude [glob...]            glob patterns that will be ignored
   -h, --help                         display help for command
