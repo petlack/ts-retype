@@ -31,14 +31,6 @@ const config = [
     },
     plugins: [dts()]
   },
-  {
-    input: 'src/ts-retype.ts',
-    output: {
-      file: 'dist/ts-retype.d.ts',
-      format: 'es'
-    },
-    plugins: [dts()]
-  },
 ];
 
 export default config;

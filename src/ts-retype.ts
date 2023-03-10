@@ -4,11 +4,12 @@ import fs from 'fs';
 import path from 'path';
 import { createCommand } from 'commander';
 
-import { createTypeClusters } from '../src/clusters';
+import { createLogger } from './cmd';
+import { createTypeClusters } from './clusters';
 import { DEFAULT_OPTIONS, RetypeConfig, RetypeOptions } from './types';
+import { dir, pwd, stringify } from './utils';
 
-const pwd = (p: string) => path.join(process.cwd(), p);
-const dir = (p: string) => path.join(__dirname, p);
+const log = createLogger();
 
 const { version, name, description } = JSON.parse(fs.readFileSync(dir('./package.json')).toString());
 const program = createCommand();
@@ -19,7 +20,7 @@ program.name(name)
   .argument('<path-to-project>', 'path to project')
   .option('-c, --config [path]', 'load config - if no path provided, loads .retyperc from current directory. if not set, use default config')
   .option('-o, --output <file-path|dir-path>', 'HTML report file name - if provided with directory, it will create index.html file inside', './retype-report.html')
-  .option('-j, --json <file-path>', 'JSON report file name. if not provided, does not export JSON.')
+  .option('-j, --json <file-path>', 'JSON report file name. if not set, does not export JSON.')
   .option('-i, --include [glob...]', 'glob patterns that will be included in search')
   .option('-x, --exclude [glob...]', 'glob patterns that will be ignored');
 
@@ -82,18 +83,24 @@ function main() {
   const project = options.project;
   const config = resolveConfig(options.config);
 
-  console.log(`discovering duplicates in ${project}`);
+  log.header();
 
   const args = {
     ...config,
     ...options,
   };
+  
+  log.log('running with config');
+  log.log(stringify(args));
+  log.log();
+
+  log.log(`discovering duplicates in ${project}`);
 
   const clusters = createTypeClusters(args);
 
-  console.log();
+  log.log();
   for (const cluster of clusters) {
-    console.log(`- ${cluster.clusters.length} instances of ${cluster.name}`);
+    log.log(`- ${cluster.clusters.length} instances of ${cluster.name}`);
   }
 
   const data = JSON.stringify(clusters);
@@ -108,8 +115,17 @@ function main() {
     .replace('window.__datajson__="DATA_JSON"', `window.__data__ = ${data}`);
   fs.writeFileSync(htmlFile, replaced);
 
+  log.log();
+  log.log(`report exported to ${htmlFile}`);
+  log.log('you can view it by running');
+  log.log();
+  log.log(`  open ${htmlFile}`);
+  log.log();
+
   if (args.json) {
     fs.writeFileSync(args.json, data);
+    log.log(`json data exported to ${args.json}`);
+    log.log();
   }
 }
 
