@@ -12,13 +12,13 @@ export function ClusterListing({ clusters }: Data) {
     case 'alias':
     case 'interface':
     case 'literal':
-      return <LiteralCluster {...(c as LiteralTypeCluster)} />;
+      return <LiteralCluster key={idx} {...(c as LiteralTypeCluster)} />;
     case 'function':
-      return <FunctionCluster {...(c as FunctionTypeCluster)} />;
+      return <FunctionCluster key={idx} {...(c as FunctionTypeCluster)} />;
     case 'enum':
-      return <EnumCluster {...(c as EnumTypeCluster)} />;
+      return <EnumCluster key={idx} {...(c as EnumTypeCluster)} />;
     case 'union':
-      return <UnionCluster {...(c as UnionTypeCluster)} />;
+      return <UnionCluster key={idx} {...(c as UnionTypeCluster)} />;
     default:
       return (
         <div key={idx} className="cluster">

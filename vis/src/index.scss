@@ -16,6 +16,7 @@
   --clr-card-bg: rgb(74, 74, 74);
   --clr-card-fg: rgb(240, 242, 240);
   --clr-card-title-fg: rgb(156, 156, 156);
+  --clr-card-icon-fg: rgb(126, 126, 126);
   --clr-card-badge-bg: rgb(55, 55, 62);
   --clr-card-badge-fg: rgb(224, 222, 213);
   --clr-code-bg: #2c2e30;
@@ -28,13 +29,14 @@
 
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --clr-bg: #E6E6E6;
     --clr-fg: #213547;
     --clr-card-bg: white;
     --clr-card-fg: rgb(74, 74, 74);
     --clr-card-title-fg: rgb(126, 126, 126);
+    --clr-card-icon-fg: rgb(156, 156, 156);
     --clr-card-badge-bg: rgb(231, 226, 217);
     --clr-card-badge-fg: #2e3139;
     --clr-code-bg: #eef1f9;

@@ -8,7 +8,6 @@
   box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
 
-
 .cluster {
   display: grid;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -67,7 +66,7 @@
       grid-area: icon;
       font-size: 2rem;
       font-weight: 800;
-      color:rgb(214, 214, 214);
+      color: var(--clr-card-icon-fg);
     }
   
     .row {
