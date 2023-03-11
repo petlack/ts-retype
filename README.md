@@ -45,11 +45,13 @@ const groups = createTypeClusters({
 
 console.log(groups);
 ```
+
 See [Data Format](#data-format) for result format.
 
 ## Configuration
 
 ### CLI options
+
 ```console
 Usage: ts-retype [options] <path-to-project>
 
@@ -69,6 +71,7 @@ Options:
 ```
 
 ### .retyperc
+
 ```json
 {
   "include": ["**/*.ts"],

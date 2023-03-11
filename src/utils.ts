@@ -35,11 +35,16 @@ export function posToLine(lengths: number[]) {
 export const pwd = (p: string) => path.join(process.cwd(), p);
 export const dir = (p: string) => path.join(__dirname, p);
 
-export const stringify = (args: unknown) => JSON.stringify(
-  args,
-  (_key, value) => Array.isArray(value) ? `[${value.map(v => '"' + v + '"').join(',')}]` : value,
-  2,
-).replace(/"\[/g, '[').replace(/\]"/g, ']').replace(/\\"/g, '"');
+export const stringify = (args: unknown) =>
+  JSON.stringify(
+    args,
+    (_key, value) =>
+      Array.isArray(value) ? `[${value.map((v) => '"' + v + '"').join(',')}]` : value,
+    2,
+  )
+    .replace(/"\[/g, '[')
+    .replace(/\]"/g, ']')
+    .replace(/\\"/g, '"');
 
 export function filterEmpty<T extends object>(obj: T): Partial<T> {
   return <Partial<T>>Object.fromEntries(Object.entries(obj).filter(([, v]) => !!v));

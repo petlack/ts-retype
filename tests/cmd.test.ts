@@ -13,13 +13,15 @@ type Options = {
   foo: number;
   bar: number;
   xyz: number;
-}
+};
 
 describe('resolveConfig', () => {
   afterEach(() => {
     try {
       rmConfigRc('./.configrc');
-    } catch { /* empty */ }
+    } catch {
+      /* empty */
+    }
   });
 
   it('returns defaults given null', () => {

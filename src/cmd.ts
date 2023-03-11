@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import { dir, filterEmpty, pwd } from './utils';
 
-
 export function createLogger() {
   return {
     header() {
@@ -10,8 +9,8 @@ export function createLogger() {
       const width = 50;
       const fill = (width: number, ch: string) => ''.padEnd(width, ch);
 
-      const pad = (msg: string) => msg.length % 2 === 1 ? `${msg} ` : msg;
-      const center = (width: number, msg: string) => fill((width-msg.length)/2,' ');
+      const pad = (msg: string) => (msg.length % 2 === 1 ? `${msg} ` : msg);
+      const center = (width: number, msg: string) => fill((width - msg.length) / 2, ' ');
       const row = (msg: string) => `= ${center(width - 4, msg)}${msg}${center(width - 4, msg)} =`;
 
       console.log(fill(width, '='));
@@ -33,11 +32,14 @@ export function createLogger() {
       if (newline) {
         process.stdout.write('\n');
       }
-    }
+    },
   };
 }
 
-export function resolveConfig<T extends object>(configFile: string | undefined | null, defaults: T): Partial<T> {
+export function resolveConfig<T extends object>(
+  configFile: string | undefined | null,
+  defaults: T,
+): Partial<T> {
   if (!configFile) {
     return defaults;
   }
@@ -48,7 +50,11 @@ export function resolveConfig<T extends object>(configFile: string | undefined |
   };
 }
 
-export function resolveOptions<O extends object>(options: Partial<O>, defaults: O, defaultConfig: string): O {
+export function resolveOptions<O extends object>(
+  options: Partial<O>,
+  defaults: O,
+  defaultConfig: string,
+): O {
   let config: Partial<O> = defaults;
   if ('config' in options) {
     const configOption = (<{ config: boolean | string | null | undefined }>options).config;
@@ -82,8 +88,7 @@ export function resolveOutputFilePath(configOutput: string): string {
     if (!fs.existsSync(configOutput)) {
       fs.mkdirSync(configOutput, { recursive: true });
     }
-  }
-  else {
+  } else {
     htmlFile = configOutput;
     const parentDir = path.dirname(htmlFile);
     if (!fs.existsSync(parentDir)) {

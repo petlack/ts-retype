@@ -47,15 +47,15 @@ export type RetypeConfig = {
   include: string[];
   output: string;
   json?: string;
-}
+};
 
 export type RetypeArgs = RetypeConfig & {
   project: string;
-}
+};
 
 export type RetypeOptions = RetypeArgs & {
   config?: string;
-}
+};
 
 export const DEFAULT_OPTIONS: RetypeConfig = {
   output: './retype-report.html',

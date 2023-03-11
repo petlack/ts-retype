@@ -61,11 +61,7 @@ function formatFileName(file: string, maxLength = 120) {
   return file;
 }
 
-export function createTypeClusters({
-  project,
-  include,
-  exclude,
-}: RetypeArgs) {
+export function createTypeClusters({ project, include, exclude }: RetypeArgs) {
   const files = globSync(include, { cwd: project, ignore: exclude });
 
   const filesLengths: { [file: string]: number[] } = {};
@@ -84,8 +80,9 @@ export function createTypeClusters({
       .split('\n')
       .map((l) => l.length);
     filesLengths[file] = lengths;
-    const types = toSourceLiteralTypes(file, getAllLiteralTypes(srcFile))
-      .filter(t => t.properties.length > 0);
+    const types = toSourceLiteralTypes(file, getAllLiteralTypes(srcFile)).filter(
+      (t) => t.properties.length > 0,
+    );
     allTypes = [...allTypes, ...types];
   }
   const locs = Object.values(filesLengths).reduce((a, b) => a + b.length, 0);

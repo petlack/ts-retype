@@ -10,15 +10,25 @@ import { dir, stringify } from './utils';
 
 const log = createLogger();
 
-const { version, name, description } = JSON.parse(fs.readFileSync(dir('./package.json')).toString());
+const { version, name, description } = JSON.parse(
+  fs.readFileSync(dir('./package.json')).toString(),
+);
 const program = createCommand();
 
-program.name(name)
+program
+  .name(name)
   .description(description)
   .version(version)
   .argument('<path-to-project>', 'path to project')
-  .option('-c, --config [path]', 'load config - if no path provided, loads .retyperc from current directory. if not set, use default config')
-  .option('-o, --output <file-path|dir-path>', 'HTML report file path - if provided with directory, it will create index.html file inside', './retype-report.html')
+  .option(
+    '-c, --config [path]',
+    'load config - if no path provided, loads .retyperc from current directory. if not set, use default config',
+  )
+  .option(
+    '-o, --output <file-path|dir-path>',
+    'HTML report file path - if provided with directory, it will create index.html file inside',
+    './retype-report.html',
+  )
   .option('-j, --json <file-path>', 'JSON report file path. if not set, does not export JSON.')
   .option('-i, --include [glob...]', 'glob patterns that will be included in search')
   .option('-x, --exclude [glob...]', 'glob patterns that will be ignored');
@@ -47,7 +57,7 @@ function main() {
     project,
     ...resolveOptions(options, DEFAULT_OPTIONS, '.retyperc'),
   };
-  
+
   log.log('running with config');
   log.log(stringify(args));
   log.log();

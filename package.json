@@ -5,10 +5,6 @@
     "access": "public"
   },
   "description": "Discover duplicate TypeScript types in your codebase.",
-  "keywords": [
-    "typescript",
-    "static-analysis"
-  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -23,9 +19,9 @@
   },
   "scripts": {
     "bin": "./dist/ts-retype.js",
-    "bin:rebuild": "npm run build && ./dist/ts-retype.js",
     "bin:dev": "rollup -c && ./dist/ts-retype.js",
     "bin:perf": "npm run build && node --stack-size=2000 --max-old-space-size=32768 dist/ts-retype.js",
+    "bin:rebuild": "npm run build && ./dist/ts-retype.js",
     "build": "rollup -c",
     "bump": "node config/bump.cjs",
     "clean": "rm -rf dist",
@@ -53,6 +49,10 @@
     "vis:dev": "cd vis && npm run dev",
     "vis:install": "cd vis && npm i"
   },
+  "keywords": [
+    "typescript",
+    "static-analysis"
+  ],
   "dependencies": {
     "commander": "^10.0.0",
     "glob": "^9.1.0",
