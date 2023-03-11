@@ -22,8 +22,8 @@ export function posToLine(lengths: number[]) {
     let offset = 0;
     let line = 1;
     for (const len of lengths) {
-      offset += len;
-      if (pos <= offset) {
+      offset += len + 1;
+      if (pos < offset) {
         return line;
       }
       line += 1;
