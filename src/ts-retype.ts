@@ -31,7 +31,8 @@ program
   )
   .option('-j, --json <file-path>', 'JSON report file path. if not set, does not export JSON.')
   .option('-i, --include [glob...]', 'glob patterns that will be included in search')
-  .option('-x, --exclude [glob...]', 'glob patterns that will be ignored');
+  .option('-x, --exclude [glob...]', 'glob patterns that will be ignored')
+  .option('-g, --generate [file-path]', 'generate default config. if no path provided, creates .retyperc in the current directory');
 
 function parseOptions(): Partial<RetypeOptions> {
   program.parse();
@@ -44,14 +45,27 @@ function parseOptions(): Partial<RetypeOptions> {
 }
 
 function main() {
+  log.header();
+
   const options = parseOptions();
+
+  if (options.generate) {
+    let configPath = '.retyperc';
+    if (typeof options.generate === 'string') {
+      configPath = <string>options.generate;
+    }
+    const config = stringify(DEFAULT_OPTIONS);
+    fs.writeFileSync(configPath, config);
+    log.log(config);
+    log.log(`written to ${configPath}`);
+    return;
+  }
+
   const project = options.project;
 
   if (!project) {
     throw new Error('missing project');
   }
-
-  log.header();
 
   const args = {
     project,

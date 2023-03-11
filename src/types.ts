@@ -55,6 +55,7 @@ export type RetypeArgs = RetypeConfig & {
 
 export type RetypeOptions = RetypeArgs & {
   config?: string;
+  generate?: boolean | string | null;
 };
 
 export const DEFAULT_OPTIONS: RetypeConfig = {
