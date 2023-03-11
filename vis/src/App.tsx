@@ -7,32 +7,31 @@ import { UnionCluster } from './components/Cluster/UnionCluster';
 import { IncDecInput } from './components/IncDecInput';
 import { Empty } from './components/Empty';
 import { Logo } from './components/Logo';
-import { CandidateTypeCluster, Data, TypeCluster } from './types';
+import { Data, EnumTypeCluster, FunctionTypeCluster, LiteralTypeCluster, TypeCluster, UnionTypeCluster } from './types';
 import './App.scss';
-
-const renders = {
-  function: FunctionCluster,
-  alias: LiteralCluster,
-  literal: LiteralCluster,
-  interface: LiteralCluster,
-  enum: EnumCluster,
-  union: UnionCluster,
-};
 
 function Clusters({ clusters }: Data) {
   const clustersMarkup = clusters.map((c, idx) => {
-    const Cluster = renders[c.type];
-    if (!Cluster) {
+    switch (c.type) {
+    case 'alias':
+    case 'interface':
+    case 'literal':
+      return <LiteralCluster {...(c as LiteralTypeCluster)} />;
+    case 'function':
+      return <FunctionCluster {...(c as FunctionTypeCluster)} />;
+    case 'enum':
+      return <EnumCluster {...(c as EnumTypeCluster)} />;
+    case 'union':
+      return <UnionCluster {...(c as UnionTypeCluster)} />;
+    default:
       return (
         <div key={idx} className="cluster">
           <div className="title"><h2>Unknown cluster</h2></div>
           <div className="pre mono">{JSON.stringify(c, null, 2)}</div>
         </div>
       );
+
     }
-    return (
-      <Cluster key={idx} {...c} />
-    );
   });
 
   return (
@@ -47,13 +46,15 @@ const miniSearch = new MiniSearch({
   storeFields: ['name', 'type', 'names', 'files', 'properties', 'parameters', 'returnType', 'group', 'fulltext'],
 });
 
-function fulltext(cluster: CandidateTypeCluster): string {
+function fulltext(cluster: TypeCluster): string {
   return [
     `${cluster.name}`,
     `${Object.keys(cluster.names).join(' ')}`,
     `${cluster.files.map(({ file }) => file).join(' ')}`,
     `${(cluster.properties || []).map(({ key, value, type }) => `${type} ${key}: ${value}`).join(' ')}`,
     `${(cluster.parameters || []).map(({ key, value, type }) => `${type} ${key}: ${value}`).join(' ')}`,
+    `${(cluster.members || []).join(' ')}`,
+    `${(cluster.types || []).join(' ')}`,
   ].join(' ');
 }
 
@@ -74,7 +75,7 @@ function App() {
               ...cluster,
               id: ++i,
               group: name,
-              fulltext: fulltext(cluster as CandidateTypeCluster),
+              fulltext: fulltext(cluster as TypeCluster),
             }))
           )],
           [] as TypeCluster[],

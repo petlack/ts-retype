@@ -33,19 +33,24 @@ export type SourceFile = {
   type: CandidateType['type'];
 };
 
-export type CandidateTypeCluster = FunctionTypeCluster &
-  LiteralTypeCluster &
-  EnumTypeCluster &
-  UnionTypeCluster;
+export type CandidateTypeCluster =
+  | FunctionTypeCluster
+  | LiteralTypeCluster
+  | EnumTypeCluster
+  | UnionTypeCluster;
 
-export type TypeCluster = Pick<LiteralType, 'name' | 'properties'> & {
+export type TypeCluster = Pick<CandidateType, 'type' | 'name' | 'pos'> & {
   files: SourceFile[];
-  type: 'alias' | 'interface' | 'literal' | 'function';
   names: Freq;
   group: string;
+  properties?: LiteralCandidateType['properties'];
+  parameters?: FunctionCandidateType['parameters'];
+  returnType?: FunctionCandidateType['returnType'];
+  members?: EnumCandidateType['members'];
+  types?: UnionCandidateType['types'];
 };
 
-export type LiteralTypeCluster = Pick<LiteralCandidateType, 'name' | 'type' | 'properties'> & {
+export type LiteralTypeCluster = Pick<LiteralCandidateType, 'type' | 'name' | 'properties'> & {
   files: SourceFile[];
   names: Freq;
   group: string;
@@ -53,20 +58,20 @@ export type LiteralTypeCluster = Pick<LiteralCandidateType, 'name' | 'type' | 'p
 
 export type FunctionTypeCluster = Pick<
   FunctionCandidateType,
-  'name' | 'type' | 'parameters' | 'returnType'
+  'type' | 'name' | 'parameters' | 'returnType'
 > & {
   files: SourceFile[];
   names: Freq;
   group: string;
 };
 
-export type EnumTypeCluster = Pick<EnumCandidateType, 'name' | 'type' | 'members'> & {
+export type EnumTypeCluster = Pick<EnumCandidateType, 'type' | 'name' | 'members'> & {
   files: SourceFile[];
   names: Freq;
   group: string;
 };
 
-export type UnionTypeCluster = Pick<UnionCandidateType, 'name' | 'type' | 'types'> & {
+export type UnionTypeCluster = Pick<UnionCandidateType, 'type' | 'name' | 'types'> & {
   files: SourceFile[];
   names: Freq;
   group: string;

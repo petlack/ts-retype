@@ -64,13 +64,14 @@ export type CandidateTypeCluster = Pick<CandidateType, 'name' | 'type'> & {
 };
 
 export type FunctionTypeCluster = CandidateTypeCluster &
-  Pick<FunctionCandidateType, 'parameters' | 'returnType'>;
+  Pick<FunctionCandidateType, 'type' | 'parameters' | 'returnType'>;
 
-export type LiteralTypeCluster = CandidateTypeCluster & Pick<LiteralCandidateType, 'properties'>;
+export type LiteralTypeCluster = CandidateTypeCluster &
+  Pick<LiteralCandidateType, 'type' | 'properties'>;
 
-export type EnumTypeCluster = CandidateTypeCluster & Pick<EnumCandidateType, 'members'>;
+export type EnumTypeCluster = CandidateTypeCluster & Pick<EnumCandidateType, 'type' | 'members'>;
 
-export type UnionTypeCluster = CandidateTypeCluster & Pick<UnionCandidateType, 'types'>;
+export type UnionTypeCluster = CandidateTypeCluster & Pick<UnionCandidateType, 'type' | 'types'>;
 
 export type TypeCluster = Pick<LiteralType, 'name' | 'type' | 'properties'> & {
   files: SourceFile[];
