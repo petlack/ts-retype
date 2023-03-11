@@ -103,7 +103,7 @@ export function getAllCandidateTypes(sourceFile: ts.SourceFile) {
               types,
             };
             all.push(candidate);
-            return false;
+            return true;
           }
           case ts.SyntaxKind.FunctionType: {
             const name = node.name.escapedText;
@@ -148,7 +148,6 @@ export function getAllCandidateTypes(sourceFile: ts.SourceFile) {
             }
           }
         }
-        return false;
       }
       case ts.SyntaxKind.TypeLiteral: {
         const children: Property[] = [];
@@ -166,6 +165,28 @@ export function getAllCandidateTypes(sourceFile: ts.SourceFile) {
         };
         all.push(candidate);
         return true;
+      }
+      case ts.SyntaxKind.UnionType: {
+        const types = (node.types || [])
+          .filter(
+            (t: any) =>
+              t.kind === ts.SyntaxKind.LiteralType &&
+              t.literal.kind === ts.SyntaxKind.StringLiteral,
+          )
+          .map((t: any) =>
+            getNodeText(sourceFile, t)
+              .trim()
+              .replace(/^"+|"+$/g, '')
+              .replace(/^'+|'+$/g, ''),
+          );
+        const candidate: UnionCandidateType = {
+          name: 'anonymous',
+          type: 'union',
+          pos: [node.pos, node.end],
+          types,
+        };
+        all.push(candidate);
+        return false;
       }
     }
     return false;

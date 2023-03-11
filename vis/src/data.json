@@ -10,9 +10,9 @@
           { "key": "clusters", "value": "TypeCluster[]", "type": "ArrayType" }
         ],
         "files": [
-          { "type": "alias", "pos": [1966, 2054], "lines": [88, 93], "file": "src/types.ts" },
-          { "type": "alias", "pos": [1398, 1461], "lines": [71, 73], "file": "vis/src/types.ts" },
-          { "type": "alias", "pos": [1461, 1539], "lines": [73, 77], "file": "vis/src/types.ts" }
+          { "type": "alias", "pos": [1960, 2048], "lines": [85, 90], "file": "src/types.ts" },
+          { "type": "alias", "pos": [1386, 1449], "lines": [65, 67], "file": "vis/src/types.ts" },
+          { "type": "alias", "pos": [1449, 1527], "lines": [67, 71], "file": "vis/src/types.ts" }
         ],
         "names": { "Data": 1, "SimilarityGroup": 2 }
       },
@@ -55,8 +55,8 @@
             "file": "docs/src/components/Code.tsx"
           },
           { "type": "alias", "pos": [1083, 1174], "lines": [52, 58], "file": "src/types.ts" },
-          { "type": "alias", "pos": [1966, 2054], "lines": [88, 93], "file": "src/types.ts" },
-          { "type": "alias", "pos": [2054, 2164], "lines": [93, 100], "file": "src/types.ts" },
+          { "type": "alias", "pos": [1960, 2048], "lines": [85, 90], "file": "src/types.ts" },
+          { "type": "alias", "pos": [2048, 2158], "lines": [90, 97], "file": "src/types.ts" },
           { "type": "alias", "pos": [0, 66], "lines": [1, 3], "file": "src/types.ts" },
           { "type": "alias", "pos": [265, 331], "lines": [10, 16], "file": "tests/cmd.test.ts" },
           {
@@ -67,8 +67,8 @@
           },
           { "type": "alias", "pos": [95, 163], "lines": [1, 5], "file": "vis/src/types.ts" },
           { "type": "alias", "pos": [419, 510], "lines": [21, 27], "file": "vis/src/types.ts" },
-          { "type": "alias", "pos": [1398, 1461], "lines": [71, 73], "file": "vis/src/types.ts" },
-          { "type": "alias", "pos": [1461, 1539], "lines": [73, 77], "file": "vis/src/types.ts" }
+          { "type": "alias", "pos": [1386, 1449], "lines": [65, 67], "file": "vis/src/types.ts" },
+          { "type": "alias", "pos": [1449, 1527], "lines": [67, 71], "file": "vis/src/types.ts" }
         ],
         "names": {
           "Freq": 2,
@@ -97,11 +97,11 @@
         ],
         "files": [
           { "type": "literal", "pos": [1249, 1291], "lines": [60, 63], "file": "src/types.ts" },
-          { "type": "literal", "pos": [1774, 1816], "lines": [77, 80], "file": "src/types.ts" },
+          { "type": "literal", "pos": [1768, 1810], "lines": [74, 77], "file": "src/types.ts" },
           { "type": "literal", "pos": [651, 766], "lines": [31, 36], "file": "vis/src/types.ts" },
           { "type": "literal", "pos": [885, 944], "lines": [41, 45], "file": "vis/src/types.ts" },
-          { "type": "literal", "pos": [1037, 1096], "lines": [50, 54], "file": "vis/src/types.ts" },
-          { "type": "literal", "pos": [1189, 1248], "lines": [59, 63], "file": "vis/src/types.ts" }
+          { "type": "literal", "pos": [1031, 1090], "lines": [47, 51], "file": "vis/src/types.ts" },
+          { "type": "literal", "pos": [1177, 1236], "lines": [53, 57], "file": "vis/src/types.ts" }
         ],
         "names": { "anonymous": 6 }
       },
@@ -130,7 +130,7 @@
         ],
         "files": [
           { "type": "literal", "pos": [1742, 1789], "lines": [60, 60], "file": "src/cmd.ts" },
-          { "type": "literal", "pos": [2271, 2332], "lines": [106, 109], "file": "src/types.ts" }
+          { "type": "literal", "pos": [2265, 2326], "lines": [103, 106], "file": "src/types.ts" }
         ],
         "names": { "anonymous": 2 }
       }
@@ -139,6 +139,25 @@
   {
     "name": "HasIdenticalProperties",
     "clusters": [
+      {
+        "name": "CopiedValue",
+        "type": "union",
+        "types": [],
+        "files": [
+          {
+            "type": "union",
+            "pos": [167, 228],
+            "lines": [6, 7],
+            "file": "docs/src/components/Code.tsx"
+          },
+          { "type": "union", "pos": [759, 783], "lines": [27, 27], "file": "src/clusters.ts" },
+          { "type": "union", "pos": [1272, 1298], "lines": [40, 40], "file": "src/cmd.ts" },
+          { "type": "union", "pos": [1792, 1808], "lines": [58, 58], "file": "src/parse.ts" },
+          { "type": "union", "pos": [4279, 4295], "lines": [137, 137], "file": "src/parse.ts" },
+          { "type": "union", "pos": [33, 68], "lines": [1, 3], "file": "vis/src/hooks/useCopy.ts" }
+        ],
+        "names": { "CopiedValue": 1, "anonymous": 4, "CodeProps": 1 }
+      },
       {
         "name": "SourceLiteralType",
         "type": "interface",
@@ -158,25 +177,10 @@
           { "key": "clusters", "value": "TypeCluster[]", "type": "ArrayType" }
         ],
         "files": [
-          { "type": "alias", "pos": [1398, 1461], "lines": [71, 73], "file": "vis/src/types.ts" },
-          { "type": "alias", "pos": [1461, 1539], "lines": [73, 77], "file": "vis/src/types.ts" }
+          { "type": "alias", "pos": [1386, 1449], "lines": [65, 67], "file": "vis/src/types.ts" },
+          { "type": "alias", "pos": [1449, 1527], "lines": [67, 71], "file": "vis/src/types.ts" }
         ],
         "names": { "Data": 1, "SimilarityGroup": 1 }
-      },
-      {
-        "name": "CopiedValue",
-        "type": "union",
-        "types": [],
-        "files": [
-          {
-            "type": "union",
-            "pos": [167, 228],
-            "lines": [6, 7],
-            "file": "docs/src/components/Code.tsx"
-          },
-          { "type": "union", "pos": [33, 68], "lines": [1, 3], "file": "vis/src/hooks/useCopy.ts" }
-        ],
-        "names": { "CopiedValue": 1, "CodeProps": 1 }
       },
       {
         "name": "FnFoo",
@@ -259,6 +263,18 @@
     "clusters": [
       {
         "name": "anonymous",
+        "type": "union",
+        "types": [],
+        "files": [
+          { "type": "union", "pos": [759, 783], "lines": [27, 27], "file": "src/clusters.ts" },
+          { "type": "union", "pos": [1272, 1298], "lines": [40, 40], "file": "src/cmd.ts" },
+          { "type": "union", "pos": [1792, 1808], "lines": [58, 58], "file": "src/parse.ts" },
+          { "type": "union", "pos": [4279, 4295], "lines": [137, 137], "file": "src/parse.ts" }
+        ],
+        "names": { "anonymous": 4 }
+      },
+      {
+        "name": "anonymous",
         "type": "literal",
         "properties": [
           { "key": "files", "value": "SourceFile[]", "type": "ArrayType" },
@@ -267,8 +283,8 @@
         ],
         "files": [
           { "type": "literal", "pos": [885, 944], "lines": [41, 45], "file": "vis/src/types.ts" },
-          { "type": "literal", "pos": [1037, 1096], "lines": [50, 54], "file": "vis/src/types.ts" },
-          { "type": "literal", "pos": [1189, 1248], "lines": [59, 63], "file": "vis/src/types.ts" }
+          { "type": "literal", "pos": [1031, 1090], "lines": [47, 51], "file": "vis/src/types.ts" },
+          { "type": "literal", "pos": [1177, 1236], "lines": [53, 57], "file": "vis/src/types.ts" }
         ],
         "names": { "anonymous": 3 }
       },
@@ -331,8 +347,8 @@
           "Identical"
         ],
         "files": [
-          { "type": "enum", "pos": [1817, 1966], "lines": [80, 88], "file": "src/types.ts" },
-          { "type": "enum", "pos": [1249, 1398], "lines": [63, 71], "file": "vis/src/types.ts" }
+          { "type": "enum", "pos": [1811, 1960], "lines": [77, 85], "file": "src/types.ts" },
+          { "type": "enum", "pos": [1237, 1386], "lines": [57, 65], "file": "vis/src/types.ts" }
         ],
         "names": { "Similarity": 2 }
       },
@@ -345,7 +361,7 @@
         ],
         "files": [
           { "type": "literal", "pos": [1249, 1291], "lines": [60, 63], "file": "src/types.ts" },
-          { "type": "literal", "pos": [1774, 1816], "lines": [77, 80], "file": "src/types.ts" }
+          { "type": "literal", "pos": [1768, 1810], "lines": [74, 77], "file": "src/types.ts" }
         ],
         "names": { "anonymous": 2 }
       },

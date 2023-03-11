@@ -156,4 +156,39 @@ describe('parse', () => {
 
     expect(types).toEqual(expected);
   });
+
+  test('intersection of types', () => {
+    const sourceText = `
+    type FunctionTypeCluster = Pick<
+      FunctionCandidateType,
+      'name' | 'type' | 'parameters' | 'returnType'
+    > & {
+      files: SourceFile[];
+      names: Freq;
+      group: string;
+    }`;
+    const srcFile = createFile(sourceText);
+    const types = getAllCandidateTypes(srcFile);
+
+    const expected = [
+      {
+        name: 'anonymous',
+        type: 'union',
+        pos: [66, 118],
+        types: ['name', 'type', 'parameters', 'returnType'],
+      },
+      {
+        name: 'anonymous',
+        pos: [126, 201],
+        properties: [
+          { key: 'files', type: 'ArrayType', value: 'SourceFile[]' },
+          { key: 'names', type: 'TypeReference', value: 'Freq' },
+          { key: 'group', type: 'StringKeyword', value: 'string' },
+        ],
+        type: 'literal',
+      },
+    ];
+
+    expect(types).toEqual(expected);
+  });
 });

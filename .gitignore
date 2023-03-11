@@ -1,7 +1,7 @@
 node_modules
 coverage
 dist
-tsd-report
+retype-report.html
 .husky
 .ignored
 .eslintcache
