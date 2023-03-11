@@ -6,7 +6,7 @@ import { UnionCluster } from './UnionCluster';
 
 import './ClusterListing.scss';
 
-export function ClusterListing({ clusters }: Data) {
+export function ClusterListing({ clusters }: Pick<Data, 'clusters'>) {
   const clustersMarkup = clusters.map((c, idx) => {
     switch (c.type) {
     case 'alias':

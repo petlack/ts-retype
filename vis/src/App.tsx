@@ -9,7 +9,12 @@ import { TypeCluster } from './types';
 
 import './App.scss';
 
-const search = Search();
+const search = Search({
+  facets: [
+    { name: 'similarity', values: ['all', 'Identical', 'HasIdenticalProperties'], matches: (rec, v) => v === 'all' && ['Identical', 'HasIdenticalProperties'].includes(rec.group) || rec.group === v },
+    { name: 'type', values: ['all', 'alias', 'enum', 'function', 'interface', 'literal', 'union'], matches: (rec, v) => v === 'all' || rec.type === v },
+  ],
+});
 
 function App() {
   const [allData, setAllData] = useState([] as TypeCluster[]);
@@ -41,52 +46,35 @@ function App() {
     search.refresh(allData);
   }, [allData]);
 
-  const filteredData = query.trim().length ? search.search(query) : allData;
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const data = filteredData.filter(
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    ({ group, files, properties = [], parameters = [], members = [], types = [] }) =>
-      group === selectedTab &&
-      properties.length + parameters.length + members.length + types.length >= minProperties &&
-      files.length >= minFiles
-  );
+  const filter = {
+    selectedTab,
+    selectedType,
+    minFiles,
+    minProperties,
+  };
+
+  const { results, facetsStats } = search.search(query, filter);
+
+  // console.log(filter);
+  // console.log({ results, facetsStats });
 
   const nav = [
-    ['Identical', '', 'Consider defining following types just once.'],
-    ['HasIdenticalProperties', 'Renamed', ''],
+    ['all', 'all', ''],
+    ['Identical', 'Identical', 'Consider defining following types just once.'],
+    ['HasIdenticalProperties', 'HasIdenticalProperties', ''],
     // ['HasSimilarProperties', 'Similar', ''],
   ];
+  
 
-  const groupsCounts = [
-    filteredData.filter(
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      ({ group, files, properties = [], parameters = [], members = [], types = [] }) =>
-        group === nav[0][0] &&
-        properties.length + parameters.length + members.length + types.length >= minProperties &&
-        files.length >= minFiles
-    ).length,
-    filteredData.filter(
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      ({ group, files, properties = [], parameters = [], members = [], types = [] }) =>
-        group === nav[1][0] &&
-        (properties.length + parameters.length + members.length + types.length >= minProperties) &&
-        files.length >= minFiles
-    ).length,
-  ];
+  // useEffect(() => {
+  //   if (groupsCounts[0] === 0 && groupsCounts[1] != 0) {
+  //     setSelectedTab('HasIdenticalProperties');
+  //   }
+  // }, [groupsCounts, setSelectedTab]);
 
-  useEffect(() => {
-    if (groupsCounts[0] === 0 && groupsCounts[1] != 0) {
-      setSelectedTab('HasIdenticalProperties');
-    }
-  }, [groupsCounts, setSelectedTab]);
-
-  const dataMarkup = data.length === 0 ?
+  const resultsMarkup = results.length === 0 ?
     <Empty /> :
-    <ClusterListing name={selectedTab} clusters={data} />;
+    <ClusterListing clusters={results} />;
 
   return (
     <div id="app">
@@ -102,10 +90,10 @@ function App() {
           setMinProperties={setMinProperties}
           minFiles={minFiles}
           setMinFiles={setMinFiles}
-          groupsCounts={groupsCounts}
+          facetsStats={facetsStats}
         />
         <div className="listing">
-          {dataMarkup}
+          {resultsMarkup}
         </div>
       </div>
     </div>

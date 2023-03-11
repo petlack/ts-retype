@@ -69,7 +69,7 @@ function nonEmptyCandidateType(type: CandidateType): boolean {
   return true;
 }
 
-export function createTypeClusters({ project, include, exclude }: RetypeArgs) {
+export function createTypeClusters({ project, include, exclude }: RetypeArgs): SimilarityGroup[] {
   const files = globSync(include, { cwd: project, ignore: exclude });
 
   const filesLengths: { [file: string]: number[] } = {};

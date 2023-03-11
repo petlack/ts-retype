@@ -85,7 +85,7 @@ export enum Similarity {
   Identical = 4,
 }
 
-export type Data = { name: string; clusters: TypeCluster[] };
+export type Data = { name: 'Identical' | 'Renamed'; clusters: TypeCluster[] };
 export type SimilarityGroup = {
   name: string;
   clusters: TypeCluster[];

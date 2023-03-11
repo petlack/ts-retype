@@ -1,3 +1,4 @@
+import { FacetStats, getFacetStat } from '../../model/search';
 import { IncDecInput } from '../IncDecInput';
 
 import './Filters.scss';
@@ -12,7 +13,7 @@ export type FiltersProps = {
   setMinProperties: (x: number) => void;
   minFiles: number;
   setMinFiles: (x: number) => void;
-  groupsCounts: number[];
+  facetsStats: FacetStats;
 }
 
 export function Filters({
@@ -25,23 +26,23 @@ export function Filters({
   setMinProperties,
   minFiles,
   setMinFiles,
-  groupsCounts,
+  facetsStats,
 }: FiltersProps) {
-  const navMarkup = nav.map((val, idx) => (
+  const navMarkup = nav.map(val => (
     <a
       key={val[0]}
       className={`nav ${val[0] === selectedTab ? 'selected' : ''}`}
       onClick={() => setSelectedTab(val[0])}
-    >{val[1] || val[0]} ({groupsCounts[idx]})</a>
+    >{val[1] || val[0]} ({getFacetStat(facetsStats, val[0], selectedType)})</a>
   ));
 
-  const types = ['alias', 'enum', 'function', 'interface', 'literal', 'union'];
+  const types = ['all', 'alias', 'enum', 'function', 'interface', 'literal', 'union'];
   const typesMarkup = types.map(type => (
     <a
       key={type}
       className={`nav ${type === selectedType ? 'selected' : ''}`}
       onClick={() => setSelectedType(type)}
-    >{type}</a>
+    >{type} ({getFacetStat(facetsStats, selectedTab, type)})</a>
   ));
   
   return (
@@ -53,7 +54,7 @@ export function Filters({
         </ul>
       </div>
       <div className="filter">
-        <span>Filter by types</span>
+        <span>Filter by type</span>
         <ul className="navmenu">
           {typesMarkup}
         </ul>
