@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import './IncDecInput.css';
+import './IncDecInput.scss';
 
 export type IncDecInputArgs = {
   value: number;

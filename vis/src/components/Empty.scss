@@ -5,10 +5,9 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-}
-
-.empty svg {
-  width: 8rem;
-  height: 8rem;
-  color: #C0C0C0;
+  svg {
+    width: 8rem;
+    height: 8rem;
+    color: #C0C0C0;
+  }
 }

@@ -1,4 +1,4 @@
-import './Empty.css';
+import './Empty.scss';
 
 export function Empty() {
   return (

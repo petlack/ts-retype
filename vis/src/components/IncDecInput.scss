@@ -1,0 +1,31 @@
+.incdec {
+  display: flex;
+  flex-direction: row;
+
+  input {
+    background: none;
+    border: none;
+    color: var(--clr-fg);
+    outline: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.4rem;
+    width: 7ch;
+    text-align: center;
+  }
+
+  button {
+    background-color: var(--clr-btn-primary-bg);
+    color: var(--clr-btn-primary-fg);
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    border-radius: 100vw;
+    align-items: center;
+    border: none;
+
+    &:hover {
+      background-color: var(--clr-btn-primary-bg-hover);
+      border: none;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { TypeCluster } from '../types';
 
-import './Cluster.css';
+import './Cluster.scss';
 import { useCopyToClipboard } from '../hooks/useCopy';
 
 export function Cluster({ name, files, properties, names }: TypeCluster) {

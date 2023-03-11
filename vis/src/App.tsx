@@ -5,7 +5,7 @@ import { IncDecInput } from './components/IncDecInput';
 import { Empty } from './components/Empty';
 import { Logo } from './components/Logo';
 import { Data, TypeCluster } from './types';
-import './App.css';
+import './App.scss';
 
 function Category({ clusters }: Data) {
   const clustersMarkup = clusters.map((c, idx) => (
