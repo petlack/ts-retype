@@ -57,13 +57,6 @@ function App() {
 
   // console.log(filter);
   // console.log({ results, facetsStats });
-
-  const nav = [
-    ['all', 'all', ''],
-    ['Identical', 'Identical', 'Consider defining following types just once.'],
-    ['HasIdenticalProperties', 'HasIdenticalProperties', ''],
-    // ['HasSimilarProperties', 'Similar', ''],
-  ];
   
 
   // useEffect(() => {
@@ -81,7 +74,6 @@ function App() {
       <Navbar query={query} setQuery={setQuery} />
       <div className="main">
         <Filters
-          nav={nav}
           selectedTab={selectedTab}
           setSelectedTab={setSelectedTab}
           selectedType={selectedType}

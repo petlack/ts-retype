@@ -4,7 +4,6 @@ import { IncDecInput } from '../IncDecInput';
 import './Filters.scss';
 
 export type FiltersProps = {
-  nav: string[][];
   selectedTab: string;
   setSelectedTab: (x: string) => void;
   selectedType: string;
@@ -17,7 +16,6 @@ export type FiltersProps = {
 }
 
 export function Filters({
-  nav,
   selectedTab,
   setSelectedTab,
   selectedType,
@@ -28,12 +26,14 @@ export function Filters({
   setMinFiles,
   facetsStats,
 }: FiltersProps) {
-  const navMarkup = nav.map(val => (
+  const similarities = ['all', 'Identical', 'HasIdenticalProperties'];
+
+  const similaritiesMarkup = similarities.map(sim => (
     <a
-      key={val[0]}
-      className={`nav ${val[0] === selectedTab ? 'selected' : ''}`}
-      onClick={() => setSelectedTab(val[0])}
-    >{val[1] || val[0]} ({getFacetStat(facetsStats, val[0], selectedType)})</a>
+      key={sim}
+      className={`nav ${sim === selectedTab ? 'selected' : ''}`}
+      onClick={() => setSelectedTab(sim)}
+    >{sim} ({getFacetStat(facetsStats, sim, selectedType)})</a>
   ));
 
   const types = ['all', 'alias', 'enum', 'function', 'interface', 'literal', 'union'];
@@ -50,7 +50,7 @@ export function Filters({
       <div className="filter">
         <span>Show types that are</span>
         <ul className="navmenu">
-          {navMarkup}
+          {similaritiesMarkup}
         </ul>
       </div>
       <div className="filter">
