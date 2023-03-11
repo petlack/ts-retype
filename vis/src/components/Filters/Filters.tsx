@@ -1,4 +1,4 @@
-import { IncDecInput } from './IncDecInput';
+import { IncDecInput } from '../IncDecInput';
 
 import './Filters.scss';
 
