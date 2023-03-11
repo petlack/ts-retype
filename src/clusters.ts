@@ -1,5 +1,5 @@
 import path from 'path';
-import { omit, sum } from 'ramda';
+import { isEmpty, omit, sum } from 'ramda';
 import { globSync } from 'glob';
 import { getAllLiteralTypes } from './parse';
 import {
@@ -10,6 +10,8 @@ import {
   TypeCluster,
   SimilarityGroup,
   RetypeArgs,
+  CandidateType,
+  SourceCandidateType,
 } from './types';
 import { formatDuration, loadFile, posToLine } from './utils';
 import { similarityMatrix, pairsToClusters, indexPairsBySimilarity } from './similarity';
@@ -17,8 +19,8 @@ import { createLogger } from './cmd';
 
 const log = createLogger();
 
-function toSourceLiteralTypes(file: string, types: LiteralType[]) {
-  return types.map((t) => <SourceLiteralType>{ ...t, file });
+function toSourceCandidateTypes(file: string, types: CandidateType[]): SourceCandidateType[] {
+  return types.map((t) => ({ ...t, file }));
 }
 
 function freq(list: (string | number | symbol)[]) {
@@ -29,7 +31,7 @@ function freq(list: (string | number | symbol)[]) {
 }
 
 function clusterValue(
-  types: SourceLiteralType[],
+  types: SourceCandidateType[],
   cluster: Set<number>,
   filesLengths: { [file: string]: number[] },
 ): TypeCluster {
@@ -45,7 +47,7 @@ function clusterValue(
     .sort((a, b) => (a.file < b.file ? -1 : 1));
   const names = freq(values.map((val) => types[val].name));
   return {
-    ...omit(['file', 'pos'], types[firstVal]),
+    ...omit(['file', 'pos'], <SourceLiteralType>types[firstVal]),
     files,
     names,
   };
@@ -61,11 +63,15 @@ function formatFileName(file: string, maxLength = 120) {
   return file;
 }
 
+function nonEmptyCandidateType(type: CandidateType): boolean {
+  return true;
+}
+
 export function createTypeClusters({ project, include, exclude }: RetypeArgs) {
   const files = globSync(include, { cwd: project, ignore: exclude });
 
   const filesLengths: { [file: string]: number[] } = {};
-  let allTypes: SourceLiteralType[] = [];
+  let allTypes: SourceCandidateType[] = [];
 
   const start = new Date().getTime();
 
@@ -80,8 +86,8 @@ export function createTypeClusters({ project, include, exclude }: RetypeArgs) {
       .split('\n')
       .map((l) => l.length);
     filesLengths[file] = lengths;
-    const types = toSourceLiteralTypes(file, getAllLiteralTypes(srcFile)).filter(
-      (t) => t.properties.length > 0,
+    const types = toSourceCandidateTypes(file, getAllLiteralTypes(srcFile)).filter(
+      nonEmptyCandidateType,
     );
     allTypes = [...allTypes, ...types];
   }

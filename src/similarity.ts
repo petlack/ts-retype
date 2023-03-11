@@ -1,11 +1,20 @@
 import { isEmpty, symmetricDifference, pluck, intersection } from 'ramda';
-import { Similarity, LiteralType } from './types';
+import { Similarity, LiteralType, CandidateType } from './types';
 
 const eqValues = (left: unknown[], right: unknown[]) => isEmpty(symmetricDifference(left, right));
 
-export function similarity(left: LiteralType, right: LiteralType) {
+function isLiteralType(t: CandidateType) {
+  return ['alias', 'interface', 'literal'].includes(t.type);
+}
+
+export function similarity(leftCandidate: CandidateType, rightCandidate: CandidateType) {
+  const left = isLiteralType(leftCandidate) ? <LiteralType>leftCandidate : null;
+  const right = isLiteralType(rightCandidate) ? <LiteralType>rightCandidate : null;
+  if (left === null || right === null) {
+    return Similarity.Different;
+  }
   const namesEqual = left.name === right.name;
-  // const propertiesCountEqual = left.properties.length === right.properties.length;
+  // const propertiesCountEqual = left.properties.length === right.properties.length;)
   const propertiesKeysEqual = eqValues(
     pluck('key', left.properties),
     pluck('key', right.properties),
@@ -41,7 +50,7 @@ export function similarity(left: LiteralType, right: LiteralType) {
   return Similarity.Different;
 }
 
-export function similarityMatrix(types: LiteralType[]) {
+export function similarityMatrix(types: CandidateType[]) {
   const m = [...Array(types.length)].map(() =>
     Array<Similarity>(types.length).fill(Similarity.Different),
   );

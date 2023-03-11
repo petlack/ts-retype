@@ -8,14 +8,42 @@ export interface Property {
   type: string;
 }
 
-export interface LiteralType {
+export interface CandidateType {
   name: string;
-  type: 'interface' | 'literal' | 'alias',
-  properties: Property[];
+  type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
   pos: [number, number];
 }
 
+export interface LiteralType extends CandidateType {
+  type: 'literal' | 'alias' | 'interface';
+  properties: Property[];
+}
+
+export interface FunctionCandidateType extends CandidateType {
+  type: 'function';
+  parameters: Property[];
+  returnType: string;
+}
+
+export interface UnionCandidateType extends CandidateType {
+  type: 'union';
+  types: string[];
+}
+
+export interface EnumCandidateType extends CandidateType {
+  type: 'enum';
+  members: string[];
+}
+
+export interface LiteralType extends CandidateType {
+  properties: Property[];
+}
+
 export interface SourceLiteralType extends LiteralType {
+  file: string;
+}
+
+export interface SourceCandidateType extends CandidateType {
   file: string;
 }
 

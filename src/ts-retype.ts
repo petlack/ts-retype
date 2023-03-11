@@ -32,7 +32,10 @@ program
   .option('-j, --json <file-path>', 'JSON report file path. if not set, does not export JSON.')
   .option('-i, --include [glob...]', 'glob patterns that will be included in search')
   .option('-x, --exclude [glob...]', 'glob patterns that will be ignored')
-  .option('-g, --generate [file-path]', 'generate default config. if no path provided, creates .retyperc in the current directory');
+  .option(
+    '-g, --generate [file-path]',
+    'generate default config. if no path provided, creates .retyperc in the current directory',
+  );
 
 function parseOptions(): Partial<RetypeOptions> {
   program.parse();

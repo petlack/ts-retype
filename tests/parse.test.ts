@@ -80,6 +80,13 @@ describe('parse', () => {
 
     const expected = [
       {
+        name: 'GenericFn',
+        type: 'function',
+        pos: [0, 58],
+        parameters: [{ key: 'x', type: 'TypeReference', value: 'T' }],
+        returnType: '{ foo: string, bar: number }',
+      },
+      {
         name: 'anonymous',
         type: 'literal',
         pos: [29, 58],
