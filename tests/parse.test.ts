@@ -14,6 +14,7 @@ describe('parse', () => {
     const expected = [
       {
         name: 'A',
+        type: 'alias',
         pos: [0, 60],
         properties: [
           { key: 'message', value: 'string', type: 'StringKeyword' },
@@ -36,6 +37,7 @@ describe('parse', () => {
     const expected = [
       {
         name: 'B',
+        type: 'alias',
         pos: [0, 73],
         properties: [
           { key: 'message', value: 'string', type: 'StringKeyword' },
@@ -59,6 +61,7 @@ describe('parse', () => {
     const expected = [
       {
         name: 'IFoo',
+        type: 'interface',
         pos: [0, 79],
         properties: [
           { key: 'foo', value: '(a: string) => number', type: 'FunctionType' },
@@ -78,6 +81,7 @@ describe('parse', () => {
     const expected = [
       {
         name: 'anonymous',
+        type: 'literal',
         pos: [29, 58],
         properties: [
           { key: 'foo', value: 'string', type: 'StringKeyword' },
@@ -109,6 +113,7 @@ describe('parse', () => {
     const expected = [
       {
         name: 'anonymous',
+        type: 'literal',
         pos: [10, 49],
         properties: [
           { key: 'string', value: 'number', type: 'NumberKeyword' },
@@ -130,11 +135,13 @@ describe('parse', () => {
     const expected = [
       {
         name: 'anonymous',
+        type: 'literal',
         pos: [25, 28],
         properties: [],
       },
       {
         name: 'anonymous',
+        type: 'literal',
         pos: [46, 65],
         properties: [{ key: 'symbol', value: 'T', type: 'TypeReference' }],
       },

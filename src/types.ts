@@ -10,6 +10,7 @@ export interface Property {
 
 export interface LiteralType {
   name: string;
+  type: 'interface' | 'literal' | 'alias',
   properties: Property[];
   pos: [number, number];
 }

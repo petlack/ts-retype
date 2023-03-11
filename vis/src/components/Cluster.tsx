@@ -1,10 +1,12 @@
+import { useState } from 'react';
+import { useCopyToClipboard } from '../hooks/useCopy';
 import { TypeCluster } from '../types';
 
 import './Cluster.scss';
-import { useCopyToClipboard } from '../hooks/useCopy';
 
-export function Cluster({ name, files, properties, names }: TypeCluster) {
+export function Cluster({ name, type, files, properties, names }: TypeCluster) {
   const [, copyToClipboard] = useCopyToClipboard();
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   const sortedNames = Object.entries(names).sort((a, b) => {
     if (a[1] < b[1]) {
@@ -52,10 +54,19 @@ export function Cluster({ name, files, properties, names }: TypeCluster) {
       onClick={() => copyToClipboard(`${file}:${lines[0]}`)}
     >{file} ({lines[0]} - {lines[1]})</span>
   ));
+  const tooltipContent = {
+    literal: 'Literal Type Declaration',
+    alias: 'Type Alias Declaration',
+    interface: 'Interface Declaration',
+  }[type];
   return (
     <div className="cluster">
       <div className="title">
-        <span>{'{}'}</span>
+        <span
+          className="mono"
+          onMouseEnter={() => setIsTooltipVisible(true)}
+          onMouseLeave={() => setIsTooltipVisible(false)}
+        >{`{${type[0].toUpperCase()}}`}</span>
         <h2 className="mono">{namesMarkup.length > 0 ? `${sortedNames[0][0]} (${sortedNames[0][1]}x)` : sortedNames[0][0]}</h2>
         <div className="row">
           {alsoKnownMarkup}
@@ -73,6 +84,7 @@ export function Cluster({ name, files, properties, names }: TypeCluster) {
           {filesMarkup}
         </pre>
       </div>
+      <span className={`tooltip ${isTooltipVisible ? 'visible' : ''}`}>{tooltipContent}</span>
     </div>
   )
 }

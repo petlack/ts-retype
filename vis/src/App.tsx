@@ -23,7 +23,7 @@ function Category({ clusters }: Data) {
 
 const miniSearch = new MiniSearch({
   fields: ['name', 'fulltext'],
-  storeFields: ['name', 'names', 'files', 'properties', 'group', 'fulltext'],
+  storeFields: ['name', 'type', 'names', 'files', 'properties', 'group', 'fulltext'],
 });
 
 function fulltext(cluster: TypeCluster): string {

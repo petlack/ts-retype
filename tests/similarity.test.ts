@@ -8,8 +8,8 @@ function expectSimilarity(given: Similarity, expected: Similarity) {
 describe('similarity', () => {
   test('identical types with no properties', () => {
     const given = similarity(
-      { name: 'foo', properties: [], pos: [0, 0] },
-      { name: 'foo', properties: [], pos: [0, 0] },
+      { name: 'foo', type: 'literal', properties: [], pos: [0, 0] },
+      { name: 'foo', type: 'literal', properties: [], pos: [0, 0] },
     );
     expectSimilarity(given, Similarity.Identical);
   });
@@ -17,11 +17,13 @@ describe('similarity', () => {
     const given = similarity(
       {
         name: 'foo',
+        type: 'literal',
         pos: [0, 0],
         properties: [{ key: 'bar', type: 'StringKeyword', value: 'string' }],
       },
       {
         name: 'foo',
+        type: 'literal',
         pos: [0, 0],
         properties: [{ key: 'bar', type: 'StringKeyword', value: 'string' }],
       },
@@ -32,11 +34,13 @@ describe('similarity', () => {
     const given = similarity(
       {
         name: 'foo',
+        type: 'literal',
         pos: [0, 0],
         properties: [{ key: 'bar', type: 'StringKeyword', value: 'string' }],
       },
       {
         name: 'foo',
+        type: 'literal',
         pos: [0, 0],
         properties: [{ key: 'xyz', type: 'StringKeyword', value: 'string' }],
       },
@@ -47,11 +51,13 @@ describe('similarity', () => {
     const given = similarity(
       {
         name: 'foo',
+        type: 'literal',
         pos: [0, 0],
         properties: [{ key: 'bar', type: 'StringKeyword', value: 'string' }],
       },
       {
         name: 'foo',
+        type: 'literal',
         pos: [0, 0],
         properties: [{ key: 'bar', type: 'NumberKeyword', value: 'number' }],
       },
@@ -62,6 +68,7 @@ describe('similarity', () => {
     const given = similarity(
       {
         name: 'foo',
+        type: 'literal',
         pos: [0, 0],
         properties: [
           { key: 'bar', type: 'StringKeyword', value: 'string' },
@@ -70,6 +77,7 @@ describe('similarity', () => {
       },
       {
         name: 'foo',
+        type: 'literal',
         pos: [0, 0],
         properties: [{ key: 'bar', type: 'NumberKeyword', value: 'string' }],
       },
@@ -78,8 +86,8 @@ describe('similarity', () => {
   });
   test('identical types with no properties and different names', () => {
     const given = similarity(
-      { name: 'foo', pos: [0, 0], properties: [] },
-      { name: 'bar', pos: [0, 0], properties: [] },
+      { name: 'foo', type: 'literal', pos: [0, 0], properties: [] },
+      { name: 'bar', type: 'literal', pos: [0, 0], properties: [] },
     );
     expectSimilarity(given, Similarity.HasIdenticalProperties);
   });

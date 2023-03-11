@@ -26,6 +26,7 @@ export type SourceFile = {
 
 export type TypeCluster = Pick<LiteralType, 'name' | 'properties'> & {
   files: SourceFile[];
+  type: 'alias' | 'interface' | 'literal';
   names: Freq;
   group: string;
 };
