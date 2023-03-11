@@ -26,10 +26,13 @@ export function createLogger() {
     log(...msg: unknown[]) {
       console.log(...msg);
     },
-    live(msg: string) {
+    live(msg: string, newline = false) {
       process.stdout.clearLine(0);
       process.stdout.cursorTo(0);
       process.stdout.write(msg);
+      if (newline) {
+        process.stdout.write('\n');
+      }
     }
   };
 }

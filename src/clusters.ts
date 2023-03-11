@@ -11,7 +11,7 @@ import {
   SimilarityGroup,
   RetypeArgs,
 } from './types';
-import { loadFile, posToLine } from './utils';
+import { formatDuration, loadFile, posToLine } from './utils';
 import { similarityMatrix, pairsToClusters, indexPairsBySimilarity } from './similarity';
 import { createLogger } from './cmd';
 
@@ -71,6 +71,8 @@ export function createTypeClusters({
   const filesLengths: { [file: string]: number[] } = {};
   let allTypes: SourceLiteralType[] = [];
 
+  const start = new Date().getTime();
+
   log.log(`searching in ${files.length.toLocaleString()} files`);
 
   for (const relPath of files) {
@@ -86,9 +88,12 @@ export function createTypeClusters({
       .filter(t => t.properties.length > 0);
     allTypes = [...allTypes, ...types];
   }
-  const locs = Object.values(filesLengths).reduce((a, b) => a + sum(b), 0);
-  log.live(`searched  ${locs.toLocaleString()} lines of code`);
+  const locs = Object.values(filesLengths).reduce((a, b) => a + b.length, 0);
+  log.live(`searched  ${locs.toLocaleString()} lines of code`, true);
   log.log(`found ${allTypes.length.toLocaleString()} types definitions`);
+
+  const duration = new Date().getTime() - start;
+  log.log(`took ${formatDuration(duration)}`);
 
   const matrix = similarityMatrix(allTypes);
   // printMatrix(matrix)
