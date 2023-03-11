@@ -40,3 +40,7 @@ export const stringify = (args: unknown) => JSON.stringify(
   (_key, value) => Array.isArray(value) ? `[${value.map(v => '"' + v + '"').join(',')}]` : value,
   2,
 ).replace(/"\[/g, '[').replace(/\]"/g, ']').replace(/\\"/g, '"');
+
+export function filterEmpty<T extends object>(obj: T): Partial<T> {
+  return <Partial<T>>Object.fromEntries(Object.entries(obj).filter(([, v]) => !!v));
+}

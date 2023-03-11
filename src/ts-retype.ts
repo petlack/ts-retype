@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
 import fs from 'fs';
-import path from 'path';
 import { createCommand } from 'commander';
 
-import { createLogger } from './cmd';
+import { createLogger, resolveOptions, resolveOutputFilePath } from './cmd';
 import { createTypeClusters } from './clusters';
-import { DEFAULT_OPTIONS, RetypeConfig, RetypeOptions } from './types';
-import { dir, pwd, stringify } from './utils';
+import { DEFAULT_OPTIONS, RetypeOptions } from './types';
+import { dir, stringify } from './utils';
 
 const log = createLogger();
 
@@ -19,75 +18,34 @@ program.name(name)
   .version(version)
   .argument('<path-to-project>', 'path to project')
   .option('-c, --config [path]', 'load config - if no path provided, loads .retyperc from current directory. if not set, use default config')
-  .option('-o, --output <file-path|dir-path>', 'HTML report file name - if provided with directory, it will create index.html file inside', './retype-report.html')
-  .option('-j, --json <file-path>', 'JSON report file name. if not set, does not export JSON.')
+  .option('-o, --output <file-path|dir-path>', 'HTML report file path - if provided with directory, it will create index.html file inside', './retype-report.html')
+  .option('-j, --json <file-path>', 'JSON report file path. if not set, does not export JSON.')
   .option('-i, --include [glob...]', 'glob patterns that will be included in search')
   .option('-x, --exclude [glob...]', 'glob patterns that will be ignored');
 
-function parseOptions(defaultOptions: RetypeConfig): RetypeOptions {
+function parseOptions(): Partial<RetypeOptions> {
   program.parse();
   const options = program.opts();
   const args = program.processedArgs;
   return {
     project: args[0],
-    ...defaultOptions,
     ...options,
   };
 }
 
-function resolveConfig(configOption: boolean | string | undefined): RetypeConfig {
-  if (!configOption) {
-    return DEFAULT_OPTIONS;
-  }
-  let configFile = pwd('.retyperc');
-  if (typeof configOption === 'string') {
-    configFile = configOption;
-  }
-  const configFileData = <RetypeConfig>JSON.parse(fs.readFileSync(configFile).toString());
-  return {
-    ...DEFAULT_OPTIONS,
-    ...configFileData,
-  };
-}
-
-function resolveOutputFilePath(configOutput: string): string {
-  let htmlFile = configOutput;
-  let isDir = false;
-  if (!fs.existsSync(configOutput)) {
-    if (!configOutput.endsWith('.html')) {
-      isDir = true;
-    }
-  } else {
-    if (fs.lstatSync(configOutput).isDirectory()) {
-      isDir = true;
-    }
-  }
-  if (isDir) {
-    htmlFile = path.join(configOutput, 'index.html');
-    if (!fs.existsSync(configOutput)) {
-      fs.mkdirSync(configOutput, { recursive: true });
-    }
-  }
-  else {
-    htmlFile = configOutput;
-    const parentDir = path.dirname(htmlFile);
-    if (!fs.existsSync(parentDir)) {
-      fs.mkdirSync(parentDir, { recursive: true });
-    }
-  }
-  return htmlFile;
-}
-
 function main() {
-  const options = parseOptions(DEFAULT_OPTIONS);
+  const options = parseOptions();
   const project = options.project;
-  const config = resolveConfig(options.config);
+
+  if (!project) {
+    throw new Error('missing project');
+  }
 
   log.header();
 
   const args = {
-    ...config,
-    ...options,
+    project,
+    ...resolveOptions(options, DEFAULT_OPTIONS, '.retyperc'),
   };
   
   log.log('running with config');

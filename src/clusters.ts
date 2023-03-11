@@ -9,6 +9,7 @@ import {
   Similarity,
   TypeCluster,
   SimilarityGroup,
+  RetypeArgs,
 } from './types';
 import { loadFile, posToLine } from './utils';
 import { similarityMatrix, pairsToClusters, indexPairsBySimilarity } from './similarity';
@@ -64,11 +65,7 @@ export function createTypeClusters({
   project,
   include,
   exclude,
-}: {
-  project: string;
-  include: string[];
-  exclude: string[];
-}) {
+}: RetypeArgs) {
   const files = globSync(include, { cwd: project, ignore: exclude });
 
   const filesLengths: { [file: string]: number[] } = {};

@@ -60,5 +60,5 @@ export type RetypeOptions = RetypeArgs & {
 export const DEFAULT_OPTIONS: RetypeConfig = {
   output: './retype-report.html',
   include: ['**/*.ts'],
-  exclude: ['**/node_modules/**', '**/dist/**', '**/generated/**'],
+  exclude: ['**/node_modules/**', '**/dist/**', '**/generated/**', '**/build/**'],
 };
