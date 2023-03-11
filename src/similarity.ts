@@ -136,8 +136,10 @@ export function similarityMatrix(types: CandidateType[]) {
   return m;
 }
 
-export function indexPairsBySimilarity(m: Similarity[][]) {
-  const res: { [s: number]: [number, number][] } = {};
+export function indexPairsBySimilarity(m: Similarity[][]): {
+  [s in Similarity]?: [number, number][];
+} {
+  const res: { [s in Similarity]?: [number, number][] } = {};
   const idxs = [...Array(m.length).keys()];
   for (const i of idxs) {
     for (const j of idxs) {
@@ -151,7 +153,7 @@ export function indexPairsBySimilarity(m: Similarity[][]) {
       if (!res[s]) {
         res[s] = [];
       }
-      res[s].push([i, j]);
+      res[s]?.push([i, j]);
     }
   }
   return res;

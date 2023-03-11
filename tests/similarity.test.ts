@@ -1,4 +1,4 @@
-import { similarity, pairsToClusters } from '../src/similarity';
+import { similarity, pairsToClusters, indexPairsBySimilarity } from '../src/similarity';
 import { LiteralType, Similarity } from '../src/types';
 
 function expectSimilarity(given: Similarity, expected: Similarity) {
@@ -93,7 +93,7 @@ describe('similarity', () => {
   });
 });
 
-describe('toClusters', () => {
+describe('pairsToClusters', () => {
   test('ok', () => {
     const given = pairsToClusters([
       [0, 1],
@@ -101,5 +101,24 @@ describe('toClusters', () => {
       [3, 4],
     ]);
     expect(given).toEqual([new Set([0, 1, 2]), new Set([3, 4])]);
+  });
+});
+
+describe('indexPairsBySimilarity', () => {
+  test('ok', () => {
+    const given = indexPairsBySimilarity([
+      [4, 0, 2, 1],
+      [0, 4, 2, 2],
+      [2, 2, 4, 0],
+      [1, 0, 0, 4],
+    ]);
+    expect(given).toEqual({
+      1: [[0, 3]],
+      2: [
+        [0, 2],
+        [1, 2],
+        [1, 3],
+      ],
+    });
   });
 });

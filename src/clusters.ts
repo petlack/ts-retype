@@ -4,15 +4,16 @@ import { globSync } from 'glob';
 import { getAllCandidateTypes as getAllCandidateTypes } from './parse';
 import {
   Freq,
-  // LiteralType,
-  // SourceLiteralType,
   Similarity,
-  // TypeCluster,
   SimilarityGroup,
   RetypeArgs,
   CandidateType,
   SourceCandidateType,
   CandidateTypeCluster,
+  LiteralCandidateType,
+  EnumCandidateType,
+  FunctionCandidateType,
+  UnionCandidateType,
 } from './types';
 import { formatDuration, loadFile, posToLine } from './utils';
 import { similarityMatrix, pairsToClusters, indexPairsBySimilarity } from './similarity';
@@ -66,7 +67,18 @@ function formatFileName(file: string, maxLength = 120) {
 }
 
 function nonEmptyCandidateType(type: CandidateType): boolean {
-  return true;
+  switch (type.type) {
+    case 'alias':
+    case 'interface':
+    case 'literal':
+      return (<LiteralCandidateType>type).properties.length > 0;
+    case 'enum':
+      return (<EnumCandidateType>type).members.length > 0;
+    case 'function':
+      return (<FunctionCandidateType>type).parameters.length > 0;
+    case 'union':
+      return (<UnionCandidateType>type).types.length > 0;
+  }
 }
 
 export function createTypeClusters({ project, include, exclude }: RetypeArgs): SimilarityGroup[] {
@@ -104,12 +116,12 @@ export function createTypeClusters({ project, include, exclude }: RetypeArgs): S
 
   const index = indexPairsBySimilarity(matrix);
 
-  const clusters: SimilarityGroup[] = Object.entries(index).map(([k, v]) => ({
+  const groups: SimilarityGroup[] = Object.entries(index).map(([k, v]) => ({
     name: Similarity[Number(k)],
     clusters: pairsToClusters(v)
       .sort((a, b) => b.size - a.size)
       .map((c) => outputCluster(allTypes, c, filesLengths)),
   }));
 
-  return clusters;
+  return groups;
 }
