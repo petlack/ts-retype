@@ -1,36 +1,21 @@
 import { useEffect, useState } from 'react';
-import MiniSearch from 'minisearch';
 
 import { ClusterListing } from './components/Cluster';
 import { Empty } from './components/Empty';
 import { Filters } from './components/Filters';
 import { Navbar } from './components/Navbar';
-
+import { fulltext, Search } from './model/search';
 import { TypeCluster } from './types';
 
 import './App.scss';
 
-const miniSearch = new MiniSearch({
-  fields: ['name', 'fulltext'],
-  storeFields: ['name', 'type', 'names', 'files', 'properties', 'parameters', 'returnType', 'group', 'fulltext'],
-});
-
-function fulltext(cluster: TypeCluster): string {
-  return [
-    `${cluster.name}`,
-    `${Object.keys(cluster.names).join(' ')}`,
-    `${cluster.files.map(({ file }) => file).join(' ')}`,
-    `${(cluster.properties || []).map(({ key, value, type }) => `${type} ${key}: ${value}`).join(' ')}`,
-    `${(cluster.parameters || []).map(({ key, value, type }) => `${type} ${key}: ${value}`).join(' ')}`,
-    `${(cluster.members || []).join(' ')}`,
-    `${(cluster.types || []).join(' ')}`,
-  ].join(' ');
-}
+const search = Search();
 
 function App() {
   const [allData, setAllData] = useState([] as TypeCluster[]);
   const [query, setQuery] = useState('');
   const [selectedTab, setSelectedTab] = useState('Identical');
+  const [selectedType, setSelectedType] = useState('literal');
   const [minProperties, setMinProperties] = useState(3);
   const [minFiles, setMinFiles] = useState(2);
   
@@ -53,11 +38,10 @@ function App() {
   }, []);
   
   useEffect(() => {
-    miniSearch.removeAll();
-    miniSearch.addAll(allData);
+    search.refresh(allData);
   }, [allData]);
 
-  const filteredData = query.trim().length ? miniSearch.search(query, { fuzzy: true, prefix: true }) as unknown as TypeCluster[] : allData;
+  const filteredData = query.trim().length ? search.search(query) : allData;
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const data = filteredData.filter(
@@ -112,6 +96,8 @@ function App() {
           nav={nav}
           selectedTab={selectedTab}
           setSelectedTab={setSelectedTab}
+          selectedType={selectedType}
+          setSelectedType={setSelectedType}
           minProperties={minProperties}
           setMinProperties={setMinProperties}
           minFiles={minFiles}
