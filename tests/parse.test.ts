@@ -1,4 +1,4 @@
-import { getAllLiteralTypes } from '../src/parse';
+import { getAllCandidateTypes } from '../src/parse';
 import { LiteralType } from '../src/types';
 import { createFile } from '../src/utils';
 
@@ -9,7 +9,7 @@ describe('parse', () => {
       status: number;
     }`;
     const srcFile = createFile(sourceText);
-    const types = getAllLiteralTypes(srcFile);
+    const types = getAllCandidateTypes(srcFile);
 
     const expected = [
       {
@@ -32,7 +32,7 @@ describe('parse', () => {
       foo: A
     };`;
     const srcFile = createFile(sourceText);
-    const types = getAllLiteralTypes(srcFile);
+    const types = getAllCandidateTypes(srcFile);
 
     const expected = [
       {
@@ -56,7 +56,7 @@ describe('parse', () => {
       baz: B
   }`;
     const srcFile = createFile(sourceText);
-    const types = getAllLiteralTypes(srcFile);
+    const types = getAllCandidateTypes(srcFile);
 
     const expected = [
       {
@@ -76,7 +76,7 @@ describe('parse', () => {
   test('function return type', () => {
     const sourceText = 'type GenericFn<T> = (x: T) => { foo: string, bar: number }';
     const srcFile = createFile(sourceText);
-    const types = getAllLiteralTypes(srcFile);
+    const types = getAllCandidateTypes(srcFile);
 
     const expected = [
       {
@@ -105,7 +105,7 @@ describe('parse', () => {
       return bar.toUpperCase();
     }`;
     const srcFile = createFile(sourceText);
-    const types = getAllLiteralTypes(srcFile);
+    const types = getAllCandidateTypes(srcFile);
 
     const expected: LiteralType[] = [];
 
@@ -115,7 +115,7 @@ describe('parse', () => {
   test('object declaration', () => {
     const sourceText = 'const xyz: { [key: string]: number, foo: number } = { abc: 9, foo: 9 };';
     const srcFile = createFile(sourceText);
-    const types = getAllLiteralTypes(srcFile);
+    const types = getAllCandidateTypes(srcFile);
 
     const expected = [
       {
@@ -137,7 +137,7 @@ describe('parse', () => {
     const a = <T extends {}>([s, n]: [string, { [b: symbol]: T }]): Map<string, number> => new Map<string, number>();
     `;
     const srcFile = createFile(sourceText);
-    const types = getAllLiteralTypes(srcFile);
+    const types = getAllCandidateTypes(srcFile);
 
     const expected = [
       {

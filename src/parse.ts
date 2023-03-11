@@ -43,7 +43,7 @@ function getNodeSignature(sourceFile: ts.SourceFile, node: any) {
   return null;
 }
 
-export function getAllLiteralTypes(sourceFile: ts.SourceFile) {
+export function getAllCandidateTypes(sourceFile: ts.SourceFile) {
   const all: CandidateType[] = [];
   visitTopLevelDeclarations(sourceFile, function (node: any) {
     // console.log('visit', ts.SyntaxKind[node.kind], ts.SyntaxKind[node.type && node.type.kind]);
@@ -93,7 +93,8 @@ export function getAllLiteralTypes(sourceFile: ts.SourceFile) {
               .map((t: any) =>
                 getNodeText(sourceFile, t)
                   .trim()
-                  .replace(/^"+|"+$/g, ''),
+                  .replace(/^"+|"+$/g, '')
+                  .replace(/^'+|'+$/g, ''),
               );
             const candidate: UnionCandidateType = {
               name,

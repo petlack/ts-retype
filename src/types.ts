@@ -35,6 +35,10 @@ export interface EnumCandidateType extends CandidateType {
   members: string[];
 }
 
+export interface LiteralCandidateType extends CandidateType {
+  properties: Property[];
+}
+
 export interface LiteralType extends CandidateType {
   properties: Property[];
 }
@@ -53,7 +57,21 @@ export type SourceFile = {
   file: string;
 };
 
-export type TypeCluster = Pick<LiteralType, 'name' | 'properties'> & {
+export type CandidateTypeCluster = Pick<CandidateType, 'name' | 'type'> & {
+  files: SourceFile[];
+  names: Freq;
+};
+
+export type FunctionTypeCluster = CandidateTypeCluster &
+  Pick<FunctionCandidateType, 'parameters' | 'returnType'>;
+
+export type LiteralTypeCluster = CandidateTypeCluster & Pick<LiteralCandidateType, 'properties'>;
+
+export type EnumTypeCluster = CandidateTypeCluster & Pick<EnumCandidateType, 'members'>;
+
+export type UnionTypeCluster = CandidateTypeCluster & Pick<UnionCandidateType, 'types'>;
+
+export type TypeCluster = Pick<LiteralType, 'name' | 'type' | 'properties'> & {
   files: SourceFile[];
   names: Freq;
 };
@@ -68,7 +86,7 @@ export enum Similarity {
 
 export type SimilarityGroup = {
   name: string;
-  clusters: TypeCluster[];
+  clusters: CandidateTypeCluster[];
 };
 
 export type RetypeConfig = {

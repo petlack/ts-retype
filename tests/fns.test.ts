@@ -1,4 +1,4 @@
-import { getAllLiteralTypes } from '../src/parse';
+import { getAllCandidateTypes } from '../src/parse';
 import {
   CandidateType,
   EnumCandidateType,
@@ -11,7 +11,7 @@ describe('parse', () => {
   test('function declaration', () => {
     const sourceText = 'type Fn = (a: string, b: number) => Promise<void>';
     const srcFile = createFile(sourceText);
-    const types = getAllLiteralTypes(srcFile);
+    const types = getAllCandidateTypes(srcFile);
 
     const expected: CandidateType[] = [
       <FunctionCandidateType>{
@@ -31,7 +31,7 @@ describe('parse', () => {
   test('enum declaration', () => {
     const sourceText = 'enum En { a, b }';
     const srcFile = createFile(sourceText);
-    const types = getAllLiteralTypes(srcFile);
+    const types = getAllCandidateTypes(srcFile);
 
     const expected: CandidateType[] = [
       <EnumCandidateType>{
@@ -47,7 +47,7 @@ describe('parse', () => {
   test('union declaration', () => {
     const sourceText = 'type Un = "a" | "b"';
     const srcFile = createFile(sourceText);
-    const types = getAllLiteralTypes(srcFile);
+    const types = getAllCandidateTypes(srcFile);
 
     const expected: CandidateType[] = [
       <UnionCandidateType>{

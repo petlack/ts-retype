@@ -1,17 +1,18 @@
 import path from 'path';
-import { isEmpty, omit, sum } from 'ramda';
+import { concat, omit } from 'ramda';
 import { globSync } from 'glob';
-import { getAllLiteralTypes } from './parse';
+import { getAllCandidateTypes as getAllCandidateTypes } from './parse';
 import {
   Freq,
-  LiteralType,
-  SourceLiteralType,
+  // LiteralType,
+  // SourceLiteralType,
   Similarity,
-  TypeCluster,
+  // TypeCluster,
   SimilarityGroup,
   RetypeArgs,
   CandidateType,
   SourceCandidateType,
+  CandidateTypeCluster,
 } from './types';
 import { formatDuration, loadFile, posToLine } from './utils';
 import { similarityMatrix, pairsToClusters, indexPairsBySimilarity } from './similarity';
@@ -30,16 +31,17 @@ function freq(list: (string | number | symbol)[]) {
   }, <Freq>{});
 }
 
-function clusterValue(
+function outputCluster(
   types: SourceCandidateType[],
-  cluster: Set<number>,
+  clusterTypes: Set<number>,
   filesLengths: { [file: string]: number[] },
-): TypeCluster {
-  const values = [...cluster.values()].filter((val) => types[val]);
+): CandidateTypeCluster {
+  const values = [...clusterTypes.values()].filter((val) => types[val]);
   const firstVal = values[0];
   const toLine = (file: string) => posToLine(filesLengths[file]);
   const files = values
     .map((val) => ({
+      type: types[val].type,
       pos: types[val].pos,
       lines: types[val].pos.map(toLine(types[val].file)),
       file: types[val].file,
@@ -47,7 +49,7 @@ function clusterValue(
     .sort((a, b) => (a.file < b.file ? -1 : 1));
   const names = freq(values.map((val) => types[val].name));
   return {
-    ...omit(['file', 'pos'], <SourceLiteralType>types[firstVal]),
+    ...omit(['file', 'pos'], types[firstVal]),
     files,
     names,
   };
@@ -86,10 +88,9 @@ export function createTypeClusters({ project, include, exclude }: RetypeArgs) {
       .split('\n')
       .map((l) => l.length);
     filesLengths[file] = lengths;
-    const types = toSourceCandidateTypes(file, getAllLiteralTypes(srcFile)).filter(
-      nonEmptyCandidateType,
-    );
-    allTypes = [...allTypes, ...types];
+    const candidateTypes = getAllCandidateTypes(srcFile);
+    const types = toSourceCandidateTypes(file, candidateTypes).filter(nonEmptyCandidateType);
+    allTypes = concat(allTypes, types);
   }
   const locs = Object.values(filesLengths).reduce((a, b) => a + b.length, 0);
   log.live(`searched  ${locs.toLocaleString()} lines of code`, true);
@@ -107,7 +108,7 @@ export function createTypeClusters({ project, include, exclude }: RetypeArgs) {
     name: Similarity[Number(k)],
     clusters: pairsToClusters(v)
       .sort((a, b) => b.size - a.size)
-      .map((c) => clusterValue(allTypes, c, filesLengths)),
+      .map((c) => outputCluster(allTypes, c, filesLengths)),
   }));
 
   return clusters;

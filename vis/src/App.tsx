@@ -1,37 +1,59 @@
 import { useEffect, useState } from 'react';
 import MiniSearch from 'minisearch';
-import { Cluster } from './components/Cluster';
+import { LiteralCluster } from './components/Cluster/LiteralCluster';
+import { FunctionCluster } from './components/Cluster/FunctionCluster';
+import { EnumCluster } from './components/Cluster/EnumCluster';
+import { UnionCluster } from './components/Cluster/UnionCluster';
 import { IncDecInput } from './components/IncDecInput';
 import { Empty } from './components/Empty';
 import { Logo } from './components/Logo';
-import { Data, TypeCluster } from './types';
+import { CandidateTypeCluster, Data, TypeCluster } from './types';
 import './App.scss';
 
-function Category({ clusters }: Data) {
-  const clustersMarkup = clusters.map((c, idx) => (
-    <Cluster key={idx} {...c} />
-  ));
+const renders = {
+  function: FunctionCluster,
+  alias: LiteralCluster,
+  literal: LiteralCluster,
+  interface: LiteralCluster,
+  enum: EnumCluster,
+  union: UnionCluster,
+};
+
+function Clusters({ clusters }: Data) {
+  const clustersMarkup = clusters.map((c, idx) => {
+    const Cluster = renders[c.type];
+    if (!Cluster) {
+      return (
+        <div key={idx} className="cluster">
+          <div className="title"><h2>Unknown cluster</h2></div>
+          <div className="pre mono">{JSON.stringify(c, null, 2)}</div>
+        </div>
+      );
+    }
+    return (
+      <Cluster key={idx} {...c} />
+    );
+  });
 
   return (
-    <>
-      <div className="clusters">
-        {clustersMarkup}
-      </div>
-    </>
+    <div className="clusters">
+      {clustersMarkup}
+    </div>
   );
 }
 
 const miniSearch = new MiniSearch({
   fields: ['name', 'fulltext'],
-  storeFields: ['name', 'type', 'names', 'files', 'properties', 'group', 'fulltext'],
+  storeFields: ['name', 'type', 'names', 'files', 'properties', 'parameters', 'returnType', 'group', 'fulltext'],
 });
 
-function fulltext(cluster: TypeCluster): string {
+function fulltext(cluster: CandidateTypeCluster): string {
   return [
     `${cluster.name}`,
     `${Object.keys(cluster.names).join(' ')}`,
     `${cluster.files.map(({ file }) => file).join(' ')}`,
-    `${cluster.properties.map(({ key, value, type }) => `${type} ${key}: ${value}`).join(' ')}`,
+    `${(cluster.properties || []).map(({ key, value, type }) => `${type} ${key}: ${value}`).join(' ')}`,
+    `${(cluster.parameters || []).map(({ key, value, type }) => `${type} ${key}: ${value}`).join(' ')}`,
   ].join(' ');
 }
 
@@ -52,7 +74,7 @@ function App() {
               ...cluster,
               id: ++i,
               group: name,
-              fulltext: fulltext(cluster),
+              fulltext: fulltext(cluster as CandidateTypeCluster),
             }))
           )],
           [] as TypeCluster[],
@@ -71,9 +93,9 @@ function App() {
   const data = filteredData.filter(
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    ({ group, files, properties }) =>
+    ({ group, files, properties = [], parameters = [], members = [], types = [] }) =>
       group === selectedTab &&
-      properties.length >= minProperties &&
+      properties.length + parameters.length + members.length + types.length >= minProperties &&
       files.length >= minFiles
   );
 
@@ -87,17 +109,17 @@ function App() {
     filteredData.filter(
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      ({ group, files, properties }) =>
+      ({ group, files, properties = [], parameters = [], members = [], types = [] }) =>
         group === nav[0][0] &&
-        properties.length >= minProperties &&
+        properties.length + parameters.length + members.length + types.length >= minProperties &&
         files.length >= minFiles
     ).length,
     filteredData.filter(
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      ({ group, files, properties }) =>
+      ({ group, files, properties = [], parameters = [], members = [], types = [] }) =>
         group === nav[1][0] &&
-        properties.length >= minProperties &&
+        (properties.length + parameters.length + members.length + types.length >= minProperties) &&
         files.length >= minFiles
     ).length,
   ];
@@ -118,7 +140,7 @@ function App() {
 
   const dataMarkup = data.length === 0 ?
     <Empty /> :
-    <Category name={selectedTab} clusters={data} />;
+    <Clusters name={selectedTab} clusters={data} />;
 
   return (
     <div id="app">

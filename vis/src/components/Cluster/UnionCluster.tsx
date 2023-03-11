@@ -1,28 +1,15 @@
 import { useState } from 'react';
-import { useCopyToClipboard } from '../hooks/useCopy';
-import { TypeCluster } from '../types';
+import { useCopyToClipboard } from '../../hooks/useCopy';
+import { UnionTypeCluster } from '../../types';
 
 import './Cluster.scss';
+import { sortNames } from './utils';
 
-export function Cluster({ name, type, files, properties, names }: TypeCluster) {
+export function UnionCluster({ type, files, types, names }: UnionTypeCluster) {
   const [, copyToClipboard] = useCopyToClipboard();
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
-  const sortedNames = Object.entries(names).sort((a, b) => {
-    if (a[1] < b[1]) {
-      return 1;
-    } else if (a[1] > b[1]) {
-      return -1;
-    } else {
-      if (a[0] < b[0]) {
-        return -1;
-      } else if (a[0] > b[0]) {
-        return 1;
-      } else {
-        return 0;
-      }
-    }
-  });
+  const sortedNames = sortNames(names);
   const namesMarkup = sortedNames.slice(1).map(([name, freq]) => (
     <span key={name} className="name-freq mono">{name} ({freq}x)</span>
   ));
@@ -35,13 +22,9 @@ export function Cluster({ name, type, files, properties, names }: TypeCluster) {
       </>
     ) : <></>
   );
-  const propertiesMarkup = properties.map(({ key, value }) => {
+  const propertiesMarkup = types.map(value => {
     return (
-      <span key={key}>
-        <span className="property key">
-          {['string', 'number', 'symbol', 'boolean'].includes(key) ? `[key: ${key}]` : key}
-        </span>
-        <span>: </span>
+      <span key={value}>
         <span className="property value">{value}</span>
         <br />
       </span>
@@ -55,15 +38,13 @@ export function Cluster({ name, type, files, properties, names }: TypeCluster) {
     >{file} ({lines[0]} - {lines[1]})</span>
   ));
   const tooltipContent = {
-    literal: 'Literal Type Declaration',
-    alias: 'Type Alias Declaration',
-    interface: 'Interface Declaration',
+    union: 'Union Type Declaration',
   }[type];
   return (
     <div className="cluster">
       <div className="title">
         <span
-          className="mono"
+          className="candidate-type mono"
           onMouseEnter={() => setIsTooltipVisible(true)}
           onMouseLeave={() => setIsTooltipVisible(false)}
         >{`{${type[0].toUpperCase()}}`}</span>
@@ -73,7 +54,7 @@ export function Cluster({ name, type, files, properties, names }: TypeCluster) {
         </div>
       </div>
       <div className="properties">
-        <h3>Type properties ({properties.length})</h3>
+        <h3>Members ({types.length})</h3>
         <div className="pre mono">
           {propertiesMarkup}
         </div>
@@ -86,5 +67,5 @@ export function Cluster({ name, type, files, properties, names }: TypeCluster) {
       </div>
       <span className={`tooltip ${isTooltipVisible ? 'visible' : ''}`}>{tooltipContent}</span>
     </div>
-  )
+  );
 }

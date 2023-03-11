@@ -1,3 +1,5 @@
+import { EnumCandidateType, FunctionCandidateType, UnionCandidateType } from '../../src/types';
+
 export type Freq = {
   [k in string | number | symbol]: number;
 };
@@ -24,9 +26,32 @@ export type SourceFile = {
   file: string;
 };
 
+export type CandidateTypeCluster = FunctionTypeCluster & TypeCluster;
+
 export type TypeCluster = Pick<LiteralType, 'name' | 'properties'> & {
   files: SourceFile[];
-  type: 'alias' | 'interface' | 'literal';
+  type: 'alias' | 'interface' | 'literal' | 'function';
+  names: Freq;
+  group: string;
+};
+
+export type FunctionTypeCluster = Pick<
+  FunctionCandidateType,
+  'name' | 'type' | 'parameters' | 'returnType'
+> & {
+  files: SourceFile[];
+  names: Freq;
+  group: string;
+};
+
+export type EnumTypeCluster = Pick<EnumCandidateType, 'name' | 'type' | 'members'> & {
+  files: SourceFile[];
+  names: Freq;
+  group: string;
+};
+
+export type UnionTypeCluster = Pick<UnionCandidateType, 'name' | 'type' | 'types'> & {
+  files: SourceFile[];
   names: Freq;
   group: string;
 };
