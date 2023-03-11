@@ -54,7 +54,7 @@ export function UnionCluster({ type, files, types, names }: UnionTypeCluster) {
         </div>
       </div>
       <div className="properties">
-        <h3>Members ({types.length})</h3>
+        <h3>Strings ({types.length})</h3>
         <div className="pre mono">
           {propertiesMarkup}
         </div>

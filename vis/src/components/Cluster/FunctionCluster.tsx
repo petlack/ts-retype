@@ -49,7 +49,7 @@ export function FunctionCluster({ type, files, parameters, returnType, names }: 
       key={`${file}${lines}`}
       className="file"
       onClick={() => copyToClipboard(`${file}:${lines[0]}`)}
-    >{file} ({lines[0]} - {lines[1]})</span>
+    >{'{'}{type[0].toUpperCase()}{'}'} {file} ({lines[0]} - {lines[1]})</span>
   ));
   const tooltipContent = {
     function: 'Function Type Declaration',
