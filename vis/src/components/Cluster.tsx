@@ -1,14 +1,14 @@
-import { TypeCluster } from '../types'
+import { TypeCluster } from '../types';
 
 import './Cluster.css';
 import { useCopyToClipboard } from '../hooks/useCopy';
 
 export function Cluster({ name, files, properties, names }: TypeCluster) {
-  const [_copyValue, copyToClipboard] = useCopyToClipboard();
+  const [, copyToClipboard] = useCopyToClipboard();
 
   const namesMarkup = Object.entries(names).sort((a, b) => b[1] - a[1]).map(([name, freq]) => (
     <span key={name} className="name-freq mono">{name} ({freq}x)</span>
-  ))
+  ));
 
   const alsoKnownMarkup = (
     namesMarkup.length > 1 ? (
@@ -18,14 +18,18 @@ export function Cluster({ name, files, properties, names }: TypeCluster) {
       </>
     ) : <></>
   );
-  const propertiesMarkup = properties.map(({ key, value }) => (
-    <span key={key}>
-      <span className="property key">{key}</span>
-      <span>: </span>
-      <span className="property value">{value}</span>
-      <br />
-    </span>
-  ))
+  const propertiesMarkup = properties.map(({ key, value }) => {
+    return (
+      <span key={key}>
+        <span className="property key">
+          {['string', 'number', 'symbol', 'boolean'].includes(key) ? `[key: ${key}]` : key}
+        </span>
+        <span>: </span>
+        <span className="property value">{value}</span>
+        <br />
+      </span>
+    )
+  });
   const filesMarkup = files.map(({ file, lines }) => (
     <span
       key={`${file}${lines}`}
