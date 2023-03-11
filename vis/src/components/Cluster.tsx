@@ -6,12 +6,27 @@ import { useCopyToClipboard } from '../hooks/useCopy';
 export function Cluster({ name, files, properties, names }: TypeCluster) {
   const [, copyToClipboard] = useCopyToClipboard();
 
-  const namesMarkup = Object.entries(names).sort((a, b) => b[1] - a[1]).map(([name, freq]) => (
+  const sortedNames = Object.entries(names).sort((a, b) => {
+    if (a[1] < b[1]) {
+      return 1;
+    } else if (a[1] > b[1]) {
+      return -1;
+    } else {
+      if (a[0] < b[0]) {
+        return -1;
+      } else if (a[0] > b[0]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  });
+  const namesMarkup = sortedNames.slice(1).map(([name, freq]) => (
     <span key={name} className="name-freq mono">{name} ({freq}x)</span>
   ));
 
   const alsoKnownMarkup = (
-    namesMarkup.length > 1 ? (
+    namesMarkup.length > 0 ? (
       <>
         <span>Also known as</span>
         {namesMarkup}
@@ -28,7 +43,7 @@ export function Cluster({ name, files, properties, names }: TypeCluster) {
         <span className="property value">{value}</span>
         <br />
       </span>
-    )
+    );
   });
   const filesMarkup = files.map(({ file, lines }) => (
     <span
@@ -36,12 +51,12 @@ export function Cluster({ name, files, properties, names }: TypeCluster) {
       className="file"
       onClick={() => copyToClipboard(`${file}:${lines[0]}`)}
     >{file} ({lines[0]} - {lines[1]})</span>
-  ))
+  ));
   return (
     <div className="cluster">
       <div className="title">
         <span>{'{}'}</span>
-        <h2 className="mono">{name}</h2>
+        <h2 className="mono">{namesMarkup.length > 0 ? `${sortedNames[0][0]} (${sortedNames[0][1]}x)` : sortedNames[0][0]}</h2>
         <div className="row">
           {alsoKnownMarkup}
         </div>

@@ -102,6 +102,8 @@
 
 .main {
   max-width: 1200px;
+  min-width: 320px;
+  width: 90vw;
   padding: 2rem;
   /* padding-top: 0; */
   display: flex;
