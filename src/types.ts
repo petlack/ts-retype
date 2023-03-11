@@ -36,6 +36,7 @@ export interface EnumCandidateType extends CandidateType {
 }
 
 export interface LiteralCandidateType extends CandidateType {
+  type: 'alias' | 'interface' | 'literal';
   properties: Property[];
 }
 

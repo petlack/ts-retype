@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useCopyToClipboard } from '../../hooks/useCopy';
-import { TypeCluster } from '../../types';
+import { LiteralTypeCluster } from '../../types';
 
 import './Cluster.scss';
 
-export function LiteralCluster({ type, files, properties, names }: TypeCluster) {
+export function LiteralCluster({ type, files, properties, names }: LiteralTypeCluster) {
   const [, copyToClipboard] = useCopyToClipboard();
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
@@ -47,12 +47,12 @@ export function LiteralCluster({ type, files, properties, names }: TypeCluster) 
       </span>
     );
   });
-  const filesMarkup = files.map(({ file, lines }) => (
+  const filesMarkup = files.map(({ type, file, lines }) => (
     <span
       key={`${file}${lines}`}
       className="file"
       onClick={() => copyToClipboard(`${file}:${lines[0]}`)}
-    >{file} ({lines[0]} - {lines[1]})</span>
+    >{'{'}{type[0].toUpperCase()}{'}'} {file} ({lines[0]} - {lines[1]})</span>
   ));
   const tooltipContent = {
     literal: 'Literal Type Declaration',

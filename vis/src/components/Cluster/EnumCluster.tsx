@@ -30,12 +30,12 @@ export function EnumCluster({ type, files, members, names }: EnumTypeCluster) {
       </span>
     );
   });
-  const filesMarkup = files.map(({ file, lines }) => (
+  const filesMarkup = files.map(({ type, file, lines }) => (
     <span
       key={`${file}${lines}`}
       className="file"
       onClick={() => copyToClipboard(`${file}:${lines[0]}`)}
-    >{file} ({lines[0]} - {lines[1]})</span>
+    >{'{'}{type[0].toUpperCase()}{'}'} {file} ({lines[0]} - {lines[1]})</span>
   ));
   const tooltipContent = {
     enum: 'Enum Type Declaration',
