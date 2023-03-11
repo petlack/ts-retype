@@ -1,4 +1,5 @@
 import { isEmpty, symmetricDifference, pluck, intersection } from 'ramda';
+import Progress from 'progress';
 import {
   Similarity,
   LiteralType,
@@ -108,6 +109,12 @@ export function similarity(leftCandidate: CandidateType, rightCandidate: Candida
 }
 
 export function similarityMatrix(types: CandidateType[]) {
+  const bar = new Progress('[:bar] :rate/bps :percent :etas :current/:total', {
+    complete: '=',
+    incomplete: ' ',
+    width: 30,
+    total: (types.length * (types.length + 1)) / 2,
+  });
   const m = [...Array(types.length)].map(() =>
     Array<Similarity>(types.length).fill(Similarity.Different),
   );
@@ -118,6 +125,7 @@ export function similarityMatrix(types: CandidateType[]) {
         m[i][j] = m[j][i];
         continue;
       }
+      bar.tick();
       if (i === j) {
         m[i][j] = Similarity.Identical;
       } else {
