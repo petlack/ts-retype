@@ -108,21 +108,12 @@ function App() {
     }
   }, [groupsCounts, setSelectedTab]);
 
-  const NavItem = ({ displayName, num, isSelected, setSelected }: { displayName: string, num: number, isSelected: boolean, setSelected: () => void }) => (
-    <a
-      className={`nav ${isSelected ? 'selected' : ''}`}
-      onClick={setSelected}
-    >{displayName} ({num})</a>
-  );
-
   const navMarkup = nav.map((val, idx) => (
-    <NavItem
+    <a
       key={val[0]}
-      displayName={val[1] || val[0]}
-      num={groupsCounts[idx]}
-      isSelected={val[0] === selectedTab}
-      setSelected={() => setSelectedTab(val[0])}
-    />
+      className={`nav ${val[0] === selectedTab ? 'selected' : ''}`}
+      onClick={() => setSelectedTab(val[0])}
+    >{val[1] || val[0]} ({groupsCounts[idx]})</a>
   ));
 
   const dataMarkup = data.length === 0 ?
@@ -148,17 +139,18 @@ function App() {
             </button>
           </span>
         </span>
-        <div className="right navmenu">
-          {navMarkup}
-        </div>
       </div>
       <div className="main">
         <div className="filters">
           <div className="filter">
-            <span>Min number of Type properties</span>
-            <IncDecInput value={minProperties} onChange={(value: number) => setMinProperties(value)} />
+            <span>Reason of similarity</span>
+            <ul className="navmenu">
+              {navMarkup}
+            </ul>
           </div>
           <div className="filter">
+            <span>Min number of properties</span>
+            <IncDecInput value={minProperties} onChange={(value: number) => setMinProperties(value)} />
             <span>Min number of files</span>
             <IncDecInput value={minFiles} onChange={(value: number) => setMinFiles(value)} />
           </div>

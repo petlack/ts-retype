@@ -7,21 +7,27 @@
     border: none;
     color: var(--clr-fg);
     outline: none;
-    padding: 0.5rem 1rem;
-    font-size: 1.4rem;
-    width: 7ch;
+    padding: 0rem 1rem;
+    font-size: 1.2rem;
+    width: 6ch;
     text-align: center;
   }
 
   button {
     background-color: var(--clr-btn-primary-bg);
     color: var(--clr-btn-primary-fg);
-    font-size: 32px;
-    width: 48px;
-    height: 48px;
     border-radius: 100vw;
-    align-items: center;
     border: none;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
 
     &:hover {
       background-color: var(--clr-btn-primary-bg-hover);
