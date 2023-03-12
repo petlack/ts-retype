@@ -1,5 +1,6 @@
 import { FacetStats, Filter, getFacetStat } from '../../model/search';
 import { IncDecInput } from '../IncDecInput';
+import { Tooltip } from '../Tooltip';
 
 import './Filters.scss';
 
@@ -44,24 +45,35 @@ export function Filters({
   return (
     <div className="filters">
       <div className="filter">
-        <span>Show types that are</span>
+        <span className="label">Show types that are</span>
         <ul className="navmenu">
           {similaritiesMarkup}
         </ul>
       </div>
       <div className="filter">
-        <span>Filter by type</span>
+        <span className="label">Filter by type</span>
         <ul className="navmenu">
           {typesMarkup}
         </ul>
       </div>
       <div className="filter">
-        <span>Min number of properties</span>
+        <span className="label">
+          <span>Min number of features</span>
+          <Tooltip>
+            <span>Features are</span>
+            <ul>
+              <li>properties in Literal Types</li>
+              <li>parameters in Function Types</li>
+              <li>members in Enum Types</li>
+            </ul>
+          </Tooltip>
+        </span>
+        
         <IncDecInput
           value={filter.minProperties}
           onChange={updateMinProperties}
         />
-        <span>Min number of files</span>
+        <span className="label">Min number of files</span>
         <IncDecInput
           value={filter.minFiles}
           onChange={updateMinFiles}

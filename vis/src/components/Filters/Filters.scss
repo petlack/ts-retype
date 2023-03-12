@@ -8,8 +8,12 @@
     display: flex;
     flex-direction: column;
     gap: .5rem;
-    span {
+    .label {
+      font-weight: 300;
       color: var(--clr-fg);
+      display: flex;
+      flex-direction: row;
+      align-items: center;  
     }
 
     .navmenu {
