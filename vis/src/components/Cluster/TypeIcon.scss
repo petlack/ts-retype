@@ -1,0 +1,28 @@
+.candidate-type {
+  grid-area: icon;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--clr-bgaa-400);
+  cursor: help;
+  transition: color 150ms ease-in;
+
+  &:hover {
+    color: var(--clr-bgaa-900);
+  }
+
+  .tooltip {
+    position: absolute;
+    color: white;
+    top: .5rem;
+    left: .5rem;
+    background-color: gray;
+    font-size: 0.75rem;
+    padding: .25rem .5rem;
+    border-radius: 4px;
+    opacity: 0;
+  
+    &.visible {
+      opacity: 1;
+    }
+  }
+}

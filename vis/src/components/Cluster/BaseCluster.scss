@@ -14,7 +14,8 @@
   padding: 2rem;
   border-radius: 8px;
   background-color: var(--clr-card-bg);
-  gap: 2rem;
+  column-gap: 2rem;
+  row-gap: 1rem;
   grid-template-areas:
     "title title"
     "properties files"
@@ -22,22 +23,6 @@
   ;
   grid-template-columns: 1fr 2fr;
   position: relative;
-
-  .tooltip {
-    position: absolute;
-    color: white;
-    top: .5rem;
-    left: .5rem;
-    background-color: gray;
-    font-size: 0.75rem;
-    padding: .25rem .5rem;
-    border-radius: 4px;
-    opacity: 0;
-
-    &.visible {
-      opacity: 1;
-    }
-  }
 
   h3 {
     color: var(--clr-card-title-fg);
@@ -62,38 +47,6 @@
       line-height: 2;
       align-self: center;
     }
-  
-    .candidate-type {
-      grid-area: icon;
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--clr-card-icon-fg);
-    }
-  
-    .row {
-      grid-area: also;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: center;
-
-      .names {
-        grid-area: names;
-        max-height: 200px;
-        overflow-y: scroll;
-      }
-
-      .name-freq {
-        /* background-color: aliceblue; */
-        background-color: var(--clr-card-badge-bg);
-        color: var(--clr-card-badge-fg);
-        font-weight: 800;
-        padding: 4px 12px;
-        margin: 4px 8px;
-        border-radius: 6px;
-        display: inline-block;
-      }
-    }
   }
 
   .properties {
@@ -116,27 +69,6 @@
     
     .property.value {
       color: var(--clr-code-value);
-    }
-  }
-  .files {
-    grid-area: files;
-    max-height: 400px;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    pre {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .file {
-      cursor: pointer;
-
-      &:hover {
-        background-color: rgb(0, 0, 0, 0.1);
-      }
     }
   }
 }

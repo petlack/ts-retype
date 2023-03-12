@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { CandidateType } from '../../../../src/types';
 
+import './TypeIcon.scss';
+
 export type TypeIconProps = {
   type: CandidateType['type'];
 }
@@ -16,9 +18,9 @@ export function TypeIcon({ type }: TypeIconProps) {
     interface: 'Interface Declaration',
   }[type];
   return (
-    <div>
+    <div className="candidate-type">
       <span
-        className="candidate-type mono"
+        className="mono"
         onMouseEnter={() => setIsTooltipVisible(true)}
         onMouseLeave={() => setIsTooltipVisible(false)}
       >{`{${type[0].toUpperCase()}}`}</span>

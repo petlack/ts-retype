@@ -19,11 +19,14 @@ type UnBar = 'a' | 'b'
 
 export function FunctionCluster({ type, query, files, parameters, returnType, names }: FunctionTypeCluster & { query: string }) {
   return (
-    <div className="cluster">
+    <div className="cluster cluster-functional">
       <div className="title">
         <TypeIcon type={type} />
         <NamesListing names={names} query={query} />
-        <span className="return-type mono">{returnType}</span>
+      </div>
+      <div className="return-type">
+        <h3>Return type</h3>
+        <span className="mono">{returnType}</span>
       </div>
       <KeyValueFeatures keyValues={parameters} query={query} name="Parameters" />
       <FileListing files={files} query={query} type={type} />

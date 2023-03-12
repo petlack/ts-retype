@@ -5,9 +5,16 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  
   svg {
     width: 8rem;
     height: 8rem;
-    color: #C0C0C0;
+    color: var(--clr-bgna-300);
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--clr-bgna-600);
   }
 }

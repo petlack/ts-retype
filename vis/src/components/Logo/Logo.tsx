@@ -3,8 +3,8 @@ import './Logo.scss';
 export function Logo() {
   return (
     <div className="logo">
-      <span>TS</span>
-      <span>retype</span>
+      <span className="big">TS</span>
+      <span className="small">retype</span>
     </div>
-  )
+  );
 }

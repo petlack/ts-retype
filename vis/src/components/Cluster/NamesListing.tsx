@@ -2,6 +2,8 @@ import { Freq } from '../../../../src/types';
 import { SearchableSpan } from '../SearchableSpan';
 import { sortNames } from './utils';
 
+import './NamesListing.scss';
+
 export type NamesListingProps = {
   names: Freq;
   query: string;

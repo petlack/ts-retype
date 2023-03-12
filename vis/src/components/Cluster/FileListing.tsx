@@ -3,6 +3,8 @@ import { useCopyToClipboard } from '../../hooks/useCopy';
 import { SearchableSpan } from '../SearchableSpan';
 import { useToast } from '../Toast';
 
+import './FileListing.scss';
+
 export type FileListingProps = {
   files: SourceFile[];
   type: CandidateType['type'];
