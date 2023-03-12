@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 import ts from 'typescript';
+import { Freq } from './types';
 
 export function toName(node: ts.Node): string {
   if (node && node.kind) {
@@ -63,4 +64,21 @@ export function formatDuration(ms: number) {
   const hours = Math.floor(min / 60);
   min -= hours * 60;
   return `${hours}h ${min}m ${sec.toFixed(2)}`;
+}
+
+export function freq(list: (string | number | symbol)[]) {
+  return list.reduce((res, item) => {
+    res[item] = (res[item] || 0) + 1;
+    return res;
+  }, <Freq>{});
+}
+
+export function selectIndices<T>(arr: T[], indices: Iterable<number>): T[] {
+  const result: T[] = [];
+  for (const index of indices) {
+    if (index >= 0 && index < arr.length) {
+      result.push(arr[index]);
+    }
+  }
+  return result;
 }

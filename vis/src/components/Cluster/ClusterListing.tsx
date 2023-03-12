@@ -1,4 +1,4 @@
-import { Data, EnumTypeCluster, FunctionTypeCluster, LiteralTypeCluster, UnionTypeCluster } from '../../types';
+import { EnumTypeCluster, FulltextData, FunctionTypeCluster, LiteralTypeCluster, UnionTypeCluster } from '../../types';
 import { EnumCluster } from './EnumCluster';
 import { FunctionCluster } from './FunctionCluster';
 import { LiteralCluster } from './LiteralCluster';
@@ -6,7 +6,7 @@ import { UnionCluster } from './UnionCluster';
 
 import './ClusterListing.scss';
 
-export function ClusterListing({ clusters, query }: Pick<Data, 'clusters'> & { query: string }) {
+export function ClusterListing({ clusters, query }: { clusters: FulltextData[], query: string }) {
   const clustersMarkup = clusters.map((c, idx) => {
     switch (c.type) {
     case 'alias':

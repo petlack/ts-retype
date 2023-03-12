@@ -1,4 +1,4 @@
-import { isEmpty, symmetricDifference, pluck, intersection } from 'ramda';
+import { isEmpty, symmetricDifference, pluck, intersection, concat, uniq } from 'ramda';
 import Progress from 'progress';
 import {
   Similarity,
@@ -7,7 +7,11 @@ import {
   FunctionCandidateType,
   EnumCandidateType,
   UnionCandidateType,
+  SourceCandidateType,
+  ClusterOutput,
+  LiteralCandidateType,
 } from './types';
+import { freq, posToLine, selectIndices } from './utils';
 
 const eqValues = (left: unknown[], right: unknown[]) => isEmpty(symmetricDifference(left, right));
 
@@ -136,10 +140,8 @@ export function similarityMatrix(types: CandidateType[]) {
   return m;
 }
 
-export function indexPairsBySimilarity(m: Similarity[][]): {
-  [s in Similarity]?: [number, number][];
-} {
-  const res: { [s in Similarity]?: [number, number][] } = {};
+export function toSimilarityPairs(m: Similarity[][]): [number, number, Similarity][] {
+  const res: [number, number, Similarity][] = [];
   const idxs = [...Array(m.length).keys()];
   for (const i of idxs) {
     for (const j of idxs) {
@@ -150,27 +152,111 @@ export function indexPairsBySimilarity(m: Similarity[][]): {
       if (s === Similarity.Different) {
         continue;
       }
-      if (!res[s]) {
-        res[s] = [];
-      }
-      res[s]?.push([i, j]);
+      res.push([i, j, s]);
+    }
+  }
+
+  return res;
+}
+
+type Clusters = { [s in Similarity]?: Set<number>[] };
+
+export function pairsToClusters(pairs: [number, number, Similarity][]) {
+  if (!pairs) {
+    return {} as Clusters;
+  }
+  const res: Clusters = {};
+  for (const [l, r, s] of pairs) {
+    if (!res[s]) {
+      res[s] = [];
+    }
+    const pairSet = res[s]?.find((nums) => nums.has(l) || nums.has(r));
+    if (pairSet) {
+      pairSet.add(l).add(r);
+    } else {
+      res[s]?.push(new Set<number>([l, r]));
     }
   }
   return res;
 }
 
-export function pairsToClusters(pairs: [number, number][]) {
-  if (!pairs) {
-    return [];
+function chooseClusterNames(types: SourceCandidateType[], idxs: Iterable<number>) {
+  return freq(pluck('name', selectIndices(types, idxs)));
+}
+
+function chooseClusterFiles(
+  types: SourceCandidateType[],
+  idxs: Iterable<number>,
+  lengths: FileLengths,
+) {
+  const toLine = (file: string) => posToLine(lengths[file]);
+  return selectIndices(types, idxs).map((t) => ({
+    file: t.file,
+    type: t.type,
+    pos: t.pos,
+    lines: t.pos.map(toLine(t.file)),
+  }));
+}
+
+function chooseClusterType(types: SourceCandidateType[], idxs: Iterable<number>) {
+  return selectIndices(types, idxs)[0].type;
+}
+
+function chooseClusterName(types: SourceCandidateType[], idxs: Iterable<number>) {
+  return selectIndices(types, idxs)[0].name;
+}
+
+function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>) {
+  const selected = selectIndices(types, idxs);
+  const selectedTypes = uniq(pluck('type', selected));
+  if (selectedTypes.length > 1) {
+    console.log('warning: multiple types in a similarity group');
   }
-  const res: Set<number>[] = [];
-  for (const [l, r] of pairs) {
-    const pairSet = res.find((nums) => nums.has(l) || nums.has(r));
-    if (pairSet) {
-      pairSet.add(l).add(r);
-    } else {
-      res.push(new Set<number>([l, r]));
-    }
+  const type = selectedTypes[0];
+  switch (type) {
+    case 'alias':
+    case 'interface':
+    case 'literal':
+      return {
+        properties: (selected[0] as unknown as LiteralCandidateType).properties,
+      };
+    case 'enum':
+      return {
+        members: (selected[0] as unknown as EnumCandidateType).members,
+      };
+    case 'function':
+      return {
+        parameters: (selected[0] as unknown as FunctionCandidateType).parameters,
+        returnType: (selected[0] as unknown as FunctionCandidateType).returnType,
+      };
+    case 'union':
+      return {
+        types: (types[0] as unknown as UnionCandidateType).types,
+      };
   }
+}
+
+type FileLengths = { [file: string]: number[] };
+
+export function clustersToOutput(
+  types: SourceCandidateType[],
+  clusters: Clusters,
+  lengths: FileLengths,
+): ClusterOutput[] {
+  const res = Object.entries(clusters).reduce(
+    (res, [group, clusters]) =>
+      concat(
+        res,
+        clusters.map((idxs) => ({
+          names: chooseClusterNames(types, idxs),
+          files: chooseClusterFiles(types, idxs, lengths),
+          name: chooseClusterName(types, idxs),
+          type: chooseClusterType(types, idxs),
+          group: Similarity[group as keyof typeof Similarity],
+          ...chooseTypeFeatures(types, idxs),
+        })),
+      ),
+    [] as ClusterOutput[],
+  );
   return res;
 }

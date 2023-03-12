@@ -64,7 +64,7 @@ function getLiteralType(
   };
   return candidate;
 }
-function getFunctionCandidate(
+function getFunctionType(
   name: string,
   sourceFile: ts.SourceFile,
   node: ts.FunctionTypeNode,
@@ -161,10 +161,7 @@ export function getAllCandidateTypes(sourceFile: ts.SourceFile) {
           }
           case ts.SyntaxKind.FunctionType: {
             const name = node.name.escapedText;
-            const candidate = getFunctionCandidate(name, sourceFile, node.type, [
-              node.pos,
-              node.end,
-            ]);
+            const candidate = getFunctionType(name, sourceFile, node.type, [node.pos, node.end]);
             all.push(candidate);
             return false;
           }

@@ -1,5 +1,6 @@
+import { SourceFile } from '../../../../src/types';
 import { useCopyToClipboard } from '../../hooks/useCopy';
-import { CandidateTypeCluster, SourceFile } from '../../types';
+import { CandidateTypeCluster } from '../../types';
 import { SearchableSpan } from '../SearchableSpan';
 import { useToast } from '../Toast';
 

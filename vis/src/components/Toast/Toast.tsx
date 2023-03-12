@@ -10,7 +10,6 @@ interface ToastContextType {
 }
 
 export function Toast({ msg }: ToastProps) {
-  console.log('redraw', msg);
   return (
     <div className={`toast ${msg ? 'visible' : 'invisible'}`}>{msg}</div>
   );

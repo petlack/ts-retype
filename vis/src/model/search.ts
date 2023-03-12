@@ -1,6 +1,6 @@
 import MiniSearch from 'minisearch';
 import { assocPath, path, pluck, zip } from 'ramda';
-import { TypeCluster } from '../types';
+import { FulltextData } from '../types';
 
 export type Filter = {
   selectedTab: string;
@@ -9,7 +9,7 @@ export type Filter = {
   minProperties: number;
 };
 
-export function fulltext(cluster: TypeCluster): string {
+export function fulltext(cluster: FulltextData): string {
   return [
     `${cluster.name}`,
     `${Object.keys(cluster.names).join(' ')}`,
@@ -66,7 +66,7 @@ export type Facet<R> = {
 };
 
 export type SearchArgs = {
-  facets: Facet<TypeCluster>[];
+  facets: Facet<FulltextData>[];
 };
 
 export function Search({ facets }: SearchArgs) {
@@ -85,10 +85,10 @@ export function Search({ facets }: SearchArgs) {
     ],
   });
 
-  let allData: TypeCluster[] = [];
+  let allData: FulltextData[] = [];
 
   return {
-    refresh(data: TypeCluster[]) {
+    refresh(data: FulltextData[]) {
       miniSearch.removeAll();
       miniSearch.addAll(data);
       allData = data;
@@ -99,7 +99,7 @@ export function Search({ facets }: SearchArgs) {
         results = miniSearch.search(query, {
           fuzzy: true,
           prefix: true,
-        }) as unknown as TypeCluster[];
+        }) as unknown as FulltextData[];
       }
 
       const filteredResults = results.filter(

@@ -1,8 +1,11 @@
 import {
   CandidateType,
+  ClusterOutput,
   EnumCandidateType,
   FunctionCandidateType,
   LiteralCandidateType,
+  Similarity,
+  SourceFile,
   UnionCandidateType,
 } from '../../src/types';
 
@@ -25,13 +28,6 @@ export interface LiteralType {
 export interface SourceLiteralType extends LiteralType {
   file: string;
 }
-
-export type SourceFile = {
-  pos: [number, number];
-  lines: number[];
-  file: string;
-  type: CandidateType['type'];
-};
 
 export type CandidateTypeCluster =
   | FunctionTypeCluster
@@ -77,16 +73,6 @@ export type UnionTypeCluster = Pick<UnionCandidateType, 'type' | 'name' | 'types
   group: string;
 };
 
-export enum Similarity {
-  Different = 0,
-  HasSimilarProperties = 1,
-  HasSubsetOfProperties = 2,
-  HasIdenticalProperties = 3,
-  Identical = 4,
-}
-
-export type Data = { name: 'Identical' | 'Renamed'; clusters: TypeCluster[] };
-export type SimilarityGroup = {
-  name: string;
-  clusters: TypeCluster[];
-};
+export type Data = Omit<ClusterOutput, 'group'> & { group: string };
+export type FulltextData = Data & { id: number; fulltext: string };
+export type SimilarityGroup = ClusterOutput;

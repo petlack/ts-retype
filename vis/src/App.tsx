@@ -7,17 +7,28 @@ import { Filters } from './components/Filters';
 import { Navbar } from './components/Navbar';
 import { ToastProvider } from './components/Toast';
 import { Facet, fulltext } from './model/search';
-import { TypeCluster } from './types';
+import { FulltextData } from './types';
 
 import './App.scss';
+import { Similarity } from '../../src/types';
 
-const facets: Facet<TypeCluster>[] = [
-  { name: 'similarity', values: ['all', 'Identical', 'HasIdenticalProperties'], matches: (rec, v) => v === 'all' && ['Identical', 'HasIdenticalProperties'].includes(rec.group) || rec.group === v },
-  { name: 'type', values: ['all', 'alias', 'enum', 'function', 'interface', 'literal', 'union'], matches: (rec, v) => v === 'all' || rec.type === v },
+const facets: Facet<FulltextData>[] = [
+  {
+    name: 'similarity',
+    values: ['all', 'Identical', 'HasIdenticalProperties'],
+    matches: (rec, v) => v === 'all' &&
+      ['Identical', 'HasIdenticalProperties'].includes(rec.group) ||
+      rec.group === v,
+  },
+  {
+    name: 'type',
+    values: ['all', 'alias', 'enum', 'function', 'interface', 'literal', 'union'],
+    matches: (rec, v) => v === 'all' || rec.type === v,
+  },
 ];
 
 function App() {
-  const [allData, setAllData] = useState([] as TypeCluster[]);
+  const [allData, setAllData] = useState([] as FulltextData[]);
 
   const [
     query,
@@ -32,17 +43,12 @@ function App() {
   useEffect(() => {
     let id = 0;
     setAllData(
-      window.__data__.reduce((res, { name, clusters }) => [
-        ...res,
-        ...(
-          clusters.map(cluster => ({
-            ...cluster,
-            id: ++id,
-            group: name,
-            fulltext: fulltext(cluster as TypeCluster),
-          }))
-        )
-      ], [] as TypeCluster[])
+      window.__data__.map(cluster => ({
+        ...cluster,
+        group: cluster.group as keyof typeof Similarity,
+        id: ++id,
+        fulltext: fulltext(cluster as FulltextData),
+      }))
     );
   }, []);
   

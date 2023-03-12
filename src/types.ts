@@ -114,3 +114,16 @@ export const DEFAULT_OPTIONS: RetypeConfig = {
   exclude: ['**/node_modules/**', '**/dist/**', '**/generated/**', '**/build/**'],
   noHtml: false,
 };
+
+export type ClusterOutput = {
+  name: string;
+  type: CandidateType['type'];
+  files: SourceFile[];
+  names: Freq;
+  group: Similarity;
+  properties?: LiteralCandidateType['properties'];
+  parameters?: FunctionCandidateType['parameters'];
+  returnType?: FunctionCandidateType['returnType'];
+  members?: EnumCandidateType['members'];
+  types?: UnionCandidateType['types'];
+};

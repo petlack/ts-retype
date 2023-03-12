@@ -1,5 +1,13 @@
-import { similarity, pairsToClusters, indexPairsBySimilarity } from '../src/similarity';
+import { getTypesInFile } from '../src/clusters';
+import {
+  similarity,
+  pairsToClusters,
+  toSimilarityPairs,
+  clustersToOutput,
+  similarityMatrix,
+} from '../src/similarity';
 import { LiteralType, Similarity } from '../src/types';
+import { createFile } from '../src/utils';
 
 function expectSimilarity(given: Similarity, expected: Similarity) {
   expect(Similarity[given]).toEqual(Similarity[expected]);
@@ -93,32 +101,117 @@ describe('similarity', () => {
   });
 });
 
-describe('pairsToClusters', () => {
+describe('toSimilarityPairs', () => {
   test('ok', () => {
-    const given = pairsToClusters([
-      [0, 1],
-      [1, 2],
-      [3, 4],
-    ]);
-    expect(given).toEqual([new Set([0, 1, 2]), new Set([3, 4])]);
-  });
-});
-
-describe('indexPairsBySimilarity', () => {
-  test('ok', () => {
-    const given = indexPairsBySimilarity([
+    const given = toSimilarityPairs([
       [4, 0, 2, 1],
       [0, 4, 2, 2],
       [2, 2, 4, 0],
       [1, 0, 0, 4],
     ]);
-    expect(given).toEqual({
-      1: [[0, 3]],
-      2: [
-        [0, 2],
-        [1, 2],
-        [1, 3],
-      ],
+    expect(given).toEqual([
+      [0, 2, 2],
+      [0, 3, 1],
+      [1, 2, 2],
+      [1, 3, 2],
+    ]);
+  });
+});
+
+describe('pairsToClusters', () => {
+  test('ok', () => {
+    const given = pairsToClusters([
+      [0, 1, 9],
+      [1, 2, 9],
+      [3, 4, 8],
+    ]);
+    expect(given).toEqual({ 9: [new Set([0, 1, 2])], 8: [new Set([3, 4])] });
+  });
+});
+
+describe('clustersToOutput', () => {
+  test('no candidate types returns empty array', () => {
+    const relPath = 'src.ts';
+    const srcFile = createFile('type A = { foo: string; bar: string }');
+    const { types, lengths } = getTypesInFile(srcFile, relPath);
+    const matrix = similarityMatrix(types);
+    const pairs = toSimilarityPairs(matrix);
+    const clusters = pairsToClusters(pairs);
+    const output = clustersToOutput(types, clusters, { [relPath]: lengths });
+    expect(output).toEqual([]);
+  });
+  describe('literal types', () => {
+    test('all renamed', () => {
+      const relPath = 'src.ts';
+      const srcFile = createFile(`
+      type A = { foo: string; bar: string }
+      type B = { foo: string; bar: string }
+      `);
+      const { types, lengths } = getTypesInFile(srcFile, relPath);
+      const matrix = similarityMatrix(types);
+      const pairs = toSimilarityPairs(matrix);
+      const clusters = pairsToClusters(pairs);
+      const output = clustersToOutput(types, clusters, { [relPath]: lengths });
+      expect(output).toEqual([
+        {
+          files: [
+            { file: 'src.ts', lines: [1, 2], pos: [0, 44], type: 'alias' },
+            { file: 'src.ts', lines: [2, 3], pos: [44, 88], type: 'alias' },
+          ],
+          group: 'HasIdenticalProperties',
+          name: 'A',
+          names: { A: 1, B: 1 },
+          type: 'alias',
+          properties: [
+            { key: 'foo', value: 'string', type: 'StringKeyword' },
+            { key: 'bar', value: 'string', type: 'StringKeyword' },
+          ],
+        },
+      ]);
+    });
+    test('renamed & identical groups', () => {
+      const relPath = 'src.ts';
+      const srcFile = createFile(`
+      type A = { foo: string; bar: string }
+      type B = { foo: string; bar: string }
+      type B = { foo: string; bar: string }
+      `);
+      const { types, lengths } = getTypesInFile(srcFile, relPath);
+      const matrix = similarityMatrix(types);
+      const pairs = toSimilarityPairs(matrix);
+      const clusters = pairsToClusters(pairs);
+      const output = clustersToOutput(types, clusters, { [relPath]: lengths });
+      expect(output).toEqual([
+        {
+          files: [
+            { file: 'src.ts', lines: [1, 2], pos: [0, 44], type: 'alias' },
+            { file: 'src.ts', lines: [2, 3], pos: [44, 88], type: 'alias' },
+            { file: 'src.ts', lines: [3, 4], pos: [88, 132], type: 'alias' },
+          ],
+          group: 'HasIdenticalProperties',
+          name: 'A',
+          names: { A: 1, B: 2 },
+          type: 'alias',
+          properties: [
+            { key: 'foo', value: 'string', type: 'StringKeyword' },
+            { key: 'bar', value: 'string', type: 'StringKeyword' },
+          ],
+        },
+        {
+          files: [
+            { file: 'src.ts', lines: [2, 3], pos: [44, 88], type: 'alias' },
+            { file: 'src.ts', lines: [3, 4], pos: [88, 132], type: 'alias' },
+          ],
+          group: 'Identical',
+          name: 'B',
+          names: { B: 2 },
+          type: 'alias',
+          properties: [
+            { key: 'foo', value: 'string', type: 'StringKeyword' },
+            { key: 'bar', value: 'string', type: 'StringKeyword' },
+          ],
+        },
+      ]);
     });
   });
 });

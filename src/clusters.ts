@@ -14,10 +14,17 @@ import {
   EnumCandidateType,
   FunctionCandidateType,
   UnionCandidateType,
+  ClusterOutput,
 } from './types';
 import { formatDuration, loadFile, posToLine } from './utils';
-import { similarityMatrix, pairsToClusters, indexPairsBySimilarity } from './similarity';
+import {
+  similarityMatrix,
+  pairsToClusters,
+  toSimilarityPairs,
+  clustersToOutput,
+} from './similarity';
 import { createLogger } from './cmd';
+import ts from 'typescript';
 
 const log = createLogger();
 
@@ -81,47 +88,52 @@ function nonEmptyCandidateType(type: CandidateType): boolean {
   }
 }
 
-export function createTypeClusters({ project, include, exclude }: RetypeArgs): SimilarityGroup[] {
+export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
+  const lengths = srcFile
+    .getFullText()
+    .split('\n')
+    .map((l) => l.length);
+  const candidateTypes = getAllCandidateTypes(srcFile);
+  const types = toSourceCandidateTypes(relPath, candidateTypes).filter(nonEmptyCandidateType);
+  return { types, lengths };
+}
+
+export function createTypeClusters({ project, include, exclude }: RetypeArgs): ClusterOutput[] {
   const files = globSync(include, { cwd: project, ignore: exclude });
 
   const filesLengths: { [file: string]: number[] } = {};
   let allTypes: SourceCandidateType[] = [];
 
-  const start = new Date().getTime();
+  let start = new Date().getTime();
 
   log.log(`searching in ${files.length.toLocaleString()} files`);
-
   for (const relPath of files) {
     const file = path.join(project, relPath);
     log.live(`⏳ loading ${formatFileName(file)}`);
     const srcFile = loadFile(file);
-    const lengths = srcFile
-      .getFullText()
-      .split('\n')
-      .map((l) => l.length);
+    const { types, lengths } = getTypesInFile(srcFile, relPath);
     filesLengths[relPath] = lengths;
-    const candidateTypes = getAllCandidateTypes(srcFile);
-    const types = toSourceCandidateTypes(relPath, candidateTypes).filter(nonEmptyCandidateType);
     allTypes = concat(allTypes, types);
   }
   const locs = Object.values(filesLengths).reduce((a, b) => a + b.length, 0);
   log.live(`searched  ${locs.toLocaleString()} lines of code`, true);
   log.log(`found ${allTypes.length.toLocaleString()} types definitions`);
+  log.log(`took ${formatDuration(new Date().getTime() - start)}`);
+  log.log();
 
-  const duration = new Date().getTime() - start;
-  log.log(`took ${formatDuration(duration)}`);
-
+  start = new Date().getTime();
+  log.log('computing similarity matrix');
   const matrix = similarityMatrix(allTypes);
-  // printMatrix(matrix)
+  log.log(`took ${formatDuration(new Date().getTime() - start)}`);
+  log.log();
 
-  const index = indexPairsBySimilarity(matrix);
+  start = new Date().getTime();
+  log.log('generating output');
+  const pairs = toSimilarityPairs(matrix);
+  const clusters = pairsToClusters(pairs);
+  const output = clustersToOutput(allTypes, clusters, filesLengths);
+  log.log(`took ${formatDuration(new Date().getTime() - start)}`);
+  log.log();
 
-  const groups: SimilarityGroup[] = Object.entries(index).map(([k, v]) => ({
-    name: Similarity[Number(k)],
-    clusters: pairsToClusters(v)
-      .sort((a, b) => b.size - a.size)
-      .map((c) => outputCluster(allTypes, c, filesLengths)),
-  }));
-
-  return groups;
+  return output;
 }

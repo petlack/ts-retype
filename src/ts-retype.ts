@@ -85,9 +85,7 @@ function main() {
   const clusters = createTypeClusters(args);
 
   log.log();
-  for (const cluster of clusters) {
-    log.log(`- ${cluster.clusters.length} instances of ${cluster.name}`);
-  }
+  log.log(`found ${clusters.length} clusters`);
 
   const data = JSON.stringify(clusters);
 

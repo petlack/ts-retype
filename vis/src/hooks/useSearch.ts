@@ -1,26 +1,26 @@
 import { useCallback, useMemo, useState } from 'react';
 import { Facet, FacetStats, Filter, Search } from '../model/search';
-import { TypeCluster } from '../types';
+import { FulltextData } from '../types';
 
 type UpdateQueryFn = (query: string) => void;
 type UpdateFilterFn = (filter: Partial<Filter>) => void;
 type ReindexFn<T> = (data: T[]) => void;
 
 export function useSearch(
-  facets: Facet<TypeCluster>[],
+  facets: Facet<FulltextData>[],
   initialFilter: Filter,
   initialQuery: string,
 ): [
   string,
   Filter,
-  TypeCluster[],
+  FulltextData[],
   FacetStats,
   UpdateQueryFn,
   UpdateFilterFn,
-  ReindexFn<TypeCluster>,
+  ReindexFn<FulltextData>,
 ] {
   const search = useMemo(() => Search({ facets }), []);
-  const [results, setResults] = useState([] as TypeCluster[]);
+  const [results, setResults] = useState([] as FulltextData[]);
   const [facetsStats, setFacetsStats] = useState({} as FacetStats);
   const [query, setQuery] = useState(initialQuery);
   const [filter, setFilter] = useState(initialFilter);
@@ -64,7 +64,7 @@ export function useSearch(
   );
 
   const reindex = useCallback(
-    (data: TypeCluster[]) => {
+    (data: FulltextData[]) => {
       search.refresh(data);
       update(query, filter);
     },
