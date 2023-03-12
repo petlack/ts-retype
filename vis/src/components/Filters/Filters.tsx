@@ -1,49 +1,45 @@
-import { FacetStats, getFacetStat } from '../../model/search';
+import { FacetStats, Filter, getFacetStat } from '../../model/search';
 import { IncDecInput } from '../IncDecInput';
 
 import './Filters.scss';
 
 export type FiltersProps = {
-  selectedTab: string;
-  setSelectedTab: (x: string) => void;
-  selectedType: string;
-  setSelectedType: (x: string) => void;
-  minProperties: number;
-  setMinProperties: (x: number) => void;
-  minFiles: number;
-  setMinFiles: (x: number) => void;
+  filter: Filter,
+  updateFilter: (f: Partial<Filter>) => void,
   facetsStats: FacetStats;
 }
 
 export function Filters({
-  selectedTab,
-  setSelectedTab,
-  selectedType,
-  setSelectedType,
-  minProperties,
-  setMinProperties,
-  minFiles,
-  setMinFiles,
+  filter,
+  updateFilter,
   facetsStats,
 }: FiltersProps) {
-  const similarities = ['all', 'Identical', 'HasIdenticalProperties'];
+  const updateMinProperties = (value: number) => updateFilter({ ...filter, minProperties: value });
+  const updateMinFiles = (value: number) => updateFilter({ ...filter, minFiles: value });
 
-  const similaritiesMarkup = similarities.map(sim => (
-    <a
-      key={sim}
-      className={`nav ${sim === selectedTab ? 'selected' : ''}`}
-      onClick={() => setSelectedTab(sim)}
-    >{sim} ({getFacetStat(facetsStats, sim, selectedType)})</a>
-  ));
+  const similarities = ['all', 'Identical', 'HasIdenticalProperties'];
+  const similaritiesMarkup = similarities.map(sim => {
+    const onClick = () => updateFilter({ selectedTab: sim });
+    return (
+      <a
+        key={sim}
+        className={`nav ${sim === filter.selectedTab ? 'selected' : ''}`}
+        onClick={onClick}
+      >{sim} ({getFacetStat(facetsStats, sim, filter.selectedType)})</a>
+    );
+  });
 
   const types = ['all', 'alias', 'enum', 'function', 'interface', 'literal', 'union'];
-  const typesMarkup = types.map(type => (
-    <a
-      key={type}
-      className={`nav ${type === selectedType ? 'selected' : ''}`}
-      onClick={() => setSelectedType(type)}
-    >{type} ({getFacetStat(facetsStats, selectedTab, type)})</a>
-  ));
+  const typesMarkup = types.map(type => {
+    const onClick = () => updateFilter({ ...filter, selectedType: type });
+    return (
+      <a
+        key={type}
+        className={`nav ${type === filter.selectedType ? 'selected' : ''}`}
+        onClick={onClick}
+      >{type} ({getFacetStat(facetsStats, filter.selectedTab, type)})</a>
+    );
+  });
   
   return (
     <div className="filters">
@@ -61,9 +57,15 @@ export function Filters({
       </div>
       <div className="filter">
         <span>Min number of properties</span>
-        <IncDecInput value={minProperties} onChange={(value: number) => setMinProperties(value)} />
+        <IncDecInput
+          value={filter.minProperties}
+          onChange={updateMinProperties}
+        />
         <span>Min number of files</span>
-        <IncDecInput value={minFiles} onChange={(value: number) => setMinFiles(value)} />
+        <IncDecInput
+          value={filter.minFiles}
+          onChange={updateMinFiles}
+        />
       </div>
     </div>
   );

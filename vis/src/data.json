@@ -3,18 +3,84 @@
     "name": "HasSimilarProperties",
     "clusters": [
       {
-        "name": "Data",
+        "name": "FacetStats",
         "type": "alias",
-        "properties": [
-          { "key": "name", "value": "'Identical' | 'Renamed'", "type": "UnionType" },
-          { "key": "clusters", "value": "TypeCluster[]", "type": "ArrayType" }
-        ],
+        "properties": [{ "key": "string", "value": "number | FacetStats", "type": "UnionType" }],
         "files": [
-          { "type": "alias", "pos": [2041, 2129], "lines": [87, 92], "file": "src/types.ts" },
-          { "type": "alias", "pos": [1858, 1938], "lines": [86, 88], "file": "vis/src/types.ts" },
-          { "type": "alias", "pos": [1938, 2016], "lines": [88, 92], "file": "vis/src/types.ts" }
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../api-plans-api/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [275, 373],
+            "lines": [5, 9],
+            "file": "../promo-suite-api/src/lambda.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [69, 119],
+            "lines": [1, 3],
+            "file": "../promo-suite-ui/src/types.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [275, 373],
+            "lines": [5, 9],
+            "file": "../subscribe-api/src/lambda.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-router/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [66, 140],
+            "lines": [3, 7],
+            "file": "../suite-router/src/types.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-starter-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-starter-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-starter/template-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-starter/template-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../tollbooth/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [1791, 1863],
+            "lines": [59, 61],
+            "file": "../ts-retype/vis/src/model/search.ts"
+          }
         ],
-        "names": { "Data": 1, "SimilarityGroup": 2 }
+        "names": { "FacetStats": 1, "Dict": 7, "IndexedRoutes": 1, "Router": 2, "Styles": 1 }
       },
       {
         "name": "anonymous",
@@ -23,14 +89,107 @@
         "files": [
           {
             "type": "literal",
+            "pos": [304, 330],
+            "lines": [14, 14],
+            "file": "../api-plans-api/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [338, 364],
+            "lines": [15, 15],
+            "file": "../suite-router/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [304, 330],
+            "lines": [14, 14],
+            "file": "../suite-starter-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [304, 330],
+            "lines": [14, 14],
+            "file": "../suite-starter-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [844, 873],
+            "lines": [39, 39],
+            "file": "../suite-starter/src/degit.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [304, 330],
+            "lines": [14, 14],
+            "file": "../suite-starter/template-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [304, 330],
+            "lines": [14, 14],
+            "file": "../suite-starter/template-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [981, 1021],
+            "lines": [37, 37],
+            "file": "../tollbooth/src/utils.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [327, 353],
+            "lines": [15, 15],
+            "file": "../tollbooth/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
             "pos": [550, 577],
             "lines": [20, 20],
-            "file": "docs/src/components/Code.tsx"
+            "file": "../ts-retype/docs/src/components/Code.tsx"
           },
-          { "type": "literal", "pos": [1001, 1030], "lines": [37, 37], "file": "src/clusters.ts" },
-          { "type": "literal", "pos": [2201, 2230], "lines": [75, 75], "file": "src/clusters.ts" }
+          {
+            "type": "literal",
+            "pos": [1033, 1062],
+            "lines": [38, 38],
+            "file": "../ts-retype/src/clusters.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [2609, 2638],
+            "lines": [87, 87],
+            "file": "../ts-retype/src/clusters.ts"
+          }
         ],
-        "names": { "anonymous": 3 }
+        "names": { "anonymous": 12 }
+      },
+      {
+        "name": "Data",
+        "type": "alias",
+        "properties": [
+          { "key": "name", "value": "'Identical' | 'Renamed'", "type": "UnionType" },
+          { "key": "clusters", "value": "TypeCluster[]", "type": "ArrayType" }
+        ],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [2041, 2129],
+            "lines": [87, 92],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [1858, 1938],
+            "lines": [86, 88],
+            "file": "../ts-retype/vis/src/types.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [1938, 2016],
+            "lines": [88, 92],
+            "file": "../ts-retype/vis/src/types.ts"
+          }
+        ],
+        "names": { "Data": 1, "SimilarityGroup": 2 }
       },
       {
         "name": "LiteralType",
@@ -40,10 +199,43 @@
           { "key": "properties", "value": "Property[]", "type": "ArrayType" }
         ],
         "files": [
-          { "type": "interface", "pos": [297, 422], "lines": [15, 20], "file": "src/types.ts" },
-          { "type": "interface", "pos": [754, 888], "lines": [36, 41], "file": "src/types.ts" }
+          {
+            "type": "interface",
+            "pos": [297, 422],
+            "lines": [15, 20],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "interface",
+            "pos": [754, 888],
+            "lines": [36, 41],
+            "file": "../ts-retype/src/types.ts"
+          }
         ],
         "names": { "LiteralType": 1, "LiteralCandidateType": 1 }
+      },
+      {
+        "name": "anonymous",
+        "type": "literal",
+        "properties": [
+          { "key": "tokenHeaderName", "value": "string", "type": "StringKeyword" },
+          { "key": "errorHandler", "value": "LambdaErrorHandler", "type": "TypeReference" }
+        ],
+        "files": [
+          {
+            "type": "literal",
+            "pos": [295, 365],
+            "lines": [7, 10],
+            "file": "../tollbooth/src/express.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [695, 764],
+            "lines": [24, 27],
+            "file": "../tollbooth/src/lambda.ts"
+          }
+        ],
+        "names": { "anonymous": 2 }
       }
     ]
   },
@@ -51,103 +243,331 @@
     "name": "HasSubsetOfProperties",
     "clusters": [
       {
-        "name": "Rec",
+        "name": "Data",
         "type": "alias",
         "properties": [
-          { "key": "type", "value": "'x' | 'y'", "type": "UnionType" },
-          { "key": "color", "value": "'a' | 'b'", "type": "UnionType" },
-          { "key": "rating", "value": "number", "type": "NumberKeyword" },
-          { "key": "price", "value": "number", "type": "NumberKeyword" }
+          { "key": "name", "value": "'Identical' | 'Renamed'", "type": "UnionType" },
+          { "key": "clusters", "value": "TypeCluster[]", "type": "ArrayType" }
         ],
         "files": [
           {
             "type": "alias",
-            "pos": [56, 97],
-            "lines": [3, 5],
-            "file": "docs/src/components/Code.tsx"
+            "pos": [1607, 1687],
+            "lines": [67, 73],
+            "file": "../api-plans-api/src/resolvers.ts"
           },
           {
             "type": "alias",
-            "pos": [97, 167],
-            "lines": [5, 6],
-            "file": "docs/src/components/Code.tsx"
-          },
-          { "type": "alias", "pos": [0, 66], "lines": [1, 3], "file": "src/types.ts" },
-          { "type": "alias", "pos": [1126, 1217], "lines": [53, 59], "file": "src/types.ts" },
-          { "type": "alias", "pos": [2041, 2129], "lines": [87, 92], "file": "src/types.ts" },
-          { "type": "alias", "pos": [2129, 2239], "lines": [92, 99], "file": "src/types.ts" },
-          { "type": "alias", "pos": [265, 331], "lines": [10, 16], "file": "tests/cmd.test.ts" },
-          {
-            "type": "alias",
-            "pos": [134, 460],
-            "lines": [4, 17],
-            "file": "vis/src/components/Filters/Filters.tsx"
+            "pos": [1170, 1203],
+            "lines": [46, 50],
+            "file": "../api-plans-api/src/resolvers.ts"
           },
           {
             "type": "alias",
-            "pos": [65, 152],
-            "lines": [2, 7],
-            "file": "vis/src/components/IncDecInput/IncDecInput.tsx"
+            "pos": [2904, 2947],
+            "lines": [117, 121],
+            "file": "../api-plans-api/src/resolvers.ts"
           },
           {
             "type": "alias",
-            "pos": [56, 137],
-            "lines": [3, 8],
-            "file": "vis/src/components/Navbar/Navbar.tsx"
+            "pos": [4690, 4730],
+            "lines": [179, 183],
+            "file": "../api-plans-api/src/resolvers.ts"
           },
           {
             "type": "alias",
-            "pos": [129, 247],
+            "pos": [4314, 4358],
+            "lines": [165, 169],
+            "file": "../api-plans-api/src/resolvers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [45, 136],
             "lines": [3, 10],
-            "file": "vis/src/model/search.ts"
+            "file": "../api-plans-api/src/types.ts"
           },
           {
             "type": "alias",
-            "pos": [1815, 1886],
-            "lines": [64, 66],
-            "file": "vis/src/model/search.ts"
+            "pos": [229, 368],
+            "lines": [17, 27],
+            "file": "../api-plans-api/src/types.ts"
           },
           {
             "type": "alias",
-            "pos": [1886, 2012],
-            "lines": [66, 67],
-            "file": "vis/src/model/search.ts"
+            "pos": [136, 229],
+            "lines": [10, 17],
+            "file": "../api-plans-api/src/types.ts"
           },
           {
             "type": "alias",
-            "pos": [2012, 2074],
-            "lines": [67, 71],
-            "file": "vis/src/model/search.ts"
+            "pos": [39, 86],
+            "lines": [1, 5],
+            "file": "../promo-suite-api/src/handlers/confirm.ts"
           },
-          { "type": "alias", "pos": [143, 211], "lines": [7, 11], "file": "vis/src/types.ts" },
-          { "type": "alias", "pos": [467, 589], "lines": [27, 34], "file": "vis/src/types.ts" },
-          { "type": "alias", "pos": [1858, 1938], "lines": [86, 88], "file": "vis/src/types.ts" },
-          { "type": "alias", "pos": [1938, 2016], "lines": [88, 92], "file": "vis/src/types.ts" },
           {
             "type": "alias",
-            "pos": [877, 962],
-            "lines": [33, 34],
-            "file": "vis/tests/unit/search.test.ts"
+            "pos": [39, 91],
+            "lines": [1, 5],
+            "file": "../promo-suite-api/src/handlers/unsubscribe.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [119, 202],
+            "lines": [3, 9],
+            "file": "../promo-suite-ui/src/types.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [39, 86],
+            "lines": [1, 5],
+            "file": "../subscribe-api/src/handlers/confirm.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [39, 91],
+            "lines": [1, 5],
+            "file": "../subscribe-api/src/handlers/unsubscribe.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [172, 204],
+            "lines": [3, 7],
+            "file": "../subscribe-page/src/pages/api/subscribe.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [1062, 1192],
+            "lines": [48, 56],
+            "file": "../suite-starter/src/degit.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [648, 746],
+            "lines": [25, 31],
+            "file": "../suite-starter/src/index.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [2041, 2129],
+            "lines": [87, 92],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [1863, 1997],
+            "lines": [61, 66],
+            "file": "../ts-retype/vis/src/model/search.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [1858, 1938],
+            "lines": [86, 88],
+            "file": "../ts-retype/vis/src/types.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [1938, 2016],
+            "lines": [88, 92],
+            "file": "../ts-retype/vis/src/types.ts"
           }
         ],
         "names": {
-          "Rec": 1,
-          "Freq": 2,
-          "SourceFile": 2,
-          "Data": 1,
+          "Data": 2,
           "SimilarityGroup": 2,
-          "Filter": 1,
-          "FacetStats": 1,
           "Facet": 1,
-          "SearchArgs": 1,
-          "NavbarProps": 1,
-          "IncDecInputArgs": 1,
-          "FiltersProps": 1,
-          "Options": 1,
-          "RetypeConfig": 1,
-          "SingleCodeProps": 1,
-          "MultilangCodeProps": 1
+          "Framework": 1,
+          "Template": 1,
+          "Package": 1,
+          "Plan": 1,
+          "Client": 1,
+          "CreateClientArgs": 1,
+          "UnsubscribeArgs": 2,
+          "ConfirmArgs": 2,
+          "ApiArgs": 1,
+          "DeleteClientArgs": 1,
+          "DeleteApiArgs": 1,
+          "API": 1,
+          "CreateApiArgs": 1
         }
+      },
+      {
+        "name": "AwsEventArgs",
+        "type": "alias",
+        "properties": [
+          { "key": "method", "value": "string", "type": "StringKeyword" },
+          { "key": "path", "value": "string", "type": "StringKeyword" },
+          { "key": "body", "value": "Dict", "type": "TypeReference" },
+          { "key": "headers", "value": "Dict", "type": "TypeReference" },
+          { "key": "host", "value": "string", "type": "StringKeyword" },
+          { "key": "query", "value": "Dict", "type": "TypeReference" }
+        ],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [117, 227],
+            "lines": [3, 11],
+            "file": "../api-plans-api/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [136, 229],
+            "lines": [10, 17],
+            "file": "../api-plans-api/src/types.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [39, 86],
+            "lines": [1, 5],
+            "file": "../promo-suite-api/src/handlers/confirm.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [39, 91],
+            "lines": [1, 5],
+            "file": "../promo-suite-api/src/handlers/unsubscribe.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [39, 86],
+            "lines": [1, 5],
+            "file": "../subscribe-api/src/handlers/confirm.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [39, 91],
+            "lines": [1, 5],
+            "file": "../subscribe-api/src/handlers/unsubscribe.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [117, 261],
+            "lines": [3, 12],
+            "file": "../suite-router/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [299, 383],
+            "lines": [13, 19],
+            "file": "../suite-router/src/types.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [117, 227],
+            "lines": [3, 11],
+            "file": "../suite-starter-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [117, 227],
+            "lines": [3, 11],
+            "file": "../suite-starter-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [117, 227],
+            "lines": [3, 11],
+            "file": "../suite-starter/template-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [117, 227],
+            "lines": [3, 11],
+            "file": "../suite-starter/template-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [32, 90],
+            "lines": [1, 6],
+            "file": "../tollbooth/src/admin.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [89, 207],
+            "lines": [5, 10],
+            "file": "../tollbooth/src/types.ts"
+          },
+          { "type": "alias", "pos": [0, 89], "lines": [1, 5], "file": "../tollbooth/src/types.ts" },
+          {
+            "type": "alias",
+            "pos": [117, 250],
+            "lines": [3, 12],
+            "file": "../tollbooth/tests/helpers.ts"
+          }
+        ],
+        "names": {
+          "AwsEventArgs": 7,
+          "Route": 2,
+          "ProtectArgs": 1,
+          "UnsubscribeArgs": 2,
+          "ConfirmArgs": 2,
+          "TokenLimit": 1,
+          "API": 1
+        }
+      },
+      {
+        "name": "anonymous",
+        "type": "literal",
+        "properties": [
+          { "key": "statusCode", "value": "number", "type": "NumberKeyword" },
+          { "key": "body", "value": "string", "type": "StringKeyword" }
+        ],
+        "files": [
+          {
+            "type": "literal",
+            "pos": [3809, 3846],
+            "lines": [122, 122],
+            "file": "../api-plans-api/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [4045, 4082],
+            "lines": [132, 132],
+            "file": "../suite-router/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [3809, 3846],
+            "lines": [122, 122],
+            "file": "../suite-starter-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [3809, 3846],
+            "lines": [122, 122],
+            "file": "../suite-starter-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [3809, 3846],
+            "lines": [122, 122],
+            "file": "../suite-starter/template-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [3809, 3846],
+            "lines": [122, 122],
+            "file": "../suite-starter/template-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [2470, 2499],
+            "lines": [92, 92],
+            "file": "../tollbooth/src/utils.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [2251, 2291],
+            "lines": [89, 89],
+            "file": "../tollbooth/src/utils.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [3993, 4030],
+            "lines": [128, 128],
+            "file": "../tollbooth/tests/helpers.ts"
+          }
+        ],
+        "names": { "anonymous": 9 }
       },
       {
         "name": "anonymous",
@@ -179,13 +599,48 @@
           { "key": "types", "value": "UnionCandidateType['types']", "type": "IndexedAccessType" }
         ],
         "files": [
-          { "type": "literal", "pos": [1292, 1334], "lines": [61, 64], "file": "src/types.ts" },
-          { "type": "literal", "pos": [1849, 1891], "lines": [76, 79], "file": "src/types.ts" },
-          { "type": "literal", "pos": [788, 1083], "lines": [42, 51], "file": "vis/src/types.ts" },
-          { "type": "literal", "pos": [1179, 1238], "lines": [53, 57], "file": "vis/src/types.ts" },
-          { "type": "literal", "pos": [1357, 1416], "lines": [62, 66], "file": "vis/src/types.ts" },
-          { "type": "literal", "pos": [1503, 1562], "lines": [68, 72], "file": "vis/src/types.ts" },
-          { "type": "literal", "pos": [1649, 1708], "lines": [74, 78], "file": "vis/src/types.ts" }
+          {
+            "type": "literal",
+            "pos": [1292, 1334],
+            "lines": [61, 64],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [1849, 1891],
+            "lines": [76, 79],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [788, 1083],
+            "lines": [42, 51],
+            "file": "../ts-retype/vis/src/types.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [1179, 1238],
+            "lines": [53, 57],
+            "file": "../ts-retype/vis/src/types.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [1357, 1416],
+            "lines": [62, 66],
+            "file": "../ts-retype/vis/src/types.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [1503, 1562],
+            "lines": [68, 72],
+            "file": "../ts-retype/vis/src/types.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [1649, 1708],
+            "lines": [74, 78],
+            "file": "../ts-retype/vis/src/types.ts"
+          }
         ],
         "names": { "anonymous": 7 }
       },
@@ -198,12 +653,135 @@
           { "key": "pos", "value": "[number, number]", "type": "TupleType" }
         ],
         "files": [
-          { "type": "interface", "pos": [888, 970], "lines": [41, 45], "file": "src/types.ts" },
-          { "type": "interface", "pos": [297, 422], "lines": [15, 20], "file": "src/types.ts" },
-          { "type": "interface", "pos": [754, 888], "lines": [36, 41], "file": "src/types.ts" },
-          { "type": "interface", "pos": [290, 391], "lines": [17, 23], "file": "vis/src/types.ts" }
+          {
+            "type": "interface",
+            "pos": [888, 970],
+            "lines": [41, 45],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "interface",
+            "pos": [297, 422],
+            "lines": [15, 20],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "interface",
+            "pos": [754, 888],
+            "lines": [36, 41],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "interface",
+            "pos": [290, 391],
+            "lines": [17, 23],
+            "file": "../ts-retype/vis/src/types.ts"
+          }
         ],
         "names": { "LiteralType": 3, "LiteralCandidateType": 1 }
+      },
+      {
+        "name": "anonymous",
+        "type": "literal",
+        "properties": [{ "key": "tokenHeaderName", "value": "string", "type": "StringKeyword" }],
+        "files": [
+          {
+            "type": "literal",
+            "pos": [295, 365],
+            "lines": [7, 10],
+            "file": "../tollbooth/src/express.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [695, 764],
+            "lines": [24, 27],
+            "file": "../tollbooth/src/lambda.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [349, 378],
+            "lines": [15, 15],
+            "file": "../tollbooth/tests/express.test.ts"
+          }
+        ],
+        "names": { "anonymous": 3 }
+      },
+      {
+        "name": "Fn",
+        "type": "function",
+        "parameters": [{ "key": "args", "value": "I[]", "type": "ArrayType" }],
+        "returnType": "O",
+        "files": [
+          {
+            "type": "function",
+            "pos": [44, 82],
+            "lines": [1, 3],
+            "file": "../tollbooth/src/deno.ts"
+          },
+          {
+            "type": "function",
+            "pos": [82, 135],
+            "lines": [3, 4],
+            "file": "../tollbooth/src/deno.ts"
+          },
+          {
+            "type": "function",
+            "pos": [135, 235],
+            "lines": [4, 6],
+            "file": "../tollbooth/src/deno.ts"
+          }
+        ],
+        "names": { "Fn": 1, "CmdFn": 1, "SendCommandFn": 1 }
+      },
+      {
+        "name": "SourceFile",
+        "type": "alias",
+        "properties": [
+          { "key": "pos", "value": "[number, number]", "type": "TupleType" },
+          { "key": "lines", "value": "number[]", "type": "ArrayType" },
+          { "key": "file", "value": "string", "type": "StringKeyword" },
+          { "key": "type", "value": "CandidateType['type']", "type": "IndexedAccessType" }
+        ],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [1126, 1217],
+            "lines": [53, 59],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [467, 589],
+            "lines": [27, 34],
+            "file": "../ts-retype/vis/src/types.ts"
+          }
+        ],
+        "names": { "SourceFile": 2 }
+      },
+      {
+        "name": "Filter",
+        "type": "alias",
+        "properties": [
+          { "key": "selectedTab", "value": "string", "type": "StringKeyword" },
+          { "key": "selectedType", "value": "string", "type": "StringKeyword" },
+          { "key": "minFiles", "value": "number", "type": "NumberKeyword" },
+          { "key": "minProperties", "value": "number", "type": "NumberKeyword" }
+        ],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [134, 441],
+            "lines": [4, 16],
+            "file": "../ts-retype/vis/src/components/Filters/Filters.tsx"
+          },
+          {
+            "type": "alias",
+            "pos": [129, 248],
+            "lines": [3, 10],
+            "file": "../ts-retype/vis/src/model/search.ts"
+          }
+        ],
+        "names": { "Filter": 1, "FiltersProps": 1 }
       },
       {
         "name": "anonymous",
@@ -213,8 +791,138 @@
           { "key": "generate", "value": "boolean | string | null", "type": "UnionType" }
         ],
         "files": [
-          { "type": "literal", "pos": [1742, 1789], "lines": [60, 60], "file": "src/cmd.ts" },
-          { "type": "literal", "pos": [2346, 2407], "lines": [105, 108], "file": "src/types.ts" }
+          {
+            "type": "literal",
+            "pos": [1742, 1789],
+            "lines": [60, 60],
+            "file": "../ts-retype/src/cmd.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [2346, 2407],
+            "lines": [105, 108],
+            "file": "../ts-retype/src/types.ts"
+          }
+        ],
+        "names": { "anonymous": 2 }
+      },
+      {
+        "name": "SingleCodeProps",
+        "type": "alias",
+        "properties": [{ "key": "code", "value": "string", "type": "StringKeyword" }],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [1016, 1140],
+            "lines": [54, 61],
+            "file": "../tollbooth/src/types.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [56, 97],
+            "lines": [3, 5],
+            "file": "../ts-retype/docs/src/components/Code.tsx"
+          }
+        ],
+        "names": { "SingleCodeProps": 1, "ProtectResponse": 1 }
+      },
+      {
+        "name": "anonymous",
+        "type": "literal",
+        "properties": [
+          { "key": "message", "value": "string", "type": "StringKeyword" },
+          { "key": "statusCode", "value": "number", "type": "NumberKeyword" }
+        ],
+        "files": [
+          {
+            "type": "literal",
+            "pos": [2251, 2291],
+            "lines": [89, 89],
+            "file": "../tollbooth/src/utils.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [2381, 2407],
+            "lines": [91, 91],
+            "file": "../tollbooth/src/utils.ts"
+          }
+        ],
+        "names": { "anonymous": 2 }
+      },
+      {
+        "name": "TollboothArgs",
+        "type": "alias",
+        "properties": [
+          { "key": "redis", "value": "RedisEval", "type": "TypeReference" },
+          { "key": "routes", "value": "Route[]", "type": "ArrayType" },
+          { "key": "allowAnonymous", "value": "boolean", "type": "BooleanKeyword" },
+          { "key": "debug", "value": "boolean", "type": "BooleanKeyword" },
+          { "key": "failOnExceptions", "value": "boolean", "type": "BooleanKeyword" },
+          { "key": "throttleEnabled", "value": "boolean", "type": "BooleanKeyword" },
+          { "key": "throttleInterval", "value": "number", "type": "NumberKeyword" },
+          { "key": "throttleLimit", "value": "number", "type": "NumberKeyword" }
+        ],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [428, 477],
+            "lines": [21, 25],
+            "file": "../suite-router/src/types.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [593, 827],
+            "lines": [33, 44],
+            "file": "../tollbooth/src/types.ts"
+          }
+        ],
+        "names": { "TollboothArgs": 1, "RouterArgs": 1 }
+      },
+      {
+        "name": "Framework",
+        "type": "alias",
+        "properties": [
+          { "key": "name", "value": "string", "type": "StringKeyword" },
+          { "key": "display", "value": "string", "type": "StringKeyword" },
+          { "key": "color", "value": "ColorFunc", "type": "TypeReference" },
+          { "key": "customCommand", "value": "string", "type": "StringKeyword" }
+        ],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [1062, 1192],
+            "lines": [48, 56],
+            "file": "../suite-starter/src/degit.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [648, 746],
+            "lines": [25, 31],
+            "file": "../suite-starter/src/index.ts"
+          }
+        ],
+        "names": { "Framework": 1, "Template": 1 }
+      },
+      {
+        "name": "anonymous",
+        "type": "literal",
+        "properties": [
+          { "key": "url", "value": "string", "type": "StringKeyword" },
+          { "key": "apiKey", "value": "string", "type": "StringKeyword" }
+        ],
+        "files": [
+          {
+            "type": "literal",
+            "pos": [35, 67],
+            "lines": [1, 1],
+            "file": "../subscribe-page/src/api.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [313, 356],
+            "lines": [11, 11],
+            "file": "../subscribe-page/src/api.ts"
+          }
         ],
         "names": { "anonymous": 2 }
       }
@@ -224,53 +932,211 @@
     "name": "HasIdenticalProperties",
     "clusters": [
       {
-        "name": "anonymous",
-        "type": "union",
-        "types": [],
+        "name": "AwsHandler",
+        "type": "function",
+        "parameters": [
+          { "key": "event", "value": "APIGatewayEvent", "type": "TypeReference" },
+          { "key": "context", "value": "Context", "type": "TypeReference" },
+          { "key": "callback", "value": "APIGatewayProxyCallback", "type": "TypeReference" }
+        ],
+        "returnType": "Promise<void>",
         "files": [
           {
-            "type": "union",
-            "pos": [167, 228],
-            "lines": [6, 7],
-            "file": "docs/src/components/Code.tsx"
-          },
-          { "type": "union", "pos": [759, 783], "lines": [27, 27], "file": "src/clusters.ts" },
-          { "type": "union", "pos": [1272, 1298], "lines": [40, 40], "file": "src/cmd.ts" },
-          { "type": "union", "pos": [1832, 1848], "lines": [58, 58], "file": "src/parse.ts" },
-          { "type": "union", "pos": [4559, 4575], "lines": [137, 137], "file": "src/parse.ts" },
-          { "type": "union", "pos": [33, 68], "lines": [1, 3], "file": "vis/src/hooks/useCopy.ts" },
-          {
-            "type": "union",
-            "pos": [1221, 1234],
-            "lines": [45, 45],
-            "file": "vis/src/model/search.ts"
+            "type": "function",
+            "pos": [4169, 4293],
+            "lines": [136, 142],
+            "file": "../api-plans-api/src/tests/helpers.ts"
           },
           {
-            "type": "union",
-            "pos": [1745, 1760],
-            "lines": [62, 62],
-            "file": "vis/src/model/search.ts"
+            "type": "function",
+            "pos": [217, 344],
+            "lines": [3, 9],
+            "file": "../suite-router/src/lambda.ts"
           },
-          { "type": "union", "pos": [589, 714], "lines": [34, 40], "file": "vis/src/types.ts" },
           {
-            "type": "union",
-            "pos": [213, 238],
-            "lines": [5, 5],
-            "file": "vis/tests/unit/search.test.ts"
+            "type": "function",
+            "pos": [4405, 4529],
+            "lines": [146, 152],
+            "file": "../suite-router/src/tests/helpers.ts"
+          },
+          {
+            "type": "function",
+            "pos": [4169, 4293],
+            "lines": [136, 142],
+            "file": "../suite-starter-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "function",
+            "pos": [4169, 4293],
+            "lines": [136, 142],
+            "file": "../suite-starter-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "function",
+            "pos": [4169, 4293],
+            "lines": [136, 142],
+            "file": "../suite-starter/template-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "function",
+            "pos": [4169, 4293],
+            "lines": [136, 142],
+            "file": "../suite-starter/template-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "function",
+            "pos": [418, 549],
+            "lines": [14, 20],
+            "file": "../tollbooth/src/lambda.ts"
+          },
+          {
+            "type": "function",
+            "pos": [5511, 5635],
+            "lines": [179, 185],
+            "file": "../tollbooth/tests/helpers.ts"
           }
         ],
-        "names": { "anonymous": 7, "CandidateTypeCluster": 1, "CopiedValue": 1, "CodeProps": 1 }
+        "names": { "AwsHandler": 8, "LambdaHandler": 1 }
+      },
+      {
+        "name": "Dict",
+        "type": "alias",
+        "properties": [{ "key": "string", "value": "string", "type": "StringKeyword" }],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../api-plans-api/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [69, 119],
+            "lines": [1, 3],
+            "file": "../promo-suite-ui/src/types.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-router/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-starter-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-starter-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-starter/template-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-starter/template-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../tollbooth/tests/helpers.ts"
+          }
+        ],
+        "names": { "Dict": 7, "Styles": 1 }
+      },
+      {
+        "name": "UnsubscribeArgs",
+        "type": "alias",
+        "properties": [{ "key": "token", "value": "string", "type": "StringKeyword" }],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [39, 86],
+            "lines": [1, 5],
+            "file": "../promo-suite-api/src/handlers/confirm.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [39, 91],
+            "lines": [1, 5],
+            "file": "../promo-suite-api/src/handlers/unsubscribe.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [39, 86],
+            "lines": [1, 5],
+            "file": "../subscribe-api/src/handlers/confirm.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [39, 91],
+            "lines": [1, 5],
+            "file": "../subscribe-api/src/handlers/unsubscribe.ts"
+          }
+        ],
+        "names": { "UnsubscribeArgs": 2, "ConfirmArgs": 2 }
       },
       {
         "name": "SourceLiteralType",
         "type": "interface",
         "properties": [{ "key": "file", "value": "string", "type": "StringKeyword" }],
         "files": [
-          { "type": "interface", "pos": [1046, 1126], "lines": [49, 53], "file": "src/types.ts" },
-          { "type": "interface", "pos": [970, 1046], "lines": [45, 49], "file": "src/types.ts" },
-          { "type": "interface", "pos": [391, 467], "lines": [23, 27], "file": "vis/src/types.ts" }
+          {
+            "type": "interface",
+            "pos": [1046, 1126],
+            "lines": [49, 53],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "interface",
+            "pos": [970, 1046],
+            "lines": [45, 49],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "interface",
+            "pos": [391, 467],
+            "lines": [23, 27],
+            "file": "../ts-retype/vis/src/types.ts"
+          }
         ],
         "names": { "SourceLiteralType": 2, "SourceCandidateType": 1 }
+      },
+      {
+        "name": "ApiArgs",
+        "type": "alias",
+        "properties": [{ "key": "id", "value": "string", "type": "StringKeyword" }],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [1170, 1203],
+            "lines": [46, 50],
+            "file": "../api-plans-api/src/resolvers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [2904, 2947],
+            "lines": [117, 121],
+            "file": "../api-plans-api/src/resolvers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [4690, 4730],
+            "lines": [179, 183],
+            "file": "../api-plans-api/src/resolvers.ts"
+          }
+        ],
+        "names": { "ApiArgs": 1, "DeleteClientArgs": 1, "DeleteApiArgs": 1 }
       },
       {
         "name": "FnFoo",
@@ -285,13 +1151,13 @@
             "type": "function",
             "pos": [240, 298],
             "lines": [7, 9],
-            "file": "vis/src/components/Cluster/FunctionCluster.tsx"
+            "file": "../ts-retype/vis/src/components/Cluster/FunctionCluster.tsx"
           },
           {
             "type": "function",
             "pos": [298, 355],
             "lines": [9, 10],
-            "file": "vis/src/components/Cluster/FunctionCluster.tsx"
+            "file": "../ts-retype/vis/src/components/Cluster/FunctionCluster.tsx"
           }
         ],
         "names": { "FnFoo": 1, "FnBar": 1 }
@@ -305,13 +1171,13 @@
             "type": "enum",
             "pos": [355, 380],
             "lines": [10, 12],
-            "file": "vis/src/components/Cluster/FunctionCluster.tsx"
+            "file": "../ts-retype/vis/src/components/Cluster/FunctionCluster.tsx"
           },
           {
             "type": "enum",
             "pos": [380, 404],
             "lines": [12, 13],
-            "file": "vis/src/components/Cluster/FunctionCluster.tsx"
+            "file": "../ts-retype/vis/src/components/Cluster/FunctionCluster.tsx"
           }
         ],
         "names": { "EnFoo": 1, "EnBar": 1 }
@@ -325,13 +1191,13 @@
             "type": "union",
             "pos": [404, 428],
             "lines": [13, 15],
-            "file": "vis/src/components/Cluster/FunctionCluster.tsx"
+            "file": "../ts-retype/vis/src/components/Cluster/FunctionCluster.tsx"
           },
           {
             "type": "union",
             "pos": [428, 451],
             "lines": [15, 16],
-            "file": "vis/src/components/Cluster/FunctionCluster.tsx"
+            "file": "../ts-retype/vis/src/components/Cluster/FunctionCluster.tsx"
           }
         ],
         "names": { "UnFoo": 1, "UnBar": 1 }
@@ -342,34 +1208,262 @@
     "name": "Identical",
     "clusters": [
       {
-        "name": "anonymous",
-        "type": "union",
-        "types": [],
+        "name": "AwsHandler",
+        "type": "function",
+        "parameters": [
+          { "key": "event", "value": "APIGatewayEvent", "type": "TypeReference" },
+          { "key": "context", "value": "Context", "type": "TypeReference" },
+          { "key": "callback", "value": "APIGatewayProxyCallback", "type": "TypeReference" }
+        ],
+        "returnType": "Promise<void>",
         "files": [
-          { "type": "union", "pos": [759, 783], "lines": [27, 27], "file": "src/clusters.ts" },
-          { "type": "union", "pos": [1272, 1298], "lines": [40, 40], "file": "src/cmd.ts" },
-          { "type": "union", "pos": [1832, 1848], "lines": [58, 58], "file": "src/parse.ts" },
-          { "type": "union", "pos": [4559, 4575], "lines": [137, 137], "file": "src/parse.ts" },
           {
-            "type": "union",
-            "pos": [1221, 1234],
-            "lines": [45, 45],
-            "file": "vis/src/model/search.ts"
+            "type": "function",
+            "pos": [4169, 4293],
+            "lines": [136, 142],
+            "file": "../api-plans-api/src/tests/helpers.ts"
           },
           {
-            "type": "union",
-            "pos": [1745, 1760],
-            "lines": [62, 62],
-            "file": "vis/src/model/search.ts"
+            "type": "function",
+            "pos": [4405, 4529],
+            "lines": [146, 152],
+            "file": "../suite-router/src/tests/helpers.ts"
           },
           {
-            "type": "union",
-            "pos": [213, 238],
-            "lines": [5, 5],
-            "file": "vis/tests/unit/search.test.ts"
+            "type": "function",
+            "pos": [4169, 4293],
+            "lines": [136, 142],
+            "file": "../suite-starter-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "function",
+            "pos": [4169, 4293],
+            "lines": [136, 142],
+            "file": "../suite-starter-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "function",
+            "pos": [4169, 4293],
+            "lines": [136, 142],
+            "file": "../suite-starter/template-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "function",
+            "pos": [4169, 4293],
+            "lines": [136, 142],
+            "file": "../suite-starter/template-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "function",
+            "pos": [418, 549],
+            "lines": [14, 20],
+            "file": "../tollbooth/src/lambda.ts"
+          },
+          {
+            "type": "function",
+            "pos": [5511, 5635],
+            "lines": [179, 185],
+            "file": "../tollbooth/tests/helpers.ts"
+          }
+        ],
+        "names": { "AwsHandler": 8 }
+      },
+      {
+        "name": "Dict",
+        "type": "alias",
+        "properties": [{ "key": "string", "value": "string", "type": "StringKeyword" }],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../api-plans-api/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-router/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-starter-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-starter-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-starter/template-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../suite-starter/template-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [79, 117],
+            "lines": [1, 3],
+            "file": "../tollbooth/tests/helpers.ts"
+          }
+        ],
+        "names": { "Dict": 7 }
+      },
+      {
+        "name": "anonymous",
+        "type": "literal",
+        "properties": [{ "key": "string", "value": "string[]", "type": "ArrayType" }],
+        "files": [
+          {
+            "type": "literal",
+            "pos": [304, 330],
+            "lines": [14, 14],
+            "file": "../api-plans-api/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [338, 364],
+            "lines": [15, 15],
+            "file": "../suite-router/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [304, 330],
+            "lines": [14, 14],
+            "file": "../suite-starter-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [304, 330],
+            "lines": [14, 14],
+            "file": "../suite-starter-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [304, 330],
+            "lines": [14, 14],
+            "file": "../suite-starter/template-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [304, 330],
+            "lines": [14, 14],
+            "file": "../suite-starter/template-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [327, 353],
+            "lines": [15, 15],
+            "file": "../tollbooth/tests/helpers.ts"
           }
         ],
         "names": { "anonymous": 7 }
+      },
+      {
+        "name": "anonymous",
+        "type": "literal",
+        "properties": [
+          { "key": "statusCode", "value": "number", "type": "NumberKeyword" },
+          { "key": "body", "value": "string", "type": "StringKeyword" }
+        ],
+        "files": [
+          {
+            "type": "literal",
+            "pos": [3809, 3846],
+            "lines": [122, 122],
+            "file": "../api-plans-api/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [4045, 4082],
+            "lines": [132, 132],
+            "file": "../suite-router/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [3809, 3846],
+            "lines": [122, 122],
+            "file": "../suite-starter-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [3809, 3846],
+            "lines": [122, 122],
+            "file": "../suite-starter-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [3809, 3846],
+            "lines": [122, 122],
+            "file": "../suite-starter/template-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [3809, 3846],
+            "lines": [122, 122],
+            "file": "../suite-starter/template-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [3993, 4030],
+            "lines": [128, 128],
+            "file": "../tollbooth/tests/helpers.ts"
+          }
+        ],
+        "names": { "anonymous": 7 }
+      },
+      {
+        "name": "AwsEventArgs",
+        "type": "alias",
+        "properties": [
+          { "key": "path", "value": "string", "type": "StringKeyword" },
+          { "key": "method", "value": "string", "type": "StringKeyword" },
+          { "key": "query", "value": "Dict", "type": "TypeReference" },
+          { "key": "body", "value": "Dict", "type": "TypeReference" },
+          { "key": "headers", "value": "Dict", "type": "TypeReference" }
+        ],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [117, 227],
+            "lines": [3, 11],
+            "file": "../api-plans-api/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [117, 227],
+            "lines": [3, 11],
+            "file": "../suite-starter-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [117, 227],
+            "lines": [3, 11],
+            "file": "../suite-starter-api-rest/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [117, 227],
+            "lines": [3, 11],
+            "file": "../suite-starter/template-api-graphql/src/tests/helpers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [117, 227],
+            "lines": [3, 11],
+            "file": "../suite-starter/template-api-rest/src/tests/helpers.ts"
+          }
+        ],
+        "names": { "AwsEventArgs": 5 }
       },
       {
         "name": "anonymous",
@@ -380,22 +1474,145 @@
           { "key": "group", "value": "string", "type": "StringKeyword" }
         ],
         "files": [
-          { "type": "literal", "pos": [1179, 1238], "lines": [53, 57], "file": "vis/src/types.ts" },
-          { "type": "literal", "pos": [1357, 1416], "lines": [62, 66], "file": "vis/src/types.ts" },
-          { "type": "literal", "pos": [1503, 1562], "lines": [68, 72], "file": "vis/src/types.ts" },
-          { "type": "literal", "pos": [1649, 1708], "lines": [74, 78], "file": "vis/src/types.ts" }
+          {
+            "type": "literal",
+            "pos": [1179, 1238],
+            "lines": [53, 57],
+            "file": "../ts-retype/vis/src/types.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [1357, 1416],
+            "lines": [62, 66],
+            "file": "../ts-retype/vis/src/types.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [1503, 1562],
+            "lines": [68, 72],
+            "file": "../ts-retype/vis/src/types.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [1649, 1708],
+            "lines": [74, 78],
+            "file": "../ts-retype/vis/src/types.ts"
+          }
         ],
         "names": { "anonymous": 4 }
       },
       {
-        "name": "Freq",
-        "type": "alias",
-        "properties": [],
+        "name": "AppContext",
+        "type": "interface",
+        "properties": [{ "key": "auth", "value": "any", "type": "AnyKeyword" }],
         "files": [
-          { "type": "alias", "pos": [0, 66], "lines": [1, 3], "file": "src/types.ts" },
-          { "type": "alias", "pos": [143, 211], "lines": [7, 11], "file": "vis/src/types.ts" }
+          {
+            "type": "interface",
+            "pos": [0, 45],
+            "lines": [1, 3],
+            "file": "../api-plans-api/src/types.ts"
+          },
+          {
+            "type": "interface",
+            "pos": [0, 45],
+            "lines": [1, 3],
+            "file": "../suite-starter-api-graphql/src/types.ts"
+          },
+          {
+            "type": "interface",
+            "pos": [0, 45],
+            "lines": [1, 3],
+            "file": "../suite-starter/template-api-graphql/src/types.ts"
+          }
         ],
-        "names": { "Freq": 2 }
+        "names": { "AppContext": 3 }
+      },
+      {
+        "name": "LogArgs",
+        "type": "alias",
+        "properties": [{ "key": "msg", "value": "any", "type": "AnyKeyword" }],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [1469, 1500],
+            "lines": [59, 63],
+            "file": "../api-plans-api/src/resolvers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [206, 237],
+            "lines": [11, 15],
+            "file": "../suite-starter-api-graphql/src/resolvers.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [206, 237],
+            "lines": [11, 15],
+            "file": "../suite-starter/template-api-graphql/src/resolvers.ts"
+          }
+        ],
+        "names": { "LogArgs": 3 }
+      },
+      {
+        "name": "anonymous",
+        "type": "literal",
+        "properties": [{ "key": "headers", "value": "any", "type": "AnyKeyword" }],
+        "files": [
+          {
+            "type": "literal",
+            "pos": [649, 666],
+            "lines": [15, 15],
+            "file": "../api-plans-api/src/graphql.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [649, 666],
+            "lines": [15, 15],
+            "file": "../suite-starter-api-graphql/src/graphql.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [649, 666],
+            "lines": [15, 15],
+            "file": "../suite-starter/template-api-graphql/src/graphql.ts"
+          }
+        ],
+        "names": { "anonymous": 3 }
+      },
+      {
+        "name": "GraphQLArgs",
+        "type": "alias",
+        "properties": [
+          { "key": "path", "value": "string", "type": "StringKeyword" },
+          { "key": "enableUI", "value": "boolean", "type": "BooleanKeyword" },
+          { "key": "schema", "value": "string", "type": "StringKeyword" },
+          {
+            "key": "resolvers",
+            "value": "IResolvers<any, AppContext, Record<string, any>, any> | IResolvers<any, AppContext, Record<string, any>, any>[]",
+            "type": "UnionType"
+          }
+        ],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [973, 1174],
+            "lines": [29, 36],
+            "file": "../api-plans-api/src/graphql.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [973, 1174],
+            "lines": [29, 36],
+            "file": "../suite-starter-api-graphql/src/graphql.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [973, 1174],
+            "lines": [29, 36],
+            "file": "../suite-starter/template-api-graphql/src/graphql.ts"
+          }
+        ],
+        "names": { "GraphQLArgs": 3 }
       },
       {
         "name": "Property",
@@ -406,8 +1623,18 @@
           { "key": "type", "value": "string", "type": "StringKeyword" }
         ],
         "files": [
-          { "type": "interface", "pos": [66, 145], "lines": [3, 9], "file": "src/types.ts" },
-          { "type": "interface", "pos": [211, 290], "lines": [11, 17], "file": "vis/src/types.ts" }
+          {
+            "type": "interface",
+            "pos": [66, 145],
+            "lines": [3, 9],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "interface",
+            "pos": [211, 290],
+            "lines": [11, 17],
+            "file": "../ts-retype/vis/src/types.ts"
+          }
         ],
         "names": { "Property": 2 }
       },
@@ -416,8 +1643,18 @@
         "type": "interface",
         "properties": [{ "key": "file", "value": "string", "type": "StringKeyword" }],
         "files": [
-          { "type": "interface", "pos": [970, 1046], "lines": [45, 49], "file": "src/types.ts" },
-          { "type": "interface", "pos": [391, 467], "lines": [23, 27], "file": "vis/src/types.ts" }
+          {
+            "type": "interface",
+            "pos": [970, 1046],
+            "lines": [45, 49],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "interface",
+            "pos": [391, 467],
+            "lines": [23, 27],
+            "file": "../ts-retype/vis/src/types.ts"
+          }
         ],
         "names": { "SourceLiteralType": 2 }
       },
@@ -426,8 +1663,18 @@
         "type": "union",
         "types": ["type", "name", "properties"],
         "files": [
-          { "type": "union", "pos": [1815, 1846], "lines": [76, 76], "file": "src/types.ts" },
-          { "type": "union", "pos": [1145, 1176], "lines": [53, 53], "file": "vis/src/types.ts" }
+          {
+            "type": "union",
+            "pos": [1815, 1846],
+            "lines": [76, 76],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "union",
+            "pos": [1145, 1176],
+            "lines": [53, 53],
+            "file": "../ts-retype/vis/src/types.ts"
+          }
         ],
         "names": { "anonymous": 2 }
       },
@@ -442,8 +1689,18 @@
           "Identical"
         ],
         "files": [
-          { "type": "enum", "pos": [1892, 2041], "lines": [79, 87], "file": "src/types.ts" },
-          { "type": "enum", "pos": [1709, 1858], "lines": [78, 86], "file": "vis/src/types.ts" }
+          {
+            "type": "enum",
+            "pos": [1892, 2041],
+            "lines": [79, 87],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "enum",
+            "pos": [1709, 1858],
+            "lines": [78, 86],
+            "file": "../ts-retype/vis/src/types.ts"
+          }
         ],
         "names": { "Similarity": 2 }
       },
@@ -455,8 +1712,18 @@
           { "key": "names", "value": "Freq", "type": "TypeReference" }
         ],
         "files": [
-          { "type": "literal", "pos": [1292, 1334], "lines": [61, 64], "file": "src/types.ts" },
-          { "type": "literal", "pos": [1849, 1891], "lines": [76, 79], "file": "src/types.ts" }
+          {
+            "type": "literal",
+            "pos": [1292, 1334],
+            "lines": [61, 64],
+            "file": "../ts-retype/src/types.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [1849, 1891],
+            "lines": [76, 79],
+            "file": "../ts-retype/src/types.ts"
+          }
         ],
         "names": { "anonymous": 2 }
       },
@@ -465,10 +1732,260 @@
         "type": "literal",
         "properties": [{ "key": "string", "value": "number[]", "type": "ArrayType" }],
         "files": [
-          { "type": "literal", "pos": [1001, 1030], "lines": [37, 37], "file": "src/clusters.ts" },
-          { "type": "literal", "pos": [2201, 2230], "lines": [75, 75], "file": "src/clusters.ts" }
+          {
+            "type": "literal",
+            "pos": [1033, 1062],
+            "lines": [38, 38],
+            "file": "../ts-retype/src/clusters.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [2609, 2638],
+            "lines": [87, 87],
+            "file": "../ts-retype/src/clusters.ts"
+          }
         ],
         "names": { "anonymous": 2 }
+      },
+      {
+        "name": "anonymous",
+        "type": "literal",
+        "properties": [
+          { "key": "t", "value": "string", "type": "StringKeyword" },
+          { "key": "template", "value": "string", "type": "StringKeyword" }
+        ],
+        "files": [
+          {
+            "type": "literal",
+            "pos": [1216, 1252],
+            "lines": [58, 61],
+            "file": "../suite-starter/src/degit.ts"
+          },
+          {
+            "type": "literal",
+            "pos": [492, 528],
+            "lines": [19, 22],
+            "file": "../suite-starter/src/index.ts"
+          }
+        ],
+        "names": { "anonymous": 2 }
+      },
+      {
+        "name": "ColorFunc",
+        "type": "function",
+        "parameters": [{ "key": "str", "value": "string | number", "type": "UnionType" }],
+        "returnType": "string",
+        "files": [
+          {
+            "type": "function",
+            "pos": [1011, 1062],
+            "lines": [46, 48],
+            "file": "../suite-starter/src/degit.ts"
+          },
+          {
+            "type": "function",
+            "pos": [597, 648],
+            "lines": [23, 25],
+            "file": "../suite-starter/src/index.ts"
+          }
+        ],
+        "names": { "ColorFunc": 2 }
+      },
+      {
+        "name": "Data",
+        "type": "alias",
+        "properties": [
+          { "key": "data", "value": "{\n    status: string\n  }", "type": "TypeLiteral" },
+          { "key": "errors", "value": "[string]", "type": "TupleType" }
+        ],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [64, 135],
+            "lines": [2, 9],
+            "file": "../subscribe-page/src/pages/confirm.tsx"
+          },
+          {
+            "type": "alias",
+            "pos": [68, 139],
+            "lines": [2, 9],
+            "file": "../subscribe-page/src/pages/unsubscribe.tsx"
+          }
+        ],
+        "names": { "Data": 2 }
+      },
+      {
+        "name": "anonymous",
+        "type": "literal",
+        "properties": [{ "key": "props", "value": "{ data: Data }", "type": "TypeLiteral" }],
+        "files": [
+          {
+            "type": "literal",
+            "pos": [197, 222],
+            "lines": [11, 11],
+            "file": "../subscribe-page/src/pages/confirm.tsx"
+          },
+          {
+            "type": "literal",
+            "pos": [201, 226],
+            "lines": [11, 11],
+            "file": "../subscribe-page/src/pages/unsubscribe.tsx"
+          }
+        ],
+        "names": { "anonymous": 2 }
+      },
+      {
+        "name": "anonymous",
+        "type": "literal",
+        "properties": [{ "key": "data", "value": "Data", "type": "TypeReference" }],
+        "files": [
+          {
+            "type": "literal",
+            "pos": [392, 407],
+            "lines": [19, 19],
+            "file": "../subscribe-page/src/pages/confirm.tsx"
+          },
+          {
+            "type": "literal",
+            "pos": [404, 419],
+            "lines": [19, 19],
+            "file": "../subscribe-page/src/pages/unsubscribe.tsx"
+          }
+        ],
+        "names": { "anonymous": 2 }
+      },
+      {
+        "name": "Router",
+        "type": "alias",
+        "properties": [
+          {
+            "key": "string",
+            "value": "(event: APIGatewayEvent) => Promise<{ [key: string]: any }>",
+            "type": "FunctionType"
+          }
+        ],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [275, 373],
+            "lines": [5, 9],
+            "file": "../promo-suite-api/src/lambda.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [275, 373],
+            "lines": [5, 9],
+            "file": "../subscribe-api/src/lambda.ts"
+          }
+        ],
+        "names": { "Router": 2 }
+      },
+      {
+        "name": "ProtectorArgs",
+        "type": "alias",
+        "properties": [
+          { "key": "client", "value": "string", "type": "StringKeyword" },
+          { "key": "hostname", "value": "string", "type": "StringKeyword" },
+          { "key": "path", "value": "string", "type": "StringKeyword" }
+        ],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [28, 112],
+            "lines": [1, 7],
+            "file": "../promo-suite-api/src/protector/protector.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [28, 112],
+            "lines": [1, 7],
+            "file": "../subscribe-api/src/protector/protector.ts"
+          }
+        ],
+        "names": { "ProtectorArgs": 2 }
+      },
+      {
+        "name": "ExpressProtectorArgs",
+        "type": "alias",
+        "properties": [
+          { "key": "redisUrl", "value": "string", "type": "StringKeyword" },
+          { "key": "clientHeaderName", "value": "string", "type": "StringKeyword" }
+        ],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [124, 203],
+            "lines": [3, 8],
+            "file": "../promo-suite-api/src/protector/express.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [124, 203],
+            "lines": [3, 8],
+            "file": "../subscribe-api/src/protector/express.ts"
+          }
+        ],
+        "names": { "ExpressProtectorArgs": 2 }
+      },
+      {
+        "name": "UnsubscribeArgs",
+        "type": "alias",
+        "properties": [{ "key": "token", "value": "string", "type": "StringKeyword" }],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [39, 91],
+            "lines": [1, 5],
+            "file": "../promo-suite-api/src/handlers/unsubscribe.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [39, 91],
+            "lines": [1, 5],
+            "file": "../subscribe-api/src/handlers/unsubscribe.ts"
+          }
+        ],
+        "names": { "UnsubscribeArgs": 2 }
+      },
+      {
+        "name": "SubscribeArgs",
+        "type": "alias",
+        "properties": [{ "key": "email", "value": "string", "type": "StringKeyword" }],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [81, 131],
+            "lines": [3, 7],
+            "file": "../promo-suite-api/src/handlers/subscribe.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [81, 131],
+            "lines": [3, 7],
+            "file": "../subscribe-api/src/handlers/subscribe.ts"
+          }
+        ],
+        "names": { "SubscribeArgs": 2 }
+      },
+      {
+        "name": "ConfirmArgs",
+        "type": "alias",
+        "properties": [{ "key": "token", "value": "string", "type": "StringKeyword" }],
+        "files": [
+          {
+            "type": "alias",
+            "pos": [39, 86],
+            "lines": [1, 5],
+            "file": "../promo-suite-api/src/handlers/confirm.ts"
+          },
+          {
+            "type": "alias",
+            "pos": [39, 86],
+            "lines": [1, 5],
+            "file": "../subscribe-api/src/handlers/confirm.ts"
+          }
+        ],
+        "names": { "ConfirmArgs": 2 }
       }
     ]
   }

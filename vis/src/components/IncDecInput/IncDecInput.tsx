@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import './IncDecInput.scss';
 
 export type IncDecInputArgs = {
@@ -10,8 +9,8 @@ export function IncDecInput({
   value,
   onChange,
 }: IncDecInputArgs) {
-  const inc = useCallback(() => onChange(value + 1), [value]);
-  const dec = useCallback(() => onChange(Math.max(1, value - 1)), [value]);
+  const inc = () => onChange(value + 1);
+  const dec = () => onChange(Math.max(1, value - 1));
   return (
     <div className="incdec">
       <button className="minus" onClick={dec}>
@@ -27,4 +26,4 @@ export function IncDecInput({
       </button>
     </div>
   );
-};
+}
