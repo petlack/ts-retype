@@ -37,10 +37,10 @@ export function NamesListing({ query, names }: NamesListingProps) {
 
   const alsoKnownMarkup = (
     namesMarkup.length > 0 ? (
-      <>
+      <div className="row">
         <span>Also known as</span>
         {namesMarkup}
-      </>
+      </div>
     ) : <></>
   );
   return (
@@ -55,9 +55,7 @@ export function NamesListing({ query, names }: NamesListingProps) {
           }
         />
       </h2>
-      <div className="row">
-        {alsoKnownMarkup}
-      </div>
+      {alsoKnownMarkup}
     </>
   );
 }

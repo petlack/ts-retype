@@ -1,0 +1,70 @@
+@import "../utils.styl"
+@import "../vars.styl"
+
+.demo-container
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  background-color: #e2e6e7;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  .demo
+    // align-items: center;
+    font-size: 14px;
+    display: grid;
+    column-gap: 4rem;
+    row-gap: 2rem;
+    padding: 2rem;
+    grid-template-areas: "snippets header" "snippets types" "snippets desc" "snippets example";
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: min-content min-content min-content 1fr;
+
+    --clr-card-bg: white;
+    --clr-code-bg: #e8eff1;
+    --clr-code-fg: black;
+    --clr-code-key: blue;
+    --clr-code-value: green;
+    --clr-card-title-fg: #aab5b9;
+    --clr-bgaa-400: #bccfd5;
+    --clr-card-badge-bg: #e2e6e7;
+    &-header
+      grid-area: header;
+      color: white;
+      display: flex;
+      justify-content: flex-end;
+    .types
+      flexRow();
+      position: relative;
+      grid-area: types;
+      justify-content: space-between;
+      font-size: 1rem;
+      font-weight: 400;
+      .type
+        color: gray;
+        cursor pointer;
+        &.active
+          color: black;
+        &:hover
+          color: black;
+      .indicator
+        position: absolute;
+        bottom: -.5rem;
+        height: 2px;
+        width: 60px;
+        background-color: green;
+    .description
+      grid-area: desc;
+      font-size: 1.5em;
+      font-weight: 300;
+    .snippets
+      grid-area: snippets;
+      flexColumn(2rem);
+      // padding: 2rem;
+    .similarity
+      grid-area: example;
+      flexColumn(2rem);
+      max-width: 800px;
+      // padding: 2rem;
+      margin: 0;
+      flex: 1;
+      // background-color: yellow;
+    

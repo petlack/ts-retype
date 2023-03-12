@@ -11,17 +11,17 @@
 .cluster {
   display: grid;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  padding: 2rem;
+  padding: 2em;
   border-radius: 8px;
   background-color: var(--clr-card-bg);
-  column-gap: 2rem;
-  row-gap: 1rem;
+  column-gap: 2em;
+  row-gap: 1em;
   grid-template-areas:
     "title title"
     "properties files"
     "properties files"
   ;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: minmax(120px, max-content) 1fr;
   position: relative;
 
   h3 {
@@ -47,6 +47,12 @@
       line-height: 2;
       align-self: center;
     }
+
+    .type-icon {
+      grid-area: icon;
+      font-size: 2em;
+      font-weight: 800;
+    }
   }
 
   .properties {
@@ -60,7 +66,8 @@
       /* background-image: linear-gradient(to left bottom, #f0fafa, #ecf9f9, #e9f7f7, #e5f6f6, #e1f4f4); */
       background-color: var(--clr-code-bg);
       color: var(--clr-code-fg);
-      padding: 0.5rem 1rem;
+      padding: 0.5em 1em;
+      border-radius: 4px;
     }
 
     .property.key {
