@@ -15,7 +15,7 @@
   border-radius: 8px;
   background-color: var(--clr-card-bg);
   gap: 2rem;
-  grid-template:
+  grid-template-areas:
     "title title"
     "properties files"
     "properties files"
@@ -48,7 +48,8 @@
     display: grid;
     flex-direction: row;
     column-gap: 1rem;
-    grid-template:
+    grid-template-columns: 5ch 1fr;
+    grid-template-areas:
       "icon title"
       "also also"
     ;
