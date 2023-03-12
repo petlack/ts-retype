@@ -1,23 +1,33 @@
-import { CandidateType } from '../../../../src/types';
 import { useCopyToClipboard } from '../../hooks/useCopy';
-import { SourceFile } from '../../types';
+import { CandidateTypeCluster, SourceFile } from '../../types';
 import { SearchableSpan } from '../SearchableSpan';
+import { useToast } from '../Toast';
 
 export type FileListingProps = {
   files: SourceFile[];
-  type: CandidateType['type'];
+  type: CandidateTypeCluster['type'];
   query: string;
 }
 
 export function FileListing({ files, type, query }: FileListingProps) {
   const [, copyToClipboard] = useCopyToClipboard();
+  const showToast = useToast();
+
+  const onFileClick = (file: string, lines: number[]) => {
+    copyToClipboard(`${file}:${lines[0]}`);
+    showToast('Copied to clipboard');
+  };
   
   const filesMarkup = files.map(({ file, lines }) => (
     <span
       key={`${file}${lines}`}
       className="file"
-      onClick={() => copyToClipboard(`${file}:${lines[0]}`)}
-    ><span>{'{'}{type[0].toUpperCase()}{'}'}</span><SearchableSpan query={query} value={file} /><span>({lines[0]} - {lines[1]})</span></span>
+      onClick={() => onFileClick(file, lines)}
+    >
+      <span>{'{'}{type[0].toUpperCase()}{'}'}</span>
+      <SearchableSpan query={query} value={file} />
+      <span>({lines[0]} - {lines[1]})</span>
+    </span>
   ));
 
   return (

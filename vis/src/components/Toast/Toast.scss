@@ -1,0 +1,19 @@
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  left: calc(50vw - 80px);
+  width: 320px;
+  background-color: lighten(#297373, 10);
+  border-radius: 8px;
+  padding: 1rem;
+  color: white;
+  opacity: 0;
+  transform: opacity 1000ms ease-in;
+
+  &.visible {
+    opacity: 1;
+  }
+  &.invisible {
+    opacity: 0;
+  }
+}

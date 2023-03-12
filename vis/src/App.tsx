@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 
+import { useSearch } from './hooks/useSearch';
 import { ClusterListing } from './components/Cluster';
 import { Empty } from './components/Empty';
 import { Filters } from './components/Filters';
 import { Navbar } from './components/Navbar';
+import { ToastProvider } from './components/Toast';
 import { Facet, fulltext } from './model/search';
 import { TypeCluster } from './types';
 
 import './App.scss';
-import { useSearch } from './hooks/useSearch';
 
 const facets: Facet<TypeCluster>[] = [
   { name: 'similarity', values: ['all', 'Identical', 'HasIdenticalProperties'], matches: (rec, v) => v === 'all' && ['Identical', 'HasIdenticalProperties'].includes(rec.group) || rec.group === v },
@@ -55,20 +56,22 @@ function App() {
 
   return (
     <div id="app">
-      <Navbar
-        query={query}
-        setQuery={updateQuery}
-      />
-      <div className="main">
-        <Filters
-          filter={filter}
-          updateFilter={updateFilter}
-          facetsStats={facetsStats}
+      <ToastProvider>
+        <Navbar
+          query={query}
+          setQuery={updateQuery}
         />
-        <div className="listing">
-          {resultsMarkup}
+        <div className="main">
+          <Filters
+            filter={filter}
+            updateFilter={updateFilter}
+            facetsStats={facetsStats}
+          />
+          <div className="listing">
+            {resultsMarkup}
+          </div>
         </div>
-      </div>
+      </ToastProvider>
     </div>
   );
 }
