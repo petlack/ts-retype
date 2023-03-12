@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useCopyToClipboard } from '../../hooks/useCopy';
 import { FunctionTypeCluster } from '../../types';
+import { SearchableSpan } from '../SearchableSpan';
 
 import './Cluster.scss';
 import './FunctionalCluster.scss';
@@ -15,13 +16,13 @@ enum EnBar { Ok, Fail }
 type UnFoo = 'a' | 'b'
 type UnBar = 'a' | 'b'
 
-export function FunctionCluster({ type, files, parameters, returnType, names }: FunctionTypeCluster) {
+export function FunctionCluster({ type, query, files, parameters, returnType, names }: FunctionTypeCluster & { query: string }) {
   const [, copyToClipboard] = useCopyToClipboard();
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   const sortedNames = sortNames(names);
   const namesMarkup = sortedNames.slice(1).map(([name, freq]) => (
-    <span key={name} className="name-freq mono">{name} ({freq}x)</span>
+    <span key={name} className="name-freq mono"><SearchableSpan query={query} value={name} /> ({freq}x)</span>
   ));
 
   const alsoKnownMarkup = (
@@ -36,10 +37,10 @@ export function FunctionCluster({ type, files, parameters, returnType, names }: 
     return (
       <span key={key}>
         <span className="property key">
-          {['string', 'number', 'symbol', 'boolean'].includes(key) ? `[key: ${key}]` : key}
+          <SearchableSpan query={query} value={['string', 'number', 'symbol', 'boolean'].includes(key) ? `[key: ${key}]` : key} />
         </span>
         <span>: </span>
-        <span className="property value">{value}</span>
+        <span className="property value"><SearchableSpan query={query} value={value} /></span>
         <br />
       </span>
     );
@@ -49,7 +50,7 @@ export function FunctionCluster({ type, files, parameters, returnType, names }: 
       key={`${file}${lines}`}
       className="file"
       onClick={() => copyToClipboard(`${file}:${lines[0]}`)}
-    >{'{'}{type[0].toUpperCase()}{'}'} {file} ({lines[0]} - {lines[1]})</span>
+    ><span>{'{'}{type[0].toUpperCase()}{'}'}</span><SearchableSpan query={query} value={file} /><span>({lines[0]} - {lines[1]})</span></span>
   ));
   const tooltipContent = {
     function: 'Function Type Declaration',
@@ -62,7 +63,7 @@ export function FunctionCluster({ type, files, parameters, returnType, names }: 
           onMouseEnter={() => setIsTooltipVisible(true)}
           onMouseLeave={() => setIsTooltipVisible(false)}
         >{`{${type[0].toUpperCase()}}`}</span>
-        <h2 className="mono">{namesMarkup.length > 0 ? `${sortedNames[0][0]} (${sortedNames[0][1]}x)` : sortedNames[0][0]}</h2>
+        <h2 className="mono"><SearchableSpan query={query} value={namesMarkup.length > 0 ? `${sortedNames[0][0]} (${sortedNames[0][1]}x)` : sortedNames[0][0]} /></h2>
         <div className="row">
           {alsoKnownMarkup}
         </div>

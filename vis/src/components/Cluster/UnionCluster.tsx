@@ -5,7 +5,7 @@ import { UnionTypeCluster } from '../../types';
 import './Cluster.scss';
 import { sortNames } from './utils';
 
-export function UnionCluster({ type, files, types, names }: UnionTypeCluster) {
+export function UnionCluster({ type, query, files, types, names }: UnionTypeCluster & { query: string }) {
   const [, copyToClipboard] = useCopyToClipboard();
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 

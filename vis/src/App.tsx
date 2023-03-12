@@ -51,7 +51,7 @@ function App() {
 
   const resultsMarkup = results.length === 0 ?
     <Empty /> :
-    <ClusterListing clusters={results} />;
+    <ClusterListing clusters={results} query={query} />;
 
   return (
     <div id="app">

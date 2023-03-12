@@ -6,19 +6,19 @@ import { UnionCluster } from './UnionCluster';
 
 import './ClusterListing.scss';
 
-export function ClusterListing({ clusters }: Pick<Data, 'clusters'>) {
+export function ClusterListing({ clusters, query }: Pick<Data, 'clusters'> & { query: string }) {
   const clustersMarkup = clusters.map((c, idx) => {
     switch (c.type) {
     case 'alias':
     case 'interface':
     case 'literal':
-      return <LiteralCluster key={idx} {...(c as LiteralTypeCluster)} />;
+      return <LiteralCluster key={idx} query={query} {...(c as LiteralTypeCluster)} />;
     case 'function':
-      return <FunctionCluster key={idx} {...(c as FunctionTypeCluster)} />;
+      return <FunctionCluster key={idx} query={query} {...(c as FunctionTypeCluster)} />;
     case 'enum':
-      return <EnumCluster key={idx} {...(c as EnumTypeCluster)} />;
+      return <EnumCluster key={idx} query={query} {...(c as EnumTypeCluster)} />;
     case 'union':
-      return <UnionCluster key={idx} {...(c as UnionTypeCluster)} />;
+      return <UnionCluster key={idx} query={query} {...(c as UnionTypeCluster)} />;
     default:
       return (
         <div key={idx} className="cluster">

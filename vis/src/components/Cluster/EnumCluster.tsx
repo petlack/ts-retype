@@ -5,7 +5,7 @@ import { EnumTypeCluster } from '../../types';
 import './Cluster.scss';
 import { sortNames } from './utils';
 
-export function EnumCluster({ type, files, members, names }: EnumTypeCluster) {
+export function EnumCluster({ type, query, files, members, names }: EnumTypeCluster & { query: string }) {
   const [, copyToClipboard] = useCopyToClipboard();
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
