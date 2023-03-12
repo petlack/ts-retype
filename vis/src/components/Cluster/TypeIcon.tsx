@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { CandidateTypeCluster } from '../../types';
+import { CandidateType } from '../../../../src/types';
 
 export type TypeIconProps = {
-  type: CandidateTypeCluster['type'];
+  type: CandidateType['type'];
 }
 
 export function TypeIcon({ type }: TypeIconProps) {

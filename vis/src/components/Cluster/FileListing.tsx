@@ -1,12 +1,11 @@
-import { SourceFile } from '../../../../src/types';
+import { CandidateType, SourceFile } from '../../../../src/types';
 import { useCopyToClipboard } from '../../hooks/useCopy';
-import { CandidateTypeCluster } from '../../types';
 import { SearchableSpan } from '../SearchableSpan';
 import { useToast } from '../Toast';
 
 export type FileListingProps = {
   files: SourceFile[];
-  type: CandidateTypeCluster['type'];
+  type: CandidateType['type'];
   query: string;
 }
 

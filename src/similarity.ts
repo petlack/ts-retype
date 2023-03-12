@@ -2,7 +2,6 @@ import { isEmpty, symmetricDifference, pluck, intersection, concat, uniq } from 
 import Progress from 'progress';
 import {
   Similarity,
-  LiteralType,
   CandidateType,
   FunctionCandidateType,
   EnumCandidateType,
@@ -97,8 +96,8 @@ export function similarity(leftCandidate: CandidateType, rightCandidate: Candida
     return parametersEqual;
   }
   if (leftType === 'literal' && rightType === 'literal') {
-    const left = isLiteralType(leftCandidate) ? <LiteralType>leftCandidate : null;
-    const right = isLiteralType(rightCandidate) ? <LiteralType>rightCandidate : null;
+    const left = isLiteralType(leftCandidate) ? <LiteralCandidateType>leftCandidate : null;
+    const right = isLiteralType(rightCandidate) ? <LiteralCandidateType>rightCandidate : null;
     if (left === null || right === null) {
       return Similarity.Different;
     }

@@ -1,5 +1,5 @@
 import { getAllCandidateTypes } from '../src/parse';
-import { LiteralType } from '../src/types';
+import { LiteralCandidateType } from '../src/types';
 import { createFile } from '../src/utils';
 
 describe('parse', () => {
@@ -107,7 +107,7 @@ describe('parse', () => {
     const srcFile = createFile(sourceText);
     const types = getAllCandidateTypes(srcFile);
 
-    const expected: LiteralType[] = [];
+    const expected: LiteralCandidateType[] = [];
 
     expect(types).toEqual(expected);
   });

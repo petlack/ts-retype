@@ -3,7 +3,7 @@ import {
   CandidateType,
   EnumCandidateType,
   FunctionCandidateType,
-  LiteralType,
+  LiteralCandidateType,
   Property,
   UnionCandidateType,
 } from './types';
@@ -45,18 +45,18 @@ function getPropertySignature(sourceFile: ts.SourceFile, node: any) {
 
 function getLiteralType(
   name: string,
-  type: LiteralType['type'],
+  type: LiteralCandidateType['type'],
   sourceFile: ts.SourceFile,
   node: ts.TypeLiteralNode,
   pos: [number, number],
-): LiteralType {
+): LiteralCandidateType {
   const children = (node.members || [])
     .map((child) => {
       const signature = getPropertySignature(sourceFile, child);
       return signature;
     })
     .filter((x: Property | null) => !!x) as Property[];
-  const candidate: LiteralType = {
+  const candidate: LiteralCandidateType = {
     name,
     type,
     pos,

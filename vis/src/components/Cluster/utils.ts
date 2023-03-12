@@ -1,4 +1,4 @@
-import { Freq } from '../../types';
+import { Freq } from '../../../../src/types';
 
 export function sortNames(names: Freq) {
   return Object.entries(names).sort((a, b) => {

@@ -1,2 +1,2 @@
 export { createTypeClusters } from './clusters';
-export type { SimilarityGroup } from './types';
+export type { ClusterOutput } from './types';

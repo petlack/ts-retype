@@ -1,22 +1,18 @@
 import path from 'path';
-import { concat, omit } from 'ramda';
+import { concat } from 'ramda';
 import { globSync } from 'glob';
 import { getAllCandidateTypes as getAllCandidateTypes } from './parse';
 import {
-  Freq,
-  Similarity,
-  SimilarityGroup,
   RetypeArgs,
   CandidateType,
   SourceCandidateType,
-  CandidateTypeCluster,
   LiteralCandidateType,
   EnumCandidateType,
   FunctionCandidateType,
   UnionCandidateType,
   ClusterOutput,
 } from './types';
-import { formatDuration, loadFile, posToLine } from './utils';
+import { formatDuration, loadFile } from './utils';
 import {
   similarityMatrix,
   pairsToClusters,
@@ -30,37 +26,6 @@ const log = createLogger();
 
 function toSourceCandidateTypes(file: string, types: CandidateType[]): SourceCandidateType[] {
   return types.map((t) => ({ ...t, file }));
-}
-
-function freq(list: (string | number | symbol)[]) {
-  return list.reduce((res, item) => {
-    res[item] = (res[item] || 0) + 1;
-    return res;
-  }, <Freq>{});
-}
-
-function outputCluster(
-  types: SourceCandidateType[],
-  clusterTypes: Set<number>,
-  filesLengths: { [file: string]: number[] },
-): CandidateTypeCluster {
-  const values = [...clusterTypes.values()].filter((val) => types[val]);
-  const firstVal = values[0];
-  const toLine = (file: string) => posToLine(filesLengths[file]);
-  const files = values
-    .map((val) => ({
-      type: types[val].type,
-      pos: types[val].pos,
-      lines: types[val].pos.map(toLine(types[val].file)),
-      file: types[val].file,
-    }))
-    .sort((a, b) => (a.file < b.file ? -1 : 1));
-  const names = freq(values.map((val) => types[val].name));
-  return {
-    ...omit(['file', 'pos'], types[firstVal]),
-    files,
-    names,
-  };
 }
 
 function formatFileName(file: string, maxLength = 120) {

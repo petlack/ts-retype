@@ -14,11 +14,6 @@ export interface CandidateType {
   pos: [number, number];
 }
 
-export interface LiteralType extends CandidateType {
-  type: 'literal' | 'alias' | 'interface';
-  properties: Property[];
-}
-
 export interface FunctionCandidateType extends CandidateType {
   type: 'function';
   parameters: Property[];
@@ -40,14 +35,6 @@ export interface LiteralCandidateType extends CandidateType {
   properties: Property[];
 }
 
-export interface LiteralType extends CandidateType {
-  properties: Property[];
-}
-
-export interface SourceLiteralType extends LiteralType {
-  file: string;
-}
-
 export interface SourceCandidateType extends CandidateType {
   file: string;
 }
@@ -58,26 +45,6 @@ export type SourceFile = {
   file: string;
 };
 
-export type CandidateTypeCluster = Pick<CandidateType, 'name' | 'type'> & {
-  files: SourceFile[];
-  names: Freq;
-};
-
-export type FunctionTypeCluster = CandidateTypeCluster &
-  Pick<FunctionCandidateType, 'type' | 'parameters' | 'returnType'>;
-
-export type LiteralTypeCluster = CandidateTypeCluster &
-  Pick<LiteralCandidateType, 'type' | 'properties'>;
-
-export type EnumTypeCluster = CandidateTypeCluster & Pick<EnumCandidateType, 'type' | 'members'>;
-
-export type UnionTypeCluster = CandidateTypeCluster & Pick<UnionCandidateType, 'type' | 'types'>;
-
-export type TypeCluster = Pick<LiteralType, 'name' | 'type' | 'properties'> & {
-  files: SourceFile[];
-  names: Freq;
-};
-
 export enum Similarity {
   Different = 0,
   HasSimilarProperties = 1,
@@ -85,11 +52,6 @@ export enum Similarity {
   HasIdenticalProperties = 3,
   Identical = 4,
 }
-
-export type SimilarityGroup = {
-  name: string;
-  clusters: CandidateTypeCluster[];
-};
 
 export type RetypeConfig = {
   exclude: string[];
