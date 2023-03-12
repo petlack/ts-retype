@@ -96,6 +96,7 @@ export type RetypeConfig = {
   include: string[];
   output: string;
   json?: string;
+  noHtml?: boolean;
 };
 
 export type RetypeArgs = RetypeConfig & {
@@ -111,4 +112,5 @@ export const DEFAULT_OPTIONS: RetypeConfig = {
   output: './retype-report.html',
   include: ['**/*.ts'],
   exclude: ['**/node_modules/**', '**/dist/**', '**/generated/**', '**/build/**'],
+  noHtml: false,
 };
