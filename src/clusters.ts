@@ -99,9 +99,9 @@ export function createTypeClusters({ project, include, exclude }: RetypeArgs): S
       .getFullText()
       .split('\n')
       .map((l) => l.length);
-    filesLengths[file] = lengths;
+    filesLengths[relPath] = lengths;
     const candidateTypes = getAllCandidateTypes(srcFile);
-    const types = toSourceCandidateTypes(file, candidateTypes).filter(nonEmptyCandidateType);
+    const types = toSourceCandidateTypes(relPath, candidateTypes).filter(nonEmptyCandidateType);
     allTypes = concat(allTypes, types);
   }
   const locs = Object.values(filesLengths).reduce((a, b) => a + b.length, 0);
