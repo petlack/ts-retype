@@ -1,6 +1,11 @@
 @import "../utils.styl"
 @import "../vars.styl"
 
+if $darkMode
+  $boxShadow = rgba(10, 10, 11, 0.2) 0px 7px 29px 0px;
+else
+  $boxShadow = rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
 .logo
   flexRow(1ch)
   align-items: flex-end;
@@ -10,7 +15,7 @@
     padding: 1.5rem 0.8rem 0rem 1.5rem;
     border-radius: 10%;
     background-color: darken(clrHeaderBg, 20);
-    boxShadowMedium()
+    box-shadow: $boxShadow;
   span:nth-of-type(2)
     color: #8f9ea3;
     font-size: 2.5rem;

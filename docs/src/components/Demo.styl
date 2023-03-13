@@ -1,12 +1,64 @@
 @import "../utils.styl"
 @import "../vars.styl"
 
+$menuInactiveFg = var(--clr-menuInactiveFg);
+$menuActiveFg = var(--clr-menuActiveFg);
+$menuHoverFg = var(--clr-menuHoverFg);
+$bgColor = var(--clr-bgColor);
+$fgColor = var(--clr-fgColor);
+$boxShadow = var(--clr-boxShadow);
+$codeKeyFg = var(--clr-codeKeyFg);
+$codeValueFg = var(--clr-codeValueFg);
+
+lightTheme()
+  --clr-codeKeyFg: $blueDark;
+  --clr-codeValueFg: $green;
+  --clr-menuInactiveFg: gray;
+  --clr-menuActiveFg: black;
+  --clr-menuHoverFg: black;
+  --clr-bgColor: #e2e6e7;
+  --clr-fgColor: black;
+  --clr-boxShadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  --clr-card-bg: white;
+  --clr-code-bg: #e8eff1;
+  --clr-code-fg: black;
+  --clr-code-key: $codeKeyFg;
+  --clr-code-value: $codeValueFg;
+  --clr-card-title-fg: #aab5b9;
+  --clr-bgaa-400: #bccfd5;
+  --clr-card-badge-bg: $bgColor; 
+
+darkTheme()
+  --clr-codeKeyFg: $red;
+  --clr-codeValueFg: $yellow;
+  --clr-menuInactiveFg: lightgray;
+  --clr-menuActiveFg: white;
+  --clr-menuHoverFg: white;
+  --clr-bgColor: #1d2e32;
+  --clr-fgColor: white;
+  --clr-boxShadow: rgb(0 10 23 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px;
+  --clr-fg: #dbdbdb;
+  --clr-bgaa-400: #213237;
+  --clr-code-key: $codeKeyFg;
+  --clr-code-value: $codeValueFg;
+  --clr-card-bg: #151e21;
+  --clr-card-fg: #ffffff;
+  --clr-code-bg: #101517;
+  --clr-code-fg: #ffffff;
+  --clr-card-badge-bg: #1d2e32;
+  --clr-card-title-fg: #585858;
+
 .demo-container
   display: grid;
   min-height: 100vh;
   place-items: center;
-  background-color: #e2e6e7;
+  background-color: $bgColor;
+  color: $fgColor;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  &.light
+    lightTheme();
+  &.dark
+    darkTheme();
   .demo
     // align-items: center;
     font-size: 14px;
@@ -18,14 +70,6 @@
     grid-template-columns: max-content 1fr;
     grid-template-rows: min-content min-content min-content 1fr;
 
-    --clr-card-bg: white;
-    --clr-code-bg: #e8eff1;
-    --clr-code-fg: black;
-    --clr-code-key: blue;
-    --clr-code-value: green;
-    --clr-card-title-fg: #aab5b9;
-    --clr-bgaa-400: #bccfd5;
-    --clr-card-badge-bg: #e2e6e7;
     &-header
       grid-area: header;
       color: white;
@@ -35,16 +79,17 @@
       flexRow();
       position: relative;
       grid-area: types;
-      justify-content: space-between;
+      gap: 1.5rem;
+      justify-content: end;
       font-size: 1rem;
       font-weight: 400;
       .type
-        color: gray;
+        color: $menuInactiveFg;
         cursor pointer;
         &.active
-          color: black;
+          color: $menuActiveFg;
         &:hover
-          color: black;
+          color: $menuHoverFg;
       .indicator
         position: absolute;
         bottom: -.5rem;
@@ -66,5 +111,7 @@
       // padding: 2rem;
       margin: 0;
       flex: 1;
+      .cluster
+        box-shadow: $boxShadow;
       // background-color: yellow;
     

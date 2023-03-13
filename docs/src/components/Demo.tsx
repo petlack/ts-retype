@@ -7,43 +7,47 @@ import { Logo } from './Logo';
 
 const exampleOne = {
   name: 'src/model/user.ts',
-  code: `$g$// ...
-$p$export type $y$User $b$= $o$\{
-  $r$displayName$w$: $y$string$w$;
-  $r$email$w$: $y$string$w$;
-  $r$password$w$: $y$string$w$;
-$o$}
-$g$// ...`
+  code: `$com$// ...
+$kew$export type $typ$User $pun$= $bra$\{
+  $jkw$displayName$pun$: $typ$string$pun$;
+  $jkw$email$pun$: $typ$string$pun$;
+  $jkw$password$pun$: $typ$string$pun$;
+$bra$}
+$com$// ...`
 };
 
 const exampleTwo = {
   name: 'src/auth-module/auth.ts',
-  code: `$g$// ...
-$p$interface $y$IUser $o$\{
-  $r$displayName$w$: $y$string$w$;
-  $r$email$w$: $y$string$w$;
-  $r$password$w$: $y$string$w$;
-$o$}
-$g$// ...`
+  code: `$com$// ...
+$kew$interface $typ$IUser $bra$\{
+  $jkw$displayName$pun$: $typ$string$pun$;
+  $jkw$email$pun$: $typ$string$pun$;
+  $jkw$password$pun$: $typ$string$pun$;
+$bra$}
+$com$// ...`
 };
 
 const exampleThree = {
   name: 'src/api-module/user.ts',
-  code: `$g$// ...
-$p$async function $b$saveUser$o$(
-  $r$user$w$: $p$\{
-    $r$displayName$w$: $y$string$w$,
-    $r$email$w$: $y$string$w$,
-    $r$password$w$: $y$string$w$
-  $p$}$o$) $o$\{
-  $p$await $y$db$w$.$b$createUser$p$($r$user$p$)$w$;
-$o$}
-$g$// ...`
+  code: `$com$// ...
+$kew$async function $fun$saveUser$bra$(
+  $jkw$user$pun$: $jbr$\{
+    $jkw$displayName$pun$: $typ$string$pun$,
+    $jkw$email$pun$: $typ$string$pun$,
+    $jkw$password$pun$: $typ$string$pun$
+  $jbr$}$bra$) $bra$\{
+  $awa$await $var$db$pun$.$fun$createUser$jbr$($lva$user$jbr$)$pun$;
+$bra$}
+$com$// ...`
 };
+
+// const theme = 'light';
+// const theme = 'dark';
+const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 export function Demo() {
   return (
-    <div className="demo-container">
+    <div className={`demo-container ${theme}`}>
       <div className="demo">
         <div className="demo-header">
           <Logo />
@@ -59,14 +63,20 @@ export function Demo() {
           <p>Static analysis tool for TypeScript that discovers similar types.</p>
         </div>
         <div className="snippets">
-          <Snippet start={11} code={exampleOne.code} name={exampleOne.name} />
-          <Snippet start={41} code={exampleTwo.code} name={exampleTwo.name} />
-          <Snippet start={75} code={exampleThree.code} name={exampleThree.name} />
+          <Snippet theme={theme} start={11} code={exampleOne.code} name={exampleOne.name} />
+          <Snippet theme={theme} start={41} code={exampleTwo.code} name={exampleTwo.name} />
+          <Snippet theme={theme} start={75} code={exampleThree.code} name={exampleThree.name} />
         </div>
         <div className="similarity">
           <LiteralCluster
             type="interface"
             files={[
+              { file: 'src/model/user.ts', lines: [12, 16], pos: [0, 0], type: 'alias' },
+              { file: 'src/auth-module/auth.ts', lines: [42, 46], pos: [0, 0], type: 'interface' },
+              { file: 'src/api-module/user.ts', lines: [76, 83], pos: [0, 0], type: 'literal' },
+              { file: 'src/model/user.ts', lines: [12, 16], pos: [0, 0], type: 'alias' },
+              { file: 'src/auth-module/auth.ts', lines: [42, 46], pos: [0, 0], type: 'interface' },
+              { file: 'src/api-module/user.ts', lines: [76, 83], pos: [0, 0], type: 'literal' },
               { file: 'src/model/user.ts', lines: [12, 16], pos: [0, 0], type: 'alias' },
               { file: 'src/auth-module/auth.ts', lines: [42, 46], pos: [0, 0], type: 'interface' },
               { file: 'src/api-module/user.ts', lines: [76, 83], pos: [0, 0], type: 'literal' },
@@ -82,13 +92,13 @@ export function Demo() {
             ]}
             query=""
           />
-          {/* <div className="cluster">
+          <div className="cluster">
             <div className="title">
               <TypeIcon type={'function'} />
               <NamesListing names={{ ParseFn: 1 }} query="" />
             </div>
           </div>
-          <div className="cluster">
+          {/* <div className="cluster">
             <div className="title">
               <TypeIcon type={'enum'} />
               <NamesListing names={{ StatusCode: 1 }} query="" />

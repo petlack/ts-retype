@@ -1,8 +1,39 @@
 import './Snippet.styl';
 
-const colorRegex = /\$[a-z]\$/g;
+const colorRegex = /\$[a-z]+\$/g;
 
-function toColorTokens(src: string) {
+const themes = {
+  dark: {
+    com: 'gray thin',
+    typ: 'yellow',
+    var: 'yellow',
+    jbr: 'purple thin',
+    kew: 'purple',
+    awa: 'purple',
+    pun: 'white thin',
+    fun: 'blue',
+    bra: 'orange thin',
+    jkw: 'red',
+    lva: 'red',
+    w: 'white',
+  },
+  light: {
+    com: 'grayLight thin',
+    typ: 'green',
+    var: 'orange thin',
+    jbr: 'green thin',
+    kew: 'orange',
+    awa: 'purple',
+    pun: 'gray thin',
+    fun: 'purple',
+    bra: 'blueDark thin',
+    jkw: 'blueDark',
+    lva: 'blueDark thin',
+    w: 'white',
+  },
+};
+
+function toColorTokens(src: string, theme: 'light' | 'dark') {
   const tokens = [];
   let match;
   let lastIndex = 0;
@@ -14,15 +45,7 @@ function toColorTokens(src: string) {
   }
   result.push(src.slice(lastIndex));
 
-  const colors = {
-    g: 'gray',
-    p: 'purple',
-    y: 'yellow',
-    o: 'orange',
-    r: 'red',
-    w: 'white',
-    b: 'blue',
-  };
+  const colors = themes[theme];
 
   const coloredTokens = [];
 
@@ -37,15 +60,16 @@ export type SnippetProps = {
   start: number;
   name: string;
   code: string;
+  theme: 'light' | 'dark';
 }
 
-export function Snippet({ start ,name, code }: SnippetProps) {
-  const codeMarkup = toColorTokens(code).map(([color, chunk], idx) => (
+export function Snippet({ start, name, code, theme }: SnippetProps) {
+  const codeMarkup = toColorTokens(code, theme).map(([color, chunk], idx) => (
     <span key={idx} className={`chunk ${color}`}>{chunk}</span>
   ));
   const lines = [...Array(code.split('\n').length).keys()].map(i => i + start).join(' ');
   return (
-    <div className="snippet">
+    <div className={`snippet ${theme}`}>
       <div className="header">
         <div className="icons">
           <span className="icon red"></span>
