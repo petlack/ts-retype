@@ -6,7 +6,7 @@ import { Logo } from './components/Logo';
 export default function App() {
   return (
     <main>
-      <header>
+      {/* <header>
         <Logo />
         <div className="links">
           <a href="https://github.com/petlack/ts-retype" target="_blank">
@@ -18,14 +18,14 @@ export default function App() {
             See on NPM
           </a>
         </div>
-      </header>
+      </header> */}
       <section className="bleed">
         <Demo />
       </section>
-      <section>
+      {/* <section>
         <h2>About</h2>
         <p>Discover duplicate TypeScript types in your codebase. </p>
-      </section>
+      </section> */}
       <section>
         <h2>Install</h2>
         <p>Install as a dev dependency</p>

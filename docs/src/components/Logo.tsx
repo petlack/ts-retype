@@ -3,7 +3,8 @@ import './Logo.styl';
 export function Logo() {
   return (
     <div className="logo">
-      <span>TS</span><span>retype</span>
+      <span className="icon">TS</span>
+      <span className="title">retype</span>
     </div>
   );
 }

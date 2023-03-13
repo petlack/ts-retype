@@ -1,3 +1,5 @@
+import { Window, Code, WithLineNumbers } from './Window';
+
 import './Snippet.styl';
 
 const colorRegex = /\$[a-z]+\$/g;
@@ -67,23 +69,36 @@ export function Snippet({ start, name, code, theme }: SnippetProps) {
   const codeMarkup = toColorTokens(code, theme).map(([color, chunk], idx) => (
     <span key={idx} className={`chunk ${color}`}>{chunk}</span>
   ));
-  const lines = [...Array(code.split('\n').length).keys()].map(i => i + start).join(' ');
+  // const lines = [...Array(code.split('\n').length).keys()].map(i => i + start).join(' ');
   return (
-    <div className={`snippet ${theme}`}>
-      <div className="header">
-        <div className="icons">
-          <span className="icon red"></span>
-          <span className="icon yellow"></span>
-          <span className="icon green"></span>
+    <>
+      <Window
+        name={name}
+        theme={theme}
+      >
+        <WithLineNumbers
+          start={start}
+          lines={code.split('\n').length}
+        >
+          {codeMarkup}
+        </WithLineNumbers>
+      </Window>
+      {/* <div className={`snippet ${theme}`}>
+        <div className="header">
+          <div className="icons">
+            <span className="icon red"></span>
+            <span className="icon yellow"></span>
+            <span className="icon green"></span>
+          </div>
+          <div className="name">{name}</div>
         </div>
-        <div className="name">{name}</div>
-      </div>
-      <div className="editor">
-        <pre className="lines">
-          {lines}
-        </pre>
-        <pre className="code">{codeMarkup}</pre>
-      </div>
-    </div>
+        <div className="editor">
+          <pre className="lines">
+            {lines}
+          </pre>
+          <pre className="code">{codeMarkup}</pre>
+        </div>
+      </div> */}
+    </>
   );
 }

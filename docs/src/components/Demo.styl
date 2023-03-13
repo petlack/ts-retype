@@ -49,12 +49,19 @@ darkTheme()
   --clr-card-title-fg: #585858;
 
 .demo-container
-  display: grid;
+  display: flex;
+  position: relative;
   min-height: 100vh;
-  place-items: center;
+  align-items: stretch;
+  justify-content: center;
   background-color: $bgColor;
   color: $fgColor;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  .strip
+    position: absolute;
+    inset: 0;
+    height: 4px;
+    background-color: $accent;
   &.light
     lightTheme();
   &.dark
@@ -63,25 +70,29 @@ darkTheme()
     // align-items: center;
     font-size: 14px;
     display: grid;
-    column-gap: 4rem;
+    // column-gap: 4rem;
     row-gap: 2rem;
     padding: 2rem;
-    grid-template-areas: "snippets header" "snippets types" "snippets desc" "snippets example";
-    grid-template-columns: max-content 1fr;
-    grid-template-rows: min-content min-content min-content 1fr;
+    grid-template-areas: "types header" "snippets snippets" "example code";
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content 1fr 1fr;
 
     &-header
       grid-area: header;
       color: white;
       display: flex;
       justify-content: flex-end;
+      justify-self: end;
     .types
       flexRow();
-      position: relative;
+      position: sticky;
       grid-area: types;
       gap: 1.5rem;
-      justify-content: end;
-      font-size: 1rem;
+      justify-self: start;
+      align-self: center;
+      // justify-content: end;
+      // align-items: center;
+      font-size: 1.5em;
       font-weight: 400;
       .type
         color: $menuInactiveFg;
@@ -92,26 +103,95 @@ darkTheme()
           color: $menuHoverFg;
       .indicator
         position: absolute;
-        bottom: -.5rem;
+        top: calc(50% + 1rem);
+        left: 0;
         height: 2px;
-        width: 60px;
-        background-color: green;
+        width: 58px;
+        background-color: $accent;
     .description
       grid-area: desc;
       font-size: 1.5em;
       font-weight: 300;
     .snippets
       grid-area: snippets;
-      flexColumn(2rem);
+      flexRow(2rem);
+      // margin-top: 2rem;
       // padding: 2rem;
+      justify-content: space-between;
+      align-items: center;
     .similarity
       grid-area: example;
-      flexColumn(2rem);
-      max-width: 800px;
+      flexColumn(.5em);
+      // max-width: 800px;
       // padding: 2rem;
+      position: relative;
+      top: -0rem;
       margin: 0;
       flex: 1;
+      h1
+        font-size: 2.3rem;
+        width: 20ch;
+        font-weight: 500;
+        font-family: fontTitle;
+        // color: #29474f;
+        color: #101010;
+        margin-bottom: .5rem;
+      p
+        width: 50ch;
+        font-size: 1.3em;
+        font-weight: 400;
+        opacity: 0.8;
+        line-height: 1.5;
+        color: #313131;
       .cluster
         box-shadow: $boxShadow;
       // background-color: yellow;
+    .code-install
+      grid-area: code;
+      align-self: start;
+      justify-self: center;
+      align-items: flex-start;
+      flexColumn(1rem);
+      margin-top: 1rem;
+      // padding: 0 0rem 2rem 2rem;
+      // position: relative;
+      // left: -8ch;
+      .bash
+        // padding: 1rem 2rem;
+        color: white;
+        font-size: 1rem;
+        font-family: fontMono;
+        font-weight: 600;
+        // background-color: #414243;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
+        // border-radius: 12px;
+      .links
+        flexColumn(.5rem);
+        .link
+          flexRow(.5rem);
+          align-items: center;
+          justify-content: start;
+          gap: 1ch;
+          border: none;
+          outline: none;
+          border-radius: 8px;
+          padding: .5rem 1rem;
+          font-family: fontRegular;
+          font-size: .75rem;
+          font-weight: 400;
+          cursor: pointer;
+          transition: background-color 150ms ease-in;
+          &-primary
+            background-color: $accent;
+            color: white;
+            &:hover
+              background-color: lighten($accent, 5);
+          &-secondary
+            background-color: transparent;
+            color: #313131;
+            border: 1px solid currentColor;
+            &:hover
+              background-color: #f3f3f3;
+
+
     

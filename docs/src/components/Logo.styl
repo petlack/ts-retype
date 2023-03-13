@@ -1,21 +1,34 @@
 @import "../utils.styl"
 @import "../vars.styl"
 
-if $darkMode
-  $boxShadow = rgba(10, 10, 11, 0.2) 0px 7px 29px 0px;
-else
-  $boxShadow = rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+// if $darkMode
+//   $boxShadow = rgba(10, 10, 11, 0.2) 0px 7px 29px 0px;
+// else
+//   $boxShadow = rgba(40, 50, 52, 0.1) 0px 7px 29px 0px;
+
+$logoSize = 64px;
 
 .logo
-  flexRow(1ch)
+  flexRow("calc(%s / 4)" % $logoSize);
   align-items: flex-end;
-  span:nth-of-type(1)
-    font-size: 2.5rem;
-    font-weight: 400;
-    padding: 1.5rem 0.8rem 0rem 1.5rem;
+  .icon
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: "calc(%s / 2)" % $logoSize;
+    width: $logoSize;
+    height: $logoSize;
+    font-weight: 600;
+    padding-right: "calc(%s / 8)" % $logoSize;
+    padding-bottom: "calc(%s / 8)" % $logoSize;
+    line-height: 1;
+    // padding: 1.5rem 0.8rem 0rem 1.5rem;
     border-radius: 10%;
-    background-color: darken(clrHeaderBg, 20);
-    box-shadow: $boxShadow;
-  span:nth-of-type(2)
-    color: #8f9ea3;
-    font-size: 2.5rem;
+    // background-color: darken(clrHeaderBg, 20);
+    background-color: $accent;
+    // box-shadow: $boxShadow;
+  .title
+    color: $accent;
+    font-weight: 600;
+    font-size: "calc(%s * 0.75)" % $logoSize;
+    line-height: 1;

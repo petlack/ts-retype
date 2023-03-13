@@ -3,44 +3,47 @@
 
 // $codeBg = #22272e;
 // $codeFg = white;
-// $headerColor = darken($codeBg, 5);
+// $headerBg = darken($codeBg, 5);
 
 $codeBg = var(--clr-codeBg);
 $codeFg = var(--clr-codeFg);
 $boxShadow = var(--clr-boxShadow);
 $codeCommentsFg = var(--clr-codeCommentsFg);
 
-$headerColor = $codeBg;
+$headerBg = var(--clr-headerBg);
 
-.snippet
+.window
   &.light
     --clr-codeBg: white;
     --clr-codeFg: black;
-    --clr-boxShadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    --clr-headerBg: hsl(37deg 65% 91%);
+    // --clr-boxShadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    --clr-boxShadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     --clr-codeCommentsFg: $grayLight;
   &.dark
     --clr-codeBg: #22272e;
+    --clr-headerBg: #12171e;
     --clr-codeFg: white;
     --clr-boxShadow: rgba(0, 0, 0, 0.15) 0px 13px 27px -5px, rgba(0, 0, 0, 0.25) 0px 8px 16px -8px;
     --clr-codeCommentsFg: $gray;
 
   flexColumn(0);
   background-color: $codeBg;
-  border-radius: 14px;
+  border-radius: $borderRadius;
   // box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   box-shadow: $boxShadow;
   .header
-    flexRow(.75rem);
-    padding: 0 1rem;
+    flexRow("calc(%s / 2)" % $borderRadius);
+    padding: 0 $borderRadius;
     align-items: center;
-    border-top-left-radius: 14px;
-    border-top-right-radius: 14px;
-    background-color: $headerColor;
+    border-top-left-radius: $borderRadius;
+    border-top-right-radius: $borderRadius;
+    background-color: $headerBg;
     .icons
       flexRow(10px);
       .icon
-        width: 12px;
-        height: 12px;
+        width: $borderRadius;
+        height: $borderRadius;
         display: flex;
         border-radius: 50%;
         &.red
@@ -52,9 +55,26 @@ $headerColor = $codeBg;
     .name
       font-size: .66rem;
       color: $codeFg;
-      padding: .25rem 0rem
+      padding: ("calc(%s / 2)" % $borderRadius) $borderRadius;
+  .tabs
+    flexRow(4px);
+    padding-left: $borderRadius;
+    font-size: .66rem;
+    // border-bottom: 1px solid $headerBg;
+    // margin-top: 4px;
+    .tab
+      background-color: $headerBg;
+      color: darken(white, 40);
+      padding: .25rem .5rem;
+      border-bottom-left-radius: "calc(%s / 2)" % $borderRadius;
+      border-bottom-right-radius: "calc(%s / 2)" % $borderRadius;
+      cursor: pointer;
+      &:hover
+        color: white;
+      &-selected
+        color: white;
   .editor
-    flexRow(.5rem);
+    flexRow(2ch);
     background-color: unset;
     .lines
       font-size: .66rem;
@@ -63,15 +83,19 @@ $headerColor = $codeBg;
       color: $codeBg;
       width: 3ch;
       padding: .25rem .5rem;
+      padding-right: 0;
       cursor: default;
       color: $codeCommentsFg;
+      -webkit-user-select: none;
+      user-select: none;
     .code
       flex: 1;
       color: $codeFg;
       font-size: .75rem;
       font-weight: 600;
       line-height: 1.35;
-      padding: 0.25rem 1.5rem 0.25rem 0.5rem;
+      padding: 0.25rem 1.5rem 0.25rem 0rem;
+      padding-bottom: $borderRadius;
       background-color: unset;
       box-shadow: none;
       .chunk
