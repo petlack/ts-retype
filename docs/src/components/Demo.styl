@@ -62,11 +62,11 @@ darkTheme()
   --clr-card-title-fg: #585858;
 
 .demo-container
-  display: flex;
+  flexColumn();
   position: relative;
   min-height: 100vh;
-  align-items: stretch;
-  justify-content: center;
+  align-items: center;
+  // justify-content: center;
   background-color: $bgColor;
   color: $fgColor;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -79,26 +79,12 @@ darkTheme()
     lightTheme();
   &.dark
     darkTheme();
-  .demo
-    // align-items: center;
-    // font-size: 14px;
-    display: grid;
-    // column-gap: 4rem;
-    row-gap: 2rem;
-    padding: 2rem;
-    grid-template-areas: "header types" "snippets snippets" "example code";
-    grid-template-columns: min-content 1fr;
-    grid-template-rows: min-content 1fr 1fr;
-
-    @media screen and (max-width: $breakDescCTA)
-      place-content: center;
-      grid-template-areas: "header types" "snippets snippets" "example example" "code code";
-      // grid-template-rows: min-content 1fr 1fr 1fr;
-      grid-template-rows: repeat(4, min-content);
-    @media screen and (max-width: $breakSnippetsColumn)
-      grid-template-areas: "header header" "types types" "example example" "snippets snippets" "code code";
-      grid-template-rows: repeat(5, min-content);
-
+  .topbar
+    flexRow();
+    width: 100vw;
+    max-width: 970px;
+    align-items: start;
+    justify-content: space-between;
     &-header
       grid-area: header;
       color: white;
@@ -116,10 +102,11 @@ darkTheme()
       // align-items: center;
       // font-size: 1rem;
       font-weight: 400;
-      .type
+      &-item
         color: $menuInactiveFg;
         cursor pointer;
-        &.active
+        padding: 1rem 0;
+        &-active
           color: $menuActiveFg;
         &:hover
           color: $menuHoverFg;
@@ -130,6 +117,27 @@ darkTheme()
         height: 2px;
         width: 58px;
         background-color: $accent;
+  .demo
+    // align-items: center;
+    // font-size: 14px;
+    flex: 1;
+    display: grid;
+    // column-gap: 4rem;
+    row-gap: 2rem;
+    padding: 2rem;
+    grid-template-areas: "snippets snippets" "example code";
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    @media screen and (max-width: $breakDescCTA)
+      place-content: center;
+      grid-template-areas: "snippets snippets" "example example" "code code";
+      // grid-template-rows: min-content 1fr 1fr 1fr;
+      grid-template-rows: repeat(3, min-content);
+    @media screen and (max-width: $breakSnippetsColumn)
+      grid-template-areas: "types types" "example example" "snippets snippets" "code code";
+      grid-template-rows: repeat(4, min-content);
+
     .description
       grid-area: desc;
       font-size: 1.5rem;
@@ -154,8 +162,12 @@ darkTheme()
       flex: 1;
       flexColumn(.5rem);
       justify-content: start;
+      justify-self: center;
       @media screen and (max-width: $breakDescCTA)
         justify-content: center;
+        // padding: 0 2rem;
+      // @media screen and (max-width: $breakSnippetsWrap)
+      //   padding: unset;
       // max-width: 800px;
       // padding: 2rem;
       // position: relative;
@@ -168,8 +180,11 @@ darkTheme()
         // color: #29474f;
         color: #101010;
         margin-bottom: .5rem;
+        display: flex;
 
         font-size: $titleResponsiveFontSize;
+        @media screen and (max-width: $breakDescCTA)
+          align-self: start;
         @media screen and (min-width: $titleFontMaxOutWidth)
           font-size: $titleMaxFontSize
         @media screen and (max-width: $titleFontMinOutWidth)
@@ -182,10 +197,12 @@ darkTheme()
         opacity: 0.8;
         line-height: 1.5;
         color: #313131;
-        @media screen and (max-width: $breakSnippetsWrap)
-          width: 100%;
+        display: flex;
+
         @media screen and (max-width: $breakDescCTA)
-          width: 100%;
+          align-self: start;
+        @media screen and (max-width: $breakSnippetsWrap)
+          width: 100%; 
       .cluster
         box-shadow: $boxShadow;
       // background-color: yellow;
@@ -196,7 +213,7 @@ darkTheme()
       align-items: flex-start;
       flexColumn();
       gap: 2rem;
-      margin-top: 1rem;
+      // margin-top: 1rem;
       @media screen and (max-width: $breakDescCTA)
         flexRow();
         gap: 4rem;
@@ -247,7 +264,7 @@ darkTheme()
           font-family: fontRegular;
           font-weight: 400;
           cursor: pointer;
-          transition: background-color 150ms ease-in;
+          transition: all 150ms ease-in;
           svg
             width: 1rem;
             height: 1rem;
@@ -261,6 +278,7 @@ darkTheme()
             color: #313131;
             border: 1px solid currentColor;
             &:hover
+              // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
               background-color: #f3f3f3;
 
 
