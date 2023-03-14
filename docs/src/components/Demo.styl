@@ -10,6 +10,19 @@ $boxShadow = var(--clr-boxShadow);
 $codeKeyFg = var(--clr-codeKeyFg);
 $codeValueFg = var(--clr-codeValueFg);
 
+$breakDescCTA = 1000px;
+$breakSnippetsWrap = 768px;
+$breakSnippetsColumn = 570px;
+
+$titleFontSize = 3.25rem;
+$titleResponsiveFontSize = 3.8vw;
+$titleMinFontSize = 32px;
+$titleMaxFontSize = 52px;
+// 100 * $titleMaxFontSize / $titleResponsiveFontSize
+$titleFontMaxOutWidth = 1368px;
+// 100 * $titleMinFontSize / $titleResponsiveFontSize
+$titleFontMinOutWidth = 842px;
+
 lightTheme()
   --clr-codeKeyFg: $blueDark;
   --clr-codeValueFg: $green;
@@ -73,22 +86,31 @@ darkTheme()
     // column-gap: 4rem;
     row-gap: 2rem;
     padding: 2rem;
-    grid-template-areas: "types header" "snippets snippets" "example code";
+    grid-template-areas: "header types" "snippets snippets" "example code";
     grid-template-columns: min-content 1fr;
     grid-template-rows: min-content 1fr 1fr;
+
+    @media screen and (max-width: $breakDescCTA)
+      place-content: center;
+      grid-template-areas: "header types" "snippets snippets" "example example" "code code";
+      // grid-template-rows: min-content 1fr 1fr 1fr;
+      grid-template-rows: repeat(4, min-content);
+    @media screen and (max-width: $breakSnippetsColumn)
+      grid-template-areas: "header header" "types types" "example example" "snippets snippets" "code code";
+      grid-template-rows: repeat(5, min-content);
 
     &-header
       grid-area: header;
       color: white;
       display: flex;
       justify-content: flex-end;
-      justify-self: end;
-    .types
+      justify-self: start;
+    &-menu
       flexRow();
       position: sticky;
       grid-area: types;
       gap: 1.5rem;
-      justify-self: start;
+      justify-self: end;
       align-self: center;
       // justify-content: end;
       // align-items: center;
@@ -114,28 +136,45 @@ darkTheme()
       font-weight: 300;
     .snippets
       grid-area: snippets;
-      flexRow(2rem);
+      flexRow();
+      gap: 2rem;
       // margin-top: 2rem;
       // padding: 2rem;
       justify-content: space-between;
       align-items: center;
+      @media screen and (max-width: $breakSnippetsWrap)
+        flex-wrap: wrap;
+        justify-content: center;
+        .window-responsive
+          font-size: 1rem;
+      @media screen and (max-width: $breakSnippetsColumn)
+        flexColumn();
     .similarity
       grid-area: example;
+      flex: 1;
       flexColumn(.5rem);
+      justify-content: start;
+      @media screen and (max-width: $breakDescCTA)
+        justify-content: center;
       // max-width: 800px;
       // padding: 2rem;
-      position: relative;
-      top: -0rem;
-      margin: 0;
-      flex: 1;
+      // position: relative;
+      // top: -0rem;
+      // margin: 0;
       h1
         width: 20ch;
-        font-size: 3.25rem;
         font-weight: 500;
         font-family: fontTitle;
         // color: #29474f;
         color: #101010;
         margin-bottom: .5rem;
+
+        font-size: $titleResponsiveFontSize;
+        @media screen and (min-width: $titleFontMaxOutWidth)
+          font-size: $titleMaxFontSize
+        @media screen and (max-width: $titleFontMinOutWidth)
+          font-size: $titleMinFontSize;
+          width: 100%;
       p
         width: 50ch;
         font-size: 1.25rem
@@ -143,6 +182,10 @@ darkTheme()
         opacity: 0.8;
         line-height: 1.5;
         color: #313131;
+        @media screen and (max-width: $breakSnippetsWrap)
+          width: 100%;
+        @media screen and (max-width: $breakDescCTA)
+          width: 100%;
       .cluster
         box-shadow: $boxShadow;
       // background-color: yellow;
@@ -151,11 +194,18 @@ darkTheme()
       align-self: start;
       justify-self: center;
       align-items: flex-start;
-      flexColumn(1rem);
+      flexColumn();
+      gap: 2rem;
       margin-top: 1rem;
-      // padding: 0 0rem 2rem 2rem;
-      // position: relative;
-      // left: -8ch;
+      @media screen and (max-width: $breakDescCTA)
+        flexRow();
+        gap: 4rem;
+        align-items: center;
+        .links
+          padding-top: 1.75rem;
+      @media screen and (max-width: $breakSnippetsColumn)
+        gap: 2rem;
+        flex-direction: column;
       .tabs
         flexRow(4px);
         padding-left: $borderRadius;

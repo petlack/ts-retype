@@ -63,9 +63,10 @@ export type SnippetProps = {
   name: string;
   code: string;
   theme: 'light' | 'dark';
+  responsive?: boolean;
 }
 
-export function Snippet({ start, name, code, theme }: SnippetProps) {
+export function Snippet({ start, name, code, theme, responsive = false }: SnippetProps) {
   const codeMarkup = toColorTokens(code, theme).map(([color, chunk], idx) => (
     <span key={idx} className={`chunk ${color}`}>{chunk}</span>
   ));
@@ -73,6 +74,7 @@ export function Snippet({ start, name, code, theme }: SnippetProps) {
   return (
     <>
       <Window
+        responsive={responsive}
         name={name}
         theme={theme}
       >

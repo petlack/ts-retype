@@ -6,21 +6,22 @@
 // else
 //   $boxShadow = rgba(40, 50, 52, 0.1) 0px 7px 29px 0px;
 
-$logoSize = 64px;
+$logoSize = 48px;
 
 .logo
-  flexRow("calc(%s / 16)" % $logoSize);
+  --logo-size: $logoSize
+  flexRow(calc(var(--logo-size) / 16));
   align-items: flex-end;
   .icon
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    font-size: "calc(%s / 2)" % $logoSize;
-    width: $logoSize;
-    height: $logoSize;
+    font-size: calc(var(--logo-size) / 2);
+    width: var(--logo-size);
+    height: var(--logo-size);
     font-weight: 600;
-    padding-right: "calc(%s / 8)" % $logoSize;
-    padding-bottom: "calc(%s / 8)" % $logoSize;
+    padding-right: calc(var(--logo-size) / 8);
+    padding-bottom: calc(var(--logo-size) / 8);
     line-height: 1;
     // padding: 1.5rem 0.8rem 0rem 1.5rem;
     border-radius: 10%;
@@ -30,5 +31,7 @@ $logoSize = 64px;
   .title
     color: $accent;
     font-weight: 600;
-    font-size: "calc(%s * 0.75)" % $logoSize;
+    font-size: calc(var(--logo-size) * 0.75);
     line-height: 1.15;
+  @media screen and (max-width: $breakHeaderLogo)
+    --logo-size: 32px;

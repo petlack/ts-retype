@@ -7,7 +7,7 @@ import { Logo } from './Logo';
 import { Code, Window, WithBash } from './Window';
 
 const exampleOne = {
-  name: 'src/model/user.ts',
+  name: 'src/model.ts',
   code: `$com$// ...
 $kew$export type $typ$User $pun$= $bra$\{
   $jkw$displayName$pun$: $typ$string$pun$;
@@ -18,7 +18,7 @@ $com$// ...`
 };
 
 const exampleTwo = {
-  name: 'src/auth-module/auth.ts',
+  name: 'src/auth.ts',
   code: `$com$// ...
 $kew$interface $typ$IUser $bra$\{
   $jkw$displayName$pun$: $typ$string$pun$;
@@ -29,7 +29,7 @@ $com$// ...`
 };
 
 const exampleThree = {
-  name: 'src/api-module/user.ts',
+  name: 'src/api.ts',
   code: `$com$// ...
 $kew$async function $fun$saveUser$bra$(
   $jkw$user$pun$: $jbr$\{
@@ -97,7 +97,7 @@ export function Demo() {
         <div className="demo-header">
           <Logo />
         </div>
-        <div className="types">
+        <div className="demo-menu">
           <a className="type active">About</a>
           <a className="type">Install</a>
           <a className="type">Usage</a>
@@ -108,9 +108,9 @@ export function Demo() {
           <p>Static analysis tool for TypeScript that discovers similar types.</p>
         </div> */}
         <div className="snippets">
-          <Snippet theme={theme} start={11} code={exampleOne.code} name={exampleOne.name} />
-          <Snippet theme={theme} start={41} code={exampleTwo.code} name={exampleTwo.name} />
-          <Snippet theme={theme} start={75} code={exampleThree.code} name={exampleThree.name} />
+          <Snippet responsive theme={theme} start={11} code={exampleOne.code} name={exampleOne.name} />
+          <Snippet responsive theme={theme} start={41} code={exampleTwo.code} name={exampleTwo.name} />
+          <Snippet responsive theme={theme} start={75} code={exampleThree.code} name={exampleThree.name} />
         </div>
         {contentMarkup}
 
