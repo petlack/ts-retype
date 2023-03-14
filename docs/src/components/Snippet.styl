@@ -53,36 +53,20 @@ $headerBg = var(--clr-headerBg);
         &.green
           background-color: $appIconGreen;
     .name
-      font-size: .66rem;
+      font-size: .75rem;
       color: $codeFg;
       padding: ("calc(%s / 2)" % $borderRadius) $borderRadius;
-  .tabs
-    flexRow(4px);
-    padding-left: $borderRadius;
-    font-size: .66rem;
-    // border-bottom: 1px solid $headerBg;
-    // margin-top: 4px;
-    .tab
-      background-color: $headerBg;
-      color: darken(white, 40);
-      padding: .25rem .5rem;
-      border-bottom-left-radius: "calc(%s / 2)" % $borderRadius;
-      border-bottom-right-radius: "calc(%s / 2)" % $borderRadius;
-      cursor: pointer;
-      &:hover
-        color: white;
-      &-selected
-        color: white;
   .editor
-    flexRow(2ch);
+    flexRow(1ch);
     background-color: unset;
+    font-size: 1.2rem;
     .lines
-      font-size: .66rem;
-      line-height: 1.54;
+      // font-size: .66rem;
+      line-height: 1.35;
       white-space: break-spaces;
       color: $codeBg;
       width: 3ch;
-      padding: .25rem .5rem;
+      padding: $borderRadius .5rem;
       padding-right: 0;
       cursor: default;
       color: $codeCommentsFg;
@@ -91,11 +75,10 @@ $headerBg = var(--clr-headerBg);
     .code
       flex: 1;
       color: $codeFg;
-      font-size: .75rem;
+      // font-size: .75rem;
       font-weight: 600;
       line-height: 1.35;
-      padding: 0.25rem 1.5rem 0.25rem 0rem;
-      padding-bottom: $borderRadius;
+      padding: $borderRadius 1rem $borderRadius 0rem;
       background-color: unset;
       box-shadow: none;
       .chunk

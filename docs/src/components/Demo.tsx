@@ -117,13 +117,12 @@ export function Demo() {
         <div className="code-install">
           {/* <div className="bash">npx ts-retype .</div> */}
           <div className="bash">
-            <Window theme="dark" name="bash" showHeader={false} header={(
-              <div className="tabs">
-                <div className="tab">npm</div>
-                <div className="tab">yarn</div>
-                <div className="tab">npx</div>
-              </div>
-            )}>
+            <div className="tabs">
+              <div className="tab tab-active">npm</div>
+              <div className="tab">yarn</div>
+              <div className="tab">npx</div>
+            </div>
+            <Window theme="dark" name="bash" showHeader={false}>
               <WithBash>
                 <span>{'npm add -D ts-retype\n'}</span>
                 <span>{'npx ts-retype .\n'}</span>

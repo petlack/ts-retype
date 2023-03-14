@@ -68,7 +68,7 @@ darkTheme()
     darkTheme();
   .demo
     // align-items: center;
-    font-size: 14px;
+    // font-size: 14px;
     display: grid;
     // column-gap: 4rem;
     row-gap: 2rem;
@@ -92,7 +92,7 @@ darkTheme()
       align-self: center;
       // justify-content: end;
       // align-items: center;
-      font-size: 1.5em;
+      // font-size: 1rem;
       font-weight: 400;
       .type
         color: $menuInactiveFg;
@@ -110,7 +110,7 @@ darkTheme()
         background-color: $accent;
     .description
       grid-area: desc;
-      font-size: 1.5em;
+      font-size: 1.5rem;
       font-weight: 300;
     .snippets
       grid-area: snippets;
@@ -121,7 +121,7 @@ darkTheme()
       align-items: center;
     .similarity
       grid-area: example;
-      flexColumn(.5em);
+      flexColumn(.5rem);
       // max-width: 800px;
       // padding: 2rem;
       position: relative;
@@ -129,8 +129,8 @@ darkTheme()
       margin: 0;
       flex: 1;
       h1
-        font-size: 2.3rem;
         width: 20ch;
+        font-size: 3.25rem;
         font-weight: 500;
         font-family: fontTitle;
         // color: #29474f;
@@ -138,7 +138,7 @@ darkTheme()
         margin-bottom: .5rem;
       p
         width: 50ch;
-        font-size: 1.3em;
+        font-size: 1.25rem
         font-weight: 400;
         opacity: 0.8;
         line-height: 1.5;
@@ -156,31 +156,51 @@ darkTheme()
       // padding: 0 0rem 2rem 2rem;
       // position: relative;
       // left: -8ch;
+      .tabs
+        flexRow(4px);
+        padding-left: $borderRadius;
+        padding-bottom: 8px;
+        // font-size: .66rem;
+        // border-bottom: 1px solid $headerBg;
+        // margin-top: 4px;
+        .tab
+          // background-color: $headerBg;
+          color: darken(white, 60);
+          padding: .5rem .5rem;
+          border-bottom-left-radius: "calc(%s / 2)" % $borderRadius;
+          border-bottom-right-radius: "calc(%s / 2)" % $borderRadius;
+          cursor: pointer;
+          &:hover
+            color: black;
+          &-active
+            color: black;
+            text-decoration: underline;
       .bash
-        // padding: 1rem 2rem;
         color: white;
-        font-size: 1rem;
         font-family: fontMono;
-        font-weight: 600;
-        // background-color: #414243;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
-        // border-radius: 12px;
+        .lines
+          color: $grayLight;
+          padding-left: 1rem;
+          width: 2.5ch;
       .links
         flexColumn(.5rem);
         .link
           flexRow(.5rem);
           align-items: center;
           justify-content: start;
-          gap: 1ch;
+          gap: .5rem;
           border: none;
           outline: none;
           border-radius: 8px;
-          padding: .5rem 1rem;
+          padding: 1rem 1.5rem;
+          font-size: 1.1rem;
           font-family: fontRegular;
-          font-size: .75rem;
           font-weight: 400;
           cursor: pointer;
           transition: background-color 150ms ease-in;
+          svg
+            width: 1rem;
+            height: 1rem;
           &-primary
             background-color: $accent;
             color: white;
