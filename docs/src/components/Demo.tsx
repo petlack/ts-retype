@@ -1,10 +1,10 @@
 import { Snippet } from './Snippet';
 import { LiteralCluster } from '../../../vis/src/components/Cluster/LiteralCluster';
-import './Demo.styl';
 import { TypeIcon } from '../../../vis/src/components/Cluster/TypeIcon';
 import { NamesListing } from '../../../vis/src/components/Cluster/NamesListing';
 import { Logo } from './Logo';
-import { Code, Window, WithBash } from './Window';
+import { MultilangWindow } from './MultilangWindow';
+import './Demo.styl';
 
 const exampleOne = {
   name: 'src/model.ts',
@@ -117,21 +117,13 @@ export function Demo() {
         {contentMarkup}
 
         <div className="code-install">
-          {/* <div className="bash">npx ts-retype .</div> */}
-          <div className="bash">
-            <div className="tabs">
-              <div className="tab tab-active">npm</div>
-              <div className="tab">yarn</div>
-              <div className="tab">npx</div>
-            </div>
-            <Window theme="dark" name="bash" showHeader={false}>
-              <WithBash>
-                <span>{'npm add -D ts-retype\n'}</span>
-                <span>{'npx ts-retype .\n'}</span>
-                <span>{'open retype-report.html'}</span>
-              </WithBash>
-            </Window>
-          </div>
+          <MultilangWindow
+            codes={[
+              { code: ['npm add -D ts-retype'], lang: 'npm' },
+              { code: ['yarn add -D ts-retype'], lang: 'yarn' },
+              { code: ['npx ts-retype .'], lang: 'npx' },
+            ]}
+          />
           <div className="links">
             <button className="link link-primary">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">

@@ -223,25 +223,6 @@ darkTheme()
       @media screen and (max-width: $breakSnippetsColumn)
         gap: 2rem;
         flex-direction: column;
-      .tabs
-        flexRow(4px);
-        padding-left: $borderRadius;
-        padding-bottom: 8px;
-        // font-size: .66rem;
-        // border-bottom: 1px solid $headerBg;
-        // margin-top: 4px;
-        .tab
-          // background-color: $headerBg;
-          color: darken(white, 60);
-          padding: .5rem .5rem;
-          border-bottom-left-radius: "calc(%s / 2)" % $borderRadius;
-          border-bottom-right-radius: "calc(%s / 2)" % $borderRadius;
-          cursor: pointer;
-          &:hover
-            color: black;
-          &-active
-            color: black;
-            text-decoration: underline;
       .bash
         color: white;
         font-family: fontMono;
