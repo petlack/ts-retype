@@ -17,8 +17,8 @@ describe('parse', () => {
         type: 'alias',
         pos: [0, 60],
         properties: [
-          { key: 'message', value: 'string', type: 'StringKeyword' },
-          { key: 'status', value: 'number', type: 'NumberKeyword' },
+          { name: 'message', type: 'string', text: 'StringKeyword' },
+          { name: 'status', type: 'number', text: 'NumberKeyword' },
         ],
       },
     ];
@@ -40,9 +40,9 @@ describe('parse', () => {
         type: 'alias',
         pos: [0, 73],
         properties: [
-          { key: 'message', value: 'string', type: 'StringKeyword' },
-          { key: 'status', value: 'number', type: 'NumberKeyword' },
-          { key: 'foo', value: 'A', type: 'TypeReference' },
+          { name: 'message', type: 'string', text: 'StringKeyword' },
+          { name: 'status', type: 'number', text: 'NumberKeyword' },
+          { name: 'foo', type: 'A', text: 'TypeReference' },
         ],
       },
     ];
@@ -64,9 +64,9 @@ describe('parse', () => {
         type: 'interface',
         pos: [0, 79],
         properties: [
-          { key: 'foo', value: '(a: string) => number', type: 'FunctionType' },
-          { key: 'bar', value: 'A', type: 'TypeReference' },
-          { key: 'baz', value: 'B', type: 'TypeReference' },
+          { name: 'foo', type: '(a: string) => number', text: 'FunctionType' },
+          { name: 'bar', type: 'A', text: 'TypeReference' },
+          { name: 'baz', type: 'B', text: 'TypeReference' },
         ],
       },
     ];
@@ -83,7 +83,7 @@ describe('parse', () => {
         name: 'GenericFn',
         type: 'function',
         pos: [0, 58],
-        parameters: [{ key: 'x', type: 'TypeReference', value: 'T' }],
+        parameters: [{ name: 'x', type: 'T', text: 'TypeReference' }],
         returnType: '{ foo: string, bar: number }',
       },
       {
@@ -91,8 +91,8 @@ describe('parse', () => {
         type: 'literal',
         pos: [29, 58],
         properties: [
-          { key: 'foo', value: 'string', type: 'StringKeyword' },
-          { key: 'bar', value: 'number', type: 'NumberKeyword' },
+          { name: 'foo', type: 'string', text: 'StringKeyword' },
+          { name: 'bar', type: 'number', text: 'NumberKeyword' },
         ],
       },
     ];
@@ -123,8 +123,8 @@ describe('parse', () => {
         type: 'literal',
         pos: [10, 49],
         properties: [
-          { key: 'string', value: 'number', type: 'NumberKeyword' },
-          { key: 'foo', value: 'number', type: 'NumberKeyword' },
+          { name: 'string', type: 'number', text: 'NumberKeyword' },
+          { name: 'foo', type: 'number', text: 'NumberKeyword' },
         ],
       },
     ];
@@ -150,7 +150,7 @@ describe('parse', () => {
         name: 'anonymous',
         type: 'literal',
         pos: [46, 65],
-        properties: [{ key: 'symbol', value: 'T', type: 'TypeReference' }],
+        properties: [{ name: 'symbol', type: 'T', text: 'TypeReference' }],
       },
     ];
 
@@ -181,9 +181,9 @@ describe('parse', () => {
         name: 'anonymous',
         pos: [126, 201],
         properties: [
-          { key: 'files', type: 'ArrayType', value: 'SourceFile[]' },
-          { key: 'names', type: 'TypeReference', value: 'Freq' },
-          { key: 'group', type: 'StringKeyword', value: 'string' },
+          { name: 'files', type: 'SourceFile[]', text: 'ArrayType' },
+          { name: 'names', type: 'Freq', text: 'TypeReference' },
+          { name: 'group', type: 'string', text: 'StringKeyword' },
         ],
         type: 'literal',
       },

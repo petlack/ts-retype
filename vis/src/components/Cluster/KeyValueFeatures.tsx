@@ -2,19 +2,22 @@ import { SearchableSpan } from '../SearchableSpan';
 
 export type KeyValueFeaturesProps = {
   name: string;
-  keyValues: { key: string, value: string }[];
+  keyValues: { name: string, type: string }[];
   query: string;
 }
 
 export function KeyValueFeatures({ name, keyValues, query }: KeyValueFeaturesProps) {
-  const propertiesMarkup = keyValues.map(({ key, value }) => {
+  const propertiesMarkup = keyValues.map(({ name, type }) => {
     return (
-      <span key={key}>
+      <span key={name}>
         <span className="property key">
-          <SearchableSpan query={query} value={['string', 'number', 'symbol', 'boolean'].includes(key) ? `[key: ${key}]` : key} />
+          <SearchableSpan
+            query={query}
+            value={['string', 'number', 'symbol', 'boolean'].includes(name) ? `[key: ${name}]` : name}
+          />
         </span>
         <span>: </span>
-        <span className="property value"><SearchableSpan query={query} value={value} /></span>
+        <span className="property value"><SearchableSpan query={query} value={type} /></span>
         <br />
       </span>
     );

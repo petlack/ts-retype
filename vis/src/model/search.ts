@@ -14,12 +14,8 @@ export function fulltext(cluster: FulltextData): string {
     `${cluster.names[0].name}`,
     `${Object.keys(cluster.names).join(' ')}`,
     `${cluster.files.map(({ file }) => file).join(' ')}`,
-    `${(cluster.properties || [])
-      .map(({ key, value, type }) => `${type} ${key}: ${value}`)
-      .join(' ')}`,
-    `${(cluster.parameters || [])
-      .map(({ key, value, type }) => `${type} ${key}: ${value}`)
-      .join(' ')}`,
+    `${(cluster.properties || []).map(({ name, type }) => `${type} ${name}: ${type}`).join(' ')}`,
+    `${(cluster.parameters || []).map(({ name, type }) => `${type} ${name}: ${type}`).join(' ')}`,
     `${(cluster.members || []).join(' ')}`,
     `${(cluster.types || []).join(' ')}`,
   ].join(' ');

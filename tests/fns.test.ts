@@ -19,8 +19,8 @@ describe('parse', () => {
         pos: [0, 49],
         type: 'function',
         parameters: [
-          { key: 'a', value: 'string', type: 'StringKeyword' },
-          { key: 'b', value: 'number', type: 'NumberKeyword' },
+          { name: 'a', type: 'string', text: 'StringKeyword' },
+          { name: 'b', type: 'number', text: 'NumberKeyword' },
         ],
         returnType: 'Promise<void>',
       },

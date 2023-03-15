@@ -27,13 +27,13 @@ describe('similarity', () => {
         name: 'foo',
         type: 'literal',
         pos: [0, 0],
-        properties: [{ key: 'bar', type: 'StringKeyword', value: 'string' }],
+        properties: [{ name: 'bar', type: 'StringKeyword' }],
       },
       <LiteralCandidateType>{
         name: 'foo',
         type: 'literal',
         pos: [0, 0],
-        properties: [{ key: 'bar', type: 'StringKeyword', value: 'string' }],
+        properties: [{ name: 'bar', type: 'StringKeyword' }],
       },
     );
     expectSimilarity(given, Similarity.Identical);
@@ -44,13 +44,13 @@ describe('similarity', () => {
         name: 'foo',
         type: 'literal',
         pos: [0, 0],
-        properties: [{ key: 'bar', type: 'StringKeyword', value: 'string' }],
+        properties: [{ name: 'bar', type: 'StringKeyword' }],
       },
       <LiteralCandidateType>{
         name: 'foo',
         type: 'literal',
         pos: [0, 0],
-        properties: [{ key: 'xyz', type: 'StringKeyword', value: 'string' }],
+        properties: [{ name: 'xyz', type: 'StringKeyword' }],
       },
     );
     expectSimilarity(given, Similarity.Different);
@@ -61,13 +61,13 @@ describe('similarity', () => {
         name: 'foo',
         type: 'literal',
         pos: [0, 0],
-        properties: [{ key: 'bar', type: 'StringKeyword', value: 'string' }],
+        properties: [{ name: 'bar', type: 'StringKeyword' }],
       },
       <LiteralCandidateType>{
         name: 'foo',
         type: 'literal',
         pos: [0, 0],
-        properties: [{ key: 'bar', type: 'NumberKeyword', value: 'number' }],
+        properties: [{ name: 'bar', type: 'NumberKeyword' }],
       },
     );
     expectSimilarity(given, Similarity.HasSimilarProperties);
@@ -79,15 +79,15 @@ describe('similarity', () => {
         type: 'literal',
         pos: [0, 0],
         properties: [
-          { key: 'bar', type: 'StringKeyword', value: 'string' },
-          { key: 'xyz', type: 'StringKeyword', value: 'number' },
+          { name: 'bar', type: 'StringKeyword' },
+          { name: 'xyz', type: 'StringKeyword' },
         ],
       },
       <LiteralCandidateType>{
         name: 'foo',
         type: 'literal',
         pos: [0, 0],
-        properties: [{ key: 'bar', type: 'NumberKeyword', value: 'string' }],
+        properties: [{ name: 'bar', type: 'NumberKeyword' }],
       },
     );
     expectSimilarity(given, Similarity.HasSubsetOfProperties);
@@ -164,8 +164,8 @@ describe('clustersToOutput', () => {
             { name: 'B', count: 1 },
           ],
           properties: [
-            { key: 'foo', value: 'string', type: 'StringKeyword' },
-            { key: 'bar', value: 'string', type: 'StringKeyword' },
+            { name: 'foo', type: 'string' },
+            { name: 'bar', type: 'string' },
           ],
         },
       ]);
@@ -195,8 +195,8 @@ describe('clustersToOutput', () => {
             { name: 'B', count: 2 },
           ],
           properties: [
-            { key: 'foo', value: 'string', type: 'StringKeyword' },
-            { key: 'bar', value: 'string', type: 'StringKeyword' },
+            { name: 'foo', type: 'string' },
+            { name: 'bar', type: 'string' },
           ],
         },
         {
@@ -207,8 +207,8 @@ describe('clustersToOutput', () => {
           group: 'identical',
           names: [{ name: 'B', count: 2 }],
           properties: [
-            { key: 'foo', value: 'string', type: 'StringKeyword' },
-            { key: 'bar', value: 'string', type: 'StringKeyword' },
+            { name: 'foo', type: 'string' },
+            { name: 'bar', type: 'string' },
           ],
         },
       ]);

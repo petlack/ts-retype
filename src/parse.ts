@@ -25,19 +25,19 @@ function getNodeText(sourceFile: ts.SourceFile, node: ts.TypeNode) {
   return node ? sourceFile.getFullText().substring(node.pos, node.end) : 'unknown';
 }
 
-function getPropertySignature(sourceFile: ts.SourceFile, node: any) {
+function getPropertySignature(sourceFile: ts.SourceFile, node: any): Property | null {
   switch (node.kind) {
     case ts.SyntaxKind.PropertySignature:
       return {
-        key: node.name.escapedText,
-        value: getNodeText(sourceFile, node.type).trim(),
-        type: toName(node.type),
+        name: node.name.escapedText,
+        type: getNodeText(sourceFile, node.type).trim(),
+        text: toName(node.type),
       };
     case ts.SyntaxKind.IndexSignature:
       return {
-        key: getNodeText(sourceFile, node.parameters[0] && node.parameters[0].type).trim(),
-        value: getNodeText(sourceFile, node.type).trim(),
-        type: toName(node.type),
+        name: getNodeText(sourceFile, node.parameters[0] && node.parameters[0].type).trim(),
+        type: getNodeText(sourceFile, node.type).trim(),
+        text: toName(node.type),
       };
   }
   return null;
@@ -74,9 +74,9 @@ function getFunctionType(
   const parameters = (node.parameters || []).map(
     (p: any) =>
       <Property>{
-        key: p.name.escapedText || '<unknown>',
-        value: getNodeText(sourceFile, p.type).trim(),
-        type: toName(p.type),
+        name: p.name.escapedText || '<unknown>',
+        type: getNodeText(sourceFile, p.type).trim(),
+        text: toName(p.type),
       },
   );
   const candidate: FunctionCandidateType = {

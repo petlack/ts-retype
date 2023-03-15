@@ -3,9 +3,11 @@
 // };
 
 export interface Property {
-  key: string;
-  value: string;
+  // key: string;
+  name: string;
+  // value: string;
   type: string;
+  text?: string;
 }
 
 export interface CandidateType {
@@ -102,16 +104,16 @@ export type TypeDuplicate = {
     name: string;
   }[];
   members?: string[];
-  // parameters?: {
-  //   name: string;
-  //   type: string;
-  // }[];
-  // properties?: {
-  //   name: string;
-  //   type: string;
-  // }[];
-  parameters?: Property[];
-  properties?: Property[];
+  parameters?: {
+    name: string;
+    type: string;
+  }[];
+  properties?: {
+    name: string;
+    type: string;
+  }[];
+  // parameters?: Property[];
+  // properties?: Property[];
   returnType?: string;
   types?: string[];
 };

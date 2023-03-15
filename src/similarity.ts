@@ -9,6 +9,7 @@ import {
   SourceCandidateType,
   TypeDuplicate,
   LiteralCandidateType,
+  Property,
 } from './types';
 import { freq, posToLine, selectIndices } from './utils';
 
@@ -18,10 +19,10 @@ function isLiteralType(t: CandidateType) {
   return ['alias', 'interface', 'literal'].includes(t.type);
 }
 
-function similarityForArray<T extends { key: string; value: string }>(left: T[], right: T[]) {
-  const propertiesKeysEqual = eqValues(pluck('key', left), pluck('key', right));
-  const propertiesKeysIntersection = intersection(pluck('key', left), pluck('key', right));
-  const propertiesTypesEqual = eqValues(pluck('value', left), pluck('value', right));
+function similarityForArray<T extends Property>(left: T[], right: T[]) {
+  const propertiesKeysEqual = eqValues(pluck('name', left), pluck('name', right));
+  const propertiesKeysIntersection = intersection(pluck('name', left), pluck('name', right));
+  const propertiesTypesEqual = eqValues(pluck('type', left), pluck('type', right));
 
   if (propertiesKeysEqual && propertiesTypesEqual) {
     return Similarity.HasIdenticalProperties;
@@ -205,6 +206,13 @@ function chooseClusterFiles(
 //   return selectIndices(types, idxs)[0].name;
 // }
 
+function propertyToOutput(prop: Property): Property {
+  return {
+    name: prop.name,
+    type: prop.type,
+  };
+}
+
 function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>) {
   const selected = selectIndices(types, idxs);
   const selectedTypes = uniq(pluck('type', selected));
@@ -217,7 +225,9 @@ function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>
     case 'interface':
     case 'literal':
       return {
-        properties: (selected[0] as unknown as LiteralCandidateType).properties,
+        properties: (selected[0] as unknown as LiteralCandidateType).properties.map(
+          propertyToOutput,
+        ),
       };
     case 'enum':
       return {
@@ -225,7 +235,9 @@ function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>
       };
     case 'function':
       return {
-        parameters: (selected[0] as unknown as FunctionCandidateType).parameters,
+        parameters: (selected[0] as unknown as FunctionCandidateType).parameters.map(
+          propertyToOutput,
+        ),
         returnType: (selected[0] as unknown as FunctionCandidateType).returnType,
       };
     case 'union':
