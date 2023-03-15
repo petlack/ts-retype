@@ -1,4 +1,4 @@
-import { createTypeClusters } from '../src/clusters';
+import { findTypeDuplicates } from '../src/clusters';
 
 describe('clusters', () => {
   test('ok', () => {

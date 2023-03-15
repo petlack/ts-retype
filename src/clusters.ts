@@ -63,7 +63,7 @@ export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
   return { types, lengths };
 }
 
-export function createTypeClusters({ project, include, exclude }: RetypeArgs): TypeDuplicate[] {
+export function findTypeDuplicates({ project, include, exclude }: RetypeArgs): TypeDuplicate[] {
   const files = globSync(include, { cwd: project, ignore: exclude });
   const filesLengths: { [file: string]: number[] } = {};
   let allTypes: SourceCandidateType[] = [];
