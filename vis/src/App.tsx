@@ -8,22 +8,21 @@ import { Navbar } from './components/Navbar';
 import { ToastProvider } from './components/Toast';
 import { Facet, fulltext } from './model/search';
 import { FulltextData } from './types';
+import { Similarity } from '../../src/types';
 
 import './App.scss';
-import { Similarity } from '../../src/types';
 
 const facets: Facet<FulltextData>[] = [
   {
     name: 'similarity',
-    values: ['all', 'Identical', 'HasIdenticalProperties'],
-    matches: (rec, v) => v === 'all' &&
-      ['Identical', 'HasIdenticalProperties'].includes(rec.group) ||
-      rec.group === v,
+    values: ['all', 'identical', 'renamed'],
+    matches: (rec, v) => v === 'all' ||
+      rec.group === v && rec.group !== 'different',
   },
   {
     name: 'type',
     values: ['all', 'alias', 'enum', 'function', 'interface', 'literal', 'union'],
-    matches: (rec, v) => v === 'all' || rec.type === v,
+    matches: (rec, v) => v === 'all' || !!rec.files.find(({ type }) => type === v),
   },
 ];
 

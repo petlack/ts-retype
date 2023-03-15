@@ -1,2 +1,2 @@
-export { createTypeClusters } from './clusters';
-export type { ClusterOutput } from './types';
+export { findTypeDuplicates } from './clusters';
+export type { TypeDuplicate } from './types';

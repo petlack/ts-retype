@@ -4,7 +4,7 @@ import fs from 'fs';
 import { createCommand } from 'commander';
 
 import { createLogger, resolveOptions, resolveOutputFilePath } from './cmd';
-import { createTypeClusters } from './clusters';
+import { findTypeDuplicates } from './clusters';
 import { DEFAULT_OPTIONS, RetypeOptions } from './types';
 import { dir, stringify } from './utils';
 
@@ -82,12 +82,12 @@ function main() {
 
   log.log(`discovering duplicates in ${project}`);
 
-  const clusters = createTypeClusters(args);
+  const duplicates = findTypeDuplicates(args);
 
   log.log();
-  log.log(`found ${clusters.length} clusters`);
+  log.log(`found ${duplicates.length} duplicates`);
 
-  const data = JSON.stringify(clusters);
+  const data = JSON.stringify(duplicates);
 
   log.log();
 

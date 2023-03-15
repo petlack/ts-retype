@@ -1,53 +1,41 @@
 [
   {
-    "names": { "FacetStats": 1, "FileLengths": 1 },
+    "names": [
+      { "name": "FacetStats", "count": 1 },
+      { "name": "FileLengths", "count": 1 }
+    ],
     "files": [
       {
         "file": "vis/src/model/search.ts",
         "type": "alias",
-        "pos": [1793, 1865],
-        "lines": [59, 61]
+        "pos": [1762, 1834],
+        "lines": [55, 57]
       },
-      { "file": "src/similarity.ts", "type": "alias", "pos": [7376, 7425], "lines": [236, 238] }
+      { "file": "src/similarity.ts", "type": "alias", "pos": [7324, 7374], "lines": [240, 242] }
     ],
-    "name": "FacetStats",
-    "type": "alias",
-    "group": "HasSimilarProperties",
-    "properties": [{ "key": "string", "value": "number | FacetStats", "type": "UnionType" }]
+    "group": "different",
+    "properties": [{ "name": "string", "type": "number | FacetStats" }]
   },
   {
-    "names": { "LiteralType": 1, "LiteralCandidateType": 1 },
+    "names": [{ "name": "anonymous", "count": 2 }],
     "files": [
-      { "file": "src/types.ts", "type": "interface", "pos": [297, 422], "lines": [15, 20] },
-      { "file": "src/types.ts", "type": "interface", "pos": [754, 888], "lines": [36, 41] }
-    ],
-    "name": "LiteralType",
-    "type": "interface",
-    "group": "HasSimilarProperties",
-    "properties": [
-      { "key": "type", "value": "'literal' | 'alias' | 'interface'", "type": "UnionType" },
-      { "key": "properties", "value": "Property[]", "type": "ArrayType" }
-    ]
-  },
-  {
-    "names": { "anonymous": 3 },
-    "files": [
-      { "file": "src/clusters.ts", "type": "literal", "pos": [1101, 1130], "lines": [45, 45] },
+      { "file": "src/clusters.ts", "type": "literal", "pos": [2057, 2086], "lines": [68, 68] },
       {
         "file": "docs/src/components/Code.tsx",
         "type": "literal",
         "pos": [550, 577],
         "lines": [20, 20]
-      },
-      { "file": "src/clusters.ts", "type": "literal", "pos": [3021, 3050], "lines": [104, 104] }
+      }
     ],
-    "name": "anonymous",
-    "type": "literal",
-    "group": "HasSimilarProperties",
-    "properties": [{ "key": "string", "value": "number[]", "type": "ArrayType" }]
+    "group": "different",
+    "properties": [{ "name": "string", "type": "number[]" }]
   },
   {
-    "names": { "Rec": 1, "TypeIconProps": 1, "FileListingProps": 1, "ClusterOutput": 1 },
+    "names": [
+      { "name": "Rec", "count": 1 },
+      { "name": "TypeIconProps", "count": 1 },
+      { "name": "FileListingProps", "count": 1 }
+    ],
     "files": [
       {
         "file": "vis/tests/unit/search.test.ts",
@@ -58,84 +46,35 @@
       {
         "file": "vis/src/components/Cluster/TypeIcon.tsx",
         "type": "alias",
-        "pos": [85, 156],
-        "lines": [2, 6]
+        "pos": [115, 179],
+        "lines": [4, 8]
       },
       {
         "file": "vis/src/components/Cluster/FileListing.tsx",
         "type": "alias",
-        "pos": [250, 364],
-        "lines": [5, 11]
-      },
-      { "file": "src/types.ts", "type": "alias", "pos": [2637, 3013], "lines": [116, 129] }
+        "pos": [246, 363],
+        "lines": [6, 12]
+      }
     ],
-    "name": "Rec",
-    "type": "alias",
-    "group": "HasSubsetOfProperties",
+    "group": "different",
     "properties": [
-      { "key": "type", "value": "'x' | 'y'", "type": "UnionType" },
-      { "key": "color", "value": "'a' | 'b'", "type": "UnionType" },
-      { "key": "rating", "value": "number", "type": "NumberKeyword" },
-      { "key": "price", "value": "number", "type": "NumberKeyword" }
+      { "name": "type", "type": "'x' | 'y'" },
+      { "name": "color", "type": "'a' | 'b'" },
+      { "name": "rating", "type": "number" },
+      { "name": "price", "type": "number" }
     ]
   },
   {
-    "names": { "LiteralType": 3, "LiteralCandidateType": 1 },
+    "names": [{ "name": "anonymous", "count": 2 }],
     "files": [
-      { "file": "vis/src/types.ts", "type": "interface", "pos": [335, 436], "lines": [20, 26] },
-      { "file": "src/types.ts", "type": "interface", "pos": [888, 970], "lines": [41, 45] },
-      { "file": "src/types.ts", "type": "interface", "pos": [297, 422], "lines": [15, 20] },
-      { "file": "src/types.ts", "type": "interface", "pos": [754, 888], "lines": [36, 41] }
+      { "file": "vis/src/types.ts", "type": "literal", "pos": [217, 246], "lines": [9, 11] },
+      { "file": "vis/src/types.ts", "type": "literal", "pos": [551, 592], "lines": [18, 18] }
     ],
-    "name": "LiteralType",
-    "type": "interface",
-    "group": "HasSubsetOfProperties",
-    "properties": [
-      { "key": "name", "value": "string", "type": "StringKeyword" },
-      { "key": "properties", "value": "Property[]", "type": "ArrayType" },
-      { "key": "pos", "value": "[number, number]", "type": "TupleType" }
-    ]
+    "group": "different",
+    "properties": [{ "name": "pos", "type": "[number, number]" }]
   },
   {
-    "names": { "anonymous": 8 },
-    "files": [
-      { "file": "vis/src/types.ts", "type": "literal", "pos": [711, 1010], "lines": [38, 47] },
-      { "file": "vis/src/types.ts", "type": "literal", "pos": [1106, 1169], "lines": [49, 53] },
-      { "file": "vis/src/types.ts", "type": "literal", "pos": [1288, 1351], "lines": [58, 62] },
-      { "file": "vis/src/types.ts", "type": "literal", "pos": [1438, 1501], "lines": [64, 68] },
-      { "file": "vis/src/types.ts", "type": "literal", "pos": [1588, 1651], "lines": [70, 74] },
-      { "file": "vis/src/types.ts", "type": "literal", "pos": [1703, 1721], "lines": [76, 76] },
-      { "file": "src/types.ts", "type": "literal", "pos": [1292, 1334], "lines": [61, 64] },
-      { "file": "src/types.ts", "type": "literal", "pos": [1849, 1891], "lines": [76, 79] }
-    ],
-    "name": "anonymous",
-    "type": "literal",
-    "group": "HasSubsetOfProperties",
-    "properties": [
-      { "key": "files", "value": "SourceFile[]", "type": "ArrayType" },
-      { "key": "names", "value": "Freq", "type": "TypeReference" },
-      { "key": "group", "value": "Similarity", "type": "TypeReference" },
-      {
-        "key": "properties",
-        "value": "LiteralCandidateType['properties']",
-        "type": "IndexedAccessType"
-      },
-      {
-        "key": "parameters",
-        "value": "FunctionCandidateType['parameters']",
-        "type": "IndexedAccessType"
-      },
-      {
-        "key": "returnType",
-        "value": "FunctionCandidateType['returnType']",
-        "type": "IndexedAccessType"
-      },
-      { "key": "members", "value": "EnumCandidateType['members']", "type": "IndexedAccessType" },
-      { "key": "types", "value": "UnionCandidateType['types']", "type": "IndexedAccessType" }
-    ]
-  },
-  {
-    "names": { "anonymous": 6 },
+    "names": [{ "name": "anonymous", "count": 6 }],
     "files": [
       {
         "file": "vis/src/components/SearchableSpan/SearchableSpan.tsx",
@@ -174,42 +113,29 @@
         "lines": [9, 9]
       }
     ],
-    "name": "anonymous",
-    "type": "literal",
-    "group": "HasSubsetOfProperties",
+    "group": "different",
     "properties": [
-      { "key": "query", "value": "string", "type": "StringKeyword" },
-      { "key": "value", "value": "string", "type": "StringKeyword" }
+      { "name": "query", "type": "string" },
+      { "name": "value", "type": "string" }
     ]
   },
   {
-    "names": { "anonymous": 2 },
+    "names": [{ "name": "anonymous", "count": 2 }],
     "files": [
-      { "file": "src/types.ts", "type": "literal", "pos": [2366, 2427], "lines": [106, 109] },
+      { "file": "src/types.ts", "type": "literal", "pos": [1162, 1223], "lines": [58, 61] },
       { "file": "src/cmd.ts", "type": "literal", "pos": [1742, 1789], "lines": [60, 60] }
     ],
-    "name": "anonymous",
-    "type": "literal",
-    "group": "HasSubsetOfProperties",
+    "group": "different",
     "properties": [
-      { "key": "config", "value": "string", "type": "StringKeyword" },
-      { "key": "generate", "value": "boolean | string | null", "type": "UnionType" }
+      { "name": "config", "type": "string" },
+      { "name": "generate", "type": "boolean | string | null" }
     ]
   },
   {
-    "names": { "SourceLiteralType": 2, "SourceCandidateType": 1 },
-    "files": [
-      { "file": "vis/src/types.ts", "type": "interface", "pos": [436, 512], "lines": [26, 30] },
-      { "file": "src/types.ts", "type": "interface", "pos": [1046, 1126], "lines": [49, 53] },
-      { "file": "src/types.ts", "type": "interface", "pos": [970, 1046], "lines": [45, 49] }
+    "names": [
+      { "name": "FnFoo", "count": 1 },
+      { "name": "FnBar", "count": 1 }
     ],
-    "name": "SourceLiteralType",
-    "type": "interface",
-    "group": "HasIdenticalProperties",
-    "properties": [{ "key": "file", "value": "string", "type": "StringKeyword" }]
-  },
-  {
-    "names": { "FnFoo": 1, "FnBar": 1 },
     "files": [
       {
         "file": "vis/src/components/Cluster/FunctionCluster.tsx",
@@ -224,17 +150,18 @@
         "lines": [11, 12]
       }
     ],
-    "name": "FnFoo",
-    "type": "function",
-    "group": "HasIdenticalProperties",
+    "group": "renamed",
     "parameters": [
-      { "key": "aaa", "value": "string", "type": "StringKeyword" },
-      { "key": "bbb", "value": "number", "type": "NumberKeyword" }
+      { "name": "aaa", "type": "string" },
+      { "name": "bbb", "type": "number" }
     ],
     "returnType": "Promise<void>"
   },
   {
-    "names": { "EnFoo": 1, "EnBar": 1 },
+    "names": [
+      { "name": "EnFoo", "count": 1 },
+      { "name": "EnBar", "count": 1 }
+    ],
     "files": [
       {
         "file": "vis/src/components/Cluster/FunctionCluster.tsx",
@@ -249,13 +176,14 @@
         "lines": [14, 15]
       }
     ],
-    "name": "EnFoo",
-    "type": "enum",
-    "group": "HasIdenticalProperties",
+    "group": "renamed",
     "members": ["Ok", "Fail"]
   },
   {
-    "names": { "UnFoo": 1, "UnBar": 1 },
+    "names": [
+      { "name": "UnFoo", "count": 1 },
+      { "name": "UnBar", "count": 1 }
+    ],
     "files": [
       {
         "file": "vis/src/components/Cluster/FunctionCluster.tsx",
@@ -270,65 +198,10 @@
         "lines": [17, 18]
       }
     ],
-    "name": "UnFoo",
-    "type": "union",
-    "group": "HasIdenticalProperties"
+    "group": "renamed"
   },
   {
-    "names": { "Property": 2 },
-    "files": [
-      { "file": "vis/src/types.ts", "type": "interface", "pos": [256, 335], "lines": [14, 20] },
-      { "file": "src/types.ts", "type": "interface", "pos": [66, 145], "lines": [3, 9] }
-    ],
-    "name": "Property",
-    "type": "interface",
-    "group": "Identical",
-    "properties": [
-      { "key": "key", "value": "string", "type": "StringKeyword" },
-      { "key": "value", "value": "string", "type": "StringKeyword" },
-      { "key": "type", "value": "string", "type": "StringKeyword" }
-    ]
-  },
-  {
-    "names": { "SourceLiteralType": 2 },
-    "files": [
-      { "file": "vis/src/types.ts", "type": "interface", "pos": [436, 512], "lines": [26, 30] },
-      { "file": "src/types.ts", "type": "interface", "pos": [970, 1046], "lines": [45, 49] }
-    ],
-    "name": "SourceLiteralType",
-    "type": "interface",
-    "group": "Identical",
-    "properties": [{ "key": "file", "value": "string", "type": "StringKeyword" }]
-  },
-  {
-    "names": { "anonymous": 2 },
-    "files": [
-      { "file": "vis/src/types.ts", "type": "union", "pos": [1072, 1103], "lines": [49, 49] },
-      { "file": "src/types.ts", "type": "union", "pos": [1815, 1846], "lines": [76, 76] }
-    ],
-    "name": "anonymous",
-    "type": "union",
-    "group": "Identical"
-  },
-  {
-    "names": { "anonymous": 4 },
-    "files": [
-      { "file": "vis/src/types.ts", "type": "literal", "pos": [1106, 1169], "lines": [49, 53] },
-      { "file": "vis/src/types.ts", "type": "literal", "pos": [1288, 1351], "lines": [58, 62] },
-      { "file": "vis/src/types.ts", "type": "literal", "pos": [1438, 1501], "lines": [64, 68] },
-      { "file": "vis/src/types.ts", "type": "literal", "pos": [1588, 1651], "lines": [70, 74] }
-    ],
-    "name": "anonymous",
-    "type": "literal",
-    "group": "Identical",
-    "properties": [
-      { "key": "files", "value": "SourceFile[]", "type": "ArrayType" },
-      { "key": "names", "value": "Freq", "type": "TypeReference" },
-      { "key": "group", "value": "Similarity", "type": "TypeReference" }
-    ]
-  },
-  {
-    "names": { "anonymous": 4 },
+    "names": [{ "name": "anonymous", "count": 4 }],
     "files": [
       {
         "file": "vis/src/components/Cluster/UnionCluster.tsx",
@@ -355,34 +228,7 @@
         "lines": [10, 10]
       }
     ],
-    "name": "anonymous",
-    "type": "literal",
-    "group": "Identical",
-    "properties": [{ "key": "query", "value": "string", "type": "StringKeyword" }]
-  },
-  {
-    "names": { "anonymous": 2 },
-    "files": [
-      { "file": "src/types.ts", "type": "literal", "pos": [1292, 1334], "lines": [61, 64] },
-      { "file": "src/types.ts", "type": "literal", "pos": [1849, 1891], "lines": [76, 79] }
-    ],
-    "name": "anonymous",
-    "type": "literal",
-    "group": "Identical",
-    "properties": [
-      { "key": "files", "value": "SourceFile[]", "type": "ArrayType" },
-      { "key": "names", "value": "Freq", "type": "TypeReference" }
-    ]
-  },
-  {
-    "names": { "anonymous": 2 },
-    "files": [
-      { "file": "src/clusters.ts", "type": "literal", "pos": [1101, 1130], "lines": [45, 45] },
-      { "file": "src/clusters.ts", "type": "literal", "pos": [3021, 3050], "lines": [104, 104] }
-    ],
-    "name": "anonymous",
-    "type": "literal",
-    "group": "Identical",
-    "properties": [{ "key": "string", "value": "number[]", "type": "ArrayType" }]
+    "group": "identical",
+    "properties": [{ "name": "query", "type": "string" }]
   }
 ]

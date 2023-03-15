@@ -8,17 +8,22 @@ import './ClusterListing.scss';
 
 export function ClusterListing({ clusters, query }: { clusters: FulltextData[], query: string }) {
   const clustersMarkup = clusters.map((c, idx) => {
-    switch (c.type) {
+    const literalType = {
+      ...c,
+      name: c.names[0].name,
+      type: c.files[0].type,
+    };
+    switch (literalType.type) {
     case 'alias':
     case 'interface':
     case 'literal':
-      return <LiteralCluster key={idx} query={query} {...(c as LiteralTypeCluster)} />;
+      return <LiteralCluster key={idx} query={query} {...(literalType as LiteralTypeCluster)} />;
     case 'function':
-      return <FunctionCluster key={idx} query={query} {...(c as FunctionTypeCluster)} />;
+      return <FunctionCluster key={idx} query={query} {...(literalType as FunctionTypeCluster)} />;
     case 'enum':
-      return <EnumCluster key={idx} query={query} {...(c as EnumTypeCluster)} />;
+      return <EnumCluster key={idx} query={query} {...(literalType as EnumTypeCluster)} />;
     case 'union':
-      return <UnionCluster key={idx} query={query} {...(c as UnionTypeCluster)} />;
+      return <UnionCluster key={idx} query={query} {...(literalType as UnionTypeCluster)} />;
     default:
       return (
         <div key={idx} className="cluster">

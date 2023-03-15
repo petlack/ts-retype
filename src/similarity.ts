@@ -7,8 +7,9 @@ import {
   EnumCandidateType,
   UnionCandidateType,
   SourceCandidateType,
-  ClusterOutput,
+  TypeDuplicate,
   LiteralCandidateType,
+  Property,
 } from './types';
 import { freq, posToLine, selectIndices } from './utils';
 
@@ -18,10 +19,10 @@ function isLiteralType(t: CandidateType) {
   return ['alias', 'interface', 'literal'].includes(t.type);
 }
 
-function similarityForArray<T extends { key: string; value: string }>(left: T[], right: T[]) {
-  const propertiesKeysEqual = eqValues(pluck('key', left), pluck('key', right));
-  const propertiesKeysIntersection = intersection(pluck('key', left), pluck('key', right));
-  const propertiesTypesEqual = eqValues(pluck('value', left), pluck('value', right));
+function similarityForArray<T extends Property>(left: T[], right: T[]) {
+  const propertiesKeysEqual = eqValues(pluck('name', left), pluck('name', right));
+  const propertiesKeysIntersection = intersection(pluck('name', left), pluck('name', right));
+  const propertiesTypesEqual = eqValues(pluck('type', left), pluck('type', right));
 
   if (propertiesKeysEqual && propertiesTypesEqual) {
     return Similarity.HasIdenticalProperties;
@@ -160,7 +161,7 @@ export function toSimilarityPairs(m: Similarity[][]): [number, number, Similarit
 
 type Clusters = { [s in Similarity]?: Set<number>[] };
 
-export function pairsToClusters(pairs: [number, number, Similarity][]) {
+export function pairsToClusters(pairs: [number, number, Similarity][]): Clusters {
   if (!pairs) {
     return {} as Clusters;
   }
@@ -193,16 +194,15 @@ function chooseClusterFiles(
     file: t.file,
     type: t.type,
     pos: t.pos,
-    lines: t.pos.map(toLine(t.file)),
+    lines: t.pos.map(toLine(t.file)) as [number, number],
   }));
 }
 
-function chooseClusterType(types: SourceCandidateType[], idxs: Iterable<number>) {
-  return selectIndices(types, idxs)[0].type;
-}
-
-function chooseClusterName(types: SourceCandidateType[], idxs: Iterable<number>) {
-  return selectIndices(types, idxs)[0].name;
+function propertyToOutput(prop: Property): Property {
+  return {
+    name: prop.name,
+    type: prop.type,
+  };
 }
 
 function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>) {
@@ -217,7 +217,9 @@ function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>
     case 'interface':
     case 'literal':
       return {
-        properties: (selected[0] as unknown as LiteralCandidateType).properties,
+        properties: (selected[0] as unknown as LiteralCandidateType).properties.map(
+          propertyToOutput,
+        ),
       };
     case 'enum':
       return {
@@ -225,7 +227,9 @@ function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>
       };
     case 'function':
       return {
-        parameters: (selected[0] as unknown as FunctionCandidateType).parameters,
+        parameters: (selected[0] as unknown as FunctionCandidateType).parameters.map(
+          propertyToOutput,
+        ),
         returnType: (selected[0] as unknown as FunctionCandidateType).returnType,
       };
     case 'union':
@@ -237,11 +241,22 @@ function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>
 
 type FileLengths = { [file: string]: number[] };
 
+function similarityToOutput(sim: Similarity): TypeDuplicate['group'] {
+  switch (sim) {
+    case Similarity.Identical:
+      return 'identical';
+    case Similarity.HasIdenticalProperties:
+      return 'renamed';
+    default:
+      return 'different';
+  }
+}
+
 export function clustersToOutput(
   types: SourceCandidateType[],
   clusters: Clusters,
   lengths: FileLengths,
-): ClusterOutput[] {
+): TypeDuplicate[] {
   const res = Object.entries(clusters).reduce(
     (res, [group, clusters]) =>
       concat(
@@ -249,13 +264,11 @@ export function clustersToOutput(
         clusters.map((idxs) => ({
           names: chooseClusterNames(types, idxs),
           files: chooseClusterFiles(types, idxs, lengths),
-          name: chooseClusterName(types, idxs),
-          type: chooseClusterType(types, idxs),
-          group: Similarity[group as keyof typeof Similarity],
+          group: similarityToOutput(+group as Similarity),
           ...chooseTypeFeatures(types, idxs),
         })),
       ),
-    [] as ClusterOutput[],
+    [] as TypeDuplicate[],
   );
   return res;
 }
