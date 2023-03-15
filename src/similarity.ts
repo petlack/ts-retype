@@ -160,7 +160,7 @@ export function toSimilarityPairs(m: Similarity[][]): [number, number, Similarit
 
 type Clusters = { [s in Similarity]?: Set<number>[] };
 
-export function pairsToClusters(pairs: [number, number, Similarity][]) {
+export function pairsToClusters(pairs: [number, number, Similarity][]): Clusters {
   if (!pairs) {
     return {} as Clusters;
   }
@@ -197,13 +197,13 @@ function chooseClusterFiles(
   }));
 }
 
-function chooseClusterType(types: SourceCandidateType[], idxs: Iterable<number>) {
-  return selectIndices(types, idxs)[0].type;
-}
+// function chooseClusterType(types: SourceCandidateType[], idxs: Iterable<number>) {
+//   return selectIndices(types, idxs)[0].type;
+// }
 
-function chooseClusterName(types: SourceCandidateType[], idxs: Iterable<number>) {
-  return selectIndices(types, idxs)[0].name;
-}
+// function chooseClusterName(types: SourceCandidateType[], idxs: Iterable<number>) {
+//   return selectIndices(types, idxs)[0].name;
+// }
 
 function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>) {
   const selected = selectIndices(types, idxs);
@@ -237,8 +237,7 @@ function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>
 
 type FileLengths = { [file: string]: number[] };
 
-function similarityToOutput(group: string): TypeDuplicate['group'] {
-  const sim = Similarity[group as keyof typeof Similarity];
+function similarityToOutput(sim: Similarity): TypeDuplicate['group'] {
   switch (sim) {
     case Similarity.Identical:
       return 'identical';
@@ -263,7 +262,7 @@ export function clustersToOutput(
           files: chooseClusterFiles(types, idxs, lengths),
           // name: chooseClusterName(types, idxs),
           // type: chooseClusterType(types, idxs),
-          group: similarityToOutput(group),
+          group: similarityToOutput(+group as Similarity),
           ...chooseTypeFeatures(types, idxs),
         })),
       ),

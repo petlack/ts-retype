@@ -65,13 +65,12 @@ export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
 
 export function createTypeClusters({ project, include, exclude }: RetypeArgs): TypeDuplicate[] {
   const files = globSync(include, { cwd: project, ignore: exclude });
-
   const filesLengths: { [file: string]: number[] } = {};
   let allTypes: SourceCandidateType[] = [];
-
   let start = new Date().getTime();
 
   log.log(`searching in ${files.length.toLocaleString()} files`);
+
   for (const relPath of files) {
     const file = path.join(project, relPath);
     log.live(`⏳ loading ${formatFileName(file)}`);
@@ -81,6 +80,7 @@ export function createTypeClusters({ project, include, exclude }: RetypeArgs): T
     allTypes = concat(allTypes, types);
   }
   const locs = Object.values(filesLengths).reduce((a, b) => a + b.length, 0);
+
   log.live(`searched  ${locs.toLocaleString()} lines of code`, true);
   log.log(`found ${allTypes.length.toLocaleString()} types definitions`);
   log.log(`took ${formatDuration(new Date().getTime() - start)}`);
@@ -88,15 +88,19 @@ export function createTypeClusters({ project, include, exclude }: RetypeArgs): T
 
   start = new Date().getTime();
   log.log('computing similarity matrix');
+
   const matrix = similarityMatrix(allTypes);
+
   log.log(`took ${formatDuration(new Date().getTime() - start)}`);
   log.log();
 
   start = new Date().getTime();
   log.log('generating output');
+
   const pairs = toSimilarityPairs(matrix);
   const clusters = pairsToClusters(pairs);
   const output = clustersToOutput(allTypes, clusters, filesLengths);
+
   log.log(`took ${formatDuration(new Date().getTime() - start)}`);
   log.log();
 
