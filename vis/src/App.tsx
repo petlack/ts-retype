@@ -23,7 +23,7 @@ const facets: Facet<FulltextData>[] = [
   {
     name: 'type',
     values: ['all', 'alias', 'enum', 'function', 'interface', 'literal', 'union'],
-    matches: (rec, v) => v === 'all' || rec.type === v,
+    matches: (rec, v) => v === 'all' || !!rec.files.find(({ type }) => type === v),
   },
 ];
 

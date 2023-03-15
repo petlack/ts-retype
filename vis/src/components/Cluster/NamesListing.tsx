@@ -1,20 +1,37 @@
-import { Freq } from '../../../../src/types';
+import { TypeDuplicate } from '../../../../src/types';
 import { SearchableSpan } from '../SearchableSpan';
-import { sortNames } from './utils';
 
 import './NamesListing.scss';
 
 export type NamesListingProps = {
-  names: Freq;
+  names: TypeDuplicate['names'];
   query: string;
+}
+
+function sortNames(names: TypeDuplicate['names']) {
+  return names.sort((a, b) => {
+    if (a.count < b.count) {
+      return 1;
+    } else if (a.count > b.count) {
+      return -1;
+    } else {
+      if (a.name < b.name) {
+        return -1;
+      } else if (a.name > b.name) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  });
 }
 
 export function NamesListing({ query, names }: NamesListingProps) {
   const sortedNames = sortNames(names);
 
-  const namesMarkup = sortedNames.slice(1).map(([name, freq]) => (
+  const namesMarkup = sortedNames.slice(1).map(({ name, count }) => (
     <span key={name} className="name-freq mono">
-      <SearchableSpan query={query} value={name} /> ({freq}x)
+      <SearchableSpan query={query} value={name} /> ({count}x)
     </span>
   ));
 
@@ -33,8 +50,8 @@ export function NamesListing({ query, names }: NamesListingProps) {
           query={query}
           value={
             namesMarkup.length > 0 ?
-              `${sortedNames[0][0]} (${sortedNames[0][1]}x)` :
-              sortedNames[0][0]
+              `${sortedNames[0].name} (${sortedNames[0].count}x)` :
+              sortedNames[0].name
           }
         />
       </h2>

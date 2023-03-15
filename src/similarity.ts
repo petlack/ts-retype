@@ -7,7 +7,7 @@ import {
   EnumCandidateType,
   UnionCandidateType,
   SourceCandidateType,
-  ClusterOutput,
+  TypeDuplicate,
   LiteralCandidateType,
 } from './types';
 import { freq, posToLine, selectIndices } from './utils';
@@ -193,7 +193,7 @@ function chooseClusterFiles(
     file: t.file,
     type: t.type,
     pos: t.pos,
-    lines: t.pos.map(toLine(t.file)),
+    lines: t.pos.map(toLine(t.file)) as [number, number],
   }));
 }
 
@@ -237,11 +237,23 @@ function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>
 
 type FileLengths = { [file: string]: number[] };
 
+function similarityToOutput(group: string): TypeDuplicate['group'] {
+  const sim = Similarity[group as keyof typeof Similarity];
+  switch (sim) {
+    case Similarity.Identical:
+      return 'identical';
+    case Similarity.HasIdenticalProperties:
+      return 'renamed';
+    default:
+      return 'different';
+  }
+}
+
 export function clustersToOutput(
   types: SourceCandidateType[],
   clusters: Clusters,
   lengths: FileLengths,
-): ClusterOutput[] {
+): TypeDuplicate[] {
   const res = Object.entries(clusters).reduce(
     (res, [group, clusters]) =>
       concat(
@@ -249,13 +261,13 @@ export function clustersToOutput(
         clusters.map((idxs) => ({
           names: chooseClusterNames(types, idxs),
           files: chooseClusterFiles(types, idxs, lengths),
-          name: chooseClusterName(types, idxs),
-          type: chooseClusterType(types, idxs),
-          group: Similarity[group as keyof typeof Similarity],
+          // name: chooseClusterName(types, idxs),
+          // type: chooseClusterType(types, idxs),
+          group: similarityToOutput(group),
           ...chooseTypeFeatures(types, idxs),
         })),
       ),
-    [] as ClusterOutput[],
+    [] as TypeDuplicate[],
   );
   return res;
 }

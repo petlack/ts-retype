@@ -10,7 +10,7 @@ import {
   EnumCandidateType,
   FunctionCandidateType,
   UnionCandidateType,
-  ClusterOutput,
+  TypeDuplicate,
 } from './types';
 import { formatDuration, loadFile } from './utils';
 import {
@@ -63,7 +63,7 @@ export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
   return { types, lengths };
 }
 
-export function createTypeClusters({ project, include, exclude }: RetypeArgs): ClusterOutput[] {
+export function createTypeClusters({ project, include, exclude }: RetypeArgs): TypeDuplicate[] {
   const files = globSync(include, { cwd: project, ignore: exclude });
 
   const filesLengths: { [file: string]: number[] } = {};

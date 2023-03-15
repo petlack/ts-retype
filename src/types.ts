@@ -1,6 +1,6 @@
-export type Freq = {
-  [k in string | number | symbol]: number;
-};
+// export type Freq = {
+//   [k in string | number | symbol]: number;
+// };
 
 export interface Property {
   key: string;
@@ -39,11 +39,11 @@ export interface SourceCandidateType extends CandidateType {
   file: string;
 }
 
-export type SourceFile = {
-  pos: [number, number];
-  lines: number[];
-  file: string;
-};
+// export type SourceFile = {
+//   pos: [number, number];
+//   lines: [number, number];
+//   file: string;
+// };
 
 export enum Similarity {
   Different = 0,
@@ -72,20 +72,46 @@ export type RetypeOptions = RetypeArgs & {
 
 export const DEFAULT_OPTIONS: RetypeConfig = {
   output: './retype-report.html',
-  include: ['**/*.ts'],
+  include: ['**/*.{ts,tsx}'],
   exclude: ['**/node_modules/**', '**/dist/**', '**/generated/**', '**/build/**'],
-  noHtml: false,
 };
 
-export type ClusterOutput = {
-  name: string;
-  type: CandidateType['type'];
-  files: SourceFile[];
-  names: Freq;
-  group: Similarity;
-  properties?: LiteralCandidateType['properties'];
-  parameters?: FunctionCandidateType['parameters'];
-  returnType?: FunctionCandidateType['returnType'];
-  members?: EnumCandidateType['members'];
-  types?: UnionCandidateType['types'];
+// export type ClusterOutput = {
+//   name: string;
+//   type: CandidateType['type'];
+//   files: SourceFile[];
+//   names: Freq;
+//   group: Similarity;
+//   properties?: LiteralCandidateType['properties'];
+//   parameters?: FunctionCandidateType['parameters'];
+//   returnType?: FunctionCandidateType['returnType'];
+//   members?: EnumCandidateType['members'];
+//   types?: UnionCandidateType['types'];
+// };
+
+export type TypeDuplicate = {
+  files: {
+    file: string;
+    lines: [number, number];
+    pos: [number, number];
+    type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
+  }[];
+  group: 'different' | 'renamed' | 'identical';
+  names: {
+    count: number;
+    name: string;
+  }[];
+  members?: string[];
+  // parameters?: {
+  //   name: string;
+  //   type: string;
+  // }[];
+  // properties?: {
+  //   name: string;
+  //   type: string;
+  // }[];
+  parameters?: Property[];
+  properties?: Property[];
+  returnType?: string;
+  types?: string[];
 };

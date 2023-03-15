@@ -11,7 +11,7 @@ export type Filter = {
 
 export function fulltext(cluster: FulltextData): string {
   return [
-    `${cluster.name}`,
+    `${cluster.names[0].name}`,
     `${Object.keys(cluster.names).join(' ')}`,
     `${cluster.files.map(({ file }) => file).join(' ')}`,
     `${(cluster.properties || [])

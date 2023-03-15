@@ -1,4 +1,4 @@
-import { CandidateType, SourceFile } from '../../../../src/types';
+import { CandidateType, TypeDuplicate } from '../../../../src/types';
 import { useCopyToClipboard } from '../../hooks/useCopy';
 import { SearchableSpan } from '../SearchableSpan';
 import { useToast } from '../Toast';
@@ -6,7 +6,7 @@ import { useToast } from '../Toast';
 import './FileListing.scss';
 
 export type FileListingProps = {
-  files: SourceFile[];
+  files: TypeDuplicate['files'];
   type: CandidateType['type'];
   query: string;
 }
