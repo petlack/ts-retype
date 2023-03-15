@@ -11,8 +11,9 @@ $boxShadow = var(--clr-boxShadow);
 $codeCommentsFg = var(--clr-codeCommentsFg);
 
 $headerBg = var(--clr-headerBg);
+$borderBg = var(--clr-borderBg);
 
-$editorFontSize = 1.2rem;
+$editorFontSize = 1.2em;
 $editorResponsiveFontSize = 1.8vw;
 $editorMinFontSize = 14px;
 $editorMaxFontSize = 20px;
@@ -23,15 +24,17 @@ $editorFontMinOutWidth = 777px;
 
 .window
   &.light
-    --clr-codeBg: white;
+    --clr-codeBg: #f5f4f2;
     --clr-codeFg: black;
-    --clr-headerBg: hsl(37deg 65% 91%);
+    --clr-headerBg: $yellowLight;
+    --clr-borderBg: #d1cdc7;
     // --clr-boxShadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     --clr-boxShadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     --clr-codeCommentsFg: $grayLight;
   &.dark
     --clr-codeBg: #22272e;
     --clr-headerBg: #12171e;
+    --clr-borderBg: #f5f4f2;
     --clr-codeFg: white;
     --clr-boxShadow: rgba(0, 0, 0, 0.15) 0px 13px 27px -5px, rgba(0, 0, 0, 0.25) 0px 8px 16px -8px;
     --clr-codeCommentsFg: $gray;
@@ -40,7 +43,10 @@ $editorFontMinOutWidth = 777px;
   background-color: $codeBg;
   border-radius: $borderRadius;
   // box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-  box-shadow: $boxShadow;
+  // box-shadow: $boxShadow;
+  // box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  // box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  border: 1px solid $borderBg;
 
   font-size: $editorFontSize;
   &-responsive
@@ -57,6 +63,7 @@ $editorFontMinOutWidth = 777px;
     border-top-left-radius: $borderRadius;
     border-top-right-radius: $borderRadius;
     background-color: $headerBg;
+    border-bottom: 1px solid $borderBg;
     .icons
       flexRow(10px);
       .icon
@@ -75,50 +82,55 @@ $editorFontMinOutWidth = 777px;
       font-size: .9rem;
       color: $codeFg;
   .editor
-    flexRow(1ch);
+    flexRow();
     background-color: unset;
     
     .lines
+      flexRow();
+      align-items: center;
+      justify-content: flex-end;
       // font-size: .66rem;
       line-height: 1.35;
       white-space: break-spaces;
-      color: $codeBg;
       width: 3ch;
       padding: $borderRadius .5rem;
       padding-right: 0;
       cursor: default;
-      color: $codeCommentsFg;
+      color: $borderBg;
       -webkit-user-select: none;
       user-select: none;
-    .code
-      flex: 1;
-      color: $codeFg;
-      // font-size: .75rem;
-      font-weight: 600;
-      line-height: 1.35;
-      padding: $borderRadius 1rem $borderRadius 0rem;
-      background-color: unset;
-      box-shadow: none;
-      .chunk
-        &.red
-          color: $red;
-        &.purple
-          color: $purple;
-        &.yellow
-          color: $yellow;
-        &.orange
-          color: $orange;
-        &.white
-          color: $white;
-        &.gray
-          color: $gray;
-        &.grayLight
-          color: $grayLight;
-        &.blue
-          color: $blue;
-        &.blueDark
-          color: $blueDark;
-        &.green
-          color: $green;
-        &.thin
-          font-weight: 400;
+      &-numbers
+        justify-content: flex-start;
+    .chunk
+      &.red
+        color: $red;
+      &.purple
+        color: $purple;
+      &.yellow
+        color: $yellow;
+      &.orange
+        color: $orange;
+      &.white
+        color: $white;
+      &.gray
+        color: $gray;
+      &.grayLight
+        color: $grayLight;
+      &.blue
+        color: $blue;
+      &.blueDark
+        color: $blueDark;
+      &.green
+        color: $green;
+      &.thin
+        font-weight: 400;
+.code
+  flex: 1;
+  color: $codeFg;
+  // font-size: .75rem;
+  font-weight: 600;
+  line-height: 1.35;
+  padding: $borderRadius 1rem;
+  background-color: unset;
+  box-shadow: none;
+  white-space: break-spaces;

@@ -9,17 +9,19 @@ type CodeLang = {
 }
 
 export type MultilangWindowProps = {
+  theme: 'dark' | 'light';
   codes: CodeLang[];
+  selected?: string;
 }
 
-export function MultilangWindow({ codes }: MultilangWindowProps) {
+export function MultilangWindow({ codes, theme, selected }: MultilangWindowProps) {
   const width = Math.max(...codes.map(c => Math.max(...c.code.map(c => c.length)))) + 1;
 
   const langsToCodes = codes.reduce(
     (res, { lang, code }) => ({ ...res, [lang]: code }),
     {} as { [lang: string]: string[] }
   );
-  const [lang, setLang] = useState(codes[0].lang);
+  const [lang, setLang] = useState(selected || codes[0].lang);
   const code = lang in langsToCodes ? langsToCodes[lang] : [''];
   const tabsMarkup = Object.keys(langsToCodes)
     .map((lg) => (
@@ -37,7 +39,7 @@ export function MultilangWindow({ codes }: MultilangWindowProps) {
       <div className="tabs">
         {tabsMarkup}
       </div>
-      <Window theme="dark" name="bash" showHeader={false}>
+      <Window theme={theme} name="bash" showHeader={false}>
         <WithBash>
           {codeMarkup}
         </WithBash>

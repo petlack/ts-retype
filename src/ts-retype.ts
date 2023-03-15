@@ -24,18 +24,18 @@ program
     '-c, --config [path]',
     'load config - if no path provided, loads .retyperc from current directory. if not set, use default config',
   )
+  .option('-e, --exclude [glob...]', 'glob patterns that will be ignored')
+  .option('-i, --include [glob...]', 'glob patterns that will be included in search')
+  .option('-j, --json <file-path>', 'JSON report file path. if not set, does not export JSON.')
+  .option(
+    '-g, --generate [file-path]',
+    'generate default config. if no path provided, creates .retyperc in the current directory',
+  )
+  .option('-n, --noHtml', 'if set, does not export HTML', false)
   .option(
     '-o, --output <file-path|dir-path>',
     'HTML report file path - if provided with directory, it will create index.html file inside',
     './retype-report.html',
-  )
-  .option('-n, --noHtml', 'if set, does not export HTML', false)
-  .option('-j, --json <file-path>', 'JSON report file path. if not set, does not export JSON.')
-  .option('-i, --include [glob...]', 'glob patterns that will be included in search')
-  .option('-x, --exclude [glob...]', 'glob patterns that will be ignored')
-  .option(
-    '-g, --generate [file-path]',
-    'generate default config. if no path provided, creates .retyperc in the current directory',
   );
 
 function parseOptions(): Partial<RetypeOptions> {

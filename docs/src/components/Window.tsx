@@ -2,7 +2,7 @@ export function WithLineNumbers({ children, start, lines }: { children: JSX.Elem
   const lineNos = [...Array(lines).keys()].map(i => i + start).join(' ');
   return (
     <>
-      <pre className="lines">
+      <pre className="lines lines-numbers">
         {lineNos}
       </pre>
       <Code>{children}</Code>

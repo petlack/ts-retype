@@ -1,22 +1,27 @@
 @import "../utils.styl"
 @import "../vars.styl"
 
-.tabs
-  flexRow(4px);
-  padding-left: $borderRadius;
-  padding-bottom: 8px;
-  // font-size: .66rem;
-  // border-bottom: 1px solid $headerBg;
-  // margin-top: 4px;
-  .tab
-    // background-color: $headerBg;
-    color: darken(white, 60);
-    padding: .5rem .5rem;
-    border-bottom-left-radius: "calc(%s / 2)" % $borderRadius;
-    border-bottom-right-radius: "calc(%s / 2)" % $borderRadius;
-    cursor: pointer;
-    &:hover
-      color: black;
-    &-active
-      color: black;
-      text-decoration: underline;
+.code
+  font-family: fontMono;
+.bash
+  color: white;
+  font-family: fontMono;
+  .lines
+    color: $grayLight;
+    padding-left: 1rem;
+    width: 2.5ch;
+  .tabs
+    flexRow(4px);
+    padding-left: $borderRadius;
+    padding-bottom: 8px;
+    .tab
+      color: darken(white, 60);
+      padding: .5rem .5rem;
+      border-bottom-left-radius: "calc(%s / 2)" % $borderRadius;
+      border-bottom-right-radius: "calc(%s / 2)" % $borderRadius;
+      cursor: pointer;
+      &:hover
+        color: black;
+      &-active
+        color: black;
+        text-decoration: underline;
