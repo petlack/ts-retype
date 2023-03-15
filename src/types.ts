@@ -1,11 +1,5 @@
-// export type Freq = {
-//   [k in string | number | symbol]: number;
-// };
-
 export interface Property {
-  // key: string;
   name: string;
-  // value: string;
   type: string;
   text?: string;
 }
@@ -41,12 +35,6 @@ export interface SourceCandidateType extends CandidateType {
   file: string;
 }
 
-// export type SourceFile = {
-//   pos: [number, number];
-//   lines: [number, number];
-//   file: string;
-// };
-
 export enum Similarity {
   Different = 0,
   HasSimilarProperties = 1,
@@ -78,25 +66,12 @@ export const DEFAULT_OPTIONS: RetypeConfig = {
   exclude: ['**/node_modules/**', '**/dist/**', '**/generated/**', '**/build/**'],
 };
 
-// export type ClusterOutput = {
-//   name: string;
-//   type: CandidateType['type'];
-//   files: SourceFile[];
-//   names: Freq;
-//   group: Similarity;
-//   properties?: LiteralCandidateType['properties'];
-//   parameters?: FunctionCandidateType['parameters'];
-//   returnType?: FunctionCandidateType['returnType'];
-//   members?: EnumCandidateType['members'];
-//   types?: UnionCandidateType['types'];
-// };
-
 export type TypeDuplicate = {
   files: {
     file: string;
     lines: [number, number];
     pos: [number, number];
-    type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
+    type: CandidateType['type'];
   }[];
   group: 'different' | 'renamed' | 'identical';
   names: {
@@ -112,8 +87,6 @@ export type TypeDuplicate = {
     name: string;
     type: string;
   }[];
-  // parameters?: Property[];
-  // properties?: Property[];
   returnType?: string;
   types?: string[];
 };

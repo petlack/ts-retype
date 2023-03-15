@@ -198,14 +198,6 @@ function chooseClusterFiles(
   }));
 }
 
-// function chooseClusterType(types: SourceCandidateType[], idxs: Iterable<number>) {
-//   return selectIndices(types, idxs)[0].type;
-// }
-
-// function chooseClusterName(types: SourceCandidateType[], idxs: Iterable<number>) {
-//   return selectIndices(types, idxs)[0].name;
-// }
-
 function propertyToOutput(prop: Property): Property {
   return {
     name: prop.name,
@@ -272,8 +264,6 @@ export function clustersToOutput(
         clusters.map((idxs) => ({
           names: chooseClusterNames(types, idxs),
           files: chooseClusterFiles(types, idxs, lengths),
-          // name: chooseClusterName(types, idxs),
-          // type: chooseClusterType(types, idxs),
           group: similarityToOutput(+group as Similarity),
           ...chooseTypeFeatures(types, idxs),
         })),
