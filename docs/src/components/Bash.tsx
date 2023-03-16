@@ -26,8 +26,8 @@ function parseBash(code: string): string {
 
 export function Bash({ children }: BashProps) {
   const tokens = toColorTokens(parseBash(children), 'light');
-  const childrenMarkup = tokens.map(([color, chunk], idx) => (
-    <span key={idx} className={`chunk ${color}`}>{chunk}</span>
+  const childrenMarkup = tokens.map(([[className], chunk], idx) => (
+    <span key={idx} className={`chunk ${className}`}>{chunk}</span>
   ));
   // const childrenMarkup = children.split('\n').map((line, idx) => <span key={idx}>{`${line}\n`}</span>);
   return (
