@@ -1,22 +1,9 @@
 export function WithLineNumbers({ children, start, lines }: { children: JSX.Element[], start: number, lines: number }) {
-  const lineNos = [...Array(lines).keys()].map(i => i + start).join(' ');
+  const lineNos = [...Array(lines).keys()].map(i => <span key={i}>{i + start}</span>);
   return (
     <>
       <pre className="lines lines-numbers">
         {lineNos}
-      </pre>
-      <Code>{children}</Code>
-    </>
-  );
-}
-
-export function WithBash({ children }: { children: WindowProps['children'] }) {
-  const linesCount = 'length' in children ? children.length : 1;
-  const lines = [...Array(linesCount).keys()].map(() => '$').join(' ');
-  return (
-    <>
-      <pre className="lines">
-        {lines}
       </pre>
       <Code>{children}</Code>
     </>

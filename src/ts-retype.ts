@@ -25,12 +25,12 @@ program
     'load config - if no path provided, loads .retyperc from current directory. if not set, use default config',
   )
   .option('-e, --exclude [glob...]', 'glob patterns that will be ignored')
-  .option('-i, --include [glob...]', 'glob patterns that will be included in search')
-  .option('-j, --json <file-path>', 'JSON report file path. if not set, does not export JSON.')
   .option(
     '-g, --generate [file-path]',
     'generate default config. if no path provided, creates .retyperc in the current directory',
   )
+  .option('-i, --include [glob...]', 'glob patterns that will be included in search')
+  .option('-j, --json <file-path>', 'JSON report file path. if not set, does not export JSON.')
   .option('-n, --noHtml', 'if set, does not export HTML', false)
   .option(
     '-o, --output <file-path|dir-path>',

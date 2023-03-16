@@ -1,62 +1,7 @@
-import { Window, Code, WithLineNumbers } from './Window';
+import { Window, WithLineNumbers } from './Window';
+import { toColorTokens } from '../format';
 
 import './Snippet.styl';
-
-const colorRegex = /\$[a-z]+\$/g;
-
-const themes = {
-  dark: {
-    com: 'gray thin',
-    typ: 'yellow',
-    var: 'yellow',
-    jbr: 'purple thin',
-    kew: 'purple',
-    awa: 'purple',
-    pun: 'white thin',
-    fun: 'blue',
-    bra: 'orange thin',
-    jkw: 'red',
-    lva: 'red',
-    w: 'white',
-  },
-  light: {
-    com: 'grayLight thin',
-    typ: 'green',
-    var: 'orange thin',
-    jbr: 'green thin',
-    kew: 'orange',
-    awa: 'purple',
-    pun: 'gray thin',
-    fun: 'purple',
-    bra: 'blueDark thin',
-    jkw: 'blueDark',
-    lva: 'blueDark thin',
-    w: 'white',
-  },
-};
-
-function toColorTokens(src: string, theme: 'light' | 'dark') {
-  const tokens = [];
-  let match;
-  let lastIndex = 0;
-  const result = [];
-  while ((match = colorRegex.exec(src))) {
-    tokens.push(match[0]);
-    result.push(src.slice(lastIndex, match.index));
-    lastIndex = match.index + match[0].length;
-  }
-  result.push(src.slice(lastIndex));
-
-  const colors = themes[theme];
-
-  const coloredTokens = [];
-
-  for (const [idx, token] of Object.entries(tokens)) {
-    const color = colors[(token.replaceAll('$', '') || 'w') as keyof typeof colors];
-    coloredTokens.push([color, result[+idx+1]]);
-  }
-  return coloredTokens;
-}
 
 export type SnippetProps = {
   start: number;
@@ -67,8 +12,8 @@ export type SnippetProps = {
 }
 
 export function Snippet({ start, name, code, theme, responsive = false }: SnippetProps) {
-  const codeMarkup = toColorTokens(code, theme).map(([color, chunk], idx) => (
-    <span key={idx} className={`chunk ${color}`}>{chunk}</span>
+  const codeMarkup = toColorTokens(code, theme).map(([[className], chunk], idx) => (
+    <span key={idx} className={`chunk ${className}`}>{chunk}</span>
   ));
   // const lines = [...Array(code.split('\n').length).keys()].map(i => i + start).join(' ');
   return (

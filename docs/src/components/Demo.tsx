@@ -1,7 +1,7 @@
 import { Snippet } from './Snippet';
-import { LiteralCluster } from '../../../vis/src/components/Cluster/LiteralCluster';
-import { TypeIcon } from '../../../vis/src/components/Cluster/TypeIcon';
-import { NamesListing } from '../../../vis/src/components/Cluster/NamesListing';
+// import { LiteralCluster } from '../../../vis/src/components/Cluster/LiteralCluster';
+// import { TypeIcon } from '../../../vis/src/components/Cluster/TypeIcon';
+// import { NamesListing } from '../../../vis/src/components/Cluster/NamesListing';
 import { Logo } from './Logo';
 import { MultilangWindow } from './MultilangWindow';
 import './Demo.styl';
@@ -31,7 +31,7 @@ $com$// ...`
 const exampleThree = {
   name: 'src/api.ts',
   code: `$com$// ...
-$kew$async function $fun$saveUser$bra$(
+$awa$async $kew$function $fun$saveUser$bra$(
   $jkw$user$pun$: $jbr$\{
     $jkw$displayName$pun$: $typ$string$pun$,
     $jkw$email$pun$: $typ$string$pun$,
@@ -47,40 +47,40 @@ const theme = 'light';
 // const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 export function Demo() {
-  const contentMarkupx = (
-    <div className="similarity">
-      <LiteralCluster
-        type="interface"
-        files={[
-          { file: 'src/model/user.ts', lines: [12, 16], pos: [0, 0], type: 'alias' },
-          { file: 'src/auth-module/auth.ts', lines: [42, 46], pos: [0, 0], type: 'interface' },
-          { file: 'src/api-module/user.ts', lines: [76, 83], pos: [0, 0], type: 'literal' },
-          { file: 'src/model/user.ts', lines: [12, 16], pos: [0, 0], type: 'alias' },
-          { file: 'src/auth-module/auth.ts', lines: [42, 46], pos: [0, 0], type: 'interface' },
-          { file: 'src/api-module/user.ts', lines: [76, 83], pos: [0, 0], type: 'literal' },
-          { file: 'src/model/user.ts', lines: [12, 16], pos: [0, 0], type: 'alias' },
-          { file: 'src/auth-module/auth.ts', lines: [42, 46], pos: [0, 0], type: 'interface' },
-          { file: 'src/api-module/user.ts', lines: [76, 83], pos: [0, 0], type: 'literal' },
-        ]}
-        name="IUser"
-        names={{ User: 1, IUser: 1, anonymous: 1 }}
-        group="Identical"
-        pos={[0, 10]}
-        properties={[
-          { key: 'displayName', value: 'string', type: 'StringKeyword' },
-          { key: 'email', value: 'string', type: 'StringKeyword' },
-          { key: 'password', value: 'string', type: 'StringKeyword' },
-        ]}
-        query=""
-      />
-      <div className="cluster">
-        <div className="title">
-          <TypeIcon type={'function'} />
-          <NamesListing names={{ ParseFn: 1 }} query="" />
-        </div>
-      </div>
-    </div>
-  );
+  // const contentMarkupx = (
+  //   <div className="similarity">
+  //     <LiteralCluster
+  //       type="interface"
+  //       files={[
+  //         { file: 'src/model/user.ts', lines: [12, 16], pos: [0, 0], type: 'alias' },
+  //         { file: 'src/auth-module/auth.ts', lines: [42, 46], pos: [0, 0], type: 'interface' },
+  //         { file: 'src/api-module/user.ts', lines: [76, 83], pos: [0, 0], type: 'literal' },
+  //         { file: 'src/model/user.ts', lines: [12, 16], pos: [0, 0], type: 'alias' },
+  //         { file: 'src/auth-module/auth.ts', lines: [42, 46], pos: [0, 0], type: 'interface' },
+  //         { file: 'src/api-module/user.ts', lines: [76, 83], pos: [0, 0], type: 'literal' },
+  //         { file: 'src/model/user.ts', lines: [12, 16], pos: [0, 0], type: 'alias' },
+  //         { file: 'src/auth-module/auth.ts', lines: [42, 46], pos: [0, 0], type: 'interface' },
+  //         { file: 'src/api-module/user.ts', lines: [76, 83], pos: [0, 0], type: 'literal' },
+  //       ]}
+  //       name="IUser"
+  //       names={{ User: 1, IUser: 1, anonymous: 1 }}
+  //       group="Identical"
+  //       pos={[0, 10]}
+  //       properties={[
+  //         { key: 'displayName', value: 'string', type: 'StringKeyword' },
+  //         { key: 'email', value: 'string', type: 'StringKeyword' },
+  //         { key: 'password', value: 'string', type: 'StringKeyword' },
+  //       ]}
+  //       query=""
+  //     />
+  //     <div className="cluster">
+  //       <div className="title">
+  //         <TypeIcon type={'function'} />
+  //         <NamesListing names={{ ParseFn: 1 }} query="" />
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 
   const contentMarkup = (
     <div className="similarity">

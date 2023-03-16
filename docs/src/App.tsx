@@ -1,8 +1,10 @@
 import { Demo } from './components/Demo';
 import { MultilangWindow } from './components/MultilangWindow';
-import { Code, Window, WithBash } from './components/Window';
+import { Code, Window } from './components/Window';
 import './App.styl';
 import { Options } from './components/Options';
+import { Bash } from './components/Bash';
+import { JsTsCode } from './components/JsTsCode';
 
 export default function App() {
   return (
@@ -40,13 +42,7 @@ export default function App() {
           ]}
         />
         <p>Then open the report HTML file (this file is self contained and offline)</p>
-        <div className="bash">
-          <Window theme="light" name="bash" showHeader={false}>
-            <WithBash>
-              <span>{'open retype-report.html'}</span>
-            </WithBash>
-          </Window>
-        </div>
+        <Bash>{'open retype-report.html'}</Bash>
       </section>
 
       <section>
@@ -69,54 +65,92 @@ export default function App() {
             { short: 'o', long: 'output', args: '<path>', desc: 'HTML report file path - if provided with directory, it will create index.html file' },
           ]}
         />
-        <p>Or by using .retyperc</p>
-        <Code>
-          <span>
-            {
-              `{
-  "output": "./retype-report.html",
-  "include": ["**/*.{ts,tsx}"],
-  "exclude": ["**/node_modules/**", "**/dist/**", "**/generated/**", "**/build/**"]
+        <p>Or by using the <strong>--config</strong> option and providing path to config .retyperc</p>
+        <Bash>
+          {
+            `# generate .retyperc in the current directory
+ts-retype -g
+# run ts-retype using .retyperc in the current directory
+ts-retype -c .`
+          }
+        </Bash>
+        <p>An example of a <strong>.retyperc</strong> file</p>
+        <JsTsCode>
+          {
+            `$bra$\{
+  $var$"output"$gen$: $str$"./retype-report.html"$gen$,
+  $var$"include"$gen$: [$str$"**/*.{ts,tsx}"$gen$],
+  $var$"exclude"$gen$: [$str$"**/node_modules/**"$gen$, $str$"**/dist/**"$gen$]
 }`
-            }  
-          </span>
-        </Code>
+          }  
+        </JsTsCode>
         <p>You can also run it programatically, using ts-retype package.</p>
+        <JsTsCode>
+          {
+            `$kew$import $bra$\{ $gen$findDuplicateTypes, TypeDuplicate $bra$} $kew$from $str$'ts-retype'$gen$;
 
+$kew$const $var$duplicates$gen$: $fun$TypeDuplicate$bra$[] $kew$= $kew$await $fun$findDuplicateTypes$bra$({
+  $jkw$exclude$pun$: $bra$[$str$'**/node_modules/**'$pun$, $str$'**/dist/**'$bra$]$pun$,
+  $jkw$include$pun$: $bra$[$str$'**/*.{ts,tsx}'$bra$],
+  $jkw$project$pun$: $str$'/path/to/project'$pun$,
+$bra$})$pun$;
 
-        <Code>
-          <span>
-            {
-              `type ClusterOutput = {
-  name: string;
-  files: {
-    pos: [number, number];
-    lines: number[];
-    file: string;
-    type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
+$kew$for $bra$($kew$const $var$dup $kew$of $var$duplicates$bra$) {
+  $var$console$pun$.$fun$log$bra$($var$dup$pun$.$lva$group, $var$dup$pun$.$lva$names, $var$dup$pun$.$lva$files$pun$);
+$bra$}`
+          }
+        </JsTsCode>
+        <p>The return type is an array of <strong>TypeDuplicate</strong></p>
+        <JsTsCode>
+          {
+            `$kew$type $fun$TypeDuplicate $gen$= {
+  $var$files$gen$: {
+    $var$file$gen$: $str$string$gen$;
+    $var$lines$gen$: [$str$number$gen$, $str$number$gen$];
+    $var$type$gen$: $str$'interface' $gen$| $str$'literal' $gen$| $str$'alias' $gen$| $str$'function' $gen$| $str$'enum' $gen$| $str$'union'$gen$;
   }[];
-  names: { [name: string]: number };
-  group:
-    0 | // different types
-    3 | // renamed types
-    4;  // identical types
-  properties?: {
-    key: string;
-    value: string;
-    type: string;
+  $var$group$gen$: $str$'different' $gen$| $str$'renamed' $gen$| $str$'identical'$gen$;
+  $var$names$gen$: {
+    $var$count$gen$: $str$number$gen$;
+    $var$name$gen$: $str$string$gen$;
   }[];
-  parameters?: {
-    key: string;
-    value: string;
-    type: string;
+  $var$members$kew$?$gen$: $str$string$gen$[];
+  $var$parameters$kew$?$gen$: {
+    $var$name$gen$: $str$string$gen$;
+    $var$type$gen$: $str$string$gen$;
   }[];
-  returnType?: string;
-  members?: string[];
-  types?: string[];
+  $var$properties$kew$?$gen$: {
+    $var$name$gen$: $str$string$gen$;
+    $var$type$gen$: $str$string$gen$;
+  }[];
+  $var$returnType$kew$?$gen$: $str$string$gen$;
+  $var$types$kew$?$gen$: $str$string[]$gen$;
 }`
-            }
-          </span>
-        </Code>
+          }
+        </JsTsCode>
+        <p>An example for the snippets in the landing page would look like this</p>
+        <JsTsCode>
+          {
+            `$kew$const $var$duplicate$gen$: $fun$TypeDuplicate $gen$= {
+  $var$files$gen$: [
+    { $var$file$gen$: $str$'src/model.ts'$gen$, $var$lines$gen$: [12, 16], $var$type$gen$: $str$'alias'$gen$ },
+    { $var$file$gen$: $str$'src/auth.ts'$gen$, $var$lines$gen$: [42, 46], $var$type$gen$: $str$'interface'$gen$ },
+    { $var$file$gen$: $str$'src/api.ts'$gen$, $var$lines$gen$: [76, 83], $var$type$gen$: $str$'literal'$gen$ },
+  ],
+  $var$group$gen$: 'renamed',
+  $var$names$gen$: [
+    { $var$name$gen$: $str$'IUser'$gen$, $var$count$gen$: 1 },
+    { $var$name$gen$: $str$'User'$gen$, $var$count$gen$: 1 },
+    { $var$name$gen$: $str$'anonymous'$gen$, $var$count$gen$: 1 },
+  ],
+  $var$properties$gen$: [
+    { $var$name$gen$: $str$'displayName'$gen$, $var$type$gen$: $str$'string'$gen$ },
+    { $var$name$gen$: $str$'email'$gen$, $var$type$gen$: $str$'string'$gen$ },
+    { $var$name$gen$: $str$'password'$gen$, $var$type$gen$: $str$'string'$gen$ },
+  ]
+}`
+          }
+        </JsTsCode>
       </section>
 
       <section>

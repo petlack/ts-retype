@@ -24,10 +24,10 @@ $editorFontMinOutWidth = 777px;
 
 .window
   &.light
-    --clr-codeBg: #f5f4f2;
+    --clr-codeBg: hsl(40deg 22% 98%);
     --clr-codeFg: black;
     --clr-headerBg: $yellowLight;
-    --clr-borderBg: #d1cdc7;
+    --clr-borderBg: hsl(36deg 10% 87%);
     // --clr-boxShadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     --clr-boxShadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     --clr-codeCommentsFg: $grayLight;
@@ -86,9 +86,9 @@ $editorFontMinOutWidth = 777px;
     background-color: unset;
     
     .lines
-      flexRow();
-      align-items: center;
-      justify-content: flex-end;
+      flexColumn();
+      align-items: flex-end;
+      justify-content: center;
       // font-size: .66rem;
       line-height: 1.35;
       white-space: break-spaces;
@@ -102,26 +102,28 @@ $editorFontMinOutWidth = 777px;
       &-numbers
         justify-content: flex-start;
     .chunk
-      &.red
-        color: $red;
-      &.purple
-        color: $purple;
-      &.yellow
-        color: $yellow;
-      &.orange
-        color: $orange;
-      &.white
-        color: $white;
-      &.gray
-        color: $gray;
-      &.grayLight
-        color: $grayLight;
+      &.black
+        color: $black;
       &.blue
         color: $blue;
       &.blueDark
         color: $blueDark;
+      &.gray
+        color: $gray;
+      &.grayLight
+        color: $grayLight;
       &.green
         color: $green;
+      &.orange
+        color: $orange;
+      &.purple
+        color: $purple;
+      &.red
+        color: $red;
+      &.white
+        color: $white;
+      &.yellow
+        color: $yellow;
       &.thin
         font-weight: 400;
 .code
@@ -130,7 +132,7 @@ $editorFontMinOutWidth = 777px;
   // font-size: .75rem;
   font-weight: 600;
   line-height: 1.35;
-  padding: $borderRadius 1rem;
+  padding: $borderRadius .75em $borderRadius 1em;
   background-color: unset;
   box-shadow: none;
   white-space: break-spaces;

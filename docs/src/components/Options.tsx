@@ -5,11 +5,25 @@ export type OptionsProps = {
 }
 
 export function Options({ options }: OptionsProps) {
-  const optionsMarkup = options.map(option => (
-    <>
-      <li className="options-item options-item-name">-{option.short}, --{option.long} {option.args}</li>
-      <li className="options-item options-item-desc">{option.desc}</li>
-    </>
+  const optionsFlat = options.reduce((res, option) => (
+    [
+      ...res,
+      {
+        key: option.short,
+        className: 'name',
+        title: `-${option.short}, --${option.long} ${option.args}`,
+      },
+      {
+        key: option.long,
+        className: 'desc',
+        title: option.desc,
+      },
+    ]
+  ), [] as { key: string, className: string, title: string }[]);
+  const optionsMarkup = optionsFlat.map(({ key, title, className }) => (
+    <li key={key} className={`options-item options-item-${className}`}>
+      {title}
+    </li>
   ));
   return (
     <ul className="options">

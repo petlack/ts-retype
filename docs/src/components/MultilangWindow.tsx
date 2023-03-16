@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Window, WithBash } from './Window';
+import { Window } from './Window';
 
 import './MultilangWindow.styl';
+import { WithBash } from './Bash';
 
 type CodeLang = {
   lang: string;
