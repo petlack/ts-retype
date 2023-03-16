@@ -46,7 +46,7 @@ export default function App() {
       </section>
 
       <section>
-        <h2>Docs</h2>
+        <h2>CLI</h2>
         <p>CLI options are as following</p>
         <p>Configuration can be done by either CLI options</p>
         <div className="bash">
@@ -84,6 +84,9 @@ ts-retype -c .`
 }`
           }  
         </JsTsCode>
+      </section>
+      <section>
+        <h2>ts-retype</h2>
         <p>You can also run it programatically, using ts-retype package.</p>
         <JsTsCode>
           {
