@@ -87,9 +87,9 @@ ts-retype -c .`
         <p>You can also run it programatically, using ts-retype package.</p>
         <JsTsCode>
           {
-            `$kew$import $bra$\{ $gen$findDuplicateTypes, TypeDuplicate $bra$} $kew$from $str$'ts-retype'$gen$;
+            `$kew$import $bra$\{ $gen$findDuplicateTypes $bra$} $kew$from $str$'ts-retype'$gen$;
 
-$kew$const $var$duplicates$gen$: $fun$TypeDuplicate$bra$[] $kew$= $kew$await $fun$findDuplicateTypes$bra$({
+$kew$const $var$duplicates $kew$= $kew$await $fun$findDuplicateTypes$bra$({
   $jkw$exclude$pun$: $bra$[$str$'**/node_modules/**'$pun$, $str$'**/dist/**'$bra$]$pun$,
   $jkw$include$pun$: $bra$[$str$'**/*.{ts,tsx}'$bra$],
   $jkw$project$pun$: $str$'/path/to/project'$pun$,
@@ -100,7 +100,18 @@ $kew$for $bra$($kew$const $var$dup $kew$of $var$duplicates$bra$) {
 $bra$}`
           }
         </JsTsCode>
-        <p>The return type is an array of <strong>TypeDuplicate</strong></p>
+        <p>The input for <strong>findDuplicateTypes</strong> is of type <strong>RetypeArgs</strong></p>
+        <JsTsCode>
+          {`$kew$type $fun$RetypeArgs$gen$ = {
+  $var$exclude$gen$: $str$string$gen$[];
+  $var$include$gen$: $str$string$gen$[];
+  $var$output$gen$: $str$string$gen$;
+  $var$project$gen$: $str$string$gen$;
+  $var$json$gen$?: $str$string$gen$;
+  $var$noHtml$gen$?: $str$boolean$gen$;
+}`}
+        </JsTsCode>
+        <p>The return type of <strong>findDuplicateTypes</strong> is an array of <strong>TypeDuplicate</strong></p>
         <JsTsCode>
           {
             `$kew$type $fun$TypeDuplicate $gen$= {
