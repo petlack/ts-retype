@@ -5,6 +5,7 @@ $menuInactiveFg = var(--clr-menuInactiveFg);
 $menuActiveFg = var(--clr-menuActiveFg);
 $menuHoverFg = var(--clr-menuHoverFg);
 $bgColor = var(--clr-bgColor);
+$bgBorderColor = var(--clr-bgBorderColor);
 $fgColor = var(--clr-fgColor);
 $boxShadow = var(--clr-boxShadow);
 $codeKeyFg = var(--clr-codeKeyFg);
@@ -25,7 +26,8 @@ lightTheme()
   --clr-menuInactiveFg: gray;
   --clr-menuActiveFg: black;
   --clr-menuHoverFg: black;
-  --clr-bgColor: #e2e6e7;
+  --clr-bgColor: #f2f5f6;
+  --clr-bgBorderColor: #e0e4e5;
   --clr-fgColor: black;
   --clr-boxShadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   --clr-card-bg: white;
@@ -44,6 +46,7 @@ darkTheme()
   --clr-menuActiveFg: white;
   --clr-menuHoverFg: white;
   --clr-bgColor: #1d2e32;
+  --clr-borderBgColor: #1d2e32;
   --clr-fgColor: white;
   --clr-boxShadow: rgb(0 10 23 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px;
   --clr-fg: #dbdbdb;
@@ -64,8 +67,9 @@ darkTheme()
   align-items: center;
   // justify-content: center;
   background-color: $bgColor;
+  border-bottom: 1px solid $bgBorderColor;
   color: $fgColor;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   .strip
     position: absolute;
     inset: 0;
@@ -253,10 +257,10 @@ darkTheme()
           &-secondary
             background-color: transparent;
             color: #313131;
-            border: 1px solid currentColor;
+            border: 1px solid lighten(#313131, 40);
             &:hover
               // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-              background-color: #f3f3f3;
+              background-color: $codeBgLight;
 
 
     

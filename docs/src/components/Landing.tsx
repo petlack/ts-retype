@@ -1,10 +1,7 @@
-import { Snippet } from './Snippet';
-// import { LiteralCluster } from '../../../vis/src/components/Cluster/LiteralCluster';
-// import { TypeIcon } from '../../../vis/src/components/Cluster/TypeIcon';
-// import { NamesListing } from '../../../vis/src/components/Cluster/NamesListing';
-import { Logo } from './Logo';
 import { MultilangWindow } from './MultilangWindow';
-import './Demo.styl';
+import { Logo } from './Logo';
+import { Snippet } from './Snippet';
+import './Landing.styl';
 
 const exampleOne = {
   name: 'src/model.ts',
@@ -46,7 +43,7 @@ const theme = 'light';
 // const theme = 'dark';
 // const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-export function Demo() {
+export function Landing() {
   // const contentMarkupx = (
   //   <div className="similarity">
   //     <LiteralCluster

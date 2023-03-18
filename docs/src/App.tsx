@@ -1,4 +1,4 @@
-import { Demo } from './components/Demo';
+import { Landing } from './components/Landing';
 import { MultilangWindow } from './components/MultilangWindow';
 import { Code, Window } from './components/Window';
 import './App.styl';
@@ -10,7 +10,7 @@ export default function App() {
   return (
     <main>
       <section className="bleed">
-        <Demo />
+        <Landing />
       </section>
       <section>
         <h2>Install</h2>
@@ -114,6 +114,29 @@ $bra$}`
   $var$noHtml$gen$?: $str$boolean$gen$;
 }`}
         </JsTsCode>
+        <p>An example for the snippets in the landing page would look like this</p>
+        <JsTsCode>
+          {
+            `$kew$const $var$duplicate$gen$: $fun$TypeDuplicate $gen$= {
+  $var$files$gen$: [
+    { $var$file$gen$: $str$'src/model.ts'$gen$, $var$lines$gen$: [12, 16], $var$type$gen$: $str$'alias'$gen$ },
+    { $var$file$gen$: $str$'src/auth.ts'$gen$, $var$lines$gen$: [42, 46], $var$type$gen$: $str$'interface'$gen$ },
+    { $var$file$gen$: $str$'src/api.ts'$gen$, $var$lines$gen$: [76, 83], $var$type$gen$: $str$'literal'$gen$ },
+  ],
+  $var$group$gen$: 'renamed',
+  $var$names$gen$: [
+    { $var$name$gen$: $str$'IUser'$gen$, $var$count$gen$: 1 },
+    { $var$name$gen$: $str$'User'$gen$, $var$count$gen$: 1 },
+    { $var$name$gen$: $str$'anonymous'$gen$, $var$count$gen$: 1 },
+  ],
+  $var$properties$gen$: [
+    { $var$name$gen$: $str$'displayName'$gen$, $var$type$gen$: $str$'string'$gen$ },
+    { $var$name$gen$: $str$'email'$gen$, $var$type$gen$: $str$'string'$gen$ },
+    { $var$name$gen$: $str$'password'$gen$, $var$type$gen$: $str$'string'$gen$ },
+  ]
+}`
+          }
+        </JsTsCode>
         <p>The return type of <strong>findDuplicateTypes</strong> is an array of <strong>TypeDuplicate</strong></p>
         <JsTsCode>
           {
@@ -139,29 +162,6 @@ $bra$}`
   }[];
   $var$returnType$kew$?$gen$: $str$string$gen$;
   $var$types$kew$?$gen$: $str$string[]$gen$;
-}`
-          }
-        </JsTsCode>
-        <p>An example for the snippets in the landing page would look like this</p>
-        <JsTsCode>
-          {
-            `$kew$const $var$duplicate$gen$: $fun$TypeDuplicate $gen$= {
-  $var$files$gen$: [
-    { $var$file$gen$: $str$'src/model.ts'$gen$, $var$lines$gen$: [12, 16], $var$type$gen$: $str$'alias'$gen$ },
-    { $var$file$gen$: $str$'src/auth.ts'$gen$, $var$lines$gen$: [42, 46], $var$type$gen$: $str$'interface'$gen$ },
-    { $var$file$gen$: $str$'src/api.ts'$gen$, $var$lines$gen$: [76, 83], $var$type$gen$: $str$'literal'$gen$ },
-  ],
-  $var$group$gen$: 'renamed',
-  $var$names$gen$: [
-    { $var$name$gen$: $str$'IUser'$gen$, $var$count$gen$: 1 },
-    { $var$name$gen$: $str$'User'$gen$, $var$count$gen$: 1 },
-    { $var$name$gen$: $str$'anonymous'$gen$, $var$count$gen$: 1 },
-  ],
-  $var$properties$gen$: [
-    { $var$name$gen$: $str$'displayName'$gen$, $var$type$gen$: $str$'string'$gen$ },
-    { $var$name$gen$: $str$'email'$gen$, $var$type$gen$: $str$'string'$gen$ },
-    { $var$name$gen$: $str$'password'$gen$, $var$type$gen$: $str$'string'$gen$ },
-  ]
 }`
           }
         </JsTsCode>
