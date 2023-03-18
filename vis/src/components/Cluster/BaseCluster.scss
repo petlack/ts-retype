@@ -13,9 +13,9 @@
   // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 2em;
   border-radius: 8px;
-  border: 1px solid var(--clr-card-bg-border);
-  background-color: var(--clr-card-bg);
-  color: var(--clr-fg);
+  border: 1px solid var(--clr-bgBorder);
+  background-color: var(--clr-bgSecondary);
+  color: var(--clr-fgText);
   column-gap: 2em;
   row-gap: 1em;
   grid-template-areas:
@@ -27,7 +27,7 @@
   position: relative;
 
   h3 {
-    color: var(--clr-card-title-fg);
+    color: var(--clr-fgText);
     font-weight: 400;
     font-size: 1rem;
   }
@@ -45,6 +45,7 @@
     place-content: start;
     place-items: start;
     h2 {
+      color: var(--clr-fgTitle);
       grid-area: title;
       display: flex;
       line-height: 2;
@@ -67,10 +68,10 @@
     .pre {
       /* background-color: #f0fafa; */
       /* background-image: linear-gradient(to left bottom, #f0fafa, #ecf9f9, #e9f7f7, #e5f6f6, #e1f4f4); */
-      background-color: var(--clr-code-bg);
-      color: var(--clr-code-fg);
+      background-color: var(--clr-bgMain);
+      color: var(--clr-fgText);
       padding: 0.5em 1em;
-      border: 1px solid var(--clr-code-border);
+      border: 1px solid var(--clr-bgBorder);
       border-radius: 4px;
     }
 

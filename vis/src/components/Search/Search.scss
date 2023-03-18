@@ -9,19 +9,19 @@
     // background-color: hsla(185, 30%, 90%);
     border: 0px;
     // border-radius: 8px;
-    color: black;
+    color: var(--clr-fgText);
     font-family: monospace;
     font-size: 1.2rem;
     padding: 1rem 1rem;
-    border-bottom: 1px solid hsla(185, 30%, 90%);
+    border-bottom: 1px solid var(--clr-bgBorder);
     transition: background-color 150ms ease-in;
     
     &::placeholder {
-      color: black;
-      opacity: 0.8;
+      color: var(--clr-fgText);
+      opacity: 0.6;
     }
     &:focus {
-      background-color: hsl(185deg 12% 98%);
+      background-color: var(--clr-bgBorder);
       outline: none;
     }
   
@@ -32,9 +32,9 @@
     // left: 2rem;
     // top: 0;
     // bottom: 0;
-    color: black;
-    background-color: hsl(185deg 14% 96%);
-    border: 1px solid hsl(185deg 14% 90%);
+    color: var(--clr-fgText);
+    background-color: var(--clr-bgSecondary);
+    border: 1px solid var(--clr-bgBorder);
     border-radius: 8px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -46,7 +46,7 @@
 
     &:hover {
       outline: none;
-      background-color: hsl(185deg 14% 99%);
+      background-color: var(--clr-bgBorder);
     }
   }
 }

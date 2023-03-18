@@ -2,7 +2,9 @@
 @import "./vars.styl"
 
 $bgMain = var(--clr-bgMain);
+$bgSecondary = var(--clr-bgSecondary);
 $fgText = var(--clr-fgText);
+$fgTitle = var(--clr-fgTitle);
 $bgCode = var(--clr-bgCode);
 
 $sectionMaxWidth = 800px;
@@ -10,13 +12,19 @@ $sectionMinWidth = 320px;
 
 lightTheme()
   --clr-bgMain: $bgColorMainLight;
+  --clr-bgSecondary: $bgColorSecondaryLight;
+  --clr-bgBorder: $bgBorderLight;
   --clr-fgText: $textLight;
+  --clr-fgTitle: $titleLight;
   --clr-bgCode: $codeBgMainLight;
   --clr-bgBorder: $bgBorderLight;
 
 darkTheme()
   --clr-bgMain: $bgColorMainDark;
+  --clr-bgSecondary: $bgColorSecondaryDark;
+  --clr-bgBorder: $bgBorderDark;
   --clr-fgText: $textDark;
+  --clr-fgTitle: $titleDark;
   --clr-bgCode: $codeBgMainDark;
   --clr-bgBorder: $bgBorderDark;
 
