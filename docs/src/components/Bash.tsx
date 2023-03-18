@@ -3,6 +3,7 @@ import { Code, Window, WindowProps } from './Window';
 
 export type BashProps = {
   children: string;
+  theme: 'dark' | 'light';
 }
 
 export function WithBash({ children }: { children: WindowProps['children'] }) {
@@ -24,15 +25,15 @@ function parseBash(code: string): string {
   return lines.join('\n');
 }
 
-export function Bash({ children }: BashProps) {
-  const tokens = toColorTokens(parseBash(children), 'light');
+export function Bash({ children, theme }: BashProps) {
+  const tokens = toColorTokens(parseBash(children), theme);
   const childrenMarkup = tokens.map(([[className], chunk], idx) => (
     <span key={idx} className={`chunk ${className}`}>{chunk}</span>
   ));
   // const childrenMarkup = children.split('\n').map((line, idx) => <span key={idx}>{`${line}\n`}</span>);
   return (
     <div className="bash">
-      <Window theme="light" name="bash" showHeader={false}>
+      <Window theme={theme} name="bash" showHeader={false}>
         <WithBash>
           {childrenMarkup}
         </WithBash>

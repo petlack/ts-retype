@@ -5,8 +5,11 @@ $menuInactiveFg = var(--clr-menuInactiveFg);
 $menuActiveFg = var(--clr-menuActiveFg);
 $menuHoverFg = var(--clr-menuHoverFg);
 $bgColor = var(--clr-bgColor);
+$codeBg = var(--clr-codeBg);
 $bgBorderColor = var(--clr-bgBorderColor);
 $fgColor = var(--clr-fgColor);
+$title = var(--clr-title);
+$text = var(--clr-text);
 $boxShadow = var(--clr-boxShadow);
 $codeKeyFg = var(--clr-codeKeyFg);
 $codeValueFg = var(--clr-codeValueFg);
@@ -21,14 +24,17 @@ $titleFontMaxOutWidth = 1368px;
 $titleFontMinOutWidth = 842px;
 
 lightTheme()
+  --clr-codeBg: $codeBgMainLight;
   --clr-codeKeyFg: $blueDark;
   --clr-codeValueFg: $green;
   --clr-menuInactiveFg: gray;
   --clr-menuActiveFg: black;
   --clr-menuHoverFg: black;
-  --clr-bgColor: #f2f5f6;
-  --clr-bgBorderColor: #e0e4e5;
+  --clr-bgColor: $bgColorLandingLight;
+  --clr-bgBorderColor: $bgBorderLight;
   --clr-fgColor: black;
+  --clr-title: #101010;
+  --clr-text: #313131;
   --clr-boxShadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   --clr-card-bg: white;
   --clr-code-bg: #e8eff1;
@@ -40,14 +46,17 @@ lightTheme()
   --clr-card-badge-bg: $bgColor; 
 
 darkTheme()
+  --clr-codeBg: $codeBgMainDark;
   --clr-codeKeyFg: $red;
   --clr-codeValueFg: $yellow;
   --clr-menuInactiveFg: lightgray;
   --clr-menuActiveFg: white;
   --clr-menuHoverFg: white;
-  --clr-bgColor: #1d2e32;
-  --clr-borderBgColor: #1d2e32;
+  --clr-bgColor: $bgColorLandingDark;
+  --clr-borderBgColor: $bgBorderDark;
   --clr-fgColor: white;
+  --clr-title: $titleDark;
+  --clr-text: $textDark;
   --clr-boxShadow: rgb(0 10 23 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px;
   --clr-fg: #dbdbdb;
   --clr-bgaa-400: #213237;
@@ -69,6 +78,8 @@ darkTheme()
   background-color: $bgColor;
   border-bottom: 1px solid $bgBorderColor;
   color: $fgColor;
+  .window
+    background-color: $codeBg;
   // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   .strip
     position: absolute;
@@ -183,8 +194,9 @@ darkTheme()
         width: 20ch;
         font-weight: 500;
         font-family: fontTitle;
+        color: $title;
         // color: #29474f;
-        color: #101010;
+        color: $clrTitle;
         margin-bottom: .5rem;
         display: flex;
 
@@ -202,7 +214,7 @@ darkTheme()
         font-weight: 400;
         opacity: 0.8;
         line-height: 1.5;
-        color: #313131;
+        color: $text;
         display: flex;
 
         @media screen and (max-width: $breakDescCTA)

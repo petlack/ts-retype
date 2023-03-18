@@ -39,11 +39,11 @@ $bra$}
 $com$// ...`
 };
 
-const theme = 'light';
-// const theme = 'dark';
-// const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+export type LandingProps = {
+  theme: 'dark' | 'light';
+}
 
-export function Landing() {
+export function Landing({ theme }: LandingProps) {
   // const contentMarkupx = (
   //   <div className="similarity">
   //     <LiteralCluster
@@ -115,7 +115,7 @@ export function Landing() {
 
         <div className="code-install">
           <MultilangWindow
-            theme="dark"
+            theme={{ dark: 'light', light: 'dark' }[theme] as 'dark' | 'light'}
             selected="npx"
             codes={[
               { code: ['npm add -D ts-retype'], lang: 'npm' },

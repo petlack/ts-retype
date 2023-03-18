@@ -14,6 +14,8 @@ const defaultThemes = {
     jkw: ['red'],
     lva: ['red'],
     w: ['white'],
+    gen: ['white'],
+    str: ['green', 'thin'],
   },
   light: {
     com: ['grayLight', 'thin'],

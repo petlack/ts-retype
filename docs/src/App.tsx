@@ -6,17 +6,21 @@ import { Options } from './components/Options';
 import { Bash } from './components/Bash';
 import { JsTsCode } from './components/JsTsCode';
 
+// const theme = 'light';
+const theme = 'dark';
+// const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
 export default function App() {
   return (
-    <main>
+    <main className={theme}>
       <section className="bleed">
-        <Landing />
+        <Landing theme={theme} />
       </section>
       <section>
         <h2>Install</h2>
         <p>Install as a dev dependency</p>
         <MultilangWindow
-          theme="light"
+          theme={theme}
           codes={[
             { lang: 'npm', code: ['npm add -D ts-retype'] },
             { lang: 'yarn', code: ['yarn add -D ts-retype'] },
@@ -24,7 +28,7 @@ export default function App() {
         />
         <p>or install globally</p>
         <MultilangWindow
-          theme="light"
+          theme={theme}
           codes={[
             { lang: 'npm', code: ['npm install -g ts-retype'] },
             { lang: 'yarn', code: ['yarn add global ts-retype'] },
@@ -35,14 +39,14 @@ export default function App() {
         <h2>Usage</h2>
         <p>To create a report for your project, run</p>
         <MultilangWindow
-          theme="light"
+          theme={theme}
           codes={[
             { lang: 'bash', code: ['ts-retype .'] },
             { lang: 'npx', code: ['npx ts-retype .'] },
           ]}
         />
         <p>Then open the report HTML file (this file is self contained and offline)</p>
-        <Bash>{'open retype-report.html'}</Bash>
+        <Bash theme={theme}>{'open retype-report.html'}</Bash>
       </section>
 
       <section>
@@ -50,7 +54,7 @@ export default function App() {
         <p>CLI options are as following</p>
         <p>Configuration can be done by either CLI options</p>
         <div className="bash">
-          <Window theme="light" name="bash" showHeader={false}>
+          <Window theme={theme} name="bash" showHeader={false}>
             <Code><span>{'ts-retype [options] <path-to-project>'}</span></Code>
           </Window>
         </div>
@@ -66,7 +70,7 @@ export default function App() {
           ]}
         />
         <p>Or by using the <strong>--config</strong> option and providing path to config .retyperc</p>
-        <Bash>
+        <Bash theme={theme}>
           {
             `# generate .retyperc in the current directory
 ts-retype -g
@@ -75,7 +79,7 @@ ts-retype -c .`
           }
         </Bash>
         <p>An example of a <strong>.retyperc</strong> file</p>
-        <JsTsCode>
+        <JsTsCode theme={theme}>
           {
             `$bra$\{
   $var$"output"$gen$: $str$"./retype-report.html"$gen$,
@@ -88,7 +92,7 @@ ts-retype -c .`
       <section>
         <h2>ts-retype</h2>
         <p>You can also run it programatically, using ts-retype package.</p>
-        <JsTsCode>
+        <JsTsCode theme={theme}>
           {
             `$kew$import $bra$\{ $gen$findDuplicateTypes $bra$} $kew$from $str$'ts-retype'$gen$;
 
@@ -104,64 +108,64 @@ $bra$}`
           }
         </JsTsCode>
         <p>The input for <strong>findDuplicateTypes</strong> is of type <strong>RetypeArgs</strong></p>
-        <JsTsCode>
-          {`$kew$type $fun$RetypeArgs$gen$ = {
-  $var$exclude$gen$: $str$string$gen$[];
-  $var$include$gen$: $str$string$gen$[];
-  $var$output$gen$: $str$string$gen$;
-  $var$project$gen$: $str$string$gen$;
-  $var$json$gen$?: $str$string$gen$;
-  $var$noHtml$gen$?: $str$boolean$gen$;
+        <JsTsCode theme={theme}>
+          {`$kew$type $fun$RetypeArgs$gen$ = $bra$\{
+  $jkw$exclude$gen$: $str$string$bra$[]$gen$;
+  $jkw$include$gen$: $str$string$bra$[]$gen$;
+  $jkw$output$gen$: $str$string$gen$;
+  $jkw$project$gen$: $str$string$gen$;
+  $jkw$json$gen$?: $str$string$gen$;
+  $jkw$noHtml$gen$?: $str$boolean$gen$;
 }`}
         </JsTsCode>
         <p>An example for the snippets in the landing page would look like this</p>
-        <JsTsCode>
+        <JsTsCode theme={theme}>
           {
-            `$kew$const $var$duplicate$gen$: $fun$TypeDuplicate $gen$= {
-  $var$files$gen$: [
-    { $var$file$gen$: $str$'src/model.ts'$gen$, $var$lines$gen$: [12, 16], $var$type$gen$: $str$'alias'$gen$ },
-    { $var$file$gen$: $str$'src/auth.ts'$gen$, $var$lines$gen$: [42, 46], $var$type$gen$: $str$'interface'$gen$ },
-    { $var$file$gen$: $str$'src/api.ts'$gen$, $var$lines$gen$: [76, 83], $var$type$gen$: $str$'literal'$gen$ },
-  ],
-  $var$group$gen$: 'renamed',
-  $var$names$gen$: [
-    { $var$name$gen$: $str$'IUser'$gen$, $var$count$gen$: 1 },
-    { $var$name$gen$: $str$'User'$gen$, $var$count$gen$: 1 },
-    { $var$name$gen$: $str$'anonymous'$gen$, $var$count$gen$: 1 },
-  ],
-  $var$properties$gen$: [
-    { $var$name$gen$: $str$'displayName'$gen$, $var$type$gen$: $str$'string'$gen$ },
-    { $var$name$gen$: $str$'email'$gen$, $var$type$gen$: $str$'string'$gen$ },
-    { $var$name$gen$: $str$'password'$gen$, $var$type$gen$: $str$'string'$gen$ },
-  ]
+            `$kew$const $var$duplicate$gen$: $fun$TypeDuplicate $gen$= $bra$\{
+  $jkw$files$gen$: $bra$[
+    $bra$\{ $jkw$file$gen$: $str$'src/model.ts'$gen$, $jkw$lines$gen$: [$str$12$pun$, $str$16$gen$], $jkw$type$gen$: $str$'alias'$gen$ $bra$}$pun$,
+    $bra$\{ $jkw$file$gen$: $str$'src/auth.ts'$gen$, $jkw$lines$gen$: [$str$42$pun$, $str$46$gen$], $jkw$type$gen$: $str$'interface'$gen$ $bra$}$pun$,
+    $bra$\{ $jkw$file$gen$: $str$'src/api.ts'$gen$, $jkw$lines$gen$: [$str$76$pun$, $str$83$gen$], $jkw$type$gen$: $str$'literal'$gen$ $bra$}$pun$,
+  $bra$]$pun$,
+  $jkw$group$gen$: $str$'renamed'$gen$,
+  $jkw$names$gen$: $bra$[
+    $bra$\{ $jkw$name$gen$: $str$'IUser'$gen$, $jkw$count$gen$: $str$1$gen$ $bra$}$pun$,
+    $bra$\{ $jkw$name$gen$: $str$'User'$gen$, $jkw$count$gen$: $str$1$gen$ $bra$}$pun$,
+    $bra$\{ $jkw$name$gen$: $str$'anonymous'$gen$, $jkw$count$gen$: $str$1$gen$ $bra$}$pun$,
+  $bra$]$pun$,
+  $jkw$properties$gen$: $bra$[
+    $bra$\{ $jkw$name$gen$: $str$'displayName'$gen$, $jkw$type$gen$: $str$'string'$gen$ $bra$}$pun$,
+    $bra$\{ $jkw$name$gen$: $str$'email'$gen$, $jkw$type$gen$: $str$'string'$gen$ $bra$}$pun$,
+    $bra$\{ $jkw$name$gen$: $str$'password'$gen$, $jkw$type$gen$: $str$'string'$gen$ $bra$}$pun$,
+  $bra$]
 }`
           }
         </JsTsCode>
         <p>The return type of <strong>findDuplicateTypes</strong> is an array of <strong>TypeDuplicate</strong></p>
-        <JsTsCode>
+        <JsTsCode theme={theme}>
           {
-            `$kew$type $fun$TypeDuplicate $gen$= {
-  $var$files$gen$: {
-    $var$file$gen$: $str$string$gen$;
-    $var$lines$gen$: [$str$number$gen$, $str$number$gen$];
-    $var$type$gen$: $str$'interface' $gen$| $str$'literal' $gen$| $str$'alias' $gen$| $str$'function' $gen$| $str$'enum' $gen$| $str$'union'$gen$;
-  }[];
-  $var$group$gen$: $str$'different' $gen$| $str$'renamed' $gen$| $str$'identical'$gen$;
-  $var$names$gen$: {
-    $var$count$gen$: $str$number$gen$;
-    $var$name$gen$: $str$string$gen$;
-  }[];
-  $var$members$kew$?$gen$: $str$string$gen$[];
-  $var$parameters$kew$?$gen$: {
-    $var$name$gen$: $str$string$gen$;
-    $var$type$gen$: $str$string$gen$;
-  }[];
-  $var$properties$kew$?$gen$: {
-    $var$name$gen$: $str$string$gen$;
-    $var$type$gen$: $str$string$gen$;
-  }[];
-  $var$returnType$kew$?$gen$: $str$string$gen$;
-  $var$types$kew$?$gen$: $str$string[]$gen$;
+            `$kew$type $fun$TypeDuplicate $gen$= $bra$\{
+  $jkw$files$gen$: $bra$\{
+    $jkw$file$gen$: $str$string$gen$;
+    $jkw$lines$gen$: $bra$[$str$number$gen$, $str$number$bra$]$gen$;
+    $jkw$type$gen$: $str$'interface' $kew$| $str$'literal' $kew$| $str$'alias' $kew$| $str$'function' $kew$| $str$'enum' $kew$| $str$'union'$gen$;
+  $bra$}[];
+  $jkw$group$gen$: $str$'different' $kew$| $str$'renamed' $kew$| $str$'identical'$gen$;
+  $jkw$names$gen$: $bra$\{
+    $jkw$count$gen$: $str$number$gen$;
+    $jkw$name$gen$: $str$string$gen$;
+  $bra$}[];
+  $jkw$members$kew$?$gen$: $str$string$gen$$bra$[]$gen$;
+  $jkw$parameters$kew$?$gen$: $bra$\{
+    $jkw$name$gen$: $str$string$gen$;
+    $jkw$type$gen$: $str$string$gen$;
+  $bra$}[];
+  $jkw$properties$kew$?$gen$: $bra$\{
+    $jkw$name$gen$: $str$string$gen$;
+    $jkw$type$gen$: $str$string$gen$;
+  $bra$}[];
+  $jkw$returnType$kew$?$gen$: $str$string$gen$;
+  $jkw$types$kew$?$gen$: $str$string$bra$[]$gen$;
 }`
           }
         </JsTsCode>

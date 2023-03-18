@@ -1,6 +1,22 @@
 @import "./utils.styl"
 @import "./vars.styl"
 
+$bgMain = var(--clr-bgMain);
+$fgText = var(--clr-fgText);
+$bgCode = var(--clr-bgCode);
+
+lightTheme()
+  --clr-bgMain: $bgColorMainLight;
+  --clr-fgText: $textLight;
+  --clr-bgCode: $codeBgMainLight;
+  --clr-bgBorder: $bgBorderLight;
+
+darkTheme()
+  --clr-bgMain: $bgColorMainDark;
+  --clr-fgText: $textDark;
+  --clr-bgCode: $codeBgMainDark;
+  --clr-bgBorder: $bgBorderDark;
+
 *
   margin: 0;
   padding: 0;
@@ -10,15 +26,23 @@
   font-size: 16px;
 
 body
-  background-color: clrBg;
-  color: clrFg;
+  // background-color: clrBg;
+  // color: clrFg;
   min-height: 100vh;
   font-family: fontRegular;
 
 main
+  &.light
+    lightTheme();
+  &.dark
+    darkTheme();
   flexColumn(gapLarge)
   justify-content: flex-start;
   align-items: center;
+  background-color: $bgMain;
+  color: $fgText;
+  .window
+    background-color: $bgCode;
   header
     width: 100vw;
     flexColumn(gapLarge);
@@ -68,7 +92,6 @@ main
       flex: 1;
     li
       display: flex;
-      color: clrFg;
       transition: background-color transRegular;
       &:hover a
         color: clrHeaderBg;
