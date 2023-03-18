@@ -5,14 +5,15 @@
 .pre {
   font-weight: 600;
   line-height: 2;
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  // box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
 
 .cluster {
   display: grid;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 2em;
   border-radius: 8px;
+  border: 1px solid var(--clr-card-bg-border);
   background-color: var(--clr-card-bg);
   color: var(--clr-fg);
   column-gap: 2em;
@@ -22,11 +23,13 @@
     "properties files"
     "properties files"
   ;
-  grid-template-columns: minmax(120px, max-content) 1fr;
+  grid-template-columns: minmax(max-content, 28ch) 1fr;
   position: relative;
 
   h3 {
     color: var(--clr-card-title-fg);
+    font-weight: 400;
+    font-size: 1rem;
   }
 
   .title {
@@ -67,6 +70,7 @@
       background-color: var(--clr-code-bg);
       color: var(--clr-code-fg);
       padding: 0.5em 1em;
+      border: 1px solid var(--clr-code-border);
       border-radius: 4px;
     }
 

@@ -1,0 +1,69 @@
+@import "../utils.styl"
+@import "./vars.styl"
+
+$bgMain = var(--clr-bgMain);
+$fgText = var(--clr-fgText);
+$bgCode = var(--clr-bgCode);
+
+$sectionMaxWidth = 800px;
+$sectionMinWidth = 320px;
+
+lightTheme()
+  --clr-bgMain: $bgColorMainLight;
+  --clr-fgText: $textLight;
+  --clr-bgCode: $codeBgMainLight;
+  --clr-bgBorder: $bgBorderLight;
+
+darkTheme()
+  --clr-bgMain: $bgColorMainDark;
+  --clr-fgText: $textDark;
+  --clr-bgCode: $codeBgMainDark;
+  --clr-bgBorder: $bgBorderDark;
+
+*
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+:root
+  font-size: 16px;
+
+body
+  min-height: 100vh;
+  font-family: $fontRegular;
+
+main
+  &.light
+    lightTheme();
+  &.dark
+    darkTheme();
+  flexColumn(gapLarge)
+  justify-content: flex-start;
+  align-items: center;
+  background-color: $bgMain;
+  color: $fgText;
+  header
+    width: 100vw;
+    flexColumn(gapLarge);
+    justify-content: center;
+    align-items: center;
+    background-color: clrHeaderBg;
+    padding: gapXXLarge;
+    color: clrHeaderFg;
+    boxShadowStrong()
+  section
+    flexColumn(gapLarge)
+    max-width: $sectionMaxWidth;
+    min-width: $sectionMinWidth;
+    padding: gapMedium;
+    width: 80vw;
+    font-size: 16px;
+    @media screen and (max-width: $breakSnippetsColumn)
+      width: 100vw;
+      padding: 0 1rem;
+      max-width: unset;
+    &.bleed
+      max-width: 100vw;
+      width: 100vw;
+      margin: 0;
+      padding: 0;

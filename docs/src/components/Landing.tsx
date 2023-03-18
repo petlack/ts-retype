@@ -2,6 +2,7 @@ import { MultilangWindow } from './MultilangWindow';
 import { Logo } from './Logo';
 import { Snippet } from './Snippet';
 import './Landing.styl';
+import { TopBar } from '../uikit/TopBar';
 
 const exampleOne = {
   name: 'src/model.ts',
@@ -89,11 +90,7 @@ export function Landing({ theme }: LandingProps) {
 
   return (
     <div className={`demo-container ${theme}`}>
-      <div className="strip"></div>
-      <div className="topbar">
-        <div className="topbar-header">
-          <Logo />
-        </div>
+      <TopBar>
         <div className="topbar-menu">
           <a className="topbar-menu-item topbar-menu-item-active">About</a>
           <a className="topbar-menu-item">Install</a>
@@ -101,7 +98,7 @@ export function Landing({ theme }: LandingProps) {
           <a className="topbar-menu-item">Examples</a>
           <div className="indicator"></div>
         </div>
-      </div>
+      </TopBar>
       <div className="demo">
         {/* <div className="description">
           <p>Static analysis tool for TypeScript that discovers similar types.</p>

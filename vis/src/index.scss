@@ -53,9 +53,11 @@
 
   --clr-bg: var(--clr-bgna-600);
   --clr-fg: var(--clr-bgfg-800);
-  --clr-card-bg: var(--clr-bgna-400);
+  --clr-card-bg: hsl(185deg 8% 97%);
+  --clr-card-bg-border: hsl(185deg 8% 90%);
   --clr-card-fg: var(--clr-bgfg-900);
-  --clr-code-bg: var(--clr-bgaa-200);
+  --clr-code-bg: hsl(185deg 4% 95%);
+  --clr-code-border: hsl(185deg 4% 90%);
   --clr-code-fg: var(--clr-bgfg-900);
   --clr-card-badge-bg: var(--clr-bgna-600);
   --clr-card-badge-fg: var(--clr-bgfg-900);
@@ -107,11 +109,13 @@
 
     --clr-bg: var(--clr-bgna-200);
     --clr-fg: var(--clr-bgfg-800);
-    --clr-card-bg: var(--clr-bgfg-100);
+    --clr-card-bg: hsl(185deg 7% 98%);
+    --clr-card-bg-border: hsl(185deg 8% 90%);
     --clr-card-fg: var(--clr-bgfg-900);
-    --clr-code-bg: var(--clr-bgaa-200);
+    --clr-code-bg: hsl(185deg 4% 95%);
+    --clr-code-border: hsl(185deg 4% 90%);
     --clr-code-fg: var(--clr-bgfg-900);
-    --clr-card-badge-bg: var(--clr-bgna-200);
+    --clr-card-badge-bg: hsl(185deg 4% 92%);
     --clr-card-badge-fg: var(--clr-bgfg-900);
     --clr-card-title-fg: var(--clr-bgna-400);
     --clr-card-icon-fg: var(--clr-bgaa-400);

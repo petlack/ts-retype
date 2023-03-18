@@ -4,13 +4,19 @@ import { useSearch } from './hooks/useSearch';
 import { ClusterListing } from './components/Cluster';
 import { Empty } from './components/Empty';
 import { Filters } from './components/Filters';
-import { Navbar } from './components/Navbar';
+import { Search } from './components/Search';
 import { ToastProvider } from './components/Toast';
 import { Facet, fulltext } from './model/search';
 import { FulltextData } from './types';
 import { Similarity } from '../../src/types';
+import { UiKitApp } from '../../docs/src/uikit/UiKitApp';
+import { TopBar } from '../../docs/src/uikit/TopBar';
 
 import './App.scss';
+
+const theme = 'light';
+// const theme = 'dark';
+// const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 const facets: Facet<FulltextData>[] = [
   {
@@ -60,12 +66,14 @@ function App() {
     <ClusterListing clusters={results} query={query} />;
 
   return (
-    <div id="app">
+    <UiKitApp theme={theme}>
       <ToastProvider>
-        <Navbar
-          query={query}
-          setQuery={updateQuery}
-        />
+        <TopBar>
+          <Search
+            query={query}
+            setQuery={updateQuery}
+          />
+        </TopBar>
         <div className="main">
           <Filters
             filter={filter}
@@ -77,7 +85,7 @@ function App() {
           </div>
         </div>
       </ToastProvider>
-    </div>
+    </UiKitApp>
   );
 }
 

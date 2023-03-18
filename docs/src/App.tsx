@@ -6,8 +6,8 @@ import { Options } from './components/Options';
 import { Bash } from './components/Bash';
 import { JsTsCode } from './components/JsTsCode';
 
-// const theme = 'light';
-const theme = 'dark';
+const theme = 'light';
+// const theme = 'dark';
 // const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 export default function App() {
