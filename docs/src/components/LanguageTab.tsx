@@ -12,7 +12,8 @@ export function LanguageTab({ lang, selectedLang, setLang }: LanguageTabProps) {
       className={`tab ${selectedLang === lang ? 'tab-active' : ''}`}
       onClick={() => setLang(lang)}
     >
-      {lang}
+      <span className="tab-indicator"></span>
+      <span className="tab-caption">{lang}</span>
     </span>
   );
 }

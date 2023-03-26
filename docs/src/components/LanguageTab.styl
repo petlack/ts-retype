@@ -3,20 +3,22 @@
   color: darken(white, 60);
   padding: .5rem .5rem;
   cursor: pointer;
-  &:before
+  &-caption
+    position: relative;
+  &-indicator
     content: '';
     position: absolute;
-    bottom: 4px;
-    left: calc((100% - 60%)/2);
-    right: calc((100% - 60%)/2);
-    height: 8px;
-    background-color: var(--clr-border);
-    border-radius: 100vw;
+    bottom: .25em;
+    left: calc((100% - 80%)/2);
+    right: calc((100% - 80%)/2);
+    height: .5em;
+    background-color: var(--clr-fgMedium);
+    // border-radius: 100vw;
     transform: scaleX(0);
     transition: transform 150ms ease-in;
   &:hover
     color: var(--clr-fgText);
   &-active
-    &:before
+    .tab-indicator
       transform: scaleX(1);
     color: var(--clr-fgText);
