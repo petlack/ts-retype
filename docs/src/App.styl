@@ -5,17 +5,17 @@ lightTheme()
   --clr-bgMain: $bgMainLight;
   --clr-fgTitle: $titleLight;
   --clr-fgText: $textLight;
+  --clr-border: $borderLight;
   --clr-bgCode: $bgCodeMainLight;
   --clr-fgCode: black;
-  --clr-border: $borderLight;
 
 darkTheme()
   --clr-bgMain: $bgMainDark;
   --clr-fgTitle: $titleDark;
   --clr-fgText: $textDark;
+  --clr-border: $borderDark;
   --clr-bgCode: $bgCodeMainDark;
   --clr-fgCode: white;
-  --clr-border: $borderDark;
 
 *
   margin: 0;
@@ -26,8 +26,6 @@ darkTheme()
   font-size: 16px;
 
 body
-  // background-color: clrBg;
-  // color: clrFg;
   min-height: 100vh;
   font-family: $fontRegular;
 
@@ -48,26 +46,10 @@ main
     flexColumn($gapLarge);
     justify-content: center;
     align-items: center;
-    background-color: $clrHeaderBg;
+    background-color: var(--clr-bgWindowHeader);
     padding: $gapXXLarge;
-    color: $clrHeaderFg;
+    color: var(--clr-fgWindowHeader);
     boxShadowStrong()
-
-    .links
-      flexRow($gapMedium);
-      a
-        padding: $gapSmall $gapMedium;
-        color: $clrHeaderFg;
-        text-decoration: none;
-        background-color: lighten($clrHeaderBg, 10);
-        border-radius: $borderRadiusMedium;
-        transition: background-color transRegular;
-        svg
-          margin-right: $gapMedium;
-          width: 18px;
-          height: 18px;
-        &:hover
-          background-color: lighten($clrHeaderBg, 15);
   section
     flexColumn($gapLarge)
     max-width: $sectionMaxWidth;
@@ -100,4 +82,4 @@ main
       color: var(--clr-fgText);
       padding: $gapMedium;
     &:hover a
-      color: $clrHeaderBg;
+      color: var(--clr-bgWindowHeader);

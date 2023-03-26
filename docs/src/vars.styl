@@ -38,25 +38,23 @@ $yellowLight = #faf2e4;
 $bgCodeLight = #fffefd;
 $bgSecondaryLight = #f2f5f6;
 $bgMainLight = white;
-$bgCodeMainLight = $bgMainLight;
+$bgCodeMainLight = $bgSecondaryLight;
 $titleLight = #050505;
 $textLight = #313131;
 $borderLight = #e0e4e5;
-$bgLandingLight = #f2f5f6;
-$bgCodeLandingLight = $bgSecondaryLight;
 
 $bgSecondaryDark = hsl(195deg 18% 10%);
 $bgMainDark = hsl(195deg 14% 15%);
-$bgCodeMainDark = $bgMainDark;
+$bgCodeMainDark = $bgSecondaryDark;
 $titleDark = #f8f4e8;
 $textDark = #f5f1e5;
 $borderDark = #41403c;
+
+$bgLandingLight = #f2f5f6;
+$bgCodeLandingLight = $bgMainLight;
+
 $bgLandingDark = hsl(195deg 18% 10%);
-$bgCodeLandingDark = $bgSecondaryDark;
-
-
-$clrHeaderBg ?= #4b8493
-$clrHeaderFg ?= #f9f5f1
+$bgCodeLandingDark = $bgMainDark;
 
 $gapXXLarge = 64px;
 $gapLarge = 32px;
@@ -93,3 +91,5 @@ $titleMaxFontSize = 52px;
 $titleFontMaxOutWidth = 1368px;
 // 100 * $titleMinFontSize / $titleResponsiveFontSize
 $titleFontMinOutWidth = 842px;
+
+$fontSizeCode = 1em;

@@ -1,5 +1,5 @@
 @import "../utils.styl"
-@import "./vars.styl"
+@import "../vars.styl"
 
 lightTheme()
   --clr-bgMain: $bgMainLight;
@@ -7,7 +7,6 @@ lightTheme()
   --clr-border: $borderLight;
   --clr-fgText: $textLight;
   --clr-fgTitle: $titleLight;
-  --clr-bgCode: $bgCodeMainLight;
   --clr-border: $borderLight;
 
 darkTheme()
@@ -16,7 +15,6 @@ darkTheme()
   --clr-border: $borderDark;
   --clr-fgText: $textDark;
   --clr-fgTitle: $titleDark;
-  --clr-bgCode: $bgCodeMainDark;
   --clr-border: $borderDark;
 
 *
@@ -46,9 +44,9 @@ main
     flexColumn($gapLarge);
     justify-content: center;
     align-items: center;
-    background-color: $clrHeaderBg;
+    background-color: var(--clr-bgWindowHeader);
     padding: $gapXXLarge;
-    color: $clrHeaderFg;
+    color: var(--clr-fgWindowHeader);
     boxShadowStrong()
   section
     flexColumn($gapLarge)
