@@ -1,10 +1,6 @@
 @import "./utils.styl"
 @import "./vars.styl"
 
-$bgMain = var(--clr-bgMain);
-$fgText = var(--clr-fgText);
-$bgCode = var(--clr-bgCode);
-
 lightTheme()
   --clr-bgMain: $bgColorMainLight;
   --clr-fgText: $textLight;
@@ -36,43 +32,43 @@ main
     lightTheme();
   &.dark
     darkTheme();
-  flexColumn(gapLarge)
+  flexColumn($gapLarge)
   justify-content: flex-start;
   align-items: center;
-  background-color: $bgMain;
-  color: $fgText;
+  background-color: var(--clr-bgMain);
+  color: var(--clr-fgText);
   .window
-    background-color: $bgCode;
+    background-color: var(--clr-bgCode);
   header
     width: 100vw;
-    flexColumn(gapLarge);
+    flexColumn($gapLarge);
     justify-content: center;
     align-items: center;
-    background-color: clrHeaderBg;
-    padding: gapXXLarge;
-    color: clrHeaderFg;
+    background-color: $clrHeaderBg;
+    padding: $gapXXLarge;
+    color: $clrHeaderFg;
     boxShadowStrong()
 
     .links
-      flexRow(gapMedium);
+      flexRow($gapMedium);
       a
-        padding: gapSmall gapMedium;
-        color: clrHeaderFg;
+        padding: $gapSmall $gapMedium;
+        color: $clrHeaderFg;
         text-decoration: none;
-        background-color: lighten(clrHeaderBg, 10);
-        border-radius: borderRadiusMedium;
+        background-color: lighten($clrHeaderBg, 10);
+        border-radius: $borderRadiusMedium;
         transition: background-color transRegular;
         svg
-          margin-right: gapMedium;
+          margin-right: $gapMedium;
           width: 18px;
           height: 18px;
         &:hover
-          background-color: lighten(clrHeaderBg, 15);
+          background-color: lighten($clrHeaderBg, 15);
   section
-    flexColumn(gapLarge)
-    max-width: sectionMaxWidth;
-    min-width: sectionMinWidth;
-    padding: gapMedium;
+    flexColumn($gapLarge)
+    max-width: $sectionMaxWidth;
+    min-width: $sectionMinWidth;
+    padding: $gapMedium;
     width: 80vw;
     font-size: 16px;
     @media screen and (max-width: $breakSnippetsColumn)
@@ -97,7 +93,7 @@ main
     a
       flex: 1;
       text-decoration: underline;
-      color: $fgText;
-      padding: gapMedium;
+      color: var(--clr-fgText);
+      padding: $gapMedium;
     &:hover a
-      color: clrHeaderBg;
+      color: $clrHeaderBg;

@@ -1,15 +1,6 @@
 @import "../utils.styl"
 @import "./vars.styl"
 
-$bgMain = var(--clr-bgMain);
-$bgSecondary = var(--clr-bgSecondary);
-$fgText = var(--clr-fgText);
-$fgTitle = var(--clr-fgTitle);
-$bgCode = var(--clr-bgCode);
-
-$sectionMaxWidth = 800px;
-$sectionMinWidth = 320px;
-
 lightTheme()
   --clr-bgMain: $bgColorMainLight;
   --clr-bgSecondary: $bgColorSecondaryLight;
@@ -45,25 +36,25 @@ main
     lightTheme();
   &.dark
     darkTheme();
-  flexColumn(gapLarge)
+  flexColumn($gapLarge)
   justify-content: flex-start;
   align-items: center;
-  background-color: $bgMain;
-  color: $fgText;
+  background-color: var(--clr-bgMain);
+  color: var(--clr-fgText);
   header
     width: 100vw;
-    flexColumn(gapLarge);
+    flexColumn($gapLarge);
     justify-content: center;
     align-items: center;
-    background-color: clrHeaderBg;
-    padding: gapXXLarge;
-    color: clrHeaderFg;
+    background-color: $clrHeaderBg;
+    padding: $gapXXLarge;
+    color: $clrHeaderFg;
     boxShadowStrong()
   section
-    flexColumn(gapLarge)
+    flexColumn($gapLarge)
     max-width: $sectionMaxWidth;
     min-width: $sectionMinWidth;
-    padding: gapMedium;
+    padding: $gapMedium;
     width: 80vw;
     font-size: 16px;
     @media screen and (max-width: $breakSnippetsColumn)

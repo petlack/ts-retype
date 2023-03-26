@@ -2,8 +2,6 @@ import { Window } from './Window';
 import { WithLineNumbers } from './WithLineNumbers';
 import { toColorTokens } from '../format';
 
-import './Snippet.styl';
-
 export type SnippetProps = {
   start: number;
   name: string;
