@@ -1,46 +1,12 @@
 import { MultilangWindow } from './MultilangWindow';
 // import { Logo } from './Logo';
-import { Snippet } from './Snippet';
+import { TsSnippet } from './TsSnippet';
 import './Landing.styl';
 import { TopBar } from '../uikit/TopBar';
 import { Button } from '../uikit/Button';
 import { IconDocs, IconGithub } from '../uikit/Icons';
-
-const exampleOne = {
-  name: 'src/model.ts',
-  code: `$com$// ...
-$kew$export type $typ$User $pun$= $bra$\{
-  $jkw$displayName$pun$: $typ$string$pun$;
-  $jkw$email$pun$: $typ$string$pun$;
-  $jkw$password$pun$: $typ$string$pun$;
-$bra$}
-$com$// ...`
-};
-
-const exampleTwo = {
-  name: 'src/auth.ts',
-  code: `$com$// ...
-$kew$interface $typ$IUser $bra$\{
-  $jkw$displayName$pun$: $typ$string$pun$;
-  $jkw$email$pun$: $typ$string$pun$;
-  $jkw$password$pun$: $typ$string$pun$;
-$bra$}
-$com$// ...`
-};
-
-const exampleThree = {
-  name: 'src/api.ts',
-  code: `$com$// ...
-$awa$async $kew$function $fun$saveUser$bra$(
-  $jkw$user$pun$: $jbr$\{
-    $jkw$displayName$pun$: $typ$string$pun$,
-    $jkw$email$pun$: $typ$string$pun$,
-    $jkw$password$pun$: $typ$string$pun$
-  $jbr$}$bra$) $bra$\{
-  $awa$await $var$db$pun$.$fun$createUser$jbr$($lva$user$jbr$)$pun$;
-$bra$}
-$com$// ...`
-};
+import Snippets from '../generated/snippets';
+import { Snippet } from './Token';
 
 export type LandingProps = {
   theme: 'dark' | 'light';
@@ -106,9 +72,9 @@ export function Landing({ theme }: LandingProps) {
           <p>Static analysis tool for TypeScript that discovers similar types.</p>
         </div> */}
         <div className="snippets">
-          <Snippet responsive theme={theme} start={11} code={exampleOne.code} name={exampleOne.name} />
-          <Snippet responsive theme={theme} start={41} code={exampleTwo.code} name={exampleTwo.name} />
-          <Snippet responsive theme={theme} start={75} code={exampleThree.code} name={exampleThree.name} />
+          <TsSnippet responsive theme={theme} start={11} snippet={Snippets.type as Snippet} name={'src/model.ts'} />
+          <TsSnippet responsive theme={theme} start={41} snippet={Snippets.interface as Snippet} name={'src/auth.ts'} />
+          <TsSnippet responsive theme={theme} start={75} snippet={Snippets.function as Snippet} name={'src/api.ts'} />
         </div>
         {contentMarkup}
         <div className="code-install">

@@ -5,6 +5,8 @@ import { Landing } from './components/Landing';
 import { MultilangWindow } from './components/MultilangWindow';
 import { Options } from './components/Options';
 import { Window } from './components/Window';
+import { Snippet } from './components/Token';
+import Snippets from './generated/snippets';
 import './App.styl';
 
 const theme = 'light';
@@ -77,96 +79,18 @@ ts-retype -c .`
           }
         </Bash>
         <p>An example of a <strong>.retyperc</strong> file</p>
-        <JsTsCode theme={theme}>
-          {
-            `$bra$\{
-  $var$"output"$gen$: $str$"./retype-report.html"$gen$,
-  $var$"include"$gen$: [$str$"**/*.{ts,tsx}"$gen$],
-  $var$"exclude"$gen$: [$str$"**/node_modules/**"$gen$, $str$"**/dist/**"$gen$]
-}`
-          }  
-        </JsTsCode>
+        <JsTsCode theme={theme} snippet={Snippets.retyperc as Snippet} />
       </section>
       <section>
         <h2>ts-retype</h2>
         <p>You can also run it programatically, using ts-retype package.</p>
-        <JsTsCode theme={theme}>
-          {
-            `$kew$import $bra$\{ $gen$findDuplicateTypes $bra$} $kew$from $str$'ts-retype'$gen$;
-
-$kew$const $var$duplicates $kew$= $kew$await $fun$findDuplicateTypes$bra$({
-  $jkw$exclude$pun$: $bra$[$str$'**/node_modules/**'$pun$, $str$'**/dist/**'$bra$]$pun$,
-  $jkw$include$pun$: $bra$[$str$'**/*.{ts,tsx}'$bra$],
-  $jkw$project$pun$: $str$'/path/to/project'$pun$,
-$bra$})$pun$;
-
-$kew$for $bra$($kew$const $var$dup $kew$of $var$duplicates$bra$) {
-  $var$console$pun$.$fun$log$bra$($var$dup$pun$.$lva$group, $var$dup$pun$.$lva$names, $var$dup$pun$.$lva$files$pun$);
-$bra$}`
-          }
-        </JsTsCode>
+        <JsTsCode theme={theme} snippet={Snippets.tsRetype as Snippet} />
         <p>The input for <strong>findDuplicateTypes</strong> is of type <strong>RetypeArgs</strong></p>
-        <JsTsCode theme={theme}>
-          {`$kew$type $fun$RetypeArgs$gen$ = $bra$\{
-  $jkw$exclude$gen$: $str$string$bra$[]$gen$;
-  $jkw$include$gen$: $str$string$bra$[]$gen$;
-  $jkw$output$gen$: $str$string$gen$;
-  $jkw$project$gen$: $str$string$gen$;
-  $jkw$json$gen$?: $str$string$gen$;
-  $jkw$noHtml$gen$?: $str$boolean$gen$;
-}`}
-        </JsTsCode>
+        <JsTsCode theme={theme} snippet={Snippets.RetypeArgs as Snippet} />
         <p>An example for the snippets in the landing page would look like this</p>
-        <JsTsCode theme={theme}>
-          {
-            `$kew$const $var$duplicate$gen$: $fun$TypeDuplicate $gen$= $bra$\{
-  $jkw$files$gen$: $bra$[
-    $bra$\{ $jkw$file$gen$: $str$'src/model.ts'$gen$, $jkw$lines$gen$: [$str$12$pun$, $str$16$gen$], $jkw$type$gen$: $str$'alias'$gen$ $bra$}$pun$,
-    $bra$\{ $jkw$file$gen$: $str$'src/auth.ts'$gen$, $jkw$lines$gen$: [$str$42$pun$, $str$46$gen$], $jkw$type$gen$: $str$'interface'$gen$ $bra$}$pun$,
-    $bra$\{ $jkw$file$gen$: $str$'src/api.ts'$gen$, $jkw$lines$gen$: [$str$76$pun$, $str$83$gen$], $jkw$type$gen$: $str$'literal'$gen$ $bra$}$pun$,
-  $bra$]$pun$,
-  $jkw$group$gen$: $str$'renamed'$gen$,
-  $jkw$names$gen$: $bra$[
-    $bra$\{ $jkw$name$gen$: $str$'IUser'$gen$, $jkw$count$gen$: $str$1$gen$ $bra$}$pun$,
-    $bra$\{ $jkw$name$gen$: $str$'User'$gen$, $jkw$count$gen$: $str$1$gen$ $bra$}$pun$,
-    $bra$\{ $jkw$name$gen$: $str$'anonymous'$gen$, $jkw$count$gen$: $str$1$gen$ $bra$}$pun$,
-  $bra$]$pun$,
-  $jkw$properties$gen$: $bra$[
-    $bra$\{ $jkw$name$gen$: $str$'displayName'$gen$, $jkw$type$gen$: $str$'string'$gen$ $bra$}$pun$,
-    $bra$\{ $jkw$name$gen$: $str$'email'$gen$, $jkw$type$gen$: $str$'string'$gen$ $bra$}$pun$,
-    $bra$\{ $jkw$name$gen$: $str$'password'$gen$, $jkw$type$gen$: $str$'string'$gen$ $bra$}$pun$,
-  $bra$]
-}`
-          }
-        </JsTsCode>
+        <JsTsCode theme={theme} snippet={Snippets.duplicate as Snippet} />
         <p>The return type of <strong>findDuplicateTypes</strong> is an array of <strong>TypeDuplicate</strong></p>
-        <JsTsCode theme={theme}>
-          {
-            `$kew$type $fun$TypeDuplicate $gen$= $bra$\{
-  $jkw$files$gen$: $bra$\{
-    $jkw$file$gen$: $str$string$gen$;
-    $jkw$lines$gen$: $bra$[$str$number$gen$, $str$number$bra$]$gen$;
-    $jkw$type$gen$: $str$'interface' $kew$| $str$'literal' $kew$| $str$'alias' $kew$| $str$'function' $kew$| $str$'enum' $kew$| $str$'union'$gen$;
-  $bra$}[];
-  $jkw$group$gen$: $str$'different' $kew$| $str$'renamed' $kew$| $str$'identical'$gen$;
-  $jkw$names$gen$: $bra$\{
-    $jkw$count$gen$: $str$number$gen$;
-    $jkw$name$gen$: $str$string$gen$;
-  $bra$}[];
-  $jkw$members$kew$?$gen$: $str$string$gen$$bra$[]$gen$;
-  $jkw$parameters$kew$?$gen$: $bra$\{
-    $jkw$name$gen$: $str$string$gen$;
-    $jkw$type$gen$: $str$string$gen$;
-  $bra$}[];
-  $jkw$properties$kew$?$gen$: $bra$\{
-    $jkw$name$gen$: $str$string$gen$;
-    $jkw$type$gen$: $str$string$gen$;
-  $bra$}[];
-  $jkw$returnType$kew$?$gen$: $str$string$gen$;
-  $jkw$types$kew$?$gen$: $str$string$bra$[]$gen$;
-}`
-          }
-        </JsTsCode>
+        <JsTsCode theme={theme} snippet={Snippets.TypeDuplicate as Snippet} />
       </section>
 
       <section>
