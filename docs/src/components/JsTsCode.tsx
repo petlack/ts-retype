@@ -1,5 +1,6 @@
 import { toColorTokens } from '../format';
-import { Code, Window } from './Window';
+import { Code } from './Code';
+import { Window } from './Window';
 
 export type JsTsCodeProps = {
   children: string;
@@ -7,7 +8,7 @@ export type JsTsCodeProps = {
 }
 
 const white = '#e0e0e0';
-const grayLight = '#d0d0d0';
+const grayLight = '#c8c8c8';
 const black = '#313131';
 const blue = '#5174c9';
 const orange = '#d98333';
@@ -60,10 +61,8 @@ export function JsTsCode({ children, theme }: JsTsCodeProps) {
   ));
   // const childrenMarkup = children.split('\n').map((line, idx) => <span key={idx}>{`${line}\n`}</span>);
   return (
-    <div className="bash">
-      <Window theme={theme} name="bash" showHeader={false}>
-        <Code>{childrenMarkup}</Code>
-      </Window>
-    </div>
+    <Window theme={theme} name="bash" showHeader={false}>
+      <Code>{childrenMarkup}</Code>
+    </Window>
   );
 }

@@ -1,13 +1,14 @@
+import { Bash } from './components/Bash';
+import { Code } from './components/Code';
+import { JsTsCode } from './components/JsTsCode';
 import { Landing } from './components/Landing';
 import { MultilangWindow } from './components/MultilangWindow';
-import { Code, Window } from './components/Window';
-import './App.styl';
 import { Options } from './components/Options';
-import { Bash } from './components/Bash';
-import { JsTsCode } from './components/JsTsCode';
+import { Window } from './components/Window';
+import './App.styl';
 
-// const theme = 'light';
-const theme = 'dark';
+const theme = 'light';
+// const theme = 'dark';
 // const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 export default function App() {
@@ -51,13 +52,10 @@ export default function App() {
 
       <section>
         <h2>CLI</h2>
-        <p>CLI options are as following</p>
         <p>Configuration can be done by either CLI options</p>
-        <div className="bash">
-          <Window theme={theme} name="bash" showHeader={false}>
-            <Code><span>{'ts-retype [options] <path-to-project>'}</span></Code>
-          </Window>
-        </div>
+        <Window theme={theme} name="bash" showHeader={false}>
+          <Code><span>{'ts-retype [options] <path-to-project>'}</span></Code>
+        </Window>
         <Options
           options={[
             { short: 'c', long: 'config', args: '[path]', desc: 'load config - if no path provided, loads .retyperc from current directory. if not set, use default config' },

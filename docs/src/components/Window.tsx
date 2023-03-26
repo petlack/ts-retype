@@ -1,20 +1,4 @@
-export function WithLineNumbers({ children, start, lines }: { children: JSX.Element[], start: number, lines: number }) {
-  const lineNos = [...Array(lines).keys()].map(i => <span key={i}>{i + start}</span>);
-  return (
-    <>
-      <pre className="lines lines-numbers">
-        {lineNos}
-      </pre>
-      <Code>{children}</Code>
-    </>
-  );
-}
-
-export function Code({ children }: { children: WindowProps['children'] }) {
-  return (
-    <pre className="code">{children}</pre>
-  );
-}
+import './Window.styl';
 
 export type WindowProps = {
   children: JSX.Element | JSX.Element[];
@@ -40,7 +24,7 @@ export function Window({ name, theme, showHeader = true, header, children, respo
     <div className={`window ${theme} ${responsive ? 'window-responsive' : ''}`}>
       {showHeader ? headerMarkup : <></>}
       {header ? header : <></>}
-      <div className={'editor'}>
+      <div className="content">
         {children}
       </div>
     </div>

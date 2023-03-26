@@ -1,19 +1,6 @@
 @import "../utils.styl"
 @import "../vars.styl"
 
-$menuInactiveFg = var(--clr-menuInactiveFg);
-$menuActiveFg = var(--clr-menuActiveFg);
-$menuHoverFg = var(--clr-menuHoverFg);
-$bgColor = var(--clr-bgColor);
-$codeBg = var(--clr-codeBg);
-$bgBorderColor = var(--clr-bgBorderColor);
-$fgColor = var(--clr-fgColor);
-$title = var(--clr-title);
-$text = var(--clr-text);
-$boxShadow = var(--clr-boxShadow);
-$codeKeyFg = var(--clr-codeKeyFg);
-$codeValueFg = var(--clr-codeValueFg);
-
 $titleFontSize = 3.25rem;
 $titleResponsiveFontSize = 3.8vw;
 $titleMinFontSize = 32px;
@@ -34,16 +21,16 @@ lightTheme()
   --clr-bgBorderColor: $bgBorderLight;
   --clr-fgColor: black;
   --clr-title: #101010;
-  --clr-text: #313131;
+  --clr-text: $textLight;
   --clr-boxShadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   --clr-card-bg: white;
   --clr-code-bg: #e8eff1;
   --clr-code-fg: black;
-  --clr-code-key: $codeKeyFg;
-  --clr-code-value: $codeValueFg;
+  --clr-code-key: var(--clr-codeKeyFg);
+  --clr-code-value: var(--clr-codeValueFg);
   --clr-card-title-fg: #aab5b9;
   --clr-bgaa-400: #bccfd5;
-  --clr-card-badge-bg: $bgColor; 
+  --clr-card-badge-bg: $bgColorLandingLight; 
 
 darkTheme()
   --clr-codeBg: $codeBgMainDark;
@@ -60,8 +47,8 @@ darkTheme()
   --clr-boxShadow: rgb(0 10 23 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px;
   --clr-fg: #dbdbdb;
   --clr-bgaa-400: #213237;
-  --clr-code-key: $codeKeyFg;
-  --clr-code-value: $codeValueFg;
+  --clr-code-key: var(--clr-codeKeyFg);
+  --clr-code-value: var(--clr-codeValueFg);
   --clr-card-bg: #151e21;
   --clr-card-fg: #ffffff;
   --clr-code-bg: #101517;
@@ -69,76 +56,23 @@ darkTheme()
   --clr-card-badge-bg: #1d2e32;
   --clr-card-title-fg: #585858;
 
-.demo-container
+.landing-container
   flexColumn();
   position: relative;
   min-height: 100vh;
   align-items: center;
-  // justify-content: center;
-  background-color: $bgColor;
-  border-bottom: 1px solid $bgBorderColor;
-  color: $fgColor;
+  background-color: var(--clr-bgColor);
+  border-bottom: 1px solid var(--clr-bgBorderColor);
+  color: var(--clr-fgColor);
   .window
-    background-color: $codeBg;
-  // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  .strip
-    position: absolute;
-    inset: 0;
-    height: 4px;
-    background-color: $accent;
+    background-color: var(--clr-codeBg);
   &.light
     lightTheme();
   &.dark
     darkTheme();
-  .topbar
-    flexRow();
-    width: 100vw;
-    max-width: 970px;
-    align-items: start;
-    justify-content: space-between;
-    padding-right: 1em;
-    @media screen and (max-width: $breakHeaderMenu)
-      flex-direction: column;
-      &-menu
-        padding-top: .5em;
-    &-header
-      grid-area: header;
-      color: white;
-      display: flex;
-      justify-content: flex-end;
-      justify-self: start;
-    &-menu
-      flexRow();
-      position: sticky;
-      grid-area: types;
-      gap: 1.5rem;
-      justify-self: end;
-      align-self: center;
-      // justify-content: end;
-      // align-items: center;
-      // font-size: 1rem;
-      font-weight: 400;
-      &-item
-        color: $menuInactiveFg;
-        cursor pointer;
-        padding: 1rem 0;
-        &-active
-          color: $menuActiveFg;
-        &:hover
-          color: $menuHoverFg;
-      .indicator
-        position: absolute;
-        top: calc(50% + 1rem);
-        left: 0;
-        height: 2px;
-        width: 58px;
-        background-color: $accent;
-  .demo
-    // align-items: center;
-    // font-size: 14px;
+  .landing
     flex: 1;
     display: grid;
-    // column-gap: 4rem;
     row-gap: 2em;
     padding: 2em;
     grid-template-areas: "snippets snippets" "example code";
@@ -148,23 +82,16 @@ darkTheme()
     @media screen and (max-width: $breakDescCTA)
       place-content: center;
       grid-template-areas: "snippets snippets" "example example" "code code";
-      // grid-template-rows: min-content 1fr 1fr 1fr;
       grid-template-rows: repeat(3, min-content);
     @media screen and (max-width: $breakSnippetsColumn)
       grid-template-areas: "example example" "snippets snippets" "code code";
       grid-template-rows: repeat(3, min-content);
       padding: 1em;
 
-    .description
-      grid-area: desc;
-      font-size: 1.5rem;
-      font-weight: 300;
     .snippets
       grid-area: snippets;
       flexRow();
       gap: 1.5em;
-      // margin-top: 2rem;
-      // padding: 2rem;
       justify-content: space-between;
       align-items: center;
       @media screen and (max-width: $breakSnippetsWrap)
@@ -174,7 +101,7 @@ darkTheme()
           font-size: 1rem;
       @media screen and (max-width: $breakSnippetsColumn)
         flexColumn();
-    .similarity
+    .description
       grid-area: example;
       flex: 1;
       flexColumn(1rem);
@@ -182,21 +109,11 @@ darkTheme()
       justify-self: center;
       @media screen and (max-width: $breakDescCTA)
         justify-content: center;
-        // padding: 0 2rem;
-      // @media screen and (max-width: $breakSnippetsWrap)
-      //   padding: unset;
-      // max-width: 800px;
-      // padding: 2rem;
-      // position: relative;
-      // top: -0rem;
-      // margin: 0;
       h1
         width: 20ch;
         font-weight: 500;
-        font-family: fontTitle;
-        color: $title;
-        // color: #29474f;
-        color: $clrTitle;
+        font-family: $fontTitle;
+        color: var(--clr-title);
         margin-bottom: .5rem;
         display: flex;
 
@@ -214,7 +131,7 @@ darkTheme()
         font-weight: 400;
         opacity: 0.8;
         line-height: 1.5;
-        color: $text;
+        color: var(--clr-text);
         display: flex;
 
         @media screen and (max-width: $breakDescCTA)
@@ -222,8 +139,7 @@ darkTheme()
         @media screen and (max-width: $breakSnippetsWrap)
           width: 100%; 
       .cluster
-        box-shadow: $boxShadow;
-      // background-color: yellow;
+        box-shadow: var(--clr-boxShadow);
     .code-install
       grid-area: code;
       align-self: start;
@@ -245,34 +161,5 @@ darkTheme()
         flex-direction: column;
       .links
         flexColumn(.5em);
-        .link
-          flexRow(1em);
-          align-items: center;
-          justify-content: start;
-          border: none;
-          outline: none;
-          border-radius: $borderRadius;
-          font-size: 1em;
-          padding: 0.75em 1.5em
-          font-family: fontRegular;
-          font-weight: 400;
-          cursor: pointer;
-          transition: all 150ms ease-in;
-          svg
-            width: 1em;
-            height: 1em;
-          &-primary
-            background-color: $accent;
-            color: white;
-            &:hover
-              background-color: lighten($accent, 5);
-          &-secondary
-            background-color: transparent;
-            color: #313131;
-            border: 1px solid lighten(#313131, 40);
-            &:hover
-              // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-              background-color: $codeBgLight;
-
 
     

@@ -1,0 +1,31 @@
+@import "../utils.styl"
+@import "../vars.styl"
+
+.btn
+  flexRow(1em);
+  align-items: center;
+  justify-content: start;
+  border: none;
+  outline: none;
+  border-radius: $borderRadius;
+  font-size: 1em;
+  padding: 0.75em 1.5em
+  font-family: $fontRegular;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 150ms ease-in;
+  svg
+    width: 1em;
+    height: 1em;
+  &-primary
+    background-color: $accent;
+    color: white;
+    &:hover
+      background-color: lighten($accent, 5);
+  &-secondary
+    background-color: transparent;
+    color: var(--clr-text);
+    border: 1px solid var(--clr-text);
+    &:hover
+      // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      background-color: $codeBg;

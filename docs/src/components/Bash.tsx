@@ -1,22 +1,12 @@
 import { toColorTokens } from '../format';
-import { Code, Window, WindowProps } from './Window';
+import { Window } from './Window';
+
+import './Bash.styl';
+import { WithBash } from './WithBash';
 
 export type BashProps = {
   children: string;
   theme: 'dark' | 'light';
-}
-
-export function WithBash({ children }: { children: WindowProps['children'] }) {
-  const linesCount = 'length' in children ? children.length : 1;
-  const lines = [...Array(linesCount).keys()].map((_, idx) => <span key={idx}>$</span>);
-  return (
-    <>
-      <pre className="lines">
-        {lines}
-      </pre>
-      <Code>{children}</Code>
-    </>
-  );
 }
 
 function parseBash(code: string): string {

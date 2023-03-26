@@ -1,4 +1,5 @@
-import { Window, WithLineNumbers } from './Window';
+import { Window } from './Window';
+import { WithLineNumbers } from './WithLineNumbers';
 import { toColorTokens } from '../format';
 
 import './Snippet.styl';

@@ -15,9 +15,39 @@
     align-items: start;
     justify-content: space-between;
     padding-right: 1em;
+    @media screen and (max-width: $breakHeaderMenu)
+      flex-direction: column;
+      &-menu
+        padding-top: .5em;
     &-header
       grid-area: header;
       color: white;
       display: flex;
       justify-content: flex-end;
       justify-self: start;
+    &-menu
+      flexRow();
+      position: sticky;
+      grid-area: types;
+      gap: 1.5rem;
+      justify-self: end;
+      align-self: center;
+      // justify-content: end;
+      // align-items: center;
+      // font-size: 1rem;
+      font-weight: 400;
+      &-item
+        color: $menuInactiveFg;
+        cursor pointer;
+        padding: 1rem 0;
+        &-active
+          color: $menuActiveFg;
+        &:hover
+          color: $menuHoverFg;
+      .indicator
+        position: absolute;
+        top: calc(50% + 1rem);
+        left: 0;
+        height: 2px;
+        width: 58px;
+        background-color: $accent;

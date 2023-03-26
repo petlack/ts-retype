@@ -1,50 +1,62 @@
 @import "../utils.styl"
 @import "../vars.styl"
 
-clrCodeBg ?= darken(clrBg, 10)
-clrCodeFg ?= darken(clrBg, 80)
-clrLineBashBg ?= darken(clrCodeBg, 20)
-clrLineBashFg ?= lighten(clrCodeBg, 20)
-
-.code-lang
-  flexColumn()
-  .lang-menu
-    flexRow(gapMedium);
-    padding: gapSmall gapMedium;
-    border-top-left-radius: borderRadiusMedium;
-    border-top-right-radius: borderRadiusMedium;
-    background-color: darken(clrCodeBg, 20);
-    span
-      cursor: pointer;
-      color: lighten(clrCodeFg, 15);
-      transition: color transRegular;
-      &.active
-        color: darken(clrCodeFg, 10);
-        text-decoration: underline;
-      &:hover
-        color: darken(clrCodeFg, 10);
-  .code
-    border-radius: 0;
-    border-bottom-left-radius: borderRadiusMedium;
-    border-bottom-right-radius: borderRadiusMedium;
-
 .code
-  background-color: clrCodeBg;
-  border-radius: borderRadiusMedium;
-  boxShadowLight();
-  p
-    &.line
-      color: clrCodeFg;
-      position: relative;
-      padding: .5rem 1rem;
-      &.bash
-        flexRow(.5rem);
-        align-items: center;
-        &:before
-          content: '$';
-          left: 0rem;
-          color: lighten(clrCodeFg, 30);
-          margin-right: .5rem;
+  flex: 1;
+  color: var(--clr-codeFg);
+  // font-size: .75rem;
+  font-family: $fontMono;
+  font-weight: 600;
+  line-height: 1.35;
+  padding: $borderRadius .75em $borderRadius 1em;
+  background-color: unset;
+  box-shadow: none;
+  white-space: break-spaces;
 
-.code
-  font-family: fontMono;
+// clrCodeBg ?= darken(clrBg, 10)
+// clrCodeFg ?= darken(clrBg, 80)
+// clrLineBashBg ?= darken(clrCodeBg, 20)
+// clrLineBashFg ?= lighten(clrCodeBg, 20)
+
+// .code-lang
+//   flexColumn()
+//   .lang-menu
+//     flexRow(gapMedium);
+//     padding: gapSmall gapMedium;
+//     border-top-left-radius: borderRadiusMedium;
+//     border-top-right-radius: borderRadiusMedium;
+//     background-color: darken(clrCodeBg, 20);
+//     span
+//       cursor: pointer;
+//       color: lighten(clrCodeFg, 15);
+//       transition: color transRegular;
+//       &.active
+//         color: darken(clrCodeFg, 10);
+//         text-decoration: underline;
+//       &:hover
+//         color: darken(clrCodeFg, 10);
+//   .code
+//     border-radius: 0;
+//     border-bottom-left-radius: borderRadiusMedium;
+//     border-bottom-right-radius: borderRadiusMedium;
+
+// .code
+//   background-color: clrCodeBg;
+//   border-radius: borderRadiusMedium;
+//   boxShadowLight();
+//   p
+//     &.line
+//       color: clrCodeFg;
+//       position: relative;
+//       padding: .5rem 1rem;
+//       &.bash
+//         flexRow(.5rem);
+//         align-items: center;
+//         &:before
+//           content: '$';
+//           left: 0rem;
+//           color: lighten(clrCodeFg, 30);
+//           margin-right: .5rem;
+
+// .code
+//   font-family: fontMono;
