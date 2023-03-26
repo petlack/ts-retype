@@ -2,14 +2,14 @@
 @import "../vars.styl"
 
 lightTheme()
-  --clr-codeBg: $codeBgLandingLight
-  --clr-bgLanding: $bgColorLandingLight;
+  --clr-bgCode: $bgCodeLandingLight
+  --clr-bgLanding: $bgLandingLight;
   --clr-fgLanding: black;
   --clr-boxShadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 
 darkTheme()
-  --clr-codeBg: $codeBgLandingDark;
-  --clr-bgLanding: $bgColorLandingDark;
+  --clr-bgCode: $bgCodeLandingDark;
+  --clr-bgLanding: $bgLandingDark;
   --clr-fgLanding: white;
   --clr-boxShadow: rgb(0 10 23 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px;
 
@@ -19,10 +19,10 @@ darkTheme()
   min-height: 100vh;
   align-items: center;
   background-color: var(--clr-bgLanding);
-  border-bottom: 1px solid var(--clr-bgBorder);
+  border-bottom: 1px solid var(--clr-border);
   color: var(--clr-fgLanding);
   .window
-    background-color: var(--clr-codeBg);
+    background-color: var(--clr-bgCode);
   &.light
     lightTheme();
   &.dark

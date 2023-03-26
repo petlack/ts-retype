@@ -3,28 +3,26 @@
 
 .window
   &.light
-    --clr-codeBg: $codeBgMainLight;
-    --clr-codeFg: black;
-    --clr-headerBg: $yellowLight;
-    --clr-borderBg: hsl(36deg 10% 87%);
+    --clr-bgCode: $bgCodeMainLight;
+    --clr-bgHeader: $yellowLight;
+    --clr-border: hsl(36deg 10% 87%);
     --clr-boxShadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     --clr-codeCommentsFg: $grayLight;
   &.dark
-    --clr-codeBg: $codeBgMainDark;
-    --clr-headerBg: #12171e;
-    --clr-borderBg: #434342;
-    --clr-codeFg: white;
+    --clr-bgCode: $bgCodeMainDark;
+    --clr-bgHeader: #12171e;
+    --clr-border: #434342;
     --clr-boxShadow: rgba(0, 0, 0, 0.15) 0px 13px 27px -5px, rgba(0, 0, 0, 0.25) 0px 8px 16px -8px;
     --clr-codeCommentsFg: $gray;
 
   flexColumn(0);
-  background-color: var(--clr-codeBg);
+  background-color: var(--clr-bgCode);
   border-radius: $borderRadius;
   // box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   // box-shadow: $boxShadow;
   // box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   // box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  border: 1px solid var(--clr-borderBg);
+  border: 1px solid var(--clr-border);
 
   font-size: $codeFontSize;
   &-responsive
@@ -40,8 +38,8 @@
     align-items: center;
     border-top-left-radius: $borderRadius;
     border-top-right-radius: $borderRadius;
-    background-color: $headerBg;
-    border-bottom: 1px solid var(--clr-borderBg);
+    background-color: $bgHeader;
+    border-bottom: 1px solid var(--clr-border);
     .icons
       flexRow(10px);
       .icon
@@ -58,7 +56,7 @@
     .name
       line-height: 1;
       font-size: .9rem;
-      color: var(--clr-codeFg);
+      color: var(--clr-fgCode);
   .content
     flexRow();
     background-color: unset;
