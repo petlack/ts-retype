@@ -7,6 +7,7 @@ import { Button } from '../uikit/Button';
 import { IconDocs, IconGithub } from '../uikit/Icons';
 import Snippets from '../generated/snippets';
 import { Snippet } from './Token';
+import { Menu } from './Menu';
 
 export type LandingProps = {
   theme: 'dark' | 'light';
@@ -59,13 +60,7 @@ export function Landing({ theme }: LandingProps) {
   return (
     <div className={`landing-container ${theme}`}>
       <TopBar>
-        <div className="topbar-menu">
-          <a className="topbar-menu-item topbar-menu-item-active">About</a>
-          <a className="topbar-menu-item">Install</a>
-          <a className="topbar-menu-item">Usage</a>
-          <a className="topbar-menu-item">Examples</a>
-          <div className="indicator"></div>
-        </div>
+        <Menu />
       </TopBar>
       <div className="landing">
         {/* <div className="description">
@@ -88,8 +83,8 @@ export function Landing({ theme }: LandingProps) {
             ]}
           />
           <div className="links">
-            <Button caption="Documentation" icon={IconDocs} kind="primary" />
-            <Button caption="Source code" icon={IconGithub} kind="secondary" />
+            <Button caption="Documentation" icon={IconDocs} kind="primary" href="#docs" />
+            <Button caption="Source code" icon={IconGithub} kind="secondary" href="https://github.com/petlack/ts-retype" />
           </div>
         </div>
       </div>

@@ -1,3 +1,17 @@
+indicator()
+  position: absolute;
+  bottom: .25em;
+  left: calc((100% - 80%)/2);
+  right: calc((100% - 80%)/2);
+  height: .5em;
+  background-color: var(--clr-fgMedium);
+  // border-radius: 100vw;
+  transform: scaleX(0);
+  transition: transform 150ms ease-in;
+
+indicator-active()
+  transform: scaleX(1);
+
 .tab
   position: relative;
   color: darken(white, 60);
@@ -6,19 +20,10 @@
   &-caption
     position: relative;
   &-indicator
-    content: '';
-    position: absolute;
-    bottom: .25em;
-    left: calc((100% - 80%)/2);
-    right: calc((100% - 80%)/2);
-    height: .5em;
-    background-color: var(--clr-fgMedium);
-    // border-radius: 100vw;
-    transform: scaleX(0);
-    transition: transform 150ms ease-in;
+    indicator()
   &:hover
     color: var(--clr-fgText);
   &-active
     .tab-indicator
-      transform: scaleX(1);
+      indicator-active()
     color: var(--clr-fgText);

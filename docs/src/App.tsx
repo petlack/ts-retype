@@ -16,10 +16,10 @@ const theme = 'light';
 export default function App() {
   return (
     <main className={theme}>
-      <section className="bleed">
+      <section className="bleed" id="about">
         <Landing theme={theme} />
       </section>
-      <section>
+      <section id="install">
         <h2>Install</h2>
         <p>Install as a dev dependency</p>
         <MultilangWindow
@@ -38,7 +38,7 @@ export default function App() {
           ]}
         />
       </section>
-      <section>
+      <section id="usage">
         <h2>Usage</h2>
         <p>To create a report for your project, run</p>
         <MultilangWindow
@@ -52,7 +52,7 @@ export default function App() {
         <Bash theme={theme}>{'open retype-report.html'}</Bash>
       </section>
 
-      <section>
+      <section id="docs">
         <h2>CLI</h2>
         <p>Configuration can be done by either CLI options</p>
         <Window theme={theme} name="bash" showHeader={false}>
@@ -93,7 +93,7 @@ ts-retype -c .`
         <JsTsCode theme={theme} snippet={Snippets.TypeDuplicate as Snippet} />
       </section>
 
-      <section>
+      <section id="examples">
         <h2>Examples</h2>
         <p>See example reports for following projects</p>
         <ul>
