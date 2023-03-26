@@ -1,7 +1,5 @@
 import { toColorTokens } from '../format';
 import { Window } from './Window';
-
-import './Bash.styl';
 import { WithBash } from './WithBash';
 
 export type BashProps = {

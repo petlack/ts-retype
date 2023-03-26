@@ -7,10 +7,10 @@ import json from 'refractor/lang/json.js';
 refractor.register(ts);
 refractor.register(json);
 
-const sourceDir = '../src/snippets';
-const targetDir = '../src/generated';
+const sourceDir = path.join(process.cwd(), '../src/snippets');
+const targetDir = path.join(process.cwd(), '../src/generated');
 
-function ensureDirectoryExists(directory) {
+function ensureDirectoryExists(directory: string) {
   if (!fs.existsSync(directory)) {
     fs.mkdirSync(directory, { recursive: true });
   }

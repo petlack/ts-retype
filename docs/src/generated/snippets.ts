@@ -446,6 +446,23 @@ export default {
             },
           ],
         },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n',
+        },
       ],
     },
   },
@@ -1917,6 +1934,23 @@ export default {
               value: '}',
             },
           ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n',
         },
       ],
     },
@@ -3679,6 +3713,19 @@ export default {
           ],
         },
         {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
           type: 'text',
           value: '\n',
         },
@@ -3707,6 +3754,10 @@ export default {
               value: ';',
             },
           ],
+        },
+        {
+          type: 'text',
+          value: '\n',
         },
       ],
     },
@@ -3871,7 +3922,7 @@ export default {
           children: [
             {
               type: 'text',
-              value: ',',
+              value: ';',
             },
           ],
         },
@@ -3918,7 +3969,7 @@ export default {
           children: [
             {
               type: 'text',
-              value: ',',
+              value: ';',
             },
           ],
         },
@@ -4126,6 +4177,10 @@ export default {
               value: '// ...',
             },
           ],
+        },
+        {
+          type: 'text',
+          value: '\n',
         },
       ],
     },
@@ -4374,6 +4429,10 @@ export default {
               value: '// ...',
             },
           ],
+        },
+        {
+          type: 'text',
+          value: '\n',
         },
       ],
     },
@@ -4662,6 +4721,10 @@ export default {
               value: '}',
             },
           ],
+        },
+        {
+          type: 'text',
+          value: '\n',
         },
       ],
     },
@@ -5412,6 +5475,10 @@ export default {
             },
           ],
         },
+        {
+          type: 'text',
+          value: '\n',
+        },
       ],
     },
   },
@@ -5678,6 +5745,19 @@ export default {
           ],
         },
         {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
           type: 'text',
           value: '\n',
         },
@@ -5693,6 +5773,10 @@ export default {
               value: '// ...',
             },
           ],
+        },
+        {
+          type: 'text',
+          value: '\n',
         },
       ],
     },
