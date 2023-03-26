@@ -2,59 +2,25 @@
 @import "../vars.styl"
 
 lightTheme()
-  --clr-codeBg: $codeBgMainLight;
-  --clr-codeKeyFg: $blueDark;
-  --clr-codeValueFg: $green;
-  --clr-menuInactiveFg: gray;
-  --clr-menuActiveFg: black;
-  --clr-menuHoverFg: black;
-  --clr-bgColor: $bgColorLandingLight;
-  --clr-bgBorderColor: $bgBorderLight;
-  --clr-fgColor: black;
-  --clr-title: #101010;
-  --clr-text: $textLight;
+  --clr-codeBg: $codeBgLandingLight
+  --clr-bgLanding: $bgColorLandingLight;
+  --clr-fgLanding: black;
   --clr-boxShadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-  --clr-card-bg: white;
-  --clr-code-bg: #e8eff1;
-  --clr-code-fg: black;
-  --clr-code-key: var(--clr-codeKeyFg);
-  --clr-code-value: var(--clr-codeValueFg);
-  --clr-card-title-fg: #aab5b9;
-  --clr-bgaa-400: #bccfd5;
-  --clr-card-badge-bg: $bgColorLandingLight; 
 
 darkTheme()
-  --clr-codeBg: $codeBgMainDark;
-  --clr-codeKeyFg: $red;
-  --clr-codeValueFg: $yellow;
-  --clr-menuInactiveFg: lightgray;
-  --clr-menuActiveFg: white;
-  --clr-menuHoverFg: white;
-  --clr-bgColor: $bgColorLandingDark;
-  --clr-borderBgColor: $bgBorderDark;
-  --clr-fgColor: white;
-  --clr-title: $titleDark;
-  --clr-text: $textDark;
+  --clr-codeBg: $codeBgLandingDark;
+  --clr-bgLanding: $bgColorLandingDark;
+  --clr-fgLanding: white;
   --clr-boxShadow: rgb(0 10 23 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px;
-  --clr-fg: #dbdbdb;
-  --clr-bgaa-400: #213237;
-  --clr-code-key: var(--clr-codeKeyFg);
-  --clr-code-value: var(--clr-codeValueFg);
-  --clr-card-bg: #151e21;
-  --clr-card-fg: #ffffff;
-  --clr-code-bg: #101517;
-  --clr-code-fg: #ffffff;
-  --clr-card-badge-bg: #1d2e32;
-  --clr-card-title-fg: #585858;
 
 .landing-container
   flexColumn();
   position: relative;
   min-height: 100vh;
   align-items: center;
-  background-color: var(--clr-bgColor);
-  border-bottom: 1px solid var(--clr-bgBorderColor);
-  color: var(--clr-fgColor);
+  background-color: var(--clr-bgLanding);
+  border-bottom: 1px solid var(--clr-bgBorder);
+  color: var(--clr-fgLanding);
   .window
     background-color: var(--clr-codeBg);
   &.light
@@ -104,7 +70,7 @@ darkTheme()
         width: 20ch;
         font-weight: 500;
         font-family: $fontTitle;
-        color: var(--clr-title);
+        color: var(--clr-fgTitle);
         margin-bottom: .5rem;
         display: flex;
 
@@ -122,7 +88,7 @@ darkTheme()
         font-weight: 400;
         opacity: 0.8;
         line-height: 1.5;
-        color: var(--clr-text);
+        color: var(--clr-fgText);
         display: flex;
 
         @media screen and (max-width: $breakDescCTA)
