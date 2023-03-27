@@ -1,4 +1,4 @@
-// import './Code.styl';
+import './Code.styl';
 
 export type CodeProps = {
   children: JSX.Element | JSX.Element[];
