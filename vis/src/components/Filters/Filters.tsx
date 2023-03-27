@@ -8,12 +8,14 @@ export type FiltersProps = {
   filter: Filter,
   updateFilter: (f: Partial<Filter>) => void,
   facetsStats: FacetStats;
+  visible: boolean;
 }
 
 export function Filters({
   filter,
   updateFilter,
   facetsStats,
+  visible,
 }: FiltersProps) {
   const updateMinProperties = (value: number) => updateFilter({ ...filter, minProperties: value });
   const updateMinFiles = (value: number) => updateFilter({ ...filter, minFiles: value });
@@ -43,7 +45,7 @@ export function Filters({
   });
   
   return (
-    <div className="filters">
+    <div className={`filters filters-${visible ? 'visible' : 'hidden'}`}>
       <div className="filter">
         <span className="label">Show types that are</span>
         <ul className="navmenu">

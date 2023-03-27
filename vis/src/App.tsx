@@ -1,16 +1,14 @@
-import { useEffect, useState } from 'react';
-
-import { useSearch } from './hooks/useSearch';
-import { ClusterListing } from './components/Cluster';
-import { Empty } from './components/Empty';
-import { Filters } from './components/Filters';
-import { Search } from './components/Search';
-import { ToastProvider } from './components/Toast';
+import { useCallback, useEffect, useState } from 'react';
 import { Facet, fulltext } from './model/search';
+import { Filters, FiltersMenu } from './components/Filters';
 import { FulltextData } from './types';
+import { Listing } from './components/Listing';
+import { Search } from './components/Search';
 import { Similarity } from '../../src/types';
-import { UiKitApp } from '../../docs/src/uikit/UiKitApp';
+import { ToastProvider } from './components/Toast';
 import { TopBar } from '../../docs/src/uikit/TopBar';
+import { UiKitApp } from '../../docs/src/uikit/UiKitApp';
+import { useSearch } from './hooks/useSearch';
 
 import './App.scss';
 
@@ -61,9 +59,11 @@ function App() {
     reindex(allData);
   }, [allData]);
 
-  const resultsMarkup = results.length === 0 ?
-    <Empty /> :
-    <ClusterListing clusters={results} query={query} />;
+  const [filtersVisible, setFiltersVisible] = useState(false);
+
+  const toggleFiltersVisibility = useCallback(() => {
+    setFiltersVisible(!filtersVisible);
+  }, [filtersVisible]);
 
   return (
     <UiKitApp theme={theme}>
@@ -73,16 +73,19 @@ function App() {
             query={query}
             setQuery={updateQuery}
           />
+          <FiltersMenu onClick={toggleFiltersVisibility} />
         </TopBar>
         <div className="main">
           <Filters
             filter={filter}
             updateFilter={updateFilter}
             facetsStats={facetsStats}
+            visible={filtersVisible}
           />
-          <div className="listing">
-            {resultsMarkup}
-          </div>
+          <Listing
+            results={results}
+            query={query}
+          />
         </div>
       </ToastProvider>
     </UiKitApp>

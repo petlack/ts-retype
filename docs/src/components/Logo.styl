@@ -12,7 +12,7 @@ $logoSize = 48px;
   --logo-size: $logoSize
   flexRow(calc(var(--logo-size) / 16));
   align-items: flex-end;
-  .icon
+  &-icon
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -29,7 +29,7 @@ $logoSize = 48px;
     // background-color: darken(bgWindowHeader, 20);
     background-color: $accent;
     // box-shadow: $boxShadow;
-  .title
+  &-title
     color: $accent;
     font-weight: 600;
     font-size: calc(var(--logo-size) * 0.75);
