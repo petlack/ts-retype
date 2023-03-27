@@ -4,6 +4,7 @@ import { SearchableSpan } from '../SearchableSpan';
 import { useToast } from '../Toast';
 
 import './FileListing.scss';
+import { TypeIcon } from './TypeIcon';
 
 export type FileListingProps = {
   files: TypeDuplicate['files'];
@@ -11,7 +12,7 @@ export type FileListingProps = {
   query: string;
 }
 
-export function FileListing({ files, type, query }: FileListingProps) {
+export function FileListing({ files, query }: FileListingProps) {
   const [, copyToClipboard] = useCopyToClipboard();
   const showToast = useToast();
 
@@ -20,15 +21,16 @@ export function FileListing({ files, type, query }: FileListingProps) {
     showToast('Copied to clipboard');
   };
   
-  const filesMarkup = files.map(({ file, lines }) => (
+  const filesMarkup = files.map(({ file, lines, type }) => (
     <span
       key={`${file}${lines}`}
       className="file"
       onClick={() => onFileClick(file, lines)}
     >
-      <span>{'{'}{type[0].toUpperCase()}{'}'}</span>
-      <SearchableSpan query={query} value={file} />
-      <span>({lines[0]} - {lines[1]})</span>
+      {/* <span className="type">{'{'}{type[0].toUpperCase()}{'}'}</span> */}
+      <TypeIcon type={type} />
+      <SearchableSpan className="path" query={query} value={file} />
+      <span className="lines">({lines[0]} - {lines[1]})</span>
     </span>
   ));
 

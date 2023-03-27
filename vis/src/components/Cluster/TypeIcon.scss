@@ -1,28 +1,31 @@
-.candidate-type {
-  grid-area: icon;
-  font-size: 2rem;
+.type-icon {
+  position: relative;
   font-weight: 800;
   color: var(--clr-bgaa-400);
   cursor: help;
   transition: color 150ms ease-in;
 
-  &:hover {
+  .type:hover {
     color: var(--clr-bgaa-900);
   }
 
   .tooltip {
     position: absolute;
     color: white;
-    top: .5rem;
+    bottom: 1.25rem;
     left: .5rem;
     background-color: gray;
     font-size: 0.75rem;
     padding: .25rem .5rem;
     border-radius: 4px;
-    opacity: 0;
+    // opacity: 0;
+    // display: none;
+    visibility: hidden;
   
     &.visible {
-      opacity: 1;
+      // z-index: 10;
+      // opacity: 1;
+      visibility: visible;
     }
   }
 }

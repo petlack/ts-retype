@@ -18,9 +18,9 @@ export function TypeIcon({ type }: TypeIconProps) {
     interface: 'Interface Declaration',
   }[type];
   return (
-    <div className="candidate-type">
+    <div className="type-icon">
       <span
-        className="mono"
+        className="type mono"
         onMouseEnter={() => setIsTooltipVisible(true)}
         onMouseLeave={() => setIsTooltipVisible(false)}
       >{`{${type[0].toUpperCase()}}`}</span>

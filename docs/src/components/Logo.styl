@@ -1,0 +1,38 @@
+@import "../utils.styl"
+@import "../vars.styl"
+
+// if $darkMode
+//   $boxShadow = rgba(10, 10, 11, 0.2) 0px 7px 29px 0px;
+// else
+//   $boxShadow = rgba(40, 50, 52, 0.1) 0px 7px 29px 0px;
+
+$logoSize = 48px;
+
+.logo
+  --logo-size: $logoSize
+  flexRow(calc(var(--logo-size) / 16));
+  align-items: flex-end;
+  .icon
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: calc(var(--logo-size) / 2);
+    width: var(--logo-size);
+    height: var(--logo-size);
+    font-weight: 600;
+    padding-right: calc(var(--logo-size) / 8);
+    padding-bottom: calc(var(--logo-size) / 8);
+    line-height: 1;
+    // padding: 1.5rem 0.8rem 0rem 1.5rem;
+    border-bottom-left-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+    // background-color: darken(bgWindowHeader, 20);
+    background-color: $accent;
+    // box-shadow: $boxShadow;
+  .title
+    color: $accent;
+    font-weight: 600;
+    font-size: calc(var(--logo-size) * 0.75);
+    line-height: 1.15;
+  @media screen and (max-width: $breakHeaderLogo)
+    --logo-size: 32px;

@@ -1,0 +1,43 @@
+@import "../vars.styl"
+@import "../utils.styl"
+
+indicator()
+  position: absolute;
+  bottom: .5em;
+  left: calc((100% - 80%)/2);
+  right: calc((100% - 80%)/2);
+  height: .5em;
+  background-color: var(--clr-fgMedium);
+  transform: scaleX(0);
+  transition: transform 150ms ease-in;
+
+indicator-active()
+  transform: scaleX(1);
+
+.menu
+  flexRow();
+  position: sticky;
+  gap: 1.5rem;
+  justify-self: end;
+  align-self: center;
+  font-weight: 400;
+  &-item
+    position: relative;
+    color: var(--clr-fgText);
+    cursor pointer;
+    padding: 1rem 0;
+    text-decoration: none;
+    
+    &:before
+      content: '';
+      indicator()
+    &:hover
+      &:before
+        indicator-active()
+  // .indicator
+  //   position: absolute;
+  //   top: calc(50% + 1rem);
+  //   left: 0;
+  //   height: 2px;
+  //   width: 58px;
+  //   background-color: $accent;

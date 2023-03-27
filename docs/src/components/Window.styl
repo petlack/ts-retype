@@ -1,0 +1,70 @@
+@import "../utils.styl"
+@import "../vars.styl"
+
+lightTheme()
+  --clr-bgCode: $bgCodeMainLight;
+  --clr-fgCode: black;
+  --clr-bgWindowHeader: $yellowLight;
+  // --clr-border: hsl(36deg 10% 87%);
+  --clr-boxShadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --clr-codeCommentsFg: $grayLight;
+
+darkTheme()
+    --clr-bgCode: $bgCodeMainDark;
+    --clr-fgCode: white;
+    --clr-bgWindowHeader: #12171e;
+    // --clr-border: #434342;
+    --clr-boxShadow: rgba(0, 0, 0, 0.15) 0px 13px 27px -5px, rgba(0, 0, 0, 0.25) 0px 8px 16px -8px;
+    --clr-codeCommentsFg: $gray;
+
+.window
+  &.light
+    lightTheme()
+  &.dark
+    darkTheme()
+
+  flexColumn(0);
+  background-color: var(--clr-bgCode);
+  border-radius: $borderRadius;
+  // box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  // box-shadow: $boxShadow;
+  // box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  // box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  border: 1px solid var(--clr-border);
+
+  font-size: $codeFontSize;
+  &-responsive
+    font-size: $codeResponsiveFontSize;
+    @media screen and (min-width: $codeFontMaxOutWidth)
+      font-size: $codeMaxFontSize
+    @media screen and (max-width: $codeFontMinOutWidth)
+      font-size: $codeMinFontSize;
+
+  .header
+    flexRow($borderRadius);
+    padding: "calc(%s / 1.5)" % $borderRadius $borderRadius;
+    align-items: center;
+    border-top-left-radius: $borderRadius;
+    border-top-right-radius: $borderRadius;
+    background-color: var(--clr-bgWindowHeader);
+    border-bottom: 1px solid var(--clr-border);
+    .icons
+      flexRow(10px);
+      .icon
+        width: $borderRadius;
+        height: $borderRadius;
+        display: flex;
+        border-radius: 50%;
+        &.red
+          background-color: $appIconRed;
+        &.yellow
+          background-color: $appIconYellow;
+        &.green
+          background-color: $appIconGreen;
+    .name
+      line-height: 1;
+      font-size: .9rem;
+      color: var(--clr-fgCode);
+  .content
+    flexRow();
+    background-color: unset;

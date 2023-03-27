@@ -17,9 +17,40 @@
     "properties": [{ "name": "string", "type": "number | FacetStats" }]
   },
   {
-    "names": [{ "name": "anonymous", "count": 2 }],
+    "names": [{ "name": "anonymous", "count": 3 }],
+    "files": [
+      {
+        "file": "vis/src/components/Toast/Toast.tsx",
+        "type": "literal",
+        "pos": [390, 418],
+        "lines": [18, 18]
+      },
+      {
+        "file": "docs/src/components/Window.tsx",
+        "type": "literal",
+        "pos": [381, 419],
+        "lines": [13, 13]
+      },
+      {
+        "file": "docs/src/components/Bash.tsx",
+        "type": "literal",
+        "pos": [212, 250],
+        "lines": [9, 9]
+      }
+    ],
+    "group": "different",
+    "properties": [{ "name": "children", "type": "JSX.Element[]" }]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 3 }],
     "files": [
       { "file": "src/clusters.ts", "type": "literal", "pos": [2057, 2086], "lines": [68, 68] },
+      {
+        "file": "docs/src/components/MultilangWindow.tsx",
+        "type": "literal",
+        "pos": [580, 609],
+        "lines": [23, 23]
+      },
       {
         "file": "docs/src/components/Code.tsx",
         "type": "literal",
@@ -52,8 +83,8 @@
       {
         "file": "vis/src/components/Cluster/FileListing.tsx",
         "type": "alias",
-        "pos": [246, 363],
-        "lines": [6, 12]
+        "pos": [285, 402],
+        "lines": [7, 13]
       }
     ],
     "group": "different",
@@ -74,12 +105,111 @@
     "properties": [{ "name": "pos", "type": "[number, number]" }]
   },
   {
+    "names": [
+      { "name": "TooltipProps", "count": 1 },
+      { "name": "WindowProps", "count": 1 },
+      { "name": "JsTsCodeProps", "count": 1 },
+      { "name": "BashProps", "count": 1 },
+      { "name": "LandingProps", "count": 1 },
+      { "name": "SnippetProps", "count": 1 },
+      { "name": "SingleCodeProps", "count": 1 },
+      { "name": "CodeLang", "count": 1 },
+      { "name": "MultilangWindowProps", "count": 1 },
+      { "name": "MultilangCodeProps", "count": 1 }
+    ],
+    "files": [
+      {
+        "file": "vis/src/components/Tooltip/Tooltip.tsx",
+        "type": "alias",
+        "pos": [58, 117],
+        "lines": [2, 6]
+      },
+      {
+        "file": "docs/src/components/Window.tsx",
+        "type": "alias",
+        "pos": [483, 686],
+        "lines": [17, 26]
+      },
+      {
+        "file": "docs/src/components/JsTsCode.tsx",
+        "type": "alias",
+        "pos": [83, 163],
+        "lines": [2, 7]
+      },
+      {
+        "file": "docs/src/components/Bash.tsx",
+        "type": "alias",
+        "pos": [96, 172],
+        "lines": [2, 7]
+      },
+      {
+        "file": "docs/src/components/Landing.tsx",
+        "type": "alias",
+        "pos": [1018, 1077],
+        "lines": [40, 44]
+      },
+      {
+        "file": "docs/src/components/Snippet.tsx",
+        "type": "alias",
+        "pos": [120, 252],
+        "lines": [4, 12]
+      },
+      { "file": "docs/src/components/Code.tsx", "type": "alias", "pos": [56, 97], "lines": [3, 5] },
+      {
+        "file": "docs/src/components/MultilangWindow.tsx",
+        "type": "alias",
+        "pos": [137, 192],
+        "lines": [5, 10]
+      },
+      {
+        "file": "docs/src/components/MultilangWindow.tsx",
+        "type": "alias",
+        "pos": [192, 301],
+        "lines": [10, 16]
+      },
+      { "file": "docs/src/components/Code.tsx", "type": "alias", "pos": [97, 167], "lines": [5, 6] }
+    ],
+    "group": "different",
+    "properties": [{ "name": "children", "type": "JSX.Element[]" }]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 4 }],
+    "files": [
+      {
+        "file": "vis/src/components/Toast/Toast.tsx",
+        "type": "literal",
+        "pos": [390, 418],
+        "lines": [18, 18]
+      },
+      {
+        "file": "docs/src/components/Window.tsx",
+        "type": "literal",
+        "pos": [59, 117],
+        "lines": [1, 1]
+      },
+      {
+        "file": "docs/src/components/Window.tsx",
+        "type": "literal",
+        "pos": [381, 419],
+        "lines": [13, 13]
+      },
+      {
+        "file": "docs/src/components/Bash.tsx",
+        "type": "literal",
+        "pos": [212, 250],
+        "lines": [9, 9]
+      }
+    ],
+    "group": "different",
+    "properties": [{ "name": "children", "type": "JSX.Element[]" }]
+  },
+  {
     "names": [{ "name": "anonymous", "count": 6 }],
     "files": [
       {
         "file": "vis/src/components/SearchableSpan/SearchableSpan.tsx",
         "type": "literal",
-        "pos": [386, 419],
+        "pos": [402, 455],
         "lines": [15, 15]
       },
       {
@@ -115,6 +245,7 @@
     ],
     "group": "different",
     "properties": [
+      { "name": "className", "type": "string" },
       { "name": "query", "type": "string" },
       { "name": "value", "type": "string" }
     ]
@@ -201,6 +332,26 @@
     "group": "renamed"
   },
   {
+    "names": [
+      { "name": "JsTsCodeProps", "count": 1 },
+      { "name": "BashProps", "count": 1 }
+    ],
+    "files": [
+      {
+        "file": "docs/src/components/JsTsCode.tsx",
+        "type": "alias",
+        "pos": [83, 163],
+        "lines": [2, 7]
+      },
+      { "file": "docs/src/components/Bash.tsx", "type": "alias", "pos": [96, 172], "lines": [2, 7] }
+    ],
+    "group": "renamed",
+    "properties": [
+      { "name": "children", "type": "string" },
+      { "name": "theme", "type": "'dark' | 'light'" }
+    ]
+  },
+  {
     "names": [{ "name": "anonymous", "count": 4 }],
     "files": [
       {
@@ -230,5 +381,37 @@
     ],
     "group": "identical",
     "properties": [{ "name": "query", "type": "string" }]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 2 }],
+    "files": [
+      { "file": "docs/src/format.ts", "type": "union", "pos": [809, 826], "lines": [38, 38] },
+      {
+        "file": "docs/src/components/Landing.tsx",
+        "type": "union",
+        "pos": [4396, 4413],
+        "lines": [118, 118]
+      }
+    ],
+    "group": "identical"
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 2 }],
+    "files": [
+      {
+        "file": "docs/src/components/Window.tsx",
+        "type": "literal",
+        "pos": [381, 419],
+        "lines": [13, 13]
+      },
+      {
+        "file": "docs/src/components/Bash.tsx",
+        "type": "literal",
+        "pos": [212, 250],
+        "lines": [9, 9]
+      }
+    ],
+    "group": "identical",
+    "properties": [{ "name": "children", "type": "WindowProps['children']" }]
   }
 ]

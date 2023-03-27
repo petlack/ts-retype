@@ -1,0 +1,5 @@
+{
+  "output": "./retype-report.html",
+  "include": ["**/*.{ts,tsx}"],
+  "exclude": ["**/node_modules/**", "**/dist/**"]
+}
