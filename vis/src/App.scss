@@ -17,13 +17,36 @@ main {
     .topbar {
       padding-right: 0;
       max-width: unset;
+      justify-content: center;
+      gap: 1rem;
+      .topbar-header {
+        position: absolute;
+        left: 0;
+      }
       .logo-icon {
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 12px;
       }
       button.logo-icon {
+        position: absolute;
+        right: 0;
         border-bottom-left-radius: 12px;
         border-bottom-right-radius: 0px;
+      }
+      @media screen and (max-width: 1536px) {
+        .topbar-header {
+          position: unset;
+        }
+        .logo-icon {
+          border-bottom-left-radius: 12px;
+          border-bottom-right-radius: 12px;
+        }
+      }
+      @media screen and (max-width: 1370px) {
+        .logo-icon {
+          border-bottom-left-radius: 0px;
+          border-bottom-right-radius: 12px;
+        }
       }
     }
   }
