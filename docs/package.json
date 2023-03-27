@@ -6,8 +6,9 @@
   "scripts": {
     "build": "tsc && npm run snippets && vite build",
     "dev": "vite",
+    "postinstall": "cd scripts && npm ci",
     "preview": "vite preview",
-    "snippets": "cd scripts && npm run dev"
+    "snippets": "cd scripts && npm run build && npm run snippets"
   },
   "dependencies": {
     "react": "^18.2.0",
