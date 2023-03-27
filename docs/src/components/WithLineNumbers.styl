@@ -1,19 +1,25 @@
 @import "../utils.styl"
 @import "../vars.styl"
 
-.lines
-  flexColumn();
-  align-items: flex-end;
-  justify-content: center;
-  // font-size: .66rem;
-  line-height: 1.35;
-  white-space: break-spaces;
-  width: 3ch;
-  padding: $borderRadius .5rem;
-  padding-right: 0;
-  cursor: default;
-  color: var(--clr-codeCommentsFg);
-  -webkit-user-select: none;
-  user-select: none;
-  &-numbers
-    justify-content: flex-start;
+// .lines
+//   flexColumn();
+//   align-items: flex-end;
+//   justify-content: center;
+//   // font-size: .66rem;
+//   line-height: 1.35;
+//   white-space: break-spaces;
+//   width: 3ch;
+//   padding: $borderRadius .5rem;
+//   padding-right: 0;
+//   cursor: default;
+//   color: var(--clr-codeCommentsFg);
+//   -webkit-user-select: none;
+//   user-select: none;
+.line
+  flexRow();
+  &>span:nth-child(1)
+    color: var(--clr-codeCommentsFg);
+    padding: 0 1em 0 .5em;
+    cursor: default;
+    -webkit-user-select: none;
+    user-select: none;

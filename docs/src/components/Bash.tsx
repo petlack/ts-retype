@@ -1,4 +1,4 @@
-import { Snippet, Token, toTokenElements } from './Token';
+import { Snippet, Token, toTokenLines } from './Token';
 import { Window } from './Window';
 import { WithBash } from './WithBash';
 
@@ -37,15 +37,11 @@ function parseBash(code: string): Snippet {
 }
 
 export function Bash({ children, theme }: BashProps) {
-  const childrenMarkup = toTokenElements(parseBash(children));
+  const lines = toTokenLines(parseBash(children));
   // const childrenMarkup = children.split('\n').map((line, idx) => <span key={idx}>{`${line}\n`}</span>);
   return (
-    <div className="bash">
-      <Window theme={theme} name="bash" showHeader={false}>
-        <WithBash>
-          {childrenMarkup}
-        </WithBash>
-      </Window>
-    </div>
+    <Window theme={theme} name="bash" showHeader={false}>
+      <WithBash lines={lines} />
+    </Window>
   );
 }

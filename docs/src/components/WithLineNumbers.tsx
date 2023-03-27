@@ -3,19 +3,18 @@ import { Code } from './Code';
 import './WithLineNumbers.styl';
 
 export type WithLineNumbersProps = {
-    children: JSX.Element[];
     start: number;
-    lines: number;
+    lines: JSX.Element[][];
 }
 
-export function WithLineNumbers({ children, start, lines }: WithLineNumbersProps) {
-  const lineNos = [...Array(lines).keys()].map(i => <span key={i}>{i + start}</span>);
+export function WithLineNumbers({ start, lines }: WithLineNumbersProps) {
+  const linesMarkup = lines.map((line, lineNo) => (
+    <span key={lineNo} className="line">
+      <span>{start + lineNo}</span>
+      <span>{line}</span>
+    </span>
+  ));
   return (
-    <>
-      <pre className="lines lines-numbers">
-        {lineNos}
-      </pre>
-      <Code>{children}</Code>
-    </>
+    <Code>{linesMarkup}</Code>
   );
 }

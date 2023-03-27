@@ -27,7 +27,7 @@ export function MultilangWindow({ codes, theme, selectedLang }: MultilangWindowP
     .map((lg) => (
       <LanguageTab key={lg} lang={lg} selectedLang={lang} setLang={setLang} />
     ));
-  const codeMarkup = code.map((line, idx) => (
+  const lines = code.map((line, idx) => (
     <span key={idx}>{`${line.padEnd(width, ' ')}\n`}</span>
   ));
   return (
@@ -36,9 +36,7 @@ export function MultilangWindow({ codes, theme, selectedLang }: MultilangWindowP
         {tabsMarkup}
       </div>
       <Window theme={theme} name="bash" showHeader={false}>
-        <WithBash>
-          {codeMarkup}
-        </WithBash>
+        <WithBash lines={[lines]} />
       </Window>
     </div>
   );

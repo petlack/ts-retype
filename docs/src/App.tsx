@@ -60,9 +60,9 @@ export default function App() {
         </Window>
         <Options
           options={[
-            { short: 'c', long: 'config', args: '[path]', desc: 'load config - if no path provided, loads .retyperc from current directory. if not set, use default config' },
+            { short: 'c', long: 'config', args: '[path]', desc: 'load config - if no path is provided, loads .retyperc from current directory. if not set, use default config' },
             { short: 'e', long: 'exclude', args: '[glob...]', desc: 'glob patterns that will be ignored' },
-            { short: 'g', long: 'generate', args: '[path]', desc: 'generate default config. if no path provided, creates .retyperc in the current directory' },
+            { short: 'g', long: 'generate', args: '[path]', desc: 'generate default config. if no path is provided, creates .retyperc in the current directory' },
             { short: 'i', long: 'include', args: '[glob...]', desc: 'glob patterns that will be included in search' },
             { short: 'j', long: 'json', args: '<path>', desc: 'JSON report file path. if not set, does not export JSON.' },
             { short: 'n', long: 'noHtml', desc: 'if set, does not export HTML (default: false)' },

@@ -1,6 +1,6 @@
 import { Window } from './Window';
 import { WithLineNumbers } from './WithLineNumbers';
-import { Snippet, toTokenElements } from './Token';
+import { Snippet, toTokenLines } from './Token';
 
 export type TsSnippetProps = {
   start: number;
@@ -11,7 +11,7 @@ export type TsSnippetProps = {
 }
 
 export function TsSnippet({ start, name, snippet, theme, responsive = false }: TsSnippetProps) {
-  const codeMarkup = toTokenElements(snippet);
+  const lines = toTokenLines(snippet).slice(0, -1);
   return (
     <Window
       responsive={responsive}
@@ -20,10 +20,8 @@ export function TsSnippet({ start, name, snippet, theme, responsive = false }: T
     >
       <WithLineNumbers
         start={start}
-        lines={snippet.code.children.filter(c => c.value === '\n').length}
-      >
-        {codeMarkup}
-      </WithLineNumbers>
+        lines={lines}
+      />
     </Window>
   );
 }
