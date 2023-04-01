@@ -2,7 +2,7 @@ import { FunctionTypeCluster } from '../../types';
 
 import { FileListing } from './FileListing';
 import { KeyValueFeatures } from './KeyValueFeatures';
-import { NamesListing } from './NamesListing';
+import { DuplicateName, NamesListing } from './NamesListing';
 import { TypeIcon } from './TypeIcon';
 
 import './BaseCluster.scss';
@@ -22,8 +22,9 @@ export function FunctionCluster({ type, query, files, parameters, returnType, na
     <div className="cluster cluster-functional">
       <div className="title">
         <TypeIcon type={type} />
-        <NamesListing names={names} query={query} />
+        <DuplicateName names={names} query={query} />
       </div>
+      <NamesListing names={names} query={query} />
       <div className="return-type">
         <h3>Return type</h3>
         <span className="mono">{returnType}</span>

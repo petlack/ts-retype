@@ -54,7 +54,7 @@ export function Filters({
       </div>
       <div className="filter">
         <span className="label">Filter by type</span>
-        <ul className="navmenu">
+        <ul className="navmenu navmenu--overflow">
           {typesMarkup}
         </ul>
       </div>

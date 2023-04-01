@@ -26,6 +26,22 @@ function sortNames(names: TypeDuplicate['names']) {
   });
 }
 
+export function DuplicateName({ query, names }: NamesListingProps) {
+  const sortedNames = sortNames(names);
+  return (
+    <h2 className="mono">
+      <SearchableSpan
+        query={query}
+        value={
+          sortedNames.length > 1 ?
+            `${sortedNames[0].name} (${sortedNames[0].count}x)` :
+            sortedNames[0].name
+        }
+      />
+    </h2>
+  );
+}
+
 export function NamesListing({ query, names }: NamesListingProps) {
   const sortedNames = sortNames(names);
 
@@ -37,7 +53,7 @@ export function NamesListing({ query, names }: NamesListingProps) {
 
   const alsoKnownMarkup = (
     namesMarkup.length > 0 ? (
-      <div className="row">
+      <div className="names-container">
         <span>Also known as</span>
         {namesMarkup}
       </div>
@@ -45,16 +61,6 @@ export function NamesListing({ query, names }: NamesListingProps) {
   );
   return (
     <>
-      <h2 className="mono">
-        <SearchableSpan
-          query={query}
-          value={
-            namesMarkup.length > 0 ?
-              `${sortedNames[0].name} (${sortedNames[0].count}x)` :
-              sortedNames[0].name
-          }
-        />
-      </h2>
       {alsoKnownMarkup}
     </>
   );

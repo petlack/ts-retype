@@ -1,7 +1,7 @@
 import { EnumTypeCluster } from '../../types';
 
 import { FileListing } from './FileListing';
-import { NamesListing } from './NamesListing';
+import { DuplicateName, NamesListing } from './NamesListing';
 import { TypeIcon } from './TypeIcon';
 import { ValueFeatures } from './ValueFeatures';
 
@@ -12,8 +12,9 @@ export function EnumCluster({ type, query, files, members, names }: EnumTypeClus
     <div className="cluster">
       <div className="title">
         <TypeIcon type={type} />
-        <NamesListing names={names} query={query} />
+        <DuplicateName names={names} query={query} />
       </div>
+      <NamesListing names={names} query={query} />
       <ValueFeatures title="Members" query={query} values={members} />
       <FileListing files={files} query={query} type={type} />
     </div>

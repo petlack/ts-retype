@@ -1,7 +1,7 @@
 import { UnionTypeCluster } from '../../types';
 
 import { FileListing } from './FileListing';
-import { NamesListing } from './NamesListing';
+import { DuplicateName, NamesListing } from './NamesListing';
 import { TypeIcon } from './TypeIcon';
 import { ValueFeatures } from './ValueFeatures';
 
@@ -12,8 +12,9 @@ export function UnionCluster({ type, query, files, types, names }: UnionTypeClus
     <div className="cluster">
       <div className="title">
         <TypeIcon type={type} />
-        <NamesListing names={names} query={query} />
+        <DuplicateName names={names} query={query} />
       </div>
+      <NamesListing names={names} query={query} />
       <ValueFeatures title="Strings" query={query} values={types} />
       <FileListing files={files} query={query} type={type} />
     </div>

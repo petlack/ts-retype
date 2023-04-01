@@ -1,10 +1,20 @@
 .filters {
   display: flex;
   flex-direction: column;
+  max-height: 100vh;
+  overflow-y: scroll;
   padding: 1rem;
   gap: 2rem;
   background-color: var(--clr-bgMain);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  transition: transform 250ms ease-in-out, opacity 250ms ease-in;
+
+  &-hidden {
+    opacity: 0
+  }
+  &-visible {
+    opacity: 1;
+  }
 
   .filter {
     display: flex;
@@ -23,7 +33,11 @@
       display: flex;
       flex-direction: column;
       gap: 2px;
-    
+
+      &--overflow {
+        overflow-y: scroll;
+      }
+      
       .nav {
         color: currentColor;
         padding: .75rem 1rem;
