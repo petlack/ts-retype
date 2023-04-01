@@ -1,11 +1,10 @@
 import { TypeDuplicate } from '../../../../src/types';
-import { SearchableSpan } from '../SearchableSpan';
+import { SearchAwareText } from '../SearchAwareText';
 
 import './NamesListing.scss';
 
 export type NamesListingProps = {
   names: TypeDuplicate['names'];
-  query: string;
 }
 
 function sortNames(names: TypeDuplicate['names']) {
@@ -26,28 +25,26 @@ function sortNames(names: TypeDuplicate['names']) {
   });
 }
 
-export function DuplicateName({ query, names }: NamesListingProps) {
+export function DuplicateName({ names }: NamesListingProps) {
   const sortedNames = sortNames(names);
   return (
     <h2 className="mono">
-      <SearchableSpan
-        query={query}
-        value={
-          sortedNames.length > 1 ?
-            `${sortedNames[0].name} (${sortedNames[0].count}x)` :
-            sortedNames[0].name
-        }
-      />
+      <SearchAwareText>{
+        sortedNames.length > 1 ?
+          `${sortedNames[0].name} (${sortedNames[0].count}x)` :
+          sortedNames[0].name
+      }
+      </SearchAwareText>
     </h2>
   );
 }
 
-export function NamesListing({ query, names }: NamesListingProps) {
+export function NamesListing({ names }: NamesListingProps) {
   const sortedNames = sortNames(names);
 
   const namesMarkup = sortedNames.slice(1).map(({ name, count }) => (
     <span key={name} className="name-freq mono">
-      <SearchableSpan query={query} value={name} /> ({count}x)
+      <SearchAwareText>{name}</SearchAwareText> ({count}x)
     </span>
   ));
 

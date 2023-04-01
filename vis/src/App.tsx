@@ -11,6 +11,7 @@ import { UiKitApp } from '../../docs/src/uikit/UiKitApp';
 import { useSearch } from './hooks/useSearch';
 
 import './App.scss';
+import { SearchPhraseProvider } from './hooks/useSearchPhrase';
 
 const theme = 'light';
 // const theme = 'dark';
@@ -67,27 +68,29 @@ function App() {
 
   return (
     <UiKitApp theme={theme}>
-      <ToastProvider>
-        <TopBar>
-          <Search
-            query={query}
-            setQuery={updateQuery}
-          />
-          <FiltersMenu onClick={toggleFiltersVisibility} />
-        </TopBar>
-        <div className="main">
-          <Filters
-            filter={filter}
-            updateFilter={updateFilter}
-            facetsStats={facetsStats}
-            visible={filtersVisible}
-          />
-          <Listing
-            results={results}
-            query={query}
-          />
-        </div>
-      </ToastProvider>
+      <SearchPhraseProvider value={{ phrase: query }}>
+        <ToastProvider>
+          <TopBar>
+            <Search
+              query={query}
+              setQuery={updateQuery}
+            />
+            <FiltersMenu onClick={toggleFiltersVisibility} />
+          </TopBar>
+          <div className="main">
+            <Filters
+              filter={filter}
+              updateFilter={updateFilter}
+              facetsStats={facetsStats}
+              visible={filtersVisible}
+            />
+            <Listing
+              results={results}
+              query={query}
+            />
+          </div>
+        </ToastProvider>
+      </SearchPhraseProvider>
     </UiKitApp>
   );
 }

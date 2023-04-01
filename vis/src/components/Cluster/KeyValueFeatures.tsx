@@ -1,25 +1,25 @@
-import { SearchableSpan } from '../SearchableSpan';
+import { SearchAwareText } from '../SearchAwareText';
 
 import './KeyValueFeatures.scss';
 
 export type KeyValueFeaturesProps = {
   name: string;
   keyValues: { name: string, type: string }[];
-  query: string;
 }
 
-export function KeyValueFeatures({ name, keyValues, query }: KeyValueFeaturesProps) {
+export function KeyValueFeatures({ name, keyValues }: KeyValueFeaturesProps) {
   const propertiesMarkup = keyValues.map(({ name, type }) => {
     return (
       <span key={name}>
         <span className="property key">
-          <SearchableSpan
-            query={query}
-            value={['string', 'number', 'symbol', 'boolean'].includes(name) ? `[key: ${name}]` : name}
-          />
+          <SearchAwareText>
+            {['string', 'number', 'symbol', 'boolean'].includes(name) ? `[key: ${name}]` : name}
+          </SearchAwareText>
         </span>
         <span>: </span>
-        <span className="property value"><SearchableSpan query={query} value={type} /></span>
+        <span className="property value">
+          <SearchAwareText>{type}</SearchAwareText>
+        </span>
         <br />
       </span>
     );
