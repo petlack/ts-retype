@@ -72,32 +72,6 @@
     font-size: 1rem;
   }
 
-  .title {
-    grid-area: title;
-    display: grid;
-    flex-direction: row;
-    column-gap: 1rem;
-    grid-template-columns: 5ch 1fr;
-    grid-template-areas:
-      "icon title"
-    ;
-    place-content: start;
-    place-items: start;
-    h2 {
-      color: var(--clr-fgTitle);
-      grid-area: title;
-      display: flex;
-      line-height: 2;
-      align-self: center;
-    }
-
-    .type-icon {
-      grid-area: icon;
-      font-size: 2em;
-      font-weight: 800;
-    }
-  }
-
   .names-container {
     grid-area: names;
   }

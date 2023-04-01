@@ -1,9 +1,8 @@
+import { ClusterTitle } from './ClusterTitle';
 import { FunctionTypeCluster } from '../../types';
-
 import { FileListing } from './FileListing';
 import { KeyValueFeatures } from './KeyValueFeatures';
-import { DuplicateName, NamesListing } from './NamesListing';
-import { TypeIcon } from './TypeIcon';
+import { NamesListing } from './NamesListing';
 
 import './BaseCluster.scss';
 import './FunctionalCluster.scss';
@@ -20,10 +19,7 @@ type UnBar = 'a' | 'b'
 export function FunctionCluster({ type, query, files, parameters, returnType, names }: FunctionTypeCluster & { query: string }) {
   return (
     <div className="cluster cluster-functional">
-      <div className="title">
-        <TypeIcon type={type} />
-        <DuplicateName names={names} query={query} />
-      </div>
+      <ClusterTitle names={names} type={type} query={query} />
       <NamesListing names={names} query={query} />
       <div className="return-type">
         <h3>Return type</h3>
