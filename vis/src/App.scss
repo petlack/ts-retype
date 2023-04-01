@@ -1,3 +1,14 @@
+@import "vars";
+
+@mixin lightTheme() {
+  --clr-codeKey: #{$codeKeyLight};
+  --clr-codeValue: #{$codeValueLight};
+}
+@mixin darkTheme() {
+  --clr-codeKey: #{$codeKeyDark};
+  --clr-codeValue: #{$codeValueDark};
+}
+
 #app {
   min-height: 100vh;
   background-color: var(--clr-bg);
@@ -13,6 +24,12 @@
 }
 
 main {
+  &.light {
+    @include lightTheme();
+  }
+  &.dark {
+    @include darkTheme();
+  }
   background-color: var(--clr-bgSecondary);
   .topbar-container {
     .strip {

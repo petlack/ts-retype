@@ -75,29 +75,4 @@
   .names-container {
     grid-area: names;
   }
-
-  .properties {
-    grid-area: properties;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    .pre {
-      /* background-color: #f0fafa; */
-      /* background-image: linear-gradient(to left bottom, #f0fafa, #ecf9f9, #e9f7f7, #e5f6f6, #e1f4f4); */
-      background-color: var(--clr-bgSecondary);
-      color: var(--clr-fgText);
-      padding: 0.5em 1em;
-      border: 1px solid var(--clr-border);
-      border-radius: 4px;
-    }
-
-    .property.key {
-      color: var(--clr-code-key)
-    }
-    
-    .property.value {
-      color: var(--clr-code-value);
-    }
-  }
 }

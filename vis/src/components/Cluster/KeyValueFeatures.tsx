@@ -1,5 +1,7 @@
 import { SearchableSpan } from '../SearchableSpan';
 
+import './KeyValueFeatures.scss';
+
 export type KeyValueFeaturesProps = {
   name: string;
   keyValues: { name: string, type: string }[];
