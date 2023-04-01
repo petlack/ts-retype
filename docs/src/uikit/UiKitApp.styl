@@ -7,7 +7,6 @@ lightTheme()
   --clr-border: $borderLight;
   --clr-fgText: $textLight;
   --clr-fgTitle: $titleLight;
-  --clr-border: $borderLight;
 
 darkTheme()
   --clr-bgMain: $bgMainDark;
@@ -15,7 +14,6 @@ darkTheme()
   --clr-border: $borderDark;
   --clr-fgText: $textDark;
   --clr-fgTitle: $titleDark;
-  --clr-border: $borderDark;
 
 *
   margin: 0;
@@ -34,6 +32,8 @@ main
     lightTheme();
   &.dark
     darkTheme();
+  --z-always-visible: $zAlwaysVisible;
+  --z-overlay: $zOverlay;
   flexColumn()
   min-height: 100vh;
   // justify-content: flex-start;

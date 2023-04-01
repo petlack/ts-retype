@@ -13,8 +13,8 @@
   // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 2em;
   border-radius: 8px;
-  border: 1px solid var(--clr-bgBorder);
-  background-color: var(--clr-bgSecondary);
+  border: 1px solid var(--clr-border);
+  background-color: var(--clr-bgMain);
   color: var(--clr-fgText);
   column-gap: 2em;
   row-gap: 1em;
@@ -68,10 +68,10 @@
     .pre {
       /* background-color: #f0fafa; */
       /* background-image: linear-gradient(to left bottom, #f0fafa, #ecf9f9, #e9f7f7, #e5f6f6, #e1f4f4); */
-      background-color: var(--clr-bgMain);
+      background-color: var(--clr-bgSecondary);
       color: var(--clr-fgText);
       padding: 0.5em 1em;
-      border: 1px solid var(--clr-bgBorder);
+      border: 1px solid var(--clr-border);
       border-radius: 4px;
     }
 

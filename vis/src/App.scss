@@ -13,7 +13,13 @@
 }
 
 main {
+  background-color: var(--clr-bgSecondary);
   .topbar-container {
+    .strip {
+      position: fixed;
+      top: 0;
+      z-index: var(--z-always-visible);
+    }
     .topbar {
       padding-right: 0;
       max-width: unset;
@@ -28,8 +34,10 @@ main {
         border-bottom-right-radius: 12px;
       }
       button.logo-icon {
-        position: absolute;
+        position: fixed;
         right: 0;
+        top: 0;
+        z-index: var(--z-always-visible);
         border-bottom-left-radius: 12px;
         border-bottom-right-radius: 0px;
       }
@@ -60,9 +68,11 @@ main {
   justify-items: center;
 
   .filters {
-    position: absolute;
+    position: fixed;
+    top: 0;
     justify-self: end;
-    z-index: 10;
+    height: 100vh;
+    z-index: var(--z-overlay);
     transition: transform 250ms ease-in-out;
     &-hidden {
       transform: translateX(120%);
