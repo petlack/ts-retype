@@ -1,3 +1,5 @@
+@import "../../utils";
+
 .search {
   flex: 1;
   display: flex;
@@ -15,21 +17,21 @@
     font-size: 1.2rem;
     padding: 1rem 1rem;
     border-bottom: 1px solid var(--clr-bgBorder);
+    background-color: var(--clr-bgMain);
     transition: background-color 150ms ease-in;
+    @include focusable();
     
     &::placeholder {
       color: var(--clr-fgText);
       opacity: 0.6;
     }
-    &:focus {
+    &:focus-visible {
       background-color: var(--clr-bgBorder);
-      outline: none;
     }
   
   }
 
   button {
-    color: var(--clr-fgText);
     border: 1px solid var(--clr-bgBorder);
     border-radius: 8px;
     border-top-left-radius: 0;
@@ -38,10 +40,8 @@
     border-top: none;
     padding: 0.6rem 1.2rem;
     transition: background-color 150ms ease-in;
-    cursor: pointer;
 
     &:hover {
-      outline: none;
       background-color: var(--clr-bgBorder);
     }
   }

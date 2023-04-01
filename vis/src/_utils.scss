@@ -1,0 +1,10 @@
+@mixin focusable() {
+  & {
+    outline: none;
+  }
+  &:focus-visible {
+    outline-width: 4px;
+    outline-style: double;
+    outline-offset: -4px;
+  }
+}

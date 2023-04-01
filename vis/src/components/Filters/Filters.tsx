@@ -1,6 +1,8 @@
+import { HTMLAttributes, useCallback } from 'react';
 import { FacetStats, Filter, getFacetStat } from '../../model/search';
 import { IncDecInput } from '../IncDecInput';
 import { Tooltip } from '../Tooltip';
+import { ControlsList } from './ControlsList';
 
 import './Filters.scss';
 
@@ -11,6 +13,35 @@ export type FiltersProps = {
   visible: boolean;
 }
 
+// export const ControlsPanelGroup: FC<React.HTMLAttributes<HTMLElement> & { groupId: string }> = ({ children, groupId, ...props }) => {
+//   return (
+//     <ul
+//       {...props}
+//       id={groupId}
+//       role="tabpanel"
+//       // tabIndex={0}
+//       aria-labelledby={groupId}
+//       // aria-hidden="true"
+//       aria-label={props['aria-label']}
+//     >
+//       {children}
+//     </ul>
+//   );
+// };
+
+// export const ControlsPanel: FC<React.HTMLAttributes<HTMLElement> & { groupId: string }> = ({ children, groupId, ...props }) => {
+//   return (
+//     <div
+//       {...props}
+//       role="tab"
+//       aria-controls={groupId}
+//       aria-label={props['aria-label']}
+//     >
+//       {children}
+//     </div>
+//   );
+// };
+
 export function Filters({
   filter,
   updateFilter,
@@ -20,44 +51,51 @@ export function Filters({
   const updateMinProperties = (value: number) => updateFilter({ ...filter, minProperties: value });
   const updateMinFiles = (value: number) => updateFilter({ ...filter, minFiles: value });
 
-  const similarities = ['all', 'Identical', 'HasIdenticalProperties'];
-  const similaritiesMarkup = similarities.map(sim => {
-    const onClick = () => updateFilter({ selectedTab: sim });
-    return (
-      <a
-        key={sim}
-        className={`nav ${sim === filter.selectedTab ? 'selected' : ''}`}
-        onClick={onClick}
-      >{sim} ({getFacetStat(facetsStats, sim, filter.selectedType)})</a>
-    );
-  });
-
+  const similarities = ['all', 'identical', 'renamed'];
   const types = ['all', 'alias', 'enum', 'function', 'interface', 'literal', 'union'];
-  const typesMarkup = types.map(type => {
-    const onClick = () => updateFilter({ ...filter, selectedType: type });
+
+  const FilterSimButton = useCallback(({ id, selected, ...props }: { id: string, selected: string } & HTMLAttributes<HTMLElement>) => {
+    const isSelected = id === selected;
     return (
-      <a
-        key={type}
-        className={`nav ${type === filter.selectedType ? 'selected' : ''}`}
-        onClick={onClick}
-      >{type} ({getFacetStat(facetsStats, filter.selectedTab, type)})</a>
+      <a className={`nav button button--default nav ${isSelected ? 'selected' : ''}`} {...props}>
+        {`${id} (${getFacetStat(facetsStats, id, filter.selectedType)})`}
+      </a>
     );
-  });
+  }, [facetsStats]);
+
+  const FilterTypeButton = useCallback(({ id, selected, ...props }: { id: string, selected: string } & HTMLAttributes<HTMLElement>) => {
+    const isSelected = id === selected;
+    return (
+      <a className={`nav button button--default nav ${isSelected ? 'selected' : ''}`} {...props}>
+        {`${id} (${getFacetStat(facetsStats, filter.selectedTab, id)})`}
+      </a>
+    );
+  }, [facetsStats]);
   
   return (
     <div className={`filters filters-${visible ? 'visible' : 'hidden'}`}>
-      <div className="filter">
-        <span className="label">Show types that are</span>
-        <ul className="navmenu">
-          {similaritiesMarkup}
-        </ul>
-      </div>
-      <div className="filter">
-        <span className="label">Filter by type</span>
-        <ul className="navmenu navmenu--overflow">
-          {typesMarkup}
-        </ul>
-      </div>
+      <span className="label">Show types that are</span>
+      <ControlsList
+        className="filter navmenu"
+        aria-label="Show types that are"
+        Render={FilterSimButton}
+        onSelect={(key) => updateFilter({ selectedTab: key })}
+        selected={filter.selectedTab}
+      >
+        {similarities}
+      </ControlsList>
+
+      <span className="label">Filter by type</span>
+      <ControlsList
+        className="filter navmenu"
+        aria-label="Filter by type"
+        Render={FilterTypeButton}
+        onSelect={(key) => updateFilter({ selectedType: key })}
+        selected={filter.selectedType}
+      >
+        {types}
+      </ControlsList>
+
       <div className="filter">
         <span className="label">
           <span>Min number of features</span>

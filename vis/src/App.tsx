@@ -4,7 +4,6 @@ import { Filters, FiltersMenu } from './components/Filters';
 import { FulltextData } from './types';
 import { Listing } from './components/Listing';
 import { Search } from './components/Search';
-import { Similarity } from '../../src/types';
 import { ToastProvider } from './components/Toast';
 import { TopBar } from '../../docs/src/uikit/TopBar';
 import { UiKitApp } from '../../docs/src/uikit/UiKitApp';
@@ -45,14 +44,13 @@ function App() {
   ] = useSearch(facets, { minFiles: 2, minProperties: 3, selectedTab: 'all', selectedType: 'all' }, '');
   
   useEffect(() => {
-    let id = 0;
     setAllData(
-      window.__data__.map(cluster => ({
-        ...cluster,
-        group: cluster.group as keyof typeof Similarity,
-        id: ++id,
-        fulltext: fulltext(cluster as FulltextData),
-      }))
+      window.__data__.filter(({ group }) => ['identical', 'renamed'].includes(group))
+        .map((cluster, idx) => ({
+          ...cluster,
+          id: idx,
+          fulltext: fulltext(cluster as FulltextData),
+        }))
     );
   }, []);
   
