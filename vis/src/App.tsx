@@ -86,7 +86,6 @@ function App() {
             />
             <Listing
               results={results}
-              query={query}
             />
           </div>
         </ToastProvider>

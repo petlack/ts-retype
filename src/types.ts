@@ -45,27 +45,65 @@ export enum Similarity {
   Identical = 4,
 }
 
-export type RetypeConfig = {
+// export type RetypeOutput = {
+//   output: string;
+//   json?: string;
+//   noHtml?: boolean;
+// }
+
+// export type RetypeProject = {
+//   project: string;
+// }
+
+// export type RetypeCmd = {
+//   config?: string;
+//   generate?: boolean | string | null;
+// }
+
+// export type RetypeArgs = RetypeConfig & RetypeProject;
+
+// export type RetypeOptions = RetypeArgs & RetypeOutput & RetypeCmd;
+
+// export type RetypeConfig = {
+//   exclude: string[];
+//   include: string[];
+//   output: string;
+//   json?: string;
+//   noHtml?: boolean;
+// };
+
+export type ScanArgs = {
   exclude: string[];
   include: string[];
+  rootDir: string;
+};
+
+export type ReportArgs = {
+  json: string | null;
+  noHtml: boolean;
   output: string;
-  json?: string;
-  noHtml?: boolean;
 };
 
-export type RetypeArgs = RetypeConfig & {
-  project: string;
-};
+export type RetypeCmdOptions = ScanArgs &
+  ReportArgs & {
+    generate: boolean;
+    config: string;
+  };
 
-export type RetypeOptions = RetypeArgs & {
-  config?: string;
-  generate?: boolean | string | null;
-};
-
-export const DEFAULT_OPTIONS: RetypeConfig = {
-  output: './retype-report.html',
-  include: ['**/*.{ts,tsx}'],
+export const DEFAULT_ARGS: Partial<ScanArgs> = {
   exclude: ['**/node_modules/**', '**/dist/**'],
+  include: ['**/*.{ts,tsx}'],
+  rootDir: '.',
+};
+
+export const DEFAULT_CMD_OPTIONS: Partial<RetypeCmdOptions> = {
+  config: './.retyperc',
+  exclude: ['**/node_modules/**', '**/dist/**'],
+  generate: false,
+  include: ['**/*.{ts,tsx}'],
+  json: null,
+  noHtml: false,
+  output: './retype-report.html',
 };
 
 export type TypeDuplicate = {

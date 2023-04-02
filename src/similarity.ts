@@ -90,11 +90,30 @@ export function similarity(leftCandidate: CandidateType, rightCandidate: Candida
     const left = <FunctionCandidateType>leftCandidate;
     const right = <FunctionCandidateType>rightCandidate;
     const namesEqual = left.name === right.name;
-    const parametersEqual = similarityForArray(left.parameters, right.parameters);
-    if (namesEqual && parametersEqual === Similarity.HasIdenticalProperties) {
-      return Similarity.Identical;
+    const returnTypesEqual = left.returnType === right.returnType;
+    const parametersTypesEqual = eqValues(
+      pluck('type', left.parameters),
+      pluck('type', right.parameters),
+    );
+    const parametersNamesEqual = eqValues(
+      pluck('name', left.parameters),
+      pluck('name', right.parameters),
+    );
+    const parametersSimilarity = parametersTypesEqual
+      ? parametersNamesEqual
+        ? Similarity.Identical
+        : Similarity.HasIdenticalProperties
+      : Similarity.Different;
+    const parametersEqual = parametersSimilarity !== Similarity.Different;
+    if (returnTypesEqual) {
+      if (namesEqual && parametersEqual) {
+        return parametersSimilarity;
+      }
+      if (parametersEqual) {
+        return Similarity.HasIdenticalProperties;
+      }
     }
-    return parametersEqual;
+    return Similarity.Different;
   }
   if (leftType === 'literal' && rightType === 'literal') {
     const left = <LiteralCandidateType>leftCandidate;

@@ -1,5 +1,5 @@
-import { ascend, assoc, descend, sort, sortBy, zip } from 'ramda';
-import ts, { FunctionTypeNode, LiteralTypeNode } from 'typescript';
+import { ascend, assoc, sort, zip } from 'ramda';
+import ts, { LiteralTypeNode } from 'typescript';
 import {
   CandidateType,
   EnumCandidateType,

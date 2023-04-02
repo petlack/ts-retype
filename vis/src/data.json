@@ -12,9 +12,9 @@
         "pos": [1778, 1850],
         "lines": [55, 57]
       },
-      { "file": "src/similarity.ts", "type": "literal", "pos": [7120, 7170], "lines": [237, 239] },
-      { "file": "src/parse.ts", "type": "literal", "pos": [7433, 7467], "lines": [258, 258] },
-      { "file": "src/clusters.ts", "type": "literal", "pos": [2041, 2070], "lines": [68, 68] },
+      { "file": "src/similarity.ts", "type": "literal", "pos": [7632, 7682], "lines": [250, 252] },
+      { "file": "src/scan.ts", "type": "literal", "pos": [923, 952], "lines": [24, 24] },
+      { "file": "src/parse.ts", "type": "literal", "pos": [7166, 7200], "lines": [258, 258] },
       {
         "file": "docs/src/components/MultilangWindow.tsx",
         "type": "literal",
@@ -27,17 +27,35 @@
   },
   {
     "names": [
+      { "name": "anonymous", "count": 3 },
       { "name": "TooltipProps", "count": 1 },
       { "name": "TopBarProps", "count": 1 },
-      { "name": "CodeProps", "count": 1 },
-      { "name": "anonymous", "count": 1 }
+      { "name": "CodeProps", "count": 1 }
     ],
     "files": [
+      {
+        "file": "vis/src/hooks/useTooltip/TooltipProvider.tsx",
+        "type": "literal",
+        "pos": [422, 447],
+        "lines": [11, 11]
+      },
+      {
+        "file": "vis/src/hooks/useTooltip/Tooltip.tsx",
+        "type": "literal",
+        "pos": [634, 702],
+        "lines": [15, 15]
+      },
       {
         "file": "vis/src/components/Tooltip/Tooltip.tsx",
         "type": "literal",
         "pos": [71, 130],
         "lines": [2, 6]
+      },
+      {
+        "file": "vis/src/components/Toast/Toast.tsx",
+        "type": "literal",
+        "pos": [390, 418],
+        "lines": [18, 18]
       },
       { "file": "docs/src/uikit/TopBar.tsx", "type": "literal", "pos": [66, 138], "lines": [2, 6] },
       {
@@ -45,58 +63,15 @@
         "type": "literal",
         "pos": [21, 91],
         "lines": [1, 5]
-      },
-      {
-        "file": "vis/src/components/Toast/Toast.tsx",
-        "type": "literal",
-        "pos": [390, 418],
-        "lines": [18, 18]
       }
     ],
     "group": "different",
-    "properties": [{ "name": "children", "type": "JSX.Element[]" }]
-  },
-  {
-    "names": [
-      { "name": "Tooltip", "count": 1 },
-      { "name": "ToastProvider", "count": 1 },
-      { "name": "TopBar", "count": 1 },
-      { "name": "Code", "count": 1 }
-    ],
-    "files": [
-      {
-        "file": "vis/src/components/Tooltip/Tooltip.tsx",
-        "type": "function",
-        "pos": [130, 1154],
-        "lines": [6, 28]
-      },
-      {
-        "file": "vis/src/components/Toast/Toast.tsx",
-        "type": "function",
-        "pos": [345, 904],
-        "lines": [16, 39]
-      },
-      {
-        "file": "docs/src/uikit/TopBar.tsx",
-        "type": "function",
-        "pos": [138, 432],
-        "lines": [6, 20]
-      },
-      {
-        "file": "docs/src/components/Code.tsx",
-        "type": "function",
-        "pos": [91, 201],
-        "lines": [5, 11]
-      }
-    ],
-    "group": "different",
-    "parameters": [{ "name": "{ children }", "type": "TooltipProps" }],
-    "returnType": "unknown"
+    "properties": [{ "name": "children", "type": "JSX.Element" }]
   },
   {
     "names": [{ "name": "TypeDuplicate", "count": 2 }],
     "files": [
-      { "file": "src/types.ts", "type": "literal", "pos": [1421, 1868], "lines": [69, 94] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2184, 2631], "lines": [108, 133] },
       {
         "file": "docs/src/snippets/TypeDuplicate.ts",
         "type": "literal",
@@ -118,42 +93,6 @@
       { "name": "returnType", "type": "string" },
       { "name": "types", "type": "string[]" }
     ]
-  },
-  {
-    "names": [
-      { "name": "getPropertySignature", "count": 1 },
-      { "name": "getNodeText", "count": 1 },
-      { "name": "parseCandidate", "count": 1 }
-    ],
-    "files": [
-      { "file": "src/parse.ts", "type": "function", "pos": [335, 906], "lines": [13, 31] },
-      { "file": "src/parse.ts", "type": "function", "pos": [2916, 3072], "lines": [120, 124] },
-      { "file": "src/parse.ts", "type": "function", "pos": [3072, 5567], "lines": [124, 193] }
-    ],
-    "group": "different",
-    "parameters": [
-      { "name": "sourceFile", "type": "ts.SourceFile" },
-      { "name": "node", "type": "any" }
-    ],
-    "returnType": "Property | null"
-  },
-  {
-    "names": [
-      { "name": "getFunctionType", "count": 1 },
-      { "name": "getUnionType", "count": 1 }
-    ],
-    "files": [
-      { "file": "src/parse.ts", "type": "function", "pos": [1434, 2025], "lines": [53, 77] },
-      { "file": "src/parse.ts", "type": "function", "pos": [2025, 2596], "lines": [77, 104] }
-    ],
-    "group": "different",
-    "parameters": [
-      { "name": "name", "type": "string" },
-      { "name": "sourceFile", "type": "ts.SourceFile" },
-      { "name": "node", "type": "ts.FunctionTypeNode" },
-      { "name": "pos", "type": "[number, number]" }
-    ],
-    "returnType": "unknown"
   },
   {
     "names": [{ "name": "anonymous", "count": 5 }],
@@ -215,29 +154,6 @@
   },
   {
     "names": [
-      { "name": "UiKitApp", "count": 1 },
-      { "name": "Bash", "count": 1 }
-    ],
-    "files": [
-      {
-        "file": "docs/src/uikit/UiKitApp.tsx",
-        "type": "function",
-        "pos": [121, 256],
-        "lines": [6, 14]
-      },
-      {
-        "file": "docs/src/components/Bash.tsx",
-        "type": "function",
-        "pos": [815, 1152],
-        "lines": [37, 47]
-      }
-    ],
-    "group": "different",
-    "parameters": [{ "name": "{ children, theme }", "type": "AppProps" }],
-    "returnType": "unknown"
-  },
-  {
-    "names": [
       { "name": "Rec", "count": 1 },
       { "name": "TypeIconProps", "count": 1 },
       { "name": "anonymous", "count": 16 },
@@ -274,7 +190,7 @@
       {
         "file": "vis/src/components/Cluster/TypeIcon.tsx",
         "type": "literal",
-        "pos": [115, 179],
+        "pos": [131, 195],
         "lines": [4, 8]
       },
       {
@@ -301,9 +217,9 @@
       { "file": "src/types.ts", "type": "interface", "pos": [397, 496], "lines": [19, 24] },
       { "file": "src/types.ts", "type": "interface", "pos": [496, 595], "lines": [24, 29] },
       { "file": "src/types.ts", "type": "interface", "pos": [595, 729], "lines": [29, 34] },
-      { "file": "src/types.ts", "type": "literal", "pos": [1461, 1574], "lines": [72, 77] },
-      { "file": "src/types.ts", "type": "literal", "pos": [1717, 1759], "lines": [84, 87] },
-      { "file": "src/types.ts", "type": "literal", "pos": [1777, 1819], "lines": [88, 91] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2224, 2337], "lines": [111, 116] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2480, 2522], "lines": [123, 126] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2540, 2582], "lines": [127, 130] },
       { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [83, 258], "lines": [5, 12] },
       { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [192, 224], "lines": [10, 10] },
       { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [262, 396], "lines": [13, 19] },
@@ -362,7 +278,7 @@
         "pos": [139, 209],
         "lines": [4, 8]
       },
-      { "file": "src/types.ts", "type": "literal", "pos": [1421, 1868], "lines": [69, 94] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2184, 2631], "lines": [108, 133] },
       {
         "file": "docs/src/snippets/TypeDuplicate.ts",
         "type": "literal",
@@ -449,98 +365,53 @@
       { "file": "vis/src/types.ts", "type": "literal", "pos": [217, 246], "lines": [9, 11] },
       { "file": "vis/src/types.ts", "type": "literal", "pos": [551, 592], "lines": [18, 18] },
       { "file": "src/types.ts", "type": "interface", "pos": [111, 263], "lines": [7, 13] },
-      { "file": "src/types.ts", "type": "literal", "pos": [1461, 1574], "lines": [72, 77] }
+      { "file": "src/types.ts", "type": "literal", "pos": [2224, 2337], "lines": [111, 116] }
     ],
     "group": "different",
     "properties": [{ "name": "pos", "type": "[number, number]" }]
   },
   {
     "names": [
-      { "name": "combinations", "count": 1 },
-      { "name": "combineFacets", "count": 1 }
+      { "name": "ScreenDimensions", "count": 1 },
+      { "name": "BoundingBox", "count": 1 }
     ],
     "files": [
       {
-        "file": "vis/src/model/search.ts",
-        "type": "function",
-        "pos": [773, 1145],
-        "lines": [22, 37]
+        "file": "vis/src/hooks/useScreenDimensions.ts",
+        "type": "interface",
+        "pos": [44, 111],
+        "lines": [1, 6]
       },
       {
-        "file": "vis/src/model/search.ts",
-        "type": "function",
-        "pos": [1145, 1339],
-        "lines": [37, 42]
+        "file": "vis/src/hooks/useBoundingBox.ts",
+        "type": "interface",
+        "pos": [247, 340],
+        "lines": [4, 11]
       }
     ],
     "group": "different",
-    "parameters": [{ "name": "values", "type": "T[][]" }],
-    "returnType": "T[][]"
+    "properties": [
+      { "name": "width", "type": "number" },
+      { "name": "height", "type": "number" }
+    ]
   },
   {
     "names": [
-      { "name": "facetStats", "count": 1 },
-      { "name": "ReindexFn", "count": 1 }
-    ],
-    "files": [
-      {
-        "file": "vis/src/model/search.ts",
-        "type": "function",
-        "pos": [1339, 1650],
-        "lines": [42, 51]
-      },
-      {
-        "file": "vis/src/hooks/useSearch.ts",
-        "type": "function",
-        "pos": [269, 310],
-        "lines": [6, 7]
-      }
-    ],
-    "group": "different",
-    "parameters": [
-      { "name": "data", "type": "T[]" },
-      { "name": "facets", "type": "Facet<T>[]" }
-    ],
-    "returnType": "FacetStats"
-  },
-  {
-    "names": [
-      { "name": "getFacetStat", "count": 1 },
-      { "name": "filterEmpty", "count": 1 }
-    ],
-    "files": [
-      {
-        "file": "vis/src/model/search.ts",
-        "type": "function",
-        "pos": [1650, 1778],
-        "lines": [51, 55]
-      },
-      { "file": "src/utils.ts", "type": "function", "pos": [1164, 1320], "lines": [47, 51] }
-    ],
-    "group": "different",
-    "parameters": [
-      { "name": "obj", "type": "FacetStats" },
-      { "name": "rest", "type": "(string | number)[]" }
-    ],
-    "returnType": "number"
-  },
-  {
-    "names": [
-      { "name": "TooltipProps", "count": 1 },
+      { "name": "anonymous", "count": 11 },
       { "name": "SearchAwareTextProps", "count": 1 },
-      { "name": "anonymous", "count": 9 },
       { "name": "AppProps", "count": 1 },
       { "name": "WindowProps", "count": 1 },
       { "name": "BashProps", "count": 1 },
+      { "name": "TooltipProps", "count": 1 },
       { "name": "TopBarProps", "count": 1 },
       { "name": "CodeProps", "count": 1 }
     ],
     "files": [
       {
-        "file": "vis/src/components/Tooltip/Tooltip.tsx",
+        "file": "vis/src/hooks/useTooltip/TooltipProvider.tsx",
         "type": "literal",
-        "pos": [71, 130],
-        "lines": [2, 6]
+        "pos": [422, 447],
+        "lines": [11, 11]
       },
       {
         "file": "vis/src/components/SearchAwareText/SearchAwareText.tsx",
@@ -600,6 +471,18 @@
         "lines": [3, 8]
       },
       {
+        "file": "vis/src/hooks/useTooltip/Tooltip.tsx",
+        "type": "literal",
+        "pos": [634, 702],
+        "lines": [15, 15]
+      },
+      {
+        "file": "vis/src/components/Tooltip/Tooltip.tsx",
+        "type": "literal",
+        "pos": [71, 130],
+        "lines": [2, 6]
+      },
+      {
         "file": "vis/src/components/Toast/Toast.tsx",
         "type": "literal",
         "pos": [390, 418],
@@ -614,7 +497,7 @@
       }
     ],
     "group": "different",
-    "properties": [{ "name": "children", "type": "JSX.Element[]" }]
+    "properties": [{ "name": "children", "type": "JSX.Element" }]
   },
   {
     "names": [{ "name": "anonymous", "count": 5 }],
@@ -622,7 +505,7 @@
       {
         "file": "vis/src/components/Filters/Filters.tsx",
         "type": "literal",
-        "pos": [1673, 1706],
+        "pos": [1685, 1718],
         "lines": [57, 57]
       },
       {
@@ -634,7 +517,7 @@
       {
         "file": "vis/src/components/Filters/Filters.tsx",
         "type": "literal",
-        "pos": [2076, 2109],
+        "pos": [2088, 2121],
         "lines": [66, 66]
       },
       {
@@ -658,131 +541,36 @@
   },
   {
     "names": [
-      { "name": "createConfigRc", "count": 1 },
-      { "name": "rmConfigRc", "count": 1 },
-      { "name": "toSourceCandidateTypes", "count": 1 },
-      { "name": "formatFileName", "count": 1 },
-      { "name": "similarityMatrix", "count": 1 }
+      { "name": "ReportArgs", "count": 1 },
+      { "name": "RetypeArgs", "count": 1 }
     ],
     "files": [
-      { "file": "tests/cmd.test.ts", "type": "function", "pos": [85, 203], "lines": [2, 6] },
-      { "file": "tests/cmd.test.ts", "type": "function", "pos": [203, 265], "lines": [6, 10] },
-      { "file": "src/clusters.ts", "type": "function", "pos": [610, 753], "lines": [25, 29] },
-      { "file": "src/clusters.ts", "type": "function", "pos": [753, 1063], "lines": [29, 39] },
-      { "file": "src/similarity.ts", "type": "function", "pos": [3832, 4551], "lines": [110, 138] }
-    ],
-    "group": "different",
-    "parameters": [
-      { "name": "file", "type": "string" },
-      { "name": "config", "type": "object" }
-    ],
-    "returnType": "unknown"
-  },
-  {
-    "names": [
-      { "name": "toName", "count": 1 },
-      { "name": "getPropertySignature", "count": 1 },
-      { "name": "getLiteralType", "count": 1 },
-      { "name": "getFunctionType", "count": 1 },
-      { "name": "getUnionType", "count": 1 },
-      { "name": "getEnumType", "count": 1 },
-      { "name": "getNodeText", "count": 1 },
-      { "name": "parseCandidate", "count": 1 },
-      { "name": "simplifyType", "count": 1 },
-      { "name": "getAllCandidates", "count": 1 },
-      { "name": "parse", "count": 1 },
-      { "name": "nonEmptyCandidateType", "count": 1 },
-      { "name": "visitTopLevelDeclarations", "count": 1 }
-    ],
-    "files": [
-      { "file": "src/utils.ts", "type": "function", "pos": [88, 227], "lines": [3, 10] },
-      { "file": "src/parse.ts", "type": "function", "pos": [335, 906], "lines": [13, 31] },
-      { "file": "src/parse.ts", "type": "function", "pos": [906, 1434], "lines": [31, 53] },
-      { "file": "src/parse.ts", "type": "function", "pos": [1434, 2025], "lines": [53, 77] },
-      { "file": "src/parse.ts", "type": "function", "pos": [2025, 2596], "lines": [77, 104] },
-      { "file": "src/parse.ts", "type": "function", "pos": [2596, 2916], "lines": [104, 120] },
-      { "file": "src/parse.ts", "type": "function", "pos": [2916, 3072], "lines": [120, 124] },
-      { "file": "src/parse.ts", "type": "function", "pos": [3072, 5567], "lines": [124, 193] },
-      { "file": "src/similarity.ts", "type": "function", "pos": [1303, 1426], "lines": [43, 50] },
-      { "file": "src/parse.ts", "type": "function", "pos": [5567, 6059], "lines": [193, 209] },
-      { "file": "src/parse.ts", "type": "function", "pos": [7813, 7962], "lines": [267, 272] },
-      { "file": "src/clusters.ts", "type": "function", "pos": [1063, 1520], "lines": [39, 54] },
-      { "file": "src/parse.ts", "type": "function", "pos": [6059, 6524], "lines": [209, 226] }
-    ],
-    "group": "different",
-    "parameters": [{ "name": "node", "type": "ts.Node" }],
-    "returnType": "string"
-  },
-  {
-    "names": [
-      { "name": "posToLine", "count": 1 },
-      { "name": "chooseClusterFiles", "count": 1 },
-      { "name": "clustersToOutput", "count": 1 },
-      { "name": "similarityMatrix", "count": 1 },
-      { "name": "chooseTypeFeatures", "count": 1 },
-      { "name": "chooseClusterNames", "count": 1 }
-    ],
-    "files": [
-      { "file": "src/utils.ts", "type": "function", "pos": [490, 770], "lines": [18, 33] },
-      { "file": "src/similarity.ts", "type": "function", "pos": [5621, 5967], "lines": [182, 196] },
-      { "file": "src/similarity.ts", "type": "function", "pos": [7429, 7987], "lines": [250, 271] },
-      { "file": "src/similarity.ts", "type": "function", "pos": [3832, 4551], "lines": [110, 138] },
-      { "file": "src/similarity.ts", "type": "function", "pos": [6082, 7120], "lines": [203, 237] },
-      { "file": "src/similarity.ts", "type": "function", "pos": [5476, 5621], "lines": [178, 182] }
-    ],
-    "group": "different",
-    "parameters": [{ "name": "lengths", "type": "number[]" }],
-    "returnType": "unknown"
-  },
-  {
-    "names": [
-      { "name": "RetypeConfig", "count": 1 },
-      { "name": "RetypeArgs", "count": 1 },
-      { "name": "anonymous", "count": 1 }
-    ],
-    "files": [
-      { "file": "src/types.ts", "type": "literal", "pos": [958, 1088], "lines": [46, 54] },
+      { "file": "src/types.ts", "type": "literal", "pos": [1591, 1681], "lines": [81, 87] },
       {
         "file": "docs/src/snippets/RetypeArgs.ts",
         "type": "literal",
         "pos": [0, 138],
         "lines": [1, 8]
-      },
-      { "file": "src/types.ts", "type": "literal", "pos": [1129, 1152], "lines": [56, 58] }
+      }
     ],
     "group": "different",
     "properties": [
-      { "name": "exclude", "type": "string[]" },
-      { "name": "include", "type": "string[]" },
-      { "name": "output", "type": "string" },
-      { "name": "json", "type": "string" },
-      { "name": "noHtml", "type": "boolean" }
+      { "name": "json", "type": "string | null" },
+      { "name": "noHtml", "type": "boolean" },
+      { "name": "output", "type": "string" }
     ]
   },
   {
     "names": [{ "name": "anonymous", "count": 2 }],
     "files": [
-      { "file": "src/types.ts", "type": "literal", "pos": [1195, 1256], "lines": [60, 63] },
-      { "file": "src/cmd.ts", "type": "literal", "pos": [1742, 1789], "lines": [60, 60] }
+      { "file": "src/types.ts", "type": "literal", "pos": [1737, 1780], "lines": [89, 92] },
+      { "file": "src/cmd.ts", "type": "literal", "pos": [623, 670], "lines": [26, 26] }
     ],
     "group": "different",
     "properties": [
-      { "name": "config", "type": "string" },
-      { "name": "generate", "type": "boolean | string | null" }
+      { "name": "generate", "type": "boolean" },
+      { "name": "config", "type": "string" }
     ]
-  },
-  {
-    "names": [
-      { "name": "similarityMatrix", "count": 1 },
-      { "name": "chooseClusterNames", "count": 1 }
-    ],
-    "files": [
-      { "file": "src/similarity.ts", "type": "function", "pos": [3832, 4551], "lines": [110, 138] },
-      { "file": "src/similarity.ts", "type": "function", "pos": [5476, 5621], "lines": [178, 182] }
-    ],
-    "group": "different",
-    "parameters": [{ "name": "types", "type": "CandidateType[]" }],
-    "returnType": "unknown"
   },
   {
     "names": [{ "name": "anonymous", "count": 3 }],
@@ -857,24 +645,6 @@
   },
   {
     "names": [
-      { "name": "renderToken", "count": 1 },
-      { "name": "toTokenElement", "count": 1 }
-    ],
-    "files": [
-      { "file": "docs/src/Napp.tsx", "type": "function", "pos": [551, 787], "lines": [34, 41] },
-      {
-        "file": "docs/src/components/Token.tsx",
-        "type": "function",
-        "pos": [1007, 1114],
-        "lines": [48, 52]
-      }
-    ],
-    "group": "different",
-    "parameters": [{ "name": "token", "type": "Token" }],
-    "returnType": "unknown"
-  },
-  {
-    "names": [
       { "name": "anonymous", "count": 1 },
       { "name": "UnFoo", "count": 1 },
       { "name": "UnBar", "count": 1 }
@@ -922,6 +692,45 @@
     ],
     "group": "renamed",
     "properties": [{ "name": "children", "type": "JSX.Element[]" }]
+  },
+  {
+    "names": [
+      { "name": "showToast", "count": 1 },
+      { "name": "writeSrc", "count": 2 },
+      { "name": "createFile", "count": 1 },
+      { "name": "loadFile", "count": 1 },
+      { "name": "loadConfig", "count": 1 },
+      { "name": "ensureDirectoryExists", "count": 1 },
+      { "name": "loadSnippets", "count": 1 }
+    ],
+    "files": [
+      {
+        "file": "vis/src/components/Toast/Toast.tsx",
+        "type": "function",
+        "pos": [552, 754],
+        "lines": [21, 31]
+      },
+      { "file": "tests/scan.test.ts", "type": "function", "pos": [164, 245], "lines": [5, 9] },
+      { "file": "tests/report.test.ts", "type": "function", "pos": [199, 280], "lines": [6, 10] },
+      { "file": "src/utils.ts", "type": "function", "pos": [227, 355], "lines": [10, 14] },
+      { "file": "src/utils.ts", "type": "function", "pos": [355, 490], "lines": [14, 18] },
+      { "file": "src/config.ts", "type": "function", "pos": [377, 542], "lines": [14, 19] },
+      {
+        "file": "docs/scripts/src/syntaxHighlighting.ts",
+        "type": "function",
+        "pos": [365, 509],
+        "lines": [11, 17]
+      },
+      {
+        "file": "docs/scripts/src/syntaxHighlighting.ts",
+        "type": "function",
+        "pos": [509, 926],
+        "lines": [17, 32]
+      }
+    ],
+    "group": "renamed",
+    "parameters": [{ "name": "message", "type": "string" }],
+    "returnType": "unknown"
   },
   {
     "names": [
@@ -996,15 +805,17 @@
   },
   {
     "names": [
+      { "name": "isLiteralType", "count": 1 },
       { "name": "simplifyType", "count": 1 },
-      { "name": "nonEmptyCandidateType", "count": 1 }
+      { "name": "similarity", "count": 1 }
     ],
     "files": [
+      { "file": "src/similarity.ts", "type": "function", "pos": [481, 579], "lines": [16, 20] },
       { "file": "src/similarity.ts", "type": "function", "pos": [1303, 1426], "lines": [43, 50] },
-      { "file": "src/clusters.ts", "type": "function", "pos": [1063, 1520], "lines": [39, 54] }
+      { "file": "src/similarity.ts", "type": "function", "pos": [1426, 4390], "lines": [50, 123] }
     ],
     "group": "renamed",
-    "parameters": [{ "name": "type", "type": "CandidateType" }],
+    "parameters": [{ "name": "t", "type": "CandidateType" }],
     "returnType": "unknown"
   },
   {
@@ -1013,8 +824,8 @@
       { "name": "chooseTypeFeatures", "count": 1 }
     ],
     "files": [
-      { "file": "src/similarity.ts", "type": "function", "pos": [5476, 5621], "lines": [178, 182] },
-      { "file": "src/similarity.ts", "type": "function", "pos": [6082, 7120], "lines": [203, 237] }
+      { "file": "src/similarity.ts", "type": "function", "pos": [6034, 6179], "lines": [191, 195] },
+      { "file": "src/similarity.ts", "type": "function", "pos": [6640, 7632], "lines": [216, 250] }
     ],
     "group": "renamed",
     "parameters": [
@@ -1029,27 +840,11 @@
       { "name": "anonymous", "count": 1 }
     ],
     "files": [
-      { "file": "src/similarity.ts", "type": "literal", "pos": [7120, 7170], "lines": [237, 239] },
-      { "file": "src/clusters.ts", "type": "literal", "pos": [2041, 2070], "lines": [68, 68] }
+      { "file": "src/similarity.ts", "type": "literal", "pos": [7632, 7682], "lines": [250, 252] },
+      { "file": "src/scan.ts", "type": "literal", "pos": [923, 952], "lines": [24, 24] }
     ],
     "group": "renamed",
     "properties": [{ "name": "string", "type": "number[]" }]
-  },
-  {
-    "names": [
-      { "name": "getPropertySignature", "count": 1 },
-      { "name": "parseCandidate", "count": 1 }
-    ],
-    "files": [
-      { "file": "src/parse.ts", "type": "function", "pos": [335, 906], "lines": [13, 31] },
-      { "file": "src/parse.ts", "type": "function", "pos": [3072, 5567], "lines": [124, 193] }
-    ],
-    "group": "renamed",
-    "parameters": [
-      { "name": "sourceFile", "type": "ts.SourceFile" },
-      { "name": "node", "type": "any" }
-    ],
-    "returnType": "Property | null"
   },
   {
     "names": [
@@ -1057,8 +852,8 @@
       { "name": "parse", "count": 1 }
     ],
     "files": [
-      { "file": "src/parse.ts", "type": "function", "pos": [5567, 6059], "lines": [193, 209] },
-      { "file": "src/parse.ts", "type": "function", "pos": [7813, 7962], "lines": [267, 272] }
+      { "file": "src/parse.ts", "type": "function", "pos": [5318, 5810], "lines": [193, 209] },
+      { "file": "src/parse.ts", "type": "function", "pos": [7546, 7695], "lines": [267, 272] }
     ],
     "group": "renamed",
     "parameters": [{ "name": "sourceFile", "type": "ts.SourceFile" }],
@@ -1111,17 +906,10 @@
   },
   {
     "names": [
-      { "name": "insertNewlines", "count": 1 },
       { "name": "toTokenElements", "count": 1 },
       { "name": "toTokenLines", "count": 1 }
     ],
     "files": [
-      {
-        "file": "docs/src/components/Token.tsx",
-        "type": "function",
-        "pos": [607, 1007],
-        "lines": [34, 48]
-      },
       {
         "file": "docs/src/components/Token.tsx",
         "type": "function",
@@ -1137,7 +925,33 @@
     ],
     "group": "renamed",
     "parameters": [{ "name": "snippet", "type": "Snippet" }],
-    "returnType": "Snippet"
+    "returnType": "unknown"
+  },
+  {
+    "names": [{ "name": "fromEvent", "count": 3 }],
+    "files": [
+      {
+        "file": "vis/src/hooks/useTooltip/useTooltip.ts",
+        "type": "function",
+        "pos": [363, 520],
+        "lines": [9, 14]
+      },
+      {
+        "file": "vis/src/hooks/useTooltip/TooltipProvider.tsx",
+        "type": "function",
+        "pos": [230, 387],
+        "lines": [4, 9]
+      },
+      {
+        "file": "vis/src/hooks/useTooltip/Tooltip.tsx",
+        "type": "function",
+        "pos": [469, 607],
+        "lines": [8, 13]
+      }
+    ],
+    "group": "identical",
+    "parameters": [{ "name": "e", "type": "MouseEvent<HTMLElement>" }],
+    "returnType": "TooltipPosition"
   },
   {
     "names": [{ "name": "anonymous", "count": 4 }],
@@ -1145,13 +959,13 @@
       {
         "file": "vis/src/components/Filters/Filters.tsx",
         "type": "literal",
-        "pos": [1673, 1706],
+        "pos": [1685, 1718],
         "lines": [57, 57]
       },
       {
         "file": "vis/src/components/Filters/Filters.tsx",
         "type": "literal",
-        "pos": [2076, 2109],
+        "pos": [2088, 2121],
         "lines": [66, 66]
       },
       {
@@ -1182,8 +996,8 @@
         "pos": [156, 187],
         "lines": [7, 7]
       },
-      { "file": "src/types.ts", "type": "literal", "pos": [1717, 1759], "lines": [84, 87] },
-      { "file": "src/types.ts", "type": "literal", "pos": [1777, 1819], "lines": [88, 91] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2480, 2522], "lines": [123, 126] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2540, 2582], "lines": [127, 130] },
       {
         "file": "docs/src/snippets/TypeDuplicate.ts",
         "type": "literal",
@@ -1204,6 +1018,19 @@
     ]
   },
   {
+    "names": [{ "name": "writeSrc", "count": 2 }],
+    "files": [
+      { "file": "tests/scan.test.ts", "type": "function", "pos": [164, 245], "lines": [5, 9] },
+      { "file": "tests/report.test.ts", "type": "function", "pos": [199, 280], "lines": [6, 10] }
+    ],
+    "group": "identical",
+    "parameters": [
+      { "name": "path", "type": "string" },
+      { "name": "src", "type": "string" }
+    ],
+    "returnType": "unknown"
+  },
+  {
     "names": [{ "name": "anonymous", "count": 2 }],
     "files": [
       { "file": "src/types.ts", "type": "union", "pos": [169, 235], "lines": [11, 11] },
@@ -1219,7 +1046,7 @@
   {
     "names": [{ "name": "anonymous", "count": 2 }],
     "files": [
-      { "file": "src/types.ts", "type": "union", "pos": [1586, 1624], "lines": [78, 78] },
+      { "file": "src/types.ts", "type": "union", "pos": [2349, 2387], "lines": [117, 117] },
       {
         "file": "docs/src/snippets/TypeDuplicate.ts",
         "type": "union",
@@ -1232,7 +1059,7 @@
   {
     "names": [{ "name": "anonymous", "count": 2 }],
     "files": [
-      { "file": "src/types.ts", "type": "literal", "pos": [1634, 1677], "lines": [79, 82] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2397, 2440], "lines": [118, 121] },
       {
         "file": "docs/src/snippets/TypeDuplicate.ts",
         "type": "literal",

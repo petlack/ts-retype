@@ -3,12 +3,16 @@
 import fs from 'fs';
 import { createCommand } from 'commander';
 
-import { createLogger, resolveOptions, resolveOutputFilePath } from './cmd';
-import { findTypeDuplicates } from './clusters';
-import { DEFAULT_OPTIONS, RetypeOptions } from './types';
+// import { resolveOptions } from './cmd';
+// import { findTypeDuplicates } from './clusters';
+// import { DEFAULT_OPTIONS, RetypeOptions } from './types';
 import { dir, stringify } from './utils';
+import { createLogger } from './log';
+import { report } from './report';
+import { DEFAULT_CMD_OPTIONS, RetypeCmdOptions } from './types';
+import { RetypeConfig } from './config';
 
-const log = createLogger();
+const log = createLogger(console.log);
 
 const { version, name, description } = JSON.parse(
   fs.readFileSync(dir('./package.json')).toString(),
@@ -30,22 +34,38 @@ program
     'generate default config. if no path provided, creates .retyperc in the current directory',
   )
   .option('-i, --include [glob...]', 'glob patterns that will be included in search')
-  .option('-j, --json <file-path>', 'JSON report file path. if not set, does not export JSON.')
+  .option(
+    '-j, --json <file-path>',
+    'file path to export JSON report. if not set, does not export JSON.',
+  )
   .option('-n, --noHtml', 'if set, does not export HTML', false)
   .option(
     '-o, --output <file-path|dir-path>',
-    'HTML report file path - if provided with directory, it will create index.html file inside',
+    'HTML report file path - if provided with dir, create index.html file inside the dir',
     './retype-report.html',
   );
 
-function parseOptions(): Partial<RetypeOptions> {
+function parseOptions(): Partial<RetypeCmdOptions> {
   program.parse();
   const options = program.opts();
   const args = program.processedArgs;
   return {
-    project: args[0],
     ...options,
+    rootDir: args[0],
+    config: options.config
+      ? typeof options.config === 'string'
+        ? options.config
+        : '.retyperc'
+      : undefined,
   };
+}
+
+function runGenerate(options: Partial<RetypeCmdOptions>) {
+  const configPath = typeof options.generate === 'string' ? <string>options.generate : '.retyperc';
+  const config = stringify(DEFAULT_CMD_OPTIONS);
+  fs.writeFileSync(configPath, config);
+  log.log(config);
+  log.log(`written to ${configPath}`);
 }
 
 function main() {
@@ -53,67 +73,20 @@ function main() {
 
   const options = parseOptions();
 
+  log.log(JSON.stringify(options));
+
   if (options.generate) {
-    let configPath = '.retyperc';
-    if (typeof options.generate === 'string') {
-      configPath = <string>options.generate;
-    }
-    const config = stringify(DEFAULT_OPTIONS);
-    fs.writeFileSync(configPath, config);
-    log.log(config);
-    log.log(`written to ${configPath}`);
+    runGenerate(options);
     return;
   }
 
-  const project = options.project;
-
-  if (!project) {
-    throw new Error('missing project');
+  if (!options.rootDir) {
+    throw new Error('missing rootDir');
   }
 
-  const args = {
-    project,
-    ...resolveOptions(options, DEFAULT_OPTIONS, '.retyperc'),
-  };
+  const args = RetypeConfig.fromCmd(options);
 
-  log.log('running with config');
-  log.log(stringify(args));
-  log.log();
-
-  log.log(`discovering duplicates in ${project}`);
-
-  const duplicates = findTypeDuplicates(args);
-
-  log.log();
-  log.log(`found ${duplicates.length} duplicates`);
-
-  const data = JSON.stringify(duplicates);
-
-  log.log();
-
-  if (!args.noHtml) {
-    const htmlFile = resolveOutputFilePath(args.output);
-
-    fs.cpSync(dir('./vis/dist/index.html'), htmlFile);
-
-    const html = fs.readFileSync(htmlFile);
-    const replaced = html
-      .toString()
-      .replace('window.__datajson__="DATA_JSON"', `window.__data__ = ${data}`);
-    fs.writeFileSync(htmlFile, replaced);
-
-    log.log(`report exported to ${htmlFile}`);
-    log.log('you can view it by running');
-    log.log();
-    log.log(`  open ${htmlFile}`);
-    log.log();
-  }
-
-  if (args.json) {
-    fs.writeFileSync(args.json, data);
-    log.log(`json data exported to ${args.json}`);
-    log.log();
-  }
+  report(args);
 }
 
 if (require.main === module) {

@@ -5,13 +5,12 @@ import './Listing.scss';
 
 export type ListingProps = {
   results: FulltextData[];
-  query: string;
 }
 
-export function Listing({ results, query }: ListingProps) {
+export function Listing({ results }: ListingProps) {
   const resultsMarkup = results.length === 0 ?
     <Empty /> :
-    <ClusterListing clusters={results} query={query} />;
+    <ClusterListing clusters={results} />;
   return (
     <div className="listing">
       <div className="info">
