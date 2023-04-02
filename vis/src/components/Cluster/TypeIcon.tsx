@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { CandidateType } from '../../../../src/types';
+import { Tooltip } from '../../hooks/useTooltip';
 
 import './TypeIcon.scss';
 
@@ -8,7 +8,6 @@ export type TypeIconProps = {
 }
 
 export function TypeIcon({ type }: TypeIconProps) {
-  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const tooltipContent = {
     function: 'Function Type Declaration',
     union: 'Union Type Declaration',
@@ -17,14 +16,13 @@ export function TypeIcon({ type }: TypeIconProps) {
     alias: 'Type Alias Declaration',
     interface: 'Interface Declaration',
   }[type];
+  
   return (
     <div className="type-icon">
-      <span
-        className="type mono"
-        onMouseEnter={() => setIsTooltipVisible(true)}
-        onMouseLeave={() => setIsTooltipVisible(false)}
-      >{`{${type[0].toUpperCase()}}`}</span>
-      <span className={`tooltip ${isTooltipVisible ? 'visible' : ''}`}>{tooltipContent}</span>
+      <Tooltip>
+        <span className="name mono">{`{${type[0].toUpperCase()}}`}</span>
+        <span>{tooltipContent}</span>
+      </Tooltip>
     </div>
   );
 }

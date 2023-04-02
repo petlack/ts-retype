@@ -91,7 +91,7 @@ main {
 }
 
 .main {
-  position: relative;
+  // position: relative;
   /* padding-top: 0; */
   display: grid;
   grid-template-columns: 1fr;
@@ -99,7 +99,7 @@ main {
   flex: 1;
 
   .filters {
-    position: fixed;
+    position: absolute;
     top: 0;
     justify-self: end;
     height: 100vh;

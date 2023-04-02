@@ -8,9 +8,11 @@ import { ToastProvider } from './components/Toast';
 import { TopBar } from '../../docs/src/uikit/TopBar';
 import { UiKitApp } from '../../docs/src/uikit/UiKitApp';
 import { useSearch } from './hooks/useSearch';
+import { SearchPhraseProvider } from './hooks/useSearchPhrase';
+import { TooltipProvider } from './hooks/useTooltip';
 
 import './App.scss';
-import { SearchPhraseProvider } from './hooks/useSearchPhrase';
+import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
 
 const theme = 'light';
 // const theme = 'dark';
@@ -89,6 +91,7 @@ function App() {
           </div>
         </ToastProvider>
       </SearchPhraseProvider>
+      <TooltipRoot />
     </UiKitApp>
   );
 }
