@@ -35,15 +35,17 @@ npx ts-retype /path/to/project
 ## Usage with Library
 
 ```typescript
-import { createTypeClusters } from 'ts-retype';
+import { scan } from 'ts-retype';
 
-const groups = createTypeClusters({
+const duplicates = await scan({
   exclude: ['**/node_modules/**', '**/dist/**'],
   include: ['**/*.{ts,tsx}'],
   rootDir: '/path/to/project',
 });
 
-console.log(groups);
+for (const dup of duplicates) {
+  console.log(dup.group, dup.names, dup.files);
+}
 ```
 
 See [Data Format](#data-format) for result format.
