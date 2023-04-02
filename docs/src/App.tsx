@@ -89,7 +89,7 @@ ts-retype -c .`
         <JsTsCode theme={theme} snippet={Snippets.RetypeArgs as Snippet} />
         <p>An example for the snippets in the landing page would look like this</p>
         <JsTsCode theme={theme} snippet={Snippets.duplicate as Snippet} />
-        <p>The return type of <strong>findDuplicateTypes</strong> is an array of <strong>TypeDuplicate</strong></p>
+        <p>The return type of <strong>scan</strong> is an array of <strong>TypeDuplicate</strong></p>
         <JsTsCode theme={theme} snippet={Snippets.TypeDuplicate as Snippet} />
       </section>
 

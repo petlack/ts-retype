@@ -38,9 +38,9 @@ npx ts-retype /path/to/project
 import { createTypeClusters } from 'ts-retype';
 
 const groups = createTypeClusters({
-  project: '/path/to/dir',
-  include: ['**/*.ts'],
   exclude: ['**/node_modules/**', '**/dist/**'],
+  include: ['**/*.{ts,tsx}'],
+  rootDir: '/path/to/project',
 });
 
 console.log(groups);
@@ -62,15 +62,16 @@ Arguments:
 
 Options:
   -V, --version                      output the version number
-  -c, --config [path]                load config - if no path provided, loads .retyperc from current directory. if not set,
-                                     use default config
+  -c, --config [path]                load config - if no path provided, loads .retyperc from current directory. if not
+                                     set, use default config
   -e, --exclude [glob...]            glob patterns that will be ignored
+  -g, --init [file-path]             initializes with default config. if no path is provided, creates .retyperc in the
+                                     current directory
   -i, --include [glob...]            glob patterns that will be included in search
-  -j, --json <path>                  JSON report file path. if not set, does not export JSON.
-  -g, --generate [path]              generate default config. if no path provided, creates .retyperc in the current directory
+  -j, --json <file-path>             file path to export JSON report. if not set, does not export JSON.
   -n, --noHtml                       if set, does not export HTML (default: false)
-  -o, --output <path>                HTML report file path - if provided with directory, it will create index.html file
-                                     inside (default: "./retype-report.html")
+  -o, --output <file-path|dir-path>  HTML report file path - if provided with dir, create index.html file inside the
+                                     dir (default: "./retype-report.html")
   -h, --help                         display help for command
 ```
 
@@ -78,41 +79,43 @@ Options:
 
 ```json
 {
-  "include": ["**/*.ts"],
   "exclude": ["**/node_modules/**", "**/dist/**"],
-  "output": "./retype-report.html"
+  "include": ["**/*.{ts,tsx}"],
+  "json": null,
+  "noHtml": false,
+  "output": "./retype-report.html",
+  "rootDir": "."
 }
 ```
 
 ## Data Format
 
-Defined in [SimilarityGroup](src/types.ts)
+Defined in [TypeDuplicate](src/types.ts)
 
 ```typescript
-[
-  {
-    name: Identical | HasIdenticalProperties,
-    clusters: [
-      {
-        name: string,
-        files: [
-          {
-            file: string,
-            pos: [number, number],
-          },
-        ],
-        names: Map<string, number>,
-        properties: [
-          {
-            key: string,
-            value: string,
-            type: string,
-          },
-        ],
-      },
-    ],
-  },
-];
+type TypeDuplicate = {
+  files: {
+    file: string;
+    lines: [number, number];
+    type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
+  }[];
+  group: 'different' | 'renamed' | 'identical';
+  names: {
+    count: number;
+    name: string;
+  }[];
+  members?: string[];
+  parameters?: {
+    name: string;
+    type: string;
+  }[];
+  properties?: {
+    name: string;
+    type: string;
+  }[];
+  returnType?: string;
+  types?: string[];
+};
 ```
 
 ## Development
