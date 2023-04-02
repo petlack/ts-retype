@@ -96,6 +96,7 @@ main {
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;
+  flex: 1;
 
   .filters {
     position: fixed;
