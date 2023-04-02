@@ -25,6 +25,7 @@
     "build": "rollup -c",
     "bump": "node config/bump.cjs",
     "clean": "rm -rf dist",
+    "dev": "ts-node-dev --respawn src/dev.ts",
     "docs:build": "cd docs && npm run build",
     "docs:dev": "cd docs && npm run dev",
     "docs:install": "cd docs && npm ci",
@@ -79,7 +80,8 @@
     "rollup-plugin-dts": "^5.2.0",
     "rollup-plugin-esbuild": "^5.0.0",
     "ts-jest": "^29.0.5",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0"
   },
   "husky": {
     "hooks": {
