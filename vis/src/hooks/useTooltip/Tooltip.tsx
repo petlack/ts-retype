@@ -8,7 +8,7 @@ import { getAbsoluteBoundingBox } from './utils';
 import { TooltipPortal } from './TooltipRoot';
 
 function fromEvent(e: MouseEvent<HTMLElement>): TooltipPosition {
-  const box = getAbsoluteBoundingBox(e.currentTarget && e.currentTarget);
+  const box = getAbsoluteBoundingBox(e.currentTarget);
   return box;
 }
 
@@ -25,8 +25,17 @@ export const Tooltip: FC<{ children: [ReactElement<HTMLElement>, ReactElement<HT
       return { x: 0, y: 0 };
     }
     // const { x, y } = position;
-    const x = position.x + box.width > width ? width - box.width : position.x;
-    const y = position.y + box.height > height ? height - box.height : position.y;
+    const ideal = {
+      x: position.x,
+      y: position.y - box.height,
+    };
+
+    if (ideal.x + box.width > width) {
+      ideal.x = width - box.width;
+    }
+    // const x = position.x + box.width > width ? width - box.width : position.x;
+    // const y = position.y + box.height > height ? height - box.height : position.y;
+    const { x, y } = ideal;
     return {
       x, y,
     };
@@ -37,11 +46,8 @@ export const Tooltip: FC<{ children: [ReactElement<HTMLElement>, ReactElement<HT
   }, [isVisible, position]);
 
   const onMouseEnter = useCallback((e: MouseEvent<HTMLElement>) => {
-    console.log(e);
-    console.log(fromEvent(e));
     show(fromEvent(e));
-    // global.show()
-  }, [show]);
+  }, [show, box, position]);
   const onMouseMove = useCallback((e: MouseEvent<HTMLElement>) => {
     move(fromEvent(e));
   }, [move]);
@@ -49,18 +55,23 @@ export const Tooltip: FC<{ children: [ReactElement<HTMLElement>, ReactElement<HT
 
   const tooltipMarkup = useMemo(() => (
     <div
-      ref={ref}
       className={`content content--${isVisible ? 'visible' : 'invisible'}`}
       style={{ top: cap.y, left: cap.x }}
     >
-      {tooltip}
-      {JSON.stringify(cap)}
+      <div
+        className='content-tooltip'
+        ref={ref}
+      >
+        {tooltip}
+      </div>
+      {/* {JSON.stringify(cap)} */}
     </div>
   ), [tooltip, ref, cap]);
 
   return (
-    <div className="tooltip">
+    <div className="tooltip flex">
       <div
+        className="flex"
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         onMouseMove={onMouseMove}

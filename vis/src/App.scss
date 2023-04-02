@@ -30,6 +30,8 @@ main {
   &.dark {
     @include darkTheme();
   }
+  position: relative;
+  overflow-x: scroll;
   background-color: var(--clr-bgSecondary);
   .topbar-container {
     .strip {
