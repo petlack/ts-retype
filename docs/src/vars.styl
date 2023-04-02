@@ -1,3 +1,7 @@
+// z-indices
+$zAlwaysVisible = 100
+$zOverlay = 10
+
 // fonts
 
 // Source Sans Pro
@@ -47,7 +51,9 @@ $yellowLight = #faf2e4;
 // code themes
 
 $bgMainLight = white;
-$bgSecondaryLight = #f2f5f6;
+$bgSecondaryLight = hsl(195deg 20% 98%);
+// $bgMainLight = #f2f5f6;
+// $bgSecondaryLight = white;
 $titleLight = #050505;
 $textLight = #313131;
 $mediumLight = #cac1a9;
@@ -65,7 +71,7 @@ $bgCodeMainLight = $bgSecondaryLight;
 
 $bgCodeMainDark = $bgSecondaryDark;
 
-$bgLandingLight = #f2f5f6;
+$bgLandingLight = $bgSecondaryLight;
 $bgCodeLandingLight = $bgMainLight;
 
 $bgLandingDark = hsl(195deg 18% 10%);
@@ -85,7 +91,7 @@ $sectionMinWidth = 320px;
 $sectionMaxWidth = 700px;
 
 $breakHeaderLogo = 600px;
-$breakHeaderMenu = 485px;
+$breakHeaderMenu = 560px;
 $breakDescCTA = 1000px;
 $breakSnippetsWrap = 768px;
 $breakSnippetsColumn = 570px;

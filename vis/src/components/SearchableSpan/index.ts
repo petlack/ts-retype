@@ -1,1 +1,0 @@
-export { SearchableSpan } from './SearchableSpan';

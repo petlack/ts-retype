@@ -13,18 +13,58 @@
   // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 2em;
   border-radius: 8px;
-  border: 1px solid var(--clr-bgBorder);
-  background-color: var(--clr-bgSecondary);
+  border: 1px solid var(--clr-border);
+  background-color: var(--clr-bgMain);
   color: var(--clr-fgText);
   column-gap: 2em;
   row-gap: 1em;
+  overflow-x: scroll;
   grid-template-areas:
     "title title"
+    "names names"
     "properties files"
     "properties files"
   ;
   grid-template-columns: minmax(max-content, 28ch) 1fr;
   position: relative;
+
+  .names-container {
+    align-items: center;
+  }
+
+  @media screen and (max-width: 1024px) {
+    grid-template-areas:
+      "title title"
+      "properties names"
+      "files files"
+    ;
+    grid-template-columns: max-content 1fr;
+    .properties {
+      max-width: 28ch;
+    }
+    .names-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  @media screen and (max-width: 660px) {
+    grid-template-areas:
+      "title"
+      "names"
+      "properties"
+      "files"
+    ;
+    grid-template-columns: 1fr;
+    .names-container {
+      flex-direction: row;
+    }
+  }
+
+  @media screen and (max-width: 520px) {
+    .names-container {
+      flex-direction: column;
+    }
+  }
 
   h3 {
     color: var(--clr-fgText);
@@ -32,55 +72,7 @@
     font-size: 1rem;
   }
 
-  .title {
-    grid-area: title;
-    display: grid;
-    flex-direction: row;
-    column-gap: 1rem;
-    grid-template-columns: 5ch 1fr;
-    grid-template-areas:
-      "icon title"
-      "also also"
-    ;
-    place-content: start;
-    place-items: start;
-    h2 {
-      color: var(--clr-fgTitle);
-      grid-area: title;
-      display: flex;
-      line-height: 2;
-      align-self: center;
-    }
-
-    .type-icon {
-      grid-area: icon;
-      font-size: 2em;
-      font-weight: 800;
-    }
-  }
-
-  .properties {
-    grid-area: properties;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    .pre {
-      /* background-color: #f0fafa; */
-      /* background-image: linear-gradient(to left bottom, #f0fafa, #ecf9f9, #e9f7f7, #e5f6f6, #e1f4f4); */
-      background-color: var(--clr-bgMain);
-      color: var(--clr-fgText);
-      padding: 0.5em 1em;
-      border: 1px solid var(--clr-bgBorder);
-      border-radius: 4px;
-    }
-
-    .property.key {
-      color: var(--clr-code-key)
-    }
-    
-    .property.value {
-      color: var(--clr-code-value);
-    }
+  .names-container {
+    grid-area: names;
   }
 }

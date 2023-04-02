@@ -60,9 +60,9 @@ export default function App() {
         </Window>
         <Options
           options={[
-            { short: 'c', long: 'config', args: '[path]', desc: 'load config - if no path is provided, loads .retyperc from current directory. if not set, use default config' },
+            { short: 'c', long: 'config', args: '[path]', desc: 'load config - if no path provided, loads .retyperc from current directory. if not set, use default config' },
             { short: 'e', long: 'exclude', args: '[glob...]', desc: 'glob patterns that will be ignored' },
-            { short: 'g', long: 'generate', args: '[path]', desc: 'generate default config. if no path is provided, creates .retyperc in the current directory' },
+            { short: 'g', long: 'init', args: '[path]', desc: 'initializes with default config. if no path is provided, creates .retyperc in the current directory' },
             { short: 'i', long: 'include', args: '[glob...]', desc: 'glob patterns that will be included in search' },
             { short: 'j', long: 'json', args: '<path>', desc: 'JSON report file path. if not set, does not export JSON.' },
             { short: 'n', long: 'noHtml', desc: 'if set, does not export HTML (default: false)' },
@@ -73,7 +73,7 @@ export default function App() {
         <Bash theme={theme}>
           {
             `# generate .retyperc in the current directory
-ts-retype -g
+ts-retype -i
 # run ts-retype using .retyperc in the current directory
 ts-retype -c .`
           }
@@ -85,7 +85,7 @@ ts-retype -c .`
         <h2>ts-retype</h2>
         <p>You can also run it programatically, using ts-retype package.</p>
         <JsTsCode theme={theme} snippet={Snippets.tsRetype as Snippet} />
-        <p>The input for <strong>findDuplicateTypes</strong> is of type <strong>RetypeArgs</strong></p>
+        <p>The input for <strong>scan</strong> is of type <strong>ScanArgs</strong></p>
         <JsTsCode theme={theme} snippet={Snippets.RetypeArgs as Snippet} />
         <p>An example for the snippets in the landing page would look like this</p>
         <JsTsCode theme={theme} snippet={Snippets.duplicate as Snippet} />

@@ -12,7 +12,7 @@ $logoSize = 48px;
   --logo-size: $logoSize
   flexRow(calc(var(--logo-size) / 16));
   align-items: flex-end;
-  .icon
+  &-icon
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -29,10 +29,10 @@ $logoSize = 48px;
     // background-color: darken(bgWindowHeader, 20);
     background-color: $accent;
     // box-shadow: $boxShadow;
-  .title
+    &:hover
+      background-color: lighten($accent, 3);
+  &-title
     color: $accent;
     font-weight: 600;
     font-size: calc(var(--logo-size) * 0.75);
     line-height: 1.15;
-  @media screen and (max-width: $breakHeaderLogo)
-    --logo-size: 32px;

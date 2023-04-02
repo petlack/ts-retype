@@ -1,16 +1,17 @@
-import { SearchableSpan } from '../SearchableSpan';
+import { SearchAwareText } from '../SearchAwareText';
 
 export type ValueFeaturesProps = {
   title: string;
   values: string[];
-  query: string;
 }
 
-export function ValueFeatures({ title, query, values }: ValueFeaturesProps) {
+export function ValueFeatures({ title, values }: ValueFeaturesProps) {
   const featuresMarkup = values.map(value => {
     return (
       <span key={value}>
-        <span className="property value"><SearchableSpan query={query} value={value} /></span>
+        <span className="property value">
+          <SearchAwareText>{value}</SearchAwareText>
+        </span>
         <br />
       </span>
     );

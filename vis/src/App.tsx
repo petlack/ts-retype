@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
-
-import { useSearch } from './hooks/useSearch';
-import { ClusterListing } from './components/Cluster';
-import { Empty } from './components/Empty';
-import { Filters } from './components/Filters';
+import { useCallback, useEffect, useState } from 'react';
+import { Facet, fulltext } from './model/search';
+import { Filters, FiltersMenu } from './components/Filters';
+import { FulltextData } from './types';
+import { Listing } from './components/Listing';
 import { Search } from './components/Search';
 import { ToastProvider } from './components/Toast';
-import { Facet, fulltext } from './model/search';
-import { FulltextData } from './types';
-import { Similarity } from '../../src/types';
-import { UiKitApp } from '../../docs/src/uikit/UiKitApp';
 import { TopBar } from '../../docs/src/uikit/TopBar';
+import { UiKitApp } from '../../docs/src/uikit/UiKitApp';
+import { useSearch } from './hooks/useSearch';
+import { SearchPhraseProvider } from './hooks/useSearchPhrase';
+import { TooltipProvider } from './hooks/useTooltip';
 
 import './App.scss';
+import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
 
 const theme = 'light';
 // const theme = 'dark';
@@ -46,14 +46,13 @@ function App() {
   ] = useSearch(facets, { minFiles: 2, minProperties: 3, selectedTab: 'all', selectedType: 'all' }, '');
   
   useEffect(() => {
-    let id = 0;
     setAllData(
-      window.__data__.map(cluster => ({
-        ...cluster,
-        group: cluster.group as keyof typeof Similarity,
-        id: ++id,
-        fulltext: fulltext(cluster as FulltextData),
-      }))
+      window.__data__.filter(({ group }) => ['identical', 'renamed'].includes(group))
+        .map((cluster, idx) => ({
+          ...cluster,
+          id: idx,
+          fulltext: fulltext(cluster as FulltextData),
+        }))
     );
   }, []);
   
@@ -61,30 +60,37 @@ function App() {
     reindex(allData);
   }, [allData]);
 
-  const resultsMarkup = results.length === 0 ?
-    <Empty /> :
-    <ClusterListing clusters={results} query={query} />;
+  const [filtersVisible, setFiltersVisible] = useState(false);
+
+  const toggleFiltersVisibility = useCallback(() => {
+    setFiltersVisible(!filtersVisible);
+  }, [filtersVisible]);
 
   return (
     <UiKitApp theme={theme}>
-      <ToastProvider>
-        <TopBar>
-          <Search
-            query={query}
-            setQuery={updateQuery}
-          />
-        </TopBar>
-        <div className="main">
-          <Filters
-            filter={filter}
-            updateFilter={updateFilter}
-            facetsStats={facetsStats}
-          />
-          <div className="listing">
-            {resultsMarkup}
+      <SearchPhraseProvider value={{ phrase: query }}>
+        <ToastProvider>
+          <TopBar>
+            <Search
+              query={query}
+              setQuery={updateQuery}
+            />
+            <FiltersMenu onClick={toggleFiltersVisibility} />
+          </TopBar>
+          <div className="main">
+            <Filters
+              filter={filter}
+              updateFilter={updateFilter}
+              facetsStats={facetsStats}
+              visible={filtersVisible}
+            />
+            <Listing
+              results={results}
+            />
           </div>
-        </div>
-      </ToastProvider>
+        </ToastProvider>
+      </SearchPhraseProvider>
+      <TooltipRoot />
     </UiKitApp>
   );
 }

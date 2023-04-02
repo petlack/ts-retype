@@ -1,12 +1,9 @@
-.row {
-  grid-area: also;
+.names-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
 
   .names {
-    grid-area: names;
     max-height: 200px;
     overflow-y: scroll;
   }

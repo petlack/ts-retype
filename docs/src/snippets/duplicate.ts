@@ -1,6 +1,6 @@
 const duplicate: TypeDuplicate = {
   files: [
-    { file: 'src/model.ts', lines: [12, 16], type: 'alias' },
+    { file: 'src/model.ts', lines: [12, 16], type: 'literal' },
     { file: 'src/auth.ts', lines: [42, 46], type: 'interface' },
     { file: 'src/api.ts', lines: [76, 83], type: 'literal' },
   ],

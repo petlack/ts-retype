@@ -1,6 +1,6 @@
 import { CandidateType, TypeDuplicate } from '../../../../src/types';
 import { useCopyToClipboard } from '../../hooks/useCopy';
-import { SearchableSpan } from '../SearchableSpan';
+import { SearchAwareText } from '../SearchAwareText';
 import { useToast } from '../Toast';
 
 import './FileListing.scss';
@@ -9,10 +9,9 @@ import { TypeIcon } from './TypeIcon';
 export type FileListingProps = {
   files: TypeDuplicate['files'];
   type: CandidateType['type'];
-  query: string;
 }
 
-export function FileListing({ files, query }: FileListingProps) {
+export function FileListing({ files }: FileListingProps) {
   const [, copyToClipboard] = useCopyToClipboard();
   const showToast = useToast();
 
@@ -29,7 +28,7 @@ export function FileListing({ files, query }: FileListingProps) {
     >
       {/* <span className="type">{'{'}{type[0].toUpperCase()}{'}'}</span> */}
       <TypeIcon type={type} />
-      <SearchableSpan className="path" query={query} value={file} />
+      <span className="span"><SearchAwareText>{file}</SearchAwareText></span>
       <span className="lines">({lines[0]} - {lines[1]})</span>
     </span>
   ));

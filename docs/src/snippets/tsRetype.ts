@@ -1,9 +1,9 @@
-import { findDuplicateTypes } from 'ts-retype';
+import { scan } from 'ts-retype';
 
-const duplicates = await findDuplicateTypes({
+const duplicates = await scan({
   exclude: ['**/node_modules/**', '**/dist/**'],
   include: ['**/*.{ts,tsx}'],
-  project: '/path/to/project',
+  rootDir: '/path/to/project',
 });
 
 for (const dup of duplicates) {

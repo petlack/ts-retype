@@ -1,38 +1,40 @@
-.tooltip {
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  ul {
-    margin-left: 1rem;
-    margin-top: .5rem;
-  }
-  position: relative;
+// .tooltip {
+//   * {
+//     margin: 0;
+//     padding: 0;
+//   }
+//   ul {
+//     margin-left: 1rem;
+//     margin-top: .5rem;
+//   }
+//   // position: relative;
   
-  .icon {
-    margin-left: 8px;
-    cursor: help;
-    svg {
-      width: 16px;
-      height: 16px;
-    }
-  }
-  .content {
-    font-size: .8rem;
-    min-width: 240px;
-    padding: 1rem;
-    border-radius: 8px;
-    background-color: gray;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    color: white;
-    position: absolute;
-    z-index: 10;
-    bottom: 1rem;
-    &.visible {
-      opacity: 1;
-    }
-    &.invisible {
-      opacity: 0;
-    }
-  }
-}
+//   .icon {
+//     margin-left: 8px;
+//     cursor: help;
+//     svg {
+//       width: 16px;
+//       height: 16px;
+//     }
+//   }
+//   .content {
+//     pointer-events: none;
+//     font-size: .8rem;
+//     min-width: 240px;
+//     padding: 1rem;
+//     border-radius: 8px;
+//     background-color: gray;
+//     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+//     color: white;
+//     position: absolute;
+//     z-index: 10;
+//     bottom: 1rem;
+//     right: 0;
+//     &.visible {
+//       opacity: 1;
+//     }
+//     &.invisible {
+//       opacity: 0;
+//     }
+//   }
+// }
