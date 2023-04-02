@@ -12,9 +12,9 @@
         "pos": [1778, 1850],
         "lines": [55, 57]
       },
-      { "file": "src/similarity.ts", "type": "literal", "pos": [7632, 7682], "lines": [250, 252] },
-      { "file": "src/scan.ts", "type": "literal", "pos": [923, 952], "lines": [24, 24] },
-      { "file": "src/parse.ts", "type": "literal", "pos": [7166, 7200], "lines": [258, 258] },
+      { "file": "src/similarity.ts", "type": "literal", "pos": [7715, 7765], "lines": [256, 258] },
+      { "file": "src/scan.ts", "type": "literal", "pos": [932, 961], "lines": [29, 29] },
+      { "file": "src/parse.ts", "type": "literal", "pos": [7398, 7432], "lines": [258, 258] },
       {
         "file": "docs/src/components/MultilangWindow.tsx",
         "type": "literal",
@@ -71,7 +71,7 @@
   {
     "names": [{ "name": "TypeDuplicate", "count": 2 }],
     "files": [
-      { "file": "src/types.ts", "type": "literal", "pos": [2184, 2631], "lines": [108, 133] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2185, 2632], "lines": [107, 132] },
       {
         "file": "docs/src/snippets/TypeDuplicate.ts",
         "type": "literal",
@@ -217,9 +217,9 @@
       { "file": "src/types.ts", "type": "interface", "pos": [397, 496], "lines": [19, 24] },
       { "file": "src/types.ts", "type": "interface", "pos": [496, 595], "lines": [24, 29] },
       { "file": "src/types.ts", "type": "interface", "pos": [595, 729], "lines": [29, 34] },
-      { "file": "src/types.ts", "type": "literal", "pos": [2224, 2337], "lines": [111, 116] },
-      { "file": "src/types.ts", "type": "literal", "pos": [2480, 2522], "lines": [123, 126] },
-      { "file": "src/types.ts", "type": "literal", "pos": [2540, 2582], "lines": [127, 130] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2225, 2338], "lines": [110, 115] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2481, 2523], "lines": [122, 125] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2541, 2583], "lines": [126, 129] },
       { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [83, 258], "lines": [5, 12] },
       { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [192, 224], "lines": [10, 10] },
       { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [262, 396], "lines": [13, 19] },
@@ -278,7 +278,7 @@
         "pos": [139, 209],
         "lines": [4, 8]
       },
-      { "file": "src/types.ts", "type": "literal", "pos": [2184, 2631], "lines": [108, 133] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2185, 2632], "lines": [107, 132] },
       {
         "file": "docs/src/snippets/TypeDuplicate.ts",
         "type": "literal",
@@ -365,7 +365,7 @@
       { "file": "vis/src/types.ts", "type": "literal", "pos": [217, 246], "lines": [9, 11] },
       { "file": "vis/src/types.ts", "type": "literal", "pos": [551, 592], "lines": [18, 18] },
       { "file": "src/types.ts", "type": "interface", "pos": [111, 263], "lines": [7, 13] },
-      { "file": "src/types.ts", "type": "literal", "pos": [2224, 2337], "lines": [111, 116] }
+      { "file": "src/types.ts", "type": "literal", "pos": [2225, 2338], "lines": [110, 115] }
     ],
     "group": "different",
     "properties": [{ "name": "pos", "type": "[number, number]" }]
@@ -540,35 +540,14 @@
     ]
   },
   {
-    "names": [
-      { "name": "ReportArgs", "count": 1 },
-      { "name": "RetypeArgs", "count": 1 }
-    ],
-    "files": [
-      { "file": "src/types.ts", "type": "literal", "pos": [1591, 1681], "lines": [81, 87] },
-      {
-        "file": "docs/src/snippets/RetypeArgs.ts",
-        "type": "literal",
-        "pos": [0, 138],
-        "lines": [1, 8]
-      }
-    ],
-    "group": "different",
-    "properties": [
-      { "name": "json", "type": "string | null" },
-      { "name": "noHtml", "type": "boolean" },
-      { "name": "output", "type": "string" }
-    ]
-  },
-  {
     "names": [{ "name": "anonymous", "count": 2 }],
     "files": [
-      { "file": "src/types.ts", "type": "literal", "pos": [1737, 1780], "lines": [89, 92] },
+      { "file": "src/types.ts", "type": "literal", "pos": [1739, 1784], "lines": [88, 91] },
       { "file": "src/cmd.ts", "type": "literal", "pos": [623, 670], "lines": [26, 26] }
     ],
     "group": "different",
     "properties": [
-      { "name": "generate", "type": "boolean" },
+      { "name": "init", "type": "boolean" },
       { "name": "config", "type": "string" }
     ]
   },
@@ -812,7 +791,7 @@
     "files": [
       { "file": "src/similarity.ts", "type": "function", "pos": [481, 579], "lines": [16, 20] },
       { "file": "src/similarity.ts", "type": "function", "pos": [1303, 1426], "lines": [43, 50] },
-      { "file": "src/similarity.ts", "type": "function", "pos": [1426, 4390], "lines": [50, 123] }
+      { "file": "src/similarity.ts", "type": "function", "pos": [1426, 4427], "lines": [50, 129] }
     ],
     "group": "renamed",
     "parameters": [{ "name": "t", "type": "CandidateType" }],
@@ -824,8 +803,8 @@
       { "name": "chooseTypeFeatures", "count": 1 }
     ],
     "files": [
-      { "file": "src/similarity.ts", "type": "function", "pos": [6034, 6179], "lines": [191, 195] },
-      { "file": "src/similarity.ts", "type": "function", "pos": [6640, 7632], "lines": [216, 250] }
+      { "file": "src/similarity.ts", "type": "function", "pos": [6071, 6216], "lines": [197, 201] },
+      { "file": "src/similarity.ts", "type": "function", "pos": [6677, 7715], "lines": [222, 256] }
     ],
     "group": "renamed",
     "parameters": [
@@ -840,8 +819,8 @@
       { "name": "anonymous", "count": 1 }
     ],
     "files": [
-      { "file": "src/similarity.ts", "type": "literal", "pos": [7632, 7682], "lines": [250, 252] },
-      { "file": "src/scan.ts", "type": "literal", "pos": [923, 952], "lines": [24, 24] }
+      { "file": "src/similarity.ts", "type": "literal", "pos": [7715, 7765], "lines": [256, 258] },
+      { "file": "src/scan.ts", "type": "literal", "pos": [932, 961], "lines": [29, 29] }
     ],
     "group": "renamed",
     "properties": [{ "name": "string", "type": "number[]" }]
@@ -852,8 +831,8 @@
       { "name": "parse", "count": 1 }
     ],
     "files": [
-      { "file": "src/parse.ts", "type": "function", "pos": [5318, 5810], "lines": [193, 209] },
-      { "file": "src/parse.ts", "type": "function", "pos": [7546, 7695], "lines": [267, 272] }
+      { "file": "src/parse.ts", "type": "function", "pos": [5532, 6024], "lines": [193, 209] },
+      { "file": "src/parse.ts", "type": "function", "pos": [7778, 7927], "lines": [267, 272] }
     ],
     "group": "renamed",
     "parameters": [{ "name": "sourceFile", "type": "ts.SourceFile" }],
@@ -996,8 +975,8 @@
         "pos": [156, 187],
         "lines": [7, 7]
       },
-      { "file": "src/types.ts", "type": "literal", "pos": [2480, 2522], "lines": [123, 126] },
-      { "file": "src/types.ts", "type": "literal", "pos": [2540, 2582], "lines": [127, 130] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2481, 2523], "lines": [122, 125] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2541, 2583], "lines": [126, 129] },
       {
         "file": "docs/src/snippets/TypeDuplicate.ts",
         "type": "literal",
@@ -1044,9 +1023,27 @@
     "group": "identical"
   },
   {
+    "names": [{ "name": "ScanArgs", "count": 2 }],
+    "files": [
+      { "file": "src/types.ts", "type": "literal", "pos": [958, 1590], "lines": [46, 79] },
+      {
+        "file": "docs/src/snippets/RetypeArgs.ts",
+        "type": "literal",
+        "pos": [0, 81],
+        "lines": [1, 5]
+      }
+    ],
+    "group": "identical",
+    "properties": [
+      { "name": "exclude", "type": "string[]" },
+      { "name": "include", "type": "string[]" },
+      { "name": "rootDir", "type": "string" }
+    ]
+  },
+  {
     "names": [{ "name": "anonymous", "count": 2 }],
     "files": [
-      { "file": "src/types.ts", "type": "union", "pos": [2349, 2387], "lines": [117, 117] },
+      { "file": "src/types.ts", "type": "union", "pos": [2350, 2388], "lines": [116, 116] },
       {
         "file": "docs/src/snippets/TypeDuplicate.ts",
         "type": "union",
@@ -1059,7 +1056,7 @@
   {
     "names": [{ "name": "anonymous", "count": 2 }],
     "files": [
-      { "file": "src/types.ts", "type": "literal", "pos": [2397, 2440], "lines": [118, 121] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2398, 2441], "lines": [117, 120] },
       {
         "file": "docs/src/snippets/TypeDuplicate.ts",
         "type": "literal",

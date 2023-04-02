@@ -1,5 +1,8 @@
 {
-  "rootDir": "./retype-report.html",
+  "exclude": ["**/node_modules/**","**/dist/**"],
   "include": ["**/*.{ts,tsx}"],
-  "exclude": ["**/node_modules/**", "**/dist/**"]
+  "json": null,
+  "noHtml": false,
+  "output": "./retype-report.html",
+  "rootDir": "."
 }

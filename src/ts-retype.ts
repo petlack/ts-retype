@@ -10,7 +10,7 @@ import { dir, stringify } from './utils';
 import { createLogger } from './log';
 import { report } from './report';
 import { DEFAULT_CMD_OPTIONS, RetypeCmdOptions } from './types';
-import { RetypeConfig } from './config';
+import { DEFAULT_CONFIG, RetypeConfig } from './config';
 
 const log = createLogger(console.log);
 
@@ -30,8 +30,8 @@ program
   )
   .option('-e, --exclude [glob...]', 'glob patterns that will be ignored')
   .option(
-    '-g, --generate [file-path]',
-    'generate default config. if no path provided, creates .retyperc in the current directory',
+    '-g, --init [file-path]',
+    'initializes with default config. if no path is provided, creates .retyperc in the current directory',
   )
   .option('-i, --include [glob...]', 'glob patterns that will be included in search')
   .option(
@@ -61,8 +61,8 @@ function parseOptions(): Partial<RetypeCmdOptions> {
 }
 
 function runGenerate(options: Partial<RetypeCmdOptions>) {
-  const configPath = typeof options.generate === 'string' ? <string>options.generate : '.retyperc';
-  const config = stringify(DEFAULT_CMD_OPTIONS);
+  const configPath = typeof options.init === 'string' ? <string>options.init : '.retyperc';
+  const config = stringify(DEFAULT_CONFIG);
   fs.writeFileSync(configPath, config);
   log.log(config);
   log.log(`written to ${configPath}`);
@@ -75,7 +75,7 @@ function main() {
 
   log.log(JSON.stringify(options));
 
-  if (options.generate) {
+  if (options.init) {
     runGenerate(options);
     return;
   }

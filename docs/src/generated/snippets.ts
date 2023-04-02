@@ -4302,7 +4302,7 @@ export default {
           children: [
             {
               type: 'text',
-              value: '"rootDir"',
+              value: '"exclude"',
             },
           ],
         },
@@ -4327,12 +4327,64 @@ export default {
           type: 'element',
           tagName: 'span',
           properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '[',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
             className: ['token', 'string'],
           },
           children: [
             {
               type: 'text',
-              value: '"./retype-report.html"',
+              value: '"**/node_modules/**"',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '"**/dist/**"',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ']',
             },
           ],
         },
@@ -4448,7 +4500,7 @@ export default {
           children: [
             {
               type: 'text',
-              value: '"exclude"',
+              value: '"json"',
             },
           ],
         },
@@ -4473,25 +4525,12 @@ export default {
           type: 'element',
           tagName: 'span',
           properties: {
-            className: ['token', 'punctuation'],
+            className: ['token', 'null', 'keyword'],
           },
           children: [
             {
               type: 'text',
-              value: '[',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'string'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '"**/node_modules/**"',
+              value: 'null',
             },
           ],
         },
@@ -4510,18 +4549,48 @@ export default {
         },
         {
           type: 'text',
+          value: '\n  ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'property'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '"noHtml"',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
           value: ' ',
         },
         {
           type: 'element',
           tagName: 'span',
           properties: {
-            className: ['token', 'string'],
+            className: ['token', 'boolean'],
           },
           children: [
             {
               type: 'text',
-              value: '"**/dist/**"',
+              value: 'false',
             },
           ],
         },
@@ -4534,7 +4603,114 @@ export default {
           children: [
             {
               type: 'text',
-              value: ']',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n  ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'property'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '"output"',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '"./retype-report.html"',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n  ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'property'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '"rootDir"',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '"."',
             },
           ],
         },
@@ -4554,10 +4730,6 @@ export default {
               value: '}',
             },
           ],
-        },
-        {
-          type: 'text',
-          value: '\n',
         },
       ],
     },

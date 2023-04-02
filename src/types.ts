@@ -86,7 +86,7 @@ export type ReportArgs = {
 
 export type RetypeCmdOptions = ScanArgs &
   ReportArgs & {
-    generate: boolean;
+    init: boolean;
     config: string;
   };
 
@@ -99,7 +99,7 @@ export const DEFAULT_ARGS: Partial<ScanArgs> = {
 export const DEFAULT_CMD_OPTIONS: Partial<RetypeCmdOptions> = {
   config: './.retyperc',
   exclude: ['**/node_modules/**', '**/dist/**'],
-  generate: false,
+  init: false,
   include: ['**/*.{ts,tsx}'],
   json: null,
   noHtml: false,
