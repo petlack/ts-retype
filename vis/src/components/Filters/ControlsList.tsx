@@ -19,6 +19,7 @@ export const ControlsList: FC<
     if (e.key === 'ArrowDown') {
       if (!isFocused) {
         if (focusedIdx < children.length - 1) {
+          e.preventDefault();
           setFocusedIdx(focusedIdx + 1);
           onSelect(children[focusedIdx + 1]);
         }
@@ -26,6 +27,7 @@ export const ControlsList: FC<
     } else if (e.key === 'ArrowUp') {
       if (!isFocused) {
         if (focusedIdx > 0) {
+          e.preventDefault();
           setFocusedIdx(focusedIdx - 1);
           onSelect(children[focusedIdx - 1]);
         }
