@@ -9,10 +9,9 @@ import { TypeIcon } from './TypeIcon';
 export type FileListingProps = {
   files: TypeDuplicate['files'];
   type: CandidateType['type'];
-  query: string;
 }
 
-export function FileListing({ files, query }: FileListingProps) {
+export function FileListing({ files }: FileListingProps) {
   const [, copyToClipboard] = useCopyToClipboard();
   const showToast = useToast();
 

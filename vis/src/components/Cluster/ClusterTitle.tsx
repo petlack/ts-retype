@@ -7,14 +7,13 @@ import './ClusterTitle.scss';
 export type ClusterTitleProps = {
   type: CandidateType['type'];
   names: TypeDuplicate['names'];
-  query: string;
 }
 
-export function ClusterTitle({ type, names, query  }: ClusterTitleProps) {
+export function ClusterTitle({ type, names }: ClusterTitleProps) {
   return (
     <div className="title">
       <TypeIcon type={type} />
-      <DuplicateName names={names} query={query} />
+      <DuplicateName names={names} />
     </div>
   );
 }

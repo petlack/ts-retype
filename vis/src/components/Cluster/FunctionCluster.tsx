@@ -16,17 +16,17 @@ enum EnBar { Ok, Fail }
 type UnFoo = 'a' | 'b'
 type UnBar = 'a' | 'b'
 
-export function FunctionCluster({ type, query, files, parameters, returnType, names }: FunctionTypeCluster & { query: string }) {
+export function FunctionCluster({ type, files, parameters, returnType, names }: FunctionTypeCluster) {
   return (
     <div className="cluster cluster-functional">
-      <ClusterTitle names={names} type={type} query={query} />
-      <NamesListing names={names} query={query} />
+      <ClusterTitle names={names} type={type} />
+      <NamesListing names={names} />
       <div className="return-type">
         <h3>Return type</h3>
         <span className="mono">{returnType}</span>
       </div>
-      <KeyValueFeatures keyValues={parameters} query={query} name="Parameters" />
-      <FileListing files={files} query={query} type={type} />
+      <KeyValueFeatures keyValues={parameters} name="Parameters" />
+      <FileListing files={files} type={type} />
     </div>
   );
 }

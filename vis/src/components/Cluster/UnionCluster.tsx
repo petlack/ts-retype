@@ -6,13 +6,13 @@ import { UnionTypeCluster } from '../../types';
 
 import './BaseCluster.scss';
 
-export function UnionCluster({ type, query, files, types, names }: UnionTypeCluster & { query: string }) {
+export function UnionCluster({ type, files, types, names }: UnionTypeCluster) {
   return (
     <div className="cluster">
-      <ClusterTitle names={names} type={type} query={query} />
-      <NamesListing names={names} query={query} />
-      <ValueFeatures title="Strings" query={query} values={types} />
-      <FileListing files={files} query={query} type={type} />
+      <ClusterTitle names={names} type={type} />
+      <NamesListing names={names} />
+      <ValueFeatures title="Strings" values={types} />
+      <FileListing files={files} type={type} />
     </div>
   );
 }

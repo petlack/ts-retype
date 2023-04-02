@@ -6,13 +6,13 @@ import { ValueFeatures } from './ValueFeatures';
 
 import './BaseCluster.scss';
 
-export function EnumCluster({ type, query, files, members, names }: EnumTypeCluster & { query: string }) {
+export function EnumCluster({ type, files, members, names }: EnumTypeCluster) {
   return (
     <div className="cluster">
-      <ClusterTitle names={names} type={type} query={query} />
-      <NamesListing names={names} query={query} />
-      <ValueFeatures title="Members" query={query} values={members} />
-      <FileListing files={files} query={query} type={type} />
+      <ClusterTitle names={names} type={type} />
+      <NamesListing names={names} />
+      <ValueFeatures title="Members" values={members} />
+      <FileListing files={files} type={type} />
     </div>
   );
 }
