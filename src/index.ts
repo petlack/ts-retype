@@ -1,2 +1,3 @@
-export { createTypeClusters } from './clusters';
-export type { SimilarityGroup } from './types';
+export { scan } from './scan';
+export { report } from './report';
+export type { TypeDuplicate } from './types';

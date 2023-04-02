@@ -1,0 +1,45 @@
+.return-type {
+  grid-area: return-type;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  span {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    color: var(--clr-code-value);
+  }
+}
+
+.cluster-functional {
+  grid-template-areas:
+    "title title"
+    "names names"
+    "return-type files"
+    "properties files"
+    "properties files"
+  ;
+  grid-template-columns: max-content 1fr;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-areas:
+      "title title"
+      "properties return-type"
+      "properties names"
+      "files files"
+    ;
+    grid-template-columns: max-content 1fr;
+  }
+
+  @media screen and (max-width: 660px) {
+    grid-template-areas:
+      "title"
+      "names"
+      "return-type"
+      "properties"
+      "files"
+    ;
+    grid-template-columns: 1fr;
+  }
+
+}

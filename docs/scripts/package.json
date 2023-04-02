@@ -1,0 +1,19 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node --esm src/syntaxHighlighting.ts",
+    "snippets": "node dist/syntaxHighlighting.js"
+  },
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "refractor": "^4.8.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  }
+}

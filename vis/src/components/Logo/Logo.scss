@@ -1,0 +1,36 @@
+.logo {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+  cursor: pointer;
+
+  &:hover {
+    .big {
+      color: var(--clr-bgaa-900);
+    }
+    .small {
+      color: white;
+    }
+  }
+
+  .big {
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--clr-bgna-700);
+    transition: color 250ms ease-in-out;
+  }
+
+  .small {
+    line-height: 1;
+    font-size: .75rem;
+    color: var(--clr-bgaa-400);
+    transition: color 250ms ease-in-out;
+  }
+}

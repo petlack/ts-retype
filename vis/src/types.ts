@@ -1,45 +1,19 @@
-export type Freq = {
-  [k in string | number | symbol]: number;
-};
+import {
+  TypeDuplicate,
+  EnumCandidateType,
+  FunctionCandidateType,
+  LiteralCandidateType,
+  UnionCandidateType,
+} from '../../src/types';
 
-export interface Property {
-  key: string;
-  value: string;
-  type: string;
-}
-
-export interface LiteralType {
-  name: string;
-  properties: Property[];
+export type Cluster = Pick<TypeDuplicate, 'files' | 'names' | 'group'> & {
   pos: [number, number];
-}
-
-export interface SourceLiteralType extends LiteralType {
-  file: string;
-}
-
-export type SourceFile = {
-  pos: [number, number];
-  lines: number[];
-  file: string;
 };
 
-export type TypeCluster = Pick<LiteralType, 'name' | 'properties'> & {
-  files: SourceFile[];
-  names: Freq;
-  group: string;
-};
+export type LiteralTypeCluster = LiteralCandidateType & Cluster;
+export type FunctionTypeCluster = FunctionCandidateType & Cluster;
+export type EnumTypeCluster = EnumCandidateType & Cluster;
+export type UnionTypeCluster = UnionCandidateType & Cluster;
 
-export enum Similarity {
-  Different = 0,
-  HasSimilarProperties = 1,
-  HasSubsetOfProperties = 2,
-  HasIdenticalProperties = 3,
-  Identical = 4,
-}
-
-export type Data = { name: string; clusters: TypeCluster[] };
-export type SimilarityGroup = {
-  name: string;
-  clusters: TypeCluster[];
-};
+export type Data = Omit<TypeDuplicate, 'group'> & { group: string; pos: [number, number] };
+export type FulltextData = Data & { id: number; fulltext: string };

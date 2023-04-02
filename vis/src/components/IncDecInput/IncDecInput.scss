@@ -1,0 +1,40 @@
+.incdec {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: .5rem 1rem;
+
+  input {
+    background: none;
+    border: none;
+    color: var(--clr-fgText);
+    outline: none;
+    padding: 0rem 1rem;
+    font-size: 1.2rem;
+    width: 6ch;
+    text-align: center;
+  }
+
+  button {
+    background-color: var(--clr-btn-primary-bg);
+    color: var(--clr-btn-primary-fg);
+    border-radius: 100vw;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    border: none;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    &:hover {
+      background-color: var(--clr-btn-primary-bg-hover);
+      border: none;
+    }
+  }
+}

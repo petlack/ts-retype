@@ -1,109 +1,39 @@
-import path from 'path';
-import { omit, sum } from 'ramda';
-import { globSync } from 'glob';
-import { getAllLiteralTypes } from './parse';
+import { parse } from './parse';
 import {
-  Freq,
-  LiteralType,
-  SourceLiteralType,
-  Similarity,
-  TypeCluster,
-  SimilarityGroup,
+  CandidateType,
+  SourceCandidateType,
+  LiteralCandidateType,
+  EnumCandidateType,
+  FunctionCandidateType,
+  UnionCandidateType,
 } from './types';
-import { loadFile, posToLine } from './utils';
-import { similarityMatrix, pairsToClusters, indexPairsBySimilarity } from './similarity';
-import { createLogger } from './cmd';
+import ts from 'typescript';
 
-const log = createLogger();
-
-function toSourceLiteralTypes(file: string, types: LiteralType[]) {
-  return types.map((t) => <SourceLiteralType>{ ...t, file });
+function toSourceCandidateTypes(file: string, types: CandidateType[]): SourceCandidateType[] {
+  return types.map((t) => ({ ...t, file }));
 }
 
-function freq(list: (string | number | symbol)[]) {
-  return list.reduce((res, item) => {
-    res[item] = (res[item] || 0) + 1;
-    return res;
-  }, <Freq>{});
-}
-
-function clusterValue(
-  types: SourceLiteralType[],
-  cluster: Set<number>,
-  filesLengths: { [file: string]: number[] },
-): TypeCluster {
-  const values = [...cluster.values()].filter((val) => types[val]);
-  const firstVal = values[0];
-  const toLine = (file: string) => posToLine(filesLengths[file]);
-  const files = values
-    .map((val) => ({
-      pos: types[val].pos,
-      lines: types[val].pos.map(toLine(types[val].file)),
-      file: types[val].file,
-    }))
-    .sort((a, b) => (a.file < b.file ? -1 : 1));
-  const names = freq(values.map((val) => types[val].name));
-  return {
-    ...omit(['file', 'pos'], types[firstVal]),
-    files,
-    names,
-  };
-}
-
-function formatFileName(file: string, maxLength = 120) {
-  if (file.length > maxLength) {
-    const ellipsis = '..';
-    const extra = file.length - maxLength + ellipsis.length;
-    const half = Math.floor(extra / 2);
-    return file.slice(0, half) + ellipsis + file.slice(half + extra);
+function nonEmptyCandidateType(type: CandidateType): boolean {
+  switch (type.type) {
+    case 'alias':
+    case 'interface':
+    case 'literal':
+      return (<LiteralCandidateType>type).properties.length > 0;
+    case 'enum':
+      return (<EnumCandidateType>type).members.length > 0;
+    case 'function':
+      return (<FunctionCandidateType>type).parameters.length > 0;
+    case 'union':
+      return (<UnionCandidateType>type).types.length > 0;
   }
-  return file;
 }
 
-export function createTypeClusters({
-  project,
-  include,
-  exclude,
-}: {
-  project: string;
-  include: string[];
-  exclude: string[];
-}) {
-  const files = globSync(include, { cwd: project, ignore: exclude });
-
-  const filesLengths: { [file: string]: number[] } = {};
-  let allTypes: SourceLiteralType[] = [];
-
-  log.log(`searching in ${files.length.toLocaleString()} files`);
-
-  for (const relPath of files) {
-    const file = path.join(project, relPath);
-    log.live(`⏳ loading ${formatFileName(file)}`);
-    const srcFile = loadFile(file);
-    const lengths = srcFile
-      .getFullText()
-      .split('\n')
-      .map((l) => l.length);
-    filesLengths[file] = lengths;
-    const types = toSourceLiteralTypes(file, getAllLiteralTypes(srcFile))
-      .filter(t => t.properties.length > 0);
-    allTypes = [...allTypes, ...types];
-  }
-  const locs = Object.values(filesLengths).reduce((a, b) => a + sum(b), 0);
-  log.live(`searched  ${locs.toLocaleString()} lines of code`);
-  log.log(`found ${allTypes.length.toLocaleString()} types definitions`);
-
-  const matrix = similarityMatrix(allTypes);
-  // printMatrix(matrix)
-
-  const index = indexPairsBySimilarity(matrix);
-
-  const clusters: SimilarityGroup[] = Object.entries(index).map(([k, v]) => ({
-    name: Similarity[Number(k)],
-    clusters: pairsToClusters(v)
-      .sort((a, b) => b.size - a.size)
-      .map((c) => clusterValue(allTypes, c, filesLengths)),
-  }));
-
-  return clusters;
+export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
+  const lengths = srcFile
+    .getFullText()
+    .split('\n')
+    .map((l) => l.length);
+  const candidateTypes = parse(srcFile);
+  const types = toSourceCandidateTypes(relPath, candidateTypes).filter(nonEmptyCandidateType);
+  return { types, lengths };
 }

@@ -21,5 +21,5 @@ const destDir = `${srcDir}/dist`;
 fs.copyFileSync(`${srcDir}/README.md`, `${destDir}/README.md`);
 fs.copyFileSync(`${srcDir}/LICENSE.md`, `${destDir}/LICENSE.md`);
 
-fs.mkdirSync(`${destDir}/vis/dist`, { recursive: true });
-fs.copyFileSync(`${srcDir}/vis/dist/index.html`, `${destDir}/vis/dist/index.html`);
+// fs.mkdirSync(`${destDir}/vis/dist`, { recursive: true });
+fs.copyFileSync(`${srcDir}/vis/dist/index.html`, `${destDir}/index.html`);

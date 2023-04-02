@@ -1,0 +1,51 @@
+@import "../../vars";
+@import "../../utils";
+
+.search {
+  flex: 1;
+  display: flex;
+  padding: 0;
+  max-width: 1200px;
+
+  input {
+    flex: 1;
+    background: none;
+    // background-color: hsla(185, 30%, 90%);
+    border: 0px;
+    // border-radius: 8px;
+    color: var(--clr-fgText);
+    font-family: monospace;
+    font-size: 1.2rem;
+    padding: 1rem 1rem;
+    border: 1px solid var(--clr-border);
+    border-top: none;
+    border-left: none;
+    border-bottom-right-radius: 12px;
+    background-color: var(--clr-bgMain);
+    transition: background-color 150ms ease-in;
+    @include focusable($accent);
+    
+    &::placeholder {
+      color: var(--clr-fgText);
+      opacity: 0.6;
+    }
+    &:focus-visible {
+      background-color: var(--clr-bgBorder);
+    }
+  
+  }
+
+  button {
+    border: 1px solid var(--clr-border);
+    border-radius: 0;
+    border-bottom-left-radius: 12px;
+    border-right: none;
+    border-top: none;
+    padding: 0.6rem 1.2rem;
+    transition: background-color 150ms ease-in;
+
+    &:hover {
+      background-color: var(--clr-bgBorder);
+    }
+  }
+}

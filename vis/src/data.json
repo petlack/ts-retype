@@ -1,158 +1,1233 @@
 [
   {
-    "name": "Different",
-    "clusters": [
+    "names": [
+      { "name": "FacetStats", "count": 1 },
+      { "name": "FileLengths", "count": 1 },
+      { "name": "anonymous", "count": 3 }
+    ],
+    "files": [
       {
-        "name": "Property",
-        "properties": [
-          { "key": "key", "value": "string", "type": "StringKeyword" },
-          { "key": "value", "value": "string", "type": "StringKeyword" },
-          { "key": "type", "value": "string", "type": "StringKeyword" }
-        ],
-        "files": [
-          { "pos": [786, 815], "lines": [28, 29], "file": "src/clusters.ts" },
-          { "pos": [1474, 1531], "lines": [54, 56], "file": "src/clusters.ts" },
-          { "pos": [1611, 1640], "lines": [59, 60], "file": "src/clusters.ts" },
-          { "pos": [1887, 1923], "lines": [67, 68], "file": "src/similarity.ts" },
-          { "pos": [145, 246], "lines": [11, 17], "file": "src/types.ts" },
-          { "pos": [246, 322], "lines": [17, 21], "file": "src/types.ts" },
-          { "pos": [322, 412], "lines": [21, 27], "file": "src/types.ts" },
-          { "pos": [482, 524], "lines": [29, 33], "file": "src/types.ts" },
-          { "pos": [674, 753], "lines": [41, 45], "file": "src/types.ts" },
-          { "pos": [66, 145], "lines": [5, 11], "file": "src/types.ts" },
-          { "pos": [49, 96], "lines": [4, 9], "file": "vis/src/loader.ts" },
-          { "pos": [66, 145], "lines": [5, 11], "file": "vis/src/types.ts" },
-          { "pos": [145, 246], "lines": [11, 17], "file": "vis/src/types.ts" },
-          { "pos": [246, 322], "lines": [17, 21], "file": "vis/src/types.ts" },
-          { "pos": [392, 472], "lines": [22, 27], "file": "vis/src/types.ts" },
-          { "pos": [622, 685], "lines": [35, 37], "file": "vis/src/types.ts" }
-        ],
-        "names": {
-          "Property": 2,
-          "LiteralType": 2,
-          "SourceLiteralType": 2,
-          "anonymous": 6,
-          "Data": 1,
-          "Window": 1,
-          "SourceFile": 1,
-          "SimilarityGroup": 1
-        }
+        "file": "vis/src/model/search.ts",
+        "type": "literal",
+        "pos": [1778, 1850],
+        "lines": [55, 57]
+      },
+      { "file": "src/similarity.ts", "type": "literal", "pos": [7715, 7765], "lines": [256, 258] },
+      { "file": "src/scan.ts", "type": "literal", "pos": [932, 961], "lines": [29, 29] },
+      { "file": "src/parse.ts", "type": "literal", "pos": [7398, 7432], "lines": [258, 258] },
+      {
+        "file": "docs/src/components/MultilangWindow.tsx",
+        "type": "literal",
+        "pos": [617, 646],
+        "lines": [22, 22]
       }
+    ],
+    "group": "different",
+    "properties": [{ "name": "string", "type": "number | FacetStats" }]
+  },
+  {
+    "names": [
+      { "name": "anonymous", "count": 3 },
+      { "name": "TooltipProps", "count": 1 },
+      { "name": "TopBarProps", "count": 1 },
+      { "name": "CodeProps", "count": 1 }
+    ],
+    "files": [
+      {
+        "file": "vis/src/hooks/useTooltip/TooltipProvider.tsx",
+        "type": "literal",
+        "pos": [422, 447],
+        "lines": [11, 11]
+      },
+      {
+        "file": "vis/src/hooks/useTooltip/Tooltip.tsx",
+        "type": "literal",
+        "pos": [634, 702],
+        "lines": [15, 15]
+      },
+      {
+        "file": "vis/src/components/Tooltip/Tooltip.tsx",
+        "type": "literal",
+        "pos": [71, 130],
+        "lines": [2, 6]
+      },
+      {
+        "file": "vis/src/components/Toast/Toast.tsx",
+        "type": "literal",
+        "pos": [390, 418],
+        "lines": [18, 18]
+      },
+      { "file": "docs/src/uikit/TopBar.tsx", "type": "literal", "pos": [66, 138], "lines": [2, 6] },
+      {
+        "file": "docs/src/components/Code.tsx",
+        "type": "literal",
+        "pos": [21, 91],
+        "lines": [1, 5]
+      }
+    ],
+    "group": "different",
+    "properties": [{ "name": "children", "type": "JSX.Element" }]
+  },
+  {
+    "names": [{ "name": "TypeDuplicate", "count": 2 }],
+    "files": [
+      { "file": "src/types.ts", "type": "literal", "pos": [2185, 2632], "lines": [107, 132] },
+      {
+        "file": "docs/src/snippets/TypeDuplicate.ts",
+        "type": "literal",
+        "pos": [0, 455],
+        "lines": [1, 23]
+      }
+    ],
+    "group": "different",
+    "properties": [
+      {
+        "name": "files",
+        "type": "{\n    file: string;\n    lines: [number, number];\n    pos: [number, number];\n    type: CandidateType['type'];\n  }[]"
+      },
+      { "name": "group", "type": "'different' | 'renamed' | 'identical'" },
+      { "name": "names", "type": "{\n    count: number;\n    name: string;\n  }[]" },
+      { "name": "members", "type": "string[]" },
+      { "name": "parameters", "type": "{\n    name: string;\n    type: string;\n  }[]" },
+      { "name": "properties", "type": "{\n    name: string;\n    type: string;\n  }[]" },
+      { "name": "returnType", "type": "string" },
+      { "name": "types", "type": "string[]" }
     ]
   },
   {
-    "name": "HasSubsetOfProperties",
-    "clusters": [
+    "names": [{ "name": "anonymous", "count": 5 }],
+    "files": [
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [83, 258], "lines": [5, 12] },
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [262, 396], "lines": [13, 19] },
       {
-        "name": "Freq",
-        "properties": [],
-        "files": [
-          { "pos": [786, 815], "lines": [28, 29], "file": "src/clusters.ts" },
-          { "pos": [1474, 1531], "lines": [54, 56], "file": "src/clusters.ts" },
-          { "pos": [1611, 1640], "lines": [59, 60], "file": "src/clusters.ts" },
-          { "pos": [1887, 1923], "lines": [67, 68], "file": "src/similarity.ts" },
-          { "pos": [66, 145], "lines": [5, 11], "file": "src/types.ts" },
-          { "pos": [145, 246], "lines": [11, 17], "file": "src/types.ts" },
-          { "pos": [246, 322], "lines": [17, 21], "file": "src/types.ts" },
-          { "pos": [322, 412], "lines": [21, 27], "file": "src/types.ts" },
-          { "pos": [482, 524], "lines": [29, 33], "file": "src/types.ts" },
-          { "pos": [674, 753], "lines": [41, 45], "file": "src/types.ts" },
-          { "pos": [0, 66], "lines": [1, 5], "file": "src/types.ts" },
-          { "pos": [49, 96], "lines": [4, 9], "file": "vis/src/loader.ts" },
-          { "pos": [0, 66], "lines": [1, 5], "file": "vis/src/types.ts" },
-          { "pos": [66, 145], "lines": [5, 11], "file": "vis/src/types.ts" },
-          { "pos": [145, 246], "lines": [11, 17], "file": "vis/src/types.ts" },
-          { "pos": [246, 322], "lines": [17, 21], "file": "vis/src/types.ts" },
-          { "pos": [392, 472], "lines": [22, 27], "file": "vis/src/types.ts" },
-          { "pos": [622, 685], "lines": [35, 37], "file": "vis/src/types.ts" }
-        ],
-        "names": {
-          "Freq": 2,
-          "Property": 2,
-          "LiteralType": 2,
-          "SourceLiteralType": 2,
-          "anonymous": 6,
-          "Data": 1,
-          "Window": 1,
-          "SourceFile": 1,
-          "SimilarityGroup": 1
-        }
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [224, 358],
+        "lines": [11, 17]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [362, 488],
+        "lines": [18, 24]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [45, 220],
+        "lines": [3, 10]
       }
+    ],
+    "group": "different",
+    "properties": [
+      { "name": "type", "type": "'element'" },
+      { "name": "tagName", "type": "string" },
+      { "name": "properties", "type": "{ className: string[] }" },
+      { "name": "children", "type": "{ type: string; value: string }[]" },
+      { "name": "value", "type": "undefined" }
     ]
   },
   {
-    "name": "HasIdenticalProperties",
-    "clusters": [
+    "names": [
+      { "name": "AppProps", "count": 1 },
+      { "name": "BashProps", "count": 1 }
+    ],
+    "files": [
       {
-        "name": "Data",
-        "properties": [
-          { "key": "name", "value": "string", "type": "StringKeyword" },
-          { "key": "clusters", "value": "TypeCluster[]", "type": "ArrayType" }
-        ],
-        "files": [
-          { "pos": [674, 753], "lines": [41, 45], "file": "src/types.ts" },
-          { "pos": [622, 685], "lines": [35, 37], "file": "vis/src/types.ts" }
-        ],
-        "names": { "Data": 1, "SimilarityGroup": 1 }
+        "file": "docs/src/uikit/UiKitApp.tsx",
+        "type": "literal",
+        "pos": [25, 121],
+        "lines": [1, 6]
+      },
+      {
+        "file": "docs/src/components/Bash.tsx",
+        "type": "literal",
+        "pos": [129, 205],
+        "lines": [3, 8]
       }
+    ],
+    "group": "different",
+    "properties": [
+      { "name": "children", "type": "JSX.Element | JSX.Element[]" },
+      { "name": "theme", "type": "'dark' | 'light'" }
     ]
   },
   {
-    "name": "Identical",
-    "clusters": [
+    "names": [
+      { "name": "Rec", "count": 1 },
+      { "name": "TypeIconProps", "count": 1 },
+      { "name": "anonymous", "count": 16 },
+      { "name": "FileListingProps", "count": 1 },
+      { "name": "ClusterTitleProps", "count": 1 },
+      { "name": "Property", "count": 1 },
+      { "name": "CandidateType", "count": 1 },
+      { "name": "FunctionCandidateType", "count": 1 },
+      { "name": "UnionCandidateType", "count": 1 },
+      { "name": "EnumCandidateType", "count": 1 },
+      { "name": "LiteralCandidateType", "count": 1 },
+      { "name": "NamesListingProps", "count": 1 },
+      { "name": "TypeDuplicate", "count": 2 },
+      { "name": "SourceCandidateType", "count": 1 },
+      { "name": "WithBashProps", "count": 1 },
+      { "name": "TopBarProps", "count": 1 },
+      { "name": "CodeProps", "count": 1 },
+      { "name": "AppProps", "count": 1 },
+      { "name": "WindowProps", "count": 1 },
+      { "name": "LandingProps", "count": 1 },
+      { "name": "BashProps", "count": 1 },
+      { "name": "WithLineNumbersProps", "count": 1 },
+      { "name": "TsSnippetProps", "count": 1 },
+      { "name": "JsTsCodeProps", "count": 1 },
+      { "name": "MultilangWindowProps", "count": 1 }
+    ],
+    "files": [
       {
-        "name": "Freq",
-        "properties": [],
-        "files": [
-          { "pos": [0, 66], "lines": [1, 5], "file": "src/types.ts" },
-          { "pos": [0, 66], "lines": [1, 5], "file": "vis/src/types.ts" }
-        ],
-        "names": { "Freq": 2 }
+        "file": "vis/tests/unit/search.test.ts",
+        "type": "literal",
+        "pos": [921, 1006],
+        "lines": [40, 41]
       },
       {
-        "name": "Property",
-        "properties": [
-          { "key": "key", "value": "string", "type": "StringKeyword" },
-          { "key": "value", "value": "string", "type": "StringKeyword" },
-          { "key": "type", "value": "string", "type": "StringKeyword" }
-        ],
-        "files": [
-          { "pos": [66, 145], "lines": [5, 11], "file": "src/types.ts" },
-          { "pos": [66, 145], "lines": [5, 11], "file": "vis/src/types.ts" }
-        ],
-        "names": { "Property": 2 }
+        "file": "vis/src/components/Cluster/TypeIcon.tsx",
+        "type": "literal",
+        "pos": [131, 195],
+        "lines": [4, 8]
       },
       {
-        "name": "LiteralType",
-        "properties": [
-          { "key": "name", "value": "string", "type": "StringKeyword" },
-          { "key": "properties", "value": "Property[]", "type": "ArrayType" },
-          { "key": "pos", "value": "[number, number]", "type": "TupleType" }
-        ],
-        "files": [
-          { "pos": [145, 246], "lines": [11, 17], "file": "src/types.ts" },
-          { "pos": [145, 246], "lines": [11, 17], "file": "vis/src/types.ts" }
-        ],
-        "names": { "LiteralType": 2 }
+        "file": "vis/src/components/Cluster/KeyValueFeatures.tsx",
+        "type": "literal",
+        "pos": [156, 187],
+        "lines": [7, 7]
       },
       {
-        "name": "SourceLiteralType",
-        "properties": [{ "key": "file", "value": "string", "type": "StringKeyword" }],
-        "files": [
-          { "pos": [246, 322], "lines": [17, 21], "file": "src/types.ts" },
-          { "pos": [246, 322], "lines": [17, 21], "file": "vis/src/types.ts" }
-        ],
-        "names": { "SourceLiteralType": 2 }
+        "file": "vis/src/components/Cluster/FileListing.tsx",
+        "type": "literal",
+        "pos": [287, 387],
+        "lines": [7, 12]
       },
       {
-        "name": "anonymous",
-        "properties": [{ "key": "string", "value": "number[]", "type": "ArrayType" }],
-        "files": [
-          { "pos": [786, 815], "lines": [28, 29], "file": "src/clusters.ts" },
-          { "pos": [1611, 1640], "lines": [59, 60], "file": "src/clusters.ts" }
-        ],
-        "names": { "anonymous": 2 }
+        "file": "vis/src/components/Cluster/ClusterTitle.tsx",
+        "type": "literal",
+        "pos": [187, 288],
+        "lines": [5, 10]
+      },
+      { "file": "src/types.ts", "type": "interface", "pos": [31, 111], "lines": [1, 7] },
+      { "file": "src/types.ts", "type": "interface", "pos": [111, 263], "lines": [7, 13] },
+      { "file": "src/types.ts", "type": "interface", "pos": [263, 397], "lines": [13, 19] },
+      { "file": "src/types.ts", "type": "interface", "pos": [397, 496], "lines": [19, 24] },
+      { "file": "src/types.ts", "type": "interface", "pos": [496, 595], "lines": [24, 29] },
+      { "file": "src/types.ts", "type": "interface", "pos": [595, 729], "lines": [29, 34] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2225, 2338], "lines": [110, 115] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2481, 2523], "lines": [122, 125] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2541, 2583], "lines": [126, 129] },
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [83, 258], "lines": [5, 12] },
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [192, 224], "lines": [10, 10] },
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [262, 396], "lines": [13, 19] },
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [457, 504], "lines": [25, 28] },
+      {
+        "file": "docs/src/snippets/TypeDuplicate.ts",
+        "type": "literal",
+        "pos": [31, 161],
+        "lines": [2, 6]
+      },
+      {
+        "file": "docs/src/snippets/TypeDuplicate.ts",
+        "type": "literal",
+        "pos": [304, 346],
+        "lines": [13, 16]
+      },
+      {
+        "file": "docs/src/snippets/TypeDuplicate.ts",
+        "type": "literal",
+        "pos": [364, 406],
+        "lines": [17, 20]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [45, 220],
+        "lines": [3, 10]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [154, 186],
+        "lines": [8, 8]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [224, 358],
+        "lines": [11, 17]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [362, 488],
+        "lines": [18, 24]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [556, 603],
+        "lines": [30, 33]
+      },
+      {
+        "file": "vis/src/components/Cluster/NamesListing.tsx",
+        "type": "literal",
+        "pos": [139, 209],
+        "lines": [4, 8]
+      },
+      { "file": "src/types.ts", "type": "literal", "pos": [2185, 2632], "lines": [107, 132] },
+      {
+        "file": "docs/src/snippets/TypeDuplicate.ts",
+        "type": "literal",
+        "pos": [0, 455],
+        "lines": [1, 23]
+      },
+      { "file": "src/types.ts", "type": "interface", "pos": [729, 809], "lines": [34, 38] },
+      {
+        "file": "docs/src/components/WithBash.tsx",
+        "type": "literal",
+        "pos": [30, 89],
+        "lines": [1, 5]
+      },
+      { "file": "docs/src/uikit/TopBar.tsx", "type": "literal", "pos": [66, 138], "lines": [2, 6] },
+      {
+        "file": "docs/src/components/Code.tsx",
+        "type": "literal",
+        "pos": [21, 91],
+        "lines": [1, 5]
+      },
+      {
+        "file": "docs/src/uikit/UiKitApp.tsx",
+        "type": "literal",
+        "pos": [25, 121],
+        "lines": [1, 6]
+      },
+      {
+        "file": "docs/src/components/Window.tsx",
+        "type": "literal",
+        "pos": [23, 226],
+        "lines": [1, 10]
+      },
+      {
+        "file": "docs/src/components/Landing.tsx",
+        "type": "literal",
+        "pos": [403, 462],
+        "lines": [10, 14]
+      },
+      {
+        "file": "docs/src/components/Bash.tsx",
+        "type": "literal",
+        "pos": [129, 205],
+        "lines": [3, 8]
+      },
+      {
+        "file": "docs/src/components/WithLineNumbers.tsx",
+        "type": "literal",
+        "pos": [64, 151],
+        "lines": [3, 8]
+      },
+      {
+        "file": "docs/src/components/TsSnippet.tsx",
+        "type": "literal",
+        "pos": [136, 274],
+        "lines": [3, 11]
+      },
+      {
+        "file": "docs/src/components/JsTsCode.tsx",
+        "type": "literal",
+        "pos": [117, 197],
+        "lines": [3, 8]
+      },
+      {
+        "file": "docs/src/components/MultilangWindow.tsx",
+        "type": "literal",
+        "pos": [186, 334],
+        "lines": [6, 15]
       }
+    ],
+    "group": "different",
+    "properties": [
+      { "name": "type", "type": "'x' | 'y'" },
+      { "name": "color", "type": "'a' | 'b'" },
+      { "name": "rating", "type": "number" },
+      { "name": "price", "type": "number" }
     ]
+  },
+  {
+    "names": [
+      { "name": "anonymous", "count": 3 },
+      { "name": "CandidateType", "count": 1 }
+    ],
+    "files": [
+      { "file": "vis/src/types.ts", "type": "literal", "pos": [217, 246], "lines": [9, 11] },
+      { "file": "vis/src/types.ts", "type": "literal", "pos": [551, 592], "lines": [18, 18] },
+      { "file": "src/types.ts", "type": "interface", "pos": [111, 263], "lines": [7, 13] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2225, 2338], "lines": [110, 115] }
+    ],
+    "group": "different",
+    "properties": [{ "name": "pos", "type": "[number, number]" }]
+  },
+  {
+    "names": [
+      { "name": "ScreenDimensions", "count": 1 },
+      { "name": "BoundingBox", "count": 1 }
+    ],
+    "files": [
+      {
+        "file": "vis/src/hooks/useScreenDimensions.ts",
+        "type": "interface",
+        "pos": [44, 111],
+        "lines": [1, 6]
+      },
+      {
+        "file": "vis/src/hooks/useBoundingBox.ts",
+        "type": "interface",
+        "pos": [247, 340],
+        "lines": [4, 11]
+      }
+    ],
+    "group": "different",
+    "properties": [
+      { "name": "width", "type": "number" },
+      { "name": "height", "type": "number" }
+    ]
+  },
+  {
+    "names": [
+      { "name": "anonymous", "count": 11 },
+      { "name": "SearchAwareTextProps", "count": 1 },
+      { "name": "AppProps", "count": 1 },
+      { "name": "WindowProps", "count": 1 },
+      { "name": "BashProps", "count": 1 },
+      { "name": "TooltipProps", "count": 1 },
+      { "name": "TopBarProps", "count": 1 },
+      { "name": "CodeProps", "count": 1 }
+    ],
+    "files": [
+      {
+        "file": "vis/src/hooks/useTooltip/TooltipProvider.tsx",
+        "type": "literal",
+        "pos": [422, 447],
+        "lines": [11, 11]
+      },
+      {
+        "file": "vis/src/components/SearchAwareText/SearchAwareText.tsx",
+        "type": "literal",
+        "pos": [400, 500],
+        "lines": [14, 19]
+      },
+      {
+        "file": "vis/src/components/Filters/ControlsList.tsx",
+        "type": "literal",
+        "pos": [307, 448],
+        "lines": [7, 13]
+      },
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [83, 258], "lines": [5, 12] },
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [262, 396], "lines": [13, 19] },
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [457, 504], "lines": [25, 28] },
+      {
+        "file": "docs/src/uikit/UiKitApp.tsx",
+        "type": "literal",
+        "pos": [25, 121],
+        "lines": [1, 6]
+      },
+      {
+        "file": "docs/src/components/Window.tsx",
+        "type": "literal",
+        "pos": [23, 226],
+        "lines": [1, 10]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [45, 220],
+        "lines": [3, 10]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [224, 358],
+        "lines": [11, 17]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [362, 488],
+        "lines": [18, 24]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [556, 603],
+        "lines": [30, 33]
+      },
+      {
+        "file": "docs/src/components/Bash.tsx",
+        "type": "literal",
+        "pos": [129, 205],
+        "lines": [3, 8]
+      },
+      {
+        "file": "vis/src/hooks/useTooltip/Tooltip.tsx",
+        "type": "literal",
+        "pos": [634, 702],
+        "lines": [15, 15]
+      },
+      {
+        "file": "vis/src/components/Tooltip/Tooltip.tsx",
+        "type": "literal",
+        "pos": [71, 130],
+        "lines": [2, 6]
+      },
+      {
+        "file": "vis/src/components/Toast/Toast.tsx",
+        "type": "literal",
+        "pos": [390, 418],
+        "lines": [18, 18]
+      },
+      { "file": "docs/src/uikit/TopBar.tsx", "type": "literal", "pos": [66, 138], "lines": [2, 6] },
+      {
+        "file": "docs/src/components/Code.tsx",
+        "type": "literal",
+        "pos": [21, 91],
+        "lines": [1, 5]
+      }
+    ],
+    "group": "different",
+    "properties": [{ "name": "children", "type": "JSX.Element" }]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 5 }],
+    "files": [
+      {
+        "file": "vis/src/components/Filters/Filters.tsx",
+        "type": "literal",
+        "pos": [1685, 1718],
+        "lines": [57, 57]
+      },
+      {
+        "file": "vis/src/components/Filters/Control.tsx",
+        "type": "literal",
+        "pos": [120, 282],
+        "lines": [3, 9]
+      },
+      {
+        "file": "vis/src/components/Filters/Filters.tsx",
+        "type": "literal",
+        "pos": [2088, 2121],
+        "lines": [66, 66]
+      },
+      {
+        "file": "vis/src/components/Filters/ControlsList.tsx",
+        "type": "literal",
+        "pos": [410, 442],
+        "lines": [12, 12]
+      },
+      {
+        "file": "vis/src/components/Filters/Control.tsx",
+        "type": "literal",
+        "pos": [216, 248],
+        "lines": [8, 8]
+      }
+    ],
+    "group": "different",
+    "properties": [
+      { "name": "id", "type": "string" },
+      { "name": "selected", "type": "string" }
+    ]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 2 }],
+    "files": [
+      { "file": "src/types.ts", "type": "literal", "pos": [1739, 1784], "lines": [88, 91] },
+      { "file": "src/cmd.ts", "type": "literal", "pos": [623, 670], "lines": [26, 26] }
+    ],
+    "group": "different",
+    "properties": [
+      { "name": "init", "type": "boolean" },
+      { "name": "config", "type": "string" }
+    ]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 3 }],
+    "files": [
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [151, 175], "lines": [9, 9] },
+      {
+        "file": "docs/src/components/Options.tsx",
+        "type": "literal",
+        "pos": [515, 565],
+        "lines": [22, 22]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [113, 137],
+        "lines": [7, 7]
+      }
+    ],
+    "group": "different",
+    "properties": [{ "name": "className", "type": "string[]" }]
+  },
+  {
+    "names": [
+      { "name": "Snippet", "count": 2 },
+      { "name": "anonymous", "count": 1 }
+    ],
+    "files": [
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [399, 508], "lines": [20, 29] },
+      {
+        "file": "docs/src/components/MultilangWindow.tsx",
+        "type": "literal",
+        "pos": [260, 304],
+        "lines": [10, 13]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [491, 607],
+        "lines": [25, 34]
+      }
+    ],
+    "group": "different",
+    "properties": [
+      { "name": "name", "type": "string" },
+      { "name": "lang", "type": "string" },
+      { "name": "code", "type": "{\n    type: string;\n    children: Token[];\n  }" }
+    ]
+  },
+  {
+    "names": [
+      { "name": "NappProps", "count": 1 },
+      { "name": "TsSnippetProps", "count": 1 },
+      { "name": "JsTsCodeProps", "count": 1 }
+    ],
+    "files": [
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [508, 551], "lines": [29, 34] },
+      {
+        "file": "docs/src/components/TsSnippet.tsx",
+        "type": "literal",
+        "pos": [136, 274],
+        "lines": [3, 11]
+      },
+      {
+        "file": "docs/src/components/JsTsCode.tsx",
+        "type": "literal",
+        "pos": [117, 197],
+        "lines": [3, 8]
+      }
+    ],
+    "group": "different",
+    "properties": [{ "name": "snippet", "type": "Snippet" }]
+  },
+  {
+    "names": [
+      { "name": "anonymous", "count": 1 },
+      { "name": "UnFoo", "count": 1 },
+      { "name": "UnBar", "count": 1 }
+    ],
+    "files": [
+      {
+        "file": "vis/tests/unit/search.test.ts",
+        "type": "union",
+        "pos": [962, 972],
+        "lines": [41, 41]
+      },
+      {
+        "file": "vis/src/components/Cluster/FunctionCluster.tsx",
+        "type": "union",
+        "pos": [473, 497],
+        "lines": [14, 16]
+      },
+      {
+        "file": "vis/src/components/Cluster/FunctionCluster.tsx",
+        "type": "union",
+        "pos": [497, 520],
+        "lines": [16, 17]
+      }
+    ],
+    "group": "renamed"
+  },
+  {
+    "names": [
+      { "name": "TooltipProps", "count": 1 },
+      { "name": "anonymous", "count": 1 }
+    ],
+    "files": [
+      {
+        "file": "vis/src/components/Tooltip/Tooltip.tsx",
+        "type": "literal",
+        "pos": [71, 130],
+        "lines": [2, 6]
+      },
+      {
+        "file": "vis/src/components/Toast/Toast.tsx",
+        "type": "literal",
+        "pos": [390, 418],
+        "lines": [18, 18]
+      }
+    ],
+    "group": "renamed",
+    "properties": [{ "name": "children", "type": "JSX.Element[]" }]
+  },
+  {
+    "names": [
+      { "name": "showToast", "count": 1 },
+      { "name": "writeSrc", "count": 2 },
+      { "name": "createFile", "count": 1 },
+      { "name": "loadFile", "count": 1 },
+      { "name": "loadConfig", "count": 1 },
+      { "name": "ensureDirectoryExists", "count": 1 },
+      { "name": "loadSnippets", "count": 1 }
+    ],
+    "files": [
+      {
+        "file": "vis/src/components/Toast/Toast.tsx",
+        "type": "function",
+        "pos": [552, 754],
+        "lines": [21, 31]
+      },
+      { "file": "tests/scan.test.ts", "type": "function", "pos": [164, 245], "lines": [5, 9] },
+      { "file": "tests/report.test.ts", "type": "function", "pos": [199, 280], "lines": [6, 10] },
+      { "file": "src/utils.ts", "type": "function", "pos": [227, 355], "lines": [10, 14] },
+      { "file": "src/utils.ts", "type": "function", "pos": [355, 490], "lines": [14, 18] },
+      { "file": "src/config.ts", "type": "function", "pos": [377, 542], "lines": [14, 19] },
+      {
+        "file": "docs/scripts/src/syntaxHighlighting.ts",
+        "type": "function",
+        "pos": [365, 509],
+        "lines": [11, 17]
+      },
+      {
+        "file": "docs/scripts/src/syntaxHighlighting.ts",
+        "type": "function",
+        "pos": [509, 926],
+        "lines": [17, 32]
+      }
+    ],
+    "group": "renamed",
+    "parameters": [{ "name": "message", "type": "string" }],
+    "returnType": "unknown"
+  },
+  {
+    "names": [
+      { "name": "DuplicateName", "count": 1 },
+      { "name": "NamesListing", "count": 1 }
+    ],
+    "files": [
+      {
+        "file": "vis/src/components/Cluster/NamesListing.tsx",
+        "type": "function",
+        "pos": [562, 904],
+        "lines": [26, 40]
+      },
+      {
+        "file": "vis/src/components/Cluster/NamesListing.tsx",
+        "type": "function",
+        "pos": [904, 1449],
+        "lines": [40, 64]
+      }
+    ],
+    "group": "renamed",
+    "parameters": [{ "name": "{ names }", "type": "NamesListingProps" }],
+    "returnType": "unknown"
+  },
+  {
+    "names": [
+      { "name": "FnFoo", "count": 1 },
+      { "name": "FnBar", "count": 1 }
+    ],
+    "files": [
+      {
+        "file": "vis/src/components/Cluster/FunctionCluster.tsx",
+        "type": "function",
+        "pos": [309, 367],
+        "lines": [8, 10]
+      },
+      {
+        "file": "vis/src/components/Cluster/FunctionCluster.tsx",
+        "type": "function",
+        "pos": [367, 424],
+        "lines": [10, 11]
+      }
+    ],
+    "group": "renamed",
+    "parameters": [
+      { "name": "aaa", "type": "string" },
+      { "name": "bbb", "type": "number" }
+    ],
+    "returnType": "Promise<void>"
+  },
+  {
+    "names": [
+      { "name": "EnFoo", "count": 1 },
+      { "name": "EnBar", "count": 1 }
+    ],
+    "files": [
+      {
+        "file": "vis/src/components/Cluster/FunctionCluster.tsx",
+        "type": "enum",
+        "pos": [424, 449],
+        "lines": [11, 13]
+      },
+      {
+        "file": "vis/src/components/Cluster/FunctionCluster.tsx",
+        "type": "enum",
+        "pos": [449, 473],
+        "lines": [13, 14]
+      }
+    ],
+    "group": "renamed",
+    "members": ["Ok", "Fail"]
+  },
+  {
+    "names": [
+      { "name": "isLiteralType", "count": 1 },
+      { "name": "simplifyType", "count": 1 },
+      { "name": "similarity", "count": 1 }
+    ],
+    "files": [
+      { "file": "src/similarity.ts", "type": "function", "pos": [481, 579], "lines": [16, 20] },
+      { "file": "src/similarity.ts", "type": "function", "pos": [1303, 1426], "lines": [43, 50] },
+      { "file": "src/similarity.ts", "type": "function", "pos": [1426, 4427], "lines": [50, 129] }
+    ],
+    "group": "renamed",
+    "parameters": [{ "name": "t", "type": "CandidateType" }],
+    "returnType": "unknown"
+  },
+  {
+    "names": [
+      { "name": "chooseClusterNames", "count": 1 },
+      { "name": "chooseTypeFeatures", "count": 1 }
+    ],
+    "files": [
+      { "file": "src/similarity.ts", "type": "function", "pos": [6071, 6216], "lines": [197, 201] },
+      { "file": "src/similarity.ts", "type": "function", "pos": [6677, 7715], "lines": [222, 256] }
+    ],
+    "group": "renamed",
+    "parameters": [
+      { "name": "types", "type": "SourceCandidateType[]" },
+      { "name": "idxs", "type": "Iterable<number>" }
+    ],
+    "returnType": "unknown"
+  },
+  {
+    "names": [
+      { "name": "FileLengths", "count": 1 },
+      { "name": "anonymous", "count": 1 }
+    ],
+    "files": [
+      { "file": "src/similarity.ts", "type": "literal", "pos": [7715, 7765], "lines": [256, 258] },
+      { "file": "src/scan.ts", "type": "literal", "pos": [932, 961], "lines": [29, 29] }
+    ],
+    "group": "renamed",
+    "properties": [{ "name": "string", "type": "number[]" }]
+  },
+  {
+    "names": [
+      { "name": "getAllCandidates", "count": 1 },
+      { "name": "parse", "count": 1 }
+    ],
+    "files": [
+      { "file": "src/parse.ts", "type": "function", "pos": [5532, 6024], "lines": [193, 209] },
+      { "file": "src/parse.ts", "type": "function", "pos": [7778, 7927], "lines": [267, 272] }
+    ],
+    "group": "renamed",
+    "parameters": [{ "name": "sourceFile", "type": "ts.SourceFile" }],
+    "returnType": "unknown"
+  },
+  {
+    "names": [
+      { "name": "TopBarProps", "count": 1 },
+      { "name": "CodeProps", "count": 1 }
+    ],
+    "files": [
+      { "file": "docs/src/uikit/TopBar.tsx", "type": "literal", "pos": [66, 138], "lines": [2, 6] },
+      {
+        "file": "docs/src/components/Code.tsx",
+        "type": "literal",
+        "pos": [21, 91],
+        "lines": [1, 5]
+      }
+    ],
+    "group": "renamed",
+    "properties": [{ "name": "children", "type": "JSX.Element | JSX.Element[]" }]
+  },
+  {
+    "names": [
+      { "name": "User", "count": 1 },
+      { "name": "IUser", "count": 1 },
+      { "name": "anonymous", "count": 1 }
+    ],
+    "files": [
+      { "file": "docs/src/snippets/type.ts", "type": "literal", "pos": [0, 90], "lines": [1, 6] },
+      {
+        "file": "docs/src/snippets/interface.ts",
+        "type": "interface",
+        "pos": [0, 86],
+        "lines": [1, 6]
+      },
+      {
+        "file": "docs/src/snippets/function.ts",
+        "type": "literal",
+        "pos": [39, 110],
+        "lines": [3, 7]
+      }
+    ],
+    "group": "renamed",
+    "properties": [
+      { "name": "displayName", "type": "string" },
+      { "name": "email", "type": "string" },
+      { "name": "password", "type": "string" }
+    ]
+  },
+  {
+    "names": [
+      { "name": "toTokenElements", "count": 1 },
+      { "name": "toTokenLines", "count": 1 }
+    ],
+    "files": [
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "function",
+        "pos": [1114, 1221],
+        "lines": [52, 56]
+      },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "function",
+        "pos": [1535, 1754],
+        "lines": [69, 75]
+      }
+    ],
+    "group": "renamed",
+    "parameters": [{ "name": "snippet", "type": "Snippet" }],
+    "returnType": "unknown"
+  },
+  {
+    "names": [{ "name": "fromEvent", "count": 3 }],
+    "files": [
+      {
+        "file": "vis/src/hooks/useTooltip/useTooltip.ts",
+        "type": "function",
+        "pos": [363, 520],
+        "lines": [9, 14]
+      },
+      {
+        "file": "vis/src/hooks/useTooltip/TooltipProvider.tsx",
+        "type": "function",
+        "pos": [230, 387],
+        "lines": [4, 9]
+      },
+      {
+        "file": "vis/src/hooks/useTooltip/Tooltip.tsx",
+        "type": "function",
+        "pos": [469, 607],
+        "lines": [8, 13]
+      }
+    ],
+    "group": "identical",
+    "parameters": [{ "name": "e", "type": "MouseEvent<HTMLElement>" }],
+    "returnType": "TooltipPosition"
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 4 }],
+    "files": [
+      {
+        "file": "vis/src/components/Filters/Filters.tsx",
+        "type": "literal",
+        "pos": [1685, 1718],
+        "lines": [57, 57]
+      },
+      {
+        "file": "vis/src/components/Filters/Filters.tsx",
+        "type": "literal",
+        "pos": [2088, 2121],
+        "lines": [66, 66]
+      },
+      {
+        "file": "vis/src/components/Filters/ControlsList.tsx",
+        "type": "literal",
+        "pos": [410, 442],
+        "lines": [12, 12]
+      },
+      {
+        "file": "vis/src/components/Filters/Control.tsx",
+        "type": "literal",
+        "pos": [216, 248],
+        "lines": [8, 8]
+      }
+    ],
+    "group": "identical",
+    "properties": [
+      { "name": "id", "type": "string" },
+      { "name": "selected", "type": "string" }
+    ]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 5 }],
+    "files": [
+      {
+        "file": "vis/src/components/Cluster/KeyValueFeatures.tsx",
+        "type": "literal",
+        "pos": [156, 187],
+        "lines": [7, 7]
+      },
+      { "file": "src/types.ts", "type": "literal", "pos": [2481, 2523], "lines": [122, 125] },
+      { "file": "src/types.ts", "type": "literal", "pos": [2541, 2583], "lines": [126, 129] },
+      {
+        "file": "docs/src/snippets/TypeDuplicate.ts",
+        "type": "literal",
+        "pos": [304, 346],
+        "lines": [13, 16]
+      },
+      {
+        "file": "docs/src/snippets/TypeDuplicate.ts",
+        "type": "literal",
+        "pos": [364, 406],
+        "lines": [17, 20]
+      }
+    ],
+    "group": "identical",
+    "properties": [
+      { "name": "name", "type": "string" },
+      { "name": "type", "type": "string" }
+    ]
+  },
+  {
+    "names": [{ "name": "writeSrc", "count": 2 }],
+    "files": [
+      { "file": "tests/scan.test.ts", "type": "function", "pos": [164, 245], "lines": [5, 9] },
+      { "file": "tests/report.test.ts", "type": "function", "pos": [199, 280], "lines": [6, 10] }
+    ],
+    "group": "identical",
+    "parameters": [
+      { "name": "path", "type": "string" },
+      { "name": "src", "type": "string" }
+    ],
+    "returnType": "unknown"
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 2 }],
+    "files": [
+      { "file": "src/types.ts", "type": "union", "pos": [169, 235], "lines": [11, 11] },
+      {
+        "file": "docs/src/snippets/TypeDuplicate.ts",
+        "type": "union",
+        "pos": [90, 156],
+        "lines": [5, 5]
+      }
+    ],
+    "group": "identical"
+  },
+  {
+    "names": [{ "name": "ScanArgs", "count": 2 }],
+    "files": [
+      { "file": "src/types.ts", "type": "literal", "pos": [958, 1590], "lines": [46, 79] },
+      {
+        "file": "docs/src/snippets/RetypeArgs.ts",
+        "type": "literal",
+        "pos": [0, 81],
+        "lines": [1, 5]
+      }
+    ],
+    "group": "identical",
+    "properties": [
+      { "name": "exclude", "type": "string[]" },
+      { "name": "include", "type": "string[]" },
+      { "name": "rootDir", "type": "string" }
+    ]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 2 }],
+    "files": [
+      { "file": "src/types.ts", "type": "union", "pos": [2350, 2388], "lines": [116, 116] },
+      {
+        "file": "docs/src/snippets/TypeDuplicate.ts",
+        "type": "union",
+        "pos": [173, 211],
+        "lines": [7, 7]
+      }
+    ],
+    "group": "identical"
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 2 }],
+    "files": [
+      { "file": "src/types.ts", "type": "literal", "pos": [2398, 2441], "lines": [117, 120] },
+      {
+        "file": "docs/src/snippets/TypeDuplicate.ts",
+        "type": "literal",
+        "pos": [221, 264],
+        "lines": [8, 11]
+      }
+    ],
+    "group": "identical",
+    "properties": [
+      { "name": "count", "type": "number" },
+      { "name": "name", "type": "string" }
+    ]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 2 }],
+    "files": [
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [83, 258], "lines": [5, 12] },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [45, 220],
+        "lines": [3, 10]
+      }
+    ],
+    "group": "identical",
+    "properties": [
+      { "name": "type", "type": "'element'" },
+      { "name": "tagName", "type": "string" },
+      { "name": "properties", "type": "{ className: string[] }" },
+      { "name": "children", "type": "{ type: string; value: string }[]" },
+      { "name": "value", "type": "undefined" }
+    ]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 2 }],
+    "files": [
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [151, 175], "lines": [9, 9] },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [113, 137],
+        "lines": [7, 7]
+      }
+    ],
+    "group": "identical",
+    "properties": [{ "name": "className", "type": "string[]" }]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 2 }],
+    "files": [
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [192, 224], "lines": [10, 10] },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [154, 186],
+        "lines": [8, 8]
+      }
+    ],
+    "group": "identical",
+    "properties": [
+      { "name": "type", "type": "string" },
+      { "name": "value", "type": "string" }
+    ]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 2 }],
+    "files": [
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [262, 396], "lines": [13, 19] },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [224, 358],
+        "lines": [11, 17]
+      }
+    ],
+    "group": "identical",
+    "properties": [
+      { "name": "type", "type": "'text'" },
+      { "name": "value", "type": "string" },
+      { "name": "tagName", "type": "undefined" },
+      { "name": "properties", "type": "undefined" },
+      { "name": "children", "type": "undefined" }
+    ]
+  },
+  {
+    "names": [{ "name": "Snippet", "count": 2 }],
+    "files": [
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [399, 508], "lines": [20, 29] },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [491, 607],
+        "lines": [25, 34]
+      }
+    ],
+    "group": "identical",
+    "properties": [
+      { "name": "name", "type": "string" },
+      { "name": "lang", "type": "string" },
+      { "name": "code", "type": "{\n    type: string;\n    children: Token[];\n  }" }
+    ]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 2 }],
+    "files": [
+      { "file": "docs/src/Napp.tsx", "type": "literal", "pos": [457, 504], "lines": [25, 28] },
+      {
+        "file": "docs/src/components/Token.tsx",
+        "type": "literal",
+        "pos": [556, 603],
+        "lines": [30, 33]
+      }
+    ],
+    "group": "identical",
+    "properties": [
+      { "name": "type", "type": "string" },
+      { "name": "children", "type": "Token[]" }
+    ]
+  },
+  {
+    "names": [{ "name": "anonymous", "count": 8 }],
+    "files": [
+      {
+        "file": "docs/src/uikit/UiKitApp.tsx",
+        "type": "union",
+        "pos": [101, 118],
+        "lines": [5, 5]
+      },
+      {
+        "file": "docs/src/components/Window.tsx",
+        "type": "union",
+        "pos": [190, 207],
+        "lines": [8, 8]
+      },
+      {
+        "file": "docs/src/components/TsSnippet.tsx",
+        "type": "union",
+        "pos": [210, 227],
+        "lines": [8, 8]
+      },
+      {
+        "file": "docs/src/components/MultilangWindow.tsx",
+        "type": "union",
+        "pos": [233, 250],
+        "lines": [9, 9]
+      },
+      {
+        "file": "docs/src/components/Landing.tsx",
+        "type": "union",
+        "pos": [442, 459],
+        "lines": [13, 13]
+      },
+      {
+        "file": "docs/src/components/Landing.tsx",
+        "type": "union",
+        "pos": [3388, 3405],
+        "lines": [77, 77]
+      },
+      {
+        "file": "docs/src/components/JsTsCode.tsx",
+        "type": "union",
+        "pos": [177, 194],
+        "lines": [7, 7]
+      },
+      {
+        "file": "docs/src/components/Bash.tsx",
+        "type": "union",
+        "pos": [185, 202],
+        "lines": [7, 7]
+      }
+    ],
+    "group": "identical"
   }
 ]

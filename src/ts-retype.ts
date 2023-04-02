@@ -1,132 +1,92 @@
 #!/usr/bin/env node
 
 import fs from 'fs';
-import path from 'path';
 import { createCommand } from 'commander';
 
-import { createLogger } from './cmd';
-import { createTypeClusters } from './clusters';
-import { DEFAULT_OPTIONS, RetypeConfig, RetypeOptions } from './types';
-import { dir, pwd, stringify } from './utils';
+// import { resolveOptions } from './cmd';
+// import { findTypeDuplicates } from './clusters';
+// import { DEFAULT_OPTIONS, RetypeOptions } from './types';
+import { dir, stringify } from './utils';
+import { createLogger } from './log';
+import { report } from './report';
+import { DEFAULT_CMD_OPTIONS, RetypeCmdOptions } from './types';
+import { DEFAULT_CONFIG, RetypeConfig } from './config';
 
-const log = createLogger();
+const log = createLogger(console.log);
 
-const { version, name, description } = JSON.parse(fs.readFileSync(dir('./package.json')).toString());
+const { version, name, description } = JSON.parse(
+  fs.readFileSync(dir('./package.json')).toString(),
+);
 const program = createCommand();
 
-program.name(name)
+program
+  .name(name)
   .description(description)
   .version(version)
   .argument('<path-to-project>', 'path to project')
-  .option('-c, --config [path]', 'load config - if no path provided, loads .retyperc from current directory. if not set, use default config')
-  .option('-o, --output <file-path|dir-path>', 'HTML report file name - if provided with directory, it will create index.html file inside', './retype-report.html')
-  .option('-j, --json <file-path>', 'JSON report file name. if not set, does not export JSON.')
+  .option(
+    '-c, --config [path]',
+    'load config - if no path provided, loads .retyperc from current directory. if not set, use default config',
+  )
+  .option('-e, --exclude [glob...]', 'glob patterns that will be ignored')
+  .option(
+    '-g, --init [file-path]',
+    'initializes with default config. if no path is provided, creates .retyperc in the current directory',
+  )
   .option('-i, --include [glob...]', 'glob patterns that will be included in search')
-  .option('-x, --exclude [glob...]', 'glob patterns that will be ignored');
+  .option(
+    '-j, --json <file-path>',
+    'file path to export JSON report. if not set, does not export JSON.',
+  )
+  .option('-n, --noHtml', 'if set, does not export HTML', false)
+  .option(
+    '-o, --output <file-path|dir-path>',
+    'HTML report file path - if provided with dir, create index.html file inside the dir',
+    './retype-report.html',
+  );
 
-function parseOptions(defaultOptions: RetypeConfig): RetypeOptions {
+function parseOptions(): Partial<RetypeCmdOptions> {
   program.parse();
   const options = program.opts();
   const args = program.processedArgs;
   return {
-    project: args[0],
-    ...defaultOptions,
     ...options,
+    rootDir: args[0],
+    config: options.config
+      ? typeof options.config === 'string'
+        ? options.config
+        : '.retyperc'
+      : undefined,
   };
 }
 
-function resolveConfig(configOption: boolean | string | undefined): RetypeConfig {
-  if (!configOption) {
-    return DEFAULT_OPTIONS;
-  }
-  let configFile = pwd('.retyperc');
-  if (typeof configOption === 'string') {
-    configFile = configOption;
-  }
-  const configFileData = <RetypeConfig>JSON.parse(fs.readFileSync(configFile).toString());
-  return {
-    ...DEFAULT_OPTIONS,
-    ...configFileData,
-  };
-}
-
-function resolveOutputFilePath(configOutput: string): string {
-  let htmlFile = configOutput;
-  let isDir = false;
-  if (!fs.existsSync(configOutput)) {
-    if (!configOutput.endsWith('.html')) {
-      isDir = true;
-    }
-  } else {
-    if (fs.lstatSync(configOutput).isDirectory()) {
-      isDir = true;
-    }
-  }
-  if (isDir) {
-    htmlFile = path.join(configOutput, 'index.html');
-    if (!fs.existsSync(configOutput)) {
-      fs.mkdirSync(configOutput, { recursive: true });
-    }
-  }
-  else {
-    htmlFile = configOutput;
-    const parentDir = path.dirname(htmlFile);
-    if (!fs.existsSync(parentDir)) {
-      fs.mkdirSync(parentDir, { recursive: true });
-    }
-  }
-  return htmlFile;
+function runGenerate(options: Partial<RetypeCmdOptions>) {
+  const configPath = typeof options.init === 'string' ? <string>options.init : '.retyperc';
+  const config = stringify(DEFAULT_CONFIG);
+  fs.writeFileSync(configPath, config);
+  log.log(config);
+  log.log(`written to ${configPath}`);
 }
 
 function main() {
-  const options = parseOptions(DEFAULT_OPTIONS);
-  const project = options.project;
-  const config = resolveConfig(options.config);
-
   log.header();
 
-  const args = {
-    ...config,
-    ...options,
-  };
-  
-  log.log('running with config');
-  log.log(stringify(args));
-  log.log();
+  const options = parseOptions();
 
-  log.log(`discovering duplicates in ${project}`);
+  log.log(JSON.stringify(options));
 
-  const clusters = createTypeClusters(args);
-
-  log.log();
-  for (const cluster of clusters) {
-    log.log(`- ${cluster.clusters.length} instances of ${cluster.name}`);
+  if (options.init) {
+    runGenerate(options);
+    return;
   }
 
-  const data = JSON.stringify(clusters);
-
-  const htmlFile = resolveOutputFilePath(args.output);
-
-  fs.cpSync(dir('./vis/dist/index.html'), htmlFile);
-
-  const html = fs.readFileSync(htmlFile);
-  const replaced = html
-    .toString()
-    .replace('window.__datajson__="DATA_JSON"', `window.__data__ = ${data}`);
-  fs.writeFileSync(htmlFile, replaced);
-
-  log.log();
-  log.log(`report exported to ${htmlFile}`);
-  log.log('you can view it by running');
-  log.log();
-  log.log(`  open ${htmlFile}`);
-  log.log();
-
-  if (args.json) {
-    fs.writeFileSync(args.json, data);
-    log.log(`json data exported to ${args.json}`);
-    log.log();
+  if (!options.rootDir) {
+    throw new Error('missing rootDir');
   }
+
+  const args = RetypeConfig.fromCmd(options);
+
+  report(args);
 }
 
 if (require.main === module) {

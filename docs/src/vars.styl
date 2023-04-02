@@ -1,22 +1,116 @@
-clrHeaderBg ?= #4b8493
-clrHeaderFg ?= #f9f5f1
-clrBg ?= #fcfaf2
-clrFg ?= #242424
-clrCardBg ?= #39393A
-clrCardFg ?= #E6E6E6
-clrAccent ?= #ff0000
+// z-indices
+$zAlwaysVisible = 100
+$zOverlay = 10
 
-fontRegular = 'Source Sans Pro', sans-serif
-fontMono = 'Ubuntu Mono', monospace
+// fonts
 
-gapXXLarge = 64px;
-gapLarge = 32px;
-gapMedium = 16px;
-gapSmall = 8px;
+// Source Sans Pro
+// Golos Text
+// Work Sans
+$fontRegular = 'Noto Sans', sans-serif
+// Inconsolata
+$fontTitle = 'Exo 2', sans-serif
+// Mullish
+$fontMono = 'Ubuntu Mono', monospace
 
-borderRadiusSmall = 4px;
-borderRadiusMedium = 8px;
-borderRadiusLarge = 16px;
+$accent = hsl(195deg 88% 33%);
 
-sectionMinWidth = 320px
-sectionMaxWidth = 700px
+// window icons
+
+$appIconRed = #ed614e;
+$appIconYellow = #e0b443;
+$appIconGreen = #54cc78;
+
+// colors
+
+$black = #313131;
+$black = #313131;
+$blue = #50a3d7;
+$blue = #5174c9;
+$blueDark = #4b83bf;
+$cyan = hsl(195deg 86% 68%);
+$darkBlue = #0d296b;
+$gray = #606060;
+$grayLight = #c8c8c8;
+$green = #53a372;
+$lightBlue = #99c2f3;
+$lightOrange = #ecab6f;
+$lightPurple = #cb96f4;
+$orange = #d98333;
+$orange = #eba652;
+$purple = #8e37d2;
+$purple = #b481f0;
+$red = #f26f7a;
+// $white = #c8c8c8;
+$white = #e0e0e0;
+$whitePure = #ffffff;
+$yellow = #fcd86d;
+$yellowLight = #faf2e4;
+
+
+// code themes
+
+$bgMainLight = white;
+$bgSecondaryLight = hsl(195deg 20% 98%);
+// $bgMainLight = #f2f5f6;
+// $bgSecondaryLight = white;
+$titleLight = #050505;
+$textLight = #313131;
+$mediumLight = #cac1a9;
+$borderLight = #e0e4e5;
+
+$bgMainDark = hsl(195deg 14% 15%);
+$bgSecondaryDark = hsl(195deg 18% 10%);
+$titleDark = #f8f4e8;
+$textDark = #f5f1e5;
+$mediumDark = #787878;
+$borderDark = #41403c;
+
+// $bgCodeLight = #fffefd;
+$bgCodeMainLight = $bgSecondaryLight;
+
+$bgCodeMainDark = $bgSecondaryDark;
+
+$bgLandingLight = $bgSecondaryLight;
+$bgCodeLandingLight = $bgMainLight;
+
+$bgLandingDark = hsl(195deg 18% 10%);
+$bgCodeLandingDark = $bgMainDark;
+
+$gapXXLarge = 64px;
+$gapLarge = 32px;
+$gapMedium = 16px;
+$gapSmall = 8px;
+
+$borderRadius = 12px;
+$borderRadiusSmall = 4px;
+$borderRadiusMedium = 8px;
+$borderRadiusLarge = 16px;
+
+$sectionMinWidth = 320px;
+$sectionMaxWidth = 700px;
+
+$breakHeaderLogo = 600px;
+$breakHeaderMenu = 560px;
+$breakDescCTA = 1000px;
+$breakSnippetsWrap = 768px;
+$breakSnippetsColumn = 570px;
+
+
+$codeFontSize = 1.2em;
+$codeResponsiveFontSize = 1.8vw;
+$codeMinFontSize = 14px;
+$codeMaxFontSize = 20px;
+$codeFontMaxOutWidth = 1111px;
+$codeFontMinOutWidth = 777px;
+
+
+$titleResponsiveFontSize = 3.8vw;
+$titleMinFontSize = 32px;
+$titleMaxFontSize = 52px;
+// 100 * $titleMaxFontSize / $titleResponsiveFontSize
+$titleFontMaxOutWidth = 1368px;
+// 100 * $titleMinFontSize / $titleResponsiveFontSize
+$titleFontMinOutWidth = 842px;
+
+$fontSizeCode = 1em;

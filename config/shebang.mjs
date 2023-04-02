@@ -1,5 +1,6 @@
 import { createFilter } from '@rollup/pluginutils';
 import { chmod } from 'fs/promises';
+import { join } from 'path';
 import MagicString from 'magic-string';
 
 export function shebang({
@@ -7,9 +8,9 @@ export function shebang({
   exclude = []
 } = {}) {
   const filter = createFilter(include, exclude);
-  const scripts = new Set()
+  const scripts = new Set();
   const mode = 0o755;
-  const prefix = '#!/usr/bin/env node'
+  const prefix = '#!/usr/bin/env node';
   const separator = '\n\n';
   return {
     name: 'shebang-node',
@@ -19,7 +20,7 @@ export function shebang({
         return;
       }
 
-      scripts.add(file || join(dir || process.cwd(), fileName))
+      scripts.add(file || join(dir || process.cwd(), fileName));
 
       const header = `${prefix}${separator}`;
 

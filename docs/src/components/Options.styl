@@ -1,0 +1,17 @@
+@import "../utils.styl"
+@import "../vars.styl"
+
+.options
+  display: grid;
+  row-gap: 1em;
+  column-gap: 1em;
+  font-family: $fontMono;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: repeat(min-content);
+  &-item
+    line-height: 1.3;
+    &-name
+      font-weight: 600;
+    &-desc
+      font-weight: 400;
+      font-family: $fontRegular;

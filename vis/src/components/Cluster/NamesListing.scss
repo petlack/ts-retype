@@ -1,0 +1,20 @@
+.names-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .names {
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+
+  .name-freq {
+    background-color: var(--clr-bgMain);
+    color: var(--clr-fgText);
+    font-weight: 800;
+    padding: 4px 12px;
+    margin: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+}

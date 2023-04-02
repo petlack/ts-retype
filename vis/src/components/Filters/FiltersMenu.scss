@@ -1,0 +1,33 @@
+@import "../../vars";
+@import "../../utils";
+
+button.logo-icon {
+  --logo-size: 48px;
+  padding: 1rem;
+}
+
+.button {
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  color: blue;
+  border: none;
+  background-color: green;
+  @include focusable(var(--clr-bgMain));
+  &--default {
+    color: var(--clr-fgText);
+    background-color: var(--clr-bgMain);
+  }
+  &--primary {
+    color: var(--clr-bg);
+    background-color: $accent;
+  }
+  &:focus-visible {
+    &--default {
+      outline-color: $accent;
+    }
+    &--primary {
+      outline-color: white;
+    }
+  }
+}

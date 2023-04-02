@@ -1,0 +1,31 @@
+.files {
+  grid-area: files;
+  max-height: 400px;
+  // overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-x: scroll;
+
+  pre {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .file {
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: row;
+    gap: 1ch;
+
+    .path {
+      flex: 1;
+    }
+
+    &:hover {
+      background-color: rgb(0, 0, 0, 0.1);
+    }
+
+  }
+}
