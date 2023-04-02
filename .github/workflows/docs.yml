@@ -22,8 +22,8 @@ jobs:
     - run: npm run docs:build
     - run: npm run build
     - run: npm run test
-    - run: npm i coverage-badges-cli -g
     - run: cp -R ./coverage ./docs/dist/coverage
+    - run: npm i coverage-badges-cli -g
     - run: coverage-badges --output ./docs/dist/badge-coverage.svg
 
     - name: Deploy
