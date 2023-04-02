@@ -57,7 +57,7 @@ export function Filters({
   const FilterSimButton = useCallback(({ id, selected, ...props }: { id: string, selected: string } & HTMLAttributes<HTMLElement>) => {
     const isSelected = id === selected;
     return (
-      <a className={`nav button button--default nav ${isSelected ? 'selected' : ''}`} {...props}>
+      <a className={`button button--default nav ${isSelected ? 'nav--selected' : ''}`} {...props}>
         {`${id} (${getFacetStat(facetsStats, id, filter.selectedType)})`}
       </a>
     );
@@ -66,7 +66,7 @@ export function Filters({
   const FilterTypeButton = useCallback(({ id, selected, ...props }: { id: string, selected: string } & HTMLAttributes<HTMLElement>) => {
     const isSelected = id === selected;
     return (
-      <a className={`nav button button--default nav ${isSelected ? 'selected' : ''}`} {...props}>
+      <a className={`button button--default nav ${isSelected ? 'nav--selected' : ''}`} {...props}>
         {`${id} (${getFacetStat(facetsStats, filter.selectedTab, id)})`}
       </a>
     );

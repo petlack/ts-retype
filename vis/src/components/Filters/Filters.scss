@@ -1,3 +1,6 @@
+@import "../../vars";
+@import "../../utils";
+
 .filters {
   display: flex;
   flex-direction: column;
@@ -22,6 +25,8 @@
     flex-direction: column;
     gap: 2px;
 
+    @include focusable($accent, 'outside');
+
     &--overflow {
       overflow-y: scroll;
     }
@@ -34,11 +39,24 @@
       &:hover {
         text-decoration: underline;
       }
-      &.selected {
-        background-color: var(--clr-bgSecondary);
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+      &--selected {
+        --marker-size: 8px;
+        position: relative;
+        font-weight: 600;
+        // background-color: var(--clr-bgSecondary);
+        // box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
         // box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
         // color: white;
+        &:before {
+          content: '';
+          position: absolute;
+          background-color: $accent;
+          border-radius: 4px;
+          top: calc(50% - (var(--marker-size) / 2));
+          left: 0;
+          width: var(--marker-size);
+          height: var(--marker-size);
+        }
       }
     }
   }

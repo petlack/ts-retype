@@ -1,10 +1,11 @@
-@mixin focusable() {
-  & {
-    outline: none;
-  }
+@mixin focusable($color: red, $position: 'inside') {
+  outline: none;
   &:focus-visible {
+    outline-color: $color;
     outline-width: 4px;
     outline-style: double;
-    outline-offset: -4px;
+    @if $position == 'inside' {
+      outline-offset: -4px;
+    }
   }
 }

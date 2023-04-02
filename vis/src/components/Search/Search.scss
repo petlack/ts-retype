@@ -1,3 +1,4 @@
+@import "../../vars";
 @import "../../utils";
 
 .search {
@@ -22,7 +23,7 @@
     border-bottom-right-radius: 12px;
     background-color: var(--clr-bgMain);
     transition: background-color 150ms ease-in;
-    @include focusable();
+    @include focusable($accent);
     
     &::placeholder {
       color: var(--clr-fgText);

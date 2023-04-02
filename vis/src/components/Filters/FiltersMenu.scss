@@ -13,7 +13,7 @@ button.logo-icon {
   color: blue;
   border: none;
   background-color: green;
-  @include focusable();
+  @include focusable(var(--clr-bgMain));
   &--default {
     color: var(--clr-fgText);
     background-color: var(--clr-bgMain);
