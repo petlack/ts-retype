@@ -12,8 +12,8 @@ import { useSearch } from './hooks/useSearch';
 import './App.scss';
 import { SearchPhraseProvider } from './hooks/useSearchPhrase';
 
-const theme = 'light';
-// const theme = 'dark';
+// const theme = 'light';
+const theme = 'dark';
 // const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 const facets: Facet<FulltextData>[] = [

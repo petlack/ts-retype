@@ -16,7 +16,10 @@
     font-family: monospace;
     font-size: 1.2rem;
     padding: 1rem 1rem;
-    border-bottom: 1px solid var(--clr-bgBorder);
+    border: 1px solid var(--clr-border);
+    border-top: none;
+    border-left: none;
+    border-bottom-right-radius: 12px;
     background-color: var(--clr-bgMain);
     transition: background-color 150ms ease-in;
     @include focusable();
@@ -32,11 +35,10 @@
   }
 
   button {
-    border: 1px solid var(--clr-bgBorder);
-    border-radius: 8px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+    border: 1px solid var(--clr-border);
+    border-radius: 0;
+    border-bottom-left-radius: 12px;
+    border-right: none;
     border-top: none;
     padding: 0.6rem 1.2rem;
     transition: background-color 150ms ease-in;

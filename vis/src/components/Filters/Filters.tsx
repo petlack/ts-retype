@@ -74,27 +74,31 @@ export function Filters({
   
   return (
     <div className={`filters filters-${visible ? 'visible' : 'hidden'}`}>
-      <span className="label">Show types that are</span>
-      <ControlsList
-        className="filter navmenu"
-        aria-label="Show types that are"
-        Render={FilterSimButton}
-        onSelect={(key) => updateFilter({ selectedTab: key })}
-        selected={filter.selectedTab}
-      >
-        {similarities}
-      </ControlsList>
+      <div className="filter">
+        <span className="label">Show types that are</span>
+        <ControlsList
+          className="navmenu"
+          aria-label="Show types that are"
+          Render={FilterSimButton}
+          onSelect={(key) => updateFilter({ selectedTab: key })}
+          selected={filter.selectedTab}
+        >
+          {similarities}
+        </ControlsList>
+      </div>
 
-      <span className="label">Filter by type</span>
-      <ControlsList
-        className="filter navmenu"
-        aria-label="Filter by type"
-        Render={FilterTypeButton}
-        onSelect={(key) => updateFilter({ selectedType: key })}
-        selected={filter.selectedType}
-      >
-        {types}
-      </ControlsList>
+      <div className="filter">
+        <span className="label">Filter by type</span>
+        <ControlsList
+          className="navmenu"
+          aria-label="Filter by type"
+          Render={FilterTypeButton}
+          onSelect={(key) => updateFilter({ selectedType: key })}
+          selected={filter.selectedType}
+        >
+          {types}
+        </ControlsList>
+      </div>
 
       <div className="filter">
         <span className="label">
