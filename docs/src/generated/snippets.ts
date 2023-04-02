@@ -31,7 +31,7 @@ export default {
           children: [
             {
               type: 'text',
-              value: 'RetypeArgs',
+              value: 'ScanArgs',
             },
           ],
         },
@@ -217,7 +217,7 @@ export default {
         },
         {
           type: 'text',
-          value: '\n  output',
+          value: '\n  rootDir',
         },
         {
           type: 'element',
@@ -246,173 +246,6 @@ export default {
             {
               type: 'text',
               value: 'string',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ';',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: '\n  project',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'builtin'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: 'string',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ';',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: '\n  json',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '?',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'builtin'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: 'string',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ';',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: '\n  noHtml',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '?',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'builtin'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: 'boolean',
             },
           ],
         },
@@ -2256,7 +2089,7 @@ export default {
           children: [
             {
               type: 'text',
-              value: "'alias'",
+              value: "'literal'",
             },
           ],
         },
@@ -4469,7 +4302,7 @@ export default {
           children: [
             {
               type: 'text',
-              value: '"output"',
+              value: '"rootDir"',
             },
           ],
         },
@@ -4767,7 +4600,7 @@ export default {
         },
         {
           type: 'text',
-          value: ' findDuplicateTypes ',
+          value: ' scan ',
         },
         {
           type: 'element',
@@ -4893,7 +4726,7 @@ export default {
           children: [
             {
               type: 'text',
-              value: 'findDuplicateTypes',
+              value: 'scan',
             },
           ],
         },
@@ -5101,7 +4934,7 @@ export default {
         },
         {
           type: 'text',
-          value: '\n  project',
+          value: '\n  rootDir',
         },
         {
           type: 'element',

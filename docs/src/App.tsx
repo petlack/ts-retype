@@ -85,7 +85,7 @@ ts-retype -c .`
         <h2>ts-retype</h2>
         <p>You can also run it programatically, using ts-retype package.</p>
         <JsTsCode theme={theme} snippet={Snippets.tsRetype as Snippet} />
-        <p>The input for <strong>findDuplicateTypes</strong> is of type <strong>RetypeArgs</strong></p>
+        <p>The input for <strong>scan</strong> is of type <strong>ScanArgs</strong></p>
         <JsTsCode theme={theme} snippet={Snippets.RetypeArgs as Snippet} />
         <p>An example for the snippets in the landing page would look like this</p>
         <JsTsCode theme={theme} snippet={Snippets.duplicate as Snippet} />

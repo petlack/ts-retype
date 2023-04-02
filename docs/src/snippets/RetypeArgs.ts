@@ -1,8 +1,5 @@
-type RetypeArgs = {
+type ScanArgs = {
   exclude: string[];
   include: string[];
-  output: string;
-  project: string;
-  json?: string;
-  noHtml?: boolean;
+  rootDir: string;
 };
