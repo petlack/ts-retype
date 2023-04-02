@@ -1,3 +1,5 @@
+import { equals } from 'ramda';
+
 export interface Property {
   name: string;
   type: string;
@@ -89,4 +91,42 @@ export type TypeDuplicate = {
   }[];
   returnType?: string;
   types?: string[];
+};
+
+export interface ICandidateType {
+  self: CandidateType;
+  id: () => string;
+  is: (type: string) => boolean;
+  equals: (other: ICandidateType) => boolean;
+  startsAfter: (other: ICandidateType) => boolean;
+  endsBefore: (other: ICandidateType) => boolean;
+  sameEnd(other: ICandidateType): boolean;
+  srcLength: () => number;
+}
+
+export const CandidateType: (self: CandidateType) => ICandidateType = (self) => {
+  return {
+    self,
+    srcLength() {
+      return self.pos[1] - self.pos[0];
+    },
+    id() {
+      return `${self.name}_${self.pos[0]}_${self.pos[1]}`;
+    },
+    equals(other: ICandidateType) {
+      return equals(self.pos, other.self.pos) && self.name === other.self.name;
+    },
+    sameEnd(other: ICandidateType) {
+      return other.self.pos[1] === self.pos[1];
+    },
+    is(type: string) {
+      return self.type === type;
+    },
+    startsAfter(other: ICandidateType) {
+      return self.pos[0] >= other.self.pos[0];
+    },
+    endsBefore(other: ICandidateType) {
+      return self.pos[1] <= other.self.pos[1];
+    },
+  };
 };

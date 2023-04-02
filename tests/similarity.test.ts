@@ -140,78 +140,77 @@ describe('clustersToOutput', () => {
     const output = clustersToOutput(types, clusters, { [relPath]: lengths });
     expect(output).toEqual([]);
   });
-  describe('literal types', () => {
-    test('all renamed', () => {
-      const relPath = 'src.ts';
-      const srcFile = createFile(`
-      type A = { foo: string; bar: string }
-      type B = { foo: string; bar: string }
-      `);
-      const { types, lengths } = getTypesInFile(srcFile, relPath);
-      const matrix = similarityMatrix(types);
-      const pairs = toSimilarityPairs(matrix);
-      const clusters = pairsToClusters(pairs);
-      const output = clustersToOutput(types, clusters, { [relPath]: lengths });
-      expect(output).toEqual([
-        {
-          files: [
-            { file: 'src.ts', lines: [1, 2], pos: [0, 44], type: 'alias' },
-            { file: 'src.ts', lines: [2, 3], pos: [44, 88], type: 'alias' },
-          ],
-          group: 'renamed',
-          names: [
-            { name: 'A', count: 1 },
-            { name: 'B', count: 1 },
-          ],
-          properties: [
-            { name: 'foo', type: 'string' },
-            { name: 'bar', type: 'string' },
-          ],
-        },
-      ]);
-    });
-    test('renamed & identical groups', () => {
-      const relPath = 'src.ts';
-      const srcFile = createFile(`
-      type A = { foo: string; bar: string }
-      type B = { foo: string; bar: string }
-      type B = { foo: string; bar: string }
-      `);
-      const { types, lengths } = getTypesInFile(srcFile, relPath);
-      const matrix = similarityMatrix(types);
-      const pairs = toSimilarityPairs(matrix);
-      const clusters = pairsToClusters(pairs);
-      const output = clustersToOutput(types, clusters, { [relPath]: lengths });
-      expect(output).toEqual([
-        {
-          files: [
-            { file: 'src.ts', lines: [1, 2], pos: [0, 44], type: 'alias' },
-            { file: 'src.ts', lines: [2, 3], pos: [44, 88], type: 'alias' },
-            { file: 'src.ts', lines: [3, 4], pos: [88, 132], type: 'alias' },
-          ],
-          group: 'renamed',
-          names: [
-            { name: 'A', count: 1 },
-            { name: 'B', count: 2 },
-          ],
-          properties: [
-            { name: 'foo', type: 'string' },
-            { name: 'bar', type: 'string' },
-          ],
-        },
-        {
-          files: [
-            { file: 'src.ts', lines: [2, 3], pos: [44, 88], type: 'alias' },
-            { file: 'src.ts', lines: [3, 4], pos: [88, 132], type: 'alias' },
-          ],
-          group: 'identical',
-          names: [{ name: 'B', count: 2 }],
-          properties: [
-            { name: 'foo', type: 'string' },
-            { name: 'bar', type: 'string' },
-          ],
-        },
-      ]);
-    });
+
+  test('all renamed literal types', () => {
+    const relPath = 'src.ts';
+    const srcFile = createFile(`
+    type A = { foo: string; bar: string }
+    type B = { foo: string; bar: string }
+    `);
+    const { types, lengths } = getTypesInFile(srcFile, relPath);
+    const matrix = similarityMatrix(types);
+    const pairs = toSimilarityPairs(matrix);
+    const clusters = pairsToClusters(pairs);
+    const output = clustersToOutput(types, clusters, { [relPath]: lengths });
+    expect(output).toEqual([
+      {
+        files: [
+          { file: 'src.ts', lines: [1, 2], pos: [0, 42], type: 'literal' },
+          { file: 'src.ts', lines: [2, 3], pos: [42, 84], type: 'literal' },
+        ],
+        group: 'renamed',
+        names: [
+          { name: 'A', count: 1 },
+          { name: 'B', count: 1 },
+        ],
+        properties: [
+          { name: 'foo', type: 'string' },
+          { name: 'bar', type: 'string' },
+        ],
+      },
+    ]);
+  });
+  test('renamed & identical groups', () => {
+    const relPath = 'src.ts';
+    const srcFile = createFile(`
+    type A = { foo: string; bar: string }
+    type B = { foo: string; bar: string }
+    type B = { foo: string; bar: string }
+    `);
+    const { types, lengths } = getTypesInFile(srcFile, relPath);
+    const matrix = similarityMatrix(types);
+    const pairs = toSimilarityPairs(matrix);
+    const clusters = pairsToClusters(pairs);
+    const output = clustersToOutput(types, clusters, { [relPath]: lengths });
+    expect(output).toEqual([
+      {
+        files: [
+          { file: 'src.ts', lines: [1, 2], pos: [0, 42], type: 'literal' },
+          { file: 'src.ts', lines: [2, 3], pos: [42, 84], type: 'literal' },
+          { file: 'src.ts', lines: [3, 4], pos: [84, 126], type: 'literal' },
+        ],
+        group: 'renamed',
+        names: [
+          { name: 'A', count: 1 },
+          { name: 'B', count: 2 },
+        ],
+        properties: [
+          { name: 'foo', type: 'string' },
+          { name: 'bar', type: 'string' },
+        ],
+      },
+      {
+        files: [
+          { file: 'src.ts', lines: [2, 3], pos: [42, 84], type: 'literal' },
+          { file: 'src.ts', lines: [3, 4], pos: [84, 126], type: 'literal' },
+        ],
+        group: 'identical',
+        names: [{ name: 'B', count: 2 }],
+        properties: [
+          { name: 'foo', type: 'string' },
+          { name: 'bar', type: 'string' },
+        ],
+      },
+    ]);
   });
 });
