@@ -213,4 +213,53 @@ describe('clustersToOutput', () => {
       },
     ]);
   });
+
+  test('type & interface & anonymous literal', () => {
+    const relPath = 'src.ts';
+    const srcFile = createFile(`
+    export type User = {
+      displayName: string;
+      email: string;
+      password: string;
+    };
+    interface IUser {
+      displayName: string;
+      email: string;
+      password: string;
+    }
+    async function saveUser(
+      user: {
+        displayName: string;
+        email: string;
+        password: string
+      }) {
+      await db.createUser(user);
+    }
+    `);
+    const { types, lengths } = getTypesInFile(srcFile, relPath);
+    const matrix = similarityMatrix(types);
+    const pairs = toSimilarityPairs(matrix);
+    const clusters = pairsToClusters(pairs);
+    const output = clustersToOutput(types, clusters, { [relPath]: lengths });
+    expect(output).toEqual([
+      {
+        files: [
+          { file: 'src.ts', lines: [1, 6], pos: [0, 104], type: 'literal' },
+          { file: 'src.ts', lines: [6, 11], pos: [104, 204], type: 'interface' },
+          { file: 'src.ts', lines: [13, 17], pos: [245, 332], type: 'literal' },
+        ],
+        group: 'renamed',
+        names: [
+          { name: 'User', count: 1 },
+          { name: 'IUser', count: 1 },
+          { name: 'anonymous', count: 1 },
+        ],
+        properties: [
+          { name: 'displayName', type: 'string' },
+          { name: 'email', type: 'string' },
+          { name: 'password', type: 'string' },
+        ],
+      },
+    ]);
+  });
 });

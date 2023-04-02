@@ -16,7 +16,7 @@ import { freq, posToLine, selectIndices } from './utils';
 const eqValues = (left: unknown[], right: unknown[]) => isEmpty(symmetricDifference(left, right));
 
 function isLiteralType(t: CandidateType) {
-  return ['alias', 'interface', 'literal'].includes(t.type);
+  return ['interface', 'literal'].includes(t.type);
 }
 
 function similarityForArray<T extends Property>(left: T[], right: T[]) {
@@ -43,18 +43,18 @@ function similarityForArray<T extends Property>(left: T[], right: T[]) {
 }
 
 function simplifyType(type: CandidateType) {
-  if (['alias', 'interface'].includes(type.type)) {
+  if (isLiteralType(type)) {
     return 'literal';
   }
   return type.type;
 }
 
 export function similarity(leftCandidate: CandidateType, rightCandidate: CandidateType) {
-  if (leftCandidate.type !== rightCandidate.type) {
-    return Similarity.Different;
-  }
   const leftType = simplifyType(leftCandidate);
   const rightType = simplifyType(rightCandidate);
+  if (leftType !== rightType) {
+    return Similarity.Different;
+  }
 
   if (leftType === 'enum' && rightType === 'enum') {
     const left = <EnumCandidateType>leftCandidate;
@@ -97,11 +97,8 @@ export function similarity(leftCandidate: CandidateType, rightCandidate: Candida
     return parametersEqual;
   }
   if (leftType === 'literal' && rightType === 'literal') {
-    const left = isLiteralType(leftCandidate) ? <LiteralCandidateType>leftCandidate : null;
-    const right = isLiteralType(rightCandidate) ? <LiteralCandidateType>rightCandidate : null;
-    if (left === null || right === null) {
-      return Similarity.Different;
-    }
+    const left = <LiteralCandidateType>leftCandidate;
+    const right = <LiteralCandidateType>rightCandidate;
     const namesEqual = left.name === right.name;
     const propertiesEqual = similarityForArray(left.properties, right.properties);
     if (namesEqual && propertiesEqual === Similarity.HasIdenticalProperties) {
@@ -208,9 +205,9 @@ function propertyToOutput(prop: Property): Property {
 function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>) {
   const selected = selectIndices(types, idxs);
   const selectedTypes = uniq(pluck('type', selected));
-  if (selectedTypes.length > 1) {
-    console.log('warning: multiple types in a similarity group');
-  }
+  // if (selectedTypes.length > 1) {
+  //   console.log('warning: multiple types in a similarity group');
+  // }
   const type = selectedTypes[0];
   switch (type) {
     case 'alias':

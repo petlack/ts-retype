@@ -1,7 +1,7 @@
 import path from 'path';
 import { concat } from 'ramda';
 import { globSync } from 'glob';
-import { getAllCandidates as getAllCandidates } from './parse';
+import { getAllCandidates as getAllCandidates, parse } from './parse';
 import {
   RetypeArgs,
   CandidateType,
@@ -58,7 +58,7 @@ export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
     .getFullText()
     .split('\n')
     .map((l) => l.length);
-  const candidateTypes = getAllCandidates(srcFile);
+  const candidateTypes = parse(srcFile);
   const types = toSourceCandidateTypes(relPath, candidateTypes).filter(nonEmptyCandidateType);
   return { types, lengths };
 }
