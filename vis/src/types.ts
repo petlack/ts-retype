@@ -17,3 +17,14 @@ export type UnionTypeCluster = UnionCandidateType & Cluster;
 
 export type Data = Omit<TypeDuplicate, 'group'> & { group: string; pos: [number, number] };
 export type FulltextData = Data & { id: number; fulltext: string };
+
+export const SIMILARITIES = ['all', 'identical', 'renamed'];
+export const CANDIDATE_TYPES = [
+  'all',
+  'alias',
+  'enum',
+  'function',
+  'interface',
+  'literal',
+  'union',
+];

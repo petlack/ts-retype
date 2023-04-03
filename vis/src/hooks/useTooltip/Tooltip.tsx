@@ -69,7 +69,7 @@ export const Tooltip: FC<{ children: [ReactElement<HTMLElement>, ReactElement<HT
   ), [tooltip, ref, cap]);
 
   return (
-    <div className="tooltip flex">
+    <div className="flex tooltip">
       <div
         className="flex"
         onMouseEnter={onMouseEnter}
