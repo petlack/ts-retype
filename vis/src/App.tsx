@@ -43,7 +43,7 @@ function App() {
     updateQuery,
     updateFilter,
     reindex,
-  ] = useSearch(facets, { minFiles: 2, minProperties: 3, selectedTab: 'all', selectedType: 'all' }, '');
+  ] = useSearch(facets, { minFiles: 2, minProperties: 3, selectedSimilarity: 'all', selectedType: 'all' }, '');
   
   useEffect(() => {
     setAllData(
@@ -86,6 +86,8 @@ function App() {
             />
             <Listing
               results={results}
+              filter={filter}
+              facetsStats={facetsStats}
             />
           </div>
         </ToastProvider>

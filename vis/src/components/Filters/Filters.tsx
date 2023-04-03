@@ -67,7 +67,7 @@ export function Filters({
     const isSelected = id === selected;
     return (
       <a className={`button button--default nav ${isSelected ? 'nav--selected' : ''}`} {...props}>
-        {`${id} (${getFacetStat(facetsStats, filter.selectedTab, id)})`}
+        {`${id} (${getFacetStat(facetsStats, filter.selectedSimilarity, id)})`}
       </a>
     );
   }, [facetsStats]);
@@ -80,8 +80,8 @@ export function Filters({
           className="navmenu"
           aria-label="Show types that are"
           Render={FilterSimButton}
-          onSelect={(key) => updateFilter({ selectedTab: key })}
-          selected={filter.selectedTab}
+          onSelect={(key) => updateFilter({ selectedSimilarity: key })}
+          selected={filter.selectedSimilarity}
         >
           {similarities}
         </ControlsList>
