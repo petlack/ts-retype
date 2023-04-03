@@ -9,9 +9,10 @@ import { TypeIcon } from './TypeIcon';
 export type FileListingProps = {
   files: TypeDuplicate['files'];
   type: CandidateType['type'];
+  similarity: TypeDuplicate['group'];
 }
 
-export function FileListing({ files }: FileListingProps) {
+export function FileListing({ files, similarity }: FileListingProps) {
   const [, copyToClipboard] = useCopyToClipboard();
   const showToast = useToast();
 
@@ -33,9 +34,13 @@ export function FileListing({ files }: FileListingProps) {
     </span>
   ));
 
+  const label = similarity === 'identical' ?
+    `Found ${files.length} ${similarity} types` :
+    `Found ${files.length} identical types with different names`;
+
   return (
     <div className="files">
-      <h3>Found in {files.length} files</h3>
+      <h3>{label}</h3>
       <pre>
         {filesMarkup}
       </pre>

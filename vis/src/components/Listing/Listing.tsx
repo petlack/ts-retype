@@ -64,7 +64,7 @@ export function Listing({ results, filter }: ListingProps) {
   const msgMarkup = (
     <>
       <p>Found {span('strong')(duplicate(results.length))} matching criteria</p>
-      <p>Searching for {list(types, 'or ')} types declared as {list(similarities, 'or ')}</p>
+      <p>Searching for {list(types, 'or ')} types that are {list(similarities, 'or ')}</p>
       <span>Appearing in at least {span('strong')(file(filter.minFiles))}, having at least {span('strong')(feature(filter.minProperties))}</span>
       <FeaturesTooltip />
     </>
