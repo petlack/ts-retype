@@ -1,18 +1,19 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Facet, fulltext } from './model/search';
 import { Filters, FiltersMenu } from './components/Filters';
+import { Footer } from './components/Footer/Footer';
 import { FulltextData } from './types';
 import { Listing } from './components/Listing';
+import { Metadata } from '../../src/types';
 import { Search } from './components/Search';
+import { SearchPhraseProvider } from './hooks/useSearchPhrase';
 import { ToastProvider } from './components/Toast';
+import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
 import { TopBar } from '../../docs/src/uikit/TopBar';
 import { UiKitApp } from '../../docs/src/uikit/UiKitApp';
 import { useSearch } from './hooks/useSearch';
-import { SearchPhraseProvider } from './hooks/useSearchPhrase';
-import { TooltipProvider } from './hooks/useTooltip';
 
 import './App.scss';
-import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
 
 const theme = 'light';
 // const theme = 'dark';
@@ -34,6 +35,7 @@ const facets: Facet<FulltextData>[] = [
 
 function App() {
   const [allData, setAllData] = useState([] as FulltextData[]);
+  const [meta, setMeta] = useState({} as Metadata);
 
   const [
     query,
@@ -53,6 +55,9 @@ function App() {
           id: idx,
           fulltext: fulltext(cluster as FulltextData),
         }))
+    );
+    setMeta(
+      window.__meta__
     );
   }, []);
   
@@ -85,10 +90,11 @@ function App() {
               visible={filtersVisible}
             />
             <Listing
+              meta={meta}
               results={results}
               filter={filter}
-              facetsStats={facetsStats}
             />
+            <Footer meta={meta} />
           </div>
         </ToastProvider>
       </SearchPhraseProvider>

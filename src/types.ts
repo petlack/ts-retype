@@ -168,3 +168,14 @@ export const CandidateType: (self: CandidateType) => ICandidateType = (self) => 
     },
   };
 };
+
+export type Metadata = {
+  projectName: string;
+  projectFilesScanned: number;
+  projectLocScanned: number;
+  projectTypesScanned: number;
+  projectFilesWithTypesDeclarations: number;
+  reportSize: number;
+  scanDuration: number;
+  scannedAt: string;
+};

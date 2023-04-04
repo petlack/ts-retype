@@ -57,6 +57,7 @@
   ],
   "dependencies": {
     "commander": "^10.0.0",
+    "date-fns": "^2.29.3",
     "glob": "^9.1.0",
     "progress": "^2.0.3",
     "ramda": "^0.28.0",

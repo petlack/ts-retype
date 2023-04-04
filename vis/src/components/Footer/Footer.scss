@@ -1,0 +1,14 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  font-size: .75rem;
+  padding: 2rem 0;
+  .section {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    column-gap: .5ch;
+    color: var(--clr-fgSecondary);
+    line-height: 1.75;
+  }
+}

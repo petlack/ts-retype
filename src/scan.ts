@@ -9,8 +9,9 @@ import {
   pairsToClusters,
   clustersToOutput,
 } from './similarity';
-import { ScanArgs, SourceCandidateType, TypeDuplicate } from './types';
+import { Metadata, ScanArgs, SourceCandidateType, TypeDuplicate } from './types';
 import { loadFile, formatDuration } from './utils';
+import { formatISO } from 'date-fns';
 
 const log = createLogger(console.log);
 
@@ -24,9 +25,16 @@ function formatFileName(file: string, maxLength = 120) {
   return file;
 }
 
-export function scan({ rootDir, exclude, include }: ScanArgs): TypeDuplicate[] {
+export type ScanResult = {
+  data: TypeDuplicate[];
+  meta: Omit<Metadata, 'reportSize'>;
+};
+
+export function scan({ rootDir, exclude, include }: ScanArgs): ScanResult {
   const files = globSync(include, { cwd: rootDir, ignore: exclude });
   const filesLengths: { [file: string]: number[] } = {};
+  const filesTypesCount: { [file: string]: number } = {};
+
   let allTypes: SourceCandidateType[] = [];
   let start = new Date().getTime();
 
@@ -38,9 +46,11 @@ export function scan({ rootDir, exclude, include }: ScanArgs): TypeDuplicate[] {
     const srcFile = loadFile(file);
     const { types, lengths } = getTypesInFile(srcFile, relPath);
     filesLengths[relPath] = lengths;
+    filesTypesCount[relPath] = types.length;
     allTypes = concat(allTypes, types);
   }
   const locs = Object.values(filesLengths).reduce((a, b) => a + b.length, 0);
+  const filesWithTypes = Object.entries(filesTypesCount).filter(([, count]) => count > 0).length;
 
   log.live(`searched  ${locs.toLocaleString()} lines of code`, true);
   log.log(`found ${allTypes.length.toLocaleString()} types definitions`);
@@ -60,10 +70,25 @@ export function scan({ rootDir, exclude, include }: ScanArgs): TypeDuplicate[] {
 
   const pairs = toSimilarityPairs(matrix);
   const clusters = pairsToClusters(pairs);
-  const output = clustersToOutput(allTypes, clusters, filesLengths);
+  const data = clustersToOutput(allTypes, clusters, filesLengths);
 
-  log.log(`took ${formatDuration(new Date().getTime() - start)}`);
+  const duration = new Date().getTime() - start;
+
+  const meta: ScanResult['meta'] = {
+    projectName: path.basename(path.resolve(rootDir)),
+    projectFilesScanned: files.length,
+    projectLocScanned: locs,
+    projectTypesScanned: allTypes.length,
+    projectFilesWithTypesDeclarations: filesWithTypes,
+    scannedAt: formatISO(new Date()),
+    scanDuration: duration,
+  };
+
+  log.log(`took ${formatDuration(duration)}`);
   log.log();
 
-  return output;
+  return {
+    data,
+    meta,
+  };
 }

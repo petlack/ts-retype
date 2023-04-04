@@ -2,15 +2,27 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  color: var(--clr-fgSecondary);
 }
 .info {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
   padding: 2rem 1rem;
 
   .tooltip {
     margin-left: .5rem;
   }
+
+  &-description {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: .5ch;
+  }
 }
 
 .strong {
-  font-weight: 600;
+  font-weight: 500;
+  color: var(--clr-fg);
 }

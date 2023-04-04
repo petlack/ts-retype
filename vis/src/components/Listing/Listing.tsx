@@ -1,15 +1,16 @@
-import { ReactNode } from 'react';
-import { FacetStats, Filter } from '../../model/search';
 import { CANDIDATE_TYPES, FulltextData, SIMILARITIES } from '../../types';
 import { ClusterListing } from '../Cluster';
 import { Empty } from '../Empty';
 import { FeaturesTooltip } from '../Filters/FeaturesTooltip';
+import { Filter } from '../../model/search';
+import { Metadata } from '../../../../src/types';
+import { ReactNode } from 'react';
 import './Listing.scss';
 
 export type ListingProps = {
   results: FulltextData[];
   filter: Filter;
-  facetsStats: FacetStats;
+  meta: Metadata;
 }
 
 export type Entity = (word: string) => (count:number) => string;
@@ -48,12 +49,11 @@ const span = (className = '') => (text: string) => {
   );
 };
 
-
 const duplicate = entity('duplicate');
 const file = entity('file');
 const feature = entity('feature');
 
-export function Listing({ results, filter }: ListingProps) {
+export function Listing({ meta, results, filter }: ListingProps) {
   const resultsMarkup = results.length === 0 ?
     <Empty /> :
     <ClusterListing clusters={results} />;
@@ -63,12 +63,21 @@ export function Listing({ results, filter }: ListingProps) {
 
   const msgMarkup = (
     <>
-      <p>Found {span('strong')(duplicate(results.length))} matching criteria</p>
-      <p>Searching for {list(types, 'or ')} types that are {list(similarities, 'or ')}</p>
-      <span>Appearing in at least {span('strong')(file(filter.minFiles))}, having at least {span('strong')(feature(filter.minProperties))}</span>
-      <FeaturesTooltip />
+      <p>Found {span('strong')(duplicate(results.length))} matching criteria in {span('strong')(meta.projectName)}</p>
+      <div className="info-description">
+        <span>Showing</span>
+        <span>{list(types, 'or ')}</span>
+        <span>types that are</span>
+        <span>{list(similarities, 'or ')}</span>
+        <span>appearing in at least</span>
+        {span('strong')(file(filter.minFiles))}
+        <span>and having at least</span>
+        {span('strong')(feature(filter.minProperties))}
+        <FeaturesTooltip />
+      </div>
     </>
   );
+  
   return (
     <div className="listing">
       <div className="info">
