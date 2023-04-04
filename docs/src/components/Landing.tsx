@@ -1,13 +1,10 @@
+import { IconDocs, IconGithub } from '../uikit/Icons';
+import { Button } from '../uikit/Button';
 import { MultilangWindow } from './MultilangWindow';
-// import { Logo } from './Logo';
+import { Snippet } from './Token';
+import Snippets from '../generated/snippets';
 import { TsSnippet } from './TsSnippet';
 import './Landing.styl';
-import { TopBar } from '../uikit/TopBar';
-import { Button } from '../uikit/Button';
-import { IconDocs, IconGithub } from '../uikit/Icons';
-import Snippets from '../generated/snippets';
-import { Snippet } from './Token';
-import { Menu } from './Menu';
 
 export type LandingProps = {
   theme: 'dark' | 'light';
@@ -59,9 +56,6 @@ export function Landing({ theme }: LandingProps) {
 
   return (
     <div className={`landing-container ${theme}`}>
-      <TopBar>
-        <Menu />
-      </TopBar>
       <div className="landing">
         {/* <div className="description">
           <p>Static analysis tool for TypeScript that discovers similar types.</p>

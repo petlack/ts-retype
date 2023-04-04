@@ -8,6 +8,8 @@ import { Window } from './components/Window';
 import { Snippet } from './components/Token';
 import Snippets from './generated/snippets';
 import './App.styl';
+import { Menu } from './components/Menu';
+import { TopBar } from './uikit/TopBar';
 
 const theme = 'light';
 // const theme = 'dark';
@@ -16,6 +18,9 @@ const theme = 'light';
 export default function App() {
   return (
     <main className={theme}>
+      <TopBar>
+        <Menu />
+      </TopBar>
       <section className="bleed" id="about">
         <Landing theme={theme} />
       </section>
