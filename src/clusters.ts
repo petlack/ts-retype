@@ -30,6 +30,35 @@ function nonEmptyCandidateType(type: CandidateType): boolean {
   }
 }
 
+function fixIndentation(src: string) {
+  let indentLevel = 0;
+  const INDENT_SIZE = 2;
+  const INDENT = ' '.repeat(INDENT_SIZE);
+
+  const lines = src.split('\n');
+  return lines
+    .map((line) => {
+      const trimmedLine = line.trim();
+      if (trimmedLine.length === 0) {
+        return '';
+      }
+
+      if (trimmedLine.startsWith('}') || trimmedLine.startsWith(')')) {
+        indentLevel--;
+      }
+
+      const indent = INDENT.repeat(indentLevel);
+      const indentedLine = `${indent}${trimmedLine}`;
+
+      if (trimmedLine.endsWith('{') || trimmedLine.endsWith('(')) {
+        indentLevel++;
+      }
+
+      return indentedLine;
+    })
+    .join('\n');
+}
+
 export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
   function toSourceCandidateTypes(file: string, types: CandidateType[]): SourceCandidateType[] {
     return types.map((t) => ({
@@ -38,7 +67,7 @@ export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
       src:
         t.type === 'function'
           ? (t as FunctionCandidateType).signature?.strMin || '() => {}'
-          : getNodeText(srcFile, { pos: t.pos[0], end: t.pos[1] }),
+          : fixIndentation(getNodeText(srcFile, { pos: t.pos[0], end: t.pos[1] })),
     }));
   }
   const lengths = srcFile

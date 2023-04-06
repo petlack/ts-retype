@@ -48,7 +48,8 @@ describe('clustersToOutput', () => {
     type A = { foo: string; bar: string }
     type B = { foo: string; bar: string }
     `);
-    const { types, lengths } = getTypesInFile(srcFile, relPath);
+    const expectedSrc = '{ foo: string; bar: string }';
+    const { types } = getTypesInFile(srcFile, relPath);
     const matrix = similarityMatrix(types);
     const pairs = toSimilarityPairs(matrix);
     const clusters = pairsToClusters(pairs);
@@ -61,14 +62,14 @@ describe('clustersToOutput', () => {
             lines: [2, 2],
             pos: [14, 42],
             type: 'literal',
-            src: '{ foo: string; bar: string }',
+            src: expectedSrc,
           },
           {
             file: 'src.ts',
             lines: [3, 3],
             pos: [56, 84],
             type: 'literal',
-            src: '{ foo: string; bar: string }',
+            src: expectedSrc,
           },
         ],
         group: 'renamed',
@@ -90,7 +91,8 @@ describe('clustersToOutput', () => {
     type B = { foo: string; bar: string }
     type B = { foo: string; bar: string }
     `);
-    const { types, lengths } = getTypesInFile(srcFile, relPath);
+    const expectedSrc = '{ foo: string; bar: string }';
+    const { types } = getTypesInFile(srcFile, relPath);
     const matrix = similarityMatrix(types);
     const pairs = toSimilarityPairs(matrix);
     const clusters = pairsToClusters(pairs);
@@ -103,21 +105,21 @@ describe('clustersToOutput', () => {
             lines: [2, 2],
             pos: [14, 42],
             type: 'literal',
-            src: '{ foo: string; bar: string }',
+            src: expectedSrc,
           },
           {
             file: 'src.ts',
             lines: [3, 3],
             pos: [56, 84],
             type: 'literal',
-            src: '{ foo: string; bar: string }',
+            src: expectedSrc,
           },
           {
             file: 'src.ts',
             lines: [4, 4],
             pos: [98, 126],
             type: 'literal',
-            src: '{ foo: string; bar: string }',
+            src: expectedSrc,
           },
         ],
         group: 'renamed',
@@ -137,14 +139,14 @@ describe('clustersToOutput', () => {
             lines: [3, 3],
             pos: [56, 84],
             type: 'literal',
-            src: '{ foo: string; bar: string }',
+            src: expectedSrc,
           },
           {
             file: 'src.ts',
             lines: [4, 4],
             pos: [98, 126],
             type: 'literal',
-            src: '{ foo: string; bar: string }',
+            src: expectedSrc,
           },
         ],
         group: 'identical',
@@ -179,7 +181,7 @@ describe('clustersToOutput', () => {
         await db.createUser(user);
       }
       `);
-    const { types, lengths } = getTypesInFile(srcFile, relPath);
+    const { types } = getTypesInFile(srcFile, relPath);
     const matrix = similarityMatrix(types);
     const pairs = toSimilarityPairs(matrix);
     const clusters = pairsToClusters(pairs);
@@ -193,10 +195,10 @@ describe('clustersToOutput', () => {
             pos: [24, 103],
             type: 'literal',
             src: `{
-      displayName: string;
-      email: string;
-      password: string;
-    }`,
+  displayName: string;
+  email: string;
+  password: string;
+}`,
           },
           {
             file: 'src.ts',
@@ -204,10 +206,10 @@ describe('clustersToOutput', () => {
             pos: [109, 204],
             type: 'interface',
             src: `interface IUser {
-      displayName: string;
-      email: string;
-      password: string;
-    }`,
+  displayName: string;
+  email: string;
+  password: string;
+}`,
           },
           {
             file: 'src.ts',
@@ -215,10 +217,10 @@ describe('clustersToOutput', () => {
             pos: [246, 332],
             type: 'literal',
             src: `{
-        displayName: string;
-        email: string;
-        password: string
-      }`,
+  displayName: string;
+  email: string;
+  password: string
+}`,
           },
         ],
         group: 'renamed',

@@ -2,7 +2,7 @@ import { getTypesInFile } from '../../src/clusters';
 import { createFile } from '../../src/utils';
 
 describe('parse', () => {
-  test('simple type', () => {
+  test('function should return signature', () => {
     const src = `export function zip(
       left: number[],
       right: Iterable<number>,
@@ -13,5 +13,20 @@ describe('parse', () => {
     const candidates = getTypesInFile(srcFile, '.');
 
     expect(candidates.types[0]).toMatchObject({ src: '(number[], Iterable<number>) => string' });
+  });
+
+  test('indentation', () => {
+    const src = `type A = {
+      foo: string;
+                  bar: number;
+    }`;
+    const srcFile = createFile(src);
+    const candidates = getTypesInFile(srcFile, '.');
+
+    const expected = `{
+  foo: string;
+  bar: number;
+}`;
+    expect(candidates.types[0].src).toEqual(expected);
   });
 });
