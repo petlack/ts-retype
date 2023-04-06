@@ -1,5 +1,8 @@
 import { equals } from 'ramda';
 
+type ArrayElement<ArrayType extends readonly unknown[]> =
+  ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
+
 export interface Property {
   name: string;
   type: string;
@@ -8,14 +11,16 @@ export interface Property {
 
 export interface CandidateType {
   name: string;
-  type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
-  pos: [number, number];
+  type: ArrayElement<TypeDuplicate['files']>['type'];
+  pos: ArrayElement<TypeDuplicate['files']>['pos'];
+  lines: ArrayElement<TypeDuplicate['files']>['lines'];
 }
 
 export interface FunctionCandidateType extends CandidateType {
   type: 'function';
   parameters: Property[];
   returnType: string;
+  signature: TypeDuplicate['signature'];
 }
 
 export interface UnionCandidateType extends CandidateType {
@@ -35,7 +40,11 @@ export interface LiteralCandidateType extends CandidateType {
 
 export interface SourceCandidateType extends CandidateType {
   file: string;
+  src: string;
+  lines: [number, number];
 }
+
+export type Clusters = { [s in Similarity]?: Set<number>[] };
 
 export enum Similarity {
   Different = 0,
@@ -44,33 +53,6 @@ export enum Similarity {
   HasIdenticalProperties = 3,
   Identical = 4,
 }
-
-// export type RetypeOutput = {
-//   output: string;
-//   json?: string;
-//   noHtml?: boolean;
-// }
-
-// export type RetypeProject = {
-//   project: string;
-// }
-
-// export type RetypeCmd = {
-//   config?: string;
-//   generate?: boolean | string | null;
-// }
-
-// export type RetypeArgs = RetypeConfig & RetypeProject;
-
-// export type RetypeOptions = RetypeArgs & RetypeOutput & RetypeCmd;
-
-// export type RetypeConfig = {
-//   exclude: string[];
-//   include: string[];
-//   output: string;
-//   json?: string;
-//   noHtml?: boolean;
-// };
 
 export type ScanArgs = {
   exclude: string[];
@@ -104,31 +86,6 @@ export const DEFAULT_CMD_OPTIONS: Partial<RetypeCmdOptions> = {
   json: null,
   noHtml: false,
   output: './retype-report.html',
-};
-
-export type TypeDuplicate = {
-  files: {
-    file: string;
-    lines: [number, number];
-    pos: [number, number];
-    type: CandidateType['type'];
-  }[];
-  group: 'different' | 'renamed' | 'identical';
-  names: {
-    count: number;
-    name: string;
-  }[];
-  members?: string[];
-  parameters?: {
-    name: string;
-    type: string;
-  }[];
-  properties?: {
-    name: string;
-    type: string;
-  }[];
-  returnType?: string;
-  types?: string[];
 };
 
 export interface ICandidateType {
@@ -178,4 +135,37 @@ export type Metadata = {
   reportSize: number;
   scanDuration: number;
   scannedAt: string;
+};
+
+export type TypeDuplicate = {
+  files: {
+    file: string;
+    src: string;
+    lines: [number, number];
+    pos: [number, number];
+    type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
+  }[];
+  group: 'different' | 'renamed' | 'identical';
+  names: {
+    count: number;
+    name: string;
+  }[];
+  members?: string[];
+  parameters?: {
+    name: string;
+    type: string;
+  }[];
+  properties?: {
+    name: string;
+    type: string;
+  }[];
+  returnType?: string;
+  signature?: {
+    name?: string;
+    params: { name: string; type?: string }[];
+    return?: string;
+    strMin?: string;
+    strFull?: string;
+  };
+  types?: string[];
 };

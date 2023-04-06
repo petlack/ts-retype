@@ -1,14 +1,9 @@
 import path from 'path';
 import { globSync } from 'glob';
 import { concat } from 'ramda';
-import { getTypesInFile } from './clusters';
+import { clustersToOutput, getTypesInFile } from './clusters';
 import { createLogger } from './log';
-import {
-  similarityMatrix,
-  toSimilarityPairs,
-  pairsToClusters,
-  clustersToOutput,
-} from './similarity';
+import { similarityMatrix, toSimilarityPairs, pairsToClusters } from './similarity';
 import { Metadata, ScanArgs, SourceCandidateType, TypeDuplicate } from './types';
 import { loadFile, formatDuration } from './utils';
 import { formatISO } from 'date-fns';
@@ -70,7 +65,7 @@ export function scan({ rootDir, exclude, include }: ScanArgs): ScanResult {
 
   const pairs = toSimilarityPairs(matrix);
   const clusters = pairsToClusters(pairs);
-  const data = clustersToOutput(allTypes, clusters, filesLengths);
+  const data = clustersToOutput(allTypes, clusters);
 
   const duration = new Date().getTime() - start;
 

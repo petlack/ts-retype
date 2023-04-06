@@ -17,6 +17,11 @@ export function loadFile(path: string) {
   return ts.createSourceFile(path, readFileSync(path).toString(), ts.ScriptTarget.Latest);
 }
 
+export function getNodeText(sourceFile: ts.SourceFile, node: { pos: number; end: number } | null) {
+  const src = node ? sourceFile.getFullText().substring(node.pos, node.end) : '<empty_node>';
+  return src;
+}
+
 export function posToLine(lengths: number[]) {
   return function (pos: number) {
     let offset = 0;

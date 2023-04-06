@@ -1,10 +1,5 @@
-import { getTypesInFile } from '../src/clusters';
-import {
-  pairsToClusters,
-  toSimilarityPairs,
-  clustersToOutput,
-  similarityMatrix,
-} from '../src/similarity';
+import { clustersToOutput, getTypesInFile } from '../src/clusters';
+import { pairsToClusters, toSimilarityPairs, similarityMatrix } from '../src/similarity';
 import { createFile } from '../src/utils';
 
 describe('toSimilarityPairs', () => {
@@ -39,11 +34,11 @@ describe('clustersToOutput', () => {
   test('no candidate types returns empty array', () => {
     const relPath = 'src.ts';
     const srcFile = createFile('type A = { foo: string; bar: string }');
-    const { types, lengths } = getTypesInFile(srcFile, relPath);
+    const { types } = getTypesInFile(srcFile, relPath);
     const matrix = similarityMatrix(types);
     const pairs = toSimilarityPairs(matrix);
     const clusters = pairsToClusters(pairs);
-    const output = clustersToOutput(types, clusters, { [relPath]: lengths });
+    const output = clustersToOutput(types, clusters);
     expect(output).toEqual([]);
   });
 
@@ -57,12 +52,24 @@ describe('clustersToOutput', () => {
     const matrix = similarityMatrix(types);
     const pairs = toSimilarityPairs(matrix);
     const clusters = pairsToClusters(pairs);
-    const output = clustersToOutput(types, clusters, { [relPath]: lengths });
+    const output = clustersToOutput(types, clusters);
     expect(output).toEqual([
       {
         files: [
-          { file: 'src.ts', lines: [1, 2], pos: [0, 42], type: 'literal' },
-          { file: 'src.ts', lines: [2, 3], pos: [42, 84], type: 'literal' },
+          {
+            file: 'src.ts',
+            lines: [2, 2],
+            pos: [14, 42],
+            type: 'literal',
+            src: '{ foo: string; bar: string }',
+          },
+          {
+            file: 'src.ts',
+            lines: [3, 3],
+            pos: [56, 84],
+            type: 'literal',
+            src: '{ foo: string; bar: string }',
+          },
         ],
         group: 'renamed',
         names: [
@@ -87,13 +94,31 @@ describe('clustersToOutput', () => {
     const matrix = similarityMatrix(types);
     const pairs = toSimilarityPairs(matrix);
     const clusters = pairsToClusters(pairs);
-    const output = clustersToOutput(types, clusters, { [relPath]: lengths });
+    const output = clustersToOutput(types, clusters);
     expect(output).toEqual([
       {
         files: [
-          { file: 'src.ts', lines: [1, 2], pos: [0, 42], type: 'literal' },
-          { file: 'src.ts', lines: [2, 3], pos: [42, 84], type: 'literal' },
-          { file: 'src.ts', lines: [3, 4], pos: [84, 126], type: 'literal' },
+          {
+            file: 'src.ts',
+            lines: [2, 2],
+            pos: [14, 42],
+            type: 'literal',
+            src: '{ foo: string; bar: string }',
+          },
+          {
+            file: 'src.ts',
+            lines: [3, 3],
+            pos: [56, 84],
+            type: 'literal',
+            src: '{ foo: string; bar: string }',
+          },
+          {
+            file: 'src.ts',
+            lines: [4, 4],
+            pos: [98, 126],
+            type: 'literal',
+            src: '{ foo: string; bar: string }',
+          },
         ],
         group: 'renamed',
         names: [
@@ -107,8 +132,20 @@ describe('clustersToOutput', () => {
       },
       {
         files: [
-          { file: 'src.ts', lines: [2, 3], pos: [42, 84], type: 'literal' },
-          { file: 'src.ts', lines: [3, 4], pos: [84, 126], type: 'literal' },
+          {
+            file: 'src.ts',
+            lines: [3, 3],
+            pos: [56, 84],
+            type: 'literal',
+            src: '{ foo: string; bar: string }',
+          },
+          {
+            file: 'src.ts',
+            lines: [4, 4],
+            pos: [98, 126],
+            type: 'literal',
+            src: '{ foo: string; bar: string }',
+          },
         ],
         group: 'identical',
         names: [{ name: 'B', count: 2 }],
@@ -139,20 +176,50 @@ describe('clustersToOutput', () => {
         email: string;
         password: string
       }) {
-      await db.createUser(user);
-    }
-    `);
+        await db.createUser(user);
+      }
+      `);
     const { types, lengths } = getTypesInFile(srcFile, relPath);
     const matrix = similarityMatrix(types);
     const pairs = toSimilarityPairs(matrix);
     const clusters = pairsToClusters(pairs);
-    const output = clustersToOutput(types, clusters, { [relPath]: lengths });
+    const output = clustersToOutput(types, clusters);
     expect(output).toEqual([
       {
         files: [
-          { file: 'src.ts', lines: [1, 6], pos: [0, 104], type: 'literal' },
-          { file: 'src.ts', lines: [6, 11], pos: [104, 204], type: 'interface' },
-          { file: 'src.ts', lines: [13, 17], pos: [245, 332], type: 'literal' },
+          {
+            file: 'src.ts',
+            lines: [2, 6],
+            pos: [24, 103],
+            type: 'literal',
+            src: `{
+      displayName: string;
+      email: string;
+      password: string;
+    }`,
+          },
+          {
+            file: 'src.ts',
+            lines: [7, 11],
+            pos: [109, 204],
+            type: 'interface',
+            src: `interface IUser {
+      displayName: string;
+      email: string;
+      password: string;
+    }`,
+          },
+          {
+            file: 'src.ts',
+            lines: [13, 17],
+            pos: [246, 332],
+            type: 'literal',
+            src: `{
+        displayName: string;
+        email: string;
+        password: string
+      }`,
+          },
         ],
         group: 'renamed',
         names: [

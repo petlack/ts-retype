@@ -30,7 +30,7 @@ describe('clusters', () => {
     const match = html.match(/window\.__data__\s+=\s+(\[.+?\]);/s);
     expect(match).not.toBeNull();
     if (match) {
-      expect(JSON.parse(match[1])).toEqual(expected);
+      expect(JSON.parse(match[1])).toEqual(expected.data);
     }
   });
 });

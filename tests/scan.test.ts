@@ -26,13 +26,34 @@ describe('clusters', () => {
           { name: 'b', count: 1 },
         ],
         files: [
-          { file: 'foo.ts', type: 'literal', pos: [0, 32], lines: [1, 1] },
-          { file: 'bar.ts', type: 'literal', pos: [0, 32], lines: [1, 1] },
+          {
+            file: 'foo.ts',
+            type: 'literal',
+            pos: [16, 32],
+            lines: [1, 1],
+            src: '{ foo: string; }',
+          },
+          {
+            file: 'bar.ts',
+            type: 'literal',
+            pos: [16, 32],
+            lines: [1, 1],
+            src: '{ foo: string; }',
+          },
         ],
         group: 'renamed',
         properties: [{ name: 'foo', type: 'string' }],
       },
     ];
-    expect(given).toEqual(expected);
+    expect(given.data).toEqual(expected);
+
+    expect(given.meta).toMatchObject({
+      projectFilesScanned: 2,
+      projectFilesWithTypesDeclarations: 2,
+      projectLocScanned: 2,
+    });
+    expect(given.meta.projectName).toMatch(/ts-retype.*/);
+    expect(given.meta.scanDuration).toBeGreaterThan(0);
+    expect(given.meta.scannedAt).not.toBeNull();
   });
 });
