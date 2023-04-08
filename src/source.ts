@@ -1,5 +1,6 @@
 import { refractor } from 'refractor/lib/core.js';
 import ts from 'refractor/lang/typescript.js';
+import { FunctionCandidateType } from './types';
 
 refractor.register(ts);
 
@@ -34,4 +35,23 @@ export function fixIndentation(src: string) {
       return indentedLine;
     })
     .join('\n');
+}
+
+export function functionSignatureToStr(
+  sig: FunctionCandidateType['signature'],
+  { fnName = false, paramName = false } = {},
+) {
+  if (sig) {
+    if (sig.params.length === 1) {
+      return `${fnName ? sig.name : ''}(${sig.params
+        .map(({ name, type }) => (paramName ? `${name}: ${type}` : type))
+        .join(', ')}) => ${sig.return}`;
+    }
+  }
+  return (
+    sig &&
+    `${fnName ? sig.name : ''}(\n  ${sig.params
+      .map(({ name, type }) => (paramName ? `${name}: ${type}` : type))
+      .join(',\n  ')}\n) => \n  ${sig.return}`
+  );
 }

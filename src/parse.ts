@@ -1,5 +1,6 @@
 import { ascend, assoc, sort, zip } from 'ramda';
-import ts, { FunctionTypeNode, LiteralTypeNode, SignatureDeclaration } from 'typescript';
+import ts, { LiteralTypeNode, SignatureDeclaration } from 'typescript';
+import { functionSignatureToStr } from './source';
 import {
   CandidateType,
   EnumCandidateType,
@@ -61,18 +62,6 @@ function getLiteralType(
     properties: children,
   };
   return candidate;
-}
-
-function functionSignatureToStr(
-  sig: FunctionCandidateType['signature'],
-  { fnName = false, paramName = false } = {},
-) {
-  return (
-    sig &&
-    `${fnName ? sig.name : ''}(\n  ${sig.params
-      .map(({ name, type }) => (paramName ? `${name}: ${type}` : type))
-      .join(',\n  ')}\n) => \n  ${sig.return}`
-  );
 }
 
 function functionSignature(

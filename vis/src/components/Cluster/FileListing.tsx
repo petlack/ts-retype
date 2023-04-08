@@ -2,6 +2,7 @@ import { CandidateType, TypeDuplicate } from '../../../../src/types';
 import { useCopyToClipboard } from '../../hooks/useCopy';
 import { SearchAwareText } from '../SearchAwareText';
 import { useToast } from '../Toast';
+import { Explorer } from '../Explorer';
 
 import './FileListing.scss';
 import { TypeIcon } from './TypeIcon';
@@ -41,9 +42,7 @@ export function FileListing({ files, similarity }: FileListingProps) {
   return (
     <div className="files">
       <h3>{label}</h3>
-      <pre>
-        {filesMarkup}
-      </pre>
+      <Explorer files={files} />
     </div>
   );
 }

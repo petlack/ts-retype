@@ -22,8 +22,8 @@
   grid-template-areas:
     "title title"
     "names names"
-    "snippet files"
-    "snippet files"
+    "files snippet"
+    "files snippet"
   ;
   grid-template-columns: minmax(max-content, 28ch) 1fr;
   position: relative;
