@@ -22,20 +22,33 @@
   grid-template-areas:
     "title title"
     "names names"
-    "properties files"
-    "properties files"
+    "snippet files"
+    "snippet files"
   ;
   grid-template-columns: minmax(max-content, 28ch) 1fr;
   position: relative;
 
   .names-container {
+    grid-area: names;
     align-items: center;
+  }
+
+  .title {
+    grid-area: title;
+  }
+
+  .properties, .snippet {
+    grid-area: snippet;
+  }
+
+  .files {
+    grid-area: files;
   }
 
   @media screen and (max-width: 1024px) {
     grid-template-areas:
       "title title"
-      "properties names"
+      "snippet names"
       "files files"
     ;
     grid-template-columns: max-content 1fr;
@@ -51,7 +64,7 @@
     grid-template-areas:
       "title"
       "names"
-      "properties"
+      "snippet"
       "files"
     ;
     grid-template-columns: 1fr;
@@ -70,9 +83,5 @@
     color: var(--clr-fgText);
     font-weight: 400;
     font-size: 1rem;
-  }
-
-  .names-container {
-    grid-area: names;
   }
 }
