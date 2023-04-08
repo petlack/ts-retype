@@ -69,9 +69,9 @@ function functionSignatureToStr(
 ) {
   return (
     sig &&
-    `${fnName ? sig.name : ''}(${sig.params
+    `${fnName ? sig.name : ''}(\n  ${sig.params
       .map(({ name, type }) => (paramName ? `${name}: ${type}` : type))
-      .join(', ')}) => ${sig.return}`
+      .join(',\n  ')}\n) => \n  ${sig.return}`
   );
 }
 

@@ -1,6 +1,6 @@
 import { equals } from 'ramda';
 
-type ArrayElement<ArrayType extends readonly unknown[]> =
+export type ArrayElement<ArrayType extends readonly unknown[]> =
   ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
 
 export interface Property {
@@ -38,10 +38,22 @@ export interface LiteralCandidateType extends CandidateType {
   properties: Property[];
 }
 
+// export type SourceCandidateType = CandidateType &
+//   Omit<
+//     ArrayElement<TypeDuplicate['files']>,
+//     keyof CandidateType
+//   >;
+
+// export type SourceCandidateType = CandidateType &
+//   Pick<
+//     ArrayElement<TypeDuplicate['files']>,
+//     'file' | 'src' | 'srcHgl'
+//   >;
+
 export interface SourceCandidateType extends CandidateType {
   file: string;
   src: string;
-  lines: [number, number];
+  srcHgl: any;
 }
 
 export type Clusters = { [s in Similarity]?: Set<number>[] };
@@ -141,6 +153,7 @@ export type TypeDuplicate = {
   files: {
     file: string;
     src: string;
+    srcHgl: any;
     lines: [number, number];
     pos: [number, number];
     type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
