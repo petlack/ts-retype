@@ -9,8 +9,11 @@ packageJson.private = false;
 
 delete packageJson.scripts;
 delete packageJson.exports;
+delete packageJson.husky;
+delete packageJson['lint-staged'];
 
 packageJson.bin['ts-retype'] = packageJson.bin['ts-retype'].replace('dist/', '');
+// packageJson.type = 'module';
 
 const distPackageJson = JSON.stringify(packageJson, null, 2) + '\n';
 
