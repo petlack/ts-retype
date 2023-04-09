@@ -7,8 +7,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node --esm src/syntaxHighlighting.ts",
-    "snippets": "node dist/syntaxHighlighting.js"
+    "dev:snippets": "ts-node --esm src/syntaxHighlighting.ts",
+    "run:snippets": "npm run build && node dist/syntaxHighlighting.js"
   },
   "devDependencies": {
     "esm": "^3.2.25",
