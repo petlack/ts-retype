@@ -4,9 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc && npm run snippets && vite build",
+    "build": "tsc && vite build",
     "dev": "vite",
-    "postinstall": "cd scripts && npm ci",
     "preview": "vite preview"
   },
   "dependencies": {

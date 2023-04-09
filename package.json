@@ -23,6 +23,7 @@
     "bin:perf": "npm run build && node --stack-size=2000 --max-old-space-size=32768 dist/ts-retype.js",
     "bin:rebuild": "npm run build && ./dist/ts-retype.js",
     "build": "rollup -c",
+    "build:all": "npm run build && npm run docs:build",
     "bump": "node config/bump.cjs",
     "clean": "rm -rf dist",
     "dev": "ts-node-dev --respawn",

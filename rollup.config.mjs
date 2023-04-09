@@ -11,7 +11,7 @@ const config = [
     input: 'src/index.ts',
     output: {
       file: 'dist/index.js',
-      format: 'cjs',
+      format: 'es',
       exports: 'named',
       sourcemap: true,
     },
@@ -24,7 +24,7 @@ const config = [
       'refractor',
       'typescript',
     ],
-    plugins: [esbuild()]
+    plugins: [typescript(), commonjs(), nodeResolve()],
   },
   {
     input: 'src/ts-retype.ts',
