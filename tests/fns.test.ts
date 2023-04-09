@@ -31,8 +31,16 @@ describe('parse', () => {
             { name: 'b', type: 'number' },
           ],
           return: 'Promise<void>',
-          strFull: '(a: string, b: number) => Promise<void>',
-          strMin: '(string, number) => Promise<void>',
+          strFull: `(
+  a: string,
+  b: number
+) => 
+  Promise<void>`,
+          strMin: `(
+  string,
+  number
+) => 
+  Promise<void>`,
         },
       },
     ];

@@ -31,21 +31,21 @@ describe('clusters', () => {
             type: 'literal',
             pos: [16, 32],
             lines: [1, 1],
-            src: '{ foo: string; }',
+            src: 'export type A = { foo: string; }',
           },
           {
             file: 'bar.ts',
             type: 'literal',
             pos: [16, 32],
             lines: [1, 1],
-            src: '{ foo: string; }',
+            src: 'export type b = { foo: string; }',
           },
         ],
         group: 'renamed',
         properties: [{ name: 'foo', type: 'string' }],
       },
     ];
-    expect(given.data).toEqual(expected);
+    expect(given.data).toMatchObject(expected);
 
     expect(given.meta).toMatchObject({
       projectFilesScanned: 2,

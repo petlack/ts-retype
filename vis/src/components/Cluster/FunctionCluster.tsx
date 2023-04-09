@@ -2,7 +2,6 @@ import { ClusterTitle } from './ClusterTitle';
 import { FunctionTypeCluster } from '../../types';
 import { FileListing } from './FileListing';
 import { DefinitionSnippet } from './DefinitionSnippet';
-import { NamesListing } from './NamesListing';
 
 import './BaseCluster.scss';
 import './FunctionalCluster.scss';
@@ -20,8 +19,7 @@ export function FunctionCluster({ type, files, group, names }: FunctionTypeClust
   return (
     <div className="cluster cluster-functional">
       <ClusterTitle names={names} type={type} />
-      <NamesListing names={names} />
-      <DefinitionSnippet files={files} />
+      <DefinitionSnippet {...files[0]} />
       <FileListing files={files} type={type} similarity={group} />
     </div>
   );

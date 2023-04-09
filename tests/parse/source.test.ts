@@ -12,7 +12,13 @@ describe('parse', () => {
     const srcFile = createFile(src);
     const candidates = getTypesInFile(srcFile, '.');
 
-    expect(candidates.types[0]).toMatchObject({ src: '(number[], Iterable<number>) => string' });
+    expect(candidates.types[0]).toMatchObject({
+      src: `(
+  number[],
+  Iterable<number>
+) => 
+  string`,
+    });
   });
 
   test('indentation', () => {
@@ -23,10 +29,10 @@ describe('parse', () => {
     const srcFile = createFile(src);
     const candidates = getTypesInFile(srcFile, '.');
 
-    const expected = `{
-  foo: string;
-  bar: number;
-}`;
+    const expected = `type A = {
+      foo: string;
+                  bar: number;
+    }`;
     expect(candidates.types[0].src).toEqual(expected);
   });
 });

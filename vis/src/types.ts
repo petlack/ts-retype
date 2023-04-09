@@ -7,7 +7,7 @@ import {
   // ArrayElement,
 } from '../../src/types';
 
-export type Cluster = Pick<TypeDuplicate, 'files' | 'names' | 'group'>;
+export type Cluster = Pick<TypeDuplicate, 'files' | 'names'>;
 
 export type LiteralTypeCluster = Omit<LiteralCandidateType, 'pos' | 'lines'> & Cluster;
 export type FunctionTypeCluster = Omit<FunctionCandidateType, 'pos' | 'lines'> & Cluster;

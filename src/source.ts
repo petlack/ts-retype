@@ -1,40 +1,54 @@
 import { refractor } from 'refractor/lib/core.js';
-import ts from 'refractor/lang/typescript.js';
+import tsLang from 'refractor/lang/typescript.js';
 import { FunctionCandidateType } from './types';
-
-refractor.register(ts);
+import ts from 'typescript';
+import { range, pipe, slice, split, dropWhile, dropLastWhile, join } from 'ramda';
 
 export function highlight(src: string) {
+  if (!refractor.registered('ts')) {
+    refractor.register(tsLang);
+  }
   return refractor.highlight(src, 'ts');
 }
 
-export function fixIndentation(src: string) {
-  let indentLevel = 0;
-  const INDENT_SIZE = 2;
-  const INDENT = ' '.repeat(INDENT_SIZE);
-
-  const lines = src.split('\n');
-  return lines
-    .map((line) => {
-      const trimmedLine = line.trim();
-      if (trimmedLine.length === 0) {
-        return '';
-      }
-
-      if (trimmedLine.startsWith('}') || trimmedLine.startsWith(')')) {
-        indentLevel--;
-      }
-
-      const indent = INDENT.repeat(indentLevel);
-      const indentedLine = `${indent}${trimmedLine}`;
-
-      if (trimmedLine.endsWith('{') || trimmedLine.endsWith('(')) {
-        indentLevel++;
-      }
-
-      return indentedLine;
-    })
-    .join('\n');
+export function getCodeSnippet(
+  sourceFile: ts.SourceFile,
+  node: { pos: number; end: number } | null,
+) {
+  const fulltext = sourceFile.getFullText();
+  const linesBefore = 1;
+  const linesAfter = 1;
+  if (!node) {
+    return '';
+  }
+  let start = node.pos;
+  while (start >= 0 && fulltext.at(start) !== '\n') {
+    start--;
+  }
+  for (const _ of range(0, linesBefore)) {
+    start--;
+    while (start >= 0 && fulltext.at(start) !== '\n') {
+      start--;
+    }
+  }
+  start = Math.max(0, start);
+  let end = node.end;
+  for (const _ of range(0, linesAfter)) {
+    end++;
+    while (end < fulltext.length && fulltext.at(end) !== '\n') {
+      end++;
+    }
+  }
+  end = Math.min(fulltext.length, end);
+  const isEmptyLine = (line: string) => line.trim().length === 0;
+  const nonEmptyLines = pipe(
+    slice(start, end),
+    split('\n'),
+    dropWhile(isEmptyLine),
+    dropLastWhile(isEmptyLine),
+    join('\n'),
+  )(fulltext);
+  return nonEmptyLines;
 }
 
 export function functionSignatureToStr(

@@ -4,11 +4,11 @@ import { ClusterTitle } from './ClusterTitle';
 import { DefinitionSnippet } from './DefinitionSnippet';
 import { Explorer } from '../Explorer';
 import { ExplorerProps } from '../Explorer/Explorer';
-import { LiteralTypeCluster } from '../../types';
 
 import './BaseCluster.scss';
+import { Cluster } from '../../types';
 
-export function LiteralCluster({ type, files, names }: LiteralTypeCluster) {
+export function BaseCluster({ files, names }: Cluster) {
   const [selectedFile, setSelectedFile] = useState<ArrayElement<typeof files>>(files[0]);
   const onClick = useCallback<NonNullable<ExplorerProps['onClick']>>((node) => {
     setSelectedFile(node.data);
@@ -16,7 +16,7 @@ export function LiteralCluster({ type, files, names }: LiteralTypeCluster) {
 
   return (
     <div className="cluster">
-      <ClusterTitle names={names} type={type} />
+      <ClusterTitle names={names} type={selectedFile.type} />
       <DefinitionSnippet {...selectedFile} />
       <Explorer files={files} onClick={onClick} />
     </div>

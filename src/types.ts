@@ -151,6 +151,7 @@ export type Metadata = {
 
 export type TypeDuplicate = {
   files: {
+    name: string;
     file: string;
     src: string;
     srcHgl: any;

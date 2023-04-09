@@ -12,9 +12,9 @@ import {
   Clusters,
 } from './types';
 import ts from 'typescript';
-import { freq, getNodeText, selectIndices } from './utils';
+import { freq, selectIndices } from './utils';
 import { concat, pluck, uniq } from 'ramda';
-import { fixIndentation, highlight } from './source';
+import { getCodeSnippet, highlight } from './source';
 
 function nonEmptyCandidateType(type: CandidateType): boolean {
   switch (type.type) {
@@ -37,7 +37,7 @@ export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
       const src =
         t.type === 'function'
           ? (t as FunctionCandidateType).signature?.strMin || '() => {}'
-          : fixIndentation(getNodeText(srcFile, { pos: t.pos[0], end: t.pos[1] }));
+          : getCodeSnippet(srcFile, { pos: t.pos[0], end: t.pos[1] });
       return {
         ...t,
         file,

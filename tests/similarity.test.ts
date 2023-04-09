@@ -48,13 +48,14 @@ describe('clustersToOutput', () => {
     type A = { foo: string; bar: string }
     type B = { foo: string; bar: string }
     `);
-    const expectedSrc = '{ foo: string; bar: string }';
+    const expectedSrc = `    type A = { foo: string; bar: string }
+    type B = { foo: string; bar: string }`;
     const { types } = getTypesInFile(srcFile, relPath);
     const matrix = similarityMatrix(types);
     const pairs = toSimilarityPairs(matrix);
     const clusters = pairsToClusters(pairs);
     const output = clustersToOutput(types, clusters);
-    expect(output).toEqual([
+    expect(output).toMatchObject([
       {
         files: [
           {
@@ -91,13 +92,19 @@ describe('clustersToOutput', () => {
     type B = { foo: string; bar: string }
     type B = { foo: string; bar: string }
     `);
-    const expectedSrc = '{ foo: string; bar: string }';
+    const expectedSrcA = `    type A = { foo: string; bar: string }
+    type B = { foo: string; bar: string }`;
+    const expectedSrcB = `    type A = { foo: string; bar: string }
+    type B = { foo: string; bar: string }
+    type B = { foo: string; bar: string }`;
+    const expectedSrcC = `    type B = { foo: string; bar: string }
+    type B = { foo: string; bar: string }`;
     const { types } = getTypesInFile(srcFile, relPath);
     const matrix = similarityMatrix(types);
     const pairs = toSimilarityPairs(matrix);
     const clusters = pairsToClusters(pairs);
     const output = clustersToOutput(types, clusters);
-    expect(output).toEqual([
+    expect(output).toMatchObject([
       {
         files: [
           {
@@ -105,21 +112,21 @@ describe('clustersToOutput', () => {
             lines: [2, 2],
             pos: [14, 42],
             type: 'literal',
-            src: expectedSrc,
+            src: expectedSrcA,
           },
           {
             file: 'src.ts',
             lines: [3, 3],
             pos: [56, 84],
             type: 'literal',
-            src: expectedSrc,
+            src: expectedSrcB,
           },
           {
             file: 'src.ts',
             lines: [4, 4],
             pos: [98, 126],
             type: 'literal',
-            src: expectedSrc,
+            src: expectedSrcC,
           },
         ],
         group: 'renamed',
@@ -139,14 +146,14 @@ describe('clustersToOutput', () => {
             lines: [3, 3],
             pos: [56, 84],
             type: 'literal',
-            src: expectedSrc,
+            src: expectedSrcB,
           },
           {
             file: 'src.ts',
             lines: [4, 4],
             pos: [98, 126],
             type: 'literal',
-            src: expectedSrc,
+            src: expectedSrcC,
           },
         ],
         group: 'identical',
@@ -186,7 +193,7 @@ describe('clustersToOutput', () => {
     const pairs = toSimilarityPairs(matrix);
     const clusters = pairsToClusters(pairs);
     const output = clustersToOutput(types, clusters);
-    expect(output).toEqual([
+    expect(output).toMatchObject([
       {
         files: [
           {
@@ -194,33 +201,36 @@ describe('clustersToOutput', () => {
             lines: [2, 6],
             pos: [24, 103],
             type: 'literal',
-            src: `{
-  displayName: string;
-  email: string;
-  password: string;
-}`,
+            src: `    export type User = {
+      displayName: string;
+      email: string;
+      password: string;
+    };`,
           },
           {
             file: 'src.ts',
             lines: [7, 11],
             pos: [109, 204],
             type: 'interface',
-            src: `interface IUser {
-  displayName: string;
-  email: string;
-  password: string;
-}`,
+            src: `    };
+    interface IUser {
+      displayName: string;
+      email: string;
+      password: string;
+    }
+    async function saveUser(`,
           },
           {
             file: 'src.ts',
             lines: [13, 17],
             pos: [246, 332],
             type: 'literal',
-            src: `{
-  displayName: string;
-  email: string;
-  password: string
-}`,
+            src: `    async function saveUser(
+      user: {
+        displayName: string;
+        email: string;
+        password: string
+      }) {`,
           },
         ],
         group: 'renamed',
