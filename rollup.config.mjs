@@ -35,7 +35,7 @@ const config = [
       // banner: '#!/usr/bin/env node',
       sourcemap: true,
     },
-    external: ['fs', 'path', 'readline'],
+    external: ['fs', 'path', 'readline', 'typescript'],
     plugins: [
       nodeResolve({
         preferBuiltins: true,
