@@ -1,17 +1,18 @@
 import { useCallback, useState } from 'react';
 import { ArrayElement } from '../../../../src/types';
+import { Cluster } from '../../types';
 import { ClusterTitle } from './ClusterTitle';
 import { DefinitionSnippet } from './DefinitionSnippet';
 import { Explorer } from '../Explorer';
 import { ExplorerProps } from '../Explorer/Explorer';
-
 import './BaseCluster.scss';
-import { Cluster } from '../../types';
 
 export function BaseCluster({ files, names }: Cluster) {
   const [selectedFile, setSelectedFile] = useState<ArrayElement<typeof files>>(files[0]);
   const onClick = useCallback<NonNullable<ExplorerProps['onClick']>>((node) => {
-    setSelectedFile(node.data);
+    if (node.data.file) {
+      setSelectedFile(node.data.file);
+    }
   }, [setSelectedFile]);
 
   return (

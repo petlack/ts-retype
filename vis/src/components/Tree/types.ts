@@ -5,7 +5,8 @@ export type FlatTreeNode<T> = {
   data: T;
   prefix: string;
   parent: number;
-  children: number[];
+  level: number;
+  nodes: number[];
 };
 
 export type PrefixByPathIndex<T> = {
@@ -28,7 +29,6 @@ export type RenderableTreeProps<T> = {
   Many: Cardinality<T>;
   One: Cardinality<T>;
   Node: TreeNode<T>;
-  Leaf: TreeNode<T>;
   Root: React.FC<Renderable>;
 };
 
@@ -37,7 +37,7 @@ export type TreeProps<T> = {
   byId: TreeIndex<T>['byId'];
 };
 
-export type TreeNode<T> = React.FC<FlatTreeNode<T>>;
+export type TreeNode<T> = React.FC<Partial<Renderable> & { node: FlatTreeNode<T> }>;
 export type Cardinality<T> = React.FC<Renderable & { node: FlatTreeNode<T> }>;
 
 export type TreeContextValue = {

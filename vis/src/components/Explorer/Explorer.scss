@@ -36,6 +36,7 @@
     cursor: default;
     span {
       display: flex;
+      white-space: nowrap;
       flex-direction: row;
       align-items: center;
       gap: .33rem;

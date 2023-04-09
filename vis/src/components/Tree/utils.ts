@@ -1,7 +1,14 @@
 import { FlatTreeNode, TreeIndex } from './types';
 
 export function createRootIndex<T>(rootData: T): TreeIndex<T> {
-  const rootNode: FlatTreeNode<T> = { id: 0, prefix: '', data: rootData, parent: -1, children: [] };
+  const rootNode: FlatTreeNode<T> = {
+    id: 0,
+    level: 0,
+    prefix: '',
+    data: rootData,
+    parent: -1,
+    nodes: [],
+  };
   const rootIndex: TreeIndex<T> = {
     byPath: { '': rootNode },
     byId: { 0: rootNode },
@@ -13,24 +20,29 @@ function nextIndex<T>({ byId }: TreeIndex<T>) {
   return Math.max(...Object.values(byId).map(({ id }) => id)) + 1;
 }
 
-export const indexWith = <T>(toParts: (data: T) => string[], rootData: T) => {
-  const reducer = (index: TreeIndex<T>, data: T): TreeIndex<T> => {
+export const indexWith = <T, U>(
+  transform: (t: T) => U[],
+  prefixer: (part: U) => string,
+  rootData: U,
+) => {
+  const reducer = (index: TreeIndex<U>, parts: U[]): TreeIndex<U> => {
     const { byPath, byId } = index;
-    const parts = toParts(data);
     let id = nextIndex(index);
     let prefix = '';
     for (const part of parts) {
-      const newPrefix = `${prefix}/${part}`;
+      const partPrefix = prefixer(part);
+      const newPrefix = `${prefix}/${partPrefix}`;
       if (!byPath[newPrefix]) {
         const newId = id++;
         const newNode = {
           id: newId,
-          data,
-          prefix: part,
-          children: [],
+          data: part,
+          prefix: partPrefix,
+          level: byPath[prefix].level + 1,
+          nodes: [],
           parent: byPath[prefix].id,
-        } as FlatTreeNode<T>;
-        byPath[prefix].children.push(newId);
+        } as FlatTreeNode<U>;
+        byPath[prefix].nodes.push(newId);
         byPath[newPrefix] = newNode;
         byId[newId] = newNode;
       }
@@ -38,5 +50,5 @@ export const indexWith = <T>(toParts: (data: T) => string[], rootData: T) => {
     }
     return { byPath, byId };
   };
-  return (data: T[]) => data.reduce(reducer, createRootIndex(rootData));
+  return (data: T[]) => data.map(transform).reduce(reducer, createRootIndex(rootData));
 };
