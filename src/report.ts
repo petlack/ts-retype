@@ -2,7 +2,7 @@ import fs from 'fs';
 import { scan } from './scan';
 import { resolveOutputFilePath } from './cmd';
 import { createLogger } from './log';
-import { Metadata, ReportArgs, ScanArgs, TypeDuplicate } from './types';
+import { Metadata, ReportArgs, ReportResult, ScanArgs } from './types';
 import { dir, stringify } from './utils';
 
 const log = createLogger(console.log);
@@ -21,11 +21,6 @@ function findTemplate(): string | null {
   log.log('could not find index.html in src/ or dist/');
   return null;
 }
-
-export type ReportResult = {
-  data: TypeDuplicate[];
-  meta: Metadata;
-};
 
 export function report(args: ScanArgs & ReportArgs) {
   log.log('running with args');

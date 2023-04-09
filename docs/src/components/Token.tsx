@@ -1,37 +1,5 @@
+import { Snippet, Token } from '../../../src/types/snippet';
 import './Token.styl';
-
-export type Token = (
-  {
-    type: 'element';
-    tagName: string;
-    properties: { className: string[] };
-    children: { type: string; value: string }[];
-    value?: undefined;
-    }
-  | {
-    type: 'text';
-    value: string;
-    tagName?: undefined;
-    properties?: { className: string[] };
-    children?: undefined;
-    }
-  | {
-    type: 'newline';
-    value?: string;
-    tagName?: undefined;
-    properties?: undefined;
-    children?: undefined;
-  }
-);
-
-export type Snippet = {
-  name: string;
-  lang: string;
-  code: {
-    type: string;
-    children: Token[];
-  };
-};
 
 export function insertNewlines(snippet: Snippet): Snippet {
   const withNewLines = snippet.code.children.reduce(

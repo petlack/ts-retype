@@ -1,11 +1,10 @@
+import { TypeDuplicate } from '../../src/types';
 import {
-  TypeDuplicate,
   EnumCandidateType,
   FunctionCandidateType,
   LiteralCandidateType,
   UnionCandidateType,
-  // ArrayElement,
-} from '../../src/types';
+} from '../../src/types/candidate';
 
 export type Cluster = Pick<TypeDuplicate, 'files' | 'names'>;
 

@@ -4,7 +4,7 @@ import {
   EnumCandidateType,
   FunctionCandidateType,
   UnionCandidateType,
-} from '../src/types';
+} from '../src/types/candidate';
 import { createFile } from '../src/utils';
 
 describe('parse', () => {

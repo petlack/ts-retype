@@ -1,15 +1,14 @@
-import { isEmpty, symmetricDifference, pluck, intersection, concat, uniq } from 'ramda';
+import { isEmpty, symmetricDifference, pluck, intersection } from 'ramda';
 import Progress from 'progress';
 import {
-  Similarity,
   CandidateType,
-  FunctionCandidateType,
+  Property,
   EnumCandidateType,
   UnionCandidateType,
+  FunctionCandidateType,
   LiteralCandidateType,
-  Property,
-  Clusters,
-} from './types';
+} from './types/candidate';
+import { Similarity, Clusters } from './types/similarity';
 
 const eqValues = (left: unknown[], right: unknown[]) => isEmpty(symmetricDifference(left, right));
 

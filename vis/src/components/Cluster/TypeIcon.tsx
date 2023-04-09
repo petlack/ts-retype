@@ -1,10 +1,11 @@
-import { CandidateType } from '../../../../src/types';
+
+import { ArrayElement, TypeDuplicate } from '../../../../src/types';
 import { Tooltip } from '../../hooks/useTooltip';
 
 import './TypeIcon.scss';
 
 export type TypeIconProps = {
-  type: CandidateType['type'];
+  type: ArrayElement<TypeDuplicate['files']>['type'];
 }
 
 export function TypeIcon({ type }: TypeIconProps) {

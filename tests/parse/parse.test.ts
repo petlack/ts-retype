@@ -1,6 +1,6 @@
 import { parse } from '../../src/parse';
-import { FunctionCandidateType, LiteralCandidateType } from '../../src/types';
 import { createFile } from '../../src/utils';
+import { FunctionCandidateType } from '../types/candidate';
 
 describe('parse', () => {
   test('simple type', () => {

@@ -9,7 +9,7 @@ import {
   LiteralCandidateType,
   Property,
   UnionCandidateType,
-} from './types';
+} from './types/candidate';
 
 import { getNodeText, toName } from './utils';
 

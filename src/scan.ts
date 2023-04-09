@@ -4,9 +4,10 @@ import { concat } from 'ramda';
 import { clustersToOutput, getTypesInFile } from './clusters';
 import { createLogger } from './log';
 import { similarityMatrix, toSimilarityPairs, pairsToClusters } from './similarity';
-import { Metadata, ScanArgs, SourceCandidateType, TypeDuplicate } from './types';
+import { Metadata, ScanArgs, TypeDuplicate } from './types';
 import { loadFile, formatDuration } from './utils';
 import { formatISO } from 'date-fns';
+import { SourceCandidateType } from './types/candidate';
 
 const log = createLogger(console.log);
 
