@@ -2,18 +2,18 @@ import './Token.styl';
 
 export type Token = (
   {
-      type: 'element';
-      tagName: string;
-      properties: { className: string[] };
-      children: { type: string; value: string }[];
-      value?: undefined;
+    type: 'element';
+    tagName: string;
+    properties: { className: string[] };
+    children: { type: string; value: string }[];
+    value?: undefined;
     }
   | {
-      type: 'text';
-      value: string;
-      tagName?: undefined;
-      properties?: undefined;
-      children?: undefined;
+    type: 'text';
+    value: string;
+    tagName?: undefined;
+    properties?: { className: string[] };
+    children?: undefined;
     }
   | {
     type: 'newline';
@@ -78,17 +78,17 @@ export function TokenElement({ token }: { token: Token }) {
   if (token.type === 'element') {
     return (
       <span className={token.properties.className.join(' ')}>
-        {token.children.map(ch => ch.value).join(' ')}
+        {token.children.map((ch, idx) => <TokenElement key={idx} token={ch as Token} />)}
       </span>
     );
   }
   if (token.type === 'newline') {
     return (
-      <span className="token">{'\n'}</span>
+      <span>{'\n'}</span>
     );
   }
   return (
-    <span className="token">
+    <span className={['token', ...(token.properties?.className || [])].join(' ')}>
       {token.value}
     </span>
   );

@@ -6,47 +6,51 @@
 .dark
   .token
     color: $white;
-  .keyword
-    color: $lightOrange;
-  .class-name
-    color: orange;
-  .operator
-    color: green;
-  .punctuation
-    color: $grayLight;
-  .builtin
-    color: $lightPurple;
-  .string
-    color: $lightBlue;
-  .number
-    color: $lightBlue;
-  .comment
-    color: lightgray;
-  .function
-    color: $lightPurple;
-  .property
-    color: $white;
+    & > .token
+      color: inherit;
+    &.keyword
+      color: $lightOrange;
+    &.class-name
+      color: orange;
+    &.operator
+      color: green;
+    &.punctuation
+      color: $grayLight;
+    &.builtin
+      color: $lightPurple;
+    &.string
+      color: $lightBlue;
+    &.number
+      color: $lightBlue;
+    &.comment
+      color: lightgray;
+    &.function
+      color: $lightPurple;
+    &.property
+      color: $white;
 
 .light
   .token
     color: $blue;
-  .keyword
-    color: $orange;
-  .class-name
-    color: orange;
-  .operator
-    color: green;
-  .punctuation
-    color: $black;
-  .builtin
-    color: $purple;
-  .string
-    color: $blueDark;
-  .number
-    color: $blueDark;
-  .comment
-    color: lightgray;
-  .function
-    color: $purple;
-  .property
-    color: $blue;
+    & > .token
+      color: inherit;
+    &.keyword
+      color: $orange;
+    &.class-name
+      color: orange;
+    &.operator
+      color: green;
+    &.punctuation
+      color: $black;
+    &.builtin
+      color: $purple;
+    &.string
+      color: $blueDark;
+    &.number
+      color: $blueDark;
+    &.comment
+      color: lightgray;
+    &.function
+      color: $purple;
+    &.property
+      color: $blue;
