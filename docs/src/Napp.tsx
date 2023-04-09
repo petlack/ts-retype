@@ -1,33 +1,7 @@
 import './Napp.styl';
 
 import Snippets from './generated/snippets';
-
-type Token = (
-  {
-      type: 'element';
-      tagName: string;
-      properties: { className: string[] };
-      children: { type: string; value: string }[];
-      value?: undefined;
-    }
-  | {
-      type: 'text';
-      value: string;
-      tagName?: undefined;
-      properties?: undefined;
-      children?: undefined;
-    }
-);
-
-type Snippet = {
-  name: string;
-  lang: string;
-  code: {
-    type: string;
-    children: Token[];
-  };
-};
-
+import { Snippet, Token } from '../../src/types/snippet';
 
 type NappProps = {
   snippet: Snippet;
@@ -51,7 +25,7 @@ export default function() {
   return (
     <div>
       <Napp snippet={Snippets.type as Snippet} />
-      <Napp snippet={Snippets.RetypeArgs as Snippet} />
+      <Napp snippet={Snippets.ScanProps as Snippet} />
       <Napp snippet={Snippets.TypeDuplicate as Snippet} />
       <Napp snippet={Snippets.duplicate as Snippet} />
       <Napp snippet={Snippets.function as Snippet} />

@@ -61,11 +61,11 @@ export type Facet<R> = {
   matches: (record: R, value: string | number) => boolean;
 };
 
-export type SearchArgs = {
+export type SearchProps = {
   facets: Facet<FulltextData>[];
 };
 
-export function Search({ facets }: SearchArgs) {
+export function Search({ facets }: SearchProps) {
   const miniSearch = new MiniSearch({
     fields: ['name', 'fulltext'],
     storeFields: [

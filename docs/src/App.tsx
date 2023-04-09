@@ -2,14 +2,14 @@ import { Bash } from './components/Bash';
 import { Code } from './components/Code';
 import { JsTsCode } from './components/JsTsCode';
 import { Landing } from './components/Landing';
+import { Menu } from './components/Menu';
 import { MultilangWindow } from './components/MultilangWindow';
 import { Options } from './components/Options';
-import { Window } from './components/Window';
-import { Snippet } from './components/Token';
 import Snippets from './generated/snippets';
-import './App.styl';
-import { Menu } from './components/Menu';
 import { TopBar } from './uikit/TopBar';
+import { Window } from './components/Window';
+import './App.styl';
+import { Snippet } from '../../src/types/snippet';
 
 const theme = 'light';
 // const theme = 'dark';
@@ -90,8 +90,8 @@ ts-retype -c .`
         <h2>ts-retype</h2>
         <p>You can also run it programatically, using ts-retype package.</p>
         <JsTsCode theme={theme} snippet={Snippets.tsRetype as Snippet} />
-        <p>The input for <strong>scan</strong> is of type <strong>ScanArgs</strong></p>
-        <JsTsCode theme={theme} snippet={Snippets.RetypeArgs as Snippet} />
+        <p>The input for <strong>scan</strong> is of type <strong>ScanProps</strong></p>
+        <JsTsCode theme={theme} snippet={Snippets.ScanProps as Snippet} />
         <p>An example for the snippets in the landing page would look like this</p>
         <JsTsCode theme={theme} snippet={Snippets.duplicate as Snippet} />
         <p>The return type of <strong>scan</strong> is an array of <strong>TypeDuplicate</strong></p>

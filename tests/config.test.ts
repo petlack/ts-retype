@@ -8,10 +8,10 @@ function writeConfig(path: string, config: Partial<RetypeConfig>) {
 describe('RetypeConfig', () => {
   describe('fromCmd', () => {
     it('resolves defaults', () => {
-      expect(RetypeConfig.fromCmd({})).toEqual(DEFAULT_CONFIG);
+      expect(RetypeConfig.fromCmdProps({})).toEqual(DEFAULT_CONFIG);
     });
     it('resolves with options', () => {
-      expect(RetypeConfig.fromCmd({ json: './foo.json' })).toEqual({
+      expect(RetypeConfig.fromCmdProps({ json: './foo.json' })).toEqual({
         ...DEFAULT_CONFIG,
         json: './foo.json',
       });
@@ -23,7 +23,10 @@ describe('RetypeConfig', () => {
       describe('key exists in both', () => {
         it('resolves value from options', () => {
           expect(
-            RetypeConfig.fromCmd({ config: './.tmp-retyperc', output: './output-from-cmd.html' }),
+            RetypeConfig.fromCmdProps({
+              config: './.tmp-retyperc',
+              output: './output-from-cmd.html',
+            }),
           ).toEqual({
             ...DEFAULT_CONFIG,
             output: './output-from-cmd.html',
@@ -32,7 +35,7 @@ describe('RetypeConfig', () => {
       });
       describe('key exist only in config', () => {
         it('resolves value from config', () => {
-          expect(RetypeConfig.fromCmd({ config: './.tmp-retyperc' })).toEqual({
+          expect(RetypeConfig.fromCmdProps({ config: './.tmp-retyperc' })).toEqual({
             ...DEFAULT_CONFIG,
             output: './output-from-config.html',
           });
@@ -40,7 +43,9 @@ describe('RetypeConfig', () => {
       });
       describe('key exist only in options', () => {
         it('resolves value from config', () => {
-          expect(RetypeConfig.fromCmd({ config: './.tmp-retyperc', include: ['./*.ts'] })).toEqual({
+          expect(
+            RetypeConfig.fromCmdProps({ config: './.tmp-retyperc', include: ['./*.ts'] }),
+          ).toEqual({
             ...DEFAULT_CONFIG,
             output: './output-from-config.html',
             include: ['./*.ts'],
@@ -49,7 +54,7 @@ describe('RetypeConfig', () => {
       });
       describe('key does not exist', () => {
         it('resolves default value', () => {
-          expect(RetypeConfig.fromCmd({ config: './.tmp-retyperc' })).toEqual({
+          expect(RetypeConfig.fromCmdProps({ config: './.tmp-retyperc' })).toEqual({
             ...DEFAULT_CONFIG,
             output: './output-from-config.html',
             include: DEFAULT_CONFIG.include,
@@ -58,12 +63,12 @@ describe('RetypeConfig', () => {
       });
     });
   });
-  describe('fromArgs', () => {
+  describe('fromScanProps', () => {
     it('resolves defaults', () => {
-      expect(RetypeConfig.fromArgs({})).toEqual(DEFAULT_CONFIG);
+      expect(RetypeConfig.fromScanProps({})).toEqual(DEFAULT_CONFIG);
     });
     it('resolves with options', () => {
-      expect(RetypeConfig.fromArgs({ include: ['index.ts'] })).toEqual({
+      expect(RetypeConfig.fromScanProps({ include: ['index.ts'] })).toEqual({
         ...DEFAULT_CONFIG,
         include: ['index.ts'],
       });

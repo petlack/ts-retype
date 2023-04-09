@@ -2,7 +2,7 @@ import fs from 'fs';
 import { scan } from './scan';
 import { resolveOutputFilePath } from './cmd';
 import { createLogger } from './log';
-import { Metadata, ReportArgs, ReportResult, ScanArgs } from './types';
+import { Metadata, ReportProps, ReportResult, ScanProps } from './types';
 import { dir, stringify } from './utils';
 
 const log = createLogger(console.log);
@@ -22,7 +22,7 @@ function findTemplate(): string | null {
   return null;
 }
 
-export function report(args: ScanArgs & ReportArgs) {
+export function report(args: ScanProps & ReportProps) {
   log.log('running with args');
   log.log(stringify(args));
   log.log();

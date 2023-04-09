@@ -4,7 +4,7 @@ import { concat } from 'ramda';
 import { clustersToOutput, getTypesInFile } from './clusters';
 import { createLogger } from './log';
 import { similarityMatrix, toSimilarityPairs, pairsToClusters } from './similarity';
-import { Metadata, ScanArgs, TypeDuplicate } from './types';
+import { Metadata, ScanProps, TypeDuplicate } from './types';
 import { loadFile, formatDuration } from './utils';
 import { formatISO } from 'date-fns';
 import { SourceCandidateType } from './types/candidate';
@@ -26,7 +26,7 @@ export type ScanResult = {
   meta: Omit<Metadata, 'reportSize'>;
 };
 
-export function scan({ rootDir, exclude, include }: ScanArgs): ScanResult {
+export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
   const files = globSync(include, { cwd: rootDir, ignore: exclude });
   const filesLengths: { [file: string]: number[] } = {};
   const filesTypesCount: { [file: string]: number } = {};

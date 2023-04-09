@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { omit } from 'ramda';
-import { ReportArgs, RetypeCmdOptions, ScanArgs } from './types';
+import { ReportProps, RetypeCmdProps, ScanProps } from './types';
 
 export const DEFAULT_CONFIG: RetypeConfig = {
   exclude: ['**/node_modules/**', '**/dist/**'],
@@ -11,7 +11,7 @@ export const DEFAULT_CONFIG: RetypeConfig = {
   rootDir: '.',
 };
 
-export type RetypeConfig = ScanArgs & ReportArgs;
+export type RetypeConfig = ScanProps & ReportProps;
 
 export function loadConfig(path: string) {
   const configFileData = <Partial<RetypeConfig>>JSON.parse(fs.readFileSync(path).toString());
@@ -22,7 +22,7 @@ function fromConfigFile(file: string): Partial<RetypeConfig> {
   return loadConfig(file);
 }
 
-function fromCmd(options: Partial<RetypeCmdOptions>): RetypeConfig {
+function fromCmdProps(options: Partial<RetypeCmdProps>): RetypeConfig {
   const configFile = options.config
     ? fromConfigFile(options.config)
     : ({} as Partial<RetypeConfig>);
@@ -34,7 +34,7 @@ function fromCmd(options: Partial<RetypeCmdOptions>): RetypeConfig {
   };
 }
 
-function fromArgs(args: Partial<ScanArgs>): RetypeConfig {
+function fromScanProps(args: Partial<ScanProps>): RetypeConfig {
   return {
     ...DEFAULT_CONFIG,
     ...args,
@@ -42,13 +42,13 @@ function fromArgs(args: Partial<ScanArgs>): RetypeConfig {
 }
 
 export interface IRetypeConfig {
-  fromCmd(options: Partial<RetypeCmdOptions>): RetypeConfig;
+  fromCmdProps(options: Partial<RetypeCmdProps>): RetypeConfig;
   fromConfigFile(file: string): Partial<RetypeConfig>;
-  fromArgs(args: Partial<ScanArgs>): RetypeConfig;
+  fromScanProps(args: Partial<ScanProps>): RetypeConfig;
 }
 
 export const RetypeConfig: IRetypeConfig = {
-  fromCmd,
+  fromCmdProps,
   fromConfigFile,
-  fromArgs,
+  fromScanProps,
 };

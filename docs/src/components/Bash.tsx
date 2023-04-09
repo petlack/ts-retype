@@ -1,4 +1,5 @@
-import { Snippet, Token, toTokenLines } from './Token';
+import { Snippet, Token } from '../../../src/types/snippet';
+import { toTokenLines } from './Token';
 import { Window } from './Window';
 import { WithBash } from './WithBash';
 
