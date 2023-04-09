@@ -1,18 +1,16 @@
 import { ClusterTitle } from './ClusterTitle';
+import { DefinitionSnippet } from './DefinitionSnippet';
 import { EnumTypeCluster } from '../../types';
 import { FileListing } from './FileListing';
-import { NamesListing } from './NamesListing';
-import { ValueFeatures } from './ValueFeatures';
 
 import './BaseCluster.scss';
 
-export function EnumCluster({ type, files, members, names }: EnumTypeCluster) {
+export function EnumCluster({ type, group, files, names }: EnumTypeCluster) {
   return (
     <div className="cluster">
       <ClusterTitle names={names} type={type} />
-      <NamesListing names={names} />
-      <ValueFeatures title="Members" values={members} />
-      <FileListing files={files} type={type} />
+      <DefinitionSnippet {...files[0]} />
+      <FileListing files={files} similarity={group} type={type} />
     </div>
   );
 }

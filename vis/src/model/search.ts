@@ -3,7 +3,7 @@ import { assocPath, path, pluck, zip } from 'ramda';
 import { FulltextData } from '../types';
 
 export type Filter = {
-  selectedTab: string;
+  selectedSimilarity: string;
   selectedType: string;
   minFiles: number;
   minProperties: number;
@@ -105,7 +105,7 @@ export function Search({ facets }: SearchArgs) {
       );
 
       const data = filteredResults.filter(
-        combineFacets(facets, [filter.selectedTab, filter.selectedType]),
+        combineFacets(facets, [filter.selectedSimilarity, filter.selectedType]),
       );
 
       const facetsStats = facetStats(filteredResults, facets);

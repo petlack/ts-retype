@@ -2,7 +2,7 @@ import fs from 'fs';
 import { scan } from './scan';
 import { resolveOutputFilePath } from './cmd';
 import { createLogger } from './log';
-import { ReportArgs, ScanArgs } from './types';
+import { Metadata, ReportArgs, ScanArgs, TypeDuplicate } from './types';
 import { dir, stringify } from './utils';
 
 const log = createLogger(console.log);
@@ -22,6 +22,11 @@ function findTemplate(): string | null {
   return null;
 }
 
+export type ReportResult = {
+  data: TypeDuplicate[];
+  meta: Metadata;
+};
+
 export function report(args: ScanArgs & ReportArgs) {
   log.log('running with args');
   log.log(stringify(args));
@@ -31,14 +36,19 @@ export function report(args: ScanArgs & ReportArgs) {
 
   log.log(`scanning types in ${rootDir}`);
 
-  const duplicates = scan(args);
+  const { data: duplicates, meta: scanMeta } = scan(args);
 
   log.log();
   log.log(`found ${duplicates.length} duplicates`);
 
-  const data = JSON.stringify(duplicates);
+  const dataJson = JSON.stringify(duplicates);
 
   log.log();
+
+  const meta: Metadata = {
+    ...scanMeta,
+    reportSize: 0,
+  };
 
   if (!noHtml) {
     const htmlFile = resolveOutputFilePath(output);
@@ -51,9 +61,16 @@ export function report(args: ScanArgs & ReportArgs) {
     fs.cpSync(templateFile, htmlFile);
 
     const html = fs.readFileSync(htmlFile);
-    const replaced = html
+    const withDataJson = html
       .toString()
-      .replace('window.__datajson__="DATA_JSON"', `window.__data__ = ${data}`);
+      .replace('window.__datajson__="DATA_JSON"', `window.__data__ = ${dataJson}`);
+
+    meta.reportSize = withDataJson.length;
+
+    const replaced = withDataJson.replace(
+      'window.__metajson__="META_JSON"',
+      `window.__meta__ = ${meta}`,
+    );
     fs.writeFileSync(htmlFile, replaced);
 
     log.log(`report exported to ${htmlFile}`);
@@ -64,7 +81,13 @@ export function report(args: ScanArgs & ReportArgs) {
   }
 
   if (typeof json === 'string') {
-    fs.writeFileSync(json, data);
+    fs.writeFileSync(
+      json,
+      JSON.stringify({
+        data: duplicates,
+        meta,
+      } as ReportResult),
+    );
     log.log(`json data exported to ${json}`);
     log.log();
   }

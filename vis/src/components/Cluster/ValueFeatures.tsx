@@ -18,7 +18,6 @@ export function ValueFeatures({ title, values }: ValueFeaturesProps) {
   });
   return (
     <div className="properties">
-      <h3>{title} ({values.length})</h3>
       <div className="pre mono">
         {featuresMarkup}
       </div>

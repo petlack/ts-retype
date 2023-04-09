@@ -97,8 +97,12 @@ Defined in [TypeDuplicate](src/types.ts)
 ```typescript
 type TypeDuplicate = {
   files: {
+    name: string;
     file: string;
+    src: string;
+    srcHgl: any;
     lines: [number, number];
+    pos: [number, number];
     type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
   }[];
   group: 'different' | 'renamed' | 'identical';
@@ -116,6 +120,13 @@ type TypeDuplicate = {
     type: string;
   }[];
   returnType?: string;
+  signature?: {
+    name?: string;
+    params: { name: string; type?: string }[];
+    return?: string;
+    strMin?: string;
+    strFull?: string;
+  };
   types?: string[];
 };
 ```

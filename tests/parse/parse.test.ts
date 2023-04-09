@@ -15,7 +15,8 @@ describe('parse', () => {
       {
         name: 'A',
         type: 'literal',
-        pos: [0, 60],
+        pos: [9, 60],
+        lines: [1, 4],
         properties: [
           { name: 'message', type: 'string', text: 'StringKeyword' },
           { name: 'status', type: 'number', text: 'NumberKeyword' },
@@ -39,7 +40,8 @@ describe('parse', () => {
       {
         name: 'B',
         type: 'literal',
-        pos: [0, 73],
+        pos: [9, 72],
+        lines: [1, 5],
         properties: [
           { name: 'message', type: 'string', text: 'StringKeyword' },
           { name: 'status', type: 'number', text: 'NumberKeyword' },
@@ -65,6 +67,7 @@ describe('parse', () => {
         name: 'IFoo',
         type: 'interface',
         pos: [0, 79],
+        lines: [1, 5],
         properties: [
           { name: 'foo', type: '(a: string) => number', text: 'FunctionType' },
           { name: 'bar', type: 'A', text: 'TypeReference' },
@@ -85,14 +88,23 @@ describe('parse', () => {
       {
         name: 'GenericFn',
         type: 'function',
-        pos: [0, 58],
+        pos: [20, 58],
+        lines: [1, 1],
         parameters: [{ name: 'x', type: 'T', text: 'TypeReference' }],
         returnType: '{ foo: string, bar: number }',
+        signature: {
+          name: '',
+          params: [{ name: 'x', type: 'T' }],
+          return: '{ foo: string, bar: number }',
+          strFull: '(x: T) => { foo: string, bar: number }',
+          strMin: '(T) => { foo: string, bar: number }',
+        },
       },
       {
         name: 'anonymous',
         type: 'literal',
-        pos: [29, 58],
+        pos: [30, 58],
+        lines: [1, 1],
         properties: [
           { name: 'foo', type: 'string', text: 'StringKeyword' },
           { name: 'bar', type: 'number', text: 'NumberKeyword' },
@@ -115,6 +127,14 @@ describe('parse', () => {
         name: 'foo',
         type: 'function',
         pos: [0, 73],
+        lines: [1, 3],
+        signature: {
+          name: 'foo',
+          params: [{ name: 'bar', type: 'string' }],
+          return: 'string',
+          strMin: '(string) => string',
+          strFull: 'foo(bar: string) => string',
+        },
         parameters: [{ name: 'bar', type: 'string', text: 'StringKeyword' }],
         returnType: 'string',
       },
@@ -132,7 +152,8 @@ describe('parse', () => {
       {
         name: 'anonymous',
         type: 'literal',
-        pos: [10, 49],
+        pos: [11, 49],
+        lines: [1, 1],
         properties: [
           { name: 'string', type: 'number', text: 'NumberKeyword' },
           { name: 'foo', type: 'number', text: 'NumberKeyword' },
@@ -154,13 +175,15 @@ describe('parse', () => {
       {
         name: 'anonymous',
         type: 'literal',
-        pos: [25, 28],
+        pos: [26, 28],
+        lines: [2, 2],
         properties: [],
       },
       {
         name: 'anonymous',
         type: 'literal',
-        pos: [46, 65],
+        pos: [47, 65],
+        lines: [2, 2],
         properties: [{ name: 'symbol', type: 'T', text: 'TypeReference' }],
       },
     ];
@@ -185,12 +208,14 @@ describe('parse', () => {
       {
         name: 'anonymous',
         type: 'union',
-        pos: [66, 118],
+        pos: [73, 118],
+        lines: [4, 4],
         types: ['name', 'type', 'parameters', 'returnType'],
       },
       {
         name: 'anonymous',
-        pos: [126, 201],
+        pos: [127, 201],
+        lines: [5, 9],
         properties: [
           { name: 'files', type: 'SourceFile[]', text: 'ArrayType' },
           { name: 'names', type: 'Freq', text: 'TypeReference' },
@@ -215,7 +240,8 @@ describe('parse', () => {
       {
         name: 'A',
         type: 'literal',
-        pos: [0, 85],
+        pos: [9, 85],
+        lines: [1, 4],
         properties: [
           { name: 'message', type: 'string', text: 'StringKeyword' },
           { name: 'status', type: '{ code: number, title: string }', text: 'TypeLiteral' },
@@ -224,7 +250,8 @@ describe('parse', () => {
       {
         name: 'anonymous',
         type: 'literal',
-        pos: [46, 78],
+        pos: [47, 78],
+        lines: [3, 3],
         properties: [
           { name: 'code', type: 'number', text: 'NumberKeyword' },
           { name: 'title', type: 'string', text: 'StringKeyword' },

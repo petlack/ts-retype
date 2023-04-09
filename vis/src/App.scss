@@ -97,6 +97,7 @@ main {
   /* padding-top: 0; */
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: 1fr max-content;
   justify-items: center;
   flex: 1;
 
@@ -114,7 +115,7 @@ main {
       transform: translateX(0);
     }
   }
-  .listing {
+  .listing, footer {
     max-width: 1200px;
     min-width: 320px;
     width: 90vw;
@@ -154,7 +155,7 @@ main {
   }
 
   @media only screen and (min-width: 1200px) {
-    .listing {
+    .listing, footer {
       width: 1200px;
     }
   }

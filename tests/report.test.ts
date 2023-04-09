@@ -5,6 +5,9 @@ import { scan } from '../src';
 import { RetypeConfig } from '../src/config';
 import { report } from '../src/report';
 
+import * as url from 'url';
+global.__dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
 function writeSrc(path: string, src: string) {
   fs.writeFileSync(path, src);
 }
@@ -30,7 +33,7 @@ describe('clusters', () => {
     const match = html.match(/window\.__data__\s+=\s+(\[.+?\]);/s);
     expect(match).not.toBeNull();
     if (match) {
-      expect(JSON.parse(match[1])).toEqual(expected);
+      expect(JSON.parse(match[1])).toEqual(expected.data);
     }
   });
 });
