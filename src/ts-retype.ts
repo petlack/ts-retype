@@ -3,13 +3,10 @@
 import fs from 'fs';
 import { createCommand } from 'commander';
 
-// import { resolveOptions } from './cmd';
-// import { findTypeDuplicates } from './clusters';
-// import { DEFAULT_OPTIONS, RetypeOptions } from './types';
 import { dir, stringify } from './utils';
 import { createLogger } from './log';
 import { report } from './report';
-import { DEFAULT_CMD_OPTIONS, RetypeCmdOptions } from './types';
+import { RetypeCmdProps } from './types';
 import { DEFAULT_CONFIG, RetypeConfig } from './config';
 
 const log = createLogger(console.log);
@@ -45,7 +42,7 @@ program
     './retype-report.html',
   );
 
-function parseOptions(): Partial<RetypeCmdOptions> {
+function parseOptions(): Partial<RetypeCmdProps> {
   program.parse();
   const options = program.opts();
   const args = program.processedArgs;
@@ -60,7 +57,7 @@ function parseOptions(): Partial<RetypeCmdOptions> {
   };
 }
 
-function runGenerate(options: Partial<RetypeCmdOptions>) {
+function runGenerate(options: Partial<RetypeCmdProps>) {
   const configPath = typeof options.init === 'string' ? <string>options.init : '.retyperc';
   const config = stringify(DEFAULT_CONFIG);
   fs.writeFileSync(configPath, config);
@@ -84,7 +81,7 @@ function main() {
     throw new Error('missing rootDir');
   }
 
-  const args = RetypeConfig.fromCmd(options);
+  const args = RetypeConfig.fromCmdProps(options);
 
   report(args);
 }

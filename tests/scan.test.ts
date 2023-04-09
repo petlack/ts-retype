@@ -18,7 +18,7 @@ describe('clusters', () => {
     rimrafSync(dir);
   });
   it('finds duplicate files in different files', () => {
-    const given = scan(RetypeConfig.fromArgs({ rootDir: dir }));
+    const given = scan(RetypeConfig.fromScanProps({ rootDir: dir }));
     const expected = [
       {
         names: [

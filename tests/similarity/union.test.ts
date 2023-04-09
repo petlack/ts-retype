@@ -1,6 +1,7 @@
 import { similarity } from '../../src/similarity';
-import { UnionCandidateType, Similarity } from '../../src/types';
 import { expectSimilarity } from '../lib/tests';
+import { UnionCandidateType } from '../../src/types/candidate';
+import { Similarity } from '../../src/types/similarity';
 
 describe('union type', () => {
   test('same names, no members', () => {

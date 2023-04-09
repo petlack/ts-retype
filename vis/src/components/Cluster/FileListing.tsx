@@ -1,4 +1,4 @@
-import { CandidateType, TypeDuplicate } from '../../../../src/types';
+import { ArrayElement, TypeDuplicate } from '../../../../src/types';
 import { useCopyToClipboard } from '../../hooks/useCopy';
 import { SearchAwareText } from '../SearchAwareText';
 import { useToast } from '../Toast';
@@ -8,7 +8,7 @@ import { TypeIcon } from './TypeIcon';
 
 export type FileListingProps = {
   files: TypeDuplicate['files'];
-  type: CandidateType['type'];
+  type: ArrayElement<TypeDuplicate['files']>['type'];
   similarity: TypeDuplicate['group'];
 }
 

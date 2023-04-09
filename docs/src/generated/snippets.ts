@@ -1,6 +1,6 @@
 export default {
-  RetypeArgs: {
-    name: 'RetypeArgs',
+  ScanProps: {
+    name: 'ScanProps',
     lang: 'ts',
     code: {
       type: 'root',
@@ -31,7 +31,7 @@ export default {
           children: [
             {
               type: 'text',
-              value: 'ScanArgs',
+              value: 'ScanProps',
             },
           ],
         },

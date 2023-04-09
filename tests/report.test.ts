@@ -22,7 +22,7 @@ describe('clusters', () => {
     rimrafSync(dir);
   });
   it('generates HTML report', () => {
-    const config = RetypeConfig.fromCmd({
+    const config = RetypeConfig.fromCmdProps({
       rootDir: dir,
       output: dir,
       json: path.join(dir, 'report.json'),

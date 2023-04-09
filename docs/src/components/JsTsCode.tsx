@@ -1,6 +1,7 @@
 import { Code } from './Code';
 import { Window } from './Window';
-import { Snippet, toTokenElements } from './Token';
+import { toTokenElements } from './Token';
+import { Snippet } from '../../../src/types/snippet';
 
 export type JsTsCodeProps = {
   snippet: Snippet;
