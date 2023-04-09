@@ -11,7 +11,9 @@ import './BaseCluster.scss';
 export function LiteralCluster({ type, files, names }: LiteralTypeCluster) {
   const [selectedFile, setSelectedFile] = useState<ArrayElement<typeof files>>(files[0]);
   const onClick = useCallback<NonNullable<ExplorerProps['onClick']>>((node) => {
-    setSelectedFile(node.data);
+    if (node.data.file) {
+      setSelectedFile(node.data.file);
+    }
   }, [setSelectedFile]);
 
   return (
