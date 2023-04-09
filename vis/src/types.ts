@@ -9,10 +9,18 @@ import {
 
 export type Cluster = Pick<TypeDuplicate, 'files' | 'names'>;
 
-export type LiteralTypeCluster = Omit<LiteralCandidateType, 'pos' | 'lines'> & Cluster;
-export type FunctionTypeCluster = Omit<FunctionCandidateType, 'pos' | 'lines'> & Cluster;
-export type EnumTypeCluster = Omit<EnumCandidateType, 'pos' | 'lines'> & Cluster;
-export type UnionTypeCluster = Omit<UnionCandidateType, 'pos' | 'lines'> & Cluster;
+export type LiteralTypeCluster = Omit<LiteralCandidateType, 'pos' | 'lines'> &
+  Pick<TypeDuplicate, 'group'> &
+  Cluster;
+export type FunctionTypeCluster = Omit<FunctionCandidateType, 'pos' | 'lines'> &
+  Pick<TypeDuplicate, 'group'> &
+  Cluster;
+export type EnumTypeCluster = Omit<EnumCandidateType, 'pos' | 'lines'> &
+  Pick<TypeDuplicate, 'group'> &
+  Cluster;
+export type UnionTypeCluster = Omit<UnionCandidateType, 'pos' | 'lines'> &
+  Pick<TypeDuplicate, 'group'> &
+  Cluster;
 
 export type Data = Omit<TypeDuplicate, 'group'> & {
   group: string;

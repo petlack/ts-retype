@@ -14,7 +14,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDirs": ["src", "tests"]
   },
   "include": ["src/**/*", "tests/**/*"],
   "exclude": ["node_modules", "dist"]
