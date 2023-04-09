@@ -4,7 +4,8 @@
     "strict": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "module": "commonjs",
+    "module": "es2020",
+    "lib": ["es2020"],
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
@@ -13,7 +14,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDirs": ["src", "tests"]
   },
   "include": ["src/**/*", "tests/**/*"],
   "exclude": ["node_modules", "dist"]

@@ -1,18 +1,26 @@
+import { useCallback, useState } from 'react';
+import { ArrayElement } from '../../../../src/types';
 import { ClusterTitle } from './ClusterTitle';
-import { FileListing } from './FileListing';
-import { KeyValueFeatures } from './KeyValueFeatures';
+import { DefinitionSnippet } from './DefinitionSnippet';
+import { Explorer } from '../Explorer';
+import { ExplorerProps } from '../Explorer/Explorer';
 import { LiteralTypeCluster } from '../../types';
-import { NamesListing } from './NamesListing';
 
 import './BaseCluster.scss';
 
-export function LiteralCluster({ type, files, properties, names }: LiteralTypeCluster) {
+export function LiteralCluster({ type, files, names }: LiteralTypeCluster) {
+  const [selectedFile, setSelectedFile] = useState<ArrayElement<typeof files>>(files[0]);
+  const onClick = useCallback<NonNullable<ExplorerProps['onClick']>>((node) => {
+    if (node.data.file) {
+      setSelectedFile(node.data.file);
+    }
+  }, [setSelectedFile]);
+
   return (
     <div className="cluster">
       <ClusterTitle names={names} type={type} />
-      <NamesListing names={names} />
-      <KeyValueFeatures keyValues={properties} name="Type properties" />
-      <FileListing files={files} type={type} />
+      <DefinitionSnippet {...selectedFile} />
+      <Explorer files={files} onClick={onClick} />
     </div>
   );
 }

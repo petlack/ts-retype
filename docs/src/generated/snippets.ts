@@ -405,6 +405,53 @@ export default {
         },
         {
           type: 'text',
+          value: '\n    name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'builtin'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: 'string',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
+          type: 'text',
           value: '\n    file',
         },
         {
@@ -452,7 +499,204 @@ export default {
         },
         {
           type: 'text',
+          value: '\n    src',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'builtin'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: 'string',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n    srcHgl',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'builtin'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: 'any',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
+          type: 'text',
           value: '\n    lines',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '[',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'builtin'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: 'number',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'builtin'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: 'number',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ']',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n    pos',
         },
         {
           type: 'element',
@@ -1667,6 +1911,520 @@ export default {
         },
         {
           type: 'text',
+          value: '\n  signature',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '?',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n    name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '?',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'builtin'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: 'string',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n    params',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'builtin'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: 'string',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' type',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '?',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'builtin'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: 'string',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '[',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ']',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n    ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'keyword'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: 'return',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '?',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'builtin'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: 'string',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n    strMin',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '?',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'builtin'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: 'string',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n    strFull',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '?',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'builtin'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: 'string',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n  ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ';',
+            },
+          ],
+        },
+        {
+          type: 'text',
           value: '\n  types',
         },
         {
@@ -1860,810 +2618,6 @@ export default {
         },
         {
           type: 'text',
-          value: '\n  files',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '[',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: '\n    ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '{',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' file',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'string'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: "'src/model.ts'",
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' lines',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '[',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'number'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '12',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'number'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '16',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ']',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' type',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'string'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: "'literal'",
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '}',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: '\n    ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '{',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' file',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'string'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: "'src/auth.ts'",
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' lines',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '[',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'number'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '42',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'number'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '46',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ']',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' type',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'string'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: "'interface'",
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '}',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: '\n    ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '{',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' file',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'string'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: "'src/api.ts'",
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' lines',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '[',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'number'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '76',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'number'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '83',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ']',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' type',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'string'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: "'literal'",
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: '}',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: '\n  ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ']',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: '\n  group',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'operator'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ':',
-            },
-          ],
-        },
-        {
-          type: 'text',
-          value: ' ',
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'string'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: "'renamed'",
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
-          type: 'text',
           value: '\n  names',
         },
         {
@@ -2743,7 +2697,7 @@ export default {
           children: [
             {
               type: 'text',
-              value: "'IUser'",
+              value: "'User'",
             },
           ],
         },
@@ -2871,7 +2825,7 @@ export default {
           children: [
             {
               type: 'text',
-              value: "'User'",
+              value: "'IUser'",
             },
           ],
         },
@@ -3068,6 +3022,23 @@ export default {
           ],
         },
         {
+          type: 'text',
+          value: '\n  ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ']',
+            },
+          ],
+        },
+        {
           type: 'element',
           tagName: 'span',
           properties: {
@@ -3077,6 +3048,2724 @@ export default {
             {
               type: 'text',
               value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n  files',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '[',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n    ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'User'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      type',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'literal'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      pos',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '[',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'number'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '54',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'number'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '117',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ']',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      lines',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '[',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'number'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '6',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'number'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '10',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ']',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      properties',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '[',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n        ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'displayName'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' type',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'string'",
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n        ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'email'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' type',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'string'",
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n        ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'password'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' type',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'string'",
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ']',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      file',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'src/model.ts'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      src',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'template-string'],
+          },
+          children: [
+            {
+              type: 'element',
+              tagName: 'span',
+              properties: {
+                className: ['token', 'template-punctuation', 'string'],
+              },
+              children: [
+                {
+                  type: 'text',
+                  value: '`',
+                },
+              ],
+            },
+            {
+              type: 'element',
+              tagName: 'span',
+              properties: {
+                className: ['token', 'string'],
+              },
+              children: [
+                {
+                  type: 'text',
+                  value:
+                    '// ...\nexport type User = {\n  displayName: string;\n  email: string;\n  password: string;\n};',
+                },
+              ],
+            },
+            {
+              type: 'element',
+              tagName: 'span',
+              properties: {
+                className: ['token', 'template-punctuation', 'string'],
+              },
+              children: [
+                {
+                  type: 'text',
+                  value: '`',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n    ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n    ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'IUser'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      type',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'interface'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      pos',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '[',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'number'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '14',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'number'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '93',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ']',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      lines',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '[',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'number'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '3',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'number'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '7',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ']',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      properties',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '[',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n        ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'displayName'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' type',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'string'",
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n        ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'email'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' type',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'string'",
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n        ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'password'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' type',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'string'",
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ']',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      file',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'src/auth.ts'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      src',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'template-string'],
+          },
+          children: [
+            {
+              type: 'element',
+              tagName: 'span',
+              properties: {
+                className: ['token', 'template-punctuation', 'string'],
+              },
+              children: [
+                {
+                  type: 'text',
+                  value: '`',
+                },
+              ],
+            },
+            {
+              type: 'element',
+              tagName: 'span',
+              properties: {
+                className: ['token', 'string'],
+              },
+              children: [
+                {
+                  type: 'text',
+                  value:
+                    '// ...\ninterface IUser {\n  displayName: string;\n  email: string;\n  password: string;\n}\n// ...',
+                },
+              ],
+            },
+            {
+              type: 'element',
+              tagName: 'span',
+              properties: {
+                className: ['token', 'template-punctuation', 'string'],
+              },
+              children: [
+                {
+                  type: 'text',
+                  value: '`',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n    ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n    ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'anonymous'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      type',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'literal'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      pos',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '[',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'number'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '145',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'number'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '215',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ']',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      lines',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '[',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'number'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '18',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'number'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '22',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ']',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      properties',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '[',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n        ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'displayName'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' type',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'string'",
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n        ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'email'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' type',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'string'",
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n        ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '{',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' name',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'password'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' type',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'string'",
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ']',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      file',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'src/api.ts'",
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n      src',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'template-string'],
+          },
+          children: [
+            {
+              type: 'element',
+              tagName: 'span',
+              properties: {
+                className: ['token', 'template-punctuation', 'string'],
+              },
+              children: [
+                {
+                  type: 'text',
+                  value: '`',
+                },
+              ],
+            },
+            {
+              type: 'element',
+              tagName: 'span',
+              properties: {
+                className: ['token', 'string'],
+              },
+              children: [
+                {
+                  type: 'text',
+                  value:
+                    'async function saveUser(\n  user: {\n    displayName: string;\n    email: string;\n    password: string\n  }) {',
+                },
+              ],
+            },
+            {
+              type: 'element',
+              tagName: 'span',
+              properties: {
+                className: ['token', 'template-punctuation', 'string'],
+              },
+              children: [
+                {
+                  type: 'text',
+                  value: '`',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n    ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: '}',
             },
           ],
         },
@@ -3094,6 +5783,53 @@ export default {
             {
               type: 'text',
               value: ']',
+            },
+          ],
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'punctuation'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ',',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: '\n  group',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'operator'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: ':',
+            },
+          ],
+        },
+        {
+          type: 'text',
+          value: ' ',
+        },
+        {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['token', 'string'],
+          },
+          children: [
+            {
+              type: 'text',
+              value: "'renamed'",
             },
           ],
         },
@@ -3516,19 +6252,6 @@ export default {
           ],
         },
         {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
-            },
-          ],
-        },
-        {
           type: 'text',
           value: '\n  ',
         },
@@ -3542,19 +6265,6 @@ export default {
             {
               type: 'text',
               value: ']',
-            },
-          ],
-        },
-        {
-          type: 'element',
-          tagName: 'span',
-          properties: {
-            className: ['token', 'punctuation'],
-          },
-          children: [
-            {
-              type: 'text',
-              value: ',',
             },
           ],
         },

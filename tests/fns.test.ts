@@ -16,13 +16,32 @@ describe('parse', () => {
     const expected: CandidateType[] = [
       <FunctionCandidateType>{
         name: 'Fn',
-        pos: [0, 49],
+        pos: [10, 49],
+        lines: [1, 1],
         type: 'function',
         parameters: [
           { name: 'a', type: 'string', text: 'StringKeyword' },
           { name: 'b', type: 'number', text: 'NumberKeyword' },
         ],
         returnType: 'Promise<void>',
+        signature: {
+          name: '',
+          params: [
+            { name: 'a', type: 'string' },
+            { name: 'b', type: 'number' },
+          ],
+          return: 'Promise<void>',
+          strFull: `(
+  a: string,
+  b: number
+) => 
+  Promise<void>`,
+          strMin: `(
+  string,
+  number
+) => 
+  Promise<void>`,
+        },
       },
     ];
 
@@ -38,6 +57,7 @@ describe('parse', () => {
         name: 'En',
         type: 'enum',
         pos: [0, 16],
+        lines: [1, 1],
         members: ['a', 'b'],
       },
     ];
@@ -53,7 +73,8 @@ describe('parse', () => {
       <UnionCandidateType>{
         name: 'Un',
         type: 'union',
-        pos: [0, 19],
+        pos: [10, 19],
+        lines: [1, 1],
         types: ['a', 'b'],
       },
     ];

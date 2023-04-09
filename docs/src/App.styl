@@ -36,11 +36,15 @@ main
     lightTheme();
   &.dark
     darkTheme();
-  flexColumn($gapLarge)
+  flexColumn($gapLarge);
   justify-content: flex-start;
   align-items: center;
   background-color: var(--clr-bgMain);
   color: var(--clr-fgText);
+  .topbar-container
+    .strip
+      position: fixed;
+      z-index: 100;
   .window
     background-color: var(--clr-bgCode);
   header

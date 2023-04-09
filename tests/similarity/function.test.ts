@@ -11,6 +11,8 @@ describe('function type', () => {
         parameters: [],
         returnType: 'void',
         pos: [0, 0],
+        lines: [1, 1],
+        signature: { params: [] },
       } as FunctionCandidateType,
       {
         name: 'foo',
@@ -18,6 +20,8 @@ describe('function type', () => {
         parameters: [],
         returnType: 'void',
         pos: [0, 0],
+        lines: [1, 1],
+        signature: { params: [] },
       } as FunctionCandidateType,
     );
     expectSimilarity(given, Similarity.Identical);
@@ -34,6 +38,7 @@ describe('function type', () => {
         parameters,
         returnType: 'void',
         pos: [0, 0],
+        lines: [1, 1],
       } as FunctionCandidateType,
       {
         name: 'foo',
@@ -41,6 +46,7 @@ describe('function type', () => {
         parameters,
         returnType: 'void',
         pos: [0, 0],
+        lines: [1, 1],
       } as FunctionCandidateType,
     );
     expectSimilarity(given, Similarity.Identical);
@@ -57,6 +63,7 @@ describe('function type', () => {
         parameters,
         returnType: 'void',
         pos: [0, 0],
+        lines: [1, 1],
       } as FunctionCandidateType,
       {
         name: 'foo',
@@ -64,6 +71,7 @@ describe('function type', () => {
         parameters,
         returnType: 'number',
         pos: [0, 0],
+        lines: [1, 1],
       } as FunctionCandidateType,
     );
     expectSimilarity(given, Similarity.Different);
@@ -84,6 +92,7 @@ describe('function type', () => {
         parameters: parametersA,
         returnType: 'void',
         pos: [0, 0],
+        lines: [1, 1],
       } as FunctionCandidateType,
       {
         name: 'foo',
@@ -91,6 +100,7 @@ describe('function type', () => {
         parameters: parametersB,
         returnType: 'void',
         pos: [0, 0],
+        lines: [1, 1],
       } as FunctionCandidateType,
     );
     expectSimilarity(given, Similarity.HasIdenticalProperties);
@@ -101,12 +111,14 @@ describe('function type', () => {
         name: 'foo',
         type: 'union',
         pos: [0, 0],
+        lines: [1, 1],
         types: ['Foo', 'Bar'],
       } as UnionCandidateType,
       {
         name: 'foo',
         type: 'union',
         pos: [0, 0],
+        lines: [1, 1],
         types: ['Foo', 'Bar', 'Xyz'],
       } as UnionCandidateType,
     );
@@ -114,8 +126,8 @@ describe('function type', () => {
   });
   test('identical types with no properties and different names', () => {
     const given = similarity(
-      { name: 'foo', type: 'union', pos: [0, 0], types: [] } as UnionCandidateType,
-      { name: 'bar', type: 'union', pos: [0, 0], types: [] } as UnionCandidateType,
+      { name: 'foo', type: 'union', pos: [0, 0], lines: [1, 1], types: [] } as UnionCandidateType,
+      { name: 'bar', type: 'union', pos: [0, 0], lines: [1, 1], types: [] } as UnionCandidateType,
     );
     expectSimilarity(given, Similarity.HasIdenticalProperties);
   });

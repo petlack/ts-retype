@@ -2,8 +2,9 @@ import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
   verbose: true,
+  extensionsToTreatAsEsm: ['.ts'],
   transform: {
-    '^.+\\.ts$': 'ts-jest',
+    '^.+\\.(ts|tsx)?$': ['ts-jest', { useESM: true }],
   },
   collectCoverageFrom: ['<rootDir>/src/**', '<rootDir>/tests/**'],
   modulePathIgnorePatterns: ['<rootDir>/dist/'],

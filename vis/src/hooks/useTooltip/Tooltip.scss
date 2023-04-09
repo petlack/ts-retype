@@ -1,6 +1,10 @@
 .flex {
   display: flex;
 }
+
+.tooltip {
+  display: inline-flex;
+}
   .content {
     position: fixed;
     pointer-events: none;

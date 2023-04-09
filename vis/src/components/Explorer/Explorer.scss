@@ -1,0 +1,72 @@
+.explorer {
+  --margin: 10px;
+  --icon-size: 16px;
+  padding: 1rem;
+  color: #808080;
+  overflow: scroll;
+  display: flex;
+
+  svg {
+    color: #202020;
+    width: var(--icon-size);
+    height: var(--icon-size);
+  }
+
+  .icon-empty {
+    display: flex;
+    width: var(--icon-size);
+  }
+
+  ul {
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      width: 1px;
+      left: calc((var(--margin)) / 2);
+      background-color: var(--clr-border);
+      top: calc(2 * var(--margin));
+      bottom: 0;
+    }
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+    span {
+      display: flex;
+      white-space: nowrap;
+      flex-direction: row;
+      align-items: center;
+      gap: .33rem;
+    }
+  }
+  
+  li {
+    cursor: pointer;
+    span {
+      &:hover {
+        color: #202020;
+      }
+    }
+  }
+
+  .italic {
+    font-style: italic;
+  }
+
+  // for the only list
+  & > ul {
+    // roots
+    & > li > ul {
+      margin: 0 0 0 var(--margin);
+      padding: 0;
+    }
+    // every other level
+    & > li > ul ul {
+        margin: 0 0 0 var(--margin);
+        padding: 0;
+    }
+  }
+}

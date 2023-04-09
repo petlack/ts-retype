@@ -10,36 +10,3 @@
     color: var(--clr-code-value);
   }
 }
-
-.cluster-functional {
-  grid-template-areas:
-    "title title"
-    "names names"
-    "return-type files"
-    "properties files"
-    "properties files"
-  ;
-  grid-template-columns: max-content 1fr;
-
-  @media screen and (max-width: 1024px) {
-    grid-template-areas:
-      "title title"
-      "properties return-type"
-      "properties names"
-      "files files"
-    ;
-    grid-template-columns: max-content 1fr;
-  }
-
-  @media screen and (max-width: 660px) {
-    grid-template-areas:
-      "title"
-      "names"
-      "return-type"
-      "properties"
-      "files"
-    ;
-    grid-template-columns: 1fr;
-  }
-
-}

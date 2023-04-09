@@ -6,12 +6,10 @@ import {
   FunctionCandidateType,
   EnumCandidateType,
   UnionCandidateType,
-  SourceCandidateType,
-  TypeDuplicate,
   LiteralCandidateType,
   Property,
+  Clusters,
 } from './types';
-import { freq, posToLine, selectIndices } from './utils';
 
 const eqValues = (left: unknown[], right: unknown[]) => isEmpty(symmetricDifference(left, right));
 
@@ -175,8 +173,6 @@ export function toSimilarityPairs(m: Similarity[][]): [number, number, Similarit
   return res;
 }
 
-type Clusters = { [s in Similarity]?: Set<number>[] };
-
 export function pairsToClusters(pairs: [number, number, Similarity][]): Clusters {
   if (!pairs) {
     return {} as Clusters;
@@ -193,98 +189,5 @@ export function pairsToClusters(pairs: [number, number, Similarity][]): Clusters
       res[s]?.push(new Set<number>([l, r]));
     }
   }
-  return res;
-}
-
-function chooseClusterNames(types: SourceCandidateType[], idxs: Iterable<number>) {
-  return freq(pluck('name', selectIndices(types, idxs)));
-}
-
-function chooseClusterFiles(
-  types: SourceCandidateType[],
-  idxs: Iterable<number>,
-  lengths: FileLengths,
-) {
-  const toLine = (file: string) => posToLine(lengths[file]);
-  return selectIndices(types, idxs).map((t) => ({
-    file: t.file,
-    type: t.type,
-    pos: t.pos,
-    lines: t.pos.map(toLine(t.file)) as [number, number],
-  }));
-}
-
-function propertyToOutput(prop: Property): Property {
-  return {
-    name: prop.name,
-    type: prop.type,
-  };
-}
-
-function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>) {
-  const selected = selectIndices(types, idxs);
-  const selectedTypes = uniq(pluck('type', selected));
-  // if (selectedTypes.length > 1) {
-  //   console.log('warning: multiple types in a similarity group');
-  // }
-  const type = selectedTypes[0];
-  switch (type) {
-    case 'alias':
-    case 'interface':
-    case 'literal':
-      return {
-        properties: (selected[0] as unknown as LiteralCandidateType).properties.map(
-          propertyToOutput,
-        ),
-      };
-    case 'enum':
-      return {
-        members: (selected[0] as unknown as EnumCandidateType).members,
-      };
-    case 'function':
-      return {
-        parameters: (selected[0] as unknown as FunctionCandidateType).parameters.map(
-          propertyToOutput,
-        ),
-        returnType: (selected[0] as unknown as FunctionCandidateType).returnType,
-      };
-    case 'union':
-      return {
-        types: (types[0] as unknown as UnionCandidateType).types,
-      };
-  }
-}
-
-type FileLengths = { [file: string]: number[] };
-
-function similarityToOutput(sim: Similarity): TypeDuplicate['group'] {
-  switch (sim) {
-    case Similarity.Identical:
-      return 'identical';
-    case Similarity.HasIdenticalProperties:
-      return 'renamed';
-    default:
-      return 'different';
-  }
-}
-
-export function clustersToOutput(
-  types: SourceCandidateType[],
-  clusters: Clusters,
-  lengths: FileLengths,
-): TypeDuplicate[] {
-  const res = Object.entries(clusters).reduce(
-    (res, [group, clusters]) =>
-      concat(
-        res,
-        clusters.map((idxs) => ({
-          names: chooseClusterNames(types, idxs),
-          files: chooseClusterFiles(types, idxs, lengths),
-          group: similarityToOutput(+group as Similarity),
-          ...chooseTypeFeatures(types, idxs),
-        })),
-      ),
-    [] as TypeDuplicate[],
-  );
   return res;
 }

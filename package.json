@@ -1,6 +1,6 @@
 {
   "name": "ts-retype",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "publishConfig": {
     "access": "public"
   },
@@ -43,8 +43,8 @@
     "prepare": "husky install",
     "publish": "cd dist && npm publish",
     "security": "npm audit --audit-level=high",
-    "test": "jest --coverage",
-    "test:watchAll": "jest --watchAll",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "test:watchAll": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
     "transpile": "tsc",
     "vis:build": "cd vis && npm run build",
     "vis:clean": "cd vis && npm run clean",
@@ -57,12 +57,18 @@
   ],
   "dependencies": {
     "commander": "^10.0.0",
+    "date-fns": "^2.29.3",
     "glob": "^9.1.0",
     "progress": "^2.0.3",
     "ramda": "^0.28.0",
+    "refractor": "^4.8.1",
     "typescript": "^4.9.5"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-terser": "^0.4.0",
+    "@rollup/plugin-typescript": "^11.1.0",
     "@types/jest": "^29.4.0",
     "@types/progress": "^2.0.5",
     "@types/ramda": "^0.28.23",

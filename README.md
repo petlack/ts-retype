@@ -35,15 +35,17 @@ npx ts-retype /path/to/project
 ## Usage with Library
 
 ```typescript
-import { createTypeClusters } from 'ts-retype';
+import { scan } from 'ts-retype';
 
-const groups = createTypeClusters({
+const duplicates = await scan({
   exclude: ['**/node_modules/**', '**/dist/**'],
   include: ['**/*.{ts,tsx}'],
   rootDir: '/path/to/project',
 });
 
-console.log(groups);
+for (const dup of duplicates) {
+  console.log(dup.group, dup.names, dup.files);
+}
 ```
 
 See [Data Format](#data-format) for result format.
@@ -95,8 +97,12 @@ Defined in [TypeDuplicate](src/types.ts)
 ```typescript
 type TypeDuplicate = {
   files: {
+    name: string;
     file: string;
+    src: string;
+    srcHgl: any;
     lines: [number, number];
+    pos: [number, number];
     type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
   }[];
   group: 'different' | 'renamed' | 'identical';
@@ -114,6 +120,13 @@ type TypeDuplicate = {
     type: string;
   }[];
   returnType?: string;
+  signature?: {
+    name?: string;
+    params: { name: string; type?: string }[];
+    return?: string;
+    strMin?: string;
+    strFull?: string;
+  };
   types?: string[];
 };
 ```
