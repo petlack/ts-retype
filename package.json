@@ -31,7 +31,7 @@
     "docs:build": "cd docs && npm run build",
     "docs:dev": "cd docs && npm run dev",
     "docs:install": "cd docs && npm ci",
-    "docs:snippets": "cd scripts && npm run run:snippets",
+    "docs:snippets": "cd scripts && npm run run:snippets -- -d ../docs/src/snippets -o ../docs/src/generated",
     "format": "prettier --write './**/*.{js,ts,md,json}' --config ./.prettierrc",
     "format:check": "prettier --check .",
     "link": "cd dist && npm link",

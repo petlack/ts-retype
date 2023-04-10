@@ -5,7 +5,7 @@ import { Landing } from './components/Landing';
 import { Menu } from './components/Menu';
 import { MultilangWindow } from './components/MultilangWindow';
 import { Options } from './components/Options';
-import Snippets from './generated/snippets';
+import * as Snippets from './generated/snippets';
 import { TopBar } from './uikit/TopBar';
 import { Window } from './components/Window';
 import './App.styl';
@@ -84,18 +84,18 @@ ts-retype -c .`
           }
         </Bash>
         <p>An example of a <strong>.retyperc</strong> file</p>
-        <JsTsCode theme={theme} snippet={Snippets.retyperc as Snippet} />
+        <JsTsCode theme={theme} snippet={Snippets.Snippet_retyperc as Snippet} />
       </section>
       <section>
         <h2>ts-retype</h2>
         <p>You can also run it programatically, using ts-retype package.</p>
-        <JsTsCode theme={theme} snippet={Snippets.tsRetype as Snippet} />
+        <JsTsCode theme={theme} snippet={Snippets.Snippet_tsRetype as Snippet} />
         <p>The input for <strong>scan</strong> is of type <strong>ScanProps</strong></p>
-        <JsTsCode theme={theme} snippet={Snippets.ScanProps as Snippet} />
+        <JsTsCode theme={theme} snippet={Snippets.Snippet_ScanProps as Snippet} />
         <p>An example for the snippets in the landing page would look like this</p>
-        <JsTsCode theme={theme} snippet={Snippets.duplicate as Snippet} />
+        <JsTsCode theme={theme} snippet={Snippets.Snippet_duplicate as Snippet} />
         <p>The return type of <strong>scan</strong> is an array of <strong>TypeDuplicate</strong></p>
-        <JsTsCode theme={theme} snippet={Snippets.TypeDuplicate as Snippet} />
+        <JsTsCode theme={theme} snippet={Snippets.Snippet_TypeDuplicate as Snippet} />
       </section>
 
       <section id="examples">

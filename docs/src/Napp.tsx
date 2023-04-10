@@ -1,6 +1,6 @@
 import './Napp.styl';
 
-import Snippets from './generated/snippets';
+import * as Snippets from './generated/snippets';
 import { Snippet, Token } from '../../src/types/snippet';
 
 type NappProps = {
@@ -24,13 +24,13 @@ function Napp({ snippet }: NappProps) {
 export default function() {
   return (
     <div>
-      <Napp snippet={Snippets.type as Snippet} />
-      <Napp snippet={Snippets.ScanProps as Snippet} />
-      <Napp snippet={Snippets.TypeDuplicate as Snippet} />
-      <Napp snippet={Snippets.duplicate as Snippet} />
-      <Napp snippet={Snippets.function as Snippet} />
-      <Napp snippet={Snippets.interface as Snippet} />
-      <Napp snippet={Snippets.retyperc as Snippet} />
+      <Napp snippet={Snippets.Snippet_type as Snippet} />
+      <Napp snippet={Snippets.Snippet_ScanProps as Snippet} />
+      <Napp snippet={Snippets.Snippet_TypeDuplicate as Snippet} />
+      <Napp snippet={Snippets.Snippet_duplicate as Snippet} />
+      <Napp snippet={Snippets.Snippet_function as Snippet} />
+      <Napp snippet={Snippets.Snippet_interface as Snippet} />
+      <Napp snippet={Snippets.Snippet_retyperc as Snippet} />
     </div>
   );
 }

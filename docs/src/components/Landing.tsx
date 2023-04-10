@@ -2,7 +2,7 @@ import { IconDocs, IconGithub } from '../uikit/Icons';
 import { Button } from '../uikit/Button';
 import { MultilangWindow } from './MultilangWindow';
 import { Snippet } from '../../../src/types/snippet';
-import Snippets from '../generated/snippets';
+import * as Snippets from '../generated/snippets';
 import { TsSnippet } from './TsSnippet';
 import './Landing.styl';
 
@@ -61,9 +61,9 @@ export function Landing({ theme }: LandingProps) {
           <p>Static analysis tool for TypeScript that discovers similar types.</p>
         </div> */}
         <div className="snippets">
-          <TsSnippet responsive theme={theme} start={11} snippet={Snippets.type as Snippet} name={'src/model.ts'} />
-          <TsSnippet responsive theme={theme} start={41} snippet={Snippets.interface as Snippet} name={'src/auth.ts'} />
-          <TsSnippet responsive theme={theme} start={75} snippet={Snippets.function as Snippet} name={'src/api.ts'} />
+          <TsSnippet responsive theme={theme} start={11} snippet={Snippets.Snippet_type as Snippet} name={'src/model.ts'} />
+          <TsSnippet responsive theme={theme} start={41} snippet={Snippets.Snippet_interface as Snippet} name={'src/auth.ts'} />
+          <TsSnippet responsive theme={theme} start={75} snippet={Snippets.Snippet_function as Snippet} name={'src/api.ts'} />
         </div>
         {contentMarkup}
         <div className="code-install">
