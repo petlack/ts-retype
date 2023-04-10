@@ -62,9 +62,11 @@ export function report(args: ScanProps & ReportProps) {
 
     meta.reportSize = withDataJson.length;
 
+    const metaJson = JSON.stringify(meta);
+
     const replaced = withDataJson.replace(
       'window.__metajson__="META_JSON"',
-      `window.__meta__ = ${meta}`,
+      `window.__meta__ = ${metaJson}`,
     );
     fs.writeFileSync(htmlFile, replaced);
 

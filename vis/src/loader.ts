@@ -20,5 +20,6 @@ export async function setupData() {
     window.__meta__ = <Metadata>meta;
   } else {
     window.__data__ = [];
+    window.__meta__ = {} as Metadata;
   }
 }
