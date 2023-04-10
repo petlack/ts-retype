@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { rimrafSync } from 'rimraf';
 import { scan } from '../src';
-import { RetypeConfig } from '../src/config';
 import { report } from '../src/report';
+import { RetypeConfig } from '../src/config';
 
 import * as url from 'url';
 global.__dirname = url.fileURLToPath(new URL('.', import.meta.url));
