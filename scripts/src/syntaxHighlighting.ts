@@ -1,46 +1,74 @@
-import fs from 'fs';
-import path from 'path';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs';
+import { join, parse, resolve } from 'path';
+import { createCommand } from 'commander';
 import { refractor } from 'refractor/lib/core.js';
 import ts from 'refractor/lang/typescript.js';
 import json from 'refractor/lang/json.js';
 
-refractor.register(ts);
-refractor.register(json);
+type CmdProps = { dir?: string; list?: string; output: string };
 
-const sourceDir = path.join(process.cwd(), '../docs/src/snippets');
-const targetDir = path.join(process.cwd(), '../docs/src/generated');
+const program = createCommand();
+
+program
+  .name('syntaxHighlighting')
+  .description('generate Snippet from TS file')
+  .option('-d, --dir <path>', 'generate Snippet for each file in a directory')
+  .option('-l, --list <path>', 'generate Snippet for each file in a list of files in given path')
+  .option('-o, --output <path>', 'file to save generated Snippets');
+
+function parseCmdProps(): Partial<CmdProps> {
+  program.parse();
+  const options = program.opts();
+  return options;
+}
 
 function ensureDirectoryExists(directory: string) {
-  if (!fs.existsSync(directory)) {
-    fs.mkdirSync(directory, { recursive: true });
+  if (!existsSync(directory)) {
+    mkdirSync(directory, { recursive: true });
   }
 }
 
-function loadSnippets(snippetsFolderPath: string) {
-  return fs
-    .readdirSync(snippetsFolderPath)
-    .map((fileName) => fileName.split('.'))
-    .map(([name, lang]) => ({
-      name,
-      lang,
-      code: refractor.highlight(
-        fs.readFileSync(path.join(snippetsFolderPath, `${name}.${lang}`)).toString(),
-        lang,
-      ),
-    }))
-    .reduce((res, item) => ({ ...res, [item.name]: item }), {});
+function listFiles(sourceDir: string) {
+  return readdirSync(sourceDir).map((file) => join(sourceDir, file));
 }
 
-console.log('generating syntax highlighted snippets');
+function loadSnippets(snippets: string[]) {
+  return snippets
+    .map((fileName) => parse(resolve(fileName)))
+    .map(({ dir, name, ext }) => ({ dir, name, ext: ext.slice(1) }))
+    .map(({ dir, name, ext }) => ({
+      name,
+      lang: ext,
+      code: refractor.highlight(readFileSync(join(dir, `${name}.${ext}`)).toString(), ext),
+    }));
+}
 
-const snippets = loadSnippets(sourceDir);
+function main() {
+  const config = parseCmdProps();
 
-console.log(snippets);
+  if (!config.output) {
+    console.log('Missing output');
+    program.outputHelp();
+    process.exit(1);
+  }
 
-ensureDirectoryExists(targetDir);
-fs.writeFileSync(
-  path.join(targetDir, 'snippets.ts'),
-  `export default ${JSON.stringify(snippets, null, 2)}`,
-);
+  refractor.register(ts);
+  refractor.register(json);
 
-console.log('done');
+  console.log('generating syntax highlighted snippets');
+
+  const files = config.dir ? listFiles(config.dir) : [];
+
+  const targetDir = config.output;
+  ensureDirectoryExists(targetDir);
+
+  const snippets = loadSnippets(files);
+  const exports = snippets.map(
+    (snippet) => `export const Snippet_${snippet.name} = ${JSON.stringify(snippet)};`,
+  );
+  writeFileSync(join(targetDir, 'snippets.ts'), exports.join('\n\n'));
+
+  console.log('done');
+}
+
+main();
