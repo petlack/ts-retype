@@ -15,13 +15,14 @@
   "bugs": "https://github.com/petlack/ts-retype/issues",
   "main": "index.js",
   "bin": {
-    "ts-retype": "dist/ts-retype.js"
+    "ts-retype": "dist/ts-retype.cjs"
   },
+  "type": "module",
   "scripts": {
-    "bin": "./dist/ts-retype.js",
-    "bin:dev": "rollup -c && ./dist/ts-retype.js",
-    "bin:perf": "npm run build && node --stack-size=2000 --max-old-space-size=32768 dist/ts-retype.js",
-    "bin:rebuild": "npm run build && ./dist/ts-retype.js",
+    "bin": "./dist/ts-retype.cjs",
+    "bin:dev": "rollup -c && ./dist/ts-retype.cjs",
+    "bin:perf": "npm run build && node --stack-size=2000 --max-old-space-size=32768 dist/ts-retype.cjs",
+    "bin:rebuild": "npm run build && ./dist/ts-retype.cjs",
     "build": "rollup -c",
     "build:all": "npm run build && npm run docs:build",
     "bump": "node config/bump.cjs",

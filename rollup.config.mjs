@@ -29,7 +29,7 @@ const config = [
   {
     input: 'src/ts-retype.ts',
     output: {
-      file: 'dist/ts-retype.js',
+      file: 'dist/ts-retype.cjs',
       format: 'cjs',
       exports: 'named',
       // banner: '#!/usr/bin/env node',
