@@ -1,9 +1,9 @@
-type TypeDuplicate = {
+export type TypeDuplicate = {
   files: {
     name: string;
     file: string;
     src: string;
-    srcHgl: any;
+    srcHgl: Token;
     lines: [number, number];
     pos: [number, number];
     type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';

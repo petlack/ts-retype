@@ -1,4 +1,6 @@
-const duplicate: TypeDuplicate = {
+import { TypeDuplicate } from 'ts-retype';
+
+export const duplicate: TypeDuplicate = {
   names: [
     { name: 'User', count: 1 },
     { name: 'IUser', count: 1 },
@@ -16,12 +18,7 @@ const duplicate: TypeDuplicate = {
         { name: 'password', type: 'string' }
       ],
       file: 'src/model.ts',
-      src: `// ...
-export type User = {
-  displayName: string;
-  email: string;
-  password: string;
-};`
+      src: '...omitted...'
     },
     {
       name: 'IUser',
@@ -34,31 +31,20 @@ export type User = {
         { name: 'password', type: 'string' }
       ],
       file: 'src/auth.ts',
-      src: `// ...
-interface IUser {
-  displayName: string;
-  email: string;
-  password: string;
-}
-// ...`
+      src: '...omitted...'
     },
     {
       name: 'anonymous',
       type: 'literal',
-      pos: [145, 215],
-      lines: [18, 22],
+      pos: [142, 198],
+      lines: [17, 17],
       properties: [
         { name: 'displayName', type: 'string' },
         { name: 'email', type: 'string' },
         { name: 'password', type: 'string' }
       ],
       file: 'src/api.ts',
-      src: `async function saveUser(
-  user: {
-    displayName: string;
-    email: string;
-    password: string
-  }) {`
+      src: '...omitted...'
     }
   ],
   group: 'renamed',

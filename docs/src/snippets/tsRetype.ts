@@ -1,11 +1,13 @@
 import { scan } from 'ts-retype';
 
-const duplicates = await scan({
+const { data, meta } = scan({
   exclude: ['**/node_modules/**', '**/dist/**'],
   include: ['**/*.{ts,tsx}'],
-  rootDir: '/path/to/project',
+  rootDir: '.',
 });
 
-for (const dup of duplicates) {
+console.log(meta);
+
+for (const dup of data) {
   console.log(dup.group, dup.names, dup.files);
 }

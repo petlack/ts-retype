@@ -7,10 +7,16 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "dev": "nodemon --exec 'ts-node --esm' src/extractSnippets.ts",
+    "dev:extract": "ts-node --esm src/extractSnippets.ts",
     "dev:snippets": "ts-node --esm src/syntaxHighlighting.ts",
     "run:snippets": "npm run build && node dist/syntaxHighlighting.js"
   },
+  "dependencies": {
+    "ramda": "^0.29.0"
+  },
   "devDependencies": {
+    "@types/ramda": "^0.28.24",
     "esm": "^3.2.25",
     "refractor": "^4.8.1",
     "ts-node": "^10.9.1",
