@@ -36,8 +36,8 @@ export const duplicate: TypeDuplicate = {
     {
       name: 'anonymous',
       type: 'literal',
-      pos: [142, 198],
-      lines: [17, 17],
+      pos: [195, 266],
+      lines: [18, 22],
       properties: [
         { name: 'displayName', type: 'string' },
         { name: 'email', type: 'string' },

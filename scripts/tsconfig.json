@@ -3,8 +3,11 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",
+    "isolatedModules": true,
     "esModuleInterop": true,
-    "outDir": "dist"
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "rootDirs": ["src", "../../src"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "**/*.test.ts"]
