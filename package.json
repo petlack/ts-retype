@@ -31,6 +31,7 @@
     "docs:build": "cd docs && npm run build",
     "docs:dev": "cd docs && npm run dev",
     "docs:install": "cd docs && npm ci",
+    "docs:readme": "cd scripts && npm run run:readme",
     "docs:snippets": "cd scripts && npm run run:docs",
     "example:build": "cd example && npm run build",
     "format": "prettier --write './**/*.{js,ts,md,json}' --config ./.prettierrc",

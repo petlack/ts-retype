@@ -4,10 +4,10 @@ import { createCommand } from 'commander';
 import { refractor } from 'refractor/lib/core.js';
 import ts from 'refractor/lang/typescript.js';
 import json from 'refractor/lang/json.js';
-import { run } from './cmd.js';
+import { BaseCmdProps, execute } from './cmd.js';
 import { isMain } from './isMain.js';
 
-type CmdProps = { dir?: string; list?: string; output: string };
+type CmdProps = BaseCmdProps & { dir?: string; list?: string; output?: string };
 
 const program = createCommand();
 
@@ -17,12 +17,6 @@ program
   .option('-d, --dir <path>', 'generate Snippet for each file in a directory')
   .option('-l, --list <path>', 'generate Snippet for each file in a list of files in given path')
   .option('-o, --output <path>', 'file to save generated Snippets');
-
-function parseCmdProps(): Partial<CmdProps> {
-  program.parse();
-  const options = program.opts();
-  return options;
-}
 
 function ensureDirectoryExists(directory: string) {
   if (!existsSync(directory)) {
@@ -45,7 +39,7 @@ function loadSnippets(snippets: string[]) {
     }));
 }
 
-export function syntaxHighlighting(config: CmdProps) {
+export function syntaxHighlighting(config: Partial<CmdProps>) {
   if (!config.output) {
     console.log('Missing output');
     throw new Error('Missing output');
@@ -68,20 +62,6 @@ export function syntaxHighlighting(config: CmdProps) {
   writeFileSync(join(targetDir, 'snippets.ts'), exports.join('\n\n'));
 }
 
-function main() {
-  const config = parseCmdProps() as CmdProps;
-
-  try {
-    syntaxHighlighting(config);
-  } catch (e: any) {
-    console.log(e.message);
-    program.outputHelp();
-    process.exit(1);
-  }
-
-  console.log('done');
-}
-
 if (isMain(import.meta)) {
-  run(main);
+  execute(program, syntaxHighlighting);
 }

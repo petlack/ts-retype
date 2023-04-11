@@ -14,23 +14,17 @@ import {
 } from 'ramda';
 import ts from 'typescript';
 import { ReportResult } from '../../src/types';
-import { run } from './cmd.js';
+import { BaseCmdProps, execute } from './cmd.js';
 import { isMain } from './isMain.js';
 import { stringifyNice } from './stringify.js';
 
-type CmdProps = { verbose?: boolean };
+type CmdProps = BaseCmdProps;
 
 const program = createCommand();
 
 program
   .name('extractSnippets')
   .description('extract snippets from source files to destination files');
-
-function parseCmdProps(): Partial<CmdProps> {
-  program.parse();
-  const options = program.opts();
-  return options;
-}
 
 function findNode(srcFile: ts.SourceFile, name: string): ts.Node | null {
   let targetNode: ts.Node | null = null;
@@ -154,20 +148,6 @@ export function extractSnippets(config: CmdProps) {
   }
 }
 
-function main() {
-  const config = parseCmdProps() as CmdProps;
-
-  try {
-    extractSnippets(config);
-  } catch (e: any) {
-    console.log(e.message);
-    program.outputHelp();
-    process.exit(1);
-  }
-
-  console.log('done');
-}
-
 if (isMain(import.meta)) {
-  run(main);
+  execute(program, extractSnippets);
 }
