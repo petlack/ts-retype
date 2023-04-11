@@ -7,6 +7,7 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
+    "check": "tsc && npm run report && npm run start && ts-node --esm src/check.ts",
     "report": "ts-retype .",
     "start": "ts-node --esm src/index.ts"
   },

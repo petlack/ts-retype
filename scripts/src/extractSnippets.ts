@@ -136,8 +136,12 @@ export function extractSnippets(config: CmdProps) {
     { src: '../.retyperc', dst: '../docs/src/snippets/retyperc.json' },
     {
       src: '../example/data.json',
-      dst: '../docs/src/snippets/duplicate.ts',
+      dst: '../example/src/duplicate.ts',
       transform: selectDuplicate,
+    },
+    {
+      src: '../example/src/duplicate.ts',
+      dst: '../docs/src/snippets/duplicate.ts',
     },
   ];
 

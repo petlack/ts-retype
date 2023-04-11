@@ -7,6 +7,10 @@ export type TypeDuplicate = {
     lines: [number, number];
     pos: [number, number];
     type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
+    properties?: {
+      name: string;
+      type: string;
+    }[];
   }[];
   group: 'different' | 'renamed' | 'identical';
   names: {
