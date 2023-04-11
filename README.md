@@ -37,13 +37,15 @@ npx ts-retype /path/to/project
 ```typescript
 import { scan } from 'ts-retype';
 
-const duplicates = await scan({
+const { data, meta } = scan({
   exclude: ['**/node_modules/**', '**/dist/**'],
   include: ['**/*.{ts,tsx}'],
-  rootDir: '/path/to/project',
+  rootDir: '.',
 });
 
-for (const dup of duplicates) {
+console.log(meta);
+
+for (const dup of data) {
   console.log(dup.group, dup.names, dup.files);
 }
 ```
@@ -55,6 +57,14 @@ See [Data Format](#data-format) for result format.
 ### CLI options
 
 ```console
+==================================================
+=                   ts-retype                    =
+=                     v0.2.4                     =
+==================================================
+
+docs:  https://petlack.github.io/ts-retype/
+github:  https://github.com/petlack/ts-retype
+
 Usage: ts-retype [options] <path-to-project>
 
 Discover duplicate TypeScript types in your codebase.
@@ -64,17 +74,22 @@ Arguments:
 
 Options:
   -V, --version                      output the version number
-  -c, --config [path]                load config - if no path provided, loads .retyperc from current directory. if not
+  -c, --config [path]                load config - if no path provided, loads
+                                     .retyperc from current directory. if not
                                      set, use default config
   -e, --exclude [glob...]            glob patterns that will be ignored
-  -g, --init [file-path]             initializes with default config. if no path is provided, creates .retyperc in the
+  -g, --init [file-path]             initializes with default config. if no
+                                     path is provided, creates .retyperc in the
                                      current directory
-  -i, --include [glob...]            glob patterns that will be included in search
-  -j, --json <file-path>             file path to export JSON report. if not set, does not export JSON.
-  -n, --noHtml                       if set, does not export HTML (default: false)
-  -o, --output <file-path|dir-path>  HTML report file path - if provided with dir, create index.html file inside the
-                                     dir (default: "./retype-report.html")
+  -i, --include [glob...]            glob patterns that will be included in
+                                     search
+  -j, --json <file-path>             file path to export JSON report. if not
+                                     set, does not export JSON.
+  -n, --noHtml                       if set, does not export HTML
+  -o, --output <file-path|dir-path>  HTML report file path - if provided with
+                                     dir, create index.html file inside the dir
   -h, --help                         display help for command
+
 ```
 
 ### .retyperc
@@ -95,15 +110,19 @@ Options:
 Defined in [TypeDuplicate](src/types.ts)
 
 ```typescript
-type TypeDuplicate = {
+export type TypeDuplicate = {
   files: {
     name: string;
     file: string;
-    src: string;
-    srcHgl: any;
     lines: [number, number];
     pos: [number, number];
     type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
+    src: string;
+    srcHgl?: Token;
+    properties?: {
+      name: string;
+      type: string;
+    }[];
   }[];
   group: 'different' | 'renamed' | 'identical';
   names: {
