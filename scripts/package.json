@@ -7,9 +7,11 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon --exec 'ts-node --esm' src/extractSnippets.ts",
+    "dev": "nodemon --exec 'ts-node --esm'",
+    "dev:docs": "ts-node --esm src/generateDocs.ts",
     "dev:extract": "ts-node --esm src/extractSnippets.ts",
     "dev:snippets": "ts-node --esm src/syntaxHighlighting.ts",
+    "run:docs": "npm run build && node dist/generateDocs.js",
     "run:snippets": "npm run build && node dist/syntaxHighlighting.js"
   },
   "dependencies": {

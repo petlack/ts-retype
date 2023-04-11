@@ -2,3 +2,4 @@ node_modules
 dist
 coverage
 docs/src/snippets
+example/src/api.ts

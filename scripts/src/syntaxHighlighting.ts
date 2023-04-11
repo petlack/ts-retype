@@ -4,6 +4,8 @@ import { createCommand } from 'commander';
 import { refractor } from 'refractor/lib/core.js';
 import ts from 'refractor/lang/typescript.js';
 import json from 'refractor/lang/json.js';
+import { run } from './cmd.js';
+import { isMain } from './isMain.js';
 
 type CmdProps = { dir?: string; list?: string; output: string };
 
@@ -43,13 +45,10 @@ function loadSnippets(snippets: string[]) {
     }));
 }
 
-function main() {
-  const config = parseCmdProps();
-
+export function syntaxHighlighting(config: CmdProps) {
   if (!config.output) {
     console.log('Missing output');
-    program.outputHelp();
-    process.exit(1);
+    throw new Error('Missing output');
   }
 
   refractor.register(ts);
@@ -67,8 +66,22 @@ function main() {
     (snippet) => `export const Snippet_${snippet.name} = ${JSON.stringify(snippet)};`,
   );
   writeFileSync(join(targetDir, 'snippets.ts'), exports.join('\n\n'));
+}
+
+function main() {
+  const config = parseCmdProps() as CmdProps;
+
+  try {
+    syntaxHighlighting(config);
+  } catch (e: any) {
+    console.log(e.message);
+    program.outputHelp();
+    process.exit(1);
+  }
 
   console.log('done');
 }
 
-main();
+if (isMain(import.meta)) {
+  run(main);
+}

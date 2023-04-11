@@ -14,18 +14,17 @@ import {
 } from 'ramda';
 import ts from 'typescript';
 import { ReportResult } from '../../src/types';
+import { run } from './cmd.js';
+import { isMain } from './isMain.js';
 import { stringifyNice } from './stringify.js';
 
-type CmdProps = { dir?: string; list?: string; output: string };
+type CmdProps = { verbose?: boolean };
 
 const program = createCommand();
 
 program
-  .name('syntaxHighlighting')
-  .description('generate Snippet from TS file')
-  .option('-d, --dir <path>', 'generate Snippet for each file in a directory')
-  .option('-l, --list <path>', 'generate Snippet for each file in a list of files in given path')
-  .option('-o, --output <path>', 'file to save generated Snippets');
+  .name('extractSnippets')
+  .description('extract snippets from source files to destination files');
 
 function parseCmdProps(): Partial<CmdProps> {
   program.parse();
@@ -122,10 +121,7 @@ export const duplicate: TypeDuplicate = ${code};
 `;
 }
 
-function main() {
-  const config = parseCmdProps();
-  console.log(config);
-
+export function extractSnippets(config: CmdProps) {
   const snippets: SnippetNeedle[] = [
     {
       src: '../src/types/duplicate.ts',
@@ -154,4 +150,20 @@ function main() {
   }
 }
 
-main();
+function main() {
+  const config = parseCmdProps() as CmdProps;
+
+  try {
+    extractSnippets(config);
+  } catch (e: any) {
+    console.log(e.message);
+    program.outputHelp();
+    process.exit(1);
+  }
+
+  console.log('done');
+}
+
+if (isMain(import.meta)) {
+  run(main);
+}

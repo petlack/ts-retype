@@ -8,6 +8,13 @@ export const Snippet_ScanProps = {
         type: 'element',
         tagName: 'span',
         properties: { className: ['token', 'keyword'] },
+        children: [{ type: 'text', value: 'export' }],
+      },
+      { type: 'text', value: ' ' },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'keyword'] },
         children: [{ type: 'text', value: 'type' }],
       },
       { type: 'text', value: ' ' },
@@ -128,7 +135,6 @@ export const Snippet_ScanProps = {
         properties: { className: ['token', 'punctuation'] },
         children: [{ type: 'text', value: ';' }],
       },
-      { type: 'text', value: '\n' },
     ],
   },
 };
@@ -139,6 +145,13 @@ export const Snippet_TypeDuplicate = {
   code: {
     type: 'root',
     children: [
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'keyword'] },
+        children: [{ type: 'text', value: 'export' }],
+      },
+      { type: 'text', value: ' ' },
       {
         type: 'element',
         tagName: 'span',
@@ -247,13 +260,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'operator'] },
         children: [{ type: 'text', value: ':' }],
       },
-      { type: 'text', value: ' ' },
-      {
-        type: 'element',
-        tagName: 'span',
-        properties: { className: ['token', 'builtin'] },
-        children: [{ type: 'text', value: 'any' }],
-      },
+      { type: 'text', value: ' Token' },
       {
         type: 'element',
         tagName: 'span',
@@ -1099,7 +1106,6 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'punctuation'] },
         children: [{ type: 'text', value: ';' }],
       },
-      { type: 'text', value: '\n' },
     ],
   },
 };
@@ -1110,6 +1116,54 @@ export const Snippet_duplicate = {
   code: {
     type: 'root',
     children: [
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'keyword'] },
+        children: [{ type: 'text', value: 'import' }],
+      },
+      { type: 'text', value: ' ' },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'punctuation'] },
+        children: [{ type: 'text', value: '{' }],
+      },
+      { type: 'text', value: ' TypeDuplicate ' },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'punctuation'] },
+        children: [{ type: 'text', value: '}' }],
+      },
+      { type: 'text', value: ' ' },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'keyword'] },
+        children: [{ type: 'text', value: 'from' }],
+      },
+      { type: 'text', value: ' ' },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'string'] },
+        children: [{ type: 'text', value: "'ts-retype'" }],
+      },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'punctuation'] },
+        children: [{ type: 'text', value: ';' }],
+      },
+      { type: 'text', value: '\n\n' },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'keyword'] },
+        children: [{ type: 'text', value: 'export' }],
+      },
+      { type: 'text', value: ' ' },
       {
         type: 'element',
         tagName: 'span',
@@ -1685,33 +1739,8 @@ export const Snippet_duplicate = {
       {
         type: 'element',
         tagName: 'span',
-        properties: { className: ['token', 'template-string'] },
-        children: [
-          {
-            type: 'element',
-            tagName: 'span',
-            properties: { className: ['token', 'template-punctuation', 'string'] },
-            children: [{ type: 'text', value: '`' }],
-          },
-          {
-            type: 'element',
-            tagName: 'span',
-            properties: { className: ['token', 'string'] },
-            children: [
-              {
-                type: 'text',
-                value:
-                  '// ...\nexport type User = {\n  displayName: string;\n  email: string;\n  password: string;\n};',
-              },
-            ],
-          },
-          {
-            type: 'element',
-            tagName: 'span',
-            properties: { className: ['token', 'template-punctuation', 'string'] },
-            children: [{ type: 'text', value: '`' }],
-          },
-        ],
+        properties: { className: ['token', 'string'] },
+        children: [{ type: 'text', value: "'...omitted...'" }],
       },
       { type: 'text', value: '\n    ' },
       {
@@ -2077,33 +2106,8 @@ export const Snippet_duplicate = {
       {
         type: 'element',
         tagName: 'span',
-        properties: { className: ['token', 'template-string'] },
-        children: [
-          {
-            type: 'element',
-            tagName: 'span',
-            properties: { className: ['token', 'template-punctuation', 'string'] },
-            children: [{ type: 'text', value: '`' }],
-          },
-          {
-            type: 'element',
-            tagName: 'span',
-            properties: { className: ['token', 'string'] },
-            children: [
-              {
-                type: 'text',
-                value:
-                  '// ...\ninterface IUser {\n  displayName: string;\n  email: string;\n  password: string;\n}\n// ...',
-              },
-            ],
-          },
-          {
-            type: 'element',
-            tagName: 'span',
-            properties: { className: ['token', 'template-punctuation', 'string'] },
-            children: [{ type: 'text', value: '`' }],
-          },
-        ],
+        properties: { className: ['token', 'string'] },
+        children: [{ type: 'text', value: "'...omitted...'" }],
       },
       { type: 'text', value: '\n    ' },
       {
@@ -2183,7 +2187,7 @@ export const Snippet_duplicate = {
         type: 'element',
         tagName: 'span',
         properties: { className: ['token', 'number'] },
-        children: [{ type: 'text', value: '145' }],
+        children: [{ type: 'text', value: '142' }],
       },
       {
         type: 'element',
@@ -2196,7 +2200,7 @@ export const Snippet_duplicate = {
         type: 'element',
         tagName: 'span',
         properties: { className: ['token', 'number'] },
-        children: [{ type: 'text', value: '215' }],
+        children: [{ type: 'text', value: '198' }],
       },
       {
         type: 'element',
@@ -2228,7 +2232,7 @@ export const Snippet_duplicate = {
         type: 'element',
         tagName: 'span',
         properties: { className: ['token', 'number'] },
-        children: [{ type: 'text', value: '18' }],
+        children: [{ type: 'text', value: '17' }],
       },
       {
         type: 'element',
@@ -2241,7 +2245,7 @@ export const Snippet_duplicate = {
         type: 'element',
         tagName: 'span',
         properties: { className: ['token', 'number'] },
-        children: [{ type: 'text', value: '22' }],
+        children: [{ type: 'text', value: '17' }],
       },
       {
         type: 'element',
@@ -2469,33 +2473,8 @@ export const Snippet_duplicate = {
       {
         type: 'element',
         tagName: 'span',
-        properties: { className: ['token', 'template-string'] },
-        children: [
-          {
-            type: 'element',
-            tagName: 'span',
-            properties: { className: ['token', 'template-punctuation', 'string'] },
-            children: [{ type: 'text', value: '`' }],
-          },
-          {
-            type: 'element',
-            tagName: 'span',
-            properties: { className: ['token', 'string'] },
-            children: [
-              {
-                type: 'text',
-                value:
-                  'async function saveUser(\n  user: {\n    displayName: string;\n    email: string;\n    password: string\n  }) {',
-              },
-            ],
-          },
-          {
-            type: 'element',
-            tagName: 'span',
-            properties: { className: ['token', 'template-punctuation', 'string'] },
-            children: [{ type: 'text', value: '`' }],
-          },
-        ],
+        properties: { className: ['token', 'string'] },
+        children: [{ type: 'text', value: "'...omitted...'" }],
       },
       { type: 'text', value: '\n    ' },
       {
@@ -2727,7 +2706,6 @@ export const Snippet_duplicate = {
         properties: { className: ['token', 'punctuation'] },
         children: [{ type: 'text', value: ';' }],
       },
-      { type: 'text', value: '\n' },
     ],
   },
 };
@@ -2839,6 +2817,12 @@ export const Snippet_function = {
         properties: { className: ['token', 'builtin'] },
         children: [{ type: 'text', value: 'string' }],
       },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'punctuation'] },
+        children: [{ type: 'text', value: ';' }],
+      },
       { type: 'text', value: '\n  ' },
       {
         type: 'element',
@@ -2912,7 +2896,6 @@ export const Snippet_function = {
         properties: { className: ['token', 'comment'] },
         children: [{ type: 'text', value: '// ...' }],
       },
-      { type: 'text', value: '\n' },
     ],
   },
 };
@@ -3024,7 +3007,6 @@ export const Snippet_interface = {
         properties: { className: ['token', 'comment'] },
         children: [{ type: 'text', value: '// ...' }],
       },
-      { type: 'text', value: '\n' },
     ],
   },
 };
@@ -3291,19 +3273,33 @@ export const Snippet_tsRetype = {
         properties: { className: ['token', 'keyword'] },
         children: [{ type: 'text', value: 'const' }],
       },
-      { type: 'text', value: ' duplicates ' },
+      { type: 'text', value: ' ' },
       {
         type: 'element',
         tagName: 'span',
-        properties: { className: ['token', 'operator'] },
-        children: [{ type: 'text', value: '=' }],
+        properties: { className: ['token', 'punctuation'] },
+        children: [{ type: 'text', value: '{' }],
+      },
+      { type: 'text', value: ' data' },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'punctuation'] },
+        children: [{ type: 'text', value: ',' }],
+      },
+      { type: 'text', value: ' meta ' },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'punctuation'] },
+        children: [{ type: 'text', value: '}' }],
       },
       { type: 'text', value: ' ' },
       {
         type: 'element',
         tagName: 'span',
-        properties: { className: ['token', 'keyword'] },
-        children: [{ type: 'text', value: 'await' }],
+        properties: { className: ['token', 'operator'] },
+        children: [{ type: 'text', value: '=' }],
       },
       { type: 'text', value: ' ' },
       {
@@ -3413,7 +3409,7 @@ export const Snippet_tsRetype = {
         type: 'element',
         tagName: 'span',
         properties: { className: ['token', 'string'] },
-        children: [{ type: 'text', value: "'/path/to/project'" }],
+        children: [{ type: 'text', value: "'.'" }],
       },
       {
         type: 'element',
@@ -3428,6 +3424,44 @@ export const Snippet_tsRetype = {
         properties: { className: ['token', 'punctuation'] },
         children: [{ type: 'text', value: '}' }],
       },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'punctuation'] },
+        children: [{ type: 'text', value: ')' }],
+      },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'punctuation'] },
+        children: [{ type: 'text', value: ';' }],
+      },
+      { type: 'text', value: '\n\n' },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'builtin'] },
+        children: [{ type: 'text', value: 'console' }],
+      },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'punctuation'] },
+        children: [{ type: 'text', value: '.' }],
+      },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'function'] },
+        children: [{ type: 'text', value: 'log' }],
+      },
+      {
+        type: 'element',
+        tagName: 'span',
+        properties: { className: ['token', 'punctuation'] },
+        children: [{ type: 'text', value: '(' }],
+      },
+      { type: 'text', value: 'meta' },
       {
         type: 'element',
         tagName: 'span',
@@ -3467,7 +3501,7 @@ export const Snippet_tsRetype = {
         properties: { className: ['token', 'keyword'] },
         children: [{ type: 'text', value: 'of' }],
       },
-      { type: 'text', value: ' duplicates' },
+      { type: 'text', value: ' data' },
       {
         type: 'element',
         tagName: 'span',
@@ -3561,7 +3595,6 @@ export const Snippet_tsRetype = {
         properties: { className: ['token', 'punctuation'] },
         children: [{ type: 'text', value: '}' }],
       },
-      { type: 'text', value: '\n' },
     ],
   },
 };
@@ -3693,7 +3726,6 @@ export const Snippet_type = {
         properties: { className: ['token', 'comment'] },
         children: [{ type: 'text', value: '// ...' }],
       },
-      { type: 'text', value: '\n' },
     ],
   },
 };
