@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs';
+import { readFile, writeFile } from 'fs/promises';
 import { join, parse, resolve } from 'path';
 import { createCommand } from 'commander';
 import { refractor } from 'refractor/lib/core.js';
@@ -6,6 +6,7 @@ import ts from 'refractor/lang/typescript.js';
 import json from 'refractor/lang/json.js';
 import { BaseCmdProps, execute } from './cmd.js';
 import { isMain } from './isMain.js';
+import { ensureDirectoryExists, listFiles } from './paths.js';
 
 type CmdProps = BaseCmdProps & { dir?: string; list?: string; output?: string };
 
@@ -18,28 +19,20 @@ program
   .option('-l, --list <path>', 'generate Snippet for each file in a list of files in given path')
   .option('-o, --output <path>', 'file to save generated Snippets');
 
-function ensureDirectoryExists(directory: string) {
-  if (!existsSync(directory)) {
-    mkdirSync(directory, { recursive: true });
-  }
+async function loadSnippets(snippets: string[]) {
+  return await Promise.all(
+    snippets
+      .map((fileName) => parse(resolve(fileName)))
+      .map(({ dir, name, ext }) => ({ dir, name, ext: ext.slice(1) }))
+      .map(async ({ dir, name, ext }) => ({
+        name,
+        lang: ext,
+        code: refractor.highlight((await readFile(join(dir, `${name}.${ext}`))).toString(), ext),
+      })),
+  );
 }
 
-function listFiles(sourceDir: string) {
-  return readdirSync(sourceDir).map((file) => join(sourceDir, file));
-}
-
-function loadSnippets(snippets: string[]) {
-  return snippets
-    .map((fileName) => parse(resolve(fileName)))
-    .map(({ dir, name, ext }) => ({ dir, name, ext: ext.slice(1) }))
-    .map(({ dir, name, ext }) => ({
-      name,
-      lang: ext,
-      code: refractor.highlight(readFileSync(join(dir, `${name}.${ext}`)).toString(), ext),
-    }));
-}
-
-export function syntaxHighlighting(config: Partial<CmdProps>) {
+export async function syntaxHighlighting(config: Partial<CmdProps>) {
   if (!config.output) {
     console.log('Missing output');
     throw new Error('Missing output');
@@ -48,18 +41,16 @@ export function syntaxHighlighting(config: Partial<CmdProps>) {
   refractor.register(ts);
   refractor.register(json);
 
-  console.log('generating syntax highlighted snippets');
-
-  const files = config.dir ? listFiles(config.dir) : [];
+  const files = config.dir ? await listFiles(config.dir) : [];
 
   const targetDir = config.output;
-  ensureDirectoryExists(targetDir);
+  await ensureDirectoryExists(targetDir);
 
-  const snippets = loadSnippets(files);
+  const snippets = await loadSnippets(files);
   const exports = snippets.map(
     (snippet) => `export const Snippet_${snippet.name} = ${JSON.stringify(snippet)};`,
   );
-  writeFileSync(join(targetDir, 'snippets.ts'), exports.join('\n\n'));
+  await writeFile(join(targetDir, 'snippets.ts'), exports.join('\n\n'));
 }
 
 if (isMain(import.meta)) {

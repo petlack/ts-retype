@@ -1,3 +1,5 @@
+import './index.js';
+
 import assert from 'node:assert/strict';
 import { duplicate } from './duplicate.js';
 

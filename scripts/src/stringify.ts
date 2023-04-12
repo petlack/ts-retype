@@ -4,7 +4,7 @@ type JsonKey = string | number;
 type JsonValue = string | number | boolean | null | undefined;
 type JsonArray = Json[];
 type JsonObject = { [k: JsonKey]: Json };
-type Json = JsonValue | JsonValue[] | JsonObject | JsonArray;
+export type Json = JsonValue | JsonValue[] | JsonObject | JsonArray;
 
 export function isValue(json: Json): json is JsonValue {
   return json == null || ['string', 'number', 'boolean'].includes(typeof json);

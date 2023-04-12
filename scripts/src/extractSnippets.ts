@@ -1,5 +1,7 @@
+import colors from 'colors';
 import { createCommand } from 'commander';
-import { readFileSync, writeFileSync } from 'fs';
+import { readFile, writeFile } from 'fs/promises';
+import * as path from 'path';
 import {
   always,
   dropLastWhile,
@@ -16,9 +18,12 @@ import ts from 'typescript';
 import { ReportResult } from '../../src/types';
 import { BaseCmdProps, execute } from './cmd.js';
 import { isMain } from './isMain.js';
-import { stringifyNice } from './stringify.js';
+import { getRootDir } from './paths.js';
+import { Json, stringifyNice } from './stringify.js';
 
 type CmdProps = BaseCmdProps;
+
+const log = console.log.bind(console, '[extractSnippets]');
 
 const program = createCommand();
 
@@ -68,8 +73,8 @@ function trimEmptyLines(src: string): string {
   return pipe(split('\n'), dropWhile(isEmptyLine), dropLastWhile(isEmptyLine), join('\n'))(src);
 }
 
-function findSnippet(needle: SnippetNeedle) {
-  const fileContents = readFileSync(needle.src).toString();
+async function findSnippet(needle: SnippetNeedle) {
+  const fileContents = (await readFile(needle.src)).toString();
   const srcFile = ts.createSourceFile(needle.src, fileContents, ts.ScriptTarget.Latest);
 
   let src: string | null = null;
@@ -77,11 +82,8 @@ function findSnippet(needle: SnippetNeedle) {
     const ast = findNode(srcFile, needle.name);
     src = getNodeText(srcFile, ast);
   } else if (needle.lines) {
-    src = pipe(
-      split('\n'),
-      (a) => a.slice(needle.lines[0] - 1, needle.lines[1]),
-      join('\n'),
-    )(fileContents);
+    const [start, end] = needle.lines;
+    src = pipe(split('\n'), (a) => a.slice(start - 1, end), join('\n'))(fileContents);
   } else if (needle.transform) {
     src = needle.transform(fileContents);
   } else {
@@ -96,6 +98,8 @@ function selectDuplicate(src: string) {
   const { data } = asJson;
   const res = pipe(
     head,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     evolve({
       files: map(
         pipe(
@@ -107,7 +111,7 @@ function selectDuplicate(src: string) {
         ),
       ),
     }),
-  )(data);
+  )(data) as Json;
   const code = stringifyNice(res);
   return `import { TypeDuplicate } from 'ts-retype';
 
@@ -115,36 +119,43 @@ export const duplicate: TypeDuplicate = ${code};
 `;
 }
 
-export function extractSnippets(config: CmdProps) {
+export async function extractSnippets() {
   const snippets: SnippetNeedle[] = [
     {
-      src: '../src/types/duplicate.ts',
-      dst: '../docs/src/snippets/TypeDuplicate.ts',
+      src: 'src/types/duplicate.ts',
+      dst: 'docs/src/snippets/TypeDuplicate.ts',
       name: 'TypeDuplicate',
     },
-    { src: '../example/src/index.ts', dst: '../docs/src/snippets/tsRetype.ts' },
-    { src: '../example/src/api.ts', dst: '../docs/src/snippets/function.ts', lines: [16, 25] },
-    { src: '../example/src/auth.ts', dst: '../docs/src/snippets/interface.ts', lines: [2, 8] },
-    { src: '../example/src/model.ts', dst: '../docs/src/snippets/type.ts', lines: [5, 11] },
-    { src: '../src/types/props.ts', dst: '../docs/src/snippets/ScanProps.ts', name: 'ScanProps' },
-    { src: '../.retyperc', dst: '../docs/src/snippets/retyperc.json' },
+    { src: 'example/src/index.ts', dst: 'docs/src/snippets/tsRetype.ts' },
+    { src: 'example/src/api.ts', dst: 'docs/src/snippets/function.ts', lines: [16, 25] },
+    { src: 'example/src/auth.ts', dst: 'docs/src/snippets/interface.ts', lines: [2, 8] },
+    { src: 'example/src/model.ts', dst: 'docs/src/snippets/type.ts', lines: [5, 11] },
+    { src: 'src/types/props.ts', dst: 'docs/src/snippets/ScanProps.ts', name: 'ScanProps' },
+    { src: '.retyperc', dst: 'docs/src/snippets/retyperc.json' },
     {
-      src: '../example/data.json',
-      dst: '../example/src/duplicate.ts',
+      src: 'example/data.json',
+      dst: 'example/src/duplicate.ts',
       transform: selectDuplicate,
     },
     {
-      src: '../example/src/duplicate.ts',
-      dst: '../docs/src/snippets/duplicate.ts',
+      src: 'example/src/duplicate.ts',
+      dst: 'docs/src/snippets/duplicate.ts',
     },
   ];
 
-  console.log(snippets);
+  const rootDir = await getRootDir();
+
+  if (!rootDir) {
+    log(colors.red('could not find root dir'));
+    return;
+  }
 
   for (const snippet of snippets) {
+    snippet.src = path.join(rootDir, snippet.src);
+    snippet.dst = path.join(rootDir, snippet.dst);
     console.log(`writing ${snippet.dst}`);
-    const code = findSnippet(snippet);
-    writeFileSync(snippet.dst, code);
+    const code = await findSnippet(snippet);
+    await writeFile(snippet.dst, code);
   }
 }
 

@@ -1201,6 +1201,21 @@ export const Snippet_TypeDuplicate = {
   },
 };
 
+export const Snippet_cmdHelp = {
+  name: 'cmdHelp',
+  lang: 'txt',
+  code: {
+    type: 'root',
+    children: [
+      {
+        type: 'text',
+        value:
+          '==================================================\n=                   ts-retype                    =\n=                     v0.2.4                     =\n==================================================\n\ndocs:  https://petlack.github.io/ts-retype/\ngithub:  https://github.com/petlack/ts-retype\n\nUsage: ts-retype [options] <path-to-project>\n\nDiscover duplicate TypeScript types in your codebase.\n\nArguments:\n  path-to-project                    path to project\n\nOptions:\n  -V, --version                      output the version number\n  -c, --config [path]                load config - if no path provided, loads\n                                     .retyperc from current directory. if not\n                                     set, use default config\n  -e, --exclude [glob...]            glob patterns that will be ignored\n  -g, --init [file-path]             initializes with default config. if no\n                                     path is provided, creates .retyperc in the\n                                     current directory\n  -i, --include [glob...]            glob patterns that will be included in\n                                     search\n  -j, --json <file-path>             file path to export JSON report. if not\n                                     set, does not export JSON.\n  -n, --noHtml                       if set, does not export HTML\n  -o, --output <file-path|dir-path>  HTML report file path - if provided with\n                                     dir, create index.html file inside the dir\n  -h, --help                         display help for command\n',
+      },
+    ],
+  },
+};
+
 export const Snippet_duplicate = {
   name: 'duplicate',
   lang: 'ts',
