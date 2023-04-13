@@ -1,6 +1,7 @@
-import { similarity } from '../../src/similarity';
-import { EnumCandidateType, Similarity } from '../../src/types';
 import { expectSimilarity } from '../lib/tests';
+import { similarity } from '../../src/similarity';
+import { EnumCandidateType } from '../../src/types/candidate';
+import { Similarity } from '../../src/types/similarity';
 
 describe('enum type', () => {
   test('same names, no members', () => {

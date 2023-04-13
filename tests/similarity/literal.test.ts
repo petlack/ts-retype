@@ -1,6 +1,7 @@
-import { similarity } from '../../src/similarity';
-import { LiteralCandidateType, Similarity } from '../../src/types';
 import { expectSimilarity } from '../lib/tests';
+import { similarity } from '../../src/similarity';
+import { LiteralCandidateType } from '../../src/types/candidate';
+import { Similarity } from '../../src/types/similarity';
 
 describe('literal type', () => {
   test('identical types with no properties', () => {

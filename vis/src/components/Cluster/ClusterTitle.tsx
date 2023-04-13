@@ -1,11 +1,11 @@
 import { DuplicateName } from './NamesListing';
 import { TypeIcon } from './TypeIcon';
-import { TypeDuplicate, CandidateType } from '../../../../src/types';
+import { ArrayElement, TypeDuplicate } from '../../../../src/types';
 
 import './ClusterTitle.scss';
 
 export type ClusterTitleProps = {
-  type: CandidateType['type'];
+  type: ArrayElement<TypeDuplicate['files']>['type'];
   names: TypeDuplicate['names'];
 }
 

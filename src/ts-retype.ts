@@ -1,16 +1,12 @@
 #!/usr/bin/env node
 
 import fs from 'fs';
-import { createCommand } from 'commander';
-
-// import { resolveOptions } from './cmd';
-// import { findTypeDuplicates } from './clusters';
-// import { DEFAULT_OPTIONS, RetypeOptions } from './types';
 import { dir, stringify } from './utils';
+import { createCommand } from 'commander';
 import { createLogger } from './log';
 import { report } from './report';
-import { DEFAULT_CMD_OPTIONS, RetypeCmdOptions } from './types';
-import { DEFAULT_CONFIG, RetypeConfig } from './config';
+import { RetypeConfig } from './config';
+import { RetypeCmdProps, DEFAULT_CONFIG } from './types';
 
 const log = createLogger(console.log);
 
@@ -38,29 +34,23 @@ program
     '-j, --json <file-path>',
     'file path to export JSON report. if not set, does not export JSON.',
   )
-  .option('-n, --noHtml', 'if set, does not export HTML', false)
+  .option('-n, --noHtml', 'if set, does not export HTML')
   .option(
     '-o, --output <file-path|dir-path>',
     'HTML report file path - if provided with dir, create index.html file inside the dir',
-    './retype-report.html',
   );
 
-function parseOptions(): Partial<RetypeCmdOptions> {
+function parseCmdProps(): Partial<RetypeCmdProps> {
   program.parse();
   const options = program.opts();
   const args = program.processedArgs;
   return {
     ...options,
     rootDir: args[0],
-    config: options.config
-      ? typeof options.config === 'string'
-        ? options.config
-        : '.retyperc'
-      : undefined,
   };
 }
 
-function runGenerate(options: Partial<RetypeCmdOptions>) {
+function runGenerate(options: Partial<RetypeCmdProps>) {
   const configPath = typeof options.init === 'string' ? <string>options.init : '.retyperc';
   const config = stringify(DEFAULT_CONFIG);
   fs.writeFileSync(configPath, config);
@@ -71,22 +61,22 @@ function runGenerate(options: Partial<RetypeCmdOptions>) {
 function main() {
   log.header();
 
-  const options = parseOptions();
+  const cmdProps = parseCmdProps();
 
-  log.log(JSON.stringify(options));
+  log.log(JSON.stringify({ cmdProps }));
 
-  if (options.init) {
-    runGenerate(options);
+  if (cmdProps.init) {
+    runGenerate(cmdProps);
     return;
   }
 
-  if (!options.rootDir) {
+  if (!cmdProps.rootDir) {
     throw new Error('missing rootDir');
   }
 
-  const args = RetypeConfig.fromCmd(options);
+  const config = RetypeConfig.fromCmdProps(cmdProps);
 
-  report(args);
+  report(config);
 }
 
 if (require.main === module) {

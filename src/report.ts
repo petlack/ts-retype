@@ -2,7 +2,7 @@ import fs from 'fs';
 import { scan } from './scan';
 import { resolveOutputFilePath } from './cmd';
 import { createLogger } from './log';
-import { Metadata, ReportArgs, ScanArgs, TypeDuplicate } from './types';
+import { Metadata, ReportProps, ReportResult, ScanProps } from './types';
 import { dir, stringify } from './utils';
 
 const log = createLogger(console.log);
@@ -22,12 +22,7 @@ function findTemplate(): string | null {
   return null;
 }
 
-export type ReportResult = {
-  data: TypeDuplicate[];
-  meta: Metadata;
-};
-
-export function report(args: ScanArgs & ReportArgs) {
+export function report(args: ScanProps & ReportProps) {
   log.log('running with args');
   log.log(stringify(args));
   log.log();
@@ -67,9 +62,11 @@ export function report(args: ScanArgs & ReportArgs) {
 
     meta.reportSize = withDataJson.length;
 
+    const metaJson = JSON.stringify(meta);
+
     const replaced = withDataJson.replace(
       'window.__metajson__="META_JSON"',
-      `window.__meta__ = ${meta}`,
+      `window.__meta__ = ${metaJson}`,
     );
     fs.writeFileSync(htmlFile, replaced);
 

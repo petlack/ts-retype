@@ -11,7 +11,7 @@ const config = [
     input: 'src/index.ts',
     output: {
       file: 'dist/index.js',
-      format: 'cjs',
+      format: 'es',
       exports: 'named',
       sourcemap: true,
     },
@@ -24,12 +24,12 @@ const config = [
       'refractor',
       'typescript',
     ],
-    plugins: [esbuild()]
+    plugins: [typescript(), commonjs(), nodeResolve()],
   },
   {
     input: 'src/ts-retype.ts',
     output: {
-      file: 'dist/ts-retype.js',
+      file: 'dist/ts-retype.cjs',
       format: 'cjs',
       exports: 'named',
       // banner: '#!/usr/bin/env node',

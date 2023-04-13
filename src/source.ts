@@ -1,6 +1,6 @@
 import { refractor } from 'refractor/lib/core.js';
 import tsLang from 'refractor/lang/typescript.js';
-import { FunctionCandidateType } from './types';
+import { FunctionCandidateType } from './types/candidate';
 import ts from 'typescript';
 import { range, pipe, slice, split, dropWhile, dropLastWhile, join } from 'ramda';
 

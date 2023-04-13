@@ -1,6 +1,7 @@
 import { similarity } from '../../src/similarity';
-import { UnionCandidateType, Similarity, FunctionCandidateType, Property } from '../../src/types';
 import { expectSimilarity } from '../lib/tests';
+import { FunctionCandidateType, Property, UnionCandidateType } from '../../src/types/candidate';
+import { Similarity } from '../../src/types/similarity';
 
 describe('function type', () => {
   test('same names, same return types, no parameters', () => {

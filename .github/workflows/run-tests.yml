@@ -18,9 +18,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - run: npm ci
-    - run: npm run build
-
-    - run: npm test
+    - name: Run tests
+      run: |
+        npm ci
+        npm run scripts:build
+        npm run make -- -f -p test
       env:
         CI: true

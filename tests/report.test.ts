@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { rimrafSync } from 'rimraf';
 import { scan } from '../src';
-import { RetypeConfig } from '../src/config';
 import { report } from '../src/report';
+import { RetypeConfig } from '../src/config';
 
 import * as url from 'url';
 global.__dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -22,7 +22,7 @@ describe('clusters', () => {
     rimrafSync(dir);
   });
   it('generates HTML report', () => {
-    const config = RetypeConfig.fromCmd({
+    const config = RetypeConfig.fromCmdProps({
       rootDir: dir,
       output: dir,
       json: path.join(dir, 'report.json'),

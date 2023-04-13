@@ -1,33 +1,7 @@
 import './Napp.styl';
 
-import Snippets from './generated/snippets';
-
-type Token = (
-  {
-      type: 'element';
-      tagName: string;
-      properties: { className: string[] };
-      children: { type: string; value: string }[];
-      value?: undefined;
-    }
-  | {
-      type: 'text';
-      value: string;
-      tagName?: undefined;
-      properties?: undefined;
-      children?: undefined;
-    }
-);
-
-type Snippet = {
-  name: string;
-  lang: string;
-  code: {
-    type: string;
-    children: Token[];
-  };
-};
-
+import * as Snippets from './generated/snippets';
+import { Snippet, Token } from '../../src/types/snippet';
 
 type NappProps = {
   snippet: Snippet;
@@ -50,13 +24,13 @@ function Napp({ snippet }: NappProps) {
 export default function() {
   return (
     <div>
-      <Napp snippet={Snippets.type as Snippet} />
-      <Napp snippet={Snippets.RetypeArgs as Snippet} />
-      <Napp snippet={Snippets.TypeDuplicate as Snippet} />
-      <Napp snippet={Snippets.duplicate as Snippet} />
-      <Napp snippet={Snippets.function as Snippet} />
-      <Napp snippet={Snippets.interface as Snippet} />
-      <Napp snippet={Snippets.retyperc as Snippet} />
+      <Napp snippet={Snippets.Snippet_type as Snippet} />
+      <Napp snippet={Snippets.Snippet_ScanProps as Snippet} />
+      <Napp snippet={Snippets.Snippet_TypeDuplicate as Snippet} />
+      <Napp snippet={Snippets.Snippet_duplicate as Snippet} />
+      <Napp snippet={Snippets.Snippet_function as Snippet} />
+      <Napp snippet={Snippets.Snippet_interface as Snippet} />
+      <Napp snippet={Snippets.Snippet_retyperc as Snippet} />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Window } from './Window';
 import { WithLineNumbers } from './WithLineNumbers';
-import { Snippet, toTokenLines } from './Token';
+import { toTokenLines } from './Token';
+import { Snippet } from '../../../src/types/snippet';
 
 export type TsSnippetProps = {
   start: number;

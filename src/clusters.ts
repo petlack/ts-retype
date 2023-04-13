@@ -1,20 +1,19 @@
 import { parse } from './parse';
-import {
-  CandidateType,
-  SourceCandidateType,
-  LiteralCandidateType,
-  EnumCandidateType,
-  FunctionCandidateType,
-  UnionCandidateType,
-  Property,
-  Similarity,
-  TypeDuplicate,
-  Clusters,
-} from './types';
+import { Similarity, Clusters } from './types/similarity';
 import ts from 'typescript';
 import { freq, selectIndices } from './utils';
 import { concat, pluck, uniq } from 'ramda';
 import { getCodeSnippet, highlight } from './source';
+import { TypeDuplicate } from '.';
+import {
+  CandidateType,
+  LiteralCandidateType,
+  EnumCandidateType,
+  FunctionCandidateType,
+  UnionCandidateType,
+  SourceCandidateType,
+  Property,
+} from './types/candidate';
 
 function nonEmptyCandidateType(type: CandidateType): boolean {
   switch (type.type) {
@@ -29,6 +28,7 @@ function nonEmptyCandidateType(type: CandidateType): boolean {
     case 'union':
       return (<UnionCandidateType>type).types.length > 0;
   }
+  return false;
 }
 
 export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
