@@ -17,6 +17,11 @@ darkTheme()
   --clr-fgTitle: $titleDark;
   --clr-fgSecondary: $fgSecondaryDark;
 
+sharedTheme()
+  --clr-accent: $accent;
+  --clr-accent-darker: darken($accent, 10%);
+  --clr-accent-lighter: lighten($accent, 10%);
+
 *
   margin: 0;
   padding: 0;
@@ -30,9 +35,12 @@ body
   font-family: $fontRegular;
 
 main
+  sharedTheme();
   &.light
+    color-scheme: light;
     lightTheme();
   &.dark
+    color-scheme: dark;
     darkTheme();
   --z-always-visible: $zAlwaysVisible;
   --z-overlay: $zOverlay;
@@ -43,7 +51,7 @@ main
   background-color: var(--clr-bgMain);
   color: var(--clr-fgText);
   header
-    width: 100vw;
+    // width: 100%;
     flexColumn($gapLarge);
     justify-content: center;
     align-items: center;
@@ -59,11 +67,11 @@ main
     width: 80vw;
     font-size: 16px;
     @media screen and (max-width: $breakSnippetsColumn)
-      width: 100vw;
+      // width: 100%;
       padding: 0 1rem;
       max-width: unset;
     &.bleed
-      max-width: 100vw;
-      width: 100vw;
+      max-width: 100%;
+      width: 100%;
       margin: 0;
       padding: 0;
