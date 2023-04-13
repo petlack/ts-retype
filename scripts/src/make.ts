@@ -48,6 +48,7 @@ async function make(config: Partial<CmdProps>) {
 
   if (!config.pipeline) {
     log(colors.red('missing pipeline'));
+    log('known pipelines', colors.yellow(Object.keys(pipelines).join(' ')));
     return;
   }
 

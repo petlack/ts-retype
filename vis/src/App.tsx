@@ -50,10 +50,10 @@ function App() {
   useEffect(() => {
     setAllData(
       window.__data__.filter(({ group }) => ['identical', 'renamed'].includes(group))
-        .map((cluster, idx) => ({
-          ...cluster,
+        .map((duplicate, idx) => ({
+          ...duplicate,
           id: idx,
-          fulltext: fulltext(cluster as FulltextData),
+          fulltext: fulltext(duplicate as FulltextData),
         }))
     );
     setMeta(
