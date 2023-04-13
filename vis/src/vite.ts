@@ -8,7 +8,7 @@ const buildConfig = (config: UserConfig) => {
   if (!config.build.rollupOptions.output) config.build.rollupOptions.output = {};
 
   const updateOutputOptions = (out: OutputOptions) => {
-    out.outro = 'window.__datajson__="DATA_JSON"';
+    out.outro = 'window.__datajson__="DATA_JSON"; window.__metajson__="META_JSON"';
   };
 
   if (Array.isArray(config.build.rollupOptions.output)) {

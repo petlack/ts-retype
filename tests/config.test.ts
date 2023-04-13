@@ -1,11 +1,17 @@
 import fs from 'fs';
-import { DEFAULT_CONFIG, RetypeConfig } from '../src/config';
+import { DEFAULT_CONFIG } from '../src/types';
+import { RetypeConfig } from '../src/config';
 
 function writeConfig(path: string, config: Partial<RetypeConfig>) {
   fs.writeFileSync(path, JSON.stringify(config));
 }
 
 describe('RetypeConfig', () => {
+  afterEach(() => {
+    if (fs.existsSync('./.tmp-retyperc')) {
+      fs.unlinkSync('./.tmp-retyperc');
+    }
+  });
   describe('fromCmd', () => {
     it('resolves defaults', () => {
       expect(RetypeConfig.fromCmdProps({})).toEqual(DEFAULT_CONFIG);
@@ -20,7 +26,7 @@ describe('RetypeConfig', () => {
       beforeEach(() => {
         writeConfig('./.tmp-retyperc', { output: './output-from-config.html' });
       });
-      describe('key exists in both', () => {
+      describe('when key exists in both', () => {
         it('resolves value from options', () => {
           expect(
             RetypeConfig.fromCmdProps({

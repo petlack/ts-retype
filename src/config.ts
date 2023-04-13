@@ -1,50 +1,14 @@
-import fs from 'fs';
+import { existsSync, readFileSync } from 'fs';
+import { join } from 'path';
 import { omit } from 'ramda';
-import { ReportProps, RetypeCmdProps, ScanProps } from './types';
-
-export const DEFAULT_CONFIG: RetypeConfig = {
-  exclude: ['**/node_modules/**', '**/dist/**'],
-  include: ['**/*.{ts,tsx}'],
-  json: null,
-  noHtml: false,
-  output: './retype-report.html',
-  rootDir: '.',
-};
+import { DEFAULT_CONFIG, ReportProps, RetypeCmdProps, ScanProps } from './types';
 
 export type RetypeConfig = ScanProps & ReportProps;
 
-export function loadConfig(path: string) {
-  const configFileData = <Partial<RetypeConfig>>JSON.parse(fs.readFileSync(path).toString());
-  return configFileData;
-}
-
-function fromConfigFile(file: string): Partial<RetypeConfig> {
-  return loadConfig(file);
-}
-
-function fromCmdProps(options: Partial<RetypeCmdProps>): RetypeConfig {
-  const configFile = options.config
-    ? fromConfigFile(options.config)
-    : ({} as Partial<RetypeConfig>);
-
-  return {
-    ...DEFAULT_CONFIG,
-    ...configFile,
-    ...omit(['config'], options),
-  };
-}
-
-function fromScanProps(args: Partial<ScanProps>): RetypeConfig {
-  return {
-    ...DEFAULT_CONFIG,
-    ...args,
-  };
-}
-
 export interface IRetypeConfig {
-  fromCmdProps(options: Partial<RetypeCmdProps>): RetypeConfig;
-  fromConfigFile(file: string): Partial<RetypeConfig>;
-  fromScanProps(args: Partial<ScanProps>): RetypeConfig;
+  fromCmdProps(cmdProps: Partial<RetypeCmdProps>): RetypeConfig;
+  fromConfigFile(file: string): Partial<RetypeConfig> | null;
+  fromScanProps(scanProps: Partial<ScanProps>): RetypeConfig;
 }
 
 export const RetypeConfig: IRetypeConfig = {
@@ -52,3 +16,37 @@ export const RetypeConfig: IRetypeConfig = {
   fromConfigFile,
   fromScanProps,
 };
+
+export function loadConfig(path: string): Partial<RetypeConfig> | null {
+  if (existsSync(path)) {
+    const configFileData = <Partial<RetypeConfig>>JSON.parse(readFileSync(path).toString());
+    return configFileData;
+  }
+  return null;
+}
+
+export function fromConfigFile(file: string): Partial<RetypeConfig> | null {
+  return loadConfig(file);
+}
+
+export function fromCmdProps(cmdProps: Partial<RetypeCmdProps>): RetypeConfig {
+  const configFromCmd = cmdProps.config ? loadConfig(cmdProps.config) : null;
+  const configFromRetyperc = cmdProps.rootDir
+    ? loadConfig(join(cmdProps.rootDir, '.retyperc'))
+    : null;
+
+  const config = configFromCmd || configFromRetyperc || ({} as Partial<RetypeConfig>);
+
+  return {
+    ...DEFAULT_CONFIG,
+    ...config,
+    ...omit(['config'], cmdProps),
+  };
+}
+
+export function fromScanProps(scanProps: Partial<ScanProps>): RetypeConfig {
+  return {
+    ...DEFAULT_CONFIG,
+    ...scanProps,
+  };
+}

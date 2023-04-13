@@ -1,0 +1,19 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "report": "ts-retype .",
+    "smoke": "tsc && npm run report && npm run start && ts-node --esm src/smoke.ts",
+    "start": "ts-node --esm src/index.ts"
+  },
+  "dependencies": {
+    "ts-retype": "file:../dist"
+  }
+}

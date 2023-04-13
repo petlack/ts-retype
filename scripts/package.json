@@ -1,0 +1,31 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "dev": "nodemon --exec 'ts-node --esm'",
+    "dev:docs": "ts-node --esm src/generateDocs.ts",
+    "dev:extract": "ts-node --esm src/extractSnippets.ts",
+    "dev:snippets": "ts-node --esm src/syntaxHighlighting.ts",
+    "make": "node dist/scripts/src/make.js",
+    "run:docs": "node dist/generateDocs.js",
+    "run:readme": "node dist/generateReadme.js",
+    "run:snippets": "node dist/syntaxHighlighting.js"
+  },
+  "dependencies": {
+    "ramda": "^0.29.0"
+  },
+  "devDependencies": {
+    "@types/ramda": "^0.28.24",
+    "colors": "^1.4.0",
+    "esm": "^3.2.25",
+    "refractor": "^4.8.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  }
+}

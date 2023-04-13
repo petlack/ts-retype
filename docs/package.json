@@ -4,11 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc && npm run snippets && vite build",
+    "build": "tsc && vite build",
+    "clean": "rm -rf dist",
     "dev": "vite",
-    "postinstall": "cd scripts && npm ci",
-    "preview": "vite preview",
-    "snippets": "cd scripts && npm run build && npm run snippets"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^18.2.0",

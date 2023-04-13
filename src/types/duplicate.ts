@@ -4,11 +4,15 @@ export type TypeDuplicate = {
   files: {
     name: string;
     file: string;
-    src: string;
-    srcHgl: Token;
     lines: [number, number];
     pos: [number, number];
     type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
+    src: string;
+    srcHgl?: Token;
+    properties?: {
+      name: string;
+      type: string;
+    }[];
   }[];
   group: 'different' | 'renamed' | 'identical';
   names: {
