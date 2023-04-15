@@ -446,7 +446,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'operator'] },
         children: [{ type: 'text', value: ':' }],
       },
-      { type: 'text', value: ' Token' },
+      { type: 'text', value: ' TokenRoot' },
       {
         type: 'element',
         tagName: 'span',

@@ -118,7 +118,7 @@ export type TypeDuplicate = {
     pos: [number, number];
     type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
     src: string;
-    srcHgl?: Token;
+    srcHgl?: TokenRoot;
     properties?: {
       name: string;
       type: string;

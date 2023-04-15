@@ -1,7 +1,7 @@
 import { Snippet, Token } from '../../../src/types/snippet';
-import { toTokenLines } from './Token';
+import { Lines } from './Lines';
+import { TokenElement } from './Token';
 import { Window } from './Window';
-import { WithBash } from './WithBash';
 
 export type BashProps = {
   children: string;
@@ -21,9 +21,7 @@ function parseBash(code: string): Snippet {
         type: 'text',
         value: line,
       } as Token,
-      {
-        type: 'text', value: '\n',
-      } as Token
+      { type: 'newline' } as Token
     ])
     .reduce((res, item) => [...res, ...item], []);
 
@@ -38,11 +36,16 @@ function parseBash(code: string): Snippet {
 }
 
 export function Bash({ children, theme }: BashProps) {
-  const lines = toTokenLines(parseBash(children));
-  // const childrenMarkup = children.split('\n').map((line, idx) => <span key={idx}>{`${line}\n`}</span>);
+  const snippet = parseBash(children);
+  const linesMarkup = snippet.code.children.map((token, idx) => (
+    <TokenElement
+      key={idx}
+      token={token}
+    />
+  ));
   return (
     <Window theme={theme} name="bash" showHeader={false}>
-      <WithBash lines={lines} />
+      <Lines type="custom" char="$" lines={linesMarkup} />
     </Window>
   );
 }
