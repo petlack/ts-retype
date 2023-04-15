@@ -1,6 +1,6 @@
 import { Code } from './Code';
 import { Window } from './Window';
-import { toTokenElements } from './Token';
+import { flattenTokens, insertNewlines, splitLines, TokenElement } from './Token';
 import { Snippet } from '../../../src/types/snippet';
 
 export type JsTsCodeProps = {
@@ -9,11 +9,21 @@ export type JsTsCodeProps = {
 }
 
 export function JsTsCode({ theme, snippet }: JsTsCodeProps) {
-  const childrenMarkup = toTokenElements(snippet);
+  const sn: Snippet = {
+    name: '',
+    lang: 'ts',
+    code: splitLines(insertNewlines(flattenTokens(snippet.code))),
+  };
+  const linesMarkup = sn.code.children.map((token, idx) => (
+    <TokenElement
+      key={idx}
+      token={token}
+    />
+  ));
   return (
     <Window theme={theme} name="bash" showHeader={false}>
       <div className={theme}>
-        <Code>{childrenMarkup}</Code>
+        <Code>{linesMarkup}</Code>
       </div>
     </Window>
   );

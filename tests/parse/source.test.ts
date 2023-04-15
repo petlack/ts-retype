@@ -13,9 +13,9 @@ describe('parse', () => {
     const candidates = getTypesInFile(srcFile, '.');
 
     expect(candidates.types[0]).toMatchObject({
-      src: `(
-  number[],
-  Iterable<number>
+      src: `zip(
+  left: number[],
+  right: Iterable<number>
 ) => 
   string`,
     });

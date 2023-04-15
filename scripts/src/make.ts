@@ -16,7 +16,7 @@ type CmdProps = BaseCmdProps & {
   quiet: boolean;
 };
 
-const pipelines = { publish: true, bump: true, test: true, docs: true };
+const pipelines = { all: true, publish: true, bump: true, test: true, docs: true };
 
 const program = createCommand();
 
@@ -48,6 +48,7 @@ async function make(config: Partial<CmdProps>) {
 
   if (!config.pipeline) {
     log(colors.red('missing pipeline'));
+    log('known pipelines', colors.yellow(Object.keys(pipelines).join(' ')));
     return;
   }
 
@@ -155,6 +156,7 @@ async function make(config: Partial<CmdProps>) {
   type Pipeline = keyof typeof pipelines;
   type Step = keyof typeof defs;
   const pipelinesDefinitions = new Map<Pipeline, Step[]>([
+    ['all', ['smoke', 'generateReadme', 'buildDocs']],
     ['publish', ['tests', 'prepareDist']],
     ['test', ['smoke']],
     ['docs', ['tests', 'generateReadme', 'buildDocs']],
@@ -162,6 +164,7 @@ async function make(config: Partial<CmdProps>) {
   const pipelineSteps = pipelinesDefinitions.get(config.pipeline as Pipeline);
   if (!pipelineSteps) {
     log(colors.red(`unknown pipeline ${config.pipeline}`));
+    log('known pipelines', colors.yellow(Object.keys(pipelines).join(' ')));
     return;
   }
 

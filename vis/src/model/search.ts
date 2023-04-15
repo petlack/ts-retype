@@ -9,15 +9,15 @@ export type Filter = {
   minProperties: number;
 };
 
-export function fulltext(cluster: FulltextData): string {
+export function fulltext(duplicate: FulltextData): string {
   return [
-    `${cluster.names.map(({ name }) => name)}`,
-    `${Object.keys(cluster.names).join(' ')}`,
-    `${cluster.files.map(({ file }) => file).join(' ')}`,
-    `${(cluster.properties || []).map(({ name, type }) => `${type} ${name}: ${type}`).join(' ')}`,
-    `${(cluster.parameters || []).map(({ name, type }) => `${type} ${name}: ${type}`).join(' ')}`,
-    `${(cluster.members || []).join(' ')}`,
-    `${(cluster.types || []).join(' ')}`,
+    `${duplicate.names.map(({ name }) => name)}`,
+    `${Object.keys(duplicate.names).join(' ')}`,
+    `${duplicate.files.map(({ file }) => file).join(' ')}`,
+    `${(duplicate.properties || []).map(({ name, type }) => `${type} ${name}: ${type}`).join(' ')}`,
+    `${(duplicate.parameters || []).map(({ name, type }) => `${type} ${name}: ${type}`).join(' ')}`,
+    `${(duplicate.members || []).join(' ')}`,
+    `${(duplicate.types || []).join(' ')}`,
   ].join(' ');
 }
 

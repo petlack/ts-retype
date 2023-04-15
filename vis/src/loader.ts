@@ -1,9 +1,8 @@
-import { Metadata } from '../../src/types';
-import { Data } from './types';
+import { TypeDuplicate, Metadata } from '../../src/types';
 
 declare global {
   interface Window {
-    __data__: Data[];
+    __data__: TypeDuplicate[];
     __meta__: Metadata;
   }
 }
@@ -16,7 +15,7 @@ export async function setupData() {
     console.log({ meta });
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    window.__data__ = <Data>data;
+    window.__data__ = <TypeDuplicate>data;
     window.__meta__ = <Metadata>meta;
   } else {
     window.__data__ = [];

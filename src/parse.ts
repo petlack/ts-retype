@@ -75,7 +75,7 @@ function functionSignature(
     name: getNodeText(srcFile, param.name).trim(),
     type: (param.type && getNodeText(srcFile, param.type).trim()) || 'any',
   }));
-  const ret = (node.type && getNodeText(srcFile, node.type).trim()) || 'any';
+  const ret = (node.type && getNodeText(srcFile, node.type).trim()) || 'unknown';
 
   // return `${fnName ? name : ''}(${params.map(({ name, type }) => paramName ? `${name}: ${type}` : type).join(', ')}) => ${ret}`;
   const sig = {

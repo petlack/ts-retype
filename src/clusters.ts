@@ -28,7 +28,6 @@ function nonEmptyCandidateType(type: CandidateType): boolean {
     case 'union':
       return (<UnionCandidateType>type).types.length > 0;
   }
-  return false;
 }
 
 export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
@@ -36,8 +35,9 @@ export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
     return types.map((t) => {
       const src =
         t.type === 'function'
-          ? (t as FunctionCandidateType).signature?.strMin || '() => {}'
+          ? (t as FunctionCandidateType).signature?.strFull || '() => {}'
           : getCodeSnippet(srcFile, { pos: t.pos[0], end: t.pos[1] });
+      // const src = getCodeSnippet(srcFile, { pos: t.pos[0], end: t.pos[1] });
       return {
         ...t,
         file,

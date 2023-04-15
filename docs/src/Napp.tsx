@@ -9,7 +9,7 @@ type NappProps = {
 
 function renderToken(token: Token) {
   if (token.type === 'element') {
-    return <span className={token.properties.className.join(' ')}>{token.children.map(ch => ch.value).join(' ')}</span>;
+    return <span className={token.properties?.className.join(' ')}>{token.children.map(ch => ch.value).join(' ')}</span>;
   }
   return <span>{token.value}</span>;
 }

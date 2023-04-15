@@ -1,31 +1,36 @@
-export type Token =
-  | {
-      type: 'element';
-      tagName: string;
-      properties: { className: string[] };
-      children: { type: string; value: string }[];
-      value?: undefined;
-    }
-  | {
-      type: 'text';
-      value: string;
-      tagName?: undefined;
-      properties?: { className: string[] };
-      children?: undefined;
-    }
-  | {
-      type: 'newline';
-      value?: string;
-      tagName?: undefined;
-      properties?: { className: string[] };
-      children?: undefined;
-    };
+export type TokenRoot = {
+  type: 'root';
+  children: Token[];
+};
+
+export type TokenElement = {
+  type: 'element';
+  children: Token[];
+  properties?: { className: string[] };
+  tagName?: string;
+  value?: undefined;
+};
+
+export type TokenText = {
+  type: 'text';
+  value: string;
+  properties?: { className: string[] };
+  tagName?: undefined;
+  children?: undefined;
+};
+
+export type TokenNewline = {
+  type: 'newline';
+  children?: undefined;
+  properties?: { className: string[] };
+  tagName?: undefined;
+  value?: string;
+};
+
+export type Token = TokenElement | TokenText | TokenNewline;
 
 export type Snippet = {
   name: string;
   lang: string;
-  code: {
-    type: string;
-    children: Token[];
-  };
+  code: TokenRoot;
 };

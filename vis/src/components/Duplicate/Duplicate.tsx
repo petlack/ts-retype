@@ -1,13 +1,11 @@
 import { useCallback, useState } from 'react';
-import { ArrayElement } from '../../../../src/types';
-import { Cluster } from '../../types';
-import { ClusterTitle } from './ClusterTitle';
+import { ArrayElement, TypeDuplicate } from '../../../../src/types';
+import { Title } from './Title';
 import { DefinitionSnippet } from './DefinitionSnippet';
-import { Explorer } from '../Explorer';
-import { ExplorerProps } from '../Explorer/Explorer';
-import './BaseCluster.scss';
+import { Explorer, ExplorerProps } from '../Explorer';
+import './Duplicate.scss';
 
-export function BaseCluster({ files, names }: Cluster) {
+export function Duplicate({ files, names }: TypeDuplicate) {
   const [selectedFile, setSelectedFile] = useState<ArrayElement<typeof files>>(files[0]);
   const onClick = useCallback<NonNullable<ExplorerProps['onClick']>>((node) => {
     if (node.data.file) {
@@ -16,8 +14,8 @@ export function BaseCluster({ files, names }: Cluster) {
   }, [setSelectedFile]);
 
   return (
-    <div className="cluster">
-      <ClusterTitle names={names} type={selectedFile.type} />
+    <div className="duplicate">
+      <Title names={names} type={selectedFile.type} />
       <DefinitionSnippet {...selectedFile} />
       <Explorer files={files} onClick={onClick} />
     </div>

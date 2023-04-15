@@ -93,6 +93,7 @@ describe('clustersToOutput', () => {
     type B = { foo: string; bar: string }
     `);
     const expectedSrcA = `    type A = { foo: string; bar: string }
+    type B = { foo: string; bar: string }
     type B = { foo: string; bar: string }`;
     const expectedSrcB = `    type A = { foo: string; bar: string }
     type B = { foo: string; bar: string }
@@ -174,11 +175,13 @@ describe('clustersToOutput', () => {
       email: string;
       password: string;
     };
+
     interface IUser {
       displayName: string;
       email: string;
       password: string;
     }
+
     async function saveUser(
       user: {
         displayName: string;
@@ -187,7 +190,8 @@ describe('clustersToOutput', () => {
       }) {
         await db.createUser(user);
       }
-      `);
+
+`);
     const { types } = getTypesInFile(srcFile, relPath);
     const matrix = similarityMatrix(types);
     const pairs = toSimilarityPairs(matrix);
@@ -209,28 +213,29 @@ describe('clustersToOutput', () => {
           },
           {
             file: 'src.ts',
-            lines: [7, 11],
-            pos: [109, 204],
+            lines: [8, 12],
+            pos: [110, 205],
             type: 'interface',
-            src: `    };
-    interface IUser {
+            src: `    interface IUser {
       displayName: string;
       email: string;
       password: string;
     }
+
     async function saveUser(`,
           },
           {
             file: 'src.ts',
-            lines: [13, 17],
-            pos: [246, 332],
+            lines: [15, 19],
+            pos: [248, 334],
             type: 'literal',
             src: `    async function saveUser(
       user: {
         displayName: string;
         email: string;
         password: string
-      }) {`,
+      }) {
+        await db.createUser(user);`,
           },
         ],
         group: 'renamed',

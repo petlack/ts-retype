@@ -33,7 +33,7 @@ export function getCodeSnippet(
   }
   start = Math.max(0, start);
   let end = node.end;
-  for (const _ of range(0, linesAfter)) {
+  for (const _ of range(0, linesAfter + 1)) {
     end++;
     while (end < fulltext.length && fulltext.at(end) !== '\n') {
       end++;
