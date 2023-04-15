@@ -10,6 +10,7 @@ describe('literal type', () => {
         name: 'foo',
         type: 'literal',
         properties: [],
+        offset: 0,
         pos: [0, 0],
         lines: [0, 0],
       },
@@ -17,6 +18,7 @@ describe('literal type', () => {
         name: 'foo',
         type: 'literal',
         properties: [],
+        offset: 0,
         pos: [0, 0],
         lines: [0, 0],
       },
@@ -28,12 +30,14 @@ describe('literal type', () => {
       <LiteralCandidateType>{
         name: 'foo',
         type: 'literal',
+        offset: 0,
         pos: [0, 0],
         properties: [{ name: 'bar', type: 'StringKeyword' }],
       },
       <LiteralCandidateType>{
         name: 'foo',
         type: 'literal',
+        offset: 0,
         pos: [0, 0],
         properties: [{ name: 'bar', type: 'StringKeyword' }],
       },
@@ -45,12 +49,14 @@ describe('literal type', () => {
       <LiteralCandidateType>{
         name: 'foo',
         type: 'literal',
+        offset: 0,
         pos: [0, 0],
         properties: [{ name: 'bar', type: 'StringKeyword' }],
       },
       <LiteralCandidateType>{
         name: 'foo',
         type: 'literal',
+        offset: 0,
         pos: [0, 0],
         properties: [{ name: 'xyz', type: 'StringKeyword' }],
       },
@@ -62,12 +68,14 @@ describe('literal type', () => {
       <LiteralCandidateType>{
         name: 'foo',
         type: 'literal',
+        offset: 0,
         pos: [0, 0],
         properties: [{ name: 'bar', type: 'StringKeyword' }],
       },
       <LiteralCandidateType>{
         name: 'foo',
         type: 'literal',
+        offset: 0,
         pos: [0, 0],
         properties: [{ name: 'bar', type: 'NumberKeyword' }],
       },
@@ -79,6 +87,7 @@ describe('literal type', () => {
       <LiteralCandidateType>{
         name: 'foo',
         type: 'literal',
+        offset: 0,
         pos: [0, 0],
         properties: [
           { name: 'bar', type: 'StringKeyword' },
@@ -88,6 +97,7 @@ describe('literal type', () => {
       <LiteralCandidateType>{
         name: 'foo',
         type: 'literal',
+        offset: 0,
         pos: [0, 0],
         properties: [{ name: 'bar', type: 'NumberKeyword' }],
       },
@@ -99,6 +109,7 @@ describe('literal type', () => {
       <LiteralCandidateType>{
         name: 'foo',
         type: 'literal',
+        offset: 0,
         pos: [0, 0],
         lines: [0, 0],
         properties: [],
@@ -106,6 +117,7 @@ describe('literal type', () => {
       <LiteralCandidateType>{
         name: 'bar',
         type: 'literal',
+        offset: 0,
         pos: [0, 0],
         lines: [0, 0],
         properties: [],

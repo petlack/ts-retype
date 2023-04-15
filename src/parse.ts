@@ -17,6 +17,12 @@ function getNodePos(srcFile: ts.SourceFile, node: ts.Node): CandidateType['pos']
   return [node.getStart(srcFile), node.getEnd()];
 }
 
+function getNodeOffset(srcFile: ts.SourceFile, node: ts.Node): CandidateType['offset'] {
+  return srcFile.getLineStarts()[
+    srcFile.getLineAndCharacterOfPosition(node.getStart(srcFile)).line
+  ];
+}
+
 function getNodeLines(srcFile: ts.SourceFile, node: ts.Node): CandidateType['lines'] {
   return [
     srcFile.getLineAndCharacterOfPosition(node.getStart(srcFile)).line + 1,
@@ -58,6 +64,7 @@ function getLiteralType(
     name,
     type,
     pos: getNodePos(srcFile, node),
+    offset: getNodeOffset(srcFile, node),
     lines: getNodeLines(srcFile, node),
     properties: children,
   };
@@ -105,6 +112,7 @@ function getFunctionType(name: string, srcFile: ts.SourceFile, node: ts.Function
     name,
     type: 'function',
     pos: getNodePos(srcFile, node),
+    offset: getNodeOffset(srcFile, node),
     lines: getNodeLines(srcFile, node),
     parameters,
     returnType,
@@ -130,6 +138,7 @@ function getUnionType(name: string, srcFile: ts.SourceFile, node: ts.UnionTypeNo
     name,
     type: 'union',
     pos: getNodePos(srcFile, node),
+    offset: getNodeOffset(srcFile, node),
     lines: getNodeLines(srcFile, node),
     types,
   };
@@ -142,6 +151,7 @@ function getEnumType(name: string, srcFile: ts.SourceFile, node: ts.EnumDeclarat
     name,
     type: 'enum',
     pos: getNodePos(srcFile, node),
+    offset: getNodeOffset(srcFile, node),
     lines: getNodeLines(srcFile, node),
     members,
   };

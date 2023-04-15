@@ -16,6 +16,7 @@ describe('parse', () => {
     const expected: CandidateType[] = [
       <FunctionCandidateType>{
         name: 'Fn',
+        offset: 0,
         pos: [10, 49],
         lines: [1, 1],
         type: 'function',
@@ -56,6 +57,7 @@ describe('parse', () => {
       <EnumCandidateType>{
         name: 'En',
         type: 'enum',
+        offset: 0,
         pos: [0, 16],
         lines: [1, 1],
         members: ['a', 'b'],
@@ -73,6 +75,7 @@ describe('parse', () => {
       <UnionCandidateType>{
         name: 'Un',
         type: 'union',
+        offset: 0,
         pos: [10, 19],
         lines: [1, 1],
         types: ['a', 'b'],

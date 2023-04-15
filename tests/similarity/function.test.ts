@@ -11,6 +11,7 @@ describe('function type', () => {
         type: 'function',
         parameters: [],
         returnType: 'void',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
         signature: { params: [] },
@@ -20,6 +21,7 @@ describe('function type', () => {
         type: 'function',
         parameters: [],
         returnType: 'void',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
         signature: { params: [] },
@@ -38,6 +40,7 @@ describe('function type', () => {
         type: 'function',
         parameters,
         returnType: 'void',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
       } as FunctionCandidateType,
@@ -46,6 +49,7 @@ describe('function type', () => {
         type: 'function',
         parameters,
         returnType: 'void',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
       } as FunctionCandidateType,
@@ -63,6 +67,7 @@ describe('function type', () => {
         type: 'function',
         parameters,
         returnType: 'void',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
       } as FunctionCandidateType,
@@ -71,6 +76,7 @@ describe('function type', () => {
         type: 'function',
         parameters,
         returnType: 'number',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
       } as FunctionCandidateType,
@@ -92,6 +98,7 @@ describe('function type', () => {
         type: 'function',
         parameters: parametersA,
         returnType: 'void',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
       } as FunctionCandidateType,
@@ -100,6 +107,7 @@ describe('function type', () => {
         type: 'function',
         parameters: parametersB,
         returnType: 'void',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
       } as FunctionCandidateType,
@@ -111,6 +119,7 @@ describe('function type', () => {
       {
         name: 'foo',
         type: 'union',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
         types: ['Foo', 'Bar'],
@@ -118,6 +127,7 @@ describe('function type', () => {
       {
         name: 'foo',
         type: 'union',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
         types: ['Foo', 'Bar', 'Xyz'],
@@ -127,8 +137,22 @@ describe('function type', () => {
   });
   test('identical types with no properties and different names', () => {
     const given = similarity(
-      { name: 'foo', type: 'union', pos: [0, 0], lines: [1, 1], types: [] } as UnionCandidateType,
-      { name: 'bar', type: 'union', pos: [0, 0], lines: [1, 1], types: [] } as UnionCandidateType,
+      {
+        name: 'foo',
+        type: 'union',
+        offset: 0,
+        pos: [0, 0],
+        lines: [1, 1],
+        types: [],
+      } as UnionCandidateType,
+      {
+        name: 'bar',
+        type: 'union',
+        offset: 0,
+        pos: [0, 0],
+        lines: [1, 1],
+        types: [],
+      } as UnionCandidateType,
     );
     expectSimilarity(given, Similarity.HasIdenticalProperties);
   });
