@@ -11,6 +11,7 @@ describe('function type', () => {
         type: 'function',
         parameters: [],
         returnType: 'void',
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [1, 1],
@@ -21,6 +22,7 @@ describe('function type', () => {
         type: 'function',
         parameters: [],
         returnType: 'void',
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [1, 1],
@@ -140,6 +142,7 @@ describe('function type', () => {
       {
         name: 'foo',
         type: 'union',
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [1, 1],
@@ -148,6 +151,7 @@ describe('function type', () => {
       {
         name: 'bar',
         type: 'union',
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [1, 1],

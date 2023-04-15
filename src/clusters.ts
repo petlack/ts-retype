@@ -3,7 +3,7 @@ import { Similarity, Clusters } from './types/similarity';
 import ts from 'typescript';
 import { freq, selectIndices } from './utils';
 import { concat, pluck, uniq } from 'ramda';
-import { getCodeSnippet, highlight } from './source';
+import { highlight } from './source';
 import { TypeDuplicate } from '.';
 import {
   CandidateType,
@@ -36,7 +36,7 @@ export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
       const src =
         t.type === 'function'
           ? (t as FunctionCandidateType).signature?.strFull || '() => {}'
-          : getCodeSnippet(srcFile, { pos: t.pos[0], end: t.pos[1] });
+          : t.src;
       // const src = getCodeSnippet(srcFile, { pos: t.pos[0], end: t.pos[1] });
       return {
         ...t,

@@ -10,6 +10,7 @@ describe('enum type', () => {
         name: 'foo',
         type: 'enum',
         members: [],
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [1, 1],
@@ -18,6 +19,7 @@ describe('enum type', () => {
         name: 'foo',
         type: 'enum',
         members: [],
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [1, 1],
@@ -114,6 +116,7 @@ describe('enum type', () => {
       {
         name: 'foo',
         type: 'enum',
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [1, 1],
@@ -122,6 +125,7 @@ describe('enum type', () => {
       {
         name: 'bar',
         type: 'enum',
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [1, 1],

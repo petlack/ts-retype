@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist && rm -rf node_modules/ts-retype",
     "report": "ts-retype .",
     "smoke": "tsc && npm run report && npm run start && ts-node --esm src/smoke.ts",
     "start": "ts-node --esm src/index.ts"

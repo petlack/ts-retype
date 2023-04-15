@@ -10,7 +10,9 @@ export const duplicate: TypeDuplicate = {
     {
       name: 'User',
       type: 'literal',
+      src: '...omitted...',
       pos: [54, 117],
+      offset: 26,
       lines: [6, 10],
       properties: [
         { name: 'displayName', type: 'string' },
@@ -18,12 +20,13 @@ export const duplicate: TypeDuplicate = {
         { name: 'password', type: 'string' },
       ],
       file: 'src/model.ts',
-      src: '...omitted...',
     },
     {
       name: 'IUser',
       type: 'interface',
+      src: '...omitted...',
       pos: [14, 93],
+      offset: 7,
       lines: [3, 7],
       properties: [
         { name: 'displayName', type: 'string' },
@@ -31,12 +34,13 @@ export const duplicate: TypeDuplicate = {
         { name: 'password', type: 'string' },
       ],
       file: 'src/auth.ts',
-      src: '...omitted...',
     },
     {
       name: 'anonymous',
       type: 'literal',
+      src: '...omitted...',
       pos: [195, 266],
+      offset: 33,
       lines: [18, 22],
       properties: [
         { name: 'displayName', type: 'string' },
@@ -44,7 +48,6 @@ export const duplicate: TypeDuplicate = {
         { name: 'password', type: 'string' },
       ],
       file: 'src/api.ts',
-      src: '...omitted...',
     },
   ],
   group: 'renamed',

@@ -10,6 +10,7 @@ describe('union type', () => {
         name: 'foo',
         type: 'union',
         types: [],
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [0, 0],
@@ -18,6 +19,7 @@ describe('union type', () => {
         name: 'foo',
         type: 'union',
         types: [],
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [0, 0],
@@ -30,6 +32,7 @@ describe('union type', () => {
       {
         name: 'foo',
         type: 'union',
+        src: '',
         offset: 0,
         pos: [0, 0],
         types: ['Foo', 'Bar'],
@@ -37,6 +40,7 @@ describe('union type', () => {
       {
         name: 'foo',
         type: 'union',
+        src: '',
         offset: 0,
         pos: [0, 0],
         types: ['Foo', 'Bar'],
@@ -49,6 +53,7 @@ describe('union type', () => {
       {
         name: 'foo',
         type: 'union',
+        src: '',
         offset: 0,
         pos: [0, 0],
         types: ['Foo', 'Bar'],
@@ -56,6 +61,7 @@ describe('union type', () => {
       {
         name: 'foo',
         type: 'union',
+        src: '',
         offset: 0,
         pos: [0, 0],
         types: ['Abc', 'Xyz'],
@@ -68,6 +74,7 @@ describe('union type', () => {
       {
         name: 'foo',
         type: 'union',
+        src: '',
         offset: 0,
         pos: [0, 0],
         types: ['Foo', 'Bar'],
@@ -75,6 +82,7 @@ describe('union type', () => {
       {
         name: 'bar',
         type: 'union',
+        src: '',
         offset: 0,
         pos: [0, 0],
         types: ['Foo', 'Bar'],
@@ -87,6 +95,7 @@ describe('union type', () => {
       {
         name: 'foo',
         type: 'union',
+        src: '',
         offset: 0,
         pos: [0, 0],
         types: ['Foo', 'Bar'],
@@ -94,6 +103,7 @@ describe('union type', () => {
       {
         name: 'foo',
         type: 'union',
+        src: '',
         offset: 0,
         pos: [0, 0],
         types: ['Foo', 'Bar', 'Xyz'],
@@ -106,6 +116,7 @@ describe('union type', () => {
       {
         name: 'foo',
         type: 'union',
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [0, 0],
@@ -114,6 +125,7 @@ describe('union type', () => {
       {
         name: 'bar',
         type: 'union',
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [0, 0],

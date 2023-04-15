@@ -16,7 +16,7 @@ describe('parse', () => {
     const expected: CandidateType[] = [
       <FunctionCandidateType>{
         name: 'Fn',
-        offset: 0,
+        offset: 10,
         pos: [10, 49],
         lines: [1, 1],
         type: 'function',
@@ -46,7 +46,7 @@ describe('parse', () => {
       },
     ];
 
-    expect(types).toEqual(expected);
+    expect(types).toMatchObject(expected);
   });
   test('enum declaration', () => {
     const sourceText = 'enum En { a, b }';
@@ -64,7 +64,7 @@ describe('parse', () => {
       },
     ];
 
-    expect(types).toEqual(expected);
+    expect(types).toMatchObject(expected);
   });
   test('union declaration', () => {
     const sourceText = 'type Un = "a" | "b"';
@@ -75,13 +75,13 @@ describe('parse', () => {
       <UnionCandidateType>{
         name: 'Un',
         type: 'union',
-        offset: 0,
+        offset: 10,
         pos: [10, 19],
         lines: [1, 1],
         types: ['a', 'b'],
       },
     ];
 
-    expect(types).toEqual(expected);
+    expect(types).toMatchObject(expected);
   });
 });

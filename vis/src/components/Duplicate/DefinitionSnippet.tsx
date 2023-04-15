@@ -2,20 +2,23 @@ import { ArrayElement, TypeDuplicate } from '../../../../src/types';
 import { flattenTokens, insertNewlines, splitLines, TokenElement } from '../../../../docs/src/components/Token';
 import { Lines } from '../../../../docs/src/components/Lines';
 import { Snippet, TokenRoot } from '../../../../src/types/snippet';
-import './DefinitionSnippet.scss';
 import { useSearchPhrase } from '../../hooks/useSearchPhrase';
-import { highlightTokens } from '../../model/snippet';
+import { highlightDefinition, highlightPhrase } from '../../model/snippet';
+import './DefinitionSnippet.scss';
 
 const EMPTY_ROOT: TokenRoot = { type: 'root', children: [] };
 
-export function DefinitionSnippet({ srcHgl, name, lines }: ArrayElement<TypeDuplicate['files']>) {
+export function DefinitionSnippet({ srcHgl, name, lines, offset, pos }: ArrayElement<TypeDuplicate['files']>) {
   const { phrase } = useSearchPhrase();
   const code = splitLines(
-    highlightTokens(
-      insertNewlines(
-        flattenTokens(
-          srcHgl || EMPTY_ROOT
-        )
+    highlightPhrase(
+      highlightDefinition(
+        insertNewlines(
+          flattenTokens(
+            srcHgl || EMPTY_ROOT
+          )
+        ),
+        { lines, offset, pos },
       ),
       phrase,
     )
