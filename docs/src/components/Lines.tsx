@@ -20,7 +20,7 @@ export function Lines(props: LinesProps) {
   const linesMarkup = props.lines.map((line, lineNo) => (
     <span key={lineNo} className="line">
       <span>{props.type === 'lineNo' ? props.start + lineNo : props.char}</span>
-      <span>{line}</span>
+      {line}
     </span>
   ));
   return (

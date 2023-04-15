@@ -116,6 +116,7 @@ export type TypeDuplicate = {
     file: string;
     lines: [number, number];
     pos: [number, number];
+    offset: number;
     type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
     src: string;
     srcHgl?: TokenRoot;

@@ -2,7 +2,7 @@ import { refractor } from 'refractor/lib/core.js';
 import tsLang from 'refractor/lang/typescript.js';
 import { FunctionCandidateType } from './types/candidate';
 import ts from 'typescript';
-import { range, pipe, slice, split, dropWhile, dropLastWhile, join } from 'ramda';
+import { range, slice } from 'ramda';
 
 export function highlight(src: string) {
   if (!refractor.registered('ts')) {
@@ -11,44 +11,42 @@ export function highlight(src: string) {
   return refractor.highlight(src, 'ts');
 }
 
-export function getCodeSnippet(
-  sourceFile: ts.SourceFile,
-  node: { pos: number; end: number } | null,
-) {
-  const fulltext = sourceFile.getFullText();
+export function getCodeSnippet(srcFile: ts.SourceFile, node: ts.Node) {
+  const [startAt, endBefore] = [node.getStart(srcFile), node.getEnd()];
+  const fulltext = srcFile.getFullText();
   const linesBefore = 1;
   const linesAfter = 1;
   if (!node) {
-    return '';
+    return { src: '', startAt: 0, endBefore: 0, leftOffset: 0, rightOffset: 0 };
   }
-  let start = node.pos;
-  while (start >= 0 && fulltext.at(start) !== '\n') {
-    start--;
+  let leftOffset = 0;
+  while (startAt + leftOffset >= 0 && fulltext.at(startAt + leftOffset) !== '\n') {
+    leftOffset--;
   }
   for (const _ of range(0, linesBefore)) {
-    start--;
-    while (start >= 0 && fulltext.at(start) !== '\n') {
-      start--;
+    leftOffset--;
+    while (startAt + leftOffset >= 0 && fulltext.at(startAt + leftOffset) !== '\n') {
+      leftOffset--;
     }
   }
-  start = Math.max(0, start);
-  let end = node.end;
+  leftOffset++;
+
+  let rightOffset = 0;
   for (const _ of range(0, linesAfter + 1)) {
-    end++;
-    while (end < fulltext.length && fulltext.at(end) !== '\n') {
-      end++;
+    rightOffset++;
+    while (
+      endBefore + rightOffset < fulltext.length &&
+      fulltext.at(endBefore + rightOffset) !== '\n'
+    ) {
+      rightOffset++;
     }
   }
-  end = Math.min(fulltext.length, end);
-  const isEmptyLine = (line: string) => line.trim().length === 0;
-  const nonEmptyLines = pipe(
-    slice(start, end),
-    split('\n'),
-    dropWhile(isEmptyLine),
-    dropLastWhile(isEmptyLine),
-    join('\n'),
-  )(fulltext);
-  return nonEmptyLines;
+
+  leftOffset = leftOffset + startAt < 0 ? -1 * startAt : leftOffset;
+  rightOffset =
+    endBefore + rightOffset > fulltext.length ? fulltext.length - endBefore : rightOffset;
+  const nonEmptyLines = slice(startAt + leftOffset, endBefore + rightOffset, fulltext);
+  return { src: nonEmptyLines, startAt, endBefore, leftOffset, rightOffset };
 }
 
 export function functionSignatureToStr(

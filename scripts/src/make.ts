@@ -148,7 +148,10 @@ async function make(config: Partial<CmdProps>) {
     { name: 'runExampleTsRetype', deps: ['buildExample'] },
     { name: 'runExtractSnippets', deps: ['runExampleTsRetype', 'runCreateCmdHelpSnippet'] },
     { name: 'syntaxHighlightSnippets', deps: ['runExtractSnippets'] },
-    { name: 'buildDocs', deps: ['installDocs', 'syntaxHighlightSnippets'] },
+    {
+      name: 'buildDocs',
+      deps: ['installDocs', 'runExampleTsRetype', 'runExtractSnippets', 'syntaxHighlightSnippets'],
+    },
     { name: 'generateReadme', deps: ['runExtractSnippets'] },
     { name: 'smoke', deps: ['tests', 'runExampleTsRetype', 'runExtractSnippets'] },
   ];

@@ -1,6 +1,7 @@
 import { ascend, assoc, sort, zip } from 'ramda';
 import ts, { LiteralTypeNode, SignatureDeclaration } from 'typescript';
-import { functionSignatureToStr } from './source';
+import { functionSignatureToStr, getCodeSnippet } from './source';
+import { TypeDuplicate } from './types';
 import {
   CandidateType,
   EnumCandidateType,
@@ -13,15 +14,22 @@ import {
 
 import { getNodeText, toName } from './utils';
 
-function getNodePos(srcFile: ts.SourceFile, node: ts.Node): CandidateType['pos'] {
-  return [node.getStart(srcFile), node.getEnd()];
-}
+type TypeInFile = Pick<TypeDuplicate['files'][0], 'src' | 'pos' | 'offset' | 'lines'>;
 
-function getNodeLines(srcFile: ts.SourceFile, node: ts.Node): CandidateType['lines'] {
-  return [
-    srcFile.getLineAndCharacterOfPosition(node.getStart(srcFile)).line + 1,
-    srcFile.getLineAndCharacterOfPosition(node.getEnd()).line + 1,
+function asTypeInFile(srcFile: ts.SourceFile, node: ts.Node): TypeInFile {
+  const { src, startAt, endBefore, leftOffset, rightOffset } = getCodeSnippet(srcFile, node);
+  const pos: TypeInFile['pos'] = [startAt, endBefore];
+  const offset: TypeInFile['offset'] = Math.max(0, -1 * leftOffset);
+  const lines: TypeInFile['lines'] = [
+    srcFile.getLineAndCharacterOfPosition(startAt).line + 1,
+    srcFile.getLineAndCharacterOfPosition(endBefore).line + 1,
   ];
+  return {
+    src,
+    pos,
+    offset,
+    lines,
+  };
 }
 
 function getPropertySignature(srcFile: ts.SourceFile, node: any): Property | null {
@@ -57,8 +65,7 @@ function getLiteralType(
   const candidate: LiteralCandidateType = {
     name,
     type,
-    pos: getNodePos(srcFile, node),
-    lines: getNodeLines(srcFile, node),
+    ...asTypeInFile(srcFile, node),
     properties: children,
   };
   return candidate;
@@ -104,8 +111,7 @@ function getFunctionType(name: string, srcFile: ts.SourceFile, node: ts.Function
   const candidate: FunctionCandidateType = {
     name,
     type: 'function',
-    pos: getNodePos(srcFile, node),
-    lines: getNodeLines(srcFile, node),
+    ...asTypeInFile(srcFile, node),
     parameters,
     returnType,
     signature: functionSignature(srcFile, node),
@@ -129,8 +135,7 @@ function getUnionType(name: string, srcFile: ts.SourceFile, node: ts.UnionTypeNo
   const candidate: UnionCandidateType = {
     name,
     type: 'union',
-    pos: getNodePos(srcFile, node),
-    lines: getNodeLines(srcFile, node),
+    ...asTypeInFile(srcFile, node),
     types,
   };
   return candidate;
@@ -141,8 +146,7 @@ function getEnumType(name: string, srcFile: ts.SourceFile, node: ts.EnumDeclarat
   const candidate: EnumCandidateType = {
     name,
     type: 'enum',
-    pos: getNodePos(srcFile, node),
-    lines: getNodeLines(srcFile, node),
+    ...asTypeInFile(srcFile, node),
     members,
   };
   return candidate;

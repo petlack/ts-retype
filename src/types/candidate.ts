@@ -11,8 +11,10 @@ export interface Property {
 export interface CandidateType {
   name: string;
   type: ArrayElement<TypeDuplicate['files']>['type'];
+  offset: ArrayElement<TypeDuplicate['files']>['offset'];
   pos: ArrayElement<TypeDuplicate['files']>['pos'];
   lines: ArrayElement<TypeDuplicate['files']>['lines'];
+  src: ArrayElement<TypeDuplicate['files']>['src'];
 }
 
 export interface FunctionCandidateType extends CandidateType {

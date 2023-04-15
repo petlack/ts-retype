@@ -6,8 +6,24 @@ import { Similarity } from '../../src/types/similarity';
 describe('enum type', () => {
   test('same names, no members', () => {
     const given = similarity(
-      { name: 'foo', type: 'enum', members: [], pos: [0, 0], lines: [1, 1] } as EnumCandidateType,
-      { name: 'foo', type: 'enum', members: [], pos: [0, 0], lines: [1, 1] } as EnumCandidateType,
+      {
+        name: 'foo',
+        type: 'enum',
+        members: [],
+        src: '',
+        offset: 0,
+        pos: [0, 0],
+        lines: [1, 1],
+      } as EnumCandidateType,
+      {
+        name: 'foo',
+        type: 'enum',
+        members: [],
+        src: '',
+        offset: 0,
+        pos: [0, 0],
+        lines: [1, 1],
+      } as EnumCandidateType,
     );
     expectSimilarity(given, Similarity.Identical);
   });
@@ -16,6 +32,7 @@ describe('enum type', () => {
       {
         name: 'foo',
         type: 'enum',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
         members: ['Foo', 'Bar'],
@@ -24,6 +41,7 @@ describe('enum type', () => {
         name: 'foo',
         type: 'enum',
         pos: [0, 0],
+        offset: 0,
         lines: [1, 1],
         members: ['Foo', 'Bar'],
       } as EnumCandidateType,
@@ -35,6 +53,7 @@ describe('enum type', () => {
       {
         name: 'foo',
         type: 'enum',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
         members: ['Foo', 'Bar'],
@@ -42,6 +61,7 @@ describe('enum type', () => {
       {
         name: 'foo',
         type: 'enum',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
         members: ['Abc', 'Xyz'],
@@ -54,6 +74,7 @@ describe('enum type', () => {
       {
         name: 'foo',
         type: 'enum',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
         members: ['Foo', 'Bar'],
@@ -61,6 +82,7 @@ describe('enum type', () => {
       {
         name: 'bar',
         type: 'enum',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
         members: ['Foo', 'Bar'],
@@ -73,6 +95,7 @@ describe('enum type', () => {
       {
         name: 'foo',
         type: 'enum',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
         members: ['Foo', 'Bar'],
@@ -80,6 +103,7 @@ describe('enum type', () => {
       {
         name: 'foo',
         type: 'enum',
+        offset: 0,
         pos: [0, 0],
         lines: [1, 1],
         members: ['Foo', 'Bar', 'Xyz'],
@@ -89,8 +113,24 @@ describe('enum type', () => {
   });
   test('identical types with no properties and different names', () => {
     const given = similarity(
-      { name: 'foo', type: 'enum', pos: [0, 0], lines: [1, 1], members: [] } as EnumCandidateType,
-      { name: 'bar', type: 'enum', pos: [0, 0], lines: [1, 1], members: [] } as EnumCandidateType,
+      {
+        name: 'foo',
+        type: 'enum',
+        src: '',
+        offset: 0,
+        pos: [0, 0],
+        lines: [1, 1],
+        members: [],
+      } as EnumCandidateType,
+      {
+        name: 'bar',
+        type: 'enum',
+        src: '',
+        offset: 0,
+        pos: [0, 0],
+        lines: [1, 1],
+        members: [],
+      } as EnumCandidateType,
     );
     expectSimilarity(given, Similarity.HasIdenticalProperties);
   });

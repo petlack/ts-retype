@@ -1,4 +1,4 @@
-import { formatDistance, formatDuration, isValid, parseISO, format, formatISO } from 'date-fns';
+import { formatDistance, formatDuration, isValid, parseISO, format } from 'date-fns';
 import './Footer.scss';
 
 import { Metadata } from '../../../../src/types';
