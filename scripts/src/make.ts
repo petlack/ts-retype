@@ -103,7 +103,7 @@ async function make(config: Partial<CmdProps>) {
   const runExampleTsRetype = () => npmrun('example', 'report');
   const runExtractSnippets = () => script('extractSnippets');
   const smoke = () => npmrun('example', 'smoke');
-  const tests = () => npmrun(null, 'test');
+  const tests = () => npmrun(null, 'test:fast');
 
   const defs = {
     buildDocs,
