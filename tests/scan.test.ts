@@ -8,11 +8,14 @@ function writeSrc(path: string, src: string) {
   fs.writeFileSync(path, src);
 }
 
-describe('clusters', () => {
+describe('scan', () => {
   const dir = fs.mkdtempSync('ts-retype-scan');
   beforeEach(() => {
     writeSrc(path.join(dir, 'foo.ts'), 'export type A = { foo: string; }');
     writeSrc(path.join(dir, 'bar.ts'), 'export type b = { foo: string; }');
+    writeSrc(path.join(dir, 'abc.ts'), 'export type O<T> = { abc: T[]; }');
+    writeSrc(path.join(dir, 'xyz.ts'), 'export type X = { bar: number[]; }');
+    writeSrc(path.join(dir, '012.ts'), 'export type X = { bar: number; }');
   });
   afterEach(() => {
     rimrafSync(dir);
@@ -48,9 +51,9 @@ describe('clusters', () => {
     expect(given.data).toMatchObject(expected);
 
     expect(given.meta).toMatchObject({
-      projectFilesScanned: 2,
-      projectFilesWithTypesDeclarations: 2,
-      projectLocScanned: 2,
+      projectFilesScanned: 5,
+      projectFilesWithTypesDeclarations: 5,
+      projectLocScanned: 5,
     });
     expect(given.meta.projectName).toMatch(/ts-retype.*/);
     expect(given.meta.scanDuration).toBeGreaterThan(0);

@@ -103,7 +103,7 @@ async function make(config: Partial<CmdProps>) {
   const runExampleTsRetype = () => npmrun('example', 'report');
   const runExtractSnippets = () => script('extractSnippets');
   const smoke = () => npmrun('example', 'smoke');
-  const tests = () => npmrun(null, 'test');
+  const tests = () => npmrun(null, 'test:fast');
 
   const defs = {
     buildDocs,
@@ -143,16 +143,16 @@ async function make(config: Partial<CmdProps>) {
     { name: 'prepareDist', deps: ['buildVis', 'buildTsRetype'] },
     { name: 'tests', deps: ['prepareDist'] },
     { name: 'installExample', deps: ['cleanExample', 'prepareDist'] },
-    { name: 'buildExample', deps: ['installExample'] },
+    { name: 'buildExample', deps: ['runExtractSnippets'] },
     { name: 'runCreateCmdHelpSnippet', deps: ['prepareDist'] },
-    { name: 'runExampleTsRetype', deps: ['buildExample'] },
-    { name: 'runExtractSnippets', deps: ['runExampleTsRetype', 'runCreateCmdHelpSnippet'] },
+    { name: 'runExampleTsRetype', deps: ['installExample'] },
+    { name: 'runExtractSnippets', deps: ['runExampleTsRetype'] },
     { name: 'syntaxHighlightSnippets', deps: ['runExtractSnippets'] },
     {
       name: 'buildDocs',
       deps: ['installDocs', 'runExampleTsRetype', 'runExtractSnippets', 'syntaxHighlightSnippets'],
     },
-    { name: 'generateReadme', deps: ['runExtractSnippets'] },
+    { name: 'generateReadme', deps: ['runExtractSnippets', 'runCreateCmdHelpSnippet'] },
     { name: 'smoke', deps: ['tests', 'runExampleTsRetype', 'runExtractSnippets'] },
   ];
 

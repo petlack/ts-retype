@@ -38,13 +38,11 @@ function getPropertySignature(srcFile: ts.SourceFile, node: any): Property | nul
       return {
         name: node.name.escapedText,
         type: getNodeText(srcFile, node.type).trim(),
-        text: toName(node.type),
       };
     case ts.SyntaxKind.IndexSignature:
       return {
         name: getNodeText(srcFile, node.parameters[0] && node.parameters[0].type).trim(),
         type: getNodeText(srcFile, node.type).trim(),
-        text: toName(node.type),
       };
   }
   return null;
@@ -105,7 +103,6 @@ function getFunctionType(name: string, srcFile: ts.SourceFile, node: ts.Function
       <Property>{
         name: (getNodeText(srcFile, p.name) || '<unknown>').trim(),
         type: getNodeText(srcFile, p.type).trim(),
-        text: toName(p.type),
       },
   );
   const candidate: FunctionCandidateType = {

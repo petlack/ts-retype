@@ -52,6 +52,7 @@
     "scripts:build": "cd scripts && npm i && npm run build",
     "security": "npm audit --audit-level=high",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "test:fast": "NODE_OPTIONS=--experimental-vm-modules jest --coverage -c jest.fast.config.ts",
     "test:watchAll": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
     "transpile": "tsc",
     "vis:build": "cd vis && npm run build",

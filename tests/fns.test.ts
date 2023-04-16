@@ -21,8 +21,8 @@ describe('parse', () => {
         lines: [1, 1],
         type: 'function',
         parameters: [
-          { name: 'a', type: 'string', text: 'StringKeyword' },
-          { name: 'b', type: 'number', text: 'NumberKeyword' },
+          { name: 'a', type: 'string' },
+          { name: 'b', type: 'number' },
         ],
         returnType: 'Promise<void>',
         signature: {

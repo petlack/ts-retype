@@ -1,6 +1,6 @@
-import { Snippet, Token } from '../../../src/types/snippet';
+import { Snippet, Token, TokenRoot } from '../../../src/types/snippet';
 import { Lines } from './Lines';
-import { TokenElement } from './Token';
+import { flattenTokens, insertNewlines, splitLines, TokenElement } from './Token';
 import { Window } from './Window';
 
 export type BashProps = {
@@ -8,7 +8,7 @@ export type BashProps = {
   theme: 'dark' | 'light';
 }
 
-function parseBash(code: string): Snippet {
+function parseBash(code: string): TokenRoot {
   const lines = code.split('\n')
     .map(line => [
       line.trim().startsWith('#') ?
@@ -26,17 +26,25 @@ function parseBash(code: string): Snippet {
     .reduce((res, item) => [...res, ...item], []);
 
   return {
-    name: 'bash',
-    lang: 'bash',
-    code: {
-      type: 'root',
-      children: lines.slice(0, -1),
-    },
+    type: 'root',
+    children: lines.slice(0, -1),
   };
 }
 
 export function Bash({ children, theme }: BashProps) {
-  const snippet = parseBash(children);
+  const src = children;
+
+  const root = parseBash(src);
+  const code = splitLines(
+    insertNewlines(
+      flattenTokens(root)
+    ),
+  );
+  const snippet: Snippet = {
+    name: 'bash',
+    lang: 'bash',
+    code,
+  };
   const linesMarkup = snippet.code.children.map((token, idx) => (
     <TokenElement
       key={idx}

@@ -12,7 +12,7 @@ function writeSrc(path: string, src: string) {
   fs.writeFileSync(path, src);
 }
 
-describe('clusters', () => {
+describe('report', () => {
   const dir = fs.mkdtempSync('ts-retype-report');
   beforeEach(() => {
     writeSrc(path.join(dir, 'foo.ts'), 'export type A = { foo: string; }');

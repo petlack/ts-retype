@@ -8,8 +8,9 @@ import { Options } from './components/Options';
 import * as Snippets from './generated/snippets';
 import { TopBar } from './uikit/TopBar';
 import { Window } from './components/Window';
-import './App.styl';
 import { Snippet } from '../../src/types/snippet';
+import { TS_RETYPE_CMD_OPTIONS } from '../../src/types/props';
+import './App.styl';
 
 const theme = 'light';
 // const theme = 'dark';
@@ -63,17 +64,7 @@ export default function App() {
         <Window theme={theme} name="bash" showHeader={false}>
           <Code><span>{'ts-retype [options] <path-to-project>'}</span></Code>
         </Window>
-        <Options
-          options={[
-            { short: 'c', long: 'config', args: '[path]', desc: 'load config - if no path provided, loads .retyperc from current directory. if not set, use default config' },
-            { short: 'e', long: 'exclude', args: '[glob...]', desc: 'glob patterns that will be ignored' },
-            { short: 'g', long: 'init', args: '[path]', desc: 'initializes with default config. if no path is provided, creates .retyperc in the current directory' },
-            { short: 'i', long: 'include', args: '[glob...]', desc: 'glob patterns that will be included in search' },
-            { short: 'j', long: 'json', args: '<path>', desc: 'JSON report file path. if not set, does not export JSON.' },
-            { short: 'n', long: 'noHtml', desc: 'if set, does not export HTML (default: false)' },
-            { short: 'o', long: 'output', args: '<path>', desc: 'HTML report file path - if provided with directory, it will create index.html file' },
-          ]}
-        />
+        <Options options={TS_RETYPE_CMD_OPTIONS} />
         <p>Or by using the <strong>--config</strong> option and providing path to config .retyperc</p>
         <Bash theme={theme}>
           {

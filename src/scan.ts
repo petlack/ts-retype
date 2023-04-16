@@ -66,7 +66,7 @@ export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
 
   const pairs = toSimilarityPairs(matrix);
   const clusters = pairsToClusters(pairs);
-  const data = clustersToOutput(allTypes, clusters);
+  const data = clustersToOutput(allTypes, clusters).filter(({ group }) => group !== 'different');
 
   const duration = new Date().getTime() - start;
 

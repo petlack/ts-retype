@@ -1,6 +1,5 @@
 import { parse } from '../../src/parse';
 import { createFile } from '../../src/utils';
-import { FunctionCandidateType } from '../types/candidate';
 
 describe('parse', () => {
   test('simple type', () => {
@@ -19,8 +18,8 @@ describe('parse', () => {
         offset: 9,
         lines: [1, 4],
         properties: [
-          { name: 'message', type: 'string', text: 'StringKeyword' },
-          { name: 'status', type: 'number', text: 'NumberKeyword' },
+          { name: 'message', type: 'string' },
+          { name: 'status', type: 'number' },
         ],
       },
     ];
@@ -46,9 +45,9 @@ describe('parse', () => {
         offset: 24,
         lines: [2, 6],
         properties: [
-          { name: 'message', type: 'string', text: 'StringKeyword' },
-          { name: 'status', type: 'number', text: 'NumberKeyword' },
-          { name: 'foo', type: 'A', text: 'TypeReference' },
+          { name: 'message', type: 'string' },
+          { name: 'status', type: 'number' },
+          { name: 'foo', type: 'A' },
         ],
       },
     ];
@@ -73,9 +72,9 @@ describe('parse', () => {
         offset: 0,
         lines: [1, 5],
         properties: [
-          { name: 'foo', type: '(a: string) => number', text: 'FunctionType' },
-          { name: 'bar', type: 'A', text: 'TypeReference' },
-          { name: 'baz', type: 'B', text: 'TypeReference' },
+          { name: 'foo', type: '(a: string) => number' },
+          { name: 'bar', type: 'A' },
+          { name: 'baz', type: 'B' },
         ],
       },
     ];
@@ -95,7 +94,7 @@ describe('parse', () => {
         pos: [20, 58],
         offset: 20,
         lines: [1, 1],
-        parameters: [{ name: 'x', type: 'T', text: 'TypeReference' }],
+        parameters: [{ name: 'x', type: 'T' }],
         returnType: '{ foo: string, bar: number }',
         signature: {
           name: '',
@@ -112,8 +111,8 @@ describe('parse', () => {
         offset: 30,
         lines: [1, 1],
         properties: [
-          { name: 'foo', type: 'string', text: 'StringKeyword' },
-          { name: 'bar', type: 'number', text: 'NumberKeyword' },
+          { name: 'foo', type: 'string' },
+          { name: 'bar', type: 'number' },
         ],
       },
     ];
@@ -142,7 +141,7 @@ describe('parse', () => {
           strMin: '(string) => string',
           strFull: 'foo(bar: string) => string',
         },
-        parameters: [{ name: 'bar', type: 'string', text: 'StringKeyword' }],
+        parameters: [{ name: 'bar', type: 'string' }],
         returnType: 'string',
       },
     ];
@@ -163,8 +162,8 @@ describe('parse', () => {
         offset: 11,
         lines: [1, 1],
         properties: [
-          { name: 'string', type: 'number', text: 'NumberKeyword' },
-          { name: 'foo', type: 'number', text: 'NumberKeyword' },
+          { name: 'string', type: 'number' },
+          { name: 'foo', type: 'number' },
         ],
       },
     ];
@@ -194,7 +193,7 @@ describe('parse', () => {
         offset: 47,
         pos: [47, 65],
         lines: [2, 2],
-        properties: [{ name: 'symbol', type: 'T', text: 'TypeReference' }],
+        properties: [{ name: 'symbol', type: 'T' }],
       },
     ];
 
@@ -229,9 +228,9 @@ describe('parse', () => {
         offset: 60,
         lines: [5, 9],
         properties: [
-          { name: 'files', type: 'SourceFile[]', text: 'ArrayType' },
-          { name: 'names', type: 'Freq', text: 'TypeReference' },
-          { name: 'group', type: 'string', text: 'StringKeyword' },
+          { name: 'files', type: 'SourceFile[]' },
+          { name: 'names', type: 'Freq' },
+          { name: 'group', type: 'string' },
         ],
         type: 'literal',
       },
@@ -256,8 +255,8 @@ describe('parse', () => {
         pos: [9, 85],
         lines: [1, 4],
         properties: [
-          { name: 'message', type: 'string', text: 'StringKeyword' },
-          { name: 'status', type: '{ code: number, title: string }', text: 'TypeLiteral' },
+          { name: 'message', type: 'string' },
+          { name: 'status', type: '{ code: number, title: string }' },
         ],
       },
       {
@@ -267,8 +266,8 @@ describe('parse', () => {
         offset: 36,
         lines: [3, 3],
         properties: [
-          { name: 'code', type: 'number', text: 'NumberKeyword' },
-          { name: 'title', type: 'string', text: 'StringKeyword' },
+          { name: 'code', type: 'number' },
+          { name: 'title', type: 'string' },
         ],
       },
     ];

@@ -5,18 +5,18 @@ export type OptionsProps = {
 }
 
 export function Options({ options }: OptionsProps) {
-  const optionsFlat = options.reduce((res, option) => (
+  const optionsFlat = options.reduce((res, { short, long, args, desc }) => (
     [
       ...res,
       {
-        key: option.short,
+        key: short,
         className: 'name',
-        title: `-${option.short}, --${option.long} ${option.args}`,
+        title: `-${short}, --${long} ${args || ''}`,
       },
       {
-        key: option.long,
+        key: long,
         className: 'desc',
-        title: option.desc,
+        title: desc,
       },
     ]
   ), [] as { key: string, className: string, title: string }[]);
