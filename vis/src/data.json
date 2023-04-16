@@ -3015,7 +3015,7 @@
           "name": "chooseTypeFeatures",
           "type": "function",
           "src": "chooseTypeFeatures(\n  types: SourceCandidateType[],\n  idxs: Iterable<number>\n) => \n  unknown",
-          "pos": [2097, 3133],
+          "pos": [2097, 3136],
           "offset": 1,
           "lines": [73, 105],
           "parameters": [
@@ -14382,7 +14382,8 @@
           }
         }
       ],
-      "group": "identical"
+      "group": "identical",
+      "types": ["interface", "literal", "alias", "function", "enum", "union"]
     },
     {
       "names": [{ "name": "anonymous", "count": 2 }],
@@ -14592,7 +14593,8 @@
           }
         }
       ],
-      "group": "identical"
+      "group": "identical",
+      "types": ["different", "renamed", "identical"]
     },
     {
       "names": [{ "name": "anonymous", "count": 2 }],
@@ -17454,9 +17456,9 @@
           "name": "anonymous",
           "type": "union",
           "src": "          <MultilangWindow\n            theme={{ dark: 'light', light: 'dark' }[theme] as 'dark' | 'light'}\n            selectedLang=\"npx\"",
-          "pos": [1618, 1634],
+          "pos": [3282, 3298],
           "offset": 89,
-          "lines": [36, 36],
+          "lines": [71, 71],
           "types": ["dark", "light"],
           "file": "docs/src/components/Landing.tsx",
           "srcHgl": {
@@ -17666,7 +17668,7 @@
           "name": "anonymous",
           "type": "union",
           "src": "  children: string;\n  theme: 'dark' | 'light';\n}",
-          "pos": [225, 241],
+          "pos": [279, 295],
           "offset": 29,
           "lines": [8, 8],
           "types": ["dark", "light"],
@@ -17739,17 +17741,18 @@
           }
         }
       ],
-      "group": "identical"
+      "group": "identical",
+      "types": ["dark", "light"]
     }
   ],
   "meta": {
     "projectName": "ts-retype",
     "projectFilesScanned": 161,
-    "projectLocScanned": 11588,
+    "projectLocScanned": 11715,
     "projectTypesScanned": 352,
     "projectFilesWithTypesDeclarations": 100,
-    "scannedAt": "2023-04-16T09:37:45+03:00",
-    "scanDuration": 6,
-    "reportSize": 644394
+    "scannedAt": "2023-04-16T10:45:23+03:00",
+    "scanDuration": 7,
+    "reportSize": 644529
   }
 }

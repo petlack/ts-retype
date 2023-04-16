@@ -99,7 +99,7 @@ function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>
       };
     case 'union':
       return {
-        types: (types[0] as unknown as UnionCandidateType).types,
+        types: (selected[0] as unknown as UnionCandidateType).types,
       };
   }
 }
