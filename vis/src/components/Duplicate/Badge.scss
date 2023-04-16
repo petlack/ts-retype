@@ -1,0 +1,34 @@
+.badge {
+  padding: 4px;
+  border-radius: 4px;
+  line-height: 1;
+  border: 1px solid currentColor;
+  font-weight: bolder;
+  font-size: x-small;
+  text-transform: uppercase; 
+}
+
+.dark {
+  .badge {
+    &--yellow {
+      color: hsl(38, 65%, 95%);
+      background-color: hsl(38, 25%, 30%);
+    }
+    &--blue {
+      color: hsl(280, 65%, 95%);
+      background-color: hsl(280, 25%, 30%);
+    }
+  }
+}
+.light {
+  .badge {
+    &--yellow {
+      background-color: hsl(38, 65%, 95%);
+      color: hsl(38, 25%, 30%);
+    }
+    &--blue {
+      background-color: hsl(280, 65%, 95%);
+      color: hsl(280, 25%, 30%);
+    }
+  }
+}
