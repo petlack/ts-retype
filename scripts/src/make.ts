@@ -143,9 +143,9 @@ async function make(config: Partial<CmdProps>) {
     { name: 'prepareDist', deps: ['buildVis', 'buildTsRetype'] },
     { name: 'tests', deps: ['prepareDist'] },
     { name: 'installExample', deps: ['cleanExample', 'prepareDist'] },
-    { name: 'buildExample', deps: ['installExample'] },
+    { name: 'buildExample', deps: ['runExtractSnippets'] },
     { name: 'runCreateCmdHelpSnippet', deps: ['prepareDist'] },
-    { name: 'runExampleTsRetype', deps: ['buildExample'] },
+    { name: 'runExampleTsRetype', deps: ['installExample'] },
     { name: 'runExtractSnippets', deps: ['runExampleTsRetype', 'runCreateCmdHelpSnippet'] },
     { name: 'syntaxHighlightSnippets', deps: ['runExtractSnippets'] },
     {
