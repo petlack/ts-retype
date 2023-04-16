@@ -8,10 +8,10 @@
   overflow-y: scroll;
   overflow-x: hidden;
   padding: 1rem;
+  padding-top: 48px;
   gap: 2rem;
   background-color: var(--clr-bgMain);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-  transition: transform 250ms ease-in-out, opacity 250ms ease-in;
 
   &-hidden {
     opacity: 0
@@ -67,7 +67,8 @@
     flex-direction: column;
     gap: .5rem;
     .label {
-      font-weight: 300;
+      font-weight: lighter;
+      font-size: smaller;
       color: var(--clr-fgText);
       display: flex;
       gap: .5rem;

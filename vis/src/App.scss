@@ -110,9 +110,13 @@ main {
   height: 100vh;
   flex-direction: column;
   z-index: var(--z-sidebar);
+  transition: transform 200ms ease-in-out, opacity 150ms ease-in;
 
   &-hidden {
-    transform: translateX(100%);
+    transform: translateX(20%);
+    user-select: none;
+    touch-action: none;
+    pointer-events: none;
   }
   &-visible {
     transform: translateX(0);
@@ -124,7 +128,7 @@ main {
       height: unset;
       flex-direction: row;
       &-hidden {
-        transform: translateY(-100%);
+        transform: translateY(-10%);
       }
       &-visible {
         transform: translateY(0);
