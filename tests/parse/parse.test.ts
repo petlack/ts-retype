@@ -243,6 +243,7 @@ describe('parse', () => {
     const src = `type A = {
       message: string
       status: { code: number, title: string };
+      code: 'ok' | 'fail';
     }`;
     const srcFile = createFile(src);
     const candidates = parse(srcFile);
@@ -252,11 +253,12 @@ describe('parse', () => {
         name: 'A',
         type: 'literal',
         offset: 9,
-        pos: [9, 85],
-        lines: [1, 4],
+        pos: [9, 112],
+        lines: [1, 5],
         properties: [
           { name: 'message', type: 'string' },
           { name: 'status', type: '{ code: number, title: string }' },
+          { name: 'code', type: "'ok' | 'fail'" },
         ],
       },
       {
@@ -269,6 +271,14 @@ describe('parse', () => {
           { name: 'code', type: 'number' },
           { name: 'title', type: 'string' },
         ],
+      },
+      {
+        name: 'anonymous',
+        type: 'union',
+        pos: [92, 105],
+        offset: 59,
+        lines: [4, 4],
+        types: ['ok', 'fail'],
       },
     ];
 
