@@ -80,15 +80,15 @@ function App() {
               query={query}
               setQuery={updateQuery}
             />
-            <FiltersMenu onClick={toggleFiltersVisibility} />
-          </TopBar>
-          <div className="main">
+            <FiltersMenu isOpen={filtersVisible} onClick={toggleFiltersVisibility} />
             <Filters
               filter={filter}
               updateFilter={updateFilter}
               facetsStats={facetsStats}
               visible={filtersVisible}
             />
+          </TopBar>
+          <div className="main">
             <Listing
               meta={meta}
               results={results}
