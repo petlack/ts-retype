@@ -43,6 +43,9 @@
       &:hover {
         text-decoration: underline;
       }
+      .badge {
+        margin-right: .5em;
+      }
       &--selected {
         --marker-size: 8px;
         position: relative;

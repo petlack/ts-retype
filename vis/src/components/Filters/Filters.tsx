@@ -1,6 +1,8 @@
 import { HTMLAttributes, useCallback } from 'react';
+import { TypeDuplicate } from '../../../../src/types';
 import { FacetStats, Filter, getFacetStat } from '../../model/search';
 import { SIMILARITIES, CANDIDATE_TYPES } from '../../types';
+import { Badge } from '../Duplicate/Badge';
 import { IconLetter } from '../Explorer/icons';
 import { IncDecInput } from '../IncDecInput';
 import { ControlsList } from './ControlsList';
@@ -57,7 +59,8 @@ export function Filters({
     const isSelected = id === selected;
     return (
       <a className={`button button--default nav ${isSelected ? 'nav--selected' : ''}`} {...props}>
-        {`${id} (${getFacetStat(facetsStats, id, filter.selectedType)})`}
+        <span>{id !== 'all' ? <Badge group={id as TypeDuplicate['group']} /> : 'all '}</span>
+        <span>{` (${getFacetStat(facetsStats, id, filter.selectedType)})`}</span>
       </a>
     );
   }, [facetsStats]);
