@@ -1,17 +1,20 @@
 .title {
   display: grid;
-  column-gap: 1em;
-  grid-template-columns: 5ch max-content max-content;
-  align-items: center;
+  column-gap: .5rem;
+  grid-template-columns: 3ch repeat(3, max-content);
+  place-items: baseline;
+  padding: .5rem;
+  padding-left: 1rem;
   h2 {
     color: var(--clr-fgTitle);
     display: flex;
-    line-height: 2;
-    align-self: center;
+    font-size: 1.15rem;
   }
-
+  .count {
+    font-size: 1rem;
+  }
   .type-icon {
-    font-size: 2em;
+    font-size: 1.35rem;
     font-weight: 800;
   }
 }

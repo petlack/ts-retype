@@ -11,13 +11,10 @@
 .duplicate {
   display: grid;
   // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  padding: 1.5em;
   border-radius: 8px;
   border: 1px solid var(--clr-border);
   background-color: var(--clr-bgMain);
   color: var(--clr-fgText);
-  column-gap: 2em;
-  row-gap: .5em;
   grid-template-areas:
     "title title"
     "names names"
@@ -25,6 +22,7 @@
     "files snippet"
   ;
   grid-template-columns: 30ch 1fr;
+  grid-template-rows: min-content min-content 1fr 1fr;
 
   .names-container {
     grid-area: names;
@@ -33,6 +31,7 @@
 
   .title {
     grid-area: title;
+    border-bottom: 1px solid var(--clr-border);
   }
 
   .properties, .snippet {
@@ -41,6 +40,8 @@
 
   .files, .explorer {
     grid-area: files;
+    border-right: 1px solid var(--clr-border);
+    // background-color: var(--clr-bgSecondary);
   }
 
   @media screen and (max-width: 1024px) {
