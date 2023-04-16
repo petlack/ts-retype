@@ -18,8 +18,9 @@ function parseBash(code: string): TokenRoot {
         children: [{ type: 'text', value: line }],
       } as Token :
       {
-        type: 'text',
-        value: line,
+        type: 'element',
+        properties: { className: ['token', 'bold', 'bash'] },
+        children: [{ type: 'text', value: line }],
       } as Token,
       { type: 'newline' } as Token
     ])

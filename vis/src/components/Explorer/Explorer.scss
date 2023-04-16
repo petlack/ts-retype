@@ -1,15 +1,24 @@
 .explorer {
   --margin: 10px;
   --icon-size: 16px;
-  color: #808080;
+  --chevron-size: 10px;
+  color: #a0a0a0;
   overflow: scroll;
   max-height: 30vh;
   display: flex;
+  padding: 1rem;
 
   svg {
     color: #202020;
     width: var(--icon-size);
     height: var(--icon-size);
+  }
+
+  .icon-chevron {
+    svg {
+      width: var(--chevron-size);
+      height: var(--chevron-size);
+    }
   }
 
   .icon-empty {
@@ -33,20 +42,20 @@
   li {
     display: flex;
     flex-direction: column;
-    cursor: default;
+    cursor: pointer;
     span {
       display: flex;
       white-space: nowrap;
       flex-direction: row;
       align-items: center;
       gap: .33rem;
-    }
-  }
-  
-  li {
-    cursor: pointer;
-    span {
       &:hover {
+        color: #202020;
+      }
+    }
+    &.selected {
+      background-color: hsl(195deg 58% 96%);
+      span {
         color: #202020;
       }
     }

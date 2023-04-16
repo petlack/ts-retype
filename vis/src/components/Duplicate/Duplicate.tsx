@@ -17,7 +17,7 @@ export function Duplicate({ files, names, group }: TypeDuplicate) {
     <div className="duplicate">
       <Title names={names} type={selectedFile.type} group={group} />
       <DefinitionSnippet {...selectedFile} />
-      <Explorer files={files} onClick={onClick} />
+      <Explorer files={files} selectedFile={selectedFile} onClick={onClick} />
     </div>
   );
 }

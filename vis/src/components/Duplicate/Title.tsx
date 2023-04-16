@@ -1,6 +1,7 @@
 import { DuplicateName } from './NamesListing';
 import { TypeIcon } from './TypeIcon';
 import { ArrayElement, TypeDuplicate } from '../../../../src/types';
+import { Badge } from './Badge';
 
 import './Title.scss';
 
@@ -15,7 +16,7 @@ export function Title({ group, type, names }: TitleProps) {
     <div className="title">
       <TypeIcon group={group} type={type} />
       <DuplicateName names={names} />
-      <span className="badge">{group}</span>
+      <Badge group={group} />
     </div>
   );
 }

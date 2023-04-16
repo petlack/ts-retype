@@ -28,14 +28,17 @@ function sortNames(names: TypeDuplicate['names']) {
 export function DuplicateName({ names }: NamesListingProps) {
   const sortedNames = sortNames(names);
   return (
-    <h2 className="mono">
-      <SearchAwareText>{
-        sortedNames.length > 1 ?
-          `${sortedNames[0].name} (${sortedNames[0].count}x)` :
-          sortedNames[0].name
-      }
-      </SearchAwareText>
-    </h2>
+    <>
+      <h2 className="mono">
+        <SearchAwareText>{
+          sortedNames.length > 1 ?
+            `${sortedNames[0].name}` :
+            sortedNames[0].name
+        }
+        </SearchAwareText>
+      </h2>
+      <span className="mono count">({sortedNames[0].count}x)</span>
+    </>
   );
 }
 
