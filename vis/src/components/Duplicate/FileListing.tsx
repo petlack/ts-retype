@@ -4,7 +4,6 @@ import { SearchAwareText } from '../SearchAwareText';
 import { useToast } from '../Toast';
 
 import './FileListing.scss';
-import { TypeIcon } from './TypeIcon';
 
 export type FileListingProps = {
   files: TypeDuplicate['files'];
@@ -27,8 +26,6 @@ export function FileListing({ files, similarity }: FileListingProps) {
       className="file"
       onClick={() => onFileClick(file, lines)}
     >
-      {/* <span className="type">{'{'}{type[0].toUpperCase()}{'}'}</span> */}
-      <TypeIcon type={type} />
       <span className="span"><SearchAwareText>{file}</SearchAwareText></span>
       <span className="lines">({lines[0]} - {lines[1]})</span>
     </span>

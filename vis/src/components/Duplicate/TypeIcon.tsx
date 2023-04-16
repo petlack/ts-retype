@@ -6,6 +6,7 @@ import './TypeIcon.scss';
 
 export type TypeIconProps = {
   type: ArrayElement<TypeDuplicate['files']>['type'];
+  group: TypeDuplicate['group']
 }
 
 export function TypeIcon({ type }: TypeIconProps) {
@@ -17,11 +18,20 @@ export function TypeIcon({ type }: TypeIconProps) {
     alias: 'Type Alias Declaration',
     interface: 'Interface Declaration',
   }[type];
+
+  const typeSymbol = {
+    function: '=>',
+    union: '[]',
+    enum: '[]',
+    literal: '{}',
+    alias: '{}',
+    interface: '{}',
+  }[type];
   
   return (
     <div className="type-icon">
       <Tooltip>
-        <span className="name mono">{`{${type[0].toUpperCase()}}`}</span>
+        <span className="name mono">{typeSymbol}</span>
         <span>{tooltipContent}</span>
       </Tooltip>
     </div>

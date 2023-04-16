@@ -7,13 +7,15 @@ import './Title.scss';
 export type TitleProps = {
   type: ArrayElement<TypeDuplicate['files']>['type'];
   names: TypeDuplicate['names'];
+  group: TypeDuplicate['group'];
 }
 
-export function Title({ type, names }: TitleProps) {
+export function Title({ group, type, names }: TitleProps) {
   return (
     <div className="title">
-      <TypeIcon type={type} />
+      <TypeIcon group={group} type={type} />
       <DuplicateName names={names} />
+      <span className="badge">{group}</span>
     </div>
   );
 }
