@@ -3,10 +3,12 @@
 @mixin lightTheme() {
   --clr-codeKey: #{$codeKeyLight};
   --clr-codeValue: #{$codeValueLight};
+  --clr-codeCommentsFg: #{$grayLight};
 }
 @mixin darkTheme() {
   --clr-codeKey: #{$codeKeyDark};
   --clr-codeValue: #{$codeValueDark};
+  --clr-codeCommentsFg: #{$gray};
 }
 
 :root {

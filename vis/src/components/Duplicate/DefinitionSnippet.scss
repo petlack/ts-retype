@@ -1,13 +1,20 @@
 
-.token {
-  opacity: 0.66;
-  font-weight: lighter;
-}
-.sat--def {
-  opacity: 1;
-  font-weight: bolder;
-  background-color: hsl(195deg 58% 96%);
-  &.sat--found {
-    background-color: var(--clr-acco);
+.snippet {
+  .token {
+    opacity: 0.66;
+    font-weight: lighter;
+  }
+  .sat--def {
+    opacity: 1;
+    font-weight: bolder;
+    background-color: hsl(195deg 58% 96%);
+    &.sat--found {
+      background-color: var(--clr-acco);
+    }
+  }
+  .line {
+    &>span:nth-child(1) {
+      width: 5ch;
+    }
   }
 }

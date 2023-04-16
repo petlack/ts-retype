@@ -46,7 +46,7 @@ export function highlightDefinition(
   const highlighted = [] as Token[];
   for (const token of root.children) {
     const newToken: Token = { ...token };
-    if (position >= offset && position <= offset + (pos[1] - pos[0])) {
+    if (position >= offset && position < offset + (pos[1] - pos[0])) {
       newToken.properties = {
         ...(token.properties || {}),
         className: [...(token.properties?.className || []), 'sat--def'],

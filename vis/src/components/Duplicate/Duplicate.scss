@@ -11,13 +11,13 @@
 .duplicate {
   display: grid;
   // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  padding: 2em;
+  padding: 1.5em;
   border-radius: 8px;
   border: 1px solid var(--clr-border);
   background-color: var(--clr-bgMain);
   color: var(--clr-fgText);
   column-gap: 2em;
-  row-gap: 1em;
+  row-gap: .5em;
   grid-template-areas:
     "title title"
     "names names"
