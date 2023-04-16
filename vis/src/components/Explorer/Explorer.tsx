@@ -2,7 +2,13 @@ import { indexWith } from '../Tree/utils';
 import { useCallback, useMemo } from 'react';
 import { useTree } from '../Tree/useTree';
 import { ArrayElement, TypeDuplicate } from '../../../../src/types';
-import { ICON_CHEVRON_DOWN, ICON_CODE, ICON_FILE, ICON_FOLDER } from './icons';
+import {
+  ICON_CHEVRON_DOWN,
+  ICON_CODE,
+  ICON_FILE,
+  ICON_FOLDER,
+  IconLetter,
+} from './icons';
 import { Pass, Li, Ul } from '../Tree/Elements';
 import { Tree, TreeNode, TreeProps } from '../Tree';
 import { TreeProvider, TreeProviderProps } from '../Tree/TreeProvider';
@@ -18,8 +24,11 @@ type Node = {
 
 export const FileNode: TreeNode<Node> = ({ node, children }) => {
   const { onClick } = useTree();
+  const type = node.data.file?.type;
   const onClickHandler = useCallback(() => onClick(node.id), [node.id]);
-  const iconMarkup = { file: ICON_FILE, dir: ICON_FOLDER, type: ICON_CODE }[node.data.type];
+  const iconMarkup = type && node.data.type === 'type' ? 
+    <IconLetter letter={type[0].toUpperCase()} /> :
+    { file: ICON_FILE, dir: ICON_FOLDER, type: ICON_CODE }[node.data.type];
   const chevronMarkup = node.data.type === 'type' ?
     <span className="icon-empty"></span> :
     <span>{ICON_CHEVRON_DOWN}</span>;
