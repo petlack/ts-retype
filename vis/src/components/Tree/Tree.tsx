@@ -1,16 +1,14 @@
 import { TreeProps, RenderableTreeProps } from './types';
 
 export function Tree<T>(
-  { node, byId, Self, Root, Many, One, Node }: TreeProps<T> & RenderableTreeProps<T>
+  { node, byId, Self, Root, Many, One, Node, Leaf }: TreeProps<T> & RenderableTreeProps<T>
 ) {
   const { nodes, parent } = byId[node.id];
   const isLeaf = !nodes.length;
   const isRoot = parent < 0;
 
   const nodesMarkup = nodes.map(id => (
-    <One node={node} key={id}>
-      <Self node={byId[id]} byId={byId} />
-    </One>
+    <Self key={id} node={byId[id]} byId={byId} />
   ));
 
   const childrenMarkup = <Many node={node}>{nodesMarkup}</Many>;
@@ -19,10 +17,10 @@ export function Tree<T>(
     return <Root>{childrenMarkup}</Root>;
   }
   if (isLeaf) {
-    return <Node node={node}></Node>;
+    return <One node={node}><Leaf node={node} /></One>;
   }
   return (
-    <Node node={node}>{childrenMarkup}</Node>
+    <One node={node}><Node node={node}>{childrenMarkup}</Node></One>
   );
 }
 

@@ -29,6 +29,7 @@ export type RenderableTreeProps<T> = {
   Many: Cardinality<T>;
   One: Cardinality<T>;
   Node: TreeNode<T>;
+  Leaf: TreeNode<T>;
   Root: React.FC<Renderable>;
 };
 
@@ -42,4 +43,5 @@ export type Cardinality<T> = React.FC<Renderable & { node: FlatTreeNode<T> }>;
 
 export type TreeContextValue = {
   onClick: (id: number) => void;
+  selectedId: number;
 };

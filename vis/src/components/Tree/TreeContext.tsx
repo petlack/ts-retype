@@ -5,4 +5,5 @@ export const TreeContext = createContext<TreeContextValue>({
   onClick: () => {
     /* empty */
   },
+  selectedId: 0,
 });
