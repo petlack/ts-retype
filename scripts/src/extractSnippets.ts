@@ -106,7 +106,6 @@ function selectDuplicate(src: string) {
           omit(['srcHgl']),
           evolve({
             src: always('...omitted...'),
-            properties: map(omit(['text'])),
           }),
         ),
       ),

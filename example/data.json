@@ -15,9 +15,9 @@
           "offset": 26,
           "lines": [6, 10],
           "properties": [
-            { "name": "displayName", "type": "string", "text": "StringKeyword" },
-            { "name": "email", "type": "string", "text": "StringKeyword" },
-            { "name": "password", "type": "string", "text": "StringKeyword" }
+            { "name": "displayName", "type": "string" },
+            { "name": "email", "type": "string" },
+            { "name": "password", "type": "string" }
           ],
           "file": "src/model.ts",
           "srcHgl": {
@@ -155,9 +155,9 @@
           "offset": 7,
           "lines": [3, 7],
           "properties": [
-            { "name": "displayName", "type": "string", "text": "StringKeyword" },
-            { "name": "email", "type": "string", "text": "StringKeyword" },
-            { "name": "password", "type": "string", "text": "StringKeyword" }
+            { "name": "displayName", "type": "string" },
+            { "name": "email", "type": "string" },
+            { "name": "password", "type": "string" }
           ],
           "file": "src/auth.ts",
           "srcHgl": {
@@ -282,9 +282,9 @@
           "offset": 33,
           "lines": [18, 22],
           "properties": [
-            { "name": "displayName", "type": "string", "text": "StringKeyword" },
-            { "name": "email", "type": "string", "text": "StringKeyword" },
-            { "name": "password", "type": "string", "text": "StringKeyword" }
+            { "name": "displayName", "type": "string" },
+            { "name": "email", "type": "string" },
+            { "name": "password", "type": "string" }
           ],
           "file": "src/api.ts",
           "srcHgl": {
@@ -467,8 +467,8 @@
     "projectLocScanned": 167,
     "projectTypesScanned": 4,
     "projectFilesWithTypesDeclarations": 3,
-    "scannedAt": "2023-04-15T22:31:08+03:00",
-    "scanDuration": 1,
-    "reportSize": 259181
+    "scannedAt": "2023-04-16T09:00:57+03:00",
+    "scanDuration": 0,
+    "reportSize": 259621
   }
 }
