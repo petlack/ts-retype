@@ -2,55 +2,61 @@
 
 .token
     font-weight: 300;
+    &.bold
+      font-weight: bolder;
 
 .dark
   .token
     color: $white;
     & > .token
       color: inherit;
-    &.keyword
-      color: $lightOrange;
-    &.class-name
-      color: orange;
-    &.operator
-      color: green;
-    &.punctuation
-      color: $grayLight;
+    &.bash
+      color: $white;
     &.builtin
       color: $lightPurple;
-    &.string
-      color: $lightBlue;
-    &.number
-      color: $lightBlue;
+    &.class-name
+      color: orange;
     &.comment
       color: lightgray;
     &.function
       color: $lightPurple;
+    &.keyword
+      color: $lightOrange;
+    &.number
+      color: $lightBlue;
+    &.operator
+      color: green;
     &.property
       color: $white;
+    &.punctuation
+      color: $grayLight;
+    &.string
+      color: $lightBlue;
 
 .light
   .token
     color: $blue;
     & > .token
       color: inherit;
-    &.keyword
-      color: $orange;
-    &.class-name
-      color: orange;
-    &.operator
-      color: green;
-    &.punctuation
+    &.bash
       color: $black;
     &.builtin
       color: $purple;
-    &.string
-      color: $blueDark;
-    &.number
-      color: $blueDark;
+    &.class-name
+      color: orange;
     &.comment
       color: lightgray;
     &.function
       color: $purple;
+    &.keyword
+      color: $orange;
+    &.number
+      color: $blueDark;
+    &.operator
+      color: green;
     &.property
       color: $blue;
+    &.punctuation
+      color: $black;
+    &.string
+      color: $blueDark;
