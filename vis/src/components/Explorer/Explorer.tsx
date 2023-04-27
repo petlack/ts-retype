@@ -47,7 +47,10 @@ export const FileNode: TreeNode<Node> = ({ node, children }) => {
 
 const One: Cardinality<Node> = ({ node, children }) => {
   const { selectedId } = useTree();
-  return <li className={`${selectedId === node.id ? 'selected' : ''}`}>{children}</li>;
+  const selectedClass = selectedId === node.id ? 'selected' : '';
+  const hoverableClass = node.data.type === 'type' ? 'hoverable' : '';
+  const classNames = [selectedClass, hoverableClass].join(' ');
+  return <li className={classNames}>{children}</li>;
 };
 
 const Leaf: TreeNode<Node> = ({ node }) => {

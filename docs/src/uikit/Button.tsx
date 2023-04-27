@@ -5,11 +5,13 @@ export type ButtonProps = {
   caption: string;
   kind: 'primary' | 'secondary';
   href: string;
+  newWindow?: boolean;
 }
 
-export function Button({ icon, caption, kind, href }: ButtonProps) {
+export function Button({ icon, caption, kind, href, newWindow }: ButtonProps) {
+  const newWindowProps = newWindow ? { target: '_blank' } : {};
   return (
-    <a className={`btn btn-${kind}`} href={href}>
+    <a className={`btn btn__${kind} btn__xl`} href={href} {...newWindowProps}>
       {icon}
       <span>{caption}</span>
     </a>

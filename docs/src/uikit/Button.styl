@@ -2,30 +2,42 @@
 @import "../vars.styl"
 
 .btn
-  flexRow(1em);
+  --btn-size: var(--font-size-md);
+  --btn-font-weight: var(--font-weight-normal);
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-2);
   align-items: center;
-  justify-content: start;
-  border: none;
   outline: none;
-  border-radius: $borderRadius;
-  font-size: 1em;
-  padding: 0.75em 1.5em
-  font-family: $fontRegular;
-  font-weight: 400;
-  cursor: pointer;
-  transition: all 150ms ease-in;
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4)
+  font-family: var(--font-heading);
+  font-weight: var(--btn-font-weight);
+  font-size: var(--btn-size);
+  line-height: var(--btn-size);
   text-decoration: none;
+  cursor: pointer;
+  commonTransitions();
+  &__xl
+    --btn-size: var(--font-size-lg);
+    --btn-font-weight: var(--font-weight-semibold);
   svg
-    width: 1em;
-    height: 1em;
-  &-primary
-    background-color: $accent;
+    width: var(--btn-size);
+    height: var(--btn-size);
+  &__primary
+    background-color: var(--clr-accent-500);
+    border: 1px solid var(--clr-accent-500);
     color: white;
+    padding-left: var(--space-4);
+    gap: var(--space-4);
     &:hover
-      background-color: lighten($accent, 5);
-  &-secondary
-    background-color: transparent;
-    color: var(--clr-fgText);
-    border: 1px solid var(--clr-fgText);
+      background-color: var(--clr-accent-600);
+  &__secondary
+    background-color: var(--clr-neutral-900);
+    color: var(--clr-neutral-100);
+    border: 1px solid var(--clr-neutral-400);
     &:hover
-      background-color: var(--clr-bgCodeLanding);
+      background-color: var(--clr-accent-975);
+      // color: var(--clr-neutral-950);
+      // border: 1px solid var(--clr-neutral-900);

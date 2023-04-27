@@ -12,7 +12,7 @@
   color: blue;
   border: none;
   background-color: green;
-  @include focusable(var(--clr-bgMain));
+  @include focusable(var(--clr-neutral-50));
   &--square {
     height: 48px;
     width: 48px;
@@ -21,20 +21,20 @@
     z-index: var(--z-always-visible);
   }
   &--default {
-    color: var(--clr-fgText);
-    background-color: var(--clr-bgMain);
+    color: var(--clr-fg);
+    background-color: var(--clr-bg-main);
   }
   &--primary {
-    color: var(--clr-bg);
-    background-color: $accent;
+    color: var(--clr-transparent);
+    background-color: var(--clr-accent);
     @include focusable(var(--clr-bg));
   }
   &--secondary {
-    color: $accent;
+    color: var(--clr-accent);
     background-color: var(--clr-bg);
   }
   &--transparent {
     background-color: transparent;
-    @include focusable($accent);
+    @include focusable(var(--clr-accent));
   }
 }

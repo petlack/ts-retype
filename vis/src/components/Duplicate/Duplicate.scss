@@ -1,28 +1,26 @@
 .mono {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-mono);
 }
 
 .pre {
-  font-weight: 600;
-  line-height: 2;
-  // box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  font-weight: var(--font-weight-bolder);
 }
 
 .duplicate {
   display: grid;
-  // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  border-radius: 8px;
+  // max-height: 30vh;
+  border-radius: var(--radius-md);
   border: 1px solid var(--clr-border);
-  background-color: var(--clr-bgMain);
-  color: var(--clr-fgText);
+  overflow: hidden;
+  // background-color: var(--clr-neutral-100);
+  background-color: var(--clr-bg);
+  color: var(--clr-fg);
   grid-template-areas:
     "title title"
-    "names names"
-    "files snippet"
-    "files snippet"
+    "explorer snippet"
   ;
   grid-template-columns: 30ch 1fr;
-  grid-template-rows: min-content min-content 1fr 1fr;
+  grid-template-rows: min-content 1fr;
 
   .names-container {
     grid-area: names;
@@ -31,24 +29,26 @@
 
   .title {
     grid-area: title;
+    background-color: var(--clr-bg-title);
     border-bottom: 1px solid var(--clr-border);
   }
 
   .properties, .snippet {
     grid-area: snippet;
+    background-color: var(--clr-bg-snippet);
   }
 
   .files, .explorer {
-    grid-area: files;
+    grid-area: explorer;
     border-right: 1px solid var(--clr-border);
-    // background-color: var(--clr-bgSecondary);
+    background-color: var(--clr-bg-explorer);
+    color: var(--clr-neutral-700);
   }
 
   @media screen and (max-width: 1024px) {
     grid-template-areas:
       "title title"
-      "snippet names"
-      "files files"
+      "explorer snippet"
     ;
     grid-template-columns: auto 1fr;
     .properties {
@@ -62,9 +62,8 @@
   @media screen and (max-width: 660px) {
     grid-template-areas:
       "title"
-      "names"
       "snippet"
-      "files"
+      "explorer"
     ;
     grid-template-columns: 1fr;
     .names-container {
@@ -76,11 +75,5 @@
     .names-container {
       flex-direction: column;
     }
-  }
-
-  h3 {
-    color: var(--clr-fgText);
-    font-weight: 400;
-    font-size: 1rem;
   }
 }

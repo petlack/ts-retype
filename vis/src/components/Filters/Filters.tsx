@@ -59,7 +59,7 @@ export function Filters({
     const isSelected = id === selected;
     return (
       <a className={`button button--default nav ${isSelected ? 'nav--selected' : ''}`} {...props}>
-        <span>{id !== 'all' ? <Badge group={id as TypeDuplicate['group']} /> : 'all '}</span>
+        <span>{id !== 'all' ? <Badge names={{} as TypeDuplicate['names']} group={id as TypeDuplicate['group']} /> : 'all '}</span>
         <span>{` (${getFacetStat(facetsStats, id, filter.selectedType)})`}</span>
       </a>
     );

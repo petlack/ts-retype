@@ -15,8 +15,6 @@ export type MultilangWindowProps = {
 }
 
 export function MultilangWindow({ codes, theme, selectedLang }: MultilangWindowProps) {
-  const width = Math.max(...codes.map(c => Math.max(...c.code.map(c => c.length)))) + 1;
-
   const langsToCodes = codes.reduce(
     (res, { lang, code }) => ({ ...res, [lang]: code }),
     {} as { [lang: string]: string[] }
@@ -28,7 +26,7 @@ export function MultilangWindow({ codes, theme, selectedLang }: MultilangWindowP
       <LanguageTab key={lg} lang={lg} selectedLang={lang} setLang={setLang} />
     ));
   const lines = code.map((line, idx) => (
-    <span key={idx}>{`${line.padEnd(width, ' ')}\n`}</span>
+    <span key={idx}>{line}</span>
   ));
   return (
     <div className="window-multilang">

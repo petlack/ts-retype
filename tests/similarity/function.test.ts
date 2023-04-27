@@ -1,6 +1,6 @@
 import { similarity } from '../../src/similarity';
 import { expectSimilarity } from '../lib/tests';
-import { FunctionCandidateType, Property, UnionCandidateType } from '../../src/types/candidate';
+import { FunctionCandidateType, Property } from '../../src/types/candidate';
 import { Similarity } from '../../src/types/similarity';
 
 describe('function type', () => {
@@ -116,48 +116,34 @@ describe('function type', () => {
     );
     expectSimilarity(given, Similarity.HasIdenticalProperties);
   });
-  test('same names, extra member', () => {
+  test('same names, same return type, different parameters count', () => {
     const given = similarity(
       {
         name: 'foo',
-        type: 'union',
+        type: 'function',
+        parameters: [{ name: 'a', type: 'string' }],
+        returnType: 'void',
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [1, 1],
-        types: ['Foo', 'Bar'],
-      } as UnionCandidateType,
+        signature: { params: [] },
+      } as FunctionCandidateType,
       {
         name: 'foo',
-        type: 'union',
+        type: 'function',
+        parameters: [
+          { name: 'b', type: 'string' },
+          { name: 'c', type: 'string' },
+        ],
+        returnType: 'void',
+        src: '',
         offset: 0,
         pos: [0, 0],
         lines: [1, 1],
-        types: ['Foo', 'Bar', 'Xyz'],
-      } as UnionCandidateType,
+        signature: { params: [] },
+      } as FunctionCandidateType,
     );
     expectSimilarity(given, Similarity.Different);
-  });
-  test('identical types with no properties and different names', () => {
-    const given = similarity(
-      {
-        name: 'foo',
-        type: 'union',
-        src: '',
-        offset: 0,
-        pos: [0, 0],
-        lines: [1, 1],
-        types: [],
-      } as UnionCandidateType,
-      {
-        name: 'bar',
-        type: 'union',
-        src: '',
-        offset: 0,
-        pos: [0, 0],
-        lines: [1, 1],
-        types: [],
-      } as UnionCandidateType,
-    );
-    expectSimilarity(given, Similarity.HasIdenticalProperties);
   });
 });
