@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { exec } from './exec';
+import { exec } from './exec.js';
 
 export function createRunners({
   rootDir,
@@ -10,7 +10,7 @@ export function createRunners({
   muteStderr: boolean;
   muteStdout: boolean;
 }) {
-  async function node(jsPath: string, cwd: string) {
+  async function node(jsPath: string, cwd: string): Promise<void> {
     if (!rootDir) {
       return;
     }
@@ -21,7 +21,7 @@ export function createRunners({
     });
   }
 
-  async function npm(workspace: string | null, commands: string[]) {
+  async function npm(workspace: string | null, commands: string[]): Promise<void> {
     if (!rootDir) {
       return;
     }
@@ -29,11 +29,20 @@ export function createRunners({
     await exec('npm', commands, { cwd, muteStdout, muteStderr });
   }
 
-  async function npmrun(workspace: string | null, script: string) {
+  async function npmrun(workspace: string | null, script: string): Promise<void> {
     await npm(workspace, ['run', script]);
   }
 
+  async function bash(...commands: string[]): Promise<void> {
+    if (!rootDir) {
+      return;
+    }
+    const cwd = rootDir;
+    await exec(commands[0], commands.slice(1), { cwd, muteStderr, muteStdout });
+  }
+
   return {
+    bash,
     node,
     npm,
     npmrun,
