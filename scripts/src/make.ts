@@ -1,13 +1,13 @@
 import colors from 'colors';
 import { createCommand } from 'commander';
 import { join } from 'path';
-import { BaseCmdProps, execute } from './cmd.js';
-import { exec } from './exec.js';
+import { createRunners } from './runners.js';
+import { execute, BaseCmdProps } from './cmd.js';
 import { generateReadme } from './generateReadme.js';
-import { isMain } from './isMain.js';
 import { getRootDir } from './paths.js';
-import { pipeline, PipelineStepDef, printPipelineStats, sortSteps } from './pipeline.js';
+import { isMain } from './isMain.js';
 import { prepareDist } from './prepareDist.js';
+import { runPipeline, PipelineStepDef, printPipelineStats, sortSteps } from './pipeline.js';
 import { syntaxHighlighting } from './syntaxHighlighting.js';
 
 type CmdProps = BaseCmdProps & {
@@ -36,6 +36,12 @@ const log = console.log.bind(console, '[make]');
 async function make(config: Partial<CmdProps>) {
   log(config);
 
+  if (!config.pipeline) {
+    log(colors.red('missing pipeline'));
+    log('known pipelines', colors.yellow(Object.keys(pipelines).join(' ')));
+    return;
+  }
+
   const muteStdout = config.follow ? false : true;
   const muteStderr = config.quiet ? true : false;
 
@@ -46,36 +52,13 @@ async function make(config: Partial<CmdProps>) {
     return;
   }
 
-  if (!config.pipeline) {
-    log(colors.red('missing pipeline'));
-    log('known pipelines', colors.yellow(Object.keys(pipelines).join(' ')));
-    return;
-  }
+  const { node, npm, npmrun } = createRunners({ rootDir, muteStderr, muteStdout });
 
   log('running from');
   log(rootDir);
 
   async function script(name: string) {
-    if (!rootDir) {
-      return;
-    }
-    await exec('node', [join('dist/scripts/src', name)], {
-      cwd: join(rootDir, 'scripts'),
-      muteStdout,
-      muteStderr,
-    });
-  }
-
-  async function npm(workspace: string | null, commands: string[]) {
-    if (!rootDir) {
-      return;
-    }
-    const cwd = workspace ? join(rootDir, workspace) : rootDir;
-    await exec('npm', commands, { cwd, muteStdout, muteStderr });
-  }
-
-  async function npmrun(workspace: string | null, script: string) {
-    await npm(workspace, ['run', script]);
+    rootDir && (await node(join('dist/scripts/src', name), join(rootDir, 'scripts')));
   }
 
   const syntaxHighlightSnippets = () =>
@@ -167,12 +150,14 @@ async function make(config: Partial<CmdProps>) {
 
   type Pipeline = keyof typeof pipelines;
   type Step = keyof typeof defs;
+
   const pipelinesDefinitions = new Map<Pipeline, Step[]>([
     ['all', ['smoke', 'generateReadme', 'buildDocs']],
     ['publish', ['tests', 'prepareDist']],
     ['test', ['smoke']],
     ['docs', ['tests', 'generateReadme', 'buildDocs']],
   ]);
+
   const pipelineSteps = pipelinesDefinitions.get(config.pipeline as Pipeline);
   if (!pipelineSteps) {
     log(colors.red(`unknown pipeline ${config.pipeline}`));
@@ -182,7 +167,8 @@ async function make(config: Partial<CmdProps>) {
 
   const sortedSteps = sortSteps(steps, pipelineSteps);
   printPipelineStats(steps, sortedSteps);
-  await pipeline(sortedSteps.map((step) => defs[step]));
+
+  await runPipeline(sortedSteps.map((step) => defs[step]));
 }
 
 if (isMain(import.meta)) {

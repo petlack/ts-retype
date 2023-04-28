@@ -62,7 +62,7 @@ async function executeStep(step: () => Promise<unknown>) {
   return { status, error };
 }
 
-export async function pipeline(steps: (() => Promise<unknown>)[]): Promise<void> {
+export async function runPipeline(steps: (() => Promise<unknown>)[]): Promise<void> {
   const start = new Date();
   let status = colors.bold.green('done');
   for (const step of steps) {
