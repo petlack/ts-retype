@@ -4,14 +4,17 @@
 .btn
   --btn-size: var(--font-size-md);
   --btn-font-weight: var(--font-weight-normal);
+  --btn-ph: var(--space-2);
+  --btn-pv: var(--space-1);
+  --btn-radius: var(--radius-base);
   display: flex;
   flex-direction: row;
-  gap: var(--space-2);
+  gap: var(--btn-pv);
   align-items: center;
   outline: none;
   border: none;
-  border-radius: var(--radius-lg);
-  padding: var(--space-3) var(--space-4)
+  border-radius: var(--btn-radius);
+  padding: var(--btn-pv) var(--btn-ph)
   font-family: var(--font-heading);
   font-weight: var(--btn-font-weight);
   font-size: var(--btn-size);
@@ -19,18 +22,33 @@
   text-decoration: none;
   cursor: pointer;
   commonTransitions();
+  svg {
+    fill: currentColor;
+  }
+  &__md
+    --btn-size: var(--font-size-md);
+    --btn-font-weight: var(--font-weight-medium);  
+    --btn-ph: var(--space-4);
+    --btn-pv: var(--space-2);
   &__xl
     --btn-size: var(--font-size-lg);
     --btn-font-weight: var(--font-weight-semibold);
+    --btn-ph: var(--space-6);
+    --btn-pv: var(--space-3);
+    --btn-radius: var(--radius-lg)
   svg
     width: var(--btn-size);
     height: var(--btn-size);
+  &__default
+    background-color: var(--clr-transparent);
+    border: 1px solid var(--clr-accent-500);
+    color: inherit;
+    &:hover
+      background-color: var(--clr-accent-100);    
   &__primary
     background-color: var(--clr-accent-500);
     border: 1px solid var(--clr-accent-500);
     color: white;
-    padding-left: var(--space-4);
-    gap: var(--space-4);
     &:hover
       background-color: var(--clr-accent-600);
   &__secondary
