@@ -4689,6 +4689,7 @@
         { "name": "syntaxHighlighting", "count": 1 },
         { "name": "make", "count": 1 },
         { "name": "generateDocs", "count": 1 },
+        { "name": "fontBase64", "count": 1 },
         { "name": "demo", "count": 1 }
       ],
       "files": [
@@ -4869,6 +4870,82 @@
                 "tagName": "span",
                 "properties": { "className": ["token", "function"] },
                 "children": [{ "type": "text", "value": "generateDocs" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "config" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " Partial" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "<" }]
+              },
+              { "type": "text", "value": "CmdProps" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ">" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
+        },
+        {
+          "name": "fontBase64",
+          "type": "function",
+          "src": "fontBase64(config: Partial<CmdProps>) => unknown",
+          "pos": [870, 1589],
+          "offset": 1,
+          "lines": [32, 46],
+          "parameters": [{ "name": "config", "type": "Partial<CmdProps>" }],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "fontBase64",
+            "params": [{ "name": "config", "type": "Partial<CmdProps>" }],
+            "return": "unknown",
+            "strMin": "(Partial<CmdProps>) => unknown",
+            "strFull": "fontBase64(config: Partial<CmdProps>) => unknown"
+          },
+          "file": "scripts/src/fontsBase64.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "fontBase64" }]
               },
               {
                 "type": "element",
@@ -8742,7 +8819,7 @@
           "name": "anonymous",
           "type": "literal",
           "src": "\n  const FilterTypeButton = useCallback(({ id, selected, ...props }: { id: string, selected: string } & HTMLAttributes<HTMLElement>) => {\n    const isSelected = id === selected;",
-          "pos": [2295, 2327],
+          "pos": [2059, 2091],
           "offset": 69,
           "lines": [68, 68],
           "properties": [
@@ -17557,7 +17634,7 @@
       ]
     },
     {
-      "names": [{ "name": "CmdProps", "count": 2 }],
+      "names": [{ "name": "CmdProps", "count": 3 }],
       "files": [
         {
           "name": "CmdProps",
@@ -17568,6 +17645,77 @@
           "lines": [7, 7],
           "properties": [{ "name": "verbose", "type": "boolean" }],
           "file": "scripts/src/generateReadme.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              { "type": "text", "value": "\n" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "keyword"] },
+                "children": [{ "type": "text", "value": "type" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "class-name"] },
+                "children": [{ "type": "text", "value": "CmdProps" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "{" }]
+              },
+              { "type": "text", "value": " verbose" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "boolean" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "}" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ";" }]
+              },
+              { "type": "text", "value": "\n" }
+            ]
+          }
+        },
+        {
+          "name": "CmdProps",
+          "type": "literal",
+          "src": "\ntype CmdProps = { verbose: boolean };\n",
+          "pos": [335, 355],
+          "offset": 17,
+          "lines": [10, 10],
+          "properties": [{ "name": "verbose", "type": "boolean" }],
+          "file": "scripts/src/fontsBase64.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -19704,12 +19852,12 @@
   ],
   "meta": {
     "projectName": "ts-retype",
-    "projectFilesScanned": 186,
-    "projectLocScanned": 13494,
-    "projectTypesScanned": 414,
-    "projectFilesWithTypesDeclarations": 112,
-    "scannedAt": "2023-04-26T09:04:16+03:00",
+    "projectFilesScanned": 161,
+    "projectLocScanned": 11715,
+    "projectTypesScanned": 352,
+    "projectFilesWithTypesDeclarations": 100,
+    "scannedAt": "2023-04-16T10:45:23+03:00",
     "scanDuration": 7,
-    "reportSize": 743528
+    "reportSize": 644529
   }
 }
