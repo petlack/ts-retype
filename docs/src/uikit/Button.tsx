@@ -1,19 +1,36 @@
 import './Button.styl';
 
 export type ButtonProps = {
-  icon: JSX.Element;
   caption: string;
-  kind: 'primary' | 'secondary';
-  href: string;
+  className?: string;
+  href?: string;
+  icon?: JSX.Element;
+  kind: 'link' | 'button';
   newWindow?: boolean;
+  onClick?: () => void;
+  size: 'md' | 'xl';
+  style: 'default' | 'primary' | 'secondary';
 }
 
-export function Button({ icon, caption, kind, href, newWindow }: ButtonProps) {
-  const newWindowProps = newWindow ? { target: '_blank' } : {};
-  return (
-    <a className={`btn btn__${kind} btn__xl`} href={href} {...newWindowProps}>
+export function Button({ caption, className, href, icon, kind, newWindow, onClick, size, style }: ButtonProps) {
+  const childrenMarkup = (
+    <>
       {icon}
       <span>{caption}</span>
-    </a>
+    </>
+  );
+  const classNames = `btn btn__${style} btn__${size} ${className}`;
+  if (kind === 'link') {
+    const newWindowProps = newWindow ? { target: '_blank' } : {};
+    return (
+      <a className={classNames} href={href} {...newWindowProps}>
+        {childrenMarkup}
+      </a>
+    );
+  }
+  return (
+    <button className={classNames} onClick={onClick}>
+      {childrenMarkup}
+    </button>
   );
 }

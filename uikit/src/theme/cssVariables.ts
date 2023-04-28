@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Theme } from '../types/theme';
 
 function toCssVars(theme: Theme): string[][] {
@@ -82,17 +81,15 @@ export function toCssVarsString(cssVars: string[][]) {
   return cssVars.map((kv) => kv.join(':')).join(';');
 }
 
-const useCssVariables = (theme: Theme) => {
-  useEffect(() => {
-    const styleElement = document.createElement('style');
-    styleElement.setAttribute('type', 'text/css');
-    const cssVars = toCssVarsString(toCssVars(theme));
-    styleElement.innerHTML = `:host, :root { ${cssVars} }`;
-    document.head.appendChild(styleElement);
-    return () => {
-      document.head.removeChild(styleElement);
-    };
-  }, [theme]);
+const applyCssVariables = (theme: Theme) => {
+  const styleElement = document.createElement('style');
+  styleElement.setAttribute('type', 'text/css');
+  const cssVars = toCssVarsString(toCssVars(theme));
+  styleElement.innerHTML = `:host, :root { ${cssVars} }`;
+  document.head.appendChild(styleElement);
+  return () => {
+    document.head.removeChild(styleElement);
+  };
 };
 
-export default useCssVariables;
+export default applyCssVariables;

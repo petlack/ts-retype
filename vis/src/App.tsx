@@ -12,15 +12,15 @@ import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
 import { TopBar } from '../../docs/src/uikit/TopBar';
 import { UiKitApp } from '../../docs/src/uikit/UiKitApp';
 import { useSearch } from './hooks/useSearch';
-import { ThemeProvider, ThemeMode } from '../../uikit/src/theme/provider';
+import { ThemeProvider } from '../../uikit/src/theme';
 
 import './App.scss';
 
 const accent = '#0a799e';
 const second = '#c68726';
-const body = 'sans-serif';
-const heading = 'sans-serif';
-const mono = 'monospace';
+const body = '\'Open Sans\', sans-serif';
+const heading = '\'Open Sans\', sans-serif';
+const mono = '\'Source Code Pro\', monospace';
 const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 const facets: Facet<FulltextData>[] = [
@@ -40,7 +40,6 @@ const facets: Facet<FulltextData>[] = [
 function App() {
   const [allData, setAllData] = useState([] as FulltextData[]);
   const [meta, setMeta] = useState({} as Metadata);
-  const [themeName, setThemeName] = useState<ThemeMode>(preferredTheme);
 
   const [
     query,
@@ -74,17 +73,9 @@ function App() {
     setFiltersVisible(!filtersVisible);
   }, [filtersVisible]);
 
-  const toggleTheme = useCallback(() => {
-    const nextTheme = {
-      light: 'dark' as ThemeMode,
-      dark: 'light' as ThemeMode,
-    };
-    setThemeName(nextTheme[themeName]);
-  }, [themeName]);
-
   return (
-    <ThemeProvider accent={accent} second={second} mode={themeName} { ...{ body, heading, mono } }>
-      <UiKitApp theme={themeName}>
+    <ThemeProvider accent={accent} second={second} mode={preferredTheme} { ...{ body, heading, mono } }>
+      <UiKitApp theme={preferredTheme}>
         <SearchPhraseProvider value={{ phrase: query }}>
           <ToastProvider>
             <TopBar>
@@ -92,7 +83,6 @@ function App() {
                 query={query}
                 setQuery={updateQuery}
               />
-              <button style={{ marginRight: '60px' }} onClick={toggleTheme}>click</button>
               <FiltersMenu isOpen={filtersVisible} onClick={toggleFiltersVisibility} />
               <Filters
                 filter={filter}

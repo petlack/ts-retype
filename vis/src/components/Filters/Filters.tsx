@@ -7,7 +7,9 @@ import { IconLetter } from '../Explorer/icons';
 import { IncDecInput } from '../IncDecInput';
 import { ControlsList } from './ControlsList';
 import { FeaturesTooltip } from './FeaturesTooltip';
-
+import { Button } from '../../../../docs/src/uikit/Button';
+import { IconMoon, IconSun } from '../../../../docs/src/uikit/Icons';
+import { useTheme } from '../../../../uikit/src/theme';
 import './Filters.scss';
 
 export type FiltersProps = {
@@ -54,6 +56,8 @@ export function Filters({
 }: FiltersProps) {
   const updateMinProperties = (value: number) => updateFilter({ ...filter, minProperties: value });
   const updateMinFiles = (value: number) => updateFilter({ ...filter, minFiles: value });
+
+  const { setTheme } = useTheme();
 
   const FilterSimButton = useCallback(({ id, selected, ...props }: { id: string, selected: string } & HTMLAttributes<HTMLElement>) => {
     const isSelected = id === selected;
@@ -126,6 +130,9 @@ export function Filters({
           onChange={updateMinFiles}
         />
       </div>
+
+      <Button icon={IconSun} caption="light" style="default" size="md" kind="button" onClick={() => setTheme('light')} />
+      <Button icon={IconMoon} caption="dark" style="default" size="md" kind="button" onClick={() => setTheme('dark')} />
     </div>
   );
 }

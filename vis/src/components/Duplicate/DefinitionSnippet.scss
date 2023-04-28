@@ -2,11 +2,11 @@
 .snippet {
   .token {
     opacity: 0.66;
-    font-weight: lighter;
+    font-weight: var(--font-weight-medium);
   }
   .sat--def {
     opacity: 1;
-    font-weight: bolder;
+    font-weight: var(--font-weight-semibold);
     background-color: var(--clr-bg-snippet-highlighted);
     &.sat--found {
       background-color: var(--clr-acco);
