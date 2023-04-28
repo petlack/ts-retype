@@ -12,7 +12,7 @@
     border: none;
     background-color: transparent;
     color: var(--clr-fg-text);
-    font-family: monospace;
+    font-family: var(--font-mono);
     font-size: 1.2rem;
     padding: 1rem 1rem;
     transition: background-color 150ms ease-in;

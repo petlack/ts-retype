@@ -49,7 +49,6 @@
 
 :root {
   color-scheme: dark;
-  --font-mono: 'Lab Mono';
 }
 
 ::-webkit-scrollbar {
@@ -121,6 +120,7 @@ main {
       .filters-menu {
         position: fixed;
         right: 0;
+        top: var(--space-2);
         z-index: var(--z-banner);
       }
       @media screen and (max-width: 1536px) {
