@@ -1,106 +1,131 @@
 @import "./utils.styl"
 @import "./vars.styl"
 
-lightTheme()
-  --clr-bgMain: $bgMainLight;
-  --clr-fgTitle: $titleLight;
-  --clr-fgMedium: $mediumLight;
-  --clr-fgText: $textLight;
-  --clr-border: $borderLight;
-  --clr-bgCode: $bgCodeMainLight;
-  --clr-fgCode: black;
+lightThemeMain()
+  --clr-bg-topbar: var(--clr-bg);
+  --clr-bg-main: var(--clr-bg);     
+  --clr-bg-code: var(--clr-neutral-25);
+  --clr-fg-text: var(--clr-fg);
+  --clr-fg-title: var(--clr-neutral-600);
+  --clr-fg-code: var(--clr-fg);
+  --clr-border: var(--clr-neutral-100);
 
-darkTheme()
-  --clr-bgMain: $bgMainDark;
-  --clr-fgTitle: $titleDark;
-  --clr-fgMedium: $mediumDark;
-  --clr-fgText: $textDark;
-  --clr-border: $borderDark;
-  --clr-bgCode: $bgCodeMainDark;
-  --clr-fgCode: white;
+darkThemeMain()
+  --clr-bg-topbar: var(--clr-neutral-50);
+  --clr-bg-main: var(--clr-neutral-25);   
+  --clr-bg-code: var(--clr-neutral-50);
+  --clr-fg-text: var(--clr-fg);
+  --clr-fg-title: var(--clr-neutral-600);
+  --clr-fg-code: var(--clr-fg);
+  --clr-border: var(--clr-neutral-200);
+
+lightThemeWindow()
+  --clr-bg-window-header: $yellowLight;
+  --clr-fg-code-comment: var(--clr-neutral-300);
+
+darkThemeWindow()
+  --clr-bg-window-header: var(--clr-neutral-50);
+  --clr-fg-code-comment: var(--clr-neutral-500);
+
+lightThemeDuplicate()
+  --clr-bg-title: var(--clr-second-50);
+  --clr-bg-explorer: var(--clr-bg);
+  --clr-bg-explorer-selected: var(--clr-second-100);
+  --clr-bg-snippet: var(--clr-bg);
+  --clr-bg-snippet-highlighted: var(--clr-accent-50);
+
+darkThemeDuplicate()
+  --clr-bg-title: var(--clr-neutral-50);
+  --clr-bg-explorer: var(--clr-neutral-50);
+  --clr-bg-explorer-selected: var(--clr-neutral-200);
+  --clr-bg-snippet: var(--clr-neutral-100);
+  --clr-bg-snippet-highlighted: var(--clr-neutral-200);
 
 *
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 
+  ::selection {
+    background-color: var(--clr-accent-500);
+    color: white;
+  }
+  ::-moz-selection {
+    background-color: var(--clr-accent-500);
+    color: white;
+  }
+  ::-o-selection {
+    background-color: var(--clr-accent-500);
+    color: white;
+  }
+  ::-ms-selection {
+    background-color: var(--clr-accent-500);
+    color: white;
+  }
+  ::-webkit-selection {
+    background-color: var(--clr-accent-500);
+    color: white;
+  }
+
 :root
   font-size: 16px;
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: var(--clr-accent-500) #ffffff;
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: $accent;
-  border-radius: 5px;
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: darken($accent, 10%);
+*::-webkit-scrollbar-track {
+  background: var(--clr-neutral-100);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--clr-accent-500);
+  border-radius: 6px;
+  &:hover {
+    background-color: var(--clr-accent-700);
+  }
 }
 
 body
   min-height: 100vh;
-  font-family: $fontRegular;
+  font-family: var(--font-body);
 
 main
   &.light
-    lightTheme();
+    lightThemeMain();
+    lightThemeWindow();
+    lightThemeDuplicate();
   &.dark
-    darkTheme();
-  flexColumn($gapLarge);
-  justify-content: flex-start;
+    darkThemeMain();
+    darkThemeWindow();
+    darkThemeDuplicate();
+  flexColumn();
   align-items: center;
-  background-color: var(--clr-bgMain);
-  color: var(--clr-fgText);
+  background-color: var(--clr-bg-main);
+  color: var(--clr-fg-text);
+  gap: var(--space-4);
   .topbar-container
+    position: fixed;
+    top: 0;
+    z-index: var(--z-sticky);
+    background-color: var(--clr-bg-topbar);
+    border-bottom: 1px solid var(--clr-border);
     .strip
       position: fixed;
-      z-index: 100;
+      z-index: var(--z-overlay);
   .window
-    background-color: var(--clr-bgCode);
+    background-color: var(--clr-bg-code);
   header
     width: 100%;
-    flexColumn($gapLarge);
+    flexColumn();
     justify-content: center;
     align-items: center;
-    background-color: var(--clr-bgWindowHeader);
-    padding: $gapXXLarge;
-    color: var(--clr-fgWindowHeader);
-    boxShadowStrong()
-  section
-    flexColumn($gapLarge)
-    max-width: $sectionMaxWidth;
-    min-width: $sectionMinWidth;
-    padding: $gapMedium;
-    width: 80vw;
-    font-size: 16px;
-    background-color: var(--clr-bgSecondary);
-    @media screen and (max-width: $breakSnippetsColumn)
-      width: 100%;
-      padding: 0 1rem;
-      max-width: unset;
-    &.bleed
-      max-width: 100%;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    h2 
-      font-family: $fontRegular;
-      font-size: 2rem;
-
-  ul.links
-    flexColumn()
-    flex: 1;
-  li
-    display: flex;
-    transition: background-color transRegular;
-    a
-      flex: 1;
-      text-decoration: underline;
-      color: var(--clr-fgText);
-      padding: $gapMedium;
-    &:hover a
-      color: var(--clr-bgWindowHeader);
+    box-shadow: var(--shadow-base);

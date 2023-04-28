@@ -1,9 +1,9 @@
 @import "../vars.styl"
 
 .token
-    font-weight: 300;
+    font-weight: var(--font-weight-medium);
     &.bold
-      font-weight: bolder;
+      font-weight: var(--font-weight-bolder);
 
 .dark
   .token
@@ -17,7 +17,7 @@
     &.class-name
       color: orange;
     &.comment
-      color: lightgray;
+      color: var(--clr-neutral-400);
     &.function
       color: $lightPurple;
     &.keyword

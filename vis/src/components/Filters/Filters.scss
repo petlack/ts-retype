@@ -7,11 +7,11 @@
   max-height: 100vh;
   overflow-y: scroll;
   overflow-x: hidden;
-  padding: 1rem;
+  padding: var(--space-4);
   padding-top: 48px;
-  gap: 2rem;
-  background-color: var(--clr-bgMain);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  gap: var(--space-4);
+  background-color: var(--clr-bg-main);
+  box-shadow: var(--shadow-xl);
 
   &-hidden {
     opacity: 0
@@ -26,7 +26,7 @@
     flex-direction: column;
     gap: 2px;
 
-    @include focusable($accent, 'outside');
+    @include focusable(var(--clr-accent), 'outside');
 
     &--overflow {
       overflow-y: scroll;
@@ -34,9 +34,8 @@
     
     .nav {
       color: currentColor;
-      padding: .75rem 1rem;
+      padding: var(--space-2) var(--space-4);
       cursor: pointer;
-      border-radius: 8px;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
@@ -44,21 +43,17 @@
         text-decoration: underline;
       }
       .badge {
-        margin-right: .5em;
+        margin-right: var(--space-2);
       }
       &--selected {
         --marker-size: 8px;
         position: relative;
-        font-weight: 600;
-        // background-color: var(--clr-bgSecondary);
-        // box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-        // box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-        // color: white;
-        &:before {
+        font-weight: var(--font-weight-bold);
+       &:before {
           content: '';
           position: absolute;
-          background-color: $accent;
-          border-radius: 4px;
+          background-color: var(--clr-accent);
+          border-radius: var(--size-2);
           top: calc(50% - (var(--marker-size) / 2));
           left: 0;
           width: var(--marker-size);
@@ -71,13 +66,13 @@
   .filter {
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    gap: var(--space-2);
     .label {
       font-weight: lighter;
       font-size: smaller;
-      color: var(--clr-fgText);
+      color: var(--clr-fg);
       display: flex;
-      gap: .5rem;
+      gap: var(--space-2);
       flex-direction: row;
       align-items: center;  
     }

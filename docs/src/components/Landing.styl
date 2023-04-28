@@ -2,39 +2,36 @@
 @import "../vars.styl"
 
 lightTheme()
-  --clr-bgCodeLanding: $bgCodeLandingLight;
-  --clr-bgLanding: $bgLandingLight;
-  --clr-fgLanding: black;
-  --clr-boxShadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  --clr-bg-landing-code: var(--clr-neutral-25);
+  --clr-bg-landing: var(--clr-neutral-50);
 
 darkTheme()
-  --clr-bgCodeLanding: $bgCodeLandingDark;
-  --clr-bgLanding: $bgLandingDark;
-  --clr-fgLanding: white;
-  --clr-boxShadow: rgb(0 10 23 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px;
+  --clr-bg-landing-code: var(--clr-neutral-50);
+  --clr-bg-landing: var(--clr-neutral-100);
 
 .landing-container
   flexColumn();
   position: relative;
-  min-height: 100vh;
+  // min-height: 75vh;
   align-items: center;
-  background-color: var(--clr-bgLanding);
-  border-top: 1px solid var(--clr-border);
+  background-color: var(--clr-bg-landing);
+  padding-top: var(--space-12);
   border-bottom: 1px solid var(--clr-border);
-  color: var(--clr-fgLanding);
   &.light
     lightTheme();
     .window.light
-      --clr-bgCode: var(--clr-bgCodeLanding);
+      --clr-bg-code: var(--clr-bg-landing-code);
   &.dark
     darkTheme();
     .window.dark
-      --clr-bgCode: var(--clr-bgCodeLanding);
+      --clr-bg-code: var(--clr-bg-landing-code);
+
   .landing
     flex: 1;
     display: grid;
-    row-gap: 2em;
-    padding: 2em;
+    row-gap: var(--space-2);
+    column-gap: var(--space-8);
+    padding: var(--space-12);
     grid-template-areas: "snippets snippets" "example code";
     grid-template-columns: min-content 1fr;
     grid-template-rows: 1fr 1fr;
@@ -46,35 +43,35 @@ darkTheme()
     @media screen and (max-width: $breakSnippetsColumn)
       grid-template-areas: "example example" "snippets snippets" "code code";
       grid-template-rows: repeat(3, min-content);
-      padding: 1em;
+      padding: var(--space-4);
 
     .snippets
       grid-area: snippets;
-      flexRow();
-      gap: 1.5em;
+      flexRow(var(--space-4));
       justify-content: space-between;
       align-items: center;
       @media screen and (max-width: $breakSnippetsWrap)
         flex-wrap: wrap;
         justify-content: center;
         .window-responsive
-          font-size: 1rem;
+          font-size: var(--font-size-md);
       @media screen and (max-width: $breakSnippetsColumn)
         flexColumn();
     .description
       grid-area: example;
       flex: 1;
-      flexColumn(1rem);
+      flexColumn(var(--space-2));
       justify-content: start;
       justify-self: center;
       @media screen and (max-width: $breakDescCTA)
         justify-content: center;
       h1
-        width: 20ch;
-        font-weight: 500;
-        font-family: $fontTitle;
-        color: var(--clr-fgTitle);
-        margin-bottom: .5rem;
+        max-width: var(--size-xl);
+        width: 50ch;
+        font-weight: var(--font-weight-medium);
+        font-family: var(--font-heading);
+        color: var(--clr-neutral-950);
+        margin-bottom: var(--space-4);
         display: flex;
 
         font-size: $titleResponsiveFontSize;
@@ -87,11 +84,11 @@ darkTheme()
           width: 100%;
       p
         width: 50ch;
-        font-size: 1.25rem
-        font-weight: 400;
-        opacity: 0.8;
-        line-height: 1.5;
-        color: var(--clr-fgText);
+        max-width: var(--size-xl);
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-normal);
+        line-height: 1.66;
+        color: var(--clr-neutral-800);
         display: flex;
 
         @media screen and (max-width: $breakDescCTA)
@@ -99,27 +96,28 @@ darkTheme()
         @media screen and (max-width: $breakSnippetsWrap)
           width: 100%; 
       .cluster
-        box-shadow: var(--clr-boxShadow);
+        box-shadow: var(--shadow-base);
     .code-install
       grid-area: code;
       align-self: start;
       justify-self: end;
-      align-items: flex-start;
       flexColumn();
-      gap: 2rem;
-      font-size: 1.2em;
-      // margin-top: 1rem;
+      gap: var(--space-2);
+      .code
+        font-size: var(--font-size-lg);
+        width: 28ch;
       @media screen and (max-width: $breakDescCTA)
         flexRow();
-        gap: 4rem;
-        align-items: center;
+        gap: var(--space-8);
+        align-items: end;
         justify-self: center;
         .links
-          padding-top: 1.75rem;
+          padding-top: var(--space-3);
       @media screen and (max-width: $breakSnippetsColumn)
-        gap: 2rem;
+        gap: var(--space-8);
         flex-direction: column;
       .links
-        flexColumn(.5em);
-
-    
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2);

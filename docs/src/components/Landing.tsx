@@ -46,14 +46,6 @@ export function Landing({ theme }: LandingProps) {
   //   </div>
   // );
 
-  const contentMarkup = (
-    <div className="description">
-      <h1>Discover duplicate types in TypeScript code</h1>
-      <p>TS retype statically analyzes code and searches for multiple declarations of the same Literal Types, Function Types and Enums/Unions.</p>
-      <p>Run TS retype inside your project folder to get an HTML/JSON report.</p>
-    </div>
-  );
-
   return (
     <div className={`landing-container ${theme}`}>
       <div className="landing">
@@ -65,7 +57,11 @@ export function Landing({ theme }: LandingProps) {
           <TsSnippet responsive theme={theme} start={41} snippet={Snippets.Snippet_interface as Snippet} name={'src/auth.ts'} />
           <TsSnippet responsive theme={theme} start={75} snippet={Snippets.Snippet_function as Snippet} name={'src/api.ts'} />
         </div>
-        {contentMarkup}
+        <div className="description">
+          <h1>Discover duplicate types in TypeScript code</h1>
+          <p>TS retype statically analyzes code and searches for multiple declarations of the same Literal Types, Function Types and Enums/Unions.</p>
+          <p>Run TS retype inside your project folder to get an HTML/JSON report.</p>
+        </div>
         <div className="code-install">
           <MultilangWindow
             theme={{ dark: 'light', light: 'dark' }[theme] as 'dark' | 'light'}
@@ -77,8 +73,8 @@ export function Landing({ theme }: LandingProps) {
             ]}
           />
           <div className="links">
-            <Button caption="Documentation" icon={IconDocs} kind="primary" href="#docs" />
-            <Button caption="Source code" icon={IconGithub} kind="secondary" href="https://github.com/petlack/ts-retype" />
+            <Button caption="Docs" icon={IconDocs} kind="primary" href="#docs" />
+            <Button caption="Source" icon={IconGithub} kind="secondary" href="https://github.com/petlack/ts-retype" newWindow />
           </div>
         </div>
       </div>

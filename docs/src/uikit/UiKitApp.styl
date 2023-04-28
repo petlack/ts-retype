@@ -2,25 +2,18 @@
 @import "../vars.styl"
 
 lightTheme()
-  --clr-bgMain: $bgMainLight;
-  --clr-bgSecondary: $bgSecondaryLight;
-  --clr-border: $borderLight;
-  --clr-fgText: $textLight;
-  --clr-fgTitle: $titleLight;
-  --clr-fgSecondary: $fgSecondaryLight;
+  --clr-bg-main: var(--clr-neutral-50);     
+  --clr-bg-secondary: var(--clr-bg);
+  --clr-border: var(--clr-neutral-100);
+  --clr-fg-text: var(--clr-fg);
+  --clr-fg-title: var(--clr-neutral-600);
 
 darkTheme()
-  --clr-bgMain: $bgMainDark;
-  --clr-bgSecondary: $bgSecondaryDark;
-  --clr-border: $borderDark;
-  --clr-fgText: $textDark;
-  --clr-fgTitle: $titleDark;
-  --clr-fgSecondary: $fgSecondaryDark;
-
-sharedTheme()
-  --clr-accent: $accent;
-  --clr-accent-darker: darken($accent, 10%);
-  --clr-accent-lighter: lighten($accent, 10%);
+  --clr-bg-main: var(--clr-bg);
+  --clr-bg-secondary: var(--clr-second-50);
+  --clr-border: var(--clr-neutral-100);
+  --clr-fg-text: var(--clr-fg);
+  --clr-fg-title: var(--clr-neutral-600);
 
 *
   margin: 0;
@@ -32,43 +25,37 @@ sharedTheme()
 
 body
   min-height: 100vh;
-  font-family: $fontRegular;
+  font-family: var(--font-body);
 
 main
-  sharedTheme();
   &.light
     color-scheme: light;
     lightTheme();
   &.dark
     color-scheme: dark;
     darkTheme();
-  --z-always-visible: $zAlwaysVisible;
-  --z-overlay: $zOverlay;
   flexColumn()
   min-height: 100vh;
   // justify-content: flex-start;
   // align-items: center;
-  background-color: var(--clr-bgMain);
-  color: var(--clr-fgText);
+  background-color: var(--clr-bg-main);
+  color: var(--clr-fg-text);
   header
     // width: 100%;
-    flexColumn($gapLarge);
+    flexColumn();
     justify-content: center;
     align-items: center;
-    background-color: var(--clr-bgWindowHeader);
-    padding: $gapXXLarge;
-    color: var(--clr-fgWindowHeader);
-    boxShadowStrong()
+    padding: var(--space-xl);
   section
-    flexColumn($gapLarge)
-    max-width: $sectionMaxWidth;
-    min-width: $sectionMinWidth;
-    padding: $gapMedium;
-    width: 80vw;
-    font-size: 16px;
+    flexColumn()
+    // max-width: var(--size-6xl);
+    // min-width: var(--size-4xl);
+    // padding: var(--space-8);
+    // width: 80vw;
+    font-size: var(--font-size-md);
     @media screen and (max-width: $breakSnippetsColumn)
       // width: 100%;
-      padding: 0 1rem;
+      padding: 0 var(--space-2);
       max-width: unset;
     &.bleed
       max-width: 100%;

@@ -1,14 +1,14 @@
 footer {
   display: flex;
   flex-direction: column;
-  font-size: .75rem;
-  padding: 2rem 0;
+  font-size: var(--font-size-xs);
+  padding: var(--space-8) 0;
   .section {
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
-    column-gap: .5ch;
-    color: var(--clr-fgSecondary);
+    column-gap: var(--space-1);
+    color: var(--clr-neutral-600);
     line-height: 1.75;
   }
 }

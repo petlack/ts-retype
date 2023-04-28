@@ -62,7 +62,9 @@
   },
   "keywords": [
     "typescript",
-    "static-analysis"
+    "static-analysis",
+    "nodejs",
+    "cli"
   ],
   "dependencies": {
     "commander": "^10.0.0",

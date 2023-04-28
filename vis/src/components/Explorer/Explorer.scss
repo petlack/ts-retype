@@ -2,14 +2,12 @@
   --margin: 10px;
   --icon-size: 16px;
   --chevron-size: 10px;
-  color: #a0a0a0;
   overflow: scroll;
-  max-height: 30vh;
   display: flex;
   padding: 1rem;
 
   svg {
-    color: #202020;
+    color: var(--clr-fg);
     width: var(--icon-size);
     height: var(--icon-size);
   }
@@ -50,13 +48,23 @@
       align-items: center;
       gap: .33rem;
       &:hover {
-        color: #202020;
+        color: var(--clr-neutral-900);
+      }
+    }
+    &.hoverable {
+      &:hover {
+        background-color: var(--clr-accent-50);
       }
     }
     &.selected {
-      background-color: hsl(195deg 58% 96%);
+      background-color: var(--clr-bg-explorer-selected);
+      &.hoverable {
+        &:hover {
+          background-color: var(--clr-accent-200);
+        }
+      }
       span {
-        color: #202020;
+        color: var(--clr-fg);
       }
     }
   }

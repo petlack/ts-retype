@@ -493,7 +493,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'punctuation'] },
         children: [{ type: 'text', value: '{' }],
       },
-      { type: 'text', value: '\n      name' },
+      { type: 'text', value: ' name' },
       {
         type: 'element',
         tagName: 'span',
@@ -513,7 +513,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'punctuation'] },
         children: [{ type: 'text', value: ';' }],
       },
-      { type: 'text', value: '\n      type' },
+      { type: 'text', value: ' type' },
       {
         type: 'element',
         tagName: 'span',
@@ -527,13 +527,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'builtin'] },
         children: [{ type: 'text', value: 'string' }],
       },
-      {
-        type: 'element',
-        tagName: 'span',
-        properties: { className: ['token', 'punctuation'] },
-        children: [{ type: 'text', value: ';' }],
-      },
-      { type: 'text', value: '\n    ' },
+      { type: 'text', value: ' ' },
       {
         type: 'element',
         tagName: 'span',
@@ -645,7 +639,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'punctuation'] },
         children: [{ type: 'text', value: '{' }],
       },
-      { type: 'text', value: '\n    count' },
+      { type: 'text', value: ' count' },
       {
         type: 'element',
         tagName: 'span',
@@ -665,7 +659,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'punctuation'] },
         children: [{ type: 'text', value: ';' }],
       },
-      { type: 'text', value: '\n    name' },
+      { type: 'text', value: ' name' },
       {
         type: 'element',
         tagName: 'span',
@@ -679,13 +673,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'builtin'] },
         children: [{ type: 'text', value: 'string' }],
       },
-      {
-        type: 'element',
-        tagName: 'span',
-        properties: { className: ['token', 'punctuation'] },
-        children: [{ type: 'text', value: ';' }],
-      },
-      { type: 'text', value: '\n  ' },
+      { type: 'text', value: ' ' },
       {
         type: 'element',
         tagName: 'span',
@@ -768,7 +756,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'punctuation'] },
         children: [{ type: 'text', value: '{' }],
       },
-      { type: 'text', value: '\n    name' },
+      { type: 'text', value: ' name' },
       {
         type: 'element',
         tagName: 'span',
@@ -788,7 +776,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'punctuation'] },
         children: [{ type: 'text', value: ';' }],
       },
-      { type: 'text', value: '\n    type' },
+      { type: 'text', value: ' type' },
       {
         type: 'element',
         tagName: 'span',
@@ -802,13 +790,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'builtin'] },
         children: [{ type: 'text', value: 'string' }],
       },
-      {
-        type: 'element',
-        tagName: 'span',
-        properties: { className: ['token', 'punctuation'] },
-        children: [{ type: 'text', value: ';' }],
-      },
-      { type: 'text', value: '\n  ' },
+      { type: 'text', value: ' ' },
       {
         type: 'element',
         tagName: 'span',
@@ -853,7 +835,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'punctuation'] },
         children: [{ type: 'text', value: '{' }],
       },
-      { type: 'text', value: '\n    name' },
+      { type: 'text', value: ' name' },
       {
         type: 'element',
         tagName: 'span',
@@ -873,7 +855,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'punctuation'] },
         children: [{ type: 'text', value: ';' }],
       },
-      { type: 'text', value: '\n    type' },
+      { type: 'text', value: ' type' },
       {
         type: 'element',
         tagName: 'span',
@@ -887,13 +869,7 @@ export const Snippet_TypeDuplicate = {
         properties: { className: ['token', 'builtin'] },
         children: [{ type: 'text', value: 'string' }],
       },
-      {
-        type: 'element',
-        tagName: 'span',
-        properties: { className: ['token', 'punctuation'] },
-        children: [{ type: 'text', value: ';' }],
-      },
-      { type: 'text', value: '\n  ' },
+      { type: 'text', value: ' ' },
       {
         type: 'element',
         tagName: 'span',

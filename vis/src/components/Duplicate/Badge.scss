@@ -4,18 +4,18 @@
   line-height: 1;
   border: 1px solid currentColor;
   font-weight: bolder;
-  font-size: x-small;
+  font-size: small;
   text-transform: uppercase; 
 }
 
 .dark {
   .badge {
     &--yellow {
-      color: hsl(38, 65%, 95%);
+      color: var(--clr-fg);
       background-color: hsl(38, 25%, 30%);
     }
     &--blue {
-      color: hsl(280, 65%, 95%);
+      color: var(--clr-fg);
       background-color: hsl(280, 25%, 30%);
     }
   }

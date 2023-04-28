@@ -88,6 +88,7 @@ export function similarity(leftCandidate: CandidateType, rightCandidate: Candida
     const right = <FunctionCandidateType>rightCandidate;
     const namesEqual = left.name === right.name;
     const returnTypesEqual = left.returnType === right.returnType;
+    const parametersCountEqual = left.parameters.length === right.parameters.length;
     const parametersTypesEqual = eqValues(
       pluck('type', left.parameters),
       pluck('type', right.parameters),
@@ -96,11 +97,12 @@ export function similarity(leftCandidate: CandidateType, rightCandidate: Candida
       pluck('name', left.parameters),
       pluck('name', right.parameters),
     );
-    const parametersSimilarity = parametersTypesEqual
-      ? parametersNamesEqual
-        ? Similarity.Identical
-        : Similarity.HasIdenticalProperties
-      : Similarity.Different;
+    const parametersSimilarity =
+      parametersCountEqual && parametersTypesEqual
+        ? parametersNamesEqual
+          ? Similarity.Identical
+          : Similarity.HasIdenticalProperties
+        : Similarity.Different;
     const parametersEqual = parametersSimilarity !== Similarity.Different;
     if (returnTypesEqual) {
       if (namesEqual && parametersEqual) {
