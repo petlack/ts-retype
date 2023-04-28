@@ -89,15 +89,18 @@ async function make(config: Partial<CmdProps>) {
   const buildDocs = () => npmrun('docs', 'build');
   const buildExample = () => npmrun('example', 'build');
   const buildTsRetype = () => npmrun(null, 'build');
+  const buildUikit = () => npmrun('uikit', 'build');
   const buildVis = () => npmrun('vis', 'build');
   const cleanDocs = () => npmrun('docs', 'clean');
   const cleanExample = () => npmrun('example', 'clean');
   const cleanTsRetype = () => npmrun(null, 'clean');
+  const cleanUikit = () => npmrun('uikit', 'clean');
   const cleanVis = () => npmrun('vis', 'clean');
   const format = () => npmrun(null, 'format');
   const installDocs = () => npm('docs', ['install']);
   const installExample = () => npm('example', ['install']);
   const installTsRetype = () => npm(null, ['install']);
+  const installUikit = () => npm('uikit', ['install']);
   const installVis = () => npm('vis', ['install']);
   const runCreateCmdHelpSnippet = () => script('createCmdHelpSnippet');
   const runExampleTsRetype = () => npmrun('example', 'report');
@@ -109,16 +112,19 @@ async function make(config: Partial<CmdProps>) {
     buildDocs,
     buildExample,
     buildTsRetype,
+    buildUikit,
     buildVis,
     cleanDocs,
     cleanExample,
     cleanTsRetype,
+    cleanUikit,
     cleanVis,
     format,
     generateReadme,
     installDocs,
     installExample,
     installTsRetype,
+    installUikit,
     installVis,
     prepareDist,
     runCreateCmdHelpSnippet,
@@ -133,12 +139,15 @@ async function make(config: Partial<CmdProps>) {
     { name: 'cleanExample', deps: [] },
     { name: 'cleanDocs', deps: [] },
     { name: 'cleanTsRetype', deps: [] },
+    { name: 'cleanUikit', deps: [] },
     { name: 'cleanVis', deps: [] },
     { name: 'format', deps: [] },
     { name: 'installDocs', deps: ['cleanDocs'] },
     { name: 'installTsRetype', deps: ['cleanTsRetype'] },
+    { name: 'installUikit', deps: ['cleanUikit'] },
     { name: 'installVis', deps: ['cleanVis'] },
-    { name: 'buildVis', deps: ['installVis'] },
+    { name: 'buildUikit', deps: ['installUikit'] },
+    { name: 'buildVis', deps: ['installVis', 'buildUikit'] },
     { name: 'buildTsRetype', deps: ['installTsRetype'] },
     { name: 'prepareDist', deps: ['buildVis', 'buildTsRetype'] },
     { name: 'tests', deps: ['prepareDist'] },
