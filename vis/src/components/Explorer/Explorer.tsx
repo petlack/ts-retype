@@ -14,6 +14,7 @@ import { Tree, TreeNode, TreeProps } from '../Tree';
 import { TreeProvider, TreeProviderProps } from '../Tree/TreeProvider';
 import { Cardinality } from '../Tree/types';
 import './Explorer.scss';
+import { SearchAwareText } from '../SearchAwareText';
 
 type File = ArrayElement<TypeDuplicate['files']>;
 type Node = {
@@ -38,7 +39,7 @@ export const FileNode: TreeNode<Node> = ({ node, children }) => {
       <span onClick={onClickHandler}>
         {chevronMarkup}
         <span>{iconMarkup}</span>
-        <span>{node.data.name}</span>
+        <SearchAwareText>{node.data.name}</SearchAwareText>
       </span>
       {children}
     </>

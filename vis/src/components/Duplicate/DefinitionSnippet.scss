@@ -4,12 +4,15 @@
     opacity: 0.66;
     font-weight: var(--font-weight-medium);
   }
+  .sat--found {
+    background-color: var(--clr-second-100);
+  }
   .sat--def {
     opacity: 1;
     font-weight: var(--font-weight-semibold);
     background-color: var(--clr-bg-snippet-highlighted);
     &.sat--found {
-      background-color: var(--clr-acco);
+      background-color: var(--clr-second-100);
     }
   }
   .line {
