@@ -3496,9 +3496,9 @@
           "name": "make",
           "type": "function",
           "src": "make(config: Partial<CmdProps>) => unknown",
-          "pos": [1780, 5479],
+          "pos": [1780, 5657],
           "offset": 1,
-          "lines": [55, 151],
+          "lines": [55, 166],
           "parameters": [{ "name": "config", "type": "Partial<CmdProps>" }],
           "returnType": "<empty_node>",
           "signature": {
@@ -19020,11 +19020,11 @@
   "meta": {
     "projectName": "ts-retype",
     "projectFilesScanned": 187,
-    "projectLocScanned": 13064,
+    "projectLocScanned": 9207,
     "projectTypesScanned": 419,
     "projectFilesWithTypesDeclarations": 114,
-    "scannedAt": "2023-04-29T14:19:55+03:00",
+    "scannedAt": "2023-04-29T16:24:34+03:00",
     "scanDuration": 7,
-    "reportSize": 1099215
+    "reportSize": 1099309
   }
 }

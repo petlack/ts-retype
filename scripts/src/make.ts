@@ -145,7 +145,8 @@ async function make(config: Partial<CmdProps>) {
     [Step.runExtractSnippets, () => script('extractSnippets')],
     [Step.smoke, () => npmrun('example', 'smoke')],
     [Step.syntaxHighlightSnippets, syntaxHighlightSnippets],
-    [Step.tests, () => npmrun(ROOT, 'test:fast')],
+    [Step.tests, () => npmrun(ROOT, 'test')],
+    [Step.testsFast, () => npmrun(ROOT, 'test:fast')],
   ]);
 
   const pipelineSteps =
