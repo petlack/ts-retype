@@ -35,6 +35,7 @@
     "make": "npm -w scripts run make --",
     "prepare": "husky install",
     "publish": "npm -w retype run publish",
+    "retype": "npm -w retype run bin -- -c . -j vis/data.json",
     "scripts:build": "npm -w scripts run build",
     "scripts:dev": "npm -w scripts run dev",
     "security": "npm audit --audit-level=high",

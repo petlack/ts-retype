@@ -118,6 +118,21 @@ async function make(config: Partial<CmdProps>) {
     [Step.echo, () => bash('echo', 'ok')],
     [Step.format, () => npmrun(ROOT, 'format')],
     [Step.generateReadme, generateReadme],
+    [
+      Step.generateVisDevData,
+      () =>
+        npm(ROOT, [
+          '-w',
+          'retype',
+          'run',
+          'bin',
+          '--',
+          rootDir,
+          '-c',
+          '-j',
+          join(rootDir, 'vis/src/data.json'),
+        ]),
+    ],
     [Step.install, () => npm(ROOT, ['install'])],
     [Step.installDocs, () => npm('docs', ['install'])],
     [Step.installExample, () => npm('example', ['install'])],

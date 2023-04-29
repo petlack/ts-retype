@@ -24,6 +24,7 @@ export enum Step {
   echo,
   format,
   generateReadme,
+  generateVisDevData,
   install,
   installDocs,
   installExample,
@@ -80,6 +81,7 @@ export const steps: PipelineStepDef<Step>[] = [
     ],
   },
   { name: Step.generateReadme, deps: [Step.runExtractSnippets, Step.runCreateCmdHelpSnippet] },
+  { name: Step.generateVisDevData, deps: [Step.buildTsRetype, Step.prepareDist] },
   {
     name: Step.smoke,
     deps: [Step.tests, Step.runExampleTsRetype, Step.buildExample, Step.runExtractSnippets],
@@ -87,7 +89,7 @@ export const steps: PipelineStepDef<Step>[] = [
 ];
 
 export const pipelinesDefinitions = new Map<Pipeline, Step[]>([
-  [Pipeline.all, [Step.smoke, Step.generateReadme, Step.buildDocs]],
+  [Pipeline.all, [Step.smoke, Step.generateReadme, Step.buildDocs, Step.generateVisDevData]],
   [Pipeline.publish, [Step.tests, Step.prepareDist]],
   [Pipeline.test, [Step.smoke]],
   [Pipeline.docs, [Step.tests, Step.generateReadme, Step.buildDocs]],
