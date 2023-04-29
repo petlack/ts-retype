@@ -3,7 +3,7 @@ import { Listing as DuplicateListing } from '../Duplicate';
 import { Empty } from '../Empty';
 import { FeaturesTooltip } from '../Filters/FeaturesTooltip';
 import { Filter } from '../../model/search';
-import { Metadata } from '../../../../src/types';
+import { Metadata } from '@ts-retype/retype/src/types';
 import { ReactNode } from 'react';
 import './Listing.scss';
 

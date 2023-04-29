@@ -1,5 +1,5 @@
 {
-  "name": "example",
+  "name": "@ts-retype/example",
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
@@ -14,6 +14,6 @@
     "start": "ts-node --esm src/index.ts"
   },
   "dependencies": {
-    "ts-retype": "file:../dist"
+    "@ts-retype/retype": "*"
   }
 }

@@ -1,4 +1,4 @@
-import { TypeDuplicate } from '../../../../src/types';
+import { TypeDuplicate } from '@ts-retype/retype/src/types';
 import './Badge.scss';
 
 export type BadgeProps = {

@@ -11,8 +11,8 @@ const program = createCommand();
 program.name('generateDocs').version('1.0.0').description('generate docs');
 
 async function generateDocs(config: Partial<CmdProps>) {
-  extractSnippets();
-  syntaxHighlighting({
+  await extractSnippets();
+  await syntaxHighlighting({
     output: '../docs/src/generated',
     dir: '../docs/src/snippets',
   });

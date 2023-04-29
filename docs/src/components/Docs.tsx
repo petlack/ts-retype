@@ -1,6 +1,6 @@
-import { TS_RETYPE_CMD_OPTIONS } from '../../../src/types/props';
-import { Snippet } from '../../../src/types/snippet';
-import { ThemeMode, useTheme } from '../../../uikit/src/theme';
+import { TS_RETYPE_CMD_OPTIONS } from '@ts-retype/retype/src/types/props';
+import { Snippet } from '@ts-retype/retype/src/types/snippet';
+import { ThemeMode, useTheme } from '@ts-retype/uikit/src/theme';
 import * as Snippets from '../generated/snippets';
 import { Window } from '../components/Window';
 import { Bash } from './Bash';

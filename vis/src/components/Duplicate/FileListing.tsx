@@ -1,4 +1,4 @@
-import { ArrayElement, TypeDuplicate } from '../../../../src/types';
+import { ArrayElement, TypeDuplicate } from '@ts-retype/retype/src/types';
 import { useCopyToClipboard } from '../../hooks/useCopy';
 import { SearchAwareText } from '../SearchAwareText';
 import { useToast } from '../Toast';

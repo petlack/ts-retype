@@ -1,7 +1,7 @@
-import { ArrayElement, TypeDuplicate } from '../../../../src/types';
+import { ArrayElement, TypeDuplicate } from '@ts-retype/retype/src/types';
 import { flattenTokens, insertNewlines, splitLines, TokenElement } from '../../../../docs/src/components/Token';
 import { Lines } from '../../../../docs/src/components/Lines';
-import { Snippet, TokenRoot } from '../../../../src/types/snippet';
+import { Snippet, TokenRoot } from '@ts-retype/retype/src/types/snippet';
 import { useSearchPhrase } from '../../hooks/useSearchPhrase';
 import { highlightDefinition, highlightPhrase } from '../../model/snippet';
 import './DefinitionSnippet.scss';

@@ -1,7 +1,7 @@
 import { formatDistance, formatDuration, isValid, parseISO, format } from 'date-fns';
 import './Footer.scss';
 
-import { Metadata } from '../../../../src/types';
+import { Metadata } from '@ts-retype/retype/src/types';
 
 export function formatSize(bytes: number): string {
   const B = 1;

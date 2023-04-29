@@ -4,7 +4,7 @@ import { Filters, FiltersMenu } from './components/Filters';
 import { Footer } from './components/Footer/Footer';
 import { FulltextData } from './types';
 import { Listing } from './components/Listing';
-import { Metadata } from '../../src/types';
+import { Metadata } from '@ts-retype/retype/src';
 import { Search } from './components/Search';
 import { SearchPhraseProvider } from './hooks/useSearchPhrase';
 import { ToastProvider } from './components/Toast';

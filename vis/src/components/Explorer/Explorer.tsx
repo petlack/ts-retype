@@ -1,7 +1,7 @@
 import { indexWith } from '../Tree/utils';
 import { useCallback, useMemo } from 'react';
 import { useTree } from '../Tree/useTree';
-import { ArrayElement, TypeDuplicate } from '../../../../src/types';
+import { ArrayElement, TypeDuplicate } from '@ts-retype/retype/src/types';
 import {
   ICON_CHEVRON_DOWN,
   ICON_CODE,

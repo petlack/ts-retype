@@ -1,5 +1,5 @@
 
-import { ArrayElement, TypeDuplicate } from '../../../../src/types';
+import { ArrayElement, TypeDuplicate } from '@ts-retype/retype/src/types';
 import { Tooltip } from '../../hooks/useTooltip';
 
 import './TypeIcon.scss';

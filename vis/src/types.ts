@@ -1,4 +1,4 @@
-import { TypeDuplicate } from '../../src/types';
+import { TypeDuplicate } from '@ts-retype/retype/src';
 
 export type FulltextData = TypeDuplicate & { id: number; fulltext: string };
 

@@ -2,9 +2,9 @@ import colors from 'colors';
 import { difference, reverse } from 'ramda';
 
 export type PipelineStepDef<T> = {
-  name: keyof T;
-  deps: (keyof T)[];
-  parallel?: (keyof T)[];
+  name: T;
+  deps: T[];
+  parallel?: T[];
 };
 
 const log = console.log.bind(console, colors.gray('[make]'));
@@ -26,7 +26,7 @@ function formatDuration(later: Date, earlier: Date) {
   return `${minutes.toFixed().padStart(2, '0')}:${seconds.toFixed(2).padStart(5, '0')}`;
 }
 
-function setFnName(fn: () => unknown, name: string) {
+export function setFnName(fn: () => unknown, name: string) {
   const descriptor = Object.getOwnPropertyDescriptor(fn, 'name');
   if (descriptor) {
     descriptor.value = name;
@@ -62,7 +62,7 @@ async function executeStep(step: () => Promise<unknown>) {
   return { status, error };
 }
 
-export async function pipeline(steps: (() => Promise<unknown>)[]): Promise<void> {
+export async function runPipeline(steps: (() => Promise<unknown>)[]): Promise<void> {
   const start = new Date();
   let status = colors.bold.green('done');
   for (const step of steps) {
@@ -75,8 +75,8 @@ export async function pipeline(steps: (() => Promise<unknown>)[]): Promise<void>
   log(`pipeline ${status} in ${formatDuration(new Date(), start)}`);
 }
 
-export function plan<T>(defs: T, steps: PipelineStepDef<T>[], target: (keyof typeof defs)[]) {
-  const init = new Map<keyof T, PipelineStepDef<T>>();
+export function plan<T>(defs: T, steps: PipelineStepDef<keyof T>[], target: (keyof typeof defs)[]) {
+  const init = new Map<keyof T, PipelineStepDef<keyof T>>();
   const stepsByName = steps.reduce((res, item) => res.set(item.name, item), init);
   const deps: (keyof T)[] = [];
   for (const dep of reverse(target)) {
@@ -96,7 +96,7 @@ export function plan<T>(defs: T, steps: PipelineStepDef<T>[], target: (keyof typ
 
 export function makeSequence<T>(
   defs: T,
-  steps: PipelineStepDef<T>[],
+  steps: PipelineStepDef<keyof T>[],
   target: (keyof typeof defs)[],
 ) {
   const sequence = plan(defs, steps, target);
@@ -125,18 +125,16 @@ export function isBefore<Key>(
   );
 }
 
-export function makePrevious<T>(steps: PipelineStepDef<T>[], target: (keyof T)[]) {
-  type Key = keyof T;
-
+export function makePrevious<T>(steps: PipelineStepDef<T>[], target: T[]) {
   const stepsByName = steps.reduce(
     (res, item) => res.set(item.name, item),
-    new Map<keyof T, PipelineStepDef<T>>(),
+    new Map<T, PipelineStepDef<T>>(),
   );
 
-  const previousSteps = new Map<Key, Set<Key>>();
-  function traversePlan(step: Key) {
+  const previousSteps = new Map<T, Set<T>>();
+  function traversePlan(step: T) {
     if (!previousSteps.has(step)) {
-      previousSteps.set(step, new Set<Key>());
+      previousSteps.set(step, new Set<T>());
     }
     for (const nextStep of stepsByName.get(step)?.deps || []) {
       previousSteps.get(step)?.add(nextStep);
@@ -173,7 +171,7 @@ export function getAllVisited<Key>(previous: Map<Key, Set<Key>>, target: Key[]) 
   return allSteps;
 }
 
-export function sortSteps<T>(steps: PipelineStepDef<T>[], target: (keyof T)[]): (keyof T)[] {
+export function sortSteps<T>(steps: PipelineStepDef<T>[], target: T[]): T[] {
   const previous = makePrevious(steps, target);
   const next = makeNext(previous);
   const allSteps = getAllVisited(previous, target);
@@ -181,7 +179,7 @@ export function sortSteps<T>(steps: PipelineStepDef<T>[], target: (keyof T)[]): 
   return sorted;
 }
 
-export function getStats<T>(steps: PipelineStepDef<T>[], plan: (keyof T)[]) {
+export function getStats<T>(steps: PipelineStepDef<T>[], plan: T[]) {
   const all = steps.map((step) => step.name);
   const missing = difference(all, plan);
 
@@ -190,13 +188,4 @@ export function getStats<T>(steps: PipelineStepDef<T>[], plan: (keyof T)[]) {
     all,
     plan,
   };
-}
-
-export function printPipelineStats<T>(steps: PipelineStepDef<T>[], plan: (keyof T)[]) {
-  const { missing, all } = getStats(steps, plan);
-  const msg = [
-    `not running ${colors.bold.yellow(missing.join(' '))}`,
-    `running ${colors.bold.white(plan.join(' '))}`,
-  ].join('\n');
-  log(msg);
 }

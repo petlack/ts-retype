@@ -9,7 +9,7 @@ const log = createLogger(console.log);
 
 function findTemplate(): string | null {
   const distPath = dir('index.html');
-  const srcPath = dir('../vis/dist/index.html');
+  const srcPath = dir('../../vis/dist/index.html');
   const runningFromDist = fs.existsSync(dir('package.json'));
   const runningFromSrc = fs.existsSync(srcPath);
   if (runningFromDist) {

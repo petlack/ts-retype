@@ -1,4 +1,4 @@
-import { TypeDuplicate, Metadata } from '../../src/types';
+import { TypeDuplicate, Metadata } from '@ts-retype/retype/src/types';
 
 declare global {
   interface Window {

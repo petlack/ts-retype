@@ -35,7 +35,7 @@ npx ts-retype /path/to/project
 ## Usage with Library
 
 ```typescript
-import { scan } from 'ts-retype';
+import { scan } from '@ts-retype/retype';
 
 const { data, meta } = scan({
   exclude: ['**/node_modules/**', '**/dist/**'],

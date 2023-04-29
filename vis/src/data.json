@@ -853,14 +853,14 @@
     {
       "names": [
         { "name": "showToast", "count": 1 },
-        { "name": "createFile", "count": 1 },
-        { "name": "loadFile", "count": 1 },
-        { "name": "highlight", "count": 1 },
         { "name": "ensureDirectoryExists", "count": 1 },
         { "name": "listFiles", "count": 1 },
         { "name": "script", "count": 1 },
         { "name": "stripExt", "count": 1 },
-        { "name": "selectDuplicate", "count": 1 }
+        { "name": "selectDuplicate", "count": 1 },
+        { "name": "createFile", "count": 1 },
+        { "name": "loadFile", "count": 1 },
+        { "name": "highlight", "count": 1 }
       ],
       "files": [
         {
@@ -896,213 +896,6 @@
                 "children": [{ "type": "text", "value": "(" }]
               },
               { "type": "text", "value": "message" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        },
-        {
-          "name": "createFile",
-          "type": "function",
-          "src": "createFile(sourceText: string) => unknown",
-          "pos": [229, 355],
-          "offset": 1,
-          "lines": [12, 14],
-          "parameters": [{ "name": "sourceText", "type": "string" }],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "createFile",
-            "params": [{ "name": "sourceText", "type": "string" }],
-            "return": "unknown",
-            "strMin": "(string) => unknown",
-            "strFull": "createFile(sourceText: string) => unknown"
-          },
-          "file": "src/utils.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "createFile" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "sourceText" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        },
-        {
-          "name": "loadFile",
-          "type": "function",
-          "src": "loadFile(path: string) => unknown",
-          "pos": [357, 490],
-          "offset": 1,
-          "lines": [16, 18],
-          "parameters": [{ "name": "path", "type": "string" }],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "loadFile",
-            "params": [{ "name": "path", "type": "string" }],
-            "return": "unknown",
-            "strMin": "(string) => unknown",
-            "strFull": "loadFile(path: string) => unknown"
-          },
-          "file": "src/utils.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "loadFile" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "path" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        },
-        {
-          "name": "highlight",
-          "type": "function",
-          "src": "highlight(src: string) => unknown",
-          "pos": [229, 385],
-          "offset": 1,
-          "lines": [7, 12],
-          "parameters": [{ "name": "src", "type": "string" }],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "highlight",
-            "params": [{ "name": "src", "type": "string" }],
-            "return": "unknown",
-            "strMin": "(string) => unknown",
-            "strFull": "highlight(src: string) => unknown"
-          },
-          "file": "src/source.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "highlight" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "src" },
               {
                 "type": "element",
                 "tagName": "span",
@@ -1281,9 +1074,9 @@
           "name": "script",
           "type": "function",
           "src": "script(name: string) => unknown",
-          "pos": [1549, 1770],
+          "pos": [2884, 3001],
           "offset": 3,
-          "lines": [58, 67],
+          "lines": [94, 96],
           "parameters": [{ "name": "name", "type": "string" }],
           "returnType": "<empty_node>",
           "signature": {
@@ -1419,7 +1212,7 @@
           "name": "selectDuplicate",
           "type": "function",
           "src": "selectDuplicate(src: string) => unknown",
-          "pos": [2665, 3231],
+          "pos": [2687, 3261],
           "offset": 1,
           "lines": [96, 119],
           "parameters": [{ "name": "src", "type": "string" }],
@@ -1483,6 +1276,213 @@
               }
             ]
           }
+        },
+        {
+          "name": "createFile",
+          "type": "function",
+          "src": "createFile(sourceText: string) => unknown",
+          "pos": [229, 355],
+          "offset": 1,
+          "lines": [12, 14],
+          "parameters": [{ "name": "sourceText", "type": "string" }],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "createFile",
+            "params": [{ "name": "sourceText", "type": "string" }],
+            "return": "unknown",
+            "strMin": "(string) => unknown",
+            "strFull": "createFile(sourceText: string) => unknown"
+          },
+          "file": "retype/src/utils.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "createFile" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "sourceText" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "string" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
+        },
+        {
+          "name": "loadFile",
+          "type": "function",
+          "src": "loadFile(path: string) => unknown",
+          "pos": [357, 490],
+          "offset": 1,
+          "lines": [16, 18],
+          "parameters": [{ "name": "path", "type": "string" }],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "loadFile",
+            "params": [{ "name": "path", "type": "string" }],
+            "return": "unknown",
+            "strMin": "(string) => unknown",
+            "strFull": "loadFile(path: string) => unknown"
+          },
+          "file": "retype/src/utils.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "loadFile" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "path" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "string" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
+        },
+        {
+          "name": "highlight",
+          "type": "function",
+          "src": "highlight(src: string) => unknown",
+          "pos": [229, 385],
+          "offset": 1,
+          "lines": [7, 12],
+          "parameters": [{ "name": "src", "type": "string" }],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "highlight",
+            "params": [{ "name": "src", "type": "string" }],
+            "return": "unknown",
+            "strMin": "(string) => unknown",
+            "strFull": "highlight(src: string) => unknown"
+          },
+          "file": "retype/src/source.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "highlight" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "src" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "string" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
         }
       ],
       "group": "renamed",
@@ -1499,7 +1499,7 @@
           "name": "formatAge",
           "type": "function",
           "src": "formatAge(date: Date) => unknown",
-          "pos": [435, 587],
+          "pos": [441, 593],
           "offset": 1,
           "lines": [19, 24],
           "parameters": [{ "name": "date", "type": "Date" }],
@@ -1562,7 +1562,7 @@
           "name": "formatDate",
           "type": "function",
           "src": "formatDate(date: Date) => unknown",
-          "pos": [589, 716],
+          "pos": [595, 722],
           "offset": 1,
           "lines": [26, 31],
           "parameters": [{ "name": "date", "type": "Date" }],
@@ -2168,7 +2168,7 @@
           "name": "anonymous",
           "type": "union",
           "src": "  name: string;\n  theme: 'light' | 'dark';\n  snippet: Snippet;",
-          "pos": [279, 295],
+          "pos": [288, 304],
           "offset": 25,
           "lines": [9, 9],
           "types": ["light", "dark"],
@@ -2348,7 +2348,7 @@
           "name": "anonymous",
           "type": "union",
           "src": "export type LandingProps = {\n  theme: 'dark' | 'light';\n}",
-          "pos": [360, 376],
+          "pos": [369, 385],
           "offset": 38,
           "lines": [10, 10],
           "types": ["dark", "light"],
@@ -2438,7 +2438,7 @@
           "name": "anonymous",
           "type": "union",
           "src": "          <MultilangWindow\n            theme={{ dark: 'light', light: 'dark' }[theme] as 'dark' | 'light'}\n            selectedLang=\"npx\"",
-          "pos": [3246, 3262],
+          "pos": [3255, 3271],
           "offset": 89,
           "lines": [67, 67],
           "types": ["dark", "light"],
@@ -2580,7 +2580,7 @@
           "name": "anonymous",
           "type": "union",
           "src": "  snippet: Snippet;\n  theme: 'dark' | 'light';\n}",
-          "pos": [263, 279],
+          "pos": [272, 288],
           "offset": 29,
           "lines": [8, 8],
           "types": ["dark", "light"],
@@ -2650,7 +2650,7 @@
           "name": "anonymous",
           "type": "union",
           "src": "  children: string;\n  theme: 'dark' | 'light';\n}",
-          "pos": [279, 295],
+          "pos": [288, 304],
           "offset": 29,
           "lines": [8, 8],
           "types": ["dark", "light"],
@@ -2983,8 +2983,8 @@
         { "name": "findNegative", "count": 1 },
         { "name": "findFg", "count": 1 },
         { "name": "findBg", "count": 1 },
-        { "name": "resolveOutputFilePath", "count": 1 },
-        { "name": "trimEmptyLines", "count": 1 }
+        { "name": "trimEmptyLines", "count": 1 },
+        { "name": "resolveOutputFilePath", "count": 1 }
       ],
       "files": [
         {
@@ -3264,79 +3264,10 @@
           }
         },
         {
-          "name": "resolveOutputFilePath",
-          "type": "function",
-          "src": "resolveOutputFilePath(configOutput: string) => string",
-          "pos": [954, 1651],
-          "offset": 1,
-          "lines": [40, 65],
-          "parameters": [{ "name": "configOutput", "type": "string" }],
-          "returnType": "string",
-          "signature": {
-            "name": "resolveOutputFilePath",
-            "params": [{ "name": "configOutput", "type": "string" }],
-            "return": "string",
-            "strMin": "(string) => string",
-            "strFull": "resolveOutputFilePath(configOutput: string) => string"
-          },
-          "file": "src/cmd.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "resolveOutputFilePath" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "configOutput" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              }
-            ]
-          }
-        },
-        {
           "name": "trimEmptyLines",
           "type": "function",
           "src": "trimEmptyLines(src: string) => string",
-          "pos": [1815, 2015],
+          "pos": [1837, 2037],
           "offset": 1,
           "lines": [71, 74],
           "parameters": [{ "name": "src", "type": "string" }],
@@ -3400,6 +3331,75 @@
               }
             ]
           }
+        },
+        {
+          "name": "resolveOutputFilePath",
+          "type": "function",
+          "src": "resolveOutputFilePath(configOutput: string) => string",
+          "pos": [954, 1651],
+          "offset": 1,
+          "lines": [40, 65],
+          "parameters": [{ "name": "configOutput", "type": "string" }],
+          "returnType": "string",
+          "signature": {
+            "name": "resolveOutputFilePath",
+            "params": [{ "name": "configOutput", "type": "string" }],
+            "return": "string",
+            "strMin": "(string) => string",
+            "strFull": "resolveOutputFilePath(configOutput: string) => string"
+          },
+          "file": "retype/src/cmd.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "resolveOutputFilePath" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "configOutput" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "string" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "string" }]
+              }
+            ]
+          }
         }
       ],
       "group": "renamed",
@@ -3408,844 +3408,9 @@
     },
     {
       "names": [
-        { "name": "isLiteralType", "count": 1 },
-        { "name": "simplifyType", "count": 1 }
-      ],
-      "files": [
-        {
-          "name": "isLiteralType",
-          "type": "function",
-          "src": "isLiteralType(t: CandidateType) => unknown",
-          "pos": [426, 522],
-          "offset": 1,
-          "lines": [15, 17],
-          "parameters": [{ "name": "t", "type": "CandidateType" }],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "isLiteralType",
-            "params": [{ "name": "t", "type": "CandidateType" }],
-            "return": "unknown",
-            "strMin": "(CandidateType) => unknown",
-            "strFull": "isLiteralType(t: CandidateType) => unknown"
-          },
-          "file": "src/similarity.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "isLiteralType" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "t" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " CandidateType" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        },
-        {
-          "name": "simplifyType",
-          "type": "function",
-          "src": "simplifyType(type: CandidateType) => unknown",
-          "pos": [1248, 1369],
-          "offset": 1,
-          "lines": [42, 47],
-          "parameters": [{ "name": "type", "type": "CandidateType" }],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "simplifyType",
-            "params": [{ "name": "type", "type": "CandidateType" }],
-            "return": "unknown",
-            "strMin": "(CandidateType) => unknown",
-            "strFull": "simplifyType(type: CandidateType) => unknown"
-          },
-          "file": "src/similarity.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "simplifyType" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "type" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " CandidateType" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        }
-      ],
-      "group": "renamed",
-      "parameters": [{ "name": "t", "type": "CandidateType" }],
-      "returnType": "<empty_node>"
-    },
-    {
-      "names": [
-        { "name": "getAllCandidates", "count": 1 },
-        { "name": "parse", "count": 1 }
-      ],
-      "files": [
-        {
-          "name": "getAllCandidates",
-          "type": "function",
-          "src": "getAllCandidates(srcFile: ts.SourceFile) => unknown",
-          "pos": [6862, 7340],
-          "offset": 1,
-          "lines": [222, 236],
-          "parameters": [{ "name": "srcFile", "type": "ts.SourceFile" }],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "getAllCandidates",
-            "params": [{ "name": "srcFile", "type": "ts.SourceFile" }],
-            "return": "unknown",
-            "strMin": "(ts.SourceFile) => unknown",
-            "strFull": "getAllCandidates(srcFile: ts.SourceFile) => unknown"
-          },
-          "file": "src/parse.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "getAllCandidates" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "srcFile" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " ts" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "." }]
-              },
-              { "type": "text", "value": "SourceFile" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        },
-        {
-          "name": "parse",
-          "type": "function",
-          "src": "parse(srcFile: ts.SourceFile) => unknown",
-          "pos": [9090, 9231],
-          "offset": 1,
-          "lines": [296, 299],
-          "parameters": [{ "name": "srcFile", "type": "ts.SourceFile" }],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "parse",
-            "params": [{ "name": "srcFile", "type": "ts.SourceFile" }],
-            "return": "unknown",
-            "strMin": "(ts.SourceFile) => unknown",
-            "strFull": "parse(srcFile: ts.SourceFile) => unknown"
-          },
-          "file": "src/parse.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "parse" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "srcFile" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " ts" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "." }]
-              },
-              { "type": "text", "value": "SourceFile" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        }
-      ],
-      "group": "renamed",
-      "parameters": [{ "name": "srcFile", "type": "ts.SourceFile" }],
-      "returnType": "<empty_node>"
-    },
-    {
-      "names": [
-        { "name": "loadConfig", "count": 1 },
-        { "name": "fromConfigFile", "count": 1 }
-      ],
-      "files": [
-        {
-          "name": "loadConfig",
-          "type": "function",
-          "src": "loadConfig(path: string) => Partial<RetypeConfig> | null",
-          "pos": [567, 806],
-          "offset": 1,
-          "lines": [20, 26],
-          "parameters": [{ "name": "path", "type": "string" }],
-          "returnType": "Partial<RetypeConfig> | null",
-          "signature": {
-            "name": "loadConfig",
-            "params": [{ "name": "path", "type": "string" }],
-            "return": "Partial<RetypeConfig> | null",
-            "strMin": "(string) => Partial<RetypeConfig> | null",
-            "strFull": "loadConfig(path: string) => Partial<RetypeConfig> | null"
-          },
-          "file": "src/config.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "loadConfig" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "path" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " Partial" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "<" }]
-              },
-              { "type": "text", "value": "RetypeConfig" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ">" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "|" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "null" }]
-              }
-            ]
-          }
-        },
-        {
-          "name": "fromConfigFile",
-          "type": "function",
-          "src": "fromConfigFile(file: string) => Partial<RetypeConfig> | null",
-          "pos": [808, 913],
-          "offset": 1,
-          "lines": [28, 30],
-          "parameters": [{ "name": "file", "type": "string" }],
-          "returnType": "Partial<RetypeConfig> | null",
-          "signature": {
-            "name": "fromConfigFile",
-            "params": [{ "name": "file", "type": "string" }],
-            "return": "Partial<RetypeConfig> | null",
-            "strMin": "(string) => Partial<RetypeConfig> | null",
-            "strFull": "fromConfigFile(file: string) => Partial<RetypeConfig> | null"
-          },
-          "file": "src/config.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "fromConfigFile" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "file" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " Partial" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "<" }]
-              },
-              { "type": "text", "value": "RetypeConfig" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ">" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "|" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "null" }]
-              }
-            ]
-          }
-        }
-      ],
-      "group": "renamed",
-      "parameters": [{ "name": "path", "type": "string" }],
-      "returnType": "Partial<RetypeConfig> | null"
-    },
-    {
-      "names": [
-        { "name": "chooseClusterNames", "count": 1 },
-        { "name": "chooseClusterFiles", "count": 1 },
-        { "name": "chooseTypeFeatures", "count": 1 }
-      ],
-      "files": [
-        {
-          "name": "chooseClusterNames",
-          "type": "function",
-          "src": "chooseClusterNames(\n  types: SourceCandidateType[],\n  idxs: Iterable<number>\n) => \n  unknown",
-          "pos": [1713, 1856],
-          "offset": 1,
-          "lines": [58, 60],
-          "parameters": [
-            { "name": "types", "type": "SourceCandidateType[]" },
-            { "name": "idxs", "type": "Iterable<number>" }
-          ],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "chooseClusterNames",
-            "params": [
-              { "name": "types", "type": "SourceCandidateType[]" },
-              { "name": "idxs", "type": "Iterable<number>" }
-            ],
-            "return": "unknown",
-            "strMin": "(\n  SourceCandidateType[],\n  Iterable<number>\n) => \n  unknown",
-            "strFull": "chooseClusterNames(\n  types: SourceCandidateType[],\n  idxs: Iterable<number>\n) => \n  unknown"
-          },
-          "file": "src/clusters.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "chooseClusterNames" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "\n  types" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " SourceCandidateType" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "[" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "]" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "," }]
-              },
-              { "type": "text", "value": "\n  idxs" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " Iterable" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "<" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "number" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ">" }]
-              },
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " \n  " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        },
-        {
-          "name": "chooseClusterFiles",
-          "type": "function",
-          "src": "chooseClusterFiles(\n  types: SourceCandidateType[],\n  idxs: Iterable<number>\n) => \n  unknown",
-          "pos": [1858, 1980],
-          "offset": 1,
-          "lines": [62, 64],
-          "parameters": [
-            { "name": "types", "type": "SourceCandidateType[]" },
-            { "name": "idxs", "type": "Iterable<number>" }
-          ],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "chooseClusterFiles",
-            "params": [
-              { "name": "types", "type": "SourceCandidateType[]" },
-              { "name": "idxs", "type": "Iterable<number>" }
-            ],
-            "return": "unknown",
-            "strMin": "(\n  SourceCandidateType[],\n  Iterable<number>\n) => \n  unknown",
-            "strFull": "chooseClusterFiles(\n  types: SourceCandidateType[],\n  idxs: Iterable<number>\n) => \n  unknown"
-          },
-          "file": "src/clusters.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "chooseClusterFiles" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "\n  types" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " SourceCandidateType" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "[" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "]" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "," }]
-              },
-              { "type": "text", "value": "\n  idxs" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " Iterable" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "<" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "number" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ">" }]
-              },
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " \n  " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        },
-        {
-          "name": "chooseTypeFeatures",
-          "type": "function",
-          "src": "chooseTypeFeatures(\n  types: SourceCandidateType[],\n  idxs: Iterable<number>\n) => \n  unknown",
-          "pos": [2097, 3136],
-          "offset": 1,
-          "lines": [73, 105],
-          "parameters": [
-            { "name": "types", "type": "SourceCandidateType[]" },
-            { "name": "idxs", "type": "Iterable<number>" }
-          ],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "chooseTypeFeatures",
-            "params": [
-              { "name": "types", "type": "SourceCandidateType[]" },
-              { "name": "idxs", "type": "Iterable<number>" }
-            ],
-            "return": "unknown",
-            "strMin": "(\n  SourceCandidateType[],\n  Iterable<number>\n) => \n  unknown",
-            "strFull": "chooseTypeFeatures(\n  types: SourceCandidateType[],\n  idxs: Iterable<number>\n) => \n  unknown"
-          },
-          "file": "src/clusters.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "chooseTypeFeatures" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "\n  types" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " SourceCandidateType" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "[" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "]" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "," }]
-              },
-              { "type": "text", "value": "\n  idxs" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " Iterable" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "<" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "number" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ">" }]
-              },
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " \n  " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        }
-      ],
-      "group": "renamed",
-      "parameters": [
-        { "name": "types", "type": "SourceCandidateType[]" },
-        { "name": "idxs", "type": "Iterable<number>" }
-      ],
-      "returnType": "<empty_node>"
-    },
-    {
-      "names": [
         { "name": "syntaxHighlighting", "count": 1 },
         { "name": "make", "count": 1 },
+        { "name": "generateVisData", "count": 1 },
         { "name": "generateDocs", "count": 1 },
         { "name": "fontBase64", "count": 1 },
         { "name": "demo", "count": 1 }
@@ -4331,9 +3496,9 @@
           "name": "make",
           "type": "function",
           "src": "make(config: Partial<CmdProps>) => unknown",
-          "pos": [1057, 6318],
+          "pos": [1780, 5479],
           "offset": 1,
-          "lines": [36, 186],
+          "lines": [55, 151],
           "parameters": [{ "name": "config", "type": "Partial<CmdProps>" }],
           "returnType": "<empty_node>",
           "signature": {
@@ -4404,10 +3569,86 @@
           }
         },
         {
+          "name": "generateVisData",
+          "type": "function",
+          "src": "generateVisData(config: Partial<CmdProps>) => unknown",
+          "pos": [292, 380],
+          "offset": 1,
+          "lines": [11, 13],
+          "parameters": [{ "name": "config", "type": "Partial<CmdProps>" }],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "generateVisData",
+            "params": [{ "name": "config", "type": "Partial<CmdProps>" }],
+            "return": "unknown",
+            "strMin": "(Partial<CmdProps>) => unknown",
+            "strFull": "generateVisData(config: Partial<CmdProps>) => unknown"
+          },
+          "file": "scripts/src/generateVisData.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "generateVisData" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "config" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " Partial" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "<" }]
+              },
+              { "type": "text", "value": "CmdProps" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ">" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
+        },
+        {
           "name": "generateDocs",
           "type": "function",
           "src": "generateDocs(config: Partial<CmdProps>) => unknown",
-          "pos": [392, 570],
+          "pos": [392, 582],
           "offset": 1,
           "lines": [13, 19],
           "parameters": [{ "name": "config", "type": "Partial<CmdProps>" }],
@@ -4645,13 +3886,13 @@
         {
           "name": "plan",
           "type": "function",
-          "src": "plan(\n  defs: T,\n  steps: PipelineStepDef<T>[],\n  target: (keyof typeof defs)[]\n) => \n  unknown",
-          "pos": [2192, 2763],
+          "src": "plan(\n  defs: T,\n  steps: PipelineStepDef<keyof T>[],\n  target: (keyof typeof defs)[]\n) => \n  unknown",
+          "pos": [2180, 2763],
           "offset": 1,
           "lines": [78, 95],
           "parameters": [
             { "name": "defs", "type": "T" },
-            { "name": "steps", "type": "PipelineStepDef<T>[]" },
+            { "name": "steps", "type": "PipelineStepDef<keyof T>[]" },
             { "name": "target", "type": "(keyof typeof defs)[]" }
           ],
           "returnType": "<empty_node>",
@@ -4659,12 +3900,12 @@
             "name": "plan",
             "params": [
               { "name": "defs", "type": "T" },
-              { "name": "steps", "type": "PipelineStepDef<T>[]" },
+              { "name": "steps", "type": "PipelineStepDef<keyof T>[]" },
               { "name": "target", "type": "(keyof typeof defs)[]" }
             ],
             "return": "unknown",
-            "strMin": "(\n  T,\n  PipelineStepDef<T>[],\n  (keyof typeof defs)[]\n) => \n  unknown",
-            "strFull": "plan(\n  defs: T,\n  steps: PipelineStepDef<T>[],\n  target: (keyof typeof defs)[]\n) => \n  unknown"
+            "strMin": "(\n  T,\n  PipelineStepDef<keyof T>[],\n  (keyof typeof defs)[]\n) => \n  unknown",
+            "strFull": "plan(\n  defs: T,\n  steps: PipelineStepDef<keyof T>[],\n  target: (keyof typeof defs)[]\n) => \n  unknown"
           },
           "file": "scripts/src/pipeline.ts",
           "srcHgl": {
@@ -4716,6 +3957,13 @@
                 "properties": { "className": ["token", "operator"] },
                 "children": [{ "type": "text", "value": "<" }]
               },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "keyword"] },
+                "children": [{ "type": "text", "value": "keyof" }]
+              },
+              { "type": "text", "value": " " },
               {
                 "type": "element",
                 "tagName": "span",
@@ -4819,13 +4067,13 @@
         {
           "name": "makeSequence",
           "type": "function",
-          "src": "makeSequence(\n  defs: T,\n  steps: PipelineStepDef<T>[],\n  target: (keyof typeof defs)[]\n) => \n  unknown",
-          "pos": [2765, 2976],
+          "src": "makeSequence(\n  defs: T,\n  steps: PipelineStepDef<keyof T>[],\n  target: (keyof typeof defs)[]\n) => \n  unknown",
+          "pos": [2765, 2982],
           "offset": 1,
           "lines": [97, 104],
           "parameters": [
             { "name": "defs", "type": "T" },
-            { "name": "steps", "type": "PipelineStepDef<T>[]" },
+            { "name": "steps", "type": "PipelineStepDef<keyof T>[]" },
             { "name": "target", "type": "(keyof typeof defs)[]" }
           ],
           "returnType": "<empty_node>",
@@ -4833,12 +4081,12 @@
             "name": "makeSequence",
             "params": [
               { "name": "defs", "type": "T" },
-              { "name": "steps", "type": "PipelineStepDef<T>[]" },
+              { "name": "steps", "type": "PipelineStepDef<keyof T>[]" },
               { "name": "target", "type": "(keyof typeof defs)[]" }
             ],
             "return": "unknown",
-            "strMin": "(\n  T,\n  PipelineStepDef<T>[],\n  (keyof typeof defs)[]\n) => \n  unknown",
-            "strFull": "makeSequence(\n  defs: T,\n  steps: PipelineStepDef<T>[],\n  target: (keyof typeof defs)[]\n) => \n  unknown"
+            "strMin": "(\n  T,\n  PipelineStepDef<keyof T>[],\n  (keyof typeof defs)[]\n) => \n  unknown",
+            "strFull": "makeSequence(\n  defs: T,\n  steps: PipelineStepDef<keyof T>[],\n  target: (keyof typeof defs)[]\n) => \n  unknown"
           },
           "file": "scripts/src/pipeline.ts",
           "srcHgl": {
@@ -4890,6 +4138,13 @@
                 "properties": { "className": ["token", "operator"] },
                 "children": [{ "type": "text", "value": "<" }]
               },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "keyword"] },
+                "children": [{ "type": "text", "value": "keyof" }]
+              },
+              { "type": "text", "value": " " },
               {
                 "type": "element",
                 "tagName": "span",
@@ -4994,7 +4249,7 @@
       "group": "renamed",
       "parameters": [
         { "name": "defs", "type": "T" },
-        { "name": "steps", "type": "PipelineStepDef<T>[]" },
+        { "name": "steps", "type": "PipelineStepDef<keyof T>[]" },
         { "name": "target", "type": "(keyof typeof defs)[]" }
       ],
       "returnType": "<empty_node>"
@@ -5009,24 +4264,24 @@
         {
           "name": "makePrevious",
           "type": "function",
-          "src": "makePrevious(\n  steps: PipelineStepDef<T>[],\n  target: (keyof T)[]\n) => \n  unknown",
-          "pos": [3509, 4130],
+          "src": "makePrevious(\n  steps: PipelineStepDef<T>[],\n  target: T[]\n) => \n  unknown",
+          "pos": [3515, 4091],
           "offset": 1,
-          "lines": [128, 148],
+          "lines": [128, 146],
           "parameters": [
             { "name": "steps", "type": "PipelineStepDef<T>[]" },
-            { "name": "target", "type": "(keyof T)[]" }
+            { "name": "target", "type": "T[]" }
           ],
           "returnType": "<empty_node>",
           "signature": {
             "name": "makePrevious",
             "params": [
               { "name": "steps", "type": "PipelineStepDef<T>[]" },
-              { "name": "target", "type": "(keyof T)[]" }
+              { "name": "target", "type": "T[]" }
             ],
             "return": "unknown",
-            "strMin": "(\n  PipelineStepDef<T>[],\n  (keyof T)[]\n) => \n  unknown",
-            "strFull": "makePrevious(\n  steps: PipelineStepDef<T>[],\n  target: (keyof T)[]\n) => \n  unknown"
+            "strMin": "(\n  PipelineStepDef<T>[],\n  T[]\n) => \n  unknown",
+            "strFull": "makePrevious(\n  steps: PipelineStepDef<T>[],\n  target: T[]\n) => \n  unknown"
           },
           "file": "scripts/src/pipeline.ts",
           "srcHgl": {
@@ -5099,27 +4354,8 @@
               {
                 "type": "element",
                 "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "keyof" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
                 "properties": { "className": ["token", "constant"] },
                 "children": [{ "type": "text", "value": "T" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
               },
               {
                 "type": "element",
@@ -5160,24 +4396,24 @@
         {
           "name": "getStats",
           "type": "function",
-          "src": "getStats(\n  steps: PipelineStepDef<T>[],\n  plan: (keyof T)[]\n) => \n  unknown",
-          "pos": [5251, 5466],
+          "src": "getStats(\n  steps: PipelineStepDef<T>[],\n  plan: T[]\n) => \n  unknown",
+          "pos": [5196, 5403],
           "offset": 1,
-          "lines": [184, 193],
+          "lines": [182, 191],
           "parameters": [
             { "name": "steps", "type": "PipelineStepDef<T>[]" },
-            { "name": "plan", "type": "(keyof T)[]" }
+            { "name": "plan", "type": "T[]" }
           ],
           "returnType": "<empty_node>",
           "signature": {
             "name": "getStats",
             "params": [
               { "name": "steps", "type": "PipelineStepDef<T>[]" },
-              { "name": "plan", "type": "(keyof T)[]" }
+              { "name": "plan", "type": "T[]" }
             ],
             "return": "unknown",
-            "strMin": "(\n  PipelineStepDef<T>[],\n  (keyof T)[]\n) => \n  unknown",
-            "strFull": "getStats(\n  steps: PipelineStepDef<T>[],\n  plan: (keyof T)[]\n) => \n  unknown"
+            "strMin": "(\n  PipelineStepDef<T>[],\n  T[]\n) => \n  unknown",
+            "strFull": "getStats(\n  steps: PipelineStepDef<T>[],\n  plan: T[]\n) => \n  unknown"
           },
           "file": "scripts/src/pipeline.ts",
           "srcHgl": {
@@ -5250,27 +4486,8 @@
               {
                 "type": "element",
                 "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "keyof" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
                 "properties": { "className": ["token", "constant"] },
                 "children": [{ "type": "text", "value": "T" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
               },
               {
                 "type": "element",
@@ -5311,26 +4528,26 @@
         {
           "name": "printPipelineStats",
           "type": "function",
-          "src": "printPipelineStats(\n  steps: PipelineStepDef<T>[],\n  plan: (keyof T)[]\n) => \n  unknown",
-          "pos": [5468, 5763],
+          "src": "printPipelineStats(\n  steps: PipelineStepDef<T>[],\n  plan: T[]\n) => \n  unknown",
+          "pos": [1273, 1778],
           "offset": 1,
-          "lines": [195, 202],
+          "lines": [38, 53],
           "parameters": [
             { "name": "steps", "type": "PipelineStepDef<T>[]" },
-            { "name": "plan", "type": "(keyof T)[]" }
+            { "name": "plan", "type": "T[]" }
           ],
           "returnType": "<empty_node>",
           "signature": {
             "name": "printPipelineStats",
             "params": [
               { "name": "steps", "type": "PipelineStepDef<T>[]" },
-              { "name": "plan", "type": "(keyof T)[]" }
+              { "name": "plan", "type": "T[]" }
             ],
             "return": "unknown",
-            "strMin": "(\n  PipelineStepDef<T>[],\n  (keyof T)[]\n) => \n  unknown",
-            "strFull": "printPipelineStats(\n  steps: PipelineStepDef<T>[],\n  plan: (keyof T)[]\n) => \n  unknown"
+            "strMin": "(\n  PipelineStepDef<T>[],\n  T[]\n) => \n  unknown",
+            "strFull": "printPipelineStats(\n  steps: PipelineStepDef<T>[],\n  plan: T[]\n) => \n  unknown"
           },
-          "file": "scripts/src/pipeline.ts",
+          "file": "scripts/src/make.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -5401,27 +4618,8 @@
               {
                 "type": "element",
                 "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "keyof" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
                 "properties": { "className": ["token", "constant"] },
                 "children": [{ "type": "text", "value": "T" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
               },
               {
                 "type": "element",
@@ -5463,145 +4661,8 @@
       "group": "renamed",
       "parameters": [
         { "name": "steps", "type": "PipelineStepDef<T>[]" },
-        { "name": "target", "type": "(keyof T)[]" }
+        { "name": "target", "type": "T[]" }
       ],
-      "returnType": "<empty_node>"
-    },
-    {
-      "names": [
-        { "name": "traversePlan", "count": 1 },
-        { "name": "traverseNames", "count": 1 }
-      ],
-      "files": [
-        {
-          "name": "traversePlan",
-          "type": "function",
-          "src": "traversePlan(step: Key) => unknown",
-          "pos": [3799, 4072],
-          "offset": 52,
-          "lines": [137, 145],
-          "parameters": [{ "name": "step", "type": "Key" }],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "traversePlan",
-            "params": [{ "name": "step", "type": "Key" }],
-            "return": "unknown",
-            "strMin": "(Key) => unknown",
-            "strFull": "traversePlan(step: Key) => unknown"
-          },
-          "file": "scripts/src/pipeline.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "traversePlan" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "step" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " Key" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        },
-        {
-          "name": "traverseNames",
-          "type": "function",
-          "src": "traverseNames(step: Key) => unknown",
-          "pos": [4716, 4847],
-          "offset": 37,
-          "lines": [168, 171],
-          "parameters": [{ "name": "step", "type": "Key" }],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "traverseNames",
-            "params": [{ "name": "step", "type": "Key" }],
-            "return": "unknown",
-            "strMin": "(Key) => unknown",
-            "strFull": "traverseNames(step: Key) => unknown"
-          },
-          "file": "scripts/src/pipeline.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "traverseNames" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "step" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " Key" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        }
-      ],
-      "group": "renamed",
-      "parameters": [{ "name": "step", "type": "Key" }],
       "returnType": "<empty_node>"
     },
     {
@@ -5614,9 +4675,9 @@
           "name": "makeNext",
           "type": "function",
           "src": "makeNext(previous: Map<Key, Set<Key>>) => unknown",
-          "pos": [4132, 4446],
+          "pos": [4093, 4407],
           "offset": 1,
-          "lines": [150, 160],
+          "lines": [148, 158],
           "parameters": [{ "name": "previous", "type": "Map<Key, Set<Key>>" }],
           "returnType": "<empty_node>",
           "signature": {
@@ -5704,9 +4765,9 @@
           "name": "getEntrypoints",
           "type": "function",
           "src": "getEntrypoints(previous: Map<Key, Set<Key>>) => unknown",
-          "pos": [4448, 4595],
+          "pos": [4409, 4556],
           "offset": 1,
-          "lines": [162, 164],
+          "lines": [160, 162],
           "parameters": [{ "name": "previous", "type": "Map<Key, Set<Key>>" }],
           "returnType": "<empty_node>",
           "signature": {
@@ -5793,6 +4854,842 @@
       ],
       "group": "renamed",
       "parameters": [{ "name": "previous", "type": "Map<Key, Set<Key>>" }],
+      "returnType": "<empty_node>"
+    },
+    {
+      "names": [
+        { "name": "isLiteralType", "count": 1 },
+        { "name": "simplifyType", "count": 1 }
+      ],
+      "files": [
+        {
+          "name": "isLiteralType",
+          "type": "function",
+          "src": "isLiteralType(t: CandidateType) => unknown",
+          "pos": [426, 522],
+          "offset": 1,
+          "lines": [15, 17],
+          "parameters": [{ "name": "t", "type": "CandidateType" }],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "isLiteralType",
+            "params": [{ "name": "t", "type": "CandidateType" }],
+            "return": "unknown",
+            "strMin": "(CandidateType) => unknown",
+            "strFull": "isLiteralType(t: CandidateType) => unknown"
+          },
+          "file": "retype/src/similarity.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "isLiteralType" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "t" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " CandidateType" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
+        },
+        {
+          "name": "simplifyType",
+          "type": "function",
+          "src": "simplifyType(type: CandidateType) => unknown",
+          "pos": [1248, 1369],
+          "offset": 1,
+          "lines": [42, 47],
+          "parameters": [{ "name": "type", "type": "CandidateType" }],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "simplifyType",
+            "params": [{ "name": "type", "type": "CandidateType" }],
+            "return": "unknown",
+            "strMin": "(CandidateType) => unknown",
+            "strFull": "simplifyType(type: CandidateType) => unknown"
+          },
+          "file": "retype/src/similarity.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "simplifyType" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "type" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " CandidateType" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
+        }
+      ],
+      "group": "renamed",
+      "parameters": [{ "name": "t", "type": "CandidateType" }],
+      "returnType": "<empty_node>"
+    },
+    {
+      "names": [
+        { "name": "getAllCandidates", "count": 1 },
+        { "name": "parse", "count": 1 }
+      ],
+      "files": [
+        {
+          "name": "getAllCandidates",
+          "type": "function",
+          "src": "getAllCandidates(srcFile: ts.SourceFile) => unknown",
+          "pos": [6862, 7340],
+          "offset": 1,
+          "lines": [222, 236],
+          "parameters": [{ "name": "srcFile", "type": "ts.SourceFile" }],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "getAllCandidates",
+            "params": [{ "name": "srcFile", "type": "ts.SourceFile" }],
+            "return": "unknown",
+            "strMin": "(ts.SourceFile) => unknown",
+            "strFull": "getAllCandidates(srcFile: ts.SourceFile) => unknown"
+          },
+          "file": "retype/src/parse.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "getAllCandidates" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "srcFile" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " ts" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "." }]
+              },
+              { "type": "text", "value": "SourceFile" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
+        },
+        {
+          "name": "parse",
+          "type": "function",
+          "src": "parse(srcFile: ts.SourceFile) => unknown",
+          "pos": [9090, 9231],
+          "offset": 1,
+          "lines": [296, 299],
+          "parameters": [{ "name": "srcFile", "type": "ts.SourceFile" }],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "parse",
+            "params": [{ "name": "srcFile", "type": "ts.SourceFile" }],
+            "return": "unknown",
+            "strMin": "(ts.SourceFile) => unknown",
+            "strFull": "parse(srcFile: ts.SourceFile) => unknown"
+          },
+          "file": "retype/src/parse.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "parse" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "srcFile" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " ts" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "." }]
+              },
+              { "type": "text", "value": "SourceFile" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
+        }
+      ],
+      "group": "renamed",
+      "parameters": [{ "name": "srcFile", "type": "ts.SourceFile" }],
+      "returnType": "<empty_node>"
+    },
+    {
+      "names": [
+        { "name": "loadConfig", "count": 1 },
+        { "name": "fromConfigFile", "count": 1 }
+      ],
+      "files": [
+        {
+          "name": "loadConfig",
+          "type": "function",
+          "src": "loadConfig(path: string) => Partial<RetypeConfig> | null",
+          "pos": [567, 806],
+          "offset": 1,
+          "lines": [20, 26],
+          "parameters": [{ "name": "path", "type": "string" }],
+          "returnType": "Partial<RetypeConfig> | null",
+          "signature": {
+            "name": "loadConfig",
+            "params": [{ "name": "path", "type": "string" }],
+            "return": "Partial<RetypeConfig> | null",
+            "strMin": "(string) => Partial<RetypeConfig> | null",
+            "strFull": "loadConfig(path: string) => Partial<RetypeConfig> | null"
+          },
+          "file": "retype/src/config.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "loadConfig" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "path" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "string" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " Partial" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "<" }]
+              },
+              { "type": "text", "value": "RetypeConfig" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ">" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "|" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "keyword"] },
+                "children": [{ "type": "text", "value": "null" }]
+              }
+            ]
+          }
+        },
+        {
+          "name": "fromConfigFile",
+          "type": "function",
+          "src": "fromConfigFile(file: string) => Partial<RetypeConfig> | null",
+          "pos": [808, 913],
+          "offset": 1,
+          "lines": [28, 30],
+          "parameters": [{ "name": "file", "type": "string" }],
+          "returnType": "Partial<RetypeConfig> | null",
+          "signature": {
+            "name": "fromConfigFile",
+            "params": [{ "name": "file", "type": "string" }],
+            "return": "Partial<RetypeConfig> | null",
+            "strMin": "(string) => Partial<RetypeConfig> | null",
+            "strFull": "fromConfigFile(file: string) => Partial<RetypeConfig> | null"
+          },
+          "file": "retype/src/config.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "fromConfigFile" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "file" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "string" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " Partial" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "<" }]
+              },
+              { "type": "text", "value": "RetypeConfig" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ">" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "|" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "keyword"] },
+                "children": [{ "type": "text", "value": "null" }]
+              }
+            ]
+          }
+        }
+      ],
+      "group": "renamed",
+      "parameters": [{ "name": "path", "type": "string" }],
+      "returnType": "Partial<RetypeConfig> | null"
+    },
+    {
+      "names": [
+        { "name": "chooseClusterNames", "count": 1 },
+        { "name": "chooseClusterFiles", "count": 1 },
+        { "name": "chooseTypeFeatures", "count": 1 }
+      ],
+      "files": [
+        {
+          "name": "chooseClusterNames",
+          "type": "function",
+          "src": "chooseClusterNames(\n  types: SourceCandidateType[],\n  idxs: Iterable<number>\n) => \n  unknown",
+          "pos": [1713, 1856],
+          "offset": 1,
+          "lines": [58, 60],
+          "parameters": [
+            { "name": "types", "type": "SourceCandidateType[]" },
+            { "name": "idxs", "type": "Iterable<number>" }
+          ],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "chooseClusterNames",
+            "params": [
+              { "name": "types", "type": "SourceCandidateType[]" },
+              { "name": "idxs", "type": "Iterable<number>" }
+            ],
+            "return": "unknown",
+            "strMin": "(\n  SourceCandidateType[],\n  Iterable<number>\n) => \n  unknown",
+            "strFull": "chooseClusterNames(\n  types: SourceCandidateType[],\n  idxs: Iterable<number>\n) => \n  unknown"
+          },
+          "file": "retype/src/clusters.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "chooseClusterNames" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "\n  types" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " SourceCandidateType" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "[" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "]" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "," }]
+              },
+              { "type": "text", "value": "\n  idxs" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " Iterable" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "<" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "number" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ">" }]
+              },
+              { "type": "text", "value": "\n" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " \n  " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
+        },
+        {
+          "name": "chooseClusterFiles",
+          "type": "function",
+          "src": "chooseClusterFiles(\n  types: SourceCandidateType[],\n  idxs: Iterable<number>\n) => \n  unknown",
+          "pos": [1858, 1980],
+          "offset": 1,
+          "lines": [62, 64],
+          "parameters": [
+            { "name": "types", "type": "SourceCandidateType[]" },
+            { "name": "idxs", "type": "Iterable<number>" }
+          ],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "chooseClusterFiles",
+            "params": [
+              { "name": "types", "type": "SourceCandidateType[]" },
+              { "name": "idxs", "type": "Iterable<number>" }
+            ],
+            "return": "unknown",
+            "strMin": "(\n  SourceCandidateType[],\n  Iterable<number>\n) => \n  unknown",
+            "strFull": "chooseClusterFiles(\n  types: SourceCandidateType[],\n  idxs: Iterable<number>\n) => \n  unknown"
+          },
+          "file": "retype/src/clusters.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "chooseClusterFiles" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "\n  types" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " SourceCandidateType" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "[" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "]" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "," }]
+              },
+              { "type": "text", "value": "\n  idxs" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " Iterable" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "<" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "number" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ">" }]
+              },
+              { "type": "text", "value": "\n" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " \n  " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
+        },
+        {
+          "name": "chooseTypeFeatures",
+          "type": "function",
+          "src": "chooseTypeFeatures(\n  types: SourceCandidateType[],\n  idxs: Iterable<number>\n) => \n  unknown",
+          "pos": [2097, 3136],
+          "offset": 1,
+          "lines": [73, 105],
+          "parameters": [
+            { "name": "types", "type": "SourceCandidateType[]" },
+            { "name": "idxs", "type": "Iterable<number>" }
+          ],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "chooseTypeFeatures",
+            "params": [
+              { "name": "types", "type": "SourceCandidateType[]" },
+              { "name": "idxs", "type": "Iterable<number>" }
+            ],
+            "return": "unknown",
+            "strMin": "(\n  SourceCandidateType[],\n  Iterable<number>\n) => \n  unknown",
+            "strFull": "chooseTypeFeatures(\n  types: SourceCandidateType[],\n  idxs: Iterable<number>\n) => \n  unknown"
+          },
+          "file": "retype/src/clusters.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "chooseTypeFeatures" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "\n  types" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " SourceCandidateType" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "[" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "]" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "," }]
+              },
+              { "type": "text", "value": "\n  idxs" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " Iterable" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "<" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "number" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ">" }]
+              },
+              { "type": "text", "value": "\n" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " \n  " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
+        }
+      ],
+      "group": "renamed",
+      "parameters": [
+        { "name": "types", "type": "SourceCandidateType[]" },
+        { "name": "idxs", "type": "Iterable<number>" }
+      ],
       "returnType": "<empty_node>"
     },
     {
@@ -7066,7 +6963,7 @@
           "name": "insertNewlines",
           "type": "function",
           "src": "insertNewlines(root: TokenRoot) => TokenRoot",
-          "pos": [237, 699],
+          "pos": [246, 708],
           "offset": 1,
           "lines": [8, 26],
           "parameters": [{ "name": "root", "type": "TokenRoot" }],
@@ -7123,7 +7020,7 @@
           "name": "splitLines",
           "type": "function",
           "src": "splitLines(root: TokenRoot) => TokenRoot",
-          "pos": [1297, 1600],
+          "pos": [1306, 1609],
           "offset": 1,
           "lines": [50, 57],
           "parameters": [{ "name": "root", "type": "TokenRoot" }],
@@ -7180,7 +7077,7 @@
           "name": "flattenTokens",
           "type": "function",
           "src": "flattenTokens(root: TokenRoot) => TokenRoot",
-          "pos": [1602, 2021],
+          "pos": [1611, 2030],
           "offset": 1,
           "lines": [59, 73],
           "parameters": [{ "name": "root", "type": "TokenRoot" }],
@@ -7248,7 +7145,7 @@
           "name": "toTokenRoot",
           "type": "function",
           "src": "toTokenRoot(snippet: Snippet) => unknown",
-          "pos": [701, 802],
+          "pos": [710, 811],
           "offset": 1,
           "lines": [28, 30],
           "parameters": [{ "name": "snippet", "type": "Snippet" }],
@@ -7311,7 +7208,7 @@
           "name": "toTokenLines",
           "type": "function",
           "src": "toTokenLines(snippet: Snippet) => unknown",
-          "pos": [1118, 1295],
+          "pos": [1127, 1304],
           "offset": 1,
           "lines": [45, 48],
           "parameters": [{ "name": "snippet", "type": "Snippet" }],
@@ -8169,9 +8066,9 @@
           "name": "anonymous",
           "type": "literal",
           "src": "\n  const FilterSimButton = useCallback(({ id, selected, ...props }: { id: string, selected: string } & HTMLAttributes<HTMLElement>) => {\n    const isSelected = id === selected;",
-          "pos": [2234, 2266],
+          "pos": [1980, 2012],
           "offset": 68,
-          "lines": [71, 71],
+          "lines": [62, 62],
           "properties": [
             { "name": "id", "type": "string" },
             { "name": "selected", "type": "string" }
@@ -8377,9 +8274,9 @@
           "name": "anonymous",
           "type": "literal",
           "src": "\n  const FilterTypeButton = useCallback(({ id, selected, ...props }: { id: string, selected: string } & HTMLAttributes<HTMLElement>) => {\n    const isSelected = id === selected;",
-          "pos": [2776, 2808],
+          "pos": [2522, 2554],
           "offset": 69,
-          "lines": [81, 81],
+          "lines": [72, 72],
           "properties": [
             { "name": "id", "type": "string" },
             { "name": "selected", "type": "string" }
@@ -8893,276 +8790,40 @@
       ]
     },
     {
-      "names": [{ "name": "writeSrc", "count": 2 }],
+      "names": [{ "name": "CmdProps", "count": 3 }],
       "files": [
         {
-          "name": "writeSrc",
-          "type": "function",
-          "src": "writeSrc(\n  path: string,\n  src: string\n) => \n  unknown",
-          "pos": [166, 245],
-          "offset": 1,
-          "lines": [7, 9],
-          "parameters": [
-            { "name": "path", "type": "string" },
-            { "name": "src", "type": "string" }
-          ],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "writeSrc",
-            "params": [
-              { "name": "path", "type": "string" },
-              { "name": "src", "type": "string" }
-            ],
-            "return": "unknown",
-            "strMin": "(\n  string,\n  string\n) => \n  unknown",
-            "strFull": "writeSrc(\n  path: string,\n  src: string\n) => \n  unknown"
-          },
-          "file": "tests/scan.test.ts",
+          "name": "CmdProps",
+          "type": "literal",
+          "src": "\ntype CmdProps = { verbose: boolean };\n",
+          "pos": [213, 233],
+          "offset": 17,
+          "lines": [7, 7],
+          "properties": [{ "name": "verbose", "type": "boolean" }],
+          "file": "scripts/src/generateReadme.ts",
           "srcHgl": {
             "type": "root",
             "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "writeSrc" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "\n  path" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "," }]
-              },
-              { "type": "text", "value": "\n  src" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
               { "type": "text", "value": "\n" },
               {
                 "type": "element",
                 "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
+                "properties": { "className": ["token", "keyword"] },
+                "children": [{ "type": "text", "value": "type" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "class-name"] },
+                "children": [{ "type": "text", "value": "CmdProps" }]
               },
               { "type": "text", "value": " " },
               {
                 "type": "element",
                 "tagName": "span",
                 "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " \n  " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        },
-        {
-          "name": "writeSrc",
-          "type": "function",
-          "src": "writeSrc(\n  path: string,\n  src: string\n) => \n  unknown",
-          "pos": [299, 378],
-          "offset": 1,
-          "lines": [11, 13],
-          "parameters": [
-            { "name": "path", "type": "string" },
-            { "name": "src", "type": "string" }
-          ],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "writeSrc",
-            "params": [
-              { "name": "path", "type": "string" },
-              { "name": "src", "type": "string" }
-            ],
-            "return": "unknown",
-            "strMin": "(\n  string,\n  string\n) => \n  unknown",
-            "strFull": "writeSrc(\n  path: string,\n  src: string\n) => \n  unknown"
-          },
-          "file": "tests/report.test.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "writeSrc" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "\n  path" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "," }]
-              },
-              { "type": "text", "value": "\n  src" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
-              },
-              { "type": "text", "value": " \n  " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
-            ]
-          }
-        }
-      ],
-      "group": "identical",
-      "parameters": [
-        { "name": "path", "type": "string" },
-        { "name": "src", "type": "string" }
-      ],
-      "returnType": "<empty_node>"
-    },
-    {
-      "names": [{ "name": "getNodeText", "count": 2 }],
-      "files": [
-        {
-          "name": "getNodeText",
-          "type": "function",
-          "src": "getNodeText(\n  sourceFile: ts.SourceFile,\n  node: { pos: number; end: number } | null\n) => \n  unknown",
-          "pos": [492, 701],
-          "offset": 1,
-          "lines": [20, 23],
-          "parameters": [
-            { "name": "sourceFile", "type": "ts.SourceFile" },
-            { "name": "node", "type": "{ pos: number; end: number } | null" }
-          ],
-          "returnType": "<empty_node>",
-          "signature": {
-            "name": "getNodeText",
-            "params": [
-              { "name": "sourceFile", "type": "ts.SourceFile" },
-              { "name": "node", "type": "{ pos: number; end: number } | null" }
-            ],
-            "return": "unknown",
-            "strMin": "(\n  ts.SourceFile,\n  { pos: number; end: number } | null\n) => \n  unknown",
-            "strFull": "getNodeText(\n  sourceFile: ts.SourceFile,\n  node: { pos: number; end: number } | null\n) => \n  unknown"
-          },
-          "file": "src/utils.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "getNodeText" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "\n  sourceFile" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " ts" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "." }]
-              },
-              { "type": "text", "value": "SourceFile" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "," }]
-              },
-              { "type": "text", "value": "\n  node" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
+                "children": [{ "type": "text", "value": "=" }]
               },
               { "type": "text", "value": " " },
               {
@@ -9171,7 +8832,7 @@
                 "properties": { "className": ["token", "punctuation"] },
                 "children": [{ "type": "text", "value": "{" }]
               },
-              { "type": "text", "value": " pos" },
+              { "type": "text", "value": " verbose" },
               {
                 "type": "element",
                 "tagName": "span",
@@ -9183,27 +8844,7 @@
                 "type": "element",
                 "tagName": "span",
                 "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "number" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": " end" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "number" }]
+                "children": [{ "type": "text", "value": "boolean" }]
               },
               { "type": "text", "value": " " },
               {
@@ -9212,49 +8853,170 @@
                 "properties": { "className": ["token", "punctuation"] },
                 "children": [{ "type": "text", "value": "}" }]
               },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "|" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "null" }]
-              },
-              { "type": "text", "value": "\n" },
               {
                 "type": "element",
                 "tagName": "span",
                 "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
+                "children": [{ "type": "text", "value": ";" }]
+              },
+              { "type": "text", "value": "\n" }
+            ]
+          }
+        },
+        {
+          "name": "CmdProps",
+          "type": "literal",
+          "src": "\ntype CmdProps = { verbose: boolean };\n",
+          "pos": [335, 355],
+          "offset": 17,
+          "lines": [10, 10],
+          "properties": [{ "name": "verbose", "type": "boolean" }],
+          "file": "scripts/src/fontsBase64.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              { "type": "text", "value": "\n" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "keyword"] },
+                "children": [{ "type": "text", "value": "type" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "class-name"] },
+                "children": [{ "type": "text", "value": "CmdProps" }]
               },
               { "type": "text", "value": " " },
               {
                 "type": "element",
                 "tagName": "span",
                 "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=>" }]
+                "children": [{ "type": "text", "value": "=" }]
               },
-              { "type": "text", "value": " \n  " },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "{" }]
+              },
+              { "type": "text", "value": " verbose" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
               {
                 "type": "element",
                 "tagName": "span",
                 "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "unknown" }]
-              }
+                "children": [{ "type": "text", "value": "boolean" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "}" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ";" }]
+              },
+              { "type": "text", "value": "\n" }
             ]
           }
         },
         {
+          "name": "CmdProps",
+          "type": "literal",
+          "src": "\ntype CmdProps = { verbose: boolean };\n",
+          "pos": [134, 154],
+          "offset": 17,
+          "lines": [5, 5],
+          "properties": [{ "name": "verbose", "type": "boolean" }],
+          "file": "scripts/src/empty.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              { "type": "text", "value": "\n" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "keyword"] },
+                "children": [{ "type": "text", "value": "type" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "class-name"] },
+                "children": [{ "type": "text", "value": "CmdProps" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "{" }]
+              },
+              { "type": "text", "value": " verbose" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "boolean" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "}" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ";" }]
+              },
+              { "type": "text", "value": "\n" }
+            ]
+          }
+        }
+      ],
+      "group": "identical",
+      "properties": [{ "name": "verbose", "type": "boolean" }]
+    },
+    {
+      "names": [{ "name": "getNodeText", "count": 2 }],
+      "files": [
+        {
           "name": "getNodeText",
           "type": "function",
           "src": "getNodeText(\n  sourceFile: ts.SourceFile,\n  node: { pos: number; end: number } | null\n) => \n  unknown",
-          "pos": [1463, 1672],
+          "pos": [1485, 1694],
           "offset": 1,
           "lines": [58, 61],
           "parameters": [
@@ -9401,6 +9163,158 @@
               }
             ]
           }
+        },
+        {
+          "name": "getNodeText",
+          "type": "function",
+          "src": "getNodeText(\n  sourceFile: ts.SourceFile,\n  node: { pos: number; end: number } | null\n) => \n  unknown",
+          "pos": [492, 701],
+          "offset": 1,
+          "lines": [20, 23],
+          "parameters": [
+            { "name": "sourceFile", "type": "ts.SourceFile" },
+            { "name": "node", "type": "{ pos: number; end: number } | null" }
+          ],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "getNodeText",
+            "params": [
+              { "name": "sourceFile", "type": "ts.SourceFile" },
+              { "name": "node", "type": "{ pos: number; end: number } | null" }
+            ],
+            "return": "unknown",
+            "strMin": "(\n  ts.SourceFile,\n  { pos: number; end: number } | null\n) => \n  unknown",
+            "strFull": "getNodeText(\n  sourceFile: ts.SourceFile,\n  node: { pos: number; end: number } | null\n) => \n  unknown"
+          },
+          "file": "retype/src/utils.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "getNodeText" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "\n  sourceFile" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " ts" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "." }]
+              },
+              { "type": "text", "value": "SourceFile" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "," }]
+              },
+              { "type": "text", "value": "\n  node" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "{" }]
+              },
+              { "type": "text", "value": " pos" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "number" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ";" }]
+              },
+              { "type": "text", "value": " end" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "number" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "}" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "|" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "keyword"] },
+                "children": [{ "type": "text", "value": "null" }]
+              },
+              { "type": "text", "value": "\n" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " \n  " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
         }
       ],
       "group": "identical",
@@ -9417,14 +9331,14 @@
           "name": "anonymous",
           "type": "literal",
           "src": "\nexport function getNodeText(sourceFile: ts.SourceFile, node: { pos: number; end: number } | null) {\n  const src = node ? sourceFile.getFullText().substring(node.pos, node.end) : '<empty_node>';",
-          "pos": [553, 581],
+          "pos": [1546, 1574],
           "offset": 62,
-          "lines": [20, 20],
+          "lines": [58, 58],
           "properties": [
             { "name": "pos", "type": "number" },
             { "name": "end", "type": "number" }
           ],
-          "file": "src/utils.ts",
+          "file": "scripts/src/extractSnippets.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -9677,14 +9591,14 @@
           "name": "anonymous",
           "type": "literal",
           "src": "\nexport function getNodeText(sourceFile: ts.SourceFile, node: { pos: number; end: number } | null) {\n  const src = node ? sourceFile.getFullText().substring(node.pos, node.end) : '<empty_node>';",
-          "pos": [1524, 1552],
+          "pos": [553, 581],
           "offset": 62,
-          "lines": [58, 58],
+          "lines": [20, 20],
           "properties": [
             { "name": "pos", "type": "number" },
             { "name": "end", "type": "number" }
           ],
-          "file": "scripts/src/extractSnippets.ts",
+          "file": "retype/src/utils.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -9941,6 +9855,209 @@
       ]
     },
     {
+      "names": [{ "name": "writeSrc", "count": 2 }],
+      "files": [
+        {
+          "name": "writeSrc",
+          "type": "function",
+          "src": "writeSrc(\n  path: string,\n  src: string\n) => \n  unknown",
+          "pos": [166, 245],
+          "offset": 1,
+          "lines": [7, 9],
+          "parameters": [
+            { "name": "path", "type": "string" },
+            { "name": "src", "type": "string" }
+          ],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "writeSrc",
+            "params": [
+              { "name": "path", "type": "string" },
+              { "name": "src", "type": "string" }
+            ],
+            "return": "unknown",
+            "strMin": "(\n  string,\n  string\n) => \n  unknown",
+            "strFull": "writeSrc(\n  path: string,\n  src: string\n) => \n  unknown"
+          },
+          "file": "retype/tests/scan.test.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "writeSrc" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "\n  path" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "string" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "," }]
+              },
+              { "type": "text", "value": "\n  src" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "string" }]
+              },
+              { "type": "text", "value": "\n" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " \n  " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
+        },
+        {
+          "name": "writeSrc",
+          "type": "function",
+          "src": "writeSrc(\n  path: string,\n  src: string\n) => \n  unknown",
+          "pos": [299, 378],
+          "offset": 1,
+          "lines": [11, 13],
+          "parameters": [
+            { "name": "path", "type": "string" },
+            { "name": "src", "type": "string" }
+          ],
+          "returnType": "<empty_node>",
+          "signature": {
+            "name": "writeSrc",
+            "params": [
+              { "name": "path", "type": "string" },
+              { "name": "src", "type": "string" }
+            ],
+            "return": "unknown",
+            "strMin": "(\n  string,\n  string\n) => \n  unknown",
+            "strFull": "writeSrc(\n  path: string,\n  src: string\n) => \n  unknown"
+          },
+          "file": "retype/tests/report.test.ts",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "writeSrc" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              { "type": "text", "value": "\n  path" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "string" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "," }]
+              },
+              { "type": "text", "value": "\n  src" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "string" }]
+              },
+              { "type": "text", "value": "\n" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=>" }]
+              },
+              { "type": "text", "value": " \n  " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "builtin"] },
+                "children": [{ "type": "text", "value": "unknown" }]
+              }
+            ]
+          }
+        }
+      ],
+      "group": "identical",
+      "parameters": [
+        { "name": "path", "type": "string" },
+        { "name": "src", "type": "string" }
+      ],
+      "returnType": "<empty_node>"
+    },
+    {
       "names": [{ "name": "anonymous", "count": 3 }],
       "files": [
         {
@@ -9951,7 +10068,7 @@
           "offset": 36,
           "lines": [9, 9],
           "properties": [{ "name": "className", "type": "string[]" }],
-          "file": "src/types/snippet.ts",
+          "file": "retype/src/types/snippet.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -10077,7 +10194,7 @@
           "offset": 32,
           "lines": [17, 17],
           "properties": [{ "name": "className", "type": "string[]" }],
-          "file": "src/types/snippet.ts",
+          "file": "retype/src/types/snippet.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -10197,7 +10314,7 @@
           "offset": 39,
           "lines": [25, 25],
           "properties": [{ "name": "className", "type": "string[]" }],
-          "file": "src/types/snippet.ts",
+          "file": "retype/src/types/snippet.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -10334,7 +10451,7 @@
             { "name": "include", "type": "string[]" },
             { "name": "rootDir", "type": "string" }
           ],
-          "file": "src/types/props.ts",
+          "file": "retype/src/types/props.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -10658,7 +10775,7 @@
             },
             { "name": "types", "type": "string[]" }
           ],
-          "file": "src/types/duplicate.ts",
+          "file": "retype/src/types/duplicate.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -12838,7 +12955,7 @@
             { "name": "srcHgl", "type": "TokenRoot" },
             { "name": "properties", "type": "{ name: string; type: string }[]" }
           ],
-          "file": "src/types/duplicate.ts",
+          "file": "retype/src/types/duplicate.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -13861,7 +13978,7 @@
           "offset": 30,
           "lines": [10, 10],
           "types": ["interface", "literal", "alias", "function", "enum", "union"],
-          "file": "src/types/duplicate.ts",
+          "file": "retype/src/types/duplicate.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -14161,7 +14278,7 @@
             { "name": "name", "type": "string" },
             { "name": "type", "type": "string" }
           ],
-          "file": "src/types/duplicate.ts",
+          "file": "retype/src/types/duplicate.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -14303,7 +14420,7 @@
             { "name": "name", "type": "string" },
             { "name": "type", "type": "string" }
           ],
-          "file": "src/types/duplicate.ts",
+          "file": "retype/src/types/duplicate.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -14517,7 +14634,7 @@
             { "name": "name", "type": "string" },
             { "name": "type", "type": "string" }
           ],
-          "file": "src/types/duplicate.ts",
+          "file": "retype/src/types/duplicate.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -14719,7 +14836,7 @@
             { "name": "name", "type": "string" },
             { "name": "type", "type": "string" }
           ],
-          "file": "src/types/duplicate.ts",
+          "file": "retype/src/types/duplicate.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -15594,7 +15711,7 @@
           "offset": 16,
           "lines": [15, 15],
           "types": ["different", "renamed", "identical"],
-          "file": "src/types/duplicate.ts",
+          "file": "retype/src/types/duplicate.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -15926,7 +16043,7 @@
             { "name": "count", "type": "number" },
             { "name": "name", "type": "string" }
           ],
-          "file": "src/types/duplicate.ts",
+          "file": "retype/src/types/duplicate.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -16293,7 +16410,7 @@
             { "name": "strMin", "type": "string" },
             { "name": "strFull", "type": "string" }
           ],
-          "file": "src/types/duplicate.ts",
+          "file": "retype/src/types/duplicate.ts",
           "srcHgl": {
             "type": "root",
             "children": [
@@ -16902,226 +17019,6 @@
         { "name": "strMin", "type": "string" },
         { "name": "strFull", "type": "string" }
       ]
-    },
-    {
-      "names": [{ "name": "CmdProps", "count": 3 }],
-      "files": [
-        {
-          "name": "CmdProps",
-          "type": "literal",
-          "src": "\ntype CmdProps = { verbose: boolean };\n",
-          "pos": [213, 233],
-          "offset": 17,
-          "lines": [7, 7],
-          "properties": [{ "name": "verbose", "type": "boolean" }],
-          "file": "scripts/src/generateReadme.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "type" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "class-name"] },
-                "children": [{ "type": "text", "value": "CmdProps" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "{" }]
-              },
-              { "type": "text", "value": " verbose" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "boolean" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "}" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n" }
-            ]
-          }
-        },
-        {
-          "name": "CmdProps",
-          "type": "literal",
-          "src": "\ntype CmdProps = { verbose: boolean };\n",
-          "pos": [335, 355],
-          "offset": 17,
-          "lines": [10, 10],
-          "properties": [{ "name": "verbose", "type": "boolean" }],
-          "file": "scripts/src/fontsBase64.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "type" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "class-name"] },
-                "children": [{ "type": "text", "value": "CmdProps" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "{" }]
-              },
-              { "type": "text", "value": " verbose" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "boolean" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "}" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n" }
-            ]
-          }
-        },
-        {
-          "name": "CmdProps",
-          "type": "literal",
-          "src": "\ntype CmdProps = { verbose: boolean };\n",
-          "pos": [134, 154],
-          "offset": 17,
-          "lines": [5, 5],
-          "properties": [{ "name": "verbose", "type": "boolean" }],
-          "file": "scripts/src/empty.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "type" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "class-name"] },
-                "children": [{ "type": "text", "value": "CmdProps" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "{" }]
-              },
-              { "type": "text", "value": " verbose" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "boolean" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "}" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n" }
-            ]
-          }
-        }
-      ],
-      "group": "identical",
-      "properties": [{ "name": "verbose", "type": "boolean" }]
     },
     {
       "names": [{ "name": "User", "count": 2 }],
@@ -18561,7 +18458,7 @@
           "name": "anonymous",
           "type": "union",
           "src": "  name: string;\n  theme: 'light' | 'dark';\n  snippet: Snippet;",
-          "pos": [279, 295],
+          "pos": [288, 304],
           "offset": 25,
           "lines": [9, 9],
           "types": ["light", "dark"],
@@ -18741,7 +18638,7 @@
           "name": "anonymous",
           "type": "union",
           "src": "export type LandingProps = {\n  theme: 'dark' | 'light';\n}",
-          "pos": [360, 376],
+          "pos": [369, 385],
           "offset": 38,
           "lines": [10, 10],
           "types": ["dark", "light"],
@@ -18831,7 +18728,7 @@
           "name": "anonymous",
           "type": "union",
           "src": "          <MultilangWindow\n            theme={{ dark: 'light', light: 'dark' }[theme] as 'dark' | 'light'}\n            selectedLang=\"npx\"",
-          "pos": [3246, 3262],
+          "pos": [3255, 3271],
           "offset": 89,
           "lines": [67, 67],
           "types": ["dark", "light"],
@@ -18973,7 +18870,7 @@
           "name": "anonymous",
           "type": "union",
           "src": "  snippet: Snippet;\n  theme: 'dark' | 'light';\n}",
-          "pos": [263, 279],
+          "pos": [272, 288],
           "offset": 29,
           "lines": [8, 8],
           "types": ["dark", "light"],
@@ -19043,7 +18940,7 @@
           "name": "anonymous",
           "type": "union",
           "src": "  children: string;\n  theme: 'dark' | 'light';\n}",
-          "pos": [279, 295],
+          "pos": [288, 304],
           "offset": 29,
           "lines": [8, 8],
           "types": ["dark", "light"],
@@ -19122,12 +19019,12 @@
   ],
   "meta": {
     "projectName": "ts-retype",
-    "projectFilesScanned": 182,
-    "projectLocScanned": 12890,
-    "projectTypesScanned": 408,
-    "projectFilesWithTypesDeclarations": 110,
-    "scannedAt": "2023-04-28T08:57:45+03:00",
+    "projectFilesScanned": 187,
+    "projectLocScanned": 13064,
+    "projectTypesScanned": 419,
+    "projectFilesWithTypesDeclarations": 114,
+    "scannedAt": "2023-04-29T14:19:55+03:00",
     "scanDuration": 7,
-    "reportSize": 730613
+    "reportSize": 1099215
   }
 }

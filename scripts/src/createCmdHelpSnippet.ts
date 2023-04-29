@@ -9,7 +9,7 @@ const program = createCommand();
 program.name('generateReadme').description('generateReadme program');
 
 export async function createCmdHelpSnippet() {
-  const { stdout } = await exec('../dist/ts-retype.cjs', ['-h'], { muteStdout: true });
+  const { stdout } = await exec('../retype/dist/ts-retype.cjs', ['-h'], { muteStdout: true });
   await writeFile('../docs/src/snippets/cmdHelp.txt', stdout);
 }
 
