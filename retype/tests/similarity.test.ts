@@ -22,11 +22,11 @@ describe('toSimilarityPairs', () => {
 describe('pairsToClusters', () => {
   test('ok', () => {
     const given = pairsToClusters([
-      [0, 1, 9],
-      [1, 2, 9],
-      [3, 4, 8],
+      [0, 1, 3],
+      [1, 2, 3],
+      [3, 4, 4],
     ]);
-    expect(given).toEqual({ 9: [new Set([0, 1, 2])], 8: [new Set([3, 4])] });
+    expect(given).toEqual({ 3: [new Set([0, 1, 2])], 4: [new Set([3, 4])] });
   });
 });
 

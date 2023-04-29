@@ -9,7 +9,8 @@ import { isMain } from './isMain.js';
 import { prepareDist } from './prepareDist.js';
 import { runPipeline, PipelineStepDef, sortSteps, getStats, setFnName } from './pipeline.js';
 import { syntaxHighlighting } from './syntaxHighlighting.js';
-import { getEnumValue, getEnumValues } from './lib/utils/enums.js';
+import { enumToString, toEnumValue, getEnumValues } from './lib/utils/enums.js';
+import { pipelines, Step, Pipeline, ROOT, pipelinesDefinitions, steps } from './config.js';
 
 type CmdProps = BaseCmdProps & {
   pipeline: string;
@@ -17,51 +18,6 @@ type CmdProps = BaseCmdProps & {
   follow: boolean;
   quiet: boolean;
 };
-
-const ROOT = null;
-
-enum Pipeline {
-  all,
-  publish,
-  bump,
-  test,
-  docs,
-}
-enum Step {
-  buildDocs,
-  buildExample,
-  buildTsRetype,
-  buildUikit,
-  buildVis,
-  cleanDocs,
-  cleanExample,
-  cleanTsRetype,
-  cleanUikit,
-  cleanVis,
-  echo,
-  format,
-  generateReadme,
-  installDocs,
-  installExample,
-  installTsRetype,
-  installUikit,
-  installVis,
-  prepareDist,
-  runCreateCmdHelpSnippet,
-  runExampleTsRetype,
-  runExtractSnippets,
-  smoke,
-  syntaxHighlightSnippets,
-  tests,
-}
-
-const pipelines = new Set<Pipeline>([
-  Pipeline.all,
-  Pipeline.publish,
-  Pipeline.bump,
-  Pipeline.test,
-  Pipeline.docs,
-]);
 
 const program = createCommand();
 
@@ -79,13 +35,21 @@ program
 
 const log = console.log.bind(console, '[make]');
 
-export function printPipelineStats<T>(steps: PipelineStepDef<T>[], plan: T[]) {
+export function printPipelineStats<T extends string | number | symbol>(
+  steps: PipelineStepDef<T>[],
+  plan: T[],
+) {
   const { missing } = getStats(steps, plan);
-  const msg = [
-    `not running ${colors.bold.yellow(missing.map((k) => getEnumValue(k, Step)).join(' '))}`,
-    `running ${colors.bold.white(plan.map((k) => getEnumValue(k, Step)).join(' '))}`,
-  ].join('\n');
-  log(msg);
+  log(
+    `not running (${colors.bold.white(missing.length.toString())}) ${colors.bold.yellow(
+      missing.map((step) => enumToString(Step, step)).join(' '),
+    )}`,
+  );
+  log(
+    `running (${colors.bold.white(plan.length.toString())}) ${colors.bold.white(
+      plan.map((step) => enumToString(Step, step)).join(' '),
+    )}`,
+  );
 }
 
 async function make(config: Partial<CmdProps>) {
@@ -96,17 +60,17 @@ async function make(config: Partial<CmdProps>) {
     return;
   }
 
-  const pipeline = config.pipeline && getEnumValue(config.pipeline, Pipeline);
+  const pipeline = config.pipeline && toEnumValue(Pipeline, config.pipeline);
 
-  if (config.pipeline && !pipeline) {
+  if ((config.pipeline && pipeline == null) || typeof pipeline === 'string') {
     log(colors.red(`unknown pipeline ${config.pipeline}`));
     log('known pipelines', colors.yellow(getEnumValues(Pipeline).join(' ')));
     return;
   }
 
-  const step = config.step && getEnumValue(config.step, Step);
+  const step = config.step && toEnumValue(Step, config.step);
 
-  if (config.step && !step) {
+  if ((config.step && step == null) || typeof step === 'string') {
     log(colors.red(`unknown step ${config.step}`));
     log('known steps', colors.yellow(getEnumValues(Step).join(' ')));
     return;
@@ -128,7 +92,7 @@ async function make(config: Partial<CmdProps>) {
   log(rootDir);
 
   async function script(name: string) {
-    rootDir && (await node(join('dist/scripts/src', name), join(rootDir, 'scripts')));
+    rootDir && (await node(join('dist/', name), join(rootDir, 'scripts')));
   }
 
   const syntaxHighlightSnippets = () =>
@@ -143,20 +107,21 @@ async function make(config: Partial<CmdProps>) {
   const defs = new Map<Step, () => Promise<void>>([
     [Step.buildDocs, () => npmrun('docs', 'build')],
     [Step.buildExample, () => npmrun('example', 'build')],
-    [Step.buildTsRetype, () => npmrun(ROOT, 'build')],
+    [Step.buildTsRetype, () => npmrun('retype', 'build')],
     [Step.buildUikit, () => npmrun('uikit', 'build')],
     [Step.buildVis, () => npmrun('vis', 'build')],
     [Step.cleanDocs, () => npmrun('docs', 'clean')],
     [Step.cleanExample, () => npmrun('example', 'clean')],
-    [Step.cleanTsRetype, () => npmrun(ROOT, 'clean')],
+    [Step.cleanTsRetype, () => npmrun('retype', 'clean')],
     [Step.cleanUikit, () => npmrun('uikit', 'clean')],
     [Step.cleanVis, () => npmrun('vis', 'clean')],
     [Step.echo, () => bash('echo', 'ok')],
     [Step.format, () => npmrun(ROOT, 'format')],
     [Step.generateReadme, generateReadme],
+    [Step.install, () => npm(ROOT, ['install'])],
     [Step.installDocs, () => npm('docs', ['install'])],
     [Step.installExample, () => npm('example', ['install'])],
-    [Step.installTsRetype, () => npm(ROOT, ['install'])],
+    [Step.installTsRetype, () => npm('retype', ['install'])],
     [Step.installUikit, () => npm('uikit', ['install'])],
     [Step.installVis, () => npm('vis', ['install'])],
     [Step.prepareDist, prepareDist],
@@ -168,49 +133,8 @@ async function make(config: Partial<CmdProps>) {
     [Step.tests, () => npmrun(ROOT, 'test:fast')],
   ]);
 
-  const steps: PipelineStepDef<Step>[] = [
-    { name: Step.cleanExample, deps: [] },
-    { name: Step.cleanDocs, deps: [] },
-    { name: Step.cleanTsRetype, deps: [] },
-    { name: Step.cleanUikit, deps: [] },
-    { name: Step.cleanVis, deps: [] },
-    { name: Step.format, deps: [] },
-    { name: Step.installDocs, deps: [Step.cleanDocs] },
-    { name: Step.installTsRetype, deps: [Step.cleanTsRetype] },
-    { name: Step.installUikit, deps: [Step.cleanUikit] },
-    { name: Step.installVis, deps: [Step.cleanVis] },
-    { name: Step.buildUikit, deps: [Step.installUikit] },
-    { name: Step.buildVis, deps: [Step.installVis, Step.buildUikit] },
-    { name: Step.buildTsRetype, deps: [Step.installTsRetype] },
-    { name: Step.prepareDist, deps: [Step.buildVis, Step.buildTsRetype] },
-    { name: Step.tests, deps: [Step.prepareDist] },
-    { name: Step.installExample, deps: [Step.cleanExample, Step.prepareDist] },
-    { name: Step.buildExample, deps: [Step.runExtractSnippets] },
-    { name: Step.runCreateCmdHelpSnippet, deps: [Step.prepareDist] },
-    { name: Step.runExampleTsRetype, deps: [Step.installExample] },
-    { name: Step.runExtractSnippets, deps: [Step.runExampleTsRetype] },
-    { name: Step.syntaxHighlightSnippets, deps: [Step.runExtractSnippets] },
-    {
-      name: Step.buildDocs,
-      deps: [
-        Step.installDocs,
-        Step.runExampleTsRetype,
-        Step.runExtractSnippets,
-        Step.syntaxHighlightSnippets,
-      ],
-    },
-    { name: Step.generateReadme, deps: [Step.runExtractSnippets, Step.runCreateCmdHelpSnippet] },
-    { name: Step.smoke, deps: [Step.tests, Step.runExampleTsRetype, Step.runExtractSnippets] },
-  ];
-
-  const pipelinesDefinitions = new Map<Pipeline, Step[]>([
-    [Pipeline.all, [Step.smoke, Step.generateReadme, Step.buildDocs]],
-    [Pipeline.publish, [Step.tests, Step.prepareDist]],
-    [Pipeline.test, [Step.smoke]],
-    [Pipeline.docs, [Step.tests, Step.generateReadme, Step.buildDocs]],
-  ]);
-
-  const pipelineSteps = step ? [step] : (pipeline && pipelinesDefinitions.get(pipeline)) || [];
+  const pipelineSteps =
+    step != null ? [step] : (pipeline != null && pipelinesDefinitions.get(pipeline)) || [];
 
   const sortedSteps = sortSteps(steps, pipelineSteps);
   printPipelineStats(steps, sortedSteps);

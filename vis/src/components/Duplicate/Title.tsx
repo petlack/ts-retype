@@ -1,4 +1,4 @@
-import { ArrayElement, TypeDuplicate } from '../../../../src/types';
+import { ArrayElement, TypeDuplicate } from '@ts-retype/retype/src/types';
 import { Badge } from './Badge';
 import { SearchAwareText } from '../SearchAwareText';
 import { TypeIcon } from './TypeIcon';

@@ -1,7 +1,7 @@
 import { Code } from './Code';
 import { Window } from './Window';
 import { flattenTokens, insertNewlines, splitLines, TokenElement } from './Token';
-import { Snippet } from '../../../src/types/snippet';
+import { Snippet } from '@ts-retype/retype/src/types/snippet';
 
 export type JsTsCodeProps = {
   snippet: Snippet;

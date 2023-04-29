@@ -15,7 +15,7 @@ import {
   split,
 } from 'ramda';
 import ts from 'typescript';
-import { ReportResult } from '../../src/types';
+import { ReportResult } from '@ts-retype/retype/src/types/report.js';
 import { BaseCmdProps, execute } from './cmd.js';
 import { isMain } from './isMain.js';
 import { getRootDir } from './paths.js';
@@ -112,7 +112,7 @@ function selectDuplicate(src: string) {
     }),
   )(data) as Json;
   const code = stringifyNice(res);
-  return `import { TypeDuplicate } from 'ts-retype';
+  return `import { TypeDuplicate } from '@ts-retype/retype';
 
 export const duplicate: TypeDuplicate = ${code};
 `;
@@ -121,7 +121,7 @@ export const duplicate: TypeDuplicate = ${code};
 export async function extractSnippets() {
   const snippets: SnippetNeedle[] = [
     {
-      src: 'src/types/duplicate.ts',
+      src: 'retype/src/types/duplicate.ts',
       dst: 'docs/src/snippets/TypeDuplicate.ts',
       name: 'TypeDuplicate',
     },
@@ -129,7 +129,7 @@ export async function extractSnippets() {
     { src: 'example/src/api.ts', dst: 'docs/src/snippets/function.ts', lines: [16, 25] },
     { src: 'example/src/auth.ts', dst: 'docs/src/snippets/interface.ts', lines: [2, 8] },
     { src: 'example/src/model.ts', dst: 'docs/src/snippets/type.ts', lines: [5, 11] },
-    { src: 'src/types/props.ts', dst: 'docs/src/snippets/ScanProps.ts', name: 'ScanProps' },
+    { src: 'retype/src/types/props.ts', dst: 'docs/src/snippets/ScanProps.ts', name: 'ScanProps' },
     { src: '.retyperc', dst: 'docs/src/snippets/retyperc.json' },
     {
       src: 'example/data.json',

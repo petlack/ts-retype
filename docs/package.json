@@ -1,5 +1,5 @@
 {
-  "name": "docs",
+  "name": "@ts-retype/docs",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ts-retype/retype": "*",
+    "@ts-retype/uikit": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

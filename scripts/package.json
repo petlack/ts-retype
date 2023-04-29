@@ -1,5 +1,5 @@
 {
-  "name": "scripts",
+  "name": "@ts-retype/scripts",
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
@@ -12,7 +12,7 @@
     "dev:docs": "ts-node --esm src/generateDocs.ts",
     "dev:extract": "ts-node --esm src/extractSnippets.ts",
     "dev:snippets": "ts-node --esm src/syntaxHighlighting.ts",
-    "make": "node dist/scripts/src/make.js",
+    "make": "node dist/make.js",
     "run:docs": "node dist/generateDocs.js",
     "run:readme": "node dist/generateReadme.js",
     "run:snippets": "node dist/syntaxHighlighting.js"

@@ -1,4 +1,4 @@
-import { Snippet, Token, TokenRoot } from '../../../src/types/snippet';
+import { Snippet, Token, TokenRoot } from '@ts-retype/retype/src/types/snippet';
 import { Lines } from './Lines';
 import { flattenTokens, insertNewlines, splitLines, TokenElement } from './Token';
 import { Window } from './Window';

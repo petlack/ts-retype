@@ -1250,7 +1250,7 @@ export const Snippet_duplicate = {
         type: 'element',
         tagName: 'span',
         properties: { className: ['token', 'string'] },
-        children: [{ type: 'text', value: "'ts-retype'" }],
+        children: [{ type: 'text', value: "'@ts-retype/retype'" }],
       },
       {
         type: 'element',
@@ -3420,7 +3420,7 @@ export const Snippet_tsRetype = {
         type: 'element',
         tagName: 'span',
         properties: { className: ['token', 'string'] },
-        children: [{ type: 'text', value: "'ts-retype'" }],
+        children: [{ type: 'text', value: "'@ts-retype/retype'" }],
       },
       {
         type: 'element',

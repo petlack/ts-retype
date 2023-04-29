@@ -1,7 +1,7 @@
 import { IconDocs, IconGithub } from '../uikit/Icons';
 import { Button } from '../uikit/Button';
 import { MultilangWindow } from './MultilangWindow';
-import { Snippet } from '../../../src/types/snippet';
+import { Snippet } from '@ts-retype/retype/src/types/snippet';
 import * as Snippets from '../generated/snippets';
 import { TsSnippet } from './TsSnippet';
 import './Landing.styl';

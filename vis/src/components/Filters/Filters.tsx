@@ -1,5 +1,5 @@
 import { HTMLAttributes, useCallback } from 'react';
-import { TypeDuplicate } from '../../../../src/types';
+import { TypeDuplicate } from '@ts-retype/retype/src/types';
 import { FacetStats, Filter, getFacetStat } from '../../model/search';
 import { SIMILARITIES, CANDIDATE_TYPES } from '../../types';
 import { Badge } from '../Duplicate/Badge';

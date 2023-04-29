@@ -1,12 +1,40 @@
-export function getEnumValue<T extends object>(value: unknown, enumType: T): T[keyof T] | null {
-  if (typeof value === 'string') {
-    const val = Object.keys(enumType).find((k) => k === value);
-    return val ? enumType[val as keyof T] : null;
+type Enumlike = Record<string | number, string | number>;
+
+export function safeToEnumValue<T extends Enumlike>(
+  enumObj: T,
+  value: number | symbol | keyof T | T[keyof T],
+): T[keyof T] | undefined {
+  if (typeof value === 'number') {
+    const enumValue = Object.keys(enumObj).find((key) => enumObj[key as keyof T] === value);
+    if (enumValue !== undefined) {
+      return enumObj[enumValue as keyof T];
+    }
+  } else if (typeof value === 'string' && Object.keys(enumObj).includes(value)) {
+    return enumObj[value as keyof T];
+  } else if (enumObj[value as keyof T] !== undefined) {
+    return enumObj[value as keyof T];
   }
-  const val = Object.keys(enumType).find((k) => typeof k === 'string' && parseInt(k) === value);
-  return val ? enumType[val as keyof T] : null;
+  return undefined;
 }
 
-export function getEnumValues<T extends object>(enumType: T): string[] {
+export function toEnumValue<T extends Enumlike>(
+  enumObj: T,
+  value: number | symbol | string | null | undefined,
+): T[keyof T] | undefined {
+  return safeToEnumValue(enumObj, value as keyof T);
+}
+
+export function enumToString<T extends Enumlike>(
+  enumObj: T,
+  val: number | symbol | string | null | undefined | keyof T | T[keyof T],
+): string | undefined {
+  const res = toEnumValue(enumObj, val);
+  if (!res) {
+    return undefined;
+  }
+  return enumObj[res].toString();
+}
+
+export function getEnumValues<T extends Enumlike>(enumType: T): string[] {
   return Object.keys(enumType).filter((k) => Number.isNaN(parseInt(k)));
 }

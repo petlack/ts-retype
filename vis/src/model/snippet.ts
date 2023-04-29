@@ -1,5 +1,5 @@
-import { TypeDuplicate } from '../../../src/types';
-import { Token, TokenRoot } from '../../../src/types/snippet';
+import { TypeDuplicate } from '@ts-retype/retype/src/types';
+import { Token, TokenRoot } from '@ts-retype/retype/src/types/snippet';
 
 function containsPhrase(str: string, phrase: string): boolean {
   const regex = new RegExp(phrase, 'i');
