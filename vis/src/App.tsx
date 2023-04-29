@@ -9,10 +9,10 @@ import { Search } from './components/Search';
 import { SearchPhraseProvider } from './hooks/useSearchPhrase';
 import { ToastProvider } from './components/Toast';
 import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
-import { TopBar } from '../../docs/src/uikit/TopBar';
-import { UiKitApp } from '../../docs/src/uikit/UiKitApp';
+import { TopBar } from '@ts-retype/uikit/src/components/TopBar';
+import { UiKitApp } from '@ts-retype/uikit/src/components/UiKitApp';
 import { useSearch } from './hooks/useSearch';
-import { ThemeProvider } from '../../uikit/src/theme';
+import { ThemeProvider } from '@ts-retype/uikit/src/theme';
 
 import './App.scss';
 

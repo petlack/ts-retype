@@ -7,9 +7,9 @@ import { IconLetter } from '../Explorer/icons';
 import { IncDecInput } from '../IncDecInput';
 import { ControlsList } from './ControlsList';
 import { FeaturesTooltip } from './FeaturesTooltip';
-import { Button } from '../../../../docs/src/uikit/Button';
-import { IconMoon, IconSun } from '../../../../docs/src/uikit/Icons';
-import { useTheme } from '../../../../uikit/src/theme';
+import { Button } from '@ts-retype/uikit/src/core/Button';
+import { IconMoon, IconSun } from '@ts-retype/uikit/src/core/Icons';
+import { useTheme } from '@ts-retype/uikit/src/theme';
 import './Filters.scss';
 
 export type FiltersProps = {

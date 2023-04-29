@@ -1,6 +1,6 @@
 import { ArrayElement, TypeDuplicate } from '@ts-retype/retype/src/types';
-import { flattenTokens, insertNewlines, splitLines, TokenElement } from '../../../../docs/src/components/Token';
-import { Lines } from '../../../../docs/src/components/Lines';
+import { flattenTokens, insertNewlines, splitLines, TokenElement } from '@ts-retype/uikit/src/code/Token';
+import { Lines } from '@ts-retype/uikit/src/code/Lines';
 import { Snippet, TokenRoot } from '@ts-retype/retype/src/types/snippet';
 import { useSearchPhrase } from '../../hooks/useSearchPhrase';
 import { highlightDefinition, highlightPhrase } from '../../model/snippet';

@@ -1,9 +1,9 @@
 import { Landing } from './components/Landing';
 import { Menu } from './components/Menu';
-import { TopBar } from './uikit/TopBar';
-import { useTheme, ThemeMode, ThemeProvider } from '../../uikit/src/theme';
+import { TopBar } from '@ts-retype/uikit/src/components/TopBar';
+import { useTheme, ThemeMode, ThemeProvider } from '@ts-retype/uikit/src/theme';
 import { Docs } from './components/Docs';
-import { UiKitApp } from './uikit/UiKitApp';
+import { UiKitApp } from '@ts-retype/uikit/src/components/UiKitApp';
 import { useState } from 'react';
 import './App.styl';
 
