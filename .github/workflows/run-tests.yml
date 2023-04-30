@@ -21,7 +21,7 @@ jobs:
     - name: Run tests
       run: |
         npm ci
-        npm run scripts:build
+        npm run build
         npm run make -- -f -p test
       env:
         CI: true

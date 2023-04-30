@@ -21,7 +21,7 @@ jobs:
     - name: Generate docs
       run: |
         npm i
-        npm run scripts:build
+        npm run build
         npm run make -- -f -p docs
         cp -R ./coverage ./docs/dist/coverage
         npm i coverage-badges-cli -g

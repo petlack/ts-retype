@@ -4,6 +4,7 @@ import { join } from 'path';
 import { createRunners } from './runners.js';
 import { execute, BaseCmdProps } from './cmd.js';
 import { generateReadme } from './generateReadme.js';
+import { generateThemes } from './generateThemes.js';
 import { getRootDir } from './paths.js';
 import { isMain } from './isMain.js';
 import { prepareDist } from './prepareDist.js';
@@ -118,6 +119,7 @@ async function make(config: Partial<CmdProps>) {
     [Step.echo, () => bash('echo', 'ok')],
     [Step.format, () => npmrun(ROOT, 'format')],
     [Step.generateReadme, generateReadme],
+    [Step.generateThemes, generateThemes],
     [
       Step.generateVisDevData,
       () =>

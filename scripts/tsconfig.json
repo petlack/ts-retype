@@ -7,8 +7,9 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
     "outDir": "dist",
-    "rootDirs": ["src", "../../src"]
+    "rootDirs": ["src"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "**/*.test.ts"]

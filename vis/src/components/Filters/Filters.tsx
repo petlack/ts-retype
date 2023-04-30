@@ -10,6 +10,7 @@ import { FeaturesTooltip } from './FeaturesTooltip';
 import { Button } from '@ts-retype/uikit/src/core/Button';
 import { IconMoon, IconSun } from '@ts-retype/uikit/src/core/Icons';
 import { useTheme } from '@ts-retype/uikit/src/theme';
+import { themes } from '../../themes';
 import './Filters.scss';
 
 export type FiltersProps = {
@@ -131,8 +132,8 @@ export function Filters({
         />
       </div>
 
-      <Button icon={IconSun} caption="light" style="default" size="md" kind="button" onClick={() => setTheme('light')} />
-      <Button icon={IconMoon} caption="dark" style="default" size="md" kind="button" onClick={() => setTheme('dark')} />
+      <Button icon={IconSun} caption="light" style="default" size="md" kind="button" onClick={() => setTheme(themes.light)} />
+      <Button icon={IconMoon} caption="dark" style="default" size="md" kind="button" onClick={() => setTheme(themes.dark)} />
     </div>
   );
 }
