@@ -9,18 +9,14 @@ import { Search } from './components/Search';
 import { SearchPhraseProvider } from './hooks/useSearchPhrase';
 import { ToastProvider } from './components/Toast';
 import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
-import { TopBar } from '../../docs/src/uikit/TopBar';
-import { UiKitApp } from '../../docs/src/uikit/UiKitApp';
+import { TopBar } from '@ts-retype/uikit/src/components/TopBar';
+import { UiKitApp } from '@ts-retype/uikit/src/components/UiKitApp';
 import { useSearch } from './hooks/useSearch';
-import { ThemeProvider } from '../../uikit/src/theme';
+import { ThemeProvider } from '@ts-retype/uikit/src/theme';
+import { themes } from './themes';
 
 import './App.scss';
 
-const accent = '#0a799e';
-const second = '#c68726';
-const body = '\'Open Sans\', sans-serif';
-const heading = '\'Open Sans\', sans-serif';
-const mono = '\'Source Code Pro\', monospace';
 const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 const facets: Facet<FulltextData>[] = [
@@ -74,7 +70,7 @@ function App() {
   }, [filtersVisible]);
 
   return (
-    <ThemeProvider accent={accent} second={second} mode={preferredTheme} { ...{ body, heading, mono } }>
+    <ThemeProvider theme={themes.light}>
       <UiKitApp theme={preferredTheme}>
         <SearchPhraseProvider value={{ phrase: query }}>
           <ToastProvider>

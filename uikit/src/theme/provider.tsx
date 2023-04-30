@@ -1,35 +1,24 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ThemeContext } from './context';
 import applyCssVariables from './cssVariables';
-import { fromColors, namedTheme, withFonts } from './builder';
-
-export type ThemeMode = 'light' | 'dark';
+import { Theme } from '../types/theme';
 
 export type ThemeProviderProps = {
-  accent: string;
-  body: string;
   children: JSX.Element;
-  heading: string;
-  mode: ThemeMode;
-  mono: string;
-  second: string;
+  theme: Theme;
 }
 
 export function ThemeProvider({
-  accent, body, children, heading, mode, mono, second,
+  children, theme: initialTheme,
 }: ThemeProviderProps) {
-  const [themeMode, setThemeMode] = useState<ThemeMode>(mode);
-  const theme = useMemo(() => namedTheme(
-    themeMode,
-    withFonts({ body, heading, mono }, fromColors({ accent, second, mode: themeMode })),
-  ), [themeMode]);
+  const [theme, setTheme] = useState(initialTheme);
   const value = useMemo(() => ({
     theme,
-    setTheme: (mode: ThemeMode) => { setThemeMode(mode); },
-  }), [themeMode]);
+    setTheme: (theme: Theme) => { setTheme(theme); },
+  }), [theme]);
   useEffect(() => {
     applyCssVariables(theme);
-  }, [themeMode]);
+  }, [theme]);
   return (
     <ThemeContext.Provider value={value}>
       {children}

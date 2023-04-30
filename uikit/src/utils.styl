@@ -1,0 +1,37 @@
+transRegular = 150ms ease-in
+
+commonTransitions()
+  transition-property: var(--tr-props-common);
+  transition-duration: var(--tr-duration-normal);
+  transition-timing-function: var(--tr-easing-ease-in);
+
+colorTransitions()
+  transition-property: var(--tr-props-colors);
+  transition-duration: var(--tr-duration-normal);
+  transition-timing-function: var(--tr-easing-ease-in);
+
+// safari < 14.4, IE 11 does not support gap property on flex
+// https://caniuse.com/flexbox-gap
+// https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/
+// tl;dr; select every element that follows another one, do not select the first
+flexGapRow(size)
+  & > * + *
+    margin-left: size;
+flexGapColumn(size)
+  & > * + *
+    margin-top: size;
+
+flexRow(gap = 0)
+  display: flex;
+  flex-direction: row;
+  flexGapRow(gap);
+
+flexColumn(gap = 0)
+  display: flex;
+  flex-direction: column;
+  flexGapColumn(gap);
+
+flexCenter()
+  display: flex;
+  align-items: center;
+  justify-content: center;

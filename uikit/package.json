@@ -2,6 +2,8 @@
   "name": "@ts-retype/uikit",
   "version": "0.0.0",
   "private": true,
+  "main": "dist/index.es.js",
+  "module": "dist/index.es.js",
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
@@ -9,18 +11,31 @@
     "dev": "vite",
     "preview": "vite preview"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "chroma-js": "^2.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
     "@types/chroma-js": "^2.4.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
+    "node-sass": "^8.0.0",
+    "rollup": "^3.21.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.34.1",
     "sass": "^1.62.0",
+    "stylus": "^0.59.0",
     "typescript": "^4.9.3",
-    "vite": "^4.2.0"
-  }
+    "vite": "^4.2.0",
+    "vite-plugin-dts": "^2.3.0"
+  },
+  "types": "dist/index.es.d.ts"
 }

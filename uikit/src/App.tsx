@@ -1,6 +1,15 @@
 import { useCallback, useState } from 'react';
 import { Page } from './Page';
-import { ThemeMode, ThemeProvider } from './theme/provider';
+import { ThemeProvider } from './theme/provider';
+import { generateTheme } from './theme/generate';
+import { ThemeMode } from './theme';
+
+const accent = '#0a799e';
+const second = '#c68726';
+const body = '\'Noto Sans\', sans-serif';
+const heading = '\'Exo 2\', sans-serif';
+const mono = '\'Fira Code\', monospace';
+const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 export function App() {
   const [mode, setMode] = useState<ThemeMode>('light');
@@ -11,8 +20,9 @@ export function App() {
     };
     setMode(nextMode[mode]);
   }, [mode, setMode]);
+  const theme = generateTheme({ accent, body, heading, mono, second, mode: preferredTheme });
   return (
-    <ThemeProvider accent="#0a799e" second="#EA9615" mode={mode} body="" heading='' mono=''>
+    <ThemeProvider theme={theme}>
       <>
         <button style={{ position: 'fixed', top: 'var(--space-2)', right: 'var(--space-2)' }} onClick={toggleTheme}>
           {mode}

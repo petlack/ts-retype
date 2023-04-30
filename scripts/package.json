@@ -8,14 +8,14 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
-    "dev": "nodemon --exec 'ts-node --esm' --",
-    "dev:docs": "ts-node --esm src/generateDocs.ts",
-    "dev:extract": "ts-node --esm src/extractSnippets.ts",
-    "dev:snippets": "ts-node --esm src/syntaxHighlighting.ts",
-    "make": "node dist/make.js",
-    "run:docs": "node dist/generateDocs.js",
-    "run:readme": "node dist/generateReadme.js",
-    "run:snippets": "node dist/syntaxHighlighting.js"
+    "dev": "nodemon --exec 'ts-node --esm --experimental-specifier-resolution=node' --",
+    "dev:docs": "ts-node --esm --experimental-specifier-resolution=node src/generateDocs.ts",
+    "dev:extract": "ts-node --esm --experimental-specifier-resolution=node src/extractSnippets.ts",
+    "dev:snippets": "ts-node --esm --experimental-specifier-resolution=node  src/syntaxHighlighting.ts",
+    "make": "node --experimental-specifier-resolution=node dist/make.js",
+    "run:docs": "node --experimental-specifier-resolution=node dist/generateDocs.js",
+    "run:readme": "node --experimental-specifier-resolution=node dist/generateReadme.js",
+    "run:snippets": "node --experimental-specifier-resolution=node dist/syntaxHighlighting.js"
   },
   "dependencies": {
     "ramda": "^0.29.0"

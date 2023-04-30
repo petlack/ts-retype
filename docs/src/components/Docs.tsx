@@ -2,11 +2,11 @@ import { TS_RETYPE_CMD_OPTIONS } from '@ts-retype/retype/src/types/props';
 import { Snippet } from '@ts-retype/retype/src/types/snippet';
 import { ThemeMode, useTheme } from '@ts-retype/uikit/src/theme';
 import * as Snippets from '../generated/snippets';
-import { Window } from '../components/Window';
-import { Bash } from './Bash';
-import { Code } from './Code';
-import { JsTsCode } from './JsTsCode';
-import { MultilangWindow } from './MultilangWindow';
+import { Window } from '@ts-retype/uikit/src/code/Window';
+import { Bash } from '@ts-retype/uikit/src/code/Bash';
+import { Code } from '@ts-retype/uikit/src/code/Code';
+import { JsTsCode } from '@ts-retype/uikit/src/code/JsTsCode';
+import { MultilangWindow } from '@ts-retype/uikit/src/code/MultilangWindow';
 import { Options } from './Options';
 
 import './Docs.styl';

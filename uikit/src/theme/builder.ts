@@ -1,8 +1,7 @@
 import chroma from 'chroma-js';
 import { extendStandard } from '../types/extend';
-import { Color, ColorScale, Theme } from '../types/theme';
+import { Color, ColorScale, Theme, ThemeMode } from '../types/theme';
 import chromaPalette from './chroma';
-import { ThemeMode } from './provider';
 
 function toColorScale(colors: Color[]): ColorScale {
   const steps = [25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950, 975];
