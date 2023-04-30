@@ -1636,9 +1636,9 @@
           "name": "getTextColor",
           "type": "function",
           "src": "getTextColor(\n  bg: string,\n  white: string,\n  black: string\n) => \n  unknown",
-          "pos": [220, 576],
+          "pos": [259, 615],
           "offset": 1,
-          "lines": [8, 21],
+          "lines": [9, 22],
           "parameters": [
             { "name": "bg", "type": "string" },
             { "name": "white", "type": "string" },
@@ -1880,7 +1880,7 @@
     {
       "names": [
         { "name": "ThemeMode", "count": 1 },
-        { "name": "anonymous", "count": 8 }
+        { "name": "anonymous", "count": 7 }
       ],
       "files": [
         {
@@ -1951,121 +1951,6 @@
                 "children": [{ "type": "text", "value": ";" }]
               },
               { "type": "text", "value": "\n" }
-            ]
-          }
-        },
-        {
-          "name": "anonymous",
-          "type": "union",
-          "src": "  children: JSX.Element | JSX.Element[];\n  theme: 'dark' | 'light';\n}",
-          "pos": [102, 118],
-          "offset": 50,
-          "lines": [5, 5],
-          "types": ["dark", "light"],
-          "file": "uikit/src/components/UiKitApp.tsx",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              { "type": "text", "value": "  children" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "constant"] },
-                "children": [{ "type": "text", "value": "JSX" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "." }]
-              },
-              { "type": "text", "value": "Element " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "|" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "constant"] },
-                "children": [{ "type": "text", "value": "JSX" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "." }]
-              },
-              { "type": "text", "value": "Element" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "[" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "]" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n  theme" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "string"] },
-                "children": [{ "type": "text", "value": "'dark'" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "|" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "string"] },
-                "children": [{ "type": "text", "value": "'light'" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "}" }]
-              }
             ]
           }
         },
@@ -3408,10 +3293,187 @@
     },
     {
       "names": [
+        { "name": "AppProps", "count": 1 },
         { "name": "TopBarProps", "count": 1 },
         { "name": "CodeProps", "count": 1 }
       ],
       "files": [
+        {
+          "name": "AppProps",
+          "type": "literal",
+          "src": "\nexport type AppProps = {\n  children: JSX.Element | JSX.Element[];\n}\n\nexport function UiKitApp({ children }: AppProps) {",
+          "pos": [87, 131],
+          "offset": 24,
+          "lines": [4, 6],
+          "properties": [{ "name": "children", "type": "JSX.Element | JSX.Element[]" }],
+          "file": "uikit/src/components/UiKitApp.tsx",
+          "srcHgl": {
+            "type": "root",
+            "children": [
+              { "type": "text", "value": "\n" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "keyword"] },
+                "children": [{ "type": "text", "value": "export" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "keyword"] },
+                "children": [{ "type": "text", "value": "type" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "class-name"] },
+                "children": [{ "type": "text", "value": "AppProps" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "=" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "{" }]
+              },
+              { "type": "text", "value": "\n  children" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "constant"] },
+                "children": [{ "type": "text", "value": "JSX" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "." }]
+              },
+              { "type": "text", "value": "Element " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": "|" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "constant"] },
+                "children": [{ "type": "text", "value": "JSX" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "." }]
+              },
+              { "type": "text", "value": "Element" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "[" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "]" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ";" }]
+              },
+              { "type": "text", "value": "\n" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "}" }]
+              },
+              { "type": "text", "value": "\n\n" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "keyword"] },
+                "children": [{ "type": "text", "value": "export" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "keyword"] },
+                "children": [{ "type": "text", "value": "function" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "function"] },
+                "children": [{ "type": "text", "value": "UiKitApp" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "(" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "{" }]
+              },
+              { "type": "text", "value": " children " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "}" }]
+              },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "operator"] },
+                "children": [{ "type": "text", "value": ":" }]
+              },
+              { "type": "text", "value": " AppProps" },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": ")" }]
+              },
+              { "type": "text", "value": " " },
+              {
+                "type": "element",
+                "tagName": "span",
+                "properties": { "className": ["token", "punctuation"] },
+                "children": [{ "type": "text", "value": "{" }]
+              }
+            ]
+          }
+        },
         {
           "name": "TopBarProps",
           "type": "literal",
@@ -8790,123 +8852,8 @@
       ]
     },
     {
-      "names": [{ "name": "anonymous", "count": 8 }],
+      "names": [{ "name": "anonymous", "count": 7 }],
       "files": [
-        {
-          "name": "anonymous",
-          "type": "union",
-          "src": "  children: JSX.Element | JSX.Element[];\n  theme: 'dark' | 'light';\n}",
-          "pos": [102, 118],
-          "offset": 50,
-          "lines": [5, 5],
-          "types": ["dark", "light"],
-          "file": "uikit/src/components/UiKitApp.tsx",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              { "type": "text", "value": "  children" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "constant"] },
-                "children": [{ "type": "text", "value": "JSX" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "." }]
-              },
-              { "type": "text", "value": "Element " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "|" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "constant"] },
-                "children": [{ "type": "text", "value": "JSX" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "." }]
-              },
-              { "type": "text", "value": "Element" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "[" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "]" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n  theme" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "string"] },
-                "children": [{ "type": "text", "value": "'dark'" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "|" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "string"] },
-                "children": [{ "type": "text", "value": "'light'" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "}" }]
-              }
-            ]
-          }
-        },
         {
           "name": "anonymous",
           "type": "union",
@@ -19019,12 +18966,12 @@
   ],
   "meta": {
     "projectName": "ts-retype",
-    "projectFilesScanned": 191,
-    "projectLocScanned": 9318,
-    "projectTypesScanned": 422,
+    "projectFilesScanned": 193,
+    "projectLocScanned": 9975,
+    "projectTypesScanned": 421,
     "projectFilesWithTypesDeclarations": 116,
-    "scannedAt": "2023-04-30T07:55:12+03:00",
+    "scannedAt": "2023-04-30T10:41:31+03:00",
     "scanDuration": 7,
-    "reportSize": 1056696
+    "reportSize": 1057122
   }
 }

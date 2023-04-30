@@ -1,0 +1,18 @@
+.colors-palette {
+  background-color: var(--clr-bg);
+  padding: var(--space-4);
+  border-radius: var(--radius-base);
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  .color-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-2);
+    .color-sample {
+      width: var(--size-4);
+      height: var(--size-4);
+      border-radius: var(--radius-base);
+    }
+  }
+}

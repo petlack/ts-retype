@@ -1,62 +1,30 @@
-@import "../vars.styl"
-
 .token
-    font-weight: var(--font-weight-medium);
-    &.bold
-      font-weight: var(--font-weight-bolder);
+  font-weight: var(--font-weight-medium);
+  &.bold
+    font-weight: var(--font-weight-bolder);
 
-.dark
-  .token
-    color: $white;
-    & > .token
-      color: inherit;
-    &.bash
-      color: $white;
-    &.builtin
-      color: $lightPurple;
-    &.class-name
-      color: orange;
-    &.comment
-      color: var(--clr-neutral-400);
-    &.function
-      color: $lightPurple;
-    &.keyword
-      color: $lightOrange;
-    &.number
-      color: $lightBlue;
-    &.operator
-      color: green;
-    &.property
-      color: $white;
-    &.punctuation
-      color: $grayLight;
-    &.string
-      color: $lightBlue;
-
-.light
-  .token
-    color: $blue;
-    & > .token
-      color: inherit;
-    &.bash
-      color: $black;
-    &.builtin
-      color: $purple;
-    &.class-name
-      color: orange;
-    &.comment
-      color: lightgray;
-    &.function
-      color: $purple;
-    &.keyword
-      color: $orange;
-    &.number
-      color: $blueDark;
-    &.operator
-      color: green;
-    &.property
-      color: $blue;
-    &.punctuation
-      color: $black;
-    &.string
-      color: $blueDark;
+  color: var(--clr-sx-token);
+  & > .token
+    color: inherit;
+  &.bash
+    color: var(--clr-sx-token);
+  &.builtin
+    color: var(--clr-sx-builtin);
+  &.class-name
+    color: var(--clr-sx-class-name);
+  &.comment
+    color: var(--clr-sx-comment);
+  &.function
+    color: var(--clr-sx-function);
+  &.keyword
+    color: var(--clr-sx-keyword);
+  &.number
+    color: var(--clr-sx-number);
+  &.operator
+    color: var(--clr-sx-operator);
+  &.property
+    color: var(--clr-sx-property);
+  &.punctuation
+    color: var(--clr-sx-punctuation);
+  &.string
+    color: var(--clr-sx-string);

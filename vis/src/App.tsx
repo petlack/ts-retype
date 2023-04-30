@@ -71,7 +71,7 @@ function App() {
 
   return (
     <ThemeProvider theme={themes.light}>
-      <UiKitApp theme={preferredTheme}>
+      <UiKitApp>
         <SearchPhraseProvider value={{ phrase: query }}>
           <ToastProvider>
             <TopBar>
