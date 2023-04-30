@@ -2,6 +2,8 @@ import { Dim, Duration, Easing, Font, FontSize, FontWeight, Shadow, ZVal } from 
 import { Size } from './size';
 import { Space } from './space';
 
+export type ThemeMode = 'light' | 'dark';
+
 export type Color = string | number | ColorScale;
 
 export type ColorScale = {
