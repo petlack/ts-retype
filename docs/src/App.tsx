@@ -30,13 +30,14 @@ const body = '\'Noto Sans\', sans-serif';
 const heading = '\'Exo 2\', sans-serif';
 const mono = '\'Fira Code\', monospace';
 const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+// const preferredTheme = 'dark' as ThemeMode;
 
 export default function App() {
   const theme = generateTheme({ accent, body, heading, mono, second, mode: preferredTheme });
 
   return (
     <ThemeProvider theme={theme}>
-      <UiKitApp theme={preferredTheme}>
+      <UiKitApp>
         <Main />
       </UiKitApp>
     </ThemeProvider>

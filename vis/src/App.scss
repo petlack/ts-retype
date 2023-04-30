@@ -1,5 +1,77 @@
 @import "vars";
-  
+
+@mixin lightSxTheme() {
+  --clr-cp-rosewater: #dc8a78;
+  --clr-cp-flamingo: #dd7878;
+  --clr-cp-pink: #ea76cb;
+  --clr-cp-mauve: #8839ef;
+  --clr-cp-red: #d20f39;
+  --clr-cp-maroon: #e64553;
+  --clr-cp-peach: #fe640b;
+  --clr-cp-yellow: #df8e1d;
+  --clr-cp-green: #40a02b;
+  --clr-cp-teal: #179299;
+  --clr-cp-sky: #04a5e5;
+  --clr-cp-sapphire: #209fb5;
+  --clr-cp-blue: #1e66f5;
+  --clr-cp-lavender: #7287fd;
+  --clr-cp-text: #4c4f69;
+  --clr-cp-subtext1: #5c5f77;
+  --clr-cp-subtext0: #6c6f85;
+  --clr-cp-overlay2: #7c7f93;
+  --clr-cp-overlay1: #8c8fa1;
+  --clr-cp-overlay0: #9ca0b0;
+  --clr-cp-surface2: #acb0be;
+  --clr-cp-surface1: #bcc0cc;
+  --clr-cp-surface0: #ccd0da;
+  --clr-cp-crust: #dce0e8;
+  --clr-cp-mantle: #e6e9ef;
+  --clr-cp-base: #eff1f5;
+}
+
+@mixin darkSxTheme() {
+  --clr-cp-rosewater: #f5e0dc;
+  --clr-cp-flamingo: #f2cdcd;
+  --clr-cp-pink: #f5c2e7;
+  --clr-cp-mauve: #cba6f7;
+  --clr-cp-red: #f38ba8;
+  --clr-cp-maroon: #eba0ac;
+  --clr-cp-peach: #fab387;
+  --clr-cp-yellow: #f9e2af;
+  --clr-cp-green: #a6e3a1;
+  --clr-cp-teal: #94e2d5;
+  --clr-cp-sky: #89dceb;
+  --clr-cp-sapphire: #74c7ec;
+  --clr-cp-blue: #89b4fa;
+  --clr-cp-lavender: #b4befe;
+  --clr-cp-text: #cdd6f4;
+  --clr-cp-subtext1: #bac2de;
+  --clr-cp-subtext0: #a6adc8;
+  --clr-cp-overlay2: #9399b2;
+  --clr-cp-overlay1: #7f849c;
+  --clr-cp-overlay0: #6c7086;
+  --clr-cp-surface2: #585b70;
+  --clr-cp-surface1: #45475a;
+  --clr-cp-surface0: #313244;
+  --clr-cp-base: #1e1e2e;
+  --clr-cp-mantle: #181825;
+  --clr-cp-crust: #11111b;
+}
+
+@mixin sxTheme() {
+  --clr-sx-token: var(--clr-cp-text);
+  --clr-sx-builtin: var(--clr-cp-red);
+  --clr-sx-class-name: var(--clr-cp-yellow);
+  --clr-sx-comment: var(--clr-cp-overlay0);
+  --clr-sx-function: var(--clr-cp-blue);
+  --clr-sx-keyword: var(--clr-cp-mauve);
+  --clr-sx-number: var(--clr-cp-peach);
+  --clr-sx-operator: var(--clr-cp-sky);
+  --clr-sx-property: var(--clr-cp-white);
+  --clr-sx-punctuation: var(--clr-cp-overlay2);
+  --clr-sx-string: var(--clr-cp-green);
+}
+
 @mixin lightTheme() {
   --clr-bg-topbar: var(--clr-bg);
   --clr-bg-main: var(--clr-neutral-25);     
@@ -11,40 +83,47 @@
 }
   
 @mixin darkTheme() {
-  --clr-bg-topbar: var(--clr-neutral-25);
-  --clr-bg-main: var(--clr-neutral-200);     
-  --clr-bg-code: var(--clr-neutral-50);
-  --clr-fg-text: var(--clr-fg);
-  --clr-fg-title: var(--clr-neutral-600);
-  --clr-fg-code: var(--clr-fg);
+  --clr-bg-topbar: var(--clr-cp-crust);
+  --clr-bg-main: var(--clr-cp-mantle);     
+  --clr-bg-code: var(--clr-cp-base);
+  --clr-fg-text: var(--clr-cp-text);
+  --clr-fg-title: var(--clr-cp-text);
+  --clr-fg-code: var(--clr-cp-text);
   --clr-border: var(--clr-neutral-200);
+  // --clr-bg-topbar: var(--clr-neutral-25);
+  // --clr-bg-main: var(--clr-neutral-200);     
+  // --clr-bg-code: var(--clr-neutral-50);
+  // --clr-fg-text: var(--clr-fg);
+  // --clr-fg-title: var(--clr-neutral-600);
+  // --clr-fg-code: var(--clr-fg);
+  // --clr-border: var(--clr-neutral-200);
 }
 
 @mixin lightThemeWindow() {
-  --clr-bg-window-header: $yellowLight;
+  --clr-bg-window-header: var(--clr-second-50);
   --shadow-base: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   --clr-fg-code-comment: var(--clr-neutral-800);
 }
 
 @mixin darkThemeWindow() {
-  --clr-bg-window-header: #12171e;
+  --clr-bg-window-header: var(--clr-second-50);
   --shadow-base: rgba(0, 0, 0, 0.15) 0px 13px 27px -5px, rgba(0, 0, 0, 0.25) 0px 8px 16px -8px;
   --clr-fg-code-comment: var(--clr-neutral-800);
 }
 @mixin lightThemeDuplicate() {
-  --clr-bg-title: var(--clr-second-25);
-  --clr-bg-explorer: var(--clr-bg);
-  --clr-bg-explorer-selected: var(--clr-accent-50);
-  --clr-bg-snippet: var(--clr-bg);
-  --clr-bg-snippet-highlighted: var(--clr-accent-25);
+  --clr-bg-title: var(--clr-accent-50);
+  --clr-bg-explorer: var(--clr-neutral-50);
+  --clr-bg-explorer-selected: var(--clr-accent-100);
+  --clr-bg-snippet: var(--clr-neutral-50);
+  --clr-bg-snippet-highlighted: var(--clr-accent-100);
 }
 
 @mixin darkThemeDuplicate() {
-  --clr-bg-title: var(--clr-neutral-50);
-  --clr-bg-explorer: var(--clr-neutral-50);
-  --clr-bg-explorer-selected: var(--clr-neutral-200);
-  --clr-bg-snippet: var(--clr-neutral-100);
-  --clr-bg-snippet-highlighted: var(--clr-neutral-200);
+  --clr-bg-title: var(--clr-cp-surface0);
+  --clr-bg-explorer: var(--clr-cp-base);
+  --clr-bg-explorer-selected: var(--clr-cp-surface2);
+  --clr-bg-snippet: var(--clr-cp-base);
+  --clr-bg-snippet-highlighted: var(--clr-cp-surface1);
 }
 
 :root {
@@ -87,12 +166,16 @@ main {
     @include lightTheme();
     @include lightThemeDuplicate();
     @include lightThemeWindow();
+    @include lightSxTheme();
   }
   &.dark {
     @include darkTheme();
     @include darkThemeDuplicate();
     @include darkThemeWindow();
+    @include darkSxTheme();
   }
+  @include sxTheme();
+
   position: relative;
 
   .topbar-container {

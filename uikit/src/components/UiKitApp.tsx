@@ -1,13 +1,14 @@
+import { useTheme } from '../theme';
 import './UiKitApp.styl';
 
 export type AppProps = {
   children: JSX.Element | JSX.Element[];
-  theme: 'dark' | 'light';
 }
 
-export function UiKitApp({ children, theme }: AppProps) {
+export function UiKitApp({ children }: AppProps) {
+  const { theme } = useTheme();
   return (
-    <main className={theme}>
+    <main className={theme.name}>
       {children}
     </main>
   );

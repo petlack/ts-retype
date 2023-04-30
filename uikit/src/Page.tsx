@@ -3,6 +3,7 @@ import chroma from 'chroma-js';
 import { useTheme } from './theme/useTheme';
 import { ColorScale } from './types/theme';
 import { Layouts } from './Layouts';
+import { Palettes } from './Palettes';
 import './Page.scss';
 
 function getTextColor(bg: string, white: string, black: string) {
@@ -68,6 +69,9 @@ export function Page() {
 
   return (
     <main>
+      <section>
+        <Palettes />
+      </section>
       <section>
         <Layouts />
       </section>
