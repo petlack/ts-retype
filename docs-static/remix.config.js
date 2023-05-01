@@ -5,5 +5,5 @@ module.exports = {
   appDirectory: 'app',
   assetsBuildDirectory: 'public/dist',
   serverBuildPath: 'dist/index.js',
-  publicPath: '/dist/',
+  publicPath: './dist/',
 };
