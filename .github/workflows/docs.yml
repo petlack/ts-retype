@@ -24,7 +24,10 @@ jobs:
         npm run build
         npm run make -- -f -p docs
         npm -w docs-static run rebuild
-        npm -w docs-static run generate
+        npm -w docs-static run start &
+        sleep 2
+        npm -w docs-static run build-static
+        # pkill -f \"remix-serve dist\"
         cp -R ./coverage ./docs-static/static/coverage
         npm i coverage-badges-cli -g
         coverage-badges --output ./docs-static/static/badge-coverage.svg
