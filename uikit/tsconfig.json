@@ -18,7 +18,8 @@
     "declarationDir": "types",
     "sourceMap": true,
     "outDir": "dist",
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "baseUrl": "src"
   },
   "include": ["src", "rollup.config.cjs"],
   "exclude": ["dist", "node_modules"],

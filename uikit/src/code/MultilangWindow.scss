@@ -1,0 +1,10 @@
+@import "../utils";
+@import "../vars";
+
+.window-multilang {
+  .tabs {
+    @include flexRow();
+    padding-left: var(--space-4);
+    padding-bottom: var(--space-1);
+  }
+}

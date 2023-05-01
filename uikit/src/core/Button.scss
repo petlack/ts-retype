@@ -1,7 +1,7 @@
-@import "../utils.styl"
-@import "../vars.styl"
+@import "../utils";
+@import "../vars";
 
-.btn
+.btn {
   --btn-size: var(--font-size-md);
   --btn-font-weight: var(--font-weight-normal);
   --btn-ph: var(--space-2);
@@ -14,48 +14,58 @@
   outline: none;
   border: none;
   border-radius: var(--btn-radius);
-  padding: var(--btn-pv) var(--btn-ph)
+  padding: var(--btn-pv) var(--btn-ph);
   font-family: var(--font-heading);
   font-weight: var(--btn-font-weight);
   font-size: var(--btn-size);
   line-height: var(--btn-size);
   text-decoration: none;
   cursor: pointer;
-  commonTransitions();
+  @include commonTransitions();
   svg {
     fill: currentColor;
   }
-  &__md
+  &__md {
     --btn-size: var(--font-size-md);
     --btn-font-weight: var(--font-weight-medium);  
     --btn-ph: var(--space-4);
     --btn-pv: var(--space-2);
-  &__xl
+  }
+  &__xl {
     --btn-size: var(--font-size-lg);
     --btn-font-weight: var(--font-weight-semibold);
     --btn-ph: var(--space-6);
     --btn-pv: var(--space-3);
-    --btn-radius: var(--radius-lg)
-  svg
+    --btn-radius: var(--radius-lg);
+  }
+  svg {
     width: var(--btn-size);
     height: var(--btn-size);
-  &__default
+  }
+  &__default {
     background-color: var(--clr-transparent);
     border: 1px solid var(--clr-accent-500);
     color: inherit;
-    &:hover
+    &:hover {
       background-color: var(--clr-accent-100);    
-  &__primary
+    }
+  }
+  &__primary {
     background-color: var(--clr-accent-500);
     border: 1px solid var(--clr-accent-500);
     color: white;
-    &:hover
+    &:hover {
       background-color: var(--clr-accent-600);
-  &__secondary
+    }
+  }
+  &__secondary {
     background-color: var(--clr-neutral-900);
     color: var(--clr-neutral-100);
     border: 1px solid var(--clr-neutral-400);
-    &:hover
+    &:hover {
       background-color: var(--clr-accent-975);
       // color: var(--clr-neutral-950);
       // border: 1px solid var(--clr-neutral-900);
+    }
+  }
+}

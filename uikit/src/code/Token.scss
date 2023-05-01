@@ -1,30 +1,44 @@
-.token
+.token {
   font-weight: var(--font-weight-medium);
-  &.bold
+  &.bold {
     font-weight: var(--font-weight-bolder);
+  }
 
   color: var(--clr-sx-token);
-  & > .token
+  & > .token {
     color: inherit;
-  &.bash
+  }
+  &.bash {
     color: var(--clr-sx-token);
-  &.builtin
+  }
+  &.builtin {
     color: var(--clr-sx-builtin);
-  &.class-name
+  }
+  &.class-name {
     color: var(--clr-sx-class-name);
-  &.comment
+  }
+  &.comment {
     color: var(--clr-sx-comment);
-  &.function
+  }
+  &.function {
     color: var(--clr-sx-function);
-  &.keyword
+  }
+  &.keyword {
     color: var(--clr-sx-keyword);
-  &.number
+  }
+  &.number {
     color: var(--clr-sx-number);
-  &.operator
+  }
+  &.operator {
     color: var(--clr-sx-operator);
-  &.property
+  }
+  &.property {
     color: var(--clr-sx-property);
-  &.punctuation
+  }
+  &.punctuation {
     color: var(--clr-sx-punctuation);
-  &.string
+  }
+  &.string {
     color: var(--clr-sx-string);
+  }
+}

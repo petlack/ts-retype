@@ -1,4 +1,4 @@
-import './Window.styl';
+import './Window.scss';
 
 export type WindowProps = {
   children: JSX.Element | JSX.Element[];

@@ -1,6 +1,6 @@
-@import "../utils.styl";
+@import "../utils";
 
-indicator()
+@mixin indicator() {
   position: absolute;
   bottom: var(--space-1-5);
   left: 10%;
@@ -9,23 +9,31 @@ indicator()
   background-color: var(--clr-second-300);
   // border-radius: 100vw;
   transform: scaleX(0);
-  commonTransitions();
+  @include commonTransitions();
+}
 
-indicator-active()
+@mixin indicator-active() {
   transform: scaleX(1);
+}
 
-.tab
+.tab {
   position: relative;
   color: var(--clr-neutral-400);
   padding: var(--space-2) var(--space-2);
   cursor: pointer;
-  &-caption
+  &-caption {
     position: relative;
-  &-indicator
-    indicator()
-  &:hover
+  }
+  &-indicator {
+    @include indicator()
+  }
+  &:hover {
     color: var(--clr-fg);
-  &-active
-    .tab-indicator
-      indicator-active()
+  }
+  &-active {
+    .tab-indicator {
+      @include indicator-active()
+    }
     color: var(--clr-fg);
+  }
+}

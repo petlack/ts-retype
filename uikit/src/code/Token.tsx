@@ -1,5 +1,5 @@
 import type { Snippet, Token, TokenRoot, TokenText } from '@ts-retype/retype';
-import './Token.styl';
+import './Token.scss';
 
 function startsWithNewline(token: Token): token is TokenText {
   return token.type === 'text' && token.value.startsWith('\n');
