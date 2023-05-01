@@ -2,8 +2,8 @@
   "name": "@ts-retype/docs",
   "version": "0.0.0",
   "private": true,
-  "main": "dist/App.es.js",
-  "module": "dist/App.es.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.es.js",
   "type": "module",
   "scripts": {
     "build": "rollup -c",
@@ -12,6 +12,9 @@
     "dev": "vite",
     "preview": "vite preview"
   },
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -28,5 +31,6 @@
     "stylus": "^0.59.0",
     "typescript": "^4.9.3",
     "vite": "^4.1.0"
-  }
+  },
+  "types": "dist/index.d.ts"
 }

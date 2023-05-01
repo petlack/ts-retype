@@ -12,6 +12,7 @@ export * from './code/WithLineNumbers';
 
 export * from './core/Button';
 export * from './core/Icons';
+export * from './core/Example';
 
 export * from './components/Logo';
 export * from './components/TopBar';

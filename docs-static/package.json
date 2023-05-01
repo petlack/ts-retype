@@ -1,0 +1,30 @@
+{
+  "name": "@ts-retype/docs-static",
+  "private": true,
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev",
+    "start": "remix-serve build",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@remix-run/node": "~1.14.2",
+    "@remix-run/react": "~1.14.2",
+    "@remix-run/serve": "~1.14.2",
+    "@ts-retype/uikit": "*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "~1.14.2",
+    "@remix-run/eslint-config": "~1.14.2",
+    "@types/styled-components": "^5.1.24",
+    "eslint": "^8.27.0",
+    "typescript": "^4.8.4"
+  },
+  "sideEffects": false
+}

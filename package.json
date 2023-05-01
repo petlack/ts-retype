@@ -94,6 +94,7 @@
   },
   "workspaces": [
     "docs",
+    "docs-static",
     "example",
     "retype",
     "scripts",
