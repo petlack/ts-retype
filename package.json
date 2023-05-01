@@ -1,6 +1,6 @@
 {
   "name": "ts-retype",
-  "version": "0.2.5",
+  "version": "0.2.6-rc",
   "publishConfig": {
     "access": "public"
   },
@@ -22,9 +22,6 @@
     "dev:script": "npm -w scripts run dev",
     "docs:build": "cd docs && npm run build",
     "docs:dev": "cd docs && npm run dev",
-    "docs:install": "cd docs && npm ci",
-    "docs:readme": "cd scripts && npm run run:readme",
-    "docs:snippets": "cd scripts && npm run run:docs",
     "example:build": "cd example && npm run build",
     "example:report": "cd example && npm run report",
     "format": "prettier --write './**/*.{js,ts,md,json}' --config ./.prettierrc",
@@ -46,8 +43,7 @@
     "test:watchAll": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
     "vis:build": "cd vis && npm run build",
     "vis:clean": "cd vis && npm run clean",
-    "vis:dev": "cd vis && npm run dev",
-    "vis:install": "cd vis && npm i"
+    "vis:dev": "cd vis && npm run dev"
   },
   "keywords": [
     "typescript",

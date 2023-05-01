@@ -1,4 +1,4 @@
-import { toEnumValue, safeToEnumValue } from '../src/lib/utils/enums';
+import { toEnumValue, safeToEnumValue } from '../src/utils/enums';
 import { Step } from '../src/config';
 
 describe('getEnumValue', () => {

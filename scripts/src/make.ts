@@ -10,7 +10,7 @@ import { isMain } from './isMain.js';
 import { prepareDist } from './prepareDist.js';
 import { runPipeline, PipelineStepDef, sortSteps, getStats, setFnName } from './pipeline.js';
 import { syntaxHighlighting } from './syntaxHighlighting.js';
-import { enumToString, toEnumValue, getEnumValues } from './lib/utils/enums.js';
+import { enumToString, toEnumValue, getEnumValues } from './utils/enums.js';
 import { pipelines, Step, Pipeline, ROOT, pipelinesDefinitions, steps } from './config.js';
 
 type CmdProps = BaseCmdProps & {
