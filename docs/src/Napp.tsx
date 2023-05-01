@@ -1,7 +1,7 @@
 import './Napp.styl';
 
 import * as Snippets from './generated/snippets';
-import { Snippet, Token } from '@ts-retype/retype/src/types/snippet';
+import type { Snippet, Token } from '@ts-retype/retype';
 
 type NappProps = {
   snippet: Snippet;

@@ -1,8 +1,8 @@
-import { IconDocs, IconGithub } from '@ts-retype/uikit/src/core/Icons';
-import { Button } from '@ts-retype/uikit/src/core/Button';
-import { Snippet } from '@ts-retype/retype/src/types/snippet';
-import { MultilangWindow } from '@ts-retype/uikit/src/code/MultilangWindow';
-import { TsSnippet } from '@ts-retype/uikit/src/code/TsSnippet';
+import { IconDocs, IconGithub } from '@ts-retype/uikit';
+import { Button } from '@ts-retype/uikit';
+import type { Snippet } from '@ts-retype/retype';
+import { MultilangWindow } from '@ts-retype/uikit';
+import { TsSnippet } from '@ts-retype/uikit';
 import * as Snippets from '../generated/snippets';
 import './Landing.styl';
 

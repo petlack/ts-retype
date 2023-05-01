@@ -2,18 +2,23 @@
   "name": "@ts-retype/docs",
   "version": "0.0.0",
   "private": true,
+  "main": "dist/App.es.js",
+  "module": "dist/App.es.js",
   "type": "module",
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "rollup -c",
+    "buildx": "tsc && vite build",
     "clean": "rm -rf dist",
     "dev": "vite",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "@ts-retype/retype": "*",
-    "@ts-retype/uikit": "*",
+  "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "@ts-retype/retype": "*",
+    "@ts-retype/uikit": "*"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

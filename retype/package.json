@@ -30,6 +30,10 @@
     "publish": "cd dist && npm publish",
     "transpile": "tsc"
   },
+  "files": [
+    "dist/index.js",
+    "dist/types.js"
+  ],
   "keywords": [
     "typescript",
     "static-analysis",

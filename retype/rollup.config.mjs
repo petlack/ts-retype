@@ -33,6 +33,23 @@ const config = [
     ],
   },
   {
+    input: 'src/types/index.ts',
+    output: {
+      file: 'dist/types.js',
+      format: 'es',
+      exports: 'named',
+      sourcemap: true,
+    },
+    external: [],
+    plugins: [
+      typescript(),
+      commonjs(),
+      nodeResolve({
+        preferBuiltins: true,
+      }),
+    ],
+  },
+  {
     input: 'src/ts-retype.ts',
     output: {
       file: 'dist/ts-retype.cjs',
@@ -57,6 +74,14 @@ const config = [
     input: 'src/index.ts',
     output: {
       file: 'dist/index.d.ts',
+      format: 'es'
+    },
+    plugins: [dts()]
+  },
+  {
+    input: 'src/types/index.ts',
+    output: {
+      file: 'dist/types.d.ts',
       format: 'es'
     },
     plugins: [dts()]
