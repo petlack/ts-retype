@@ -1,4 +1,4 @@
-import { Snippet, Token, TokenRoot, TokenText } from '@ts-retype/retype/src/types/snippet';
+import type { Snippet, Token, TokenRoot, TokenText } from '@ts-retype/retype';
 import './Token.styl';
 
 function startsWithNewline(token: Token): token is TokenText {

@@ -2,11 +2,12 @@
   "name": "@ts-retype/uikit",
   "version": "0.0.0",
   "private": true,
-  "main": "dist/index.es.js",
+  "main": "dist/index.cjs",
   "module": "dist/index.es.js",
   "type": "module",
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "rollup -c",
+    "buildx": "tsc && vite build",
     "clean": "rm -rf dist",
     "dev": "vite",
     "preview": "vite preview"
@@ -14,17 +15,22 @@
   "files": [
     "dist"
   ],
-  "dependencies": {
-    "chroma-js": "^2.4.2",
+  "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "chroma-js": "^2.4.2",
+    "styled-components": "^5.3.10"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-typescript": "^11.1.0",
     "@types/chroma-js": "^2.4.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/styled-components": "^5.1.26",
     "@vitejs/plugin-react": "^3.1.0",
     "node-sass": "^8.0.0",
     "rollup": "^3.21.1",
@@ -34,8 +40,9 @@
     "sass": "^1.62.0",
     "stylus": "^0.59.0",
     "typescript": "^4.9.3",
+    "typescript-plugin-styled-components": "^2.0.0",
     "vite": "^4.2.0",
     "vite-plugin-dts": "^2.3.0"
   },
-  "types": "dist/index.es.d.ts"
+  "types": "dist/index.d.ts"
 }
