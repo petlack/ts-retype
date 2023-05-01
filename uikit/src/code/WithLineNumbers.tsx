@@ -1,10 +1,10 @@
 import { Code } from './Code';
 
-import './WithLineNumbers.styl';
+import './WithLineNumbers.scss';
 
 export type WithLineNumbersProps = {
-    start: number;
-    lines: JSX.Element[][];
+  start: number;
+  lines: JSX.Element[][];
 }
 
 export function WithLineNumbers({ start, lines }: WithLineNumbersProps) {

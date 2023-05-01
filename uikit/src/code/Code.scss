@@ -1,7 +1,7 @@
-@import "../utils.styl"
-@import "../vars.styl"
+@import "../utils";
+@import "../vars";
 
-.code
+.code {
   flex: 1;
   color: var(--clr-fg-code);
   font-size: var(--font-size-md);
@@ -14,5 +14,7 @@
   display: flex;
   flex-direction: column;
   white-space: break-spaces;
-  span
+  span {
     min-height: 1em;
+  }
+}

@@ -1,6 +1,6 @@
-import './Button.styl';
+import './Button.scss';
 
-export type ButtonProps = {
+interface ButtonProps {
   caption: string;
   className?: string;
   href?: string;

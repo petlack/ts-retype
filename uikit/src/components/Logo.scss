@@ -1,13 +1,13 @@
-@import "../utils.styl"
-@import "../vars.styl"
+@import "../utils";
+@import "../vars";
 
-$logoSize = 48px;
+$logoSize: 48px;
 
-.logo
+.logo {
+  @include flexRow(calc(var(--logo-size) / 16));
   --logo-size: $logoSize;
-  flexRow(calc(var(--logo-size) / 16));
   align-items: flex-end;
-  &-icon
+  &-icon {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -21,10 +21,14 @@ $logoSize = 48px;
     border-bottom-left-radius: var(--radius-md);
     border-bottom-right-radius: var(--radius-md);
     background-color: var(--clr-accent-500);
-    &:hover
+    &:hover {
       background-color: var(--clr-accent-400);
-  &-title
+    }
+  }
+  &-title {
     color: var(--clr-accent-500);
     font-weight: var(--font-weight-bold);
     font-size: calc(var(--logo-size) * 0.75);
     line-height: 1.15;
+  }
+}

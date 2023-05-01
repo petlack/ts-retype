@@ -1,5 +1,5 @@
 import { Logo } from './Logo';
-import './TopBar.styl';
+import './TopBar.scss';
 
 export type TopBarProps = {
   children: JSX.Element | JSX.Element[];

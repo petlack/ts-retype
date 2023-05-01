@@ -1,6 +1,6 @@
 import { Code } from './Code';
 
-import './Lines.styl';
+import './Lines.scss';
 
 type LinesLineNoProps = {
   type: 'lineNo';

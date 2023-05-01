@@ -1,4 +1,4 @@
-import './Logo.styl';
+import './Logo.scss';
 
 export function Logo() {
   return (

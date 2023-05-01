@@ -3,7 +3,7 @@ import { LanguageTab } from './LanguageTab';
 import { Window } from './Window';
 import { WithBash } from './WithBash';
 
-import './MultilangWindow.styl';
+import './MultilangWindow.scss';
 
 export type MultilangWindowProps = {
   theme: 'dark' | 'light';

@@ -1,4 +1,4 @@
-import './LanguageTab.styl';
+import './LanguageTab.scss';
 
 export type LanguageTabProps = {
   lang: string;
