@@ -1,6 +1,6 @@
 import { Window } from './Window';
 import { flattenTokens, insertNewlines, splitLines, TokenElement } from './Token';
-import { Snippet } from '@ts-retype/retype/src/types/snippet';
+import type { Snippet } from '@ts-retype/retype';
 import { Lines } from './Lines';
 
 export type TsSnippetProps = {

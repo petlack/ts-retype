@@ -1,11 +1,12 @@
-import { useTheme, ThemeMode, ThemeProvider } from '@ts-retype/uikit/src/theme';
-import { UiKitApp } from '@ts-retype/uikit/src/components/UiKitApp';
-import { TopBar } from '@ts-retype/uikit/src/components/TopBar';
-import { generateTheme } from '@ts-retype/uikit/src/theme/generate';
+import { useTheme, ThemeMode, ThemeProvider } from '@ts-retype/uikit';
+import { UiKitApp } from '@ts-retype/uikit';
+import { TopBar } from '@ts-retype/uikit';
+import { generateTheme } from '@ts-retype/uikit';
 import { Docs } from './components/Docs';
 import { Landing } from './components/Landing';
 import { Menu } from './components/Menu';
-import './App.styl';
+import '@ts-retype/uikit/dist/index.css';
+import './App.scss';
 
 function Main() {
   const { theme } = useTheme();
@@ -29,7 +30,7 @@ const second = '#c68726';
 const body = '\'Noto Sans\', sans-serif';
 const heading = '\'Exo 2\', sans-serif';
 const mono = '\'Fira Code\', monospace';
-const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+const preferredTheme = typeof window !== 'undefined' ? window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : 'light';
 // const preferredTheme = 'dark' as ThemeMode;
 
 export default function App() {

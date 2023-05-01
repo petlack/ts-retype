@@ -14,9 +14,10 @@
   "homepage": "https://petlack.github.io/ts-retype/",
   "bugs": "https://github.com/petlack/ts-retype/issues",
   "scripts": {
-    "build": "npm -w uikit -w scripts install && npm -w uikit -w scripts run build",
+    "build": "npm -w retype -w uikit -w scripts install && npm -w retype run build && npm -w uikit run build && npm -w scripts run build",
     "build:all": "npm run build && npm run docs:build && npm run scripts:build && npm run example:build",
     "bump": "node config/bump.cjs",
+    "clean": "npm -w retype -w uikit -w scripts run clean",
     "dev:make": "npm -w scripts run dev src/make.ts --",
     "dev:script": "npm -w scripts run dev",
     "docs:build": "cd docs && npm run build",
@@ -94,6 +95,7 @@
   },
   "workspaces": [
     "docs",
+    "docs-static",
     "example",
     "retype",
     "scripts",

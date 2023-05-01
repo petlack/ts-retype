@@ -4,7 +4,6 @@ import { Filters, FiltersMenu } from './components/Filters';
 import { Footer } from './components/Footer/Footer';
 import { FulltextData } from './types';
 import { Listing } from './components/Listing';
-import { Metadata } from '@ts-retype/retype/src';
 import { Search } from './components/Search';
 import { SearchPhraseProvider } from './hooks/useSearchPhrase';
 import { ToastProvider } from './components/Toast';
@@ -14,6 +13,7 @@ import { UiKitApp } from '@ts-retype/uikit/src/components/UiKitApp';
 import { useSearch } from './hooks/useSearch';
 import { ThemeProvider } from '@ts-retype/uikit/src/theme';
 import { themes } from './themes';
+import type { Metadata } from '@ts-retype/retype/src';
 
 import './App.scss';
 

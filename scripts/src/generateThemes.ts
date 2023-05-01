@@ -30,7 +30,7 @@ export async function generateThemes() {
   await writeFile(
     join(rootDir, 'vis/src/themes.ts'),
     [
-      'import { Theme } from "@ts-retype/uikit/src/types/theme";',
+      'import { Theme } from "@ts-retype/uikit";',
       `export const themes = ${JSON.stringify({ light, dark })} as { light: Theme, dark: Theme };`,
     ].join('\n'),
   );

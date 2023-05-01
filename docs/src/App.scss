@@ -1,7 +1,7 @@
-@import "./utils.styl"
-@import "./vars.styl"
+@import "utils";
+@import "vars";
 
-lightSxTheme() {
+@mixin lightSxTheme() {
   --clr-cp-rosewater: #dc8a78;
   --clr-cp-flamingo: #dd7878;
   --clr-cp-pink: #ea76cb;
@@ -29,8 +29,7 @@ lightSxTheme() {
   --clr-cp-mantle: #e6e9ef;
   --clr-cp-base: #eff1f5;
 }
-
-darkSxTheme() {
+@mixin darkSxTheme() {
   --clr-cp-rosewater: #f5e0dc;
   --clr-cp-flamingo: #f2cdcd;
   --clr-cp-pink: #f5c2e7;
@@ -58,8 +57,7 @@ darkSxTheme() {
   --clr-cp-mantle: #181825;
   --clr-cp-crust: #11111b;
 }
-
-sxTheme() {
+@mixin sxTheme() {
   --clr-sx-token: var(--clr-cp-text);
   --clr-sx-builtin: var(--clr-cp-red);
   --clr-sx-class-name: var(--clr-cp-yellow);
@@ -72,8 +70,7 @@ sxTheme() {
   --clr-sx-punctuation: var(--clr-cp-overlay2);
   --clr-sx-string: var(--clr-cp-green);
 }
-
-lightThemeMain()
+@mixin lightThemeMain() {
   --clr-bg-topbar: var(--clr-bg);
   --clr-bg-main: var(--clr-bg);     
   --clr-bg-code: var(--clr-neutral-25);
@@ -81,8 +78,8 @@ lightThemeMain()
   --clr-fg-title: var(--clr-neutral-600);
   --clr-fg-code: var(--clr-fg);
   --clr-border: var(--clr-neutral-100);
-
-darkThemeMain()
+}
+@mixin darkThemeMain() {
   --clr-bg-topbar: var(--clr-neutral-50);
   --clr-bg-main: var(--clr-neutral-25);   
   --clr-bg-code: var(--clr-neutral-50);
@@ -90,30 +87,31 @@ darkThemeMain()
   --clr-fg-title: var(--clr-neutral-600);
   --clr-fg-code: var(--clr-fg);
   --clr-border: var(--clr-neutral-200);
-
-lightThemeWindow()
+}
+@mixin lightThemeWindow() {
   --clr-bg-window-header: var(--clr-second-50);
   --clr-fg-code-comment: var(--clr-neutral-300);
-
-darkThemeWindow()
+}
+@mixin darkThemeWindow() {
   --clr-bg-window-header: var(--clr-neutral-200);
   --clr-fg-code-comment: var(--clr-neutral-500);
-
-lightThemeDuplicate()
+}
+@mixin lightThemeDuplicate() {
   --clr-bg-title: var(--clr-second-50);
   --clr-bg-explorer: var(--clr-bg);
   --clr-bg-explorer-selected: var(--clr-second-100);
   --clr-bg-snippet: var(--clr-bg);
   --clr-bg-snippet-highlighted: var(--clr-accent-50);
-
-darkThemeDuplicate()
+}
+@mixin darkThemeDuplicate() {
   --clr-bg-title: var(--clr-neutral-50);
   --clr-bg-explorer: var(--clr-neutral-50);
   --clr-bg-explorer-selected: var(--clr-neutral-200);
   --clr-bg-snippet: var(--clr-neutral-100);
   --clr-bg-snippet-highlighted: var(--clr-neutral-200);
+}
 
-*
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -138,9 +136,11 @@ darkThemeDuplicate()
     background-color: var(--clr-accent-500);
     color: white;
   }
+}
 
-:root
+:root {
   font-size: 16px;
+}
 
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
@@ -166,41 +166,49 @@ darkThemeDuplicate()
   }
 }
 
-body
+body {
   min-height: 100vh;
   font-family: var(--font-body);
+}
 
-main
-  &.light
-    lightThemeMain();
-    lightThemeWindow();
-    lightThemeDuplicate();
-    lightSxTheme();
-  &.dark
-    darkThemeMain();
-    darkThemeWindow();
-    darkThemeDuplicate();
-    darkSxTheme();
-  sxTheme();
-  flexColumn();
+main {
+  &.light {
+    @include lightThemeMain();
+    @include lightThemeWindow();
+    @include lightThemeDuplicate();
+    @include lightSxTheme();
+  }
+  &.dark {
+    @include darkThemeMain();
+    @include darkThemeWindow();
+    @include darkThemeDuplicate();
+    @include darkSxTheme();
+  }
+  @include sxTheme();
+  @include flexColumn();
   align-items: center;
   background-color: var(--clr-bg-main);
   color: var(--clr-fg-text);
   gap: var(--space-4);
-  .topbar-container
+  .topbar-container {
     position: fixed;
     top: 0;
     z-index: var(--z-sticky);
     background-color: var(--clr-bg-topbar);
     border-bottom: 1px solid var(--clr-border);
-    .strip
+    .strip {
       position: fixed;
       z-index: var(--z-overlay);
-  .window
+    }
+  }
+  .window {
     background-color: var(--clr-bg-code);
-  header
+  }
+  header {
+    @include flexColumn();
     width: 100%;
-    flexColumn();
     justify-content: center;
     align-items: center;
     box-shadow: var(--shadow-base);
+  }
+}

@@ -63,7 +63,7 @@ export const steps: PipelineStepDef<Step>[] = [
   },
   { name: Step.buildExample, deps: [Step.runExtractSnippets] },
   { name: Step.buildTsRetype, deps: [Step.installTsRetype] },
-  { name: Step.buildUikit, deps: [Step.installUikit] },
+  { name: Step.buildUikit, deps: [Step.installUikit, Step.buildTsRetype] },
   { name: Step.buildVis, deps: [Step.installVis, Step.buildUikit, Step.generateThemes] },
   { name: Step.cleanDocs, deps: [] },
   { name: Step.cleanExample, deps: [] },

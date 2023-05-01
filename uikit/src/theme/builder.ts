@@ -1,6 +1,6 @@
 import chroma from 'chroma-js';
-import { extendStandard } from '../types/extend';
-import { Color, ColorScale, Theme, ThemeMode } from '../types/theme';
+import { extendStandard } from './types/extend';
+import { Color, ColorScale, Theme, ThemeMode } from './types/theme';
 import chromaPalette from './chroma';
 
 function toColorScale(colors: Color[]): ColorScale {

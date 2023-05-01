@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import chroma from 'chroma-js';
 import { useTheme } from './theme/useTheme';
-import { ColorScale } from './types/theme';
+import { ColorScale } from './theme/types/theme';
 import { Layouts } from './Layouts';
 import { Palettes } from './Palettes';
 import './Page.scss';

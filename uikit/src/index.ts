@@ -12,10 +12,12 @@ export * from './code/WithLineNumbers';
 
 export * from './core/Button';
 export * from './core/Icons';
+export * from './core/Example';
 
 export * from './components/Logo';
 export * from './components/TopBar';
 export * from './components/UiKitApp';
 
 export * from './theme';
+export * from './theme/types/theme';
 export * from './theme/generate';
