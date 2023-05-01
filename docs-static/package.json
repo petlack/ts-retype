@@ -6,8 +6,13 @@
   },
   "scripts": {
     "build": "remix build",
+    "build-static": "wget -r -nH -i urls.txt -P static",
+    "clean": "rm -rf dist public/dist static",
     "dev": "remix dev",
-    "start": "remix-serve build",
+    "generate": "npm run start & sleep 2 && npm run build-static && pkill -f \"remix-serve dist\"",
+    "rebuild": "npm run clean && npm run build",
+    "serve-static": "serve static",
+    "start": "PORT=3034 remix-serve dist",
     "typecheck": "tsc"
   },
   "dependencies": {
