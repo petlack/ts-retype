@@ -5,3 +5,6 @@ retype-report.html
 .husky
 .ignored
 .eslintcache
+/test-results/
+/playwright-report/
+/playwright/.cache/
