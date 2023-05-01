@@ -22,6 +22,8 @@
     "dev:script": "npm -w scripts run dev",
     "docs:build": "cd docs && npm run build",
     "docs:dev": "cd docs && npm run dev",
+    "e2e": "playwright test --trace on",
+    "e2e:report": "playwright show-report",
     "example:build": "cd example && npm run build",
     "example:report": "cd example && npm run report",
     "format": "prettier --write './**/*.{js,ts,md,json}' --config ./.prettierrc",
@@ -55,6 +57,7 @@
     "ramda": "^0.28.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.33.0",
     "@types/jest": "^29.4.0",
     "@types/ramda": "^0.28.23",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
