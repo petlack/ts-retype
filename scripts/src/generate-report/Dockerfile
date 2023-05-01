@@ -9,5 +9,5 @@ WORKDIR /app
 
 COPY . .
 
-CMD ["sh", "/app/scripts/src/lib/generate-report/generate.sh"]
+CMD ["sh", "/app/scripts/src/generate-report/generate.sh"]
 # ENTRYPOINT ["/bin/sh"]
