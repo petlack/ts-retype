@@ -1,4 +1,4 @@
-import { Theme } from '@ts-retype/uikit/src/types/theme';
+import { Theme } from '@ts-retype/uikit';
 export const themes = {
   light: {
     name: 'light',

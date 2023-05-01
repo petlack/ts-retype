@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ThemeContext } from './context';
 import applyCssVariables from './cssVariables';
-import { Theme } from '../types/theme';
+import { Theme } from './types/theme';
 
 export type ThemeProviderProps = {
   children: JSX.Element;

@@ -19,4 +19,5 @@ export * from './components/TopBar';
 export * from './components/UiKitApp';
 
 export * from './theme';
+export * from './theme/types/theme';
 export * from './theme/generate';

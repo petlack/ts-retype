@@ -1,4 +1,4 @@
-import { ThemeMode } from '../types/theme';
+import { ThemeMode } from './types/theme';
 import { fromColors, namedTheme, withFonts } from './builder';
 
 export type GenerateThemeProps = {
