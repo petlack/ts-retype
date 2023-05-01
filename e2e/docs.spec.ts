@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
-  await page.goto('http://localhost:5174/');
+  await page.goto('http://localhost:4173/');
   await page.locator('#about').getByText('yarn').click();
   await page.locator('#about').getByText('npm').click();
   await page.locator('#about').getByText('npm', { exact: true }).click();
