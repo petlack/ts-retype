@@ -1,7 +1,8 @@
 import { Window } from './Window';
-import { flattenTokens, insertNewlines, splitLines, TokenElement } from './Token';
+import { TokenElement } from './Token';
 import type { Snippet } from '@ts-retype/retype';
 import { Lines } from './Lines';
+import { splitLines } from '@ts-retype/retype/dist/snippet';
 
 export type TsSnippetProps = {
   start: number;
@@ -15,7 +16,7 @@ export function TsSnippet({ start, name, snippet, theme, responsive = false }: T
   const sn: Snippet = {
     name,
     lang: 'ts',
-    code: splitLines(insertNewlines(flattenTokens(snippet.code))),
+    code: splitLines(snippet.code),
   };
   const linesMarkup = sn.code.children.map((token, idx) => (
     <TokenElement

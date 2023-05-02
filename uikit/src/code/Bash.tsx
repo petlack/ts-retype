@@ -1,7 +1,8 @@
 import type { Snippet, Token, TokenRoot } from '@ts-retype/retype';
 import { Lines } from './Lines';
-import { flattenTokens, insertNewlines, splitLines, TokenElement } from './Token';
+import { TokenElement } from './Token';
 import { Window } from './Window';
+import { splitLines } from '@ts-retype/retype/dist/snippet';
 
 export type BashProps = {
   children: string;
@@ -36,11 +37,7 @@ export function Bash({ children, theme }: BashProps) {
   const src = children;
 
   const root = parseBash(src);
-  const code = splitLines(
-    insertNewlines(
-      flattenTokens(root)
-    ),
-  );
+  const code = splitLines(root);
   const snippet: Snippet = {
     name: 'bash',
     lang: 'bash',

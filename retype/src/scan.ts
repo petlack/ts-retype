@@ -24,7 +24,7 @@ function formatFileName(file: string, maxLength = 120) {
 
 export type ScanResult = {
   data: TypeDuplicate[];
-  meta: Omit<Metadata, 'reportSize'>;
+  meta: Omit<Metadata, 'reportSize' | 'dataSize' | 'appSize'>;
 };
 
 export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {

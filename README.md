@@ -59,7 +59,7 @@ See [Data Format](#data-format) for result format.
 ```console
 ==================================================
 =                   ts-retype                    =
-=                     v0.2.5                     =
+=                   v0.2.6-rc                    =
 ==================================================
 
 docs:  https://petlack.github.io/ts-retype/

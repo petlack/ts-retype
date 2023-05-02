@@ -4,6 +4,7 @@ import { resolveOutputFilePath } from './cmd';
 import { createLogger } from './log';
 import { Metadata, ReportProps, ReportResult, ScanProps } from './types';
 import { dir, stringify } from './utils';
+import { compress } from './compress';
 
 const log = createLogger(console.log);
 
@@ -35,14 +36,17 @@ export function report(args: ScanProps & ReportProps) {
 
   log.log();
   log.log(`found ${duplicates.length} duplicates`);
-
-  const dataJson = JSON.stringify(duplicates);
-
   log.log();
+
+  const compressed = compress(duplicates);
+
+  const dataJson = JSON.stringify(compressed);
 
   const meta: Metadata = {
     ...scanMeta,
     reportSize: 0,
+    appSize: 0,
+    dataSize: 0,
   };
 
   if (!noHtml) {
@@ -55,12 +59,16 @@ export function report(args: ScanProps & ReportProps) {
     }
     fs.cpSync(templateFile, htmlFile);
 
-    const html = fs.readFileSync(htmlFile);
-    const withDataJson = html
-      .toString()
-      .replace('window.__datajson__="DATA_JSON"', `window.__data__ = ${dataJson}`);
+    const html = fs.readFileSync(htmlFile).toString();
+
+    const withDataJson = html.replace(
+      'window.__datajson__="DATA_JSON"',
+      `window.__data__ = ${dataJson}`,
+    );
 
     meta.reportSize = withDataJson.length;
+    meta.appSize = html.length;
+    meta.dataSize = dataJson.length;
 
     log.table(meta);
 
@@ -83,7 +91,7 @@ export function report(args: ScanProps & ReportProps) {
     fs.writeFileSync(
       json,
       JSON.stringify({
-        data: duplicates,
+        data: compressed,
         meta,
       } as ReportResult),
     );

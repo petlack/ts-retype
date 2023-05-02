@@ -33,6 +33,19 @@ const config = [
     ],
   },
   {
+    input: 'src/snippet.ts',
+    output: {
+      file: 'dist/snippet.js',
+      format: 'es',
+      exports: 'named',
+      sourcemap: true,
+    },
+    plugins: [
+      typescript(),
+      commonjs(),
+    ],
+  },
+  {
     input: 'src/types/index.ts',
     output: {
       file: 'dist/types.js',
@@ -74,6 +87,14 @@ const config = [
     input: 'src/index.ts',
     output: {
       file: 'dist/index.d.ts',
+      format: 'es'
+    },
+    plugins: [dts()]
+  },
+  {
+    input: 'src/snippet.ts',
+    output: {
+      file: 'dist/snippet.d.ts',
       format: 'es'
     },
     plugins: [dts()]

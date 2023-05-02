@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { readFileSync, statSync } from 'fs';
 import path from 'path';
 import ts from 'typescript';
 
@@ -88,4 +88,13 @@ export function selectIndices<T>(arr: T[], indices: Iterable<number>): T[] {
     }
   }
   return result;
+}
+
+export function getFileSizeInBytes(filePath: string): number | undefined {
+  try {
+    const stats = statSync(filePath);
+    return stats.size;
+  } catch (err: any) {
+    console.error(`Failed to get file size for "${filePath}": ${err.message}`);
+  }
 }
