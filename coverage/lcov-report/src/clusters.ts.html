@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.62% </span>
+                <span class="strong">91.17% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>29/32</span>
+                <span class='fraction'>31/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.15% </span>
+                <span class="strong">68% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>12/19</span>
+                <span class='fraction'>17/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>13/13</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.62% </span>
+                <span class="strong">91.17% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>29/32</span>
+                <span class='fraction'>31/34</span>
             </div>
         
             
@@ -199,7 +199,12 @@
 <a name='L134'></a><a href='#L134'>134</a>
 <a name='L135'></a><a href='#L135'>135</a>
 <a name='L136'></a><a href='#L136'>136</a>
-<a name='L137'></a><a href='#L137'>137</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -233,13 +238,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">23x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -324,10 +338,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -336,10 +346,10 @@
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { parse } from './parse';
-import { Similarity, Clusters } from './types/similarity';
+import { Similarity, IClusters } from './types/similarity';
 import ts from 'typescript';
 import { freq, selectIndices } from './utils';
-import { concat, pluck, uniq } from 'ramda';
+import { pluck, uniq } from 'ramda';
 import { highlight } from './source';
 import { TypeDuplicate } from '.';
 import {
@@ -367,16 +377,25 @@ function nonEmptyCandidateType(type: CandidateType): boolean {
   }
 }
 &nbsp;
-export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
+export function findTypesInFile(
+  srcFile: ts.SourceFile,
+  relPath: string,
+): { types: SourceCandidateType[]; lengths: number[] } {
   function toSourceCandidateTypes(file: string, types: CandidateType[]): SourceCandidateType[] {
     return types.map((t) =&gt; {
-      const src =
-        t.type === 'function'
-          ? (t as FunctionCandidateType).signature?.strFull || <span class="branch-1 cbranch-no" title="branch not covered" >'() =&gt; {}'</span>
-          : t.src;
+      const isFunction = t.type === 'function';
+      const src = isFunction
+        ? (t as FunctionCandidateType).signature?.strFull || <span class="branch-1 cbranch-no" title="branch not covered" >'() =&gt; {}'</span>
+        : t.src;
       // const src = getCodeSnippet(srcFile, { pos: t.pos[0], end: t.pos[1] });
+      const offset = isFunction
+        ? (t as FunctionCandidateType).signature?.name?.length || <span class="branch-1 cbranch-no" title="branch not covered" >0</span>
+        : t.offset;
+      const pos = isFunction ? ([0, src.length] as typeof t.pos) : t.pos;
       return {
         ...t,
+        offset,
+        pos,
         file,
         srcHgl: highlight(src),
         src,
@@ -441,7 +460,7 @@ function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable&lt;numb
   }
 }
 &nbsp;
-function similarityToOutput(sim: Similarity): TypeDuplicate['group'] {
+function similarityToDuplicateGroup(sim: Similarity): TypeDuplicate['group'] {
   switch (sim) {
     case Similarity.Identical:
       return 'identical';
@@ -452,22 +471,18 @@ function similarityToOutput(sim: Similarity): TypeDuplicate['group'] {
   }
 }
 &nbsp;
-export function clustersToOutput(
+export function clustersToDuplicates(
   types: SourceCandidateType[],
-  clusters: Clusters,
+  clusters: IClusters&lt;Similarity&gt;,
 ): TypeDuplicate[] {
-  const res = Object.entries(clusters).reduce(
-    (res, [group, clusters]) =&gt;
-      concat(
-        res,
-        clusters.map((idxs) =&gt; ({
-          names: chooseClusterNames(types, idxs),
-          files: chooseClusterFiles(types, idxs),
-          group: similarityToOutput(+group as Similarity),
-          ...chooseTypeFeatures(types, idxs),
-        })),
-      ),
-    [] as TypeDuplicate[],
+  const res = clusters.flatMap(
+    (group, idxs) =&gt;
+      ({
+        names: chooseClusterNames(types, idxs),
+        files: chooseClusterFiles(types, idxs),
+        group: similarityToDuplicateGroup(+group as Similarity),
+        ...chooseTypeFeatures(types, idxs),
+      } as TypeDuplicate),
   );
   return res;
 }
@@ -478,7 +493,7 @@ export function clustersToOutput(
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-05-01T20:47:55.181Z
+                at 2023-05-02T18:09:00.775Z
             </div>
         <script src="../prettify.js"></script>
         <script>
