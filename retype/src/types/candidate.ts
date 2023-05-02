@@ -42,6 +42,7 @@ export interface LiteralCandidateType extends CandidateType {
 export interface SourceCandidateType extends CandidateType {
   file: string;
   src: string;
+  // srcHgl: ArrayElement<TypeDuplicate['files']>['srcHgl'];
   srcHgl: any;
 }
 

@@ -1,4 +1,4 @@
-import { clustersToDuplicates, getTypesInFile } from '../src/clusters';
+import { clustersToDuplicates, findTypesInFile } from '../src/clusters';
 import { similarityMatrixToClusters, computeSimilarityMatrix } from '../src/similarity';
 import { createFile } from '../src/utils';
 import { Clusters, SparseMatrix } from '../src/types/similarity';
@@ -94,7 +94,7 @@ describe('clustersToOutput', () => {
   test('no candidate types returns empty array', () => {
     const relPath = 'src.ts';
     const srcFile = createFile('type A = { foo: string; bar: string }');
-    const { types } = getTypesInFile(srcFile, relPath);
+    const { types } = findTypesInFile(srcFile, relPath);
     const matrix = computeSimilarityMatrix(types);
     const clusters = similarityMatrixToClusters(matrix);
     const output = clustersToDuplicates(types, clusters);
@@ -114,7 +114,7 @@ describe('clustersToOutput', () => {
     const expectedSrcB = `    type A = { foo: string; bar: string }
     type B = { foo: string; bar: string }
     `;
-    const { types } = getTypesInFile(srcFile, relPath);
+    const { types } = findTypesInFile(srcFile, relPath);
     const matrix = computeSimilarityMatrix(types);
     const clusters = similarityMatrixToClusters(matrix);
     const output = clustersToDuplicates(types, clusters);
@@ -166,7 +166,7 @@ describe('clustersToOutput', () => {
     const expectedSrcC = `    type B = { foo: string; bar: string }
     type B = { foo: string; bar: string }
     `;
-    const { types } = getTypesInFile(srcFile, relPath);
+    const { types } = findTypesInFile(srcFile, relPath);
     const matrix = computeSimilarityMatrix(types);
     const clusters = similarityMatrixToClusters(matrix);
     const output = clustersToDuplicates(types, clusters);
@@ -257,7 +257,7 @@ describe('clustersToOutput', () => {
       }
 
 `);
-    const { types } = getTypesInFile(srcFile, relPath);
+    const { types } = findTypesInFile(srcFile, relPath);
     const matrix = computeSimilarityMatrix(types);
     const clusters = similarityMatrixToClusters(matrix);
     const output = clustersToDuplicates(types, clusters);

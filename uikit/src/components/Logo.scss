@@ -1,11 +1,9 @@
 @import "../utils";
 @import "../vars";
 
-$logoSize: 48px;
-
 .logo {
   @include flexRow(calc(var(--logo-size) / 16));
-  --logo-size: $logoSize;
+  --logo-size: 48px;
   align-items: flex-end;
   &-icon {
     display: flex;

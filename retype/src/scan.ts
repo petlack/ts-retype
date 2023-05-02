@@ -2,7 +2,7 @@ import path from 'path';
 import Progress from 'progress';
 import { globSync } from 'glob';
 import { concat } from 'ramda';
-import { clustersToDuplicates, getTypesInFile } from './clusters';
+import { clustersToDuplicates, findTypesInFile } from './clusters';
 import { createLogger } from './log';
 import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity';
 import { Metadata, ScanProps, TypeDuplicate } from './types';
@@ -40,8 +40,10 @@ export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
   for (const relPath of files) {
     const file = path.join(rootDir, relPath);
     log.live(`⏳ loading ${formatFileName(file)}`);
+
     const srcFile = loadFile(file);
-    const { types, lengths } = getTypesInFile(srcFile, relPath);
+    const { types, lengths } = findTypesInFile(srcFile, relPath);
+
     filesLengths[relPath] = lengths;
     filesTypesCount[relPath] = types.length;
     allTypes = concat(allTypes, types);

@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { ArrayElement, TypeDuplicate } from '@ts-retype/retype/src/types';
+import type { ArrayElement, TypeDuplicate } from '@ts-retype/retype';
 import { Title } from './Title';
 import { DefinitionSnippet } from './DefinitionSnippet';
 import { Explorer, ExplorerProps } from '../Explorer';

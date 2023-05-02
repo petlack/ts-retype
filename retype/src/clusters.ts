@@ -30,16 +30,25 @@ function nonEmptyCandidateType(type: CandidateType): boolean {
   }
 }
 
-export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
+export function findTypesInFile(
+  srcFile: ts.SourceFile,
+  relPath: string,
+): { types: SourceCandidateType[]; lengths: number[] } {
   function toSourceCandidateTypes(file: string, types: CandidateType[]): SourceCandidateType[] {
     return types.map((t) => {
-      const src =
-        t.type === 'function'
-          ? (t as FunctionCandidateType).signature?.strFull || '() => {}'
-          : t.src;
+      const isFunction = t.type === 'function';
+      const src = isFunction
+        ? (t as FunctionCandidateType).signature?.strFull || '() => {}'
+        : t.src;
       // const src = getCodeSnippet(srcFile, { pos: t.pos[0], end: t.pos[1] });
+      const offset = isFunction
+        ? (t as FunctionCandidateType).signature?.name?.length || 0
+        : t.offset;
+      const pos = isFunction ? ([0, src.length] as typeof t.pos) : t.pos;
       return {
         ...t,
+        offset,
+        pos,
         file,
         srcHgl: highlight(src),
         src,
