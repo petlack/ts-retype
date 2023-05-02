@@ -7,8 +7,8 @@
   "type": "module",
   "scripts": {
     "build": "rollup -c",
-    "build-storybook": "storybook build",
-    "buildx": "tsc && vite build",
+    "build:storybook": "storybook build",
+    "build:vite": "tsc && vite build",
     "clean": "rm -rf dist",
     "cosmos": "cosmos",
     "cosmos:export": "cosmos-export",

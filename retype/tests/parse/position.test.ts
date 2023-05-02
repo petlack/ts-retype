@@ -1,4 +1,4 @@
-import { getTypesInFile } from '../../src/clusters';
+import { findTypesInFile } from '../../src/clusters';
 import { createFile } from '../../src/utils';
 
 describe('offsets', () => {
@@ -13,7 +13,7 @@ export type User = {
 // ...
 // ...`;
     const srcFile = createFile(src);
-    const candidates = getTypesInFile(srcFile, '.');
+    const candidates = findTypesInFile(srcFile, '.');
 
     expect(candidates.types[0]).toHaveProperty('offset', 26);
   });
@@ -25,7 +25,7 @@ export type User = {
   rootDir: string;
 };`;
     const srcFile = createFile(src);
-    const candidates = getTypesInFile(srcFile, '.');
+    const candidates = findTypesInFile(srcFile, '.');
 
     expect(candidates.types[0]).toHaveProperty('offset', 24);
   });
@@ -44,7 +44,7 @@ export type User = {
 // ...
 // ...`;
     const srcFile = createFile(src);
-    const candidates = getTypesInFile(srcFile, '.');
+    const candidates = findTypesInFile(srcFile, '.');
 
     expect(candidates.types[0]).toHaveProperty('offset', 26);
   });
@@ -58,7 +58,7 @@ export type TypeDuplicate = {
   }
 };`;
     const srcFile = createFile(src);
-    const candidates = getTypesInFile(srcFile, '.');
+    const candidates = findTypesInFile(srcFile, '.');
 
     expect(candidates.types[0]).toHaveProperty('offset', 29);
   });
@@ -69,7 +69,7 @@ export type TypeDuplicate = {
   status: { code: number, title: string };
 }`;
     const srcFile = createFile(src);
-    const candidates = getTypesInFile(srcFile, '.');
+    const candidates = findTypesInFile(srcFile, '.');
 
     expect(candidates.types[0]).toHaveProperty('offset', 9);
   });

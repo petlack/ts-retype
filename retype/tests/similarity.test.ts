@@ -1,32 +1,92 @@
-import { clustersToOutput, getTypesInFile } from '../src/clusters';
-import { pairsToClusters, toSimilarityPairs, similarityMatrix } from '../src/similarity';
+import { clustersToDuplicates, findTypesInFile } from '../src/clusters';
+import { similarityMatrixToClusters, computeSimilarityMatrix } from '../src/similarity';
 import { createFile } from '../src/utils';
+import { Clusters, SparseMatrix } from '../src/types/similarity';
 
-describe('toSimilarityPairs', () => {
-  test('ok', () => {
-    const given = toSimilarityPairs([
-      [4, 0, 2, 1],
-      [0, 4, 2, 2],
-      [2, 2, 4, 0],
-      [1, 0, 0, 4],
+describe('SparseMatrix', () => {
+  test('get/set', () => {
+    const matrix = SparseMatrix({ nil: -1 }).set(10, 12, 1);
+    expect(matrix.get(10, 12)).toBe(1);
+    expect(matrix.get(0, 0)).toBe(-1);
+    expect(matrix.get(10, 0)).toBe(-1);
+    expect(matrix.get(0, 12)).toBe(-1);
+  });
+  test('keys', () => {
+    const matrix = SparseMatrix({ nil: -1 }).set(100, 12, 1).set(10, 12, 2);
+    expect(matrix.keys().sort()).toEqual([10, 12, 100].sort());
+  });
+  test('toDense', () => {
+    const matrix = SparseMatrix({ nil: 0 }).set(1, 2, 1).set(0, 0, 2);
+    expect(matrix.keys().sort()).toEqual([0, 1, 2].sort());
+    expect(matrix.toDense()).toEqual([
+      [2, 0, 0],
+      [0, 0, 1],
+      [0, 1, 0],
     ]);
-    expect(given).toEqual([
-      [0, 2, 2],
-      [0, 3, 1],
-      [1, 2, 2],
-      [1, 3, 2],
+  });
+  test('fromDense', () => {
+    expect(
+      SparseMatrix({ nil: 0 })
+        .fromDense([
+          [1, 2],
+          [2, 1],
+        ])
+        .toDense(),
+    ).toEqual([
+      [1, 2],
+      [2, 1],
     ]);
   });
 });
 
-describe('pairsToClusters', () => {
-  test('ok', () => {
-    const given = pairsToClusters([
-      [0, 1, 3],
-      [1, 2, 3],
-      [3, 4, 4],
+describe('Clusters', () => {
+  test('addTuple & findCluster', () => {
+    const clusters = Clusters<number>();
+    expect(clusters.findCluster(0, 0, 0)).toBeFalsy();
+
+    clusters.addTuple(0, 0, 1);
+    expect(clusters.findCluster(0, 0, 0)).toBeFalsy();
+    expect(clusters.findCluster(0, 0, 1)).toEqual(new Set([0]));
+
+    clusters.addTuple(0, 1, 1);
+    expect(clusters.findCluster(0, 0, 1)).toEqual(new Set([0, 1]));
+
+    clusters.addTuple(1, 3, 1);
+    expect(clusters.findCluster(1, 2, 1)).toEqual(new Set([0, 1, 3]));
+  });
+  test('flatMap', () => {
+    const clusters = Clusters<number>().fromTuples([
+      [0, 0, 1],
+      [0, 1, 1],
+      [5, 8, 1],
+      [8, 9, 1],
+      [1, 3, 1],
+      [3, 5, 2],
     ]);
-    expect(given).toEqual({ 3: [new Set([0, 1, 2])], 4: [new Set([3, 4])] });
+    expect(clusters.flatMap((val, idxs) => ({ val, idxs }))).toEqual([
+      { val: 1, idxs: new Set([0, 1, 3]) },
+      { val: 1, idxs: new Set([5, 8, 9]) },
+      { val: 2, idxs: new Set([3, 5]) },
+    ]);
+  });
+});
+
+describe('similarityMatrixToClusters', () => {
+  test('returns clusters', () => {
+    const given = similarityMatrixToClusters(
+      SparseMatrix({ nil: 0 }).fromDense([
+        [4, 0, 1, 3],
+        [0, 4, 3, 3],
+        [1, 3, 4, 2],
+        [3, 3, 2, 4],
+      ]),
+    ).flatMap((val, idxs) => ({ val, idxs }));
+    expect(given).toEqual([
+      { val: 1, idxs: new Set([0, 2]) },
+      { val: 3, idxs: new Set([0, 3, 1]) },
+      { val: 3, idxs: new Set([1, 2]) },
+      { val: 2, idxs: new Set([2, 3]) },
+    ]);
   });
 });
 
@@ -34,11 +94,10 @@ describe('clustersToOutput', () => {
   test('no candidate types returns empty array', () => {
     const relPath = 'src.ts';
     const srcFile = createFile('type A = { foo: string; bar: string }');
-    const { types } = getTypesInFile(srcFile, relPath);
-    const matrix = similarityMatrix(types);
-    const pairs = toSimilarityPairs(matrix);
-    const clusters = pairsToClusters(pairs);
-    const output = clustersToOutput(types, clusters);
+    const { types } = findTypesInFile(srcFile, relPath);
+    const matrix = computeSimilarityMatrix(types);
+    const clusters = similarityMatrixToClusters(matrix);
+    const output = clustersToDuplicates(types, clusters);
     expect(output).toEqual([]);
   });
 
@@ -55,11 +114,10 @@ describe('clustersToOutput', () => {
     const expectedSrcB = `    type A = { foo: string; bar: string }
     type B = { foo: string; bar: string }
     `;
-    const { types } = getTypesInFile(srcFile, relPath);
-    const matrix = similarityMatrix(types);
-    const pairs = toSimilarityPairs(matrix);
-    const clusters = pairsToClusters(pairs);
-    const output = clustersToOutput(types, clusters);
+    const { types } = findTypesInFile(srcFile, relPath);
+    const matrix = computeSimilarityMatrix(types);
+    const clusters = similarityMatrixToClusters(matrix);
+    const output = clustersToDuplicates(types, clusters);
     expect(output).toMatchObject([
       {
         files: [
@@ -108,11 +166,10 @@ describe('clustersToOutput', () => {
     const expectedSrcC = `    type B = { foo: string; bar: string }
     type B = { foo: string; bar: string }
     `;
-    const { types } = getTypesInFile(srcFile, relPath);
-    const matrix = similarityMatrix(types);
-    const pairs = toSimilarityPairs(matrix);
-    const clusters = pairsToClusters(pairs);
-    const output = clustersToOutput(types, clusters);
+    const { types } = findTypesInFile(srcFile, relPath);
+    const matrix = computeSimilarityMatrix(types);
+    const clusters = similarityMatrixToClusters(matrix);
+    const output = clustersToDuplicates(types, clusters);
     expect(output).toMatchObject([
       {
         files: [
@@ -200,11 +257,10 @@ describe('clustersToOutput', () => {
       }
 
 `);
-    const { types } = getTypesInFile(srcFile, relPath);
-    const matrix = similarityMatrix(types);
-    const pairs = toSimilarityPairs(matrix);
-    const clusters = pairsToClusters(pairs);
-    const output = clustersToOutput(types, clusters);
+    const { types } = findTypesInFile(srcFile, relPath);
+    const matrix = computeSimilarityMatrix(types);
+    const clusters = similarityMatrixToClusters(matrix);
+    const output = clustersToDuplicates(types, clusters);
     expect(output).toMatchObject([
       {
         files: [

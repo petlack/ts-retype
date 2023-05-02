@@ -1,4 +1,4 @@
-import { getTypesInFile } from '../../src/clusters';
+import { findTypesInFile } from '../../src/clusters';
 import { createFile } from '../../src/utils';
 
 describe('parse', () => {
@@ -10,7 +10,7 @@ describe('parse', () => {
       return left.map((_, idx) => [left[idx], right[idx]]);
     }`;
     const srcFile = createFile(src);
-    const candidates = getTypesInFile(srcFile, '.');
+    const candidates = findTypesInFile(srcFile, '.');
 
     expect(candidates.types[0]).toMatchObject({
       src: `zip(
@@ -27,7 +27,7 @@ describe('parse', () => {
                   bar: number;
     }`;
     const srcFile = createFile(src);
-    const candidates = getTypesInFile(srcFile, '.');
+    const candidates = findTypesInFile(srcFile, '.');
 
     const expected = `type A = {
       foo: string;

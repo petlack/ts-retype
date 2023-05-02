@@ -1,5 +1,4 @@
-import { TypeDuplicate } from '@ts-retype/retype/src/types';
-import { Token, TokenRoot } from '@ts-retype/retype/src/types/snippet';
+import type { Token, TokenRoot, TypeDuplicate } from '@ts-retype/retype';
 
 function containsPhrase(str: string, phrase: string): boolean {
   const regex = new RegExp(phrase, 'i');
@@ -30,18 +29,19 @@ export function highlightPhrase(root: TokenRoot, phrase: string): TokenRoot {
   };
 }
 
+function tokenLength(token: Token): number {
+  if (token.type === 'text') {
+    return token.value.length;
+  } else if (token.type === 'newline') {
+    return 1;
+  }
+  return token.children.map(tokenLength).reduce((a, b) => a + b) + token.children.length - 1;
+}
+
 export function highlightDefinition(
   root: TokenRoot,
-  { pos, offset }: Pick<TypeDuplicate['files'][0], 'offset' | 'pos' | 'lines'>,
+  { pos, offset }: Pick<TypeDuplicate['files'][0], 'offset' | 'pos'>,
 ): TokenRoot {
-  function count(token: Token): number {
-    if (token.type === 'text') {
-      return token.value.length;
-    } else if (token.type === 'newline') {
-      return 1;
-    }
-    return token.children.map(count).reduce((a, b) => a + b) + token.children.length - 1;
-  }
   let position = 0;
   const highlighted = [] as Token[];
   for (const token of root.children) {
@@ -52,7 +52,7 @@ export function highlightDefinition(
         className: [...(token.properties?.className || []), 'sat--def'],
       };
     }
-    position += count(token);
+    position += tokenLength(token);
     highlighted.push(newToken);
   }
   return {

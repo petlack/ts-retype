@@ -41,6 +41,7 @@ export enum Step {
   syntaxHighlightSnippets,
   tests,
   testsFast,
+  updateDist,
 }
 
 export const pipelines = new Set<Pipeline>([
@@ -81,6 +82,7 @@ export const steps: PipelineStepDef<Step>[] = [
   { name: Step.installUikit, deps: [Step.install, Step.cleanUikit] },
   { name: Step.installVis, deps: [Step.install, Step.cleanVis] },
   { name: Step.prepareDist, deps: [Step.buildVis, Step.buildTsRetype] },
+  { name: Step.updateDist, deps: [] },
   { name: Step.runCreateCmdHelpSnippet, deps: [Step.prepareDist] },
   { name: Step.runExampleTsRetype, deps: [Step.installExample] },
   { name: Step.runExtractSnippets, deps: [Step.runExampleTsRetype] },

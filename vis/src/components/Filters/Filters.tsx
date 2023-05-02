@@ -7,9 +7,7 @@ import { IconLetter } from '../Explorer/icons';
 import { IncDecInput } from '../IncDecInput';
 import { ControlsList } from './ControlsList';
 import { FeaturesTooltip } from './FeaturesTooltip';
-import { Button } from '@ts-retype/uikit/src/core/Button';
-import { IconMoon, IconSun } from '@ts-retype/uikit/src/core/Icons';
-import { useTheme } from '@ts-retype/uikit/src/theme';
+import { Button, IconMoon, IconSun,useTheme } from '@ts-retype/uikit';
 import { themes } from '../../themes';
 import './Filters.scss';
 
@@ -59,6 +57,9 @@ export function Filters({
   const updateMinFiles = (value: number) => updateFilter({ ...filter, minFiles: value });
 
   const { setTheme } = useTheme();
+
+  const setLightTheme = useCallback(() => setTheme(themes.light), [setTheme]);
+  const setDarkTheme = useCallback(() => setTheme(themes.dark), [setTheme]);
 
   const FilterSimButton = useCallback(({ id, selected, ...props }: { id: string, selected: string } & HTMLAttributes<HTMLElement>) => {
     const isSelected = id === selected;
@@ -132,8 +133,8 @@ export function Filters({
         />
       </div>
 
-      <Button icon={IconSun} caption="light" style="default" size="md" kind="button" onClick={() => setTheme(themes.light)} />
-      <Button icon={IconMoon} caption="dark" style="default" size="md" kind="button" onClick={() => setTheme(themes.dark)} />
+      <Button icon={IconSun} caption="light" style="default" size="md" kind="button" onClick={setLightTheme} />
+      <Button icon={IconMoon} caption="dark" style="default" size="md" kind="button" onClick={setDarkTheme} />
     </div>
   );
 }

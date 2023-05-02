@@ -1,8 +1,8 @@
 import { parse } from './parse';
-import { Similarity, Clusters } from './types/similarity';
+import { Similarity, IClusters } from './types/similarity';
 import ts from 'typescript';
 import { freq, selectIndices } from './utils';
-import { concat, pluck, uniq } from 'ramda';
+import { pluck, uniq } from 'ramda';
 import { highlight } from './source';
 import { TypeDuplicate } from '.';
 import {
@@ -30,16 +30,25 @@ function nonEmptyCandidateType(type: CandidateType): boolean {
   }
 }
 
-export function getTypesInFile(srcFile: ts.SourceFile, relPath: string) {
+export function findTypesInFile(
+  srcFile: ts.SourceFile,
+  relPath: string,
+): { types: SourceCandidateType[]; lengths: number[] } {
   function toSourceCandidateTypes(file: string, types: CandidateType[]): SourceCandidateType[] {
     return types.map((t) => {
-      const src =
-        t.type === 'function'
-          ? (t as FunctionCandidateType).signature?.strFull || '() => {}'
-          : t.src;
+      const isFunction = t.type === 'function';
+      const src = isFunction
+        ? (t as FunctionCandidateType).signature?.strFull || '() => {}'
+        : t.src;
       // const src = getCodeSnippet(srcFile, { pos: t.pos[0], end: t.pos[1] });
+      const offset = isFunction
+        ? (t as FunctionCandidateType).signature?.name?.length || 0
+        : t.offset;
+      const pos = isFunction ? ([0, src.length] as typeof t.pos) : t.pos;
       return {
         ...t,
+        offset,
+        pos,
         file,
         srcHgl: highlight(src),
         src,
@@ -104,7 +113,7 @@ function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>
   }
 }
 
-function similarityToOutput(sim: Similarity): TypeDuplicate['group'] {
+function similarityToDuplicateGroup(sim: Similarity): TypeDuplicate['group'] {
   switch (sim) {
     case Similarity.Identical:
       return 'identical';
@@ -115,22 +124,18 @@ function similarityToOutput(sim: Similarity): TypeDuplicate['group'] {
   }
 }
 
-export function clustersToOutput(
+export function clustersToDuplicates(
   types: SourceCandidateType[],
-  clusters: Clusters,
+  clusters: IClusters<Similarity>,
 ): TypeDuplicate[] {
-  const res = Object.entries(clusters).reduce(
-    (res, [group, clusters]) =>
-      concat(
-        res,
-        clusters.map((idxs) => ({
-          names: chooseClusterNames(types, idxs),
-          files: chooseClusterFiles(types, idxs),
-          group: similarityToOutput(+group as Similarity),
-          ...chooseTypeFeatures(types, idxs),
-        })),
-      ),
-    [] as TypeDuplicate[],
+  const res = clusters.flatMap(
+    (group, idxs) =>
+      ({
+        names: chooseClusterNames(types, idxs),
+        files: chooseClusterFiles(types, idxs),
+        group: similarityToDuplicateGroup(+group as Similarity),
+        ...chooseTypeFeatures(types, idxs),
+      } as TypeDuplicate),
   );
   return res;
 }

@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { ThemeProvider } from './theme';
 import { generateTheme } from './theme/generate';
 
@@ -10,7 +11,7 @@ const preferredTheme = typeof window !== 'undefined' ? window.matchMedia && wind
 
 const theme = generateTheme({ accent, body, heading, mono, second, mode: preferredTheme });
 
-export default ({ children }) => (
+export default ({ children }: { children: ReactNode }) => (
   <ThemeProvider theme={theme}>
     <main className="light">
       {children}

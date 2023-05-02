@@ -13,13 +13,9 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
-    "declaration": true,
-    "declarationDir": "types",
-    "sourceMap": true,
-    "outDir": "dist",
-    "emitDeclarationOnly": true,
-    "baseUrl": "src"
+    "noEmit": true,
+    "baseUrl": "src",
+    "jsx": "react-jsx"
   },
   "include": ["src", "rollup.config.cjs"],
   "exclude": ["dist", "node_modules"],

@@ -1,5 +1,5 @@
 import { useTheme } from '../theme';
-import './UiKitApp.styl';
+import './UiKitApp.scss';
 
 export type AppProps = {
   children: JSX.Element | JSX.Element[];

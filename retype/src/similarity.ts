@@ -1,5 +1,4 @@
 import { isEmpty, symmetricDifference, pluck, intersection } from 'ramda';
-import Progress from 'progress';
 import {
   CandidateType,
   Property,
@@ -8,7 +7,8 @@ import {
   FunctionCandidateType,
   LiteralCandidateType,
 } from './types/candidate';
-import { Similarity, Clusters } from './types/similarity';
+import type { ISparseMatrix, IClusters } from './types/similarity';
+import { Clusters, Similarity, SparseMatrix } from './types/similarity';
 
 const eqValues = (left: unknown[], right: unknown[]) => isEmpty(symmetricDifference(left, right));
 
@@ -16,7 +16,7 @@ function isLiteralType(t: CandidateType) {
   return ['interface', 'literal'].includes(t.type);
 }
 
-function similarityForArray<T extends Property>(left: T[], right: T[]) {
+function similarityForArray<T extends Property>(left: T[], right: T[]): Similarity {
   const propertiesKeysEqual = eqValues(pluck('name', left), pluck('name', right));
   const propertiesKeysIntersection = intersection(pluck('name', left), pluck('name', right));
   const propertiesTypesEqual = eqValues(pluck('type', left), pluck('type', right));
@@ -39,14 +39,17 @@ function similarityForArray<T extends Property>(left: T[], right: T[]) {
   return Similarity.Different;
 }
 
-function simplifyType(type: CandidateType) {
+function simplifyType(type: CandidateType): string {
   if (isLiteralType(type)) {
     return 'literal';
   }
   return type.type;
 }
 
-export function similarity(leftCandidate: CandidateType, rightCandidate: CandidateType) {
+export function similarity(
+  leftCandidate: CandidateType,
+  rightCandidate: CandidateType,
+): Similarity {
   const leftType = simplifyType(leftCandidate);
   const rightType = simplifyType(rightCandidate);
   if (leftType !== rightType) {
@@ -127,68 +130,31 @@ export function similarity(leftCandidate: CandidateType, rightCandidate: Candida
   return Similarity.Different;
 }
 
-export function similarityMatrix(types: CandidateType[]) {
-  const bar = new Progress('[:bar] :rate/bps :percent :etas :current/:total', {
-    complete: '=',
-    incomplete: ' ',
-    width: 30,
-    total: (types.length * (types.length + 1)) / 2,
-  });
-  const m = [...Array(types.length)].map(() =>
-    Array<Similarity>(types.length).fill(Similarity.Different),
-  );
+export function computeSimilarityMatrix(
+  types: CandidateType[],
+  callback?: () => void,
+): ISparseMatrix<Similarity> {
+  const matrix = SparseMatrix({ nil: Similarity.Different });
   const idxs = [...Array(types.length).keys()];
   for (const i of idxs) {
     for (const j of idxs) {
       if (i > j) {
-        m[i][j] = m[j][i];
         continue;
       }
-      bar.tick();
+      callback?.();
       if (i === j) {
-        m[i][j] = Similarity.Identical;
+        matrix.set(i, j, Similarity.Identical);
       } else {
-        m[i][j] = similarity(types[i], types[j]);
+        matrix.set(i, j, similarity(types[i], types[j]));
       }
     }
   }
-  return m;
+  return matrix;
 }
 
-export function toSimilarityPairs(m: Similarity[][]): [number, number, Similarity][] {
-  const res: [number, number, Similarity][] = [];
-  const idxs = [...Array(m.length).keys()];
-  for (const i of idxs) {
-    for (const j of idxs) {
-      if (i >= j) {
-        continue;
-      }
-      const s = m[i][j];
-      if (s === Similarity.Different) {
-        continue;
-      }
-      res.push([i, j, s]);
-    }
-  }
-
-  return res;
-}
-
-export function pairsToClusters(pairs: [number, number, Similarity][]): Clusters {
-  if (!pairs) {
-    return {} as Clusters;
-  }
-  const res: Clusters = {};
-  for (const [l, r, s] of pairs) {
-    if (!res[s]) {
-      res[s] = [];
-    }
-    const pairSet = res[s]?.find((nums) => nums.has(l) || nums.has(r));
-    if (pairSet) {
-      pairSet.add(l).add(r);
-    } else {
-      res[s]?.push(new Set<number>([l, r]));
-    }
-  }
-  return res;
+export function similarityMatrixToClusters(
+  matrix: ISparseMatrix<Similarity>,
+): IClusters<Similarity> {
+  const clusters = Clusters<Similarity>().fromTuples(matrix.toTuples());
+  return clusters;
 }

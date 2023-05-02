@@ -1,9 +1,9 @@
-import { ArrayElement, TypeDuplicate } from '@ts-retype/retype/src/types';
+import type { ArrayElement, Snippet, TokenRoot, TypeDuplicate } from '@ts-retype/retype';
 import { flattenTokens, insertNewlines, splitLines, TokenElement } from '@ts-retype/uikit/src/code/Token';
-import { Lines } from '@ts-retype/uikit/src/code/Lines';
-import { Snippet, TokenRoot } from '@ts-retype/retype/src/types/snippet';
+import { Lines } from '@ts-retype/uikit';
 import { useSearchPhrase } from '../../hooks/useSearchPhrase';
 import { highlightDefinition, highlightPhrase } from '../../model/snippet';
+
 import './DefinitionSnippet.scss';
 
 const EMPTY_ROOT: TokenRoot = { type: 'root', children: [] };
@@ -18,7 +18,7 @@ export function DefinitionSnippet({ srcHgl, name, lines, offset, pos }: ArrayEle
             srcHgl || EMPTY_ROOT
           )
         ),
-        { lines, offset, pos },
+        { offset, pos },
       ),
       phrase,
     )

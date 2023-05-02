@@ -1,9 +1,10 @@
 import path from 'path';
+import Progress from 'progress';
 import { globSync } from 'glob';
 import { concat } from 'ramda';
-import { clustersToOutput, getTypesInFile } from './clusters';
+import { clustersToDuplicates, findTypesInFile } from './clusters';
 import { createLogger } from './log';
-import { similarityMatrix, toSimilarityPairs, pairsToClusters } from './similarity';
+import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity';
 import { Metadata, ScanProps, TypeDuplicate } from './types';
 import { loadFile, formatDuration } from './utils';
 import { formatISO } from 'date-fns';
@@ -39,8 +40,10 @@ export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
   for (const relPath of files) {
     const file = path.join(rootDir, relPath);
     log.live(`⏳ loading ${formatFileName(file)}`);
+
     const srcFile = loadFile(file);
-    const { types, lengths } = getTypesInFile(srcFile, relPath);
+    const { types, lengths } = findTypesInFile(srcFile, relPath);
+
     filesLengths[relPath] = lengths;
     filesTypesCount[relPath] = types.length;
     allTypes = concat(allTypes, types);
@@ -56,7 +59,14 @@ export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
   start = new Date().getTime();
   log.log('computing similarity matrix');
 
-  const matrix = similarityMatrix(allTypes);
+  const bar = new Progress('[:bar] :rate/tps :percent :etas :current/:total', {
+    complete: '=',
+    incomplete: ' ',
+    width: 30,
+    total: (allTypes.length * (allTypes.length + 1)) / 2,
+  });
+
+  const matrix = computeSimilarityMatrix(allTypes, () => bar.tick());
 
   log.log(`took ${formatDuration(new Date().getTime() - start)}`);
   log.log();
@@ -64,9 +74,10 @@ export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
   start = new Date().getTime();
   log.log('generating output');
 
-  const pairs = toSimilarityPairs(matrix);
-  const clusters = pairsToClusters(pairs);
-  const data = clustersToOutput(allTypes, clusters).filter(({ group }) => group !== 'different');
+  const clusters = similarityMatrixToClusters(matrix);
+  const data = clustersToDuplicates(allTypes, clusters).filter(
+    ({ group }) => group !== 'different',
+  );
 
   const duration = new Date().getTime() - start;
 

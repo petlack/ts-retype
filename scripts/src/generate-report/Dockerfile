@@ -9,5 +9,7 @@ WORKDIR /app
 
 COPY . .
 
+RUN cd retype && npm i --omit=dev
+
 CMD ["sh", "/app/scripts/src/generate-report/generate.sh"]
 # ENTRYPOINT ["/bin/sh"]

@@ -35,7 +35,7 @@ export default [
         extract: true,
         modules: false,
         sourceMap: true,
-        use: ['sass', 'stylus'],
+        use: ['sass'],
       }),
     ],
   },

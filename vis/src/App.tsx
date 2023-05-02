@@ -8,16 +8,16 @@ import { Search } from './components/Search';
 import { SearchPhraseProvider } from './hooks/useSearchPhrase';
 import { ToastProvider } from './components/Toast';
 import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
-import { TopBar } from '@ts-retype/uikit/src/components/TopBar';
-import { UiKitApp } from '@ts-retype/uikit/src/components/UiKitApp';
+import { TopBar, UiKitApp } from '@ts-retype/uikit';
 import { useSearch } from './hooks/useSearch';
-import { ThemeProvider } from '@ts-retype/uikit/src/theme';
+import { ThemeMode, ThemeProvider } from '@ts-retype/uikit';
 import { themes } from './themes';
 import type { Metadata } from '@ts-retype/retype/src';
 
+import '@ts-retype/uikit/dist/index.es.css';
 import './App.scss';
 
-const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+const preferredTheme: ThemeMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 const facets: Facet<FulltextData>[] = [
   {
@@ -70,7 +70,7 @@ function App() {
   }, [filtersVisible]);
 
   return (
-    <ThemeProvider theme={themes.light}>
+    <ThemeProvider theme={themes[preferredTheme]}>
       <UiKitApp>
         <SearchPhraseProvider value={{ phrase: query }}>
           <ToastProvider>
