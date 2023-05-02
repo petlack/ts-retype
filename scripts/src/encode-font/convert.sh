@@ -12,5 +12,5 @@ if [ ! -f "$input_font" ]; then
   exit 1
 fi
 
-cat $input_font | base64 -w 0 > font.b64
+gzip -c $input_font | base64 -w 0 > font.b64
 cat font.b64
