@@ -43,6 +43,9 @@ export function createLogger(logFn: (...args: unknown[]) => void) {
     log(...msg: unknown[]) {
       logFn(...msg);
     },
+    table(msg: unknown) {
+      console.table(msg);
+    },
     live(msg: string, newline = false) {
       readline.clearLine(process.stdout, 0);
       readline.cursorTo(process.stdout, 0);

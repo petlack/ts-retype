@@ -1,8 +1,8 @@
 import { parse } from './parse';
-import { Similarity, Clusters } from './types/similarity';
+import { Similarity, IClusters } from './types/similarity';
 import ts from 'typescript';
 import { freq, selectIndices } from './utils';
-import { concat, pluck, uniq } from 'ramda';
+import { pluck, uniq } from 'ramda';
 import { highlight } from './source';
 import { TypeDuplicate } from '.';
 import {
@@ -104,7 +104,7 @@ function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>
   }
 }
 
-function similarityToOutput(sim: Similarity): TypeDuplicate['group'] {
+function similarityToDuplicateGroup(sim: Similarity): TypeDuplicate['group'] {
   switch (sim) {
     case Similarity.Identical:
       return 'identical';
@@ -115,22 +115,18 @@ function similarityToOutput(sim: Similarity): TypeDuplicate['group'] {
   }
 }
 
-export function clustersToOutput(
+export function clustersToDuplicates(
   types: SourceCandidateType[],
-  clusters: Clusters,
+  clusters: IClusters<Similarity>,
 ): TypeDuplicate[] {
-  const res = Object.entries(clusters).reduce(
-    (res, [group, clusters]) =>
-      concat(
-        res,
-        clusters.map((idxs) => ({
-          names: chooseClusterNames(types, idxs),
-          files: chooseClusterFiles(types, idxs),
-          group: similarityToOutput(+group as Similarity),
-          ...chooseTypeFeatures(types, idxs),
-        })),
-      ),
-    [] as TypeDuplicate[],
+  const res = clusters.flatMap(
+    (group, idxs) =>
+      ({
+        names: chooseClusterNames(types, idxs),
+        files: chooseClusterFiles(types, idxs),
+        group: similarityToDuplicateGroup(+group as Similarity),
+        ...chooseTypeFeatures(types, idxs),
+      } as TypeDuplicate),
   );
   return res;
 }

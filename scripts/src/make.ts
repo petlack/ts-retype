@@ -149,6 +149,7 @@ async function make(config: Partial<CmdProps>) {
     [Step.syntaxHighlightSnippets, syntaxHighlightSnippets],
     [Step.tests, () => npmrun(ROOT, 'test')],
     [Step.testsFast, () => npmrun(ROOT, 'test:fast')],
+    [Step.updateDist, prepareDist],
   ]);
 
   const pipelineSteps =

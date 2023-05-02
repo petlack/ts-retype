@@ -39,30 +39,6 @@ describe('scan', () => {
     const given = scan(RetypeConfig.fromScanProps({ rootDir: dir }));
     const expected = [
       {
-        group: 'renamed',
-        properties: [{ name: 'foo', type: 'string' }],
-        names: [
-          { name: 'A', count: 1 },
-          { name: 'b', count: 1 },
-        ],
-        files: [
-          {
-            file: 'foo.ts',
-            type: 'literal',
-            pos: [16, 32],
-            lines: [1, 1],
-            src: 'export type A = { foo: string; }',
-          },
-          {
-            file: 'bar.ts',
-            type: 'literal',
-            pos: [16, 32],
-            lines: [1, 1],
-            src: 'export type b = { foo: string; }',
-          },
-        ],
-      },
-      {
         group: 'identical',
         types: ['ok', 'fail'],
         names: [{ name: 'anonymous', count: 2 }],
@@ -84,6 +60,30 @@ describe('scan', () => {
             lines: [3, 3],
             types: ['ok', 'fail'],
             file: 'union-a.ts',
+          },
+        ],
+      },
+      {
+        group: 'renamed',
+        properties: [{ name: 'foo', type: 'string' }],
+        names: [
+          { name: 'A', count: 1 },
+          { name: 'b', count: 1 },
+        ],
+        files: [
+          {
+            file: 'foo.ts',
+            type: 'literal',
+            pos: [16, 32],
+            lines: [1, 1],
+            src: 'export type A = { foo: string; }',
+          },
+          {
+            file: 'bar.ts',
+            type: 'literal',
+            pos: [16, 32],
+            lines: [1, 1],
+            src: 'export type b = { foo: string; }',
           },
         ],
       },

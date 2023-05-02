@@ -62,6 +62,8 @@ export function report(args: ScanProps & ReportProps) {
 
     meta.reportSize = withDataJson.length;
 
+    log.table(meta);
+
     const metaJson = JSON.stringify(meta);
 
     const replaced = withDataJson.replace(
