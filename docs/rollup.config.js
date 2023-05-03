@@ -4,6 +4,7 @@ import typescript from '@rollup/plugin-typescript';
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 // import packageJson from './package.json';
 
@@ -39,6 +40,10 @@ export default [
         modules: false,
         sourceMap: true,
         use: ['sass', 'stylus'],
+      }),
+      visualizer({
+        emitFile: true,
+        filename: 'stats.html',
       }),
     ],
   },

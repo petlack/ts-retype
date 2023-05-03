@@ -13,10 +13,10 @@ export type TokenElement = {
 
 export type TokenText = {
   type: 'text';
+  children?: Token[];
   value: string;
   properties?: { className: string[] };
   tagName?: undefined;
-  children?: undefined;
 };
 
 export type TokenNewline = {

@@ -11,6 +11,7 @@
     "dev": "nodemon --exec 'ts-node --esm --experimental-specifier-resolution=node' --",
     "dev:docs": "ts-node --esm --experimental-specifier-resolution=node src/generateDocs.ts",
     "dev:extract": "ts-node --esm --experimental-specifier-resolution=node src/extractSnippets.ts",
+    "dev:fonts": "nodemon --exec 'ts-node --esm --experimental-specifier-resolution=node' src/fontsBase64.ts",
     "dev:snippets": "ts-node --esm --experimental-specifier-resolution=node  src/syntaxHighlighting.ts",
     "make": "node --experimental-specifier-resolution=node dist/make.js",
     "run:docs": "node --experimental-specifier-resolution=node dist/generateDocs.js",

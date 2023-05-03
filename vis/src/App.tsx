@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useState } from 'react';
 import { Facet, fulltext } from './model/search';
 import { Filters, FiltersMenu } from './components/Filters';
 import { Footer } from './components/Footer/Footer';
@@ -6,12 +5,15 @@ import { FulltextData } from './types';
 import { Listing } from './components/Listing';
 import { Search } from './components/Search';
 import { SearchPhraseProvider } from './hooks/useSearchPhrase';
+import { ThemeMode, ThemeProvider } from '@ts-retype/uikit';
 import { ToastProvider } from './components/Toast';
 import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
 import { TopBar, UiKitApp } from '@ts-retype/uikit';
-import { useSearch } from './hooks/useSearch';
-import { ThemeMode, ThemeProvider } from '@ts-retype/uikit';
+import { TypeDuplicate } from '@ts-retype/retype';
+import { decompressRoot } from '@ts-retype/retype/dist/snippet';
 import { themes } from './themes';
+import { useCallback, useEffect, useState } from 'react';
+import { useSearch } from './hooks/useSearch';
 import type { Metadata } from '@ts-retype/retype/src';
 
 import '@ts-retype/uikit/dist/index.es.css';
@@ -33,6 +35,16 @@ const facets: Facet<FulltextData>[] = [
   },
 ];
 
+function decompress(td: TypeDuplicate) {
+  return {
+    ...td,
+    files: td.files.map(file => ({
+      ...file,
+      srcHgl: decompressRoot(file.srcHgl),
+    })),
+  };
+}
+
 function App() {
   const [allData, setAllData] = useState([] as FulltextData[]);
   const [meta, setMeta] = useState({} as Metadata);
@@ -49,7 +61,7 @@ function App() {
   
   useEffect(() => {
     setAllData(
-      window.__data__.filter(({ group }) => ['identical', 'renamed'].includes(group))
+      window.__data__.map(decompress).filter(({ group }) => ['identical', 'renamed'].includes(group))
         .map((duplicate, idx) => ({
           ...duplicate,
           id: idx,

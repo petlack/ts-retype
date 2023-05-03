@@ -1,7 +1,8 @@
 import { Code } from './Code';
 import { Window } from './Window';
-import { flattenTokens, insertNewlines, splitLines, TokenElement } from './Token';
+import { TokenElement } from './Token';
 import type { Snippet } from '@ts-retype/retype';
+import { splitLines } from '@ts-retype/retype/dist/snippet';
 
 export type JsTsCodeProps = {
   snippet: Snippet;
@@ -12,7 +13,7 @@ export function JsTsCode({ theme, snippet }: JsTsCodeProps) {
   const sn: Snippet = {
     name: '',
     lang: 'ts',
-    code: splitLines(insertNewlines(flattenTokens(snippet.code))),
+    code: splitLines(snippet.code),
   };
   const linesMarkup = sn.code.children.map((token, idx) => (
     <TokenElement

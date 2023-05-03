@@ -1,15 +1,6 @@
-import { refractor } from 'refractor/lib/core.js';
-import tsLang from 'refractor/lang/typescript.js';
 import { FunctionCandidateType } from './types/candidate';
 import ts from 'typescript';
 import { range, slice } from 'ramda';
-
-export function highlight(src: string) {
-  if (!refractor.registered('ts')) {
-    refractor.register(tsLang);
-  }
-  return refractor.highlight(src, 'ts');
-}
 
 export function getCodeSnippet(srcFile: ts.SourceFile, node: ts.Node) {
   const [startAt, endBefore] = [node.getStart(srcFile), node.getEnd()];

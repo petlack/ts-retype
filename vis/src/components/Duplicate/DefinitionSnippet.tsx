@@ -1,8 +1,8 @@
-import type { ArrayElement, Snippet, TokenRoot, TypeDuplicate } from '@ts-retype/retype';
-import { flattenTokens, insertNewlines, splitLines, TokenElement } from '@ts-retype/uikit/src/code/Token';
-import { Lines } from '@ts-retype/uikit';
+import { splitLines } from '@ts-retype/retype/dist/snippet';
+import { Lines, TokenElement } from '@ts-retype/uikit';
 import { useSearchPhrase } from '../../hooks/useSearchPhrase';
 import { highlightDefinition, highlightPhrase } from '../../model/snippet';
+import type { ArrayElement, Snippet, TokenRoot, TypeDuplicate } from '@ts-retype/retype';
 
 import './DefinitionSnippet.scss';
 
@@ -13,11 +13,7 @@ export function DefinitionSnippet({ srcHgl, name, lines, offset, pos }: ArrayEle
   const code = splitLines(
     highlightPhrase(
       highlightDefinition(
-        insertNewlines(
-          flattenTokens(
-            srcHgl || EMPTY_ROOT
-          )
-        ),
+        srcHgl || EMPTY_ROOT,
         { offset, pos },
       ),
       phrase,

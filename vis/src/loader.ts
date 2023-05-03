@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { TypeDuplicate, Metadata } from '@ts-retype/retype/src/types';
 
 declare global {
@@ -10,6 +11,8 @@ declare global {
 export async function setupData() {
   if (import.meta.env.DEV) {
     const json = await import('./data.json');
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const { data, meta } = json.default;
     console.log({ data });
     console.log({ meta });

@@ -12,6 +12,8 @@ export type Metadata = {
   projectTypesScanned: number;
   projectFilesWithTypesDeclarations: number;
   reportSize: number;
+  appSize: number;
+  dataSize: number;
   scanDuration: number;
   scannedAt: string;
 };

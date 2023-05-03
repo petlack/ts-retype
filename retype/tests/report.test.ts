@@ -6,6 +6,7 @@ import { report } from '../src/report';
 import { RetypeConfig } from '../src/config';
 
 import * as url from 'url';
+import { compress } from '../src/compress';
 global.__dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 function writeSrc(path: string, src: string) {
@@ -33,7 +34,8 @@ describe('report', () => {
     const match = html.match(/window\.__data__\s+=\s+(\[.+?\]);/s);
     expect(match).not.toBeNull();
     if (match) {
-      expect(JSON.parse(match[1])).toEqual(expected.data);
+      const [, json] = match;
+      expect(JSON.parse(json)).toEqual(compress(expected.data));
     }
   });
 });

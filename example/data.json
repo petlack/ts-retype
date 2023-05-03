@@ -10,7 +10,7 @@
         {
           "name": "User",
           "type": "literal",
-          "src": "// ...\nexport type User = {\n  displayName: string;\n  email: string;\n  password: string;\n};\n// ...",
+          "src": "",
           "pos": [54, 117],
           "offset": 26,
           "lines": [6, 10],
@@ -20,137 +20,47 @@
             { "name": "password", "type": "string" }
           ],
           "file": "src/model.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "comment"] },
-                "children": [{ "type": "text", "value": "// ..." }]
-              },
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "export" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "type" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "class-name"] },
-                "children": [{ "type": "text", "value": "User" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": "=" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "{" }]
-              },
-              { "type": "text", "value": "\n  displayName" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n  email" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n  password" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "}" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "comment"] },
-                "children": [{ "type": "text", "value": "// ..." }]
-              }
-            ]
-          }
+          "srcHgl": [
+            { "v": "// ...", "t": "t", "p": { "c": ["t", "x"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "export", "t": "t", "p": { "c": ["t", "k"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "type", "t": "t", "p": { "c": ["t", "k"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "User", "t": "t", "p": { "c": ["t", "c"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "=", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "{", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "  displayName", "t": "t" },
+            { "v": ":", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "string", "t": "t", "p": { "c": ["t", "b"] }, "n": "s" },
+            { "v": ";", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "  email", "t": "t" },
+            { "v": ":", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "string", "t": "t", "p": { "c": ["t", "b"] }, "n": "s" },
+            { "v": ";", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "  password", "t": "t" },
+            { "v": ":", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "string", "t": "t", "p": { "c": ["t", "b"] }, "n": "s" },
+            { "v": ";", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "}", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "v": ";", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "// ...", "t": "t", "p": { "c": ["t", "x"] }, "n": "s" }
+          ]
         },
         {
           "name": "IUser",
           "type": "interface",
-          "src": "// ...\ninterface IUser {\n  displayName: string;\n  email: string;\n  password: string;\n}\n// ...\n// ...",
+          "src": "",
           "pos": [14, 93],
           "offset": 7,
           "lines": [3, 7],
@@ -160,124 +70,44 @@
             { "name": "password", "type": "string" }
           ],
           "file": "src/auth.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "comment"] },
-                "children": [{ "type": "text", "value": "// ..." }]
-              },
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "interface" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "class-name"] },
-                "children": [{ "type": "text", "value": "IUser" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "{" }]
-              },
-              { "type": "text", "value": "\n  displayName" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n  email" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n  password" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "}" }]
-              },
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "comment"] },
-                "children": [{ "type": "text", "value": "// ..." }]
-              },
-              { "type": "text", "value": "\n" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "comment"] },
-                "children": [{ "type": "text", "value": "// ..." }]
-              }
-            ]
-          }
+          "srcHgl": [
+            { "v": "// ...", "t": "t", "p": { "c": ["t", "x"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "interface", "t": "t", "p": { "c": ["t", "k"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "IUser", "t": "t", "p": { "c": ["t", "c"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "{", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "  displayName", "t": "t" },
+            { "v": ":", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "string", "t": "t", "p": { "c": ["t", "b"] }, "n": "s" },
+            { "v": ";", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "  email", "t": "t" },
+            { "v": ":", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "string", "t": "t", "p": { "c": ["t", "b"] }, "n": "s" },
+            { "v": ";", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "  password", "t": "t" },
+            { "v": ":", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "string", "t": "t", "p": { "c": ["t", "b"] }, "n": "s" },
+            { "v": ";", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "}", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "// ...", "t": "t", "p": { "c": ["t", "x"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "// ...", "t": "t", "p": { "c": ["t", "x"] }, "n": "s" }
+          ]
         },
         {
           "name": "anonymous",
           "type": "literal",
-          "src": "async function saveUser(\n  user: {\n    displayName: string;\n    email: string;\n    password: string;\n  }) {\n  await db.createUser(user);",
+          "src": "",
           "pos": [195, 266],
           "offset": 33,
           "lines": [18, 22],
@@ -287,170 +117,53 @@
             { "name": "password", "type": "string" }
           ],
           "file": "src/api.ts",
-          "srcHgl": {
-            "type": "root",
-            "children": [
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "async" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "function" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "saveUser" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "\n  user" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "{" }]
-              },
-              { "type": "text", "value": "\n    displayName" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n    email" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n    password" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "operator"] },
-                "children": [{ "type": "text", "value": ":" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "builtin"] },
-                "children": [{ "type": "text", "value": "string" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              },
-              { "type": "text", "value": "\n  " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "}" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              { "type": "text", "value": " " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "{" }]
-              },
-              { "type": "text", "value": "\n  " },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "keyword"] },
-                "children": [{ "type": "text", "value": "await" }]
-              },
-              { "type": "text", "value": " db" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "." }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "function"] },
-                "children": [{ "type": "text", "value": "createUser" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": "(" }]
-              },
-              { "type": "text", "value": "user" },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ")" }]
-              },
-              {
-                "type": "element",
-                "tagName": "span",
-                "properties": { "className": ["token", "punctuation"] },
-                "children": [{ "type": "text", "value": ";" }]
-              }
-            ]
-          }
+          "srcHgl": [
+            { "v": "async", "t": "t", "p": { "c": ["t", "k"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "function", "t": "t", "p": { "c": ["t", "k"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "saveUser", "t": "t", "p": { "c": ["t", "f"] }, "n": "s" },
+            { "v": "(", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "  user", "t": "t" },
+            { "v": ":", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "{", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "    displayName", "t": "t" },
+            { "v": ":", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "string", "t": "t", "p": { "c": ["t", "b"] }, "n": "s" },
+            { "v": ";", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "    email", "t": "t" },
+            { "v": ":", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "string", "t": "t", "p": { "c": ["t", "b"] }, "n": "s" },
+            { "v": ";", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "    password", "t": "t" },
+            { "v": ":", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "string", "t": "t", "p": { "c": ["t", "b"] }, "n": "s" },
+            { "v": ";", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "  ", "t": "t" },
+            { "v": "}", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "v": ")", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "v": " ", "t": "t" },
+            { "v": "{", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "t": "n" },
+            { "v": "  ", "t": "t" },
+            { "v": "await", "t": "t", "p": { "c": ["t", "k"] }, "n": "s" },
+            { "v": " db", "t": "t" },
+            { "v": ".", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "v": "createUser", "t": "t", "p": { "c": ["t", "f"] }, "n": "s" },
+            { "v": "(", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "v": "user", "t": "t" },
+            { "v": ")", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
+            { "v": ";", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" }
+          ]
         }
       ],
       "group": "renamed",
@@ -467,8 +180,10 @@
     "projectLocScanned": 167,
     "projectTypesScanned": 4,
     "projectFilesWithTypesDeclarations": 3,
-    "scannedAt": "2023-04-30T10:41:17+03:00",
+    "scannedAt": "2023-05-03T03:04:01+03:00",
     "scanDuration": 0,
-    "reportSize": 646143
+    "reportSize": 575967,
+    "appSize": 571333,
+    "dataSize": 4647
   }
 }
