@@ -1,10 +1,10 @@
 import { createCommand } from 'commander';
 import { writeFile } from 'fs/promises';
 import { join } from 'path';
-import { generateTheme } from '@ts-retype/uikit';
-import { execute } from './cmd';
-import { isMain } from './isMain';
-import { getRootDir } from './paths';
+import { generateTheme } from '@ts-retype/uikit/dist/generate';
+import { execute } from './cmd.js';
+import { isMain } from './isMain.js';
+import { getRootDir } from './paths.js';
 
 const program = createCommand();
 

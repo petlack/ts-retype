@@ -1693,77 +1693,6 @@
     },
     {
       "names": [
-        { "name": "parseBash", "count": 1 },
-        { "name": "highlight", "count": 1 }
-      ],
-      "files": [
-        {
-          "name": "parseBash",
-          "type": "function",
-          "src": "",
-          "pos": [0, 36],
-          "offset": 9,
-          "lines": [12, 34],
-          "parameters": [{ "name": "code", "type": "string" }],
-          "returnType": "TokenRoot",
-          "signature": {
-            "name": "parseBash",
-            "params": [{ "name": "code", "type": "string" }],
-            "return": "TokenRoot",
-            "strMin": "(string) => TokenRoot",
-            "strFull": "parseBash(code: string) => TokenRoot"
-          },
-          "file": "uikit/src/code/Bash.tsx",
-          "srcHgl": [
-            { "v": "parseBash", "t": "t", "p": { "c": ["t", "f"] }, "n": "s" },
-            { "v": "(", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
-            { "v": "code", "t": "t" },
-            { "v": ":", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
-            { "v": " ", "t": "t" },
-            { "v": "string", "t": "t", "p": { "c": ["t", "b"] }, "n": "s" },
-            { "v": ")", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
-            { "v": " ", "t": "t" },
-            { "v": "=>", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
-            { "v": " TokenRoot", "t": "t" }
-          ]
-        },
-        {
-          "name": "highlight",
-          "type": "function",
-          "src": "",
-          "pos": [0, 35],
-          "offset": 9,
-          "lines": [16, 20],
-          "parameters": [{ "name": "src", "type": "string" }],
-          "returnType": "TokenRoot",
-          "signature": {
-            "name": "highlight",
-            "params": [{ "name": "src", "type": "string" }],
-            "return": "TokenRoot",
-            "strMin": "(string) => TokenRoot",
-            "strFull": "highlight(src: string) => TokenRoot"
-          },
-          "file": "retype/src/source.ts",
-          "srcHgl": [
-            { "v": "highlight", "t": "t", "p": { "c": ["t", "f"] }, "n": "s" },
-            { "v": "(", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
-            { "v": "src", "t": "t" },
-            { "v": ":", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
-            { "v": " ", "t": "t" },
-            { "v": "string", "t": "t", "p": { "c": ["t", "b"] }, "n": "s" },
-            { "v": ")", "t": "t", "p": { "c": ["t", "p"] }, "n": "s" },
-            { "v": " ", "t": "t" },
-            { "v": "=>", "t": "t", "p": { "c": ["t", "o"] }, "n": "s" },
-            { "v": " TokenRoot", "t": "t" }
-          ]
-        }
-      ],
-      "group": "renamed",
-      "parameters": [{ "name": "code", "type": "string" }],
-      "returnType": "TokenRoot"
-    },
-    {
-      "names": [
         { "name": "syntaxHighlighting", "count": 1 },
         { "name": "make", "count": 1 },
         { "name": "generateVisData", "count": 1 },
@@ -1778,7 +1707,7 @@
           "src": "",
           "pos": [0, 56],
           "offset": 18,
-          "lines": [35, 54],
+          "lines": [33, 49],
           "parameters": [{ "name": "config", "type": "Partial<CmdProps>" }],
           "returnType": "<empty_node>",
           "signature": {
@@ -2476,7 +2405,7 @@
           "src": "",
           "pos": [0, 41],
           "offset": 11,
-          "lines": [201, 206],
+          "lines": [202, 207],
           "parameters": [{ "name": "root", "type": "TokenRoot" }],
           "returnType": "TokenRoot",
           "signature": {
@@ -2516,7 +2445,7 @@
           "src": "",
           "pos": [0, 35],
           "offset": 10,
-          "lines": [185, 199],
+          "lines": [185, 200],
           "parameters": [{ "name": "token", "type": "Token" }],
           "returnType": "<empty_node>",
           "signature": {
@@ -7250,14 +7179,14 @@
   ],
   "meta": {
     "projectName": "ts-retype",
-    "projectFilesScanned": 221,
-    "projectLocScanned": 15751,
+    "projectFilesScanned": 222,
+    "projectLocScanned": 11350,
     "projectTypesScanned": 440,
-    "projectFilesWithTypesDeclarations": 121,
-    "scannedAt": "2023-05-03T01:31:01+03:00",
-    "scanDuration": 11,
-    "reportSize": 933861,
-    "appSize": 725008,
-    "dataSize": 208866
+    "projectFilesWithTypesDeclarations": 122,
+    "scannedAt": "2023-05-03T03:04:19+03:00",
+    "scanDuration": 13,
+    "reportSize": 778505,
+    "appSize": 571333,
+    "dataSize": 207185
   }
 }

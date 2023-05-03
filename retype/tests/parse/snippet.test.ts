@@ -1,5 +1,5 @@
 import { compress, compressRoot, decompress, decompressRoot } from '../../src/snippet';
-import { highlight } from '../../src/source';
+import { highlight } from '../../src/highlight';
 import { Token } from '../../src/types';
 
 describe('compress', () => {

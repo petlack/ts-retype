@@ -1,7 +1,7 @@
 import { useTheme, ThemeMode, ThemeProvider } from '@ts-retype/uikit';
 import { UiKitApp } from '@ts-retype/uikit';
 import { TopBar } from '@ts-retype/uikit';
-import { generateTheme } from '@ts-retype/uikit';
+import { generateTheme } from '@ts-retype/uikit/dist/generate';
 import { Docs } from './components/Docs';
 import { Landing } from './components/Landing';
 import { Menu } from './components/Menu';
