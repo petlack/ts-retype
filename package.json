@@ -94,6 +94,7 @@
     ]
   },
   "workspaces": [
+    "clikit",
     "docs",
     "docs-static",
     "example",
