@@ -9,18 +9,12 @@ import { compress } from './compress';
 const log = createLogger(console.log);
 
 function findTemplate(): string | null {
-  const distPath = dir('index.html');
-  const srcPath = dir('../../vis/dist/index.html');
-  const runningFromDist = fs.existsSync(dir('package.json'));
-  const runningFromSrc = fs.existsSync(srcPath);
-  if (runningFromDist) {
-    return distPath;
+  let distPath = dir('index.html');
+  if (!fs.existsSync(distPath)) {
+    distPath = dir('../../vis/dist/index.html');
+    log.log('could not find index.html in src/ or dist/');
   }
-  if (runningFromSrc) {
-    return srcPath;
-  }
-  log.log('could not find index.html in src/ or dist/');
-  return null;
+  return distPath;
 }
 
 export function report(args: ScanProps & ReportProps) {

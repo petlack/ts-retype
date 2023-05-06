@@ -1,4 +1,12 @@
-import { PipelineStepDef } from './pipeline.js';
+import { join } from 'path';
+import type { ExecResult } from './exec';
+import type { Runners } from './runners';
+
+export type PipelineStepDef<T> = {
+  name: T;
+  deps: T[];
+  parallel?: T[];
+};
 
 export const ROOT = null;
 
@@ -108,3 +116,51 @@ export const pipelinesDefinitions = new Map<Pipeline, Step[]>([
   [Pipeline.publish, [Step.tests, Step.prepareDist]],
   [Pipeline.test, [Step.tests, Step.smoke]],
 ]);
+
+export const createDefs = ({ rootDir, npm, npmrun, bash, script }: { rootDir: string } & Runners) =>
+  new Map<Step, () => Promise<ExecResult>>([
+    [Step.buildDocs, () => npmrun('docs', 'build')],
+    [Step.buildExample, () => npmrun('example', 'build')],
+    [Step.buildTsRetype, () => npmrun('retype', 'build')],
+    [Step.buildUikit, () => npmrun('uikit', 'build')],
+    [Step.buildVis, () => npmrun('vis', 'build')],
+    [Step.cleanDocs, () => npmrun('docs', 'clean')],
+    [Step.cleanExample, () => npmrun('example', 'clean')],
+    [Step.cleanTsRetype, () => npmrun('retype', 'clean')],
+    [Step.cleanUikit, () => npmrun('uikit', 'clean')],
+    [Step.cleanVis, () => npmrun('vis', 'clean')],
+    [Step.echo, () => bash('echo', 'ok')],
+    [Step.format, () => npmrun(ROOT, 'format')],
+    [Step.generateReadme, () => script('generateReadme')],
+    [Step.generateThemes, () => script('generateThemes')],
+    [
+      Step.generateVisDevData,
+      () =>
+        npm(ROOT, [
+          '-w',
+          'retype',
+          'run',
+          'bin',
+          '--',
+          rootDir,
+          '-c',
+          '-j',
+          join(rootDir, 'vis/src/data.json'),
+        ]),
+    ],
+    [Step.install, () => npm(ROOT, ['install'])],
+    [Step.installDocs, () => npm('docs', ['install'])],
+    [Step.installExample, () => npm('example', ['install'])],
+    [Step.installTsRetype, () => npm('retype', ['install'])],
+    [Step.installUikit, () => npm('uikit', ['install'])],
+    [Step.installVis, () => npm('vis', ['install'])],
+    [Step.prepareDist, () => script('prepareDist')],
+    [Step.runCreateCmdHelpSnippet, () => script('createCmdHelpSnippet')],
+    [Step.runExampleTsRetype, () => npmrun('example', 'report')],
+    [Step.runExtractSnippets, () => script('extractSnippets')],
+    [Step.smoke, () => npmrun('example', 'smoke')],
+    [Step.syntaxHighlightSnippets, () => script('syntaxHighlighting')],
+    [Step.tests, () => npmrun(ROOT, 'test')],
+    [Step.testsFast, () => npmrun(ROOT, 'test:fast')],
+    [Step.updateDist, () => script('updateDist')],
+  ]);

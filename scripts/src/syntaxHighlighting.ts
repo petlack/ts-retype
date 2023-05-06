@@ -1,10 +1,10 @@
 import { readFile, writeFile } from 'fs/promises';
 import { join, parse, resolve } from 'path';
 import { createCommand } from 'commander';
-import { highlight } from '@ts-retype/retype/dist/highlight';
+import { highlight } from '@ts-retype/retype/dist/highlight.js';
 import { BaseCmdProps, execute } from './cmd.js';
 import { isMain } from './isMain.js';
-import { ensureDirectoryExists, listFiles } from './paths.js';
+import { ensureDirectoryExists, getRootDir, listFiles } from './paths.js';
 
 type CmdProps = BaseCmdProps & { dir?: string; list?: string; output?: string };
 
@@ -49,5 +49,14 @@ export async function syntaxHighlighting(config: Partial<CmdProps>) {
 }
 
 if (isMain(import.meta)) {
-  execute(program, syntaxHighlighting);
+  execute(program, async () => {
+    const rootDir = await getRootDir();
+    if (!rootDir) {
+      throw new Error('rootDir not found');
+    }
+    return syntaxHighlighting({
+      output: join(rootDir, 'docs/src/generated'),
+      dir: join(rootDir, 'docs/src/snippets'),
+    });
+  });
 }

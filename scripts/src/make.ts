@@ -1,19 +1,13 @@
 import colors from 'colors';
 import { createCommand } from 'commander';
-import { join } from 'path';
-import { createRunners } from './runners.js';
 import { execute, BaseCmdProps } from './cmd.js';
-import { generateReadme } from './generateReadme.js';
-import { generateThemes } from './generateThemes.js';
 import { getRootDir } from './paths.js';
 import { isMain } from './isMain.js';
-import { prepareDist } from './prepareDist.js';
-import { runPipeline, PipelineStepDef, sortSteps, getStats, setFnName } from './pipeline.js';
-import { syntaxHighlighting } from './syntaxHighlighting.js';
+import { runPipeline, getStats, setFnName, resolveSteps } from './pipeline.js';
 import { enumToString, toEnumValue, getEnumValues } from './utils/enums.js';
-import { pipelines, Step, Pipeline, ROOT, pipelinesDefinitions, steps } from './config.js';
+import { pipelines, Step, Pipeline, steps, PipelineStepDef } from './config.js';
 
-type CmdProps = BaseCmdProps & {
+type MakeProps = BaseCmdProps & {
   pipeline: string;
   step?: string;
   follow: boolean;
@@ -53,7 +47,7 @@ export function printPipelineStats<T extends string | number | symbol>(
   );
 }
 
-async function make(config: Partial<CmdProps>) {
+async function make(config: Partial<MakeProps>) {
   log(config);
 
   if (!config.pipeline && !config.step) {
@@ -77,9 +71,6 @@ async function make(config: Partial<CmdProps>) {
     return;
   }
 
-  const muteStdout = config.follow ? false : true;
-  const muteStderr = config.quiet ? true : false;
-
   const rootDir = await getRootDir();
 
   if (!rootDir) {
@@ -87,75 +78,7 @@ async function make(config: Partial<CmdProps>) {
     return;
   }
 
-  const { bash, node, npm, npmrun } = createRunners({ rootDir, muteStderr, muteStdout });
-
-  log('running from');
-  log(rootDir);
-
-  async function script(name: string) {
-    rootDir && (await node(join('dist/', name), join(rootDir, 'scripts')));
-  }
-
-  const syntaxHighlightSnippets = () =>
-    syntaxHighlighting({
-      output: join(rootDir, 'docs/src/generated'),
-      dir: join(rootDir, 'docs/src/snippets'),
-    });
-
-  // const clean = parallel([cleanTsRetype, cleanVis, cleanDocs, cleanExample], { name: 'cleanAll' });
-  // const install = parallel([installTsRetype, installVis, installDocs], { name: 'install' });
-
-  const defs = new Map<Step, () => Promise<void>>([
-    [Step.buildDocs, () => npmrun('docs', 'build')],
-    [Step.buildExample, () => npmrun('example', 'build')],
-    [Step.buildTsRetype, () => npmrun('retype', 'build')],
-    [Step.buildUikit, () => npmrun('uikit', 'build')],
-    [Step.buildVis, () => npmrun('vis', 'build')],
-    [Step.cleanDocs, () => npmrun('docs', 'clean')],
-    [Step.cleanExample, () => npmrun('example', 'clean')],
-    [Step.cleanTsRetype, () => npmrun('retype', 'clean')],
-    [Step.cleanUikit, () => npmrun('uikit', 'clean')],
-    [Step.cleanVis, () => npmrun('vis', 'clean')],
-    [Step.echo, () => bash('echo', 'ok')],
-    [Step.format, () => npmrun(ROOT, 'format')],
-    [Step.generateReadme, generateReadme],
-    [Step.generateThemes, generateThemes],
-    [
-      Step.generateVisDevData,
-      () =>
-        npm(ROOT, [
-          '-w',
-          'retype',
-          'run',
-          'bin',
-          '--',
-          rootDir,
-          '-c',
-          '-j',
-          join(rootDir, 'vis/src/data.json'),
-        ]),
-    ],
-    [Step.install, () => npm(ROOT, ['install'])],
-    [Step.installDocs, () => npm('docs', ['install'])],
-    [Step.installExample, () => npm('example', ['install'])],
-    [Step.installTsRetype, () => npm('retype', ['install'])],
-    [Step.installUikit, () => npm('uikit', ['install'])],
-    [Step.installVis, () => npm('vis', ['install'])],
-    [Step.prepareDist, prepareDist],
-    [Step.runCreateCmdHelpSnippet, () => script('createCmdHelpSnippet')],
-    [Step.runExampleTsRetype, () => npmrun('example', 'report')],
-    [Step.runExtractSnippets, () => script('extractSnippets')],
-    [Step.smoke, () => npmrun('example', 'smoke')],
-    [Step.syntaxHighlightSnippets, syntaxHighlightSnippets],
-    [Step.tests, () => npmrun(ROOT, 'test')],
-    [Step.testsFast, () => npmrun(ROOT, 'test:fast')],
-    [Step.updateDist, prepareDist],
-  ]);
-
-  const pipelineSteps =
-    step != null ? [step] : (pipeline != null && pipelinesDefinitions.get(pipeline)) || [];
-
-  const sortedSteps = sortSteps(steps, pipelineSteps);
+  const { defs, steps: sortedSteps } = resolveSteps({ rootDir, step, pipeline });
   printPipelineStats(steps, sortedSteps);
 
   const pipelineFns = sortedSteps.map((step) => {

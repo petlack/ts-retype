@@ -2,7 +2,7 @@ import React from 'react';
 import chalk from 'chalk';
 import test from 'ava';
 import { render } from 'ink-testing-library';
-import { Make } from './src/make.js';
+import { Make } from '../src/make.js';
 
 test('greet unknown user', t => {
   const {lastFrame} = render(<Make />);

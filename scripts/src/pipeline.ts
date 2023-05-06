@@ -1,13 +1,12 @@
 import colors from 'colors';
 import { difference, reverse } from 'ramda';
+import { createRunners } from './runners';
+import { Pipeline, PipelineStepDef, Step, createDefs, pipelinesDefinitions, steps } from './config';
+import { ExecResult } from './exec';
 
-export type PipelineStepDef<T> = {
-  name: T;
-  deps: T[];
-  parallel?: T[];
-};
-
+// eslint-disable-next-line no-console
 const log = console.log.bind(console, colors.gray('[make]'));
+
 const line = (...args: unknown[]) => {
   process.stdout.write(`${colors.gray('[make]')} ${args.join(' ')}`);
 };
@@ -188,4 +187,32 @@ export function getStats<T>(steps: PipelineStepDef<T>[], plan: T[]) {
     all,
     plan,
   };
+}
+
+export function resolveSteps({
+  rootDir,
+  step,
+  pipeline,
+}: {
+  pipeline?: Pipeline;
+  step?: Step;
+  rootDir: string;
+}): { steps: Step[]; defs: Map<Step, () => Promise<ExecResult>> } {
+  const runners = createRunners({
+    rootDir,
+    muteStderr: true,
+    muteStdout: true,
+  });
+
+  // const clean = parallel([cleanTsRetype, cleanVis, cleanDocs, cleanExample], { name: 'cleanAll' });
+  // const install = parallel([installTsRetype, installVis, installDocs], { name: 'install' });
+
+  const defs = createDefs({ ...runners, rootDir });
+
+  const pipelineSteps =
+    step != null ? [step] : (pipeline != null && pipelinesDefinitions.get(pipeline)) || [];
+
+  const sortedSteps = sortSteps(steps, pipelineSteps);
+
+  return { defs, steps: sortedSteps };
 }

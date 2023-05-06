@@ -8,6 +8,7 @@ import { report } from './report';
 import { RetypeConfig } from './config';
 import { RetypeCmdProps, DEFAULT_CONFIG } from './types';
 import { TS_RETYPE_CMD_OPTIONS } from './types/props';
+// import { isMain } from '@ts-retype/scripts/src/isMain';
 
 const log = createLogger(console.log);
 
@@ -69,6 +70,7 @@ function main() {
   report(config);
 }
 
+// if (isMain(import.meta)) {
 if (require.main === module) {
   main();
 }
