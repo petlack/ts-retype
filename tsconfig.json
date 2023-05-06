@@ -6,13 +6,23 @@
     "sourceMap": true,
     "module": "es2020",
     "lib": ["es2020"],
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
+    "moduleDetection": "force",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "baseUrl": "./",
+    "paths": {
+      "@ts-retype/retype/src/*": ["retype/src/*"],
+      "@ts-retype/retype/*": ["retype/dist/*"],
+      "@ts-retype/clikit/src/*": ["clikit/src/*"],
+      "@ts-retype/clikit/*": ["clikit/dist/*"],
+      "@ts-retype/uikit/src/*": ["uikit/src/*"],
+      "@ts-retype/uikit/*": ["uikit/dist/*"]
+    }
   }
 }

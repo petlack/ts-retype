@@ -40,10 +40,13 @@
     "scripts:build": "npm -w scripts run build",
     "scripts:dev": "npm -w scripts run dev",
     "security": "npm audit --audit-level=high",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
-    "test:fast": "NODE_OPTIONS=--experimental-vm-modules jest --coverage -c jest.fast.config.ts",
-    "test:fast:watchAll": "NODE_OPTIONS=--experimental-vm-modules jest -c jest.fast.config.ts --watchAll",
-    "test:watchAll": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
+    "test": "vitest run --coverage",
+    "test:fast": "vitest",
+    "test:watchAll": "vitest",
+    "testx": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "testx:fast": "NODE_OPTIONS=--experimental-vm-modules jest --coverage -c jest.fast.config.ts",
+    "testx:fast:watchAll": "NODE_OPTIONS=--experimental-vm-modules jest -c jest.fast.config.ts --watchAll",
+    "testx:watchAll": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
     "vis:build": "cd vis && npm run build",
     "vis:clean": "cd vis && npm run clean",
     "vis:dev": "cd vis && npm run dev"
@@ -63,6 +66,8 @@
     "@types/ramda": "^0.28.23",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
+    "@vitest/coverage-c8": "^0.31.0",
+    "c8": "^7.13.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-rollup": "^3.0.0",
@@ -74,7 +79,8 @@
     "rimraf": "^4.4.1",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
-    "ts-node-dev": "^2.0.0"
+    "ts-node-dev": "^2.0.0",
+    "vitest": "^0.31.0"
   },
   "husky": {
     "hooks": {
