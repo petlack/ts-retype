@@ -1,8 +1,8 @@
 import { RefractorRoot, refractor } from 'refractor/lib/core.js';
 import tsLang from 'refractor/lang/typescript.js';
 import json from 'refractor/lang/json.js';
-import { TokenRoot } from './types';
-import { flattenTokens, insertNewlines, filterEmpty } from './snippet';
+import { TokenRoot } from './types/index.js';
+import { flattenTokens, insertNewlines, filterEmpty } from './snippet.js';
 
 export function refractorHighlight(src: string, lang?: string): RefractorRoot {
   if (!refractor.registered('ts')) {

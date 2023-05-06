@@ -1,5 +1,5 @@
-import { compressRoot } from './snippet';
-import { TypeDuplicate } from './types';
+import { compressRoot } from './snippet.js';
+import { TypeDuplicate } from './types/index.js';
 
 export function compress(tds: TypeDuplicate[]): TypeDuplicate[] {
   return tds.map((td) => ({

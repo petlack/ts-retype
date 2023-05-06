@@ -1,10 +1,10 @@
-import { parse } from './parse';
-import { Similarity, IClusters } from './types/similarity';
+import { parse } from './parse.js';
+import { Similarity, IClusters } from './types/similarity.js';
 import ts from 'typescript';
-import { freq, selectIndices } from './utils';
+import { freq, selectIndices } from './utils.js';
 import { pluck, uniq } from 'ramda';
-import { highlight } from './highlight';
-import { TypeDuplicate } from '.';
+import { highlight } from './highlight.js';
+import { TypeDuplicate } from './types/index.js';
 import {
   CandidateType,
   LiteralCandidateType,
@@ -13,7 +13,7 @@ import {
   UnionCandidateType,
   SourceCandidateType,
   Property,
-} from './types/candidate';
+} from './types/candidate.js';
 
 function nonEmptyCandidateType(type: CandidateType): boolean {
   switch (type.type) {
@@ -28,6 +28,7 @@ function nonEmptyCandidateType(type: CandidateType): boolean {
     case 'union':
       return (<UnionCandidateType>type).types.length > 0;
   }
+  return true;
 }
 
 export function findTypesInFile(

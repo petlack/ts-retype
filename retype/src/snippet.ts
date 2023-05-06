@@ -1,4 +1,4 @@
-import type { Snippet, Token, TokenRoot, TokenText } from './types';
+import type { Snippet, Token, TokenRoot, TokenText } from './types/index.js';
 
 const classNamesMap = new Map<string, string>(
   [

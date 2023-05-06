@@ -1,6 +1,6 @@
 import { join } from 'path';
-import type { ExecResult } from './exec';
-import type { Runners } from './runners';
+import type { ExecResult } from './exec.js';
+import type { Runners } from './runners.js';
 
 export type PipelineStepDef<T> = {
   name: T;

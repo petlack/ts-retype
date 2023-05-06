@@ -32,7 +32,7 @@ export function enumToString<T extends Enumlike>(
   if (res == null) {
     return undefined;
   }
-  return enumObj[res].toString();
+  return enumObj[res]?.toString();
 }
 
 export function getEnumValues<T extends Enumlike>(enumType: T): string[] {

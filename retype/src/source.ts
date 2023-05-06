@@ -1,4 +1,4 @@
-import { FunctionCandidateType } from './types/candidate';
+import { FunctionCandidateType } from './types/candidate.js';
 import ts from 'typescript';
 import { range, slice } from 'ramda';
 

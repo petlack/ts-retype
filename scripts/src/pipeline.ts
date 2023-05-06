@@ -1,8 +1,15 @@
 import colors from 'colors';
 import { difference, reverse } from 'ramda';
-import { createRunners } from './runners';
-import { Pipeline, PipelineStepDef, Step, createDefs, pipelinesDefinitions, steps } from './config';
-import { ExecResult } from './exec';
+import { createRunners } from './runners.js';
+import {
+  Pipeline,
+  PipelineStepDef,
+  Step,
+  createDefs,
+  pipelinesDefinitions,
+  steps,
+} from './config.js';
+import { ExecResult } from './exec.js';
 
 // eslint-disable-next-line no-console
 const log = console.log.bind(console, colors.gray('[make]'));
@@ -86,7 +93,7 @@ export function plan<T>(defs: T, steps: PipelineStepDef<keyof T>[], target: (key
       ...plan(
         defs,
         steps,
-        (stepsByName.get(dep)?.deps || []).filter((dep) => !deps.includes(dep)),
+        (stepsByName.get(dep)?.deps || []).filter((dep: keyof T) => !deps.includes(dep)),
       ).filter((dep) => !deps.includes(dep)),
     );
   }

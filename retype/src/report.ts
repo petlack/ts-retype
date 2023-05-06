@@ -1,10 +1,10 @@
 import fs from 'fs';
-import { scan } from './scan';
-import { resolveOutputFilePath } from './cmd';
-import { createLogger } from './log';
-import { Metadata, ReportProps, ReportResult, ScanProps } from './types';
-import { dir, stringify } from './utils';
-import { compress } from './compress';
+import { scan } from './scan.js';
+import { resolveOutputFilePath } from './cmd.js';
+import { createLogger } from './log.js';
+import { Metadata, ReportProps, ReportResult, ScanProps } from './types/index.js';
+import { dir, stringify } from './utils.js';
+import { compress } from './compress.js';
 
 const log = createLogger(console.log);
 

@@ -1,4 +1,4 @@
-import { isBefore, makeNext, makePrevious } from '../src/pipeline';
+import { isBefore, makeNext, makePrevious } from '../src/pipeline.js';
 
 describe('', () => {
   const previousSteps = new Map([

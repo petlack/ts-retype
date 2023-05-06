@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { ExecResult, spawn } from './exec';
+import { ExecResult, spawn } from './exec.js';
 
 export type Runners = {
   npmrun: (workspace: string | null, script: string) => Promise<ExecResult>;
@@ -22,8 +22,15 @@ export function createRunners({
     if (!rootDir) {
       return { stderr: 'rootDir not found', stdout: '' };
     }
+    if (commands.length === 0) {
+      return { stderr: '', stdout: '' };
+    }
     const cwd = rootDir;
-    return await spawn(commands[0], commands.slice(1), { cwd, muteStdout, muteStderr });
+    return await spawn(commands.at(0) || 'echo', commands.slice(1), {
+      cwd,
+      muteStdout,
+      muteStderr,
+    });
   }
 
   async function node(jsPath: string, cwd: string): Promise<ExecResult> {

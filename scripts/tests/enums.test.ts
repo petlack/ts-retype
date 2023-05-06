@@ -1,5 +1,5 @@
-import { toEnumValue, safeToEnumValue } from '../src/utils/enums';
-import { Step } from '../src/config';
+import { toEnumValue, safeToEnumValue } from '../src/utils/enums.js';
+import { Step } from '../src/config.js';
 
 describe('getEnumValue', () => {
   it('returns null given null', () => {

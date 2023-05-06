@@ -1,4 +1,4 @@
-import { TypeDuplicate } from './duplicate';
+import { TypeDuplicate } from './duplicate.js';
 
 export type ReportResult = {
   data: TypeDuplicate[];

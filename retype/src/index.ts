@@ -1,5 +1,5 @@
-export { scan } from './scan';
-export { report } from './report';
+export { scan } from './scan.js';
+export { report } from './report.js';
 export type {
   ArrayElement,
   Metadata,
@@ -8,5 +8,5 @@ export type {
   TokenRoot,
   TokenText,
   TypeDuplicate,
-} from './types';
-export { TS_RETYPE_CMD_OPTIONS } from './types';
+} from './types/index.js';
+export { TS_RETYPE_CMD_OPTIONS } from './types/index.js';
