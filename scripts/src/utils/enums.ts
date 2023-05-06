@@ -29,7 +29,7 @@ export function enumToString<T extends Enumlike>(
   val: number | symbol | string | null | undefined | keyof T | T[keyof T],
 ): string | undefined {
   const res = toEnumValue(enumObj, val);
-  if (!res) {
+  if (res == null) {
     return undefined;
   }
   return enumObj[res].toString();

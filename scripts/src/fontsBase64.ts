@@ -4,7 +4,7 @@ import { writeFile } from 'fs/promises';
 import { execute } from './cmd.js';
 import { isMain } from './isMain.js';
 import { getRootDir, listFiles } from './paths.js';
-import { exec } from './exec.js';
+import { spawn } from './exec.js';
 import { zip } from 'ramda';
 
 type CmdProps = { verbose: boolean };
@@ -15,7 +15,7 @@ program.name('fontBase64').description('fontBase64 program').version('1.0.0');
 
 async function fontFileToBase64(path: string, { rootDir }: { rootDir: string }): Promise<string> {
   const runCmd = ['run', '--rm', '-v', `${path}:/app/font`, 'encode-font'];
-  const { stdout, stderr } = await exec('docker', runCmd, {
+  const { stdout, stderr } = await spawn('docker', runCmd, {
     cwd: join(rootDir, 'scripts'),
     muteStdout: true,
     muteStderr: true,

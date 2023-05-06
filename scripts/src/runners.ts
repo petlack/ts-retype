@@ -1,5 +1,13 @@
 import { join } from 'path';
-import { exec } from './exec.js';
+import { ExecResult, spawn } from './exec';
+
+export type Runners = {
+  npmrun: (workspace: string | null, script: string) => Promise<ExecResult>;
+  npm: (workspace: string | null, commands: string[]) => Promise<ExecResult>;
+  bash: (...commands: string[]) => Promise<ExecResult>;
+  node: (jsPath: string, cwd: string) => Promise<ExecResult>;
+  script: (name: string) => Promise<ExecResult>;
+};
 
 export function createRunners({
   rootDir,
@@ -9,36 +17,39 @@ export function createRunners({
   rootDir: string;
   muteStderr: boolean;
   muteStdout: boolean;
-}) {
-  async function node(jsPath: string, cwd: string): Promise<void> {
+}): Runners {
+  async function bash(...commands: string[]): Promise<ExecResult> {
     if (!rootDir) {
-      return;
-    }
-    await exec('node', [jsPath], {
-      cwd,
-      muteStdout,
-      muteStderr,
-    });
-  }
-
-  async function npm(workspace: string | null, commands: string[]): Promise<void> {
-    if (!rootDir) {
-      return;
-    }
-    const cwd = workspace ? join(rootDir, workspace) : rootDir;
-    await exec('npm', commands, { cwd, muteStdout, muteStderr });
-  }
-
-  async function npmrun(workspace: string | null, script: string): Promise<void> {
-    await npm(workspace, ['run', script]);
-  }
-
-  async function bash(...commands: string[]): Promise<void> {
-    if (!rootDir) {
-      return;
+      return { stderr: 'rootDir not found', stdout: '' };
     }
     const cwd = rootDir;
-    await exec(commands[0], commands.slice(1), { cwd, muteStderr, muteStdout });
+    return await spawn(commands[0], commands.slice(1), { cwd, muteStdout, muteStderr });
+  }
+
+  async function node(jsPath: string, cwd: string): Promise<ExecResult> {
+    if (!rootDir) {
+      return { stderr: 'rootDir not found', stdout: '' };
+    }
+    return await spawn('node', [jsPath], { cwd, muteStdout, muteStderr });
+  }
+
+  async function npm(workspace: string | null, commands: string[]): Promise<ExecResult> {
+    if (!rootDir) {
+      return { stderr: 'rootDir not found', stdout: '' };
+    }
+    const cwd = workspace ? join(rootDir, workspace) : rootDir;
+    return await spawn('npm', commands, { cwd, muteStdout, muteStderr });
+  }
+
+  async function npmrun(workspace: string | null, script: string): Promise<ExecResult> {
+    return await npm(workspace, ['run', script]);
+  }
+
+  async function script(name: string): Promise<ExecResult> {
+    if (!rootDir) {
+      return { stderr: 'rootDir not found', stdout: '' };
+    }
+    return await node(join('dist/', `${name}.js`), join(rootDir, 'scripts'));
   }
 
   return {
@@ -46,5 +57,6 @@ export function createRunners({
     node,
     npm,
     npmrun,
+    script,
   };
 }
