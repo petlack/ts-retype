@@ -15,7 +15,7 @@ import {
   split,
 } from 'ramda';
 import ts from 'typescript';
-import { ReportResult } from '@ts-retype/retype/src/types/report.js';
+import type { ReportResult } from '@ts-retype/retype';
 import { BaseCmdProps, execute } from './cmd.js';
 import { isMain } from './isMain.js';
 import { getRootDir } from './paths.js';

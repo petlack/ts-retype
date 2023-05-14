@@ -1,7 +1,7 @@
 import { createCommand } from 'commander';
 import { writeFile } from 'fs/promises';
 import { join } from 'path';
-import { generateTheme } from '@ts-retype/uikit/dist/generate';
+import { generateTheme } from '@ts-retype/uikit/dist/generate.js';
 import { execute } from './cmd.js';
 import { isMain } from './isMain.js';
 import { getRootDir } from './paths.js';

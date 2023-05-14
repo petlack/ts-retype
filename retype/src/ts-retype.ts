@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
 import fs from 'fs';
-import { dir, stringify } from './utils';
+import { dir, stringify } from './utils.js';
 import { Command, createCommand } from 'commander';
-import { createLogger } from './log';
-import { report } from './report';
-import { RetypeConfig } from './config';
-import { RetypeCmdProps, DEFAULT_CONFIG } from './types';
-import { TS_RETYPE_CMD_OPTIONS } from './types/props';
+import { createLogger } from './log.js';
+import { report } from './report.js';
+import { RetypeConfig } from './config.js';
+import { RetypeCmdProps, DEFAULT_CONFIG } from './types/index.js';
+import { TS_RETYPE_CMD_OPTIONS } from './types/props.js';
+// import { isMain } from '@ts-retype/scripts/src/isMain';
 
 const log = createLogger(console.log);
 
@@ -69,6 +70,7 @@ function main() {
   report(config);
 }
 
+// if (isMain(import.meta)) {
 if (require.main === module) {
   main();
 }

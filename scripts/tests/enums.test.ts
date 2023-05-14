@@ -1,5 +1,5 @@
-import { toEnumValue, safeToEnumValue } from '../src/utils/enums';
-import { Step } from '../src/config';
+import { toEnumValue, safeToEnumValue } from '../src/utils/enums.js';
+import { Step } from '../src/config.js';
 
 describe('getEnumValue', () => {
   it('returns null given null', () => {
@@ -9,12 +9,12 @@ describe('getEnumValue', () => {
     expect(toEnumValue(Step, 'foobar')).toBe(undefined);
   });
   it('returns enum value given number', () => {
-    expect(toEnumValue(Step, 0)).toBe(Step.buildDocs);
+    expect(toEnumValue(Step, 0)).toBe(Step.buildClikit);
   });
   it('returns enum value given correct string', () => {
-    expect(toEnumValue(Step, 'buildDocs')).toBe(Step.buildDocs);
+    expect(toEnumValue(Step, 'buildClikit')).toBe(Step.buildClikit);
   });
   it('returns enum value given typed-checked correct string', () => {
-    expect(safeToEnumValue(Step, 'buildDocs')).toBe(Step.buildDocs);
+    expect(safeToEnumValue(Step, 'buildClikit')).toBe(Step.buildClikit);
   });
 });

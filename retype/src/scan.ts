@@ -2,13 +2,13 @@ import path from 'path';
 import Progress from 'progress';
 import { globSync } from 'glob';
 import { concat } from 'ramda';
-import { clustersToDuplicates, findTypesInFile } from './clusters';
-import { createLogger } from './log';
-import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity';
-import { Metadata, ScanProps, TypeDuplicate } from './types';
-import { loadFile, formatDuration } from './utils';
 import { formatISO } from 'date-fns';
-import { SourceCandidateType } from './types/candidate';
+import { clustersToDuplicates, findTypesInFile } from './clusters.js';
+import { createLogger } from './log.js';
+import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity.js';
+import { Metadata, ScanProps, TypeDuplicate } from './types/index.js';
+import { loadFile, formatDuration } from './utils.js';
+import { SourceCandidateType } from './types/candidate.js';
 
 const log = createLogger(console.log);
 

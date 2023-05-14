@@ -1,6 +1,6 @@
-import { parse, getAllCandidates, removeAliasDuplicates } from './parse';
-import { similarity } from './similarity';
-import { createFile } from './utils';
+import { parse } from './parse.js';
+import { similarity } from './similarity.js';
+import { createFile } from './utils.js';
 
 const src = `
 export type User = {

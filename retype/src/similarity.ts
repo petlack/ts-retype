@@ -6,9 +6,9 @@ import {
   UnionCandidateType,
   FunctionCandidateType,
   LiteralCandidateType,
-} from './types/candidate';
-import type { ISparseMatrix, IClusters } from './types/similarity';
-import { Clusters, Similarity, SparseMatrix } from './types/similarity';
+} from './types/candidate.js';
+import type { ISparseMatrix, IClusters } from './types/similarity.js';
+import { Clusters, Similarity, SparseMatrix } from './types/similarity.js';
 
 const eqValues = (left: unknown[], right: unknown[]) => isEmpty(symmetricDifference(left, right));
 

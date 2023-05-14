@@ -1,6 +1,6 @@
 import { equals } from 'ramda';
-import { TypeDuplicate } from './duplicate';
-import { ArrayElement } from './utils';
+import { TypeDuplicate } from './duplicate.js';
+import { ArrayElement } from './utils.js';
 
 export interface Property {
   name: string;

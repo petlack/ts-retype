@@ -7,7 +7,7 @@ const config: Config.InitialOptions = {
     '^.+\\.(ts|tsx)?$': ['ts-jest', { useESM: true }],
   },
   collectCoverageFrom: ['<rootDir>/retype/src/**', '<rootDir>/retype/tests/**'],
-  modulePathIgnorePatterns: ['<rootDir>/retype/dist/', '<rootDir>/e2e'],
+  modulePathIgnorePatterns: ['<rootDir>/e2e', '<rootDir>/clikit'],
   coverageReporters: ['json-summary', 'lcov'],
 };
 

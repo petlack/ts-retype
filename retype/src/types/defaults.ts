@@ -1,5 +1,5 @@
-import { RetypeConfig } from '../config';
-import { ScanProps, RetypeCmdProps } from './props';
+import { RetypeConfig } from '../config.js';
+import { ScanProps, RetypeCmdProps } from './props.js';
 
 export const DEFAULT_SCAN_PROPS: Partial<ScanProps> = {
   exclude: ['**/node_modules/**', '**/dist/**'],

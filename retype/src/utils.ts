@@ -2,6 +2,8 @@ import { readFileSync, statSync } from 'fs';
 import path from 'path';
 import ts from 'typescript';
 
+// const __dirname = path.join(path.dirname(new URL(import.meta.url).pathname), '..');
+
 export function toName(node: ts.Node): string {
   if (node && node.kind) {
     return ts.SyntaxKind[node.kind];

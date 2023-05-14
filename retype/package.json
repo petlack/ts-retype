@@ -25,10 +25,12 @@
     "bin:rebuild": "npm run build && ./dist/ts-retype.cjs",
     "build": "rollup -c",
     "clean": "rm -rf dist",
-    "dev": "ts-node-dev --respawn",
+    "dev": "nodemon -I --exec node --",
     "prebuild": "npm run clean",
     "publish": "cd dist && npm publish",
-    "transpile": "tsc"
+    "start": "node --",
+    "transpile": "tsc",
+    "watch": "rollup -w -c rollup.config.dev.js"
   },
   "files": [
     "dist/index.js",

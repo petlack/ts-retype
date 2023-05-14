@@ -1,7 +1,7 @@
 import { ascend, assoc, sort, zip } from 'ramda';
 import ts, { LiteralTypeNode, SignatureDeclaration } from 'typescript';
-import { functionSignatureToStr, getCodeSnippet } from './source';
-import { TypeDuplicate } from './types';
+import { functionSignatureToStr, getCodeSnippet } from './source.js';
+import { TypeDuplicate } from './types/index.js';
 import {
   CandidateType,
   EnumCandidateType,
@@ -10,9 +10,9 @@ import {
   LiteralCandidateType,
   Property,
   UnionCandidateType,
-} from './types/candidate';
+} from './types/candidate.js';
 
-import { getNodeText, toName } from './utils';
+import { getNodeText, toName } from './utils.js';
 
 type TypeInFile = Pick<TypeDuplicate['files'][0], 'src' | 'pos' | 'offset' | 'lines'>;
 

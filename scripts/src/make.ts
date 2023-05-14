@@ -1,26 +1,14 @@
 import colors from 'colors';
 import { createCommand } from 'commander';
-import { join } from 'path';
-import { createRunners } from './runners.js';
 import { execute, BaseCmdProps } from './cmd.js';
-import { generateReadme } from './generateReadme.js';
-import { generateThemes } from './generateThemes.js';
 import { getRootDir } from './paths.js';
 import { isMain } from './isMain.js';
-import { prepareDist } from './prepareDist.js';
-import { runPipeline, PipelineStepDef, sortSteps, getStats, setFnName } from './pipeline.js';
-import { syntaxHighlighting } from './syntaxHighlighting.js';
+import { runPipeline, getStats, setFnName, resolveSteps } from './pipeline.js';
 import { enumToString, toEnumValue, getEnumValues } from './utils/enums.js';
-import { pipelines, Step, Pipeline, ROOT, pipelinesDefinitions, steps } from './config.js';
+import { pipelines, Step, Pipeline, steps, PipelineStepDef } from './config.js';
+import { EmptyExecResult } from './exec.js';
 
-type CmdProps = BaseCmdProps & {
-  pipeline: string;
-  step?: string;
-  follow: boolean;
-  quiet: boolean;
-};
-
-const program = createCommand();
+export const program = createCommand();
 
 program
   .name('make')
@@ -34,6 +22,14 @@ program
   .option('-f, --follow', 'print stdout')
   .option('-q, --quiet', 'mute stderr');
 
+export type MakeProps = BaseCmdProps & {
+  pipeline: string;
+  step?: string;
+  follow: boolean;
+  quiet: boolean;
+};
+
+// eslint-disable-next-line no-console
 const log = console.log.bind(console, '[make]');
 
 export function printPipelineStats<T extends string | number | symbol>(
@@ -53,16 +49,15 @@ export function printPipelineStats<T extends string | number | symbol>(
   );
 }
 
-async function make(config: Partial<CmdProps>) {
-  log(config);
-
+export async function makeConfig(
+  config: Partial<MakeProps>,
+): Promise<{ step?: Step; pipeline?: Pipeline; rootDir: string } | undefined> {
   if (!config.pipeline && !config.step) {
     log(colors.white('nothing to run'));
     return;
   }
 
   const pipeline = config.pipeline && toEnumValue(Pipeline, config.pipeline);
-
   if ((config.pipeline && pipeline == null) || typeof pipeline === 'string') {
     log(colors.red(`unknown pipeline ${config.pipeline}`));
     log('known pipelines', colors.yellow(getEnumValues(Pipeline).join(' ')));
@@ -70,96 +65,37 @@ async function make(config: Partial<CmdProps>) {
   }
 
   const step = config.step && toEnumValue(Step, config.step);
-
   if ((config.step && step == null) || typeof step === 'string') {
     log(colors.red(`unknown step ${config.step}`));
     log('known steps', colors.yellow(getEnumValues(Step).join(' ')));
     return;
   }
 
-  const muteStdout = config.follow ? false : true;
-  const muteStderr = config.quiet ? true : false;
-
   const rootDir = await getRootDir();
-
   if (!rootDir) {
     log(colors.red('could not find root dir'));
     return;
   }
 
-  const { bash, node, npm, npmrun } = createRunners({ rootDir, muteStderr, muteStdout });
+  return { rootDir, step, pipeline };
+}
 
-  log('running from');
-  log(rootDir);
+export async function make(props: Partial<MakeProps>) {
+  log(props);
 
-  async function script(name: string) {
-    rootDir && (await node(join('dist/', name), join(rootDir, 'scripts')));
+  const config = await makeConfig(props);
+  if (!config) {
+    // eslint-disable-next-line no-console
+    console.error('could not resolve a config');
+    return;
   }
+  const { rootDir, step, pipeline } = config;
 
-  const syntaxHighlightSnippets = () =>
-    syntaxHighlighting({
-      output: join(rootDir, 'docs/src/generated'),
-      dir: join(rootDir, 'docs/src/snippets'),
-    });
-
-  // const clean = parallel([cleanTsRetype, cleanVis, cleanDocs, cleanExample], { name: 'cleanAll' });
-  // const install = parallel([installTsRetype, installVis, installDocs], { name: 'install' });
-
-  const defs = new Map<Step, () => Promise<void>>([
-    [Step.buildDocs, () => npmrun('docs', 'build')],
-    [Step.buildExample, () => npmrun('example', 'build')],
-    [Step.buildTsRetype, () => npmrun('retype', 'build')],
-    [Step.buildUikit, () => npmrun('uikit', 'build')],
-    [Step.buildVis, () => npmrun('vis', 'build')],
-    [Step.cleanDocs, () => npmrun('docs', 'clean')],
-    [Step.cleanExample, () => npmrun('example', 'clean')],
-    [Step.cleanTsRetype, () => npmrun('retype', 'clean')],
-    [Step.cleanUikit, () => npmrun('uikit', 'clean')],
-    [Step.cleanVis, () => npmrun('vis', 'clean')],
-    [Step.echo, () => bash('echo', 'ok')],
-    [Step.format, () => npmrun(ROOT, 'format')],
-    [Step.generateReadme, generateReadme],
-    [Step.generateThemes, generateThemes],
-    [
-      Step.generateVisDevData,
-      () =>
-        npm(ROOT, [
-          '-w',
-          'retype',
-          'run',
-          'bin',
-          '--',
-          rootDir,
-          '-c',
-          '-j',
-          join(rootDir, 'vis/src/data.json'),
-        ]),
-    ],
-    [Step.install, () => npm(ROOT, ['install'])],
-    [Step.installDocs, () => npm('docs', ['install'])],
-    [Step.installExample, () => npm('example', ['install'])],
-    [Step.installTsRetype, () => npm('retype', ['install'])],
-    [Step.installUikit, () => npm('uikit', ['install'])],
-    [Step.installVis, () => npm('vis', ['install'])],
-    [Step.prepareDist, prepareDist],
-    [Step.runCreateCmdHelpSnippet, () => script('createCmdHelpSnippet')],
-    [Step.runExampleTsRetype, () => npmrun('example', 'report')],
-    [Step.runExtractSnippets, () => script('extractSnippets')],
-    [Step.smoke, () => npmrun('example', 'smoke')],
-    [Step.syntaxHighlightSnippets, syntaxHighlightSnippets],
-    [Step.tests, () => npmrun(ROOT, 'test')],
-    [Step.testsFast, () => npmrun(ROOT, 'test:fast')],
-    [Step.updateDist, prepareDist],
-  ]);
-
-  const pipelineSteps =
-    step != null ? [step] : (pipeline != null && pipelinesDefinitions.get(pipeline)) || [];
-
-  const sortedSteps = sortSteps(steps, pipelineSteps);
+  const { defs, steps: sortedSteps } = resolveSteps({ rootDir, step, pipeline });
   printPipelineStats(steps, sortedSteps);
 
   const pipelineFns = sortedSteps.map((step) => {
-    const fn = defs.get(step) || (() => Promise.resolve());
+    const fn = defs.get(step) || EmptyExecResult;
     const name = Step[step].toString();
     setFnName(fn, name ? name : '<empty>');
     return fn;

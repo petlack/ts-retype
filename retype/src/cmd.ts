@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { filterEmpty, pwd } from './utils';
+import { filterEmpty, pwd } from './utils.js';
 
 export function resolveConfig<T extends object>(
   configFile: string | undefined | null,

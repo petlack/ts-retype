@@ -1,26 +1,20 @@
 import fs from 'fs';
-import { scan } from './scan';
-import { resolveOutputFilePath } from './cmd';
-import { createLogger } from './log';
-import { Metadata, ReportProps, ReportResult, ScanProps } from './types';
-import { dir, stringify } from './utils';
-import { compress } from './compress';
+import { scan } from './scan.js';
+import { resolveOutputFilePath } from './cmd.js';
+import { createLogger } from './log.js';
+import { Metadata, ReportProps, ReportResult, ScanProps } from './types/index.js';
+import { dir, stringify } from './utils.js';
+import { compress } from './compress.js';
 
 const log = createLogger(console.log);
 
 function findTemplate(): string | null {
-  const distPath = dir('index.html');
-  const srcPath = dir('../../vis/dist/index.html');
-  const runningFromDist = fs.existsSync(dir('package.json'));
-  const runningFromSrc = fs.existsSync(srcPath);
-  if (runningFromDist) {
-    return distPath;
+  let distPath = dir('index.html');
+  if (!fs.existsSync(distPath)) {
+    distPath = dir('../../vis/dist/index.html');
+    log.log('could not find index.html in src/ or dist/');
   }
-  if (runningFromSrc) {
-    return srcPath;
-  }
-  log.log('could not find index.html in src/ or dist/');
-  return null;
+  return distPath;
 }
 
 export function report(args: ScanProps & ReportProps) {
