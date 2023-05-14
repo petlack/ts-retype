@@ -2,7 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "jsx": "react",
-    "lib": ["dom"],
+    "lib": ["dom", "ESNext"],
     "declaration": true,
     "pretty": true,
     "newLine": "lf",

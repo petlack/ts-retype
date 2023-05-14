@@ -5,6 +5,7 @@ export type {
   Metadata,
   Snippet,
   Token,
+  ReportResult,
   TokenRoot,
   TokenText,
   TypeDuplicate,

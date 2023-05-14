@@ -36,6 +36,20 @@ const plugins = [
   shebang(),
 ];
 
+function example(name) {
+  return {
+    input: `examples/${name}`,
+    output: {
+      file: `examples/dev/${name.split('.').at(0)}.js`,
+      format: 'es',
+      exports: 'named',
+      sourcemap: true,
+    },
+    external,
+    plugins,
+  };
+}
+
 export default [
   {
     input: 'src/index.ts',
@@ -78,4 +92,20 @@ export default [
     external,
     plugins,
   },
+  example('console.tsx'),
+  example('counter.tsx'),
+  example('dynamic-list.ts'),
+  example('fetch.tsx'),
+  example('header.tsx'),
+  example('interactive.tsx'),
+  example('layout.tsx'),
+  example('logger-json.tsx'),
+  example('logger-multiple.tsx'),
+  example('logger-string.tsx'),
+  example('oneoff-capture.tsx'),
+  example('oneoff-side-effect.tsx'),
+  example('playground.tsx'),
+  example('simple-list.tsx'),
+  example('stateful-app.tsx'),
+  example('tree.tsx'),
 ];

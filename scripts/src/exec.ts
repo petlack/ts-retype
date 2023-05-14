@@ -11,6 +11,8 @@ export type ExecResult = {
   stderr: string;
 };
 
+export const EmptyExecResult = () => Promise.resolve({ stderr: '', stdout: '' } as ExecResult);
+
 export async function exec(
   command: string,
   args: string[] = [],

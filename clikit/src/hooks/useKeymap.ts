@@ -1,5 +1,5 @@
 import { Key } from 'ink';
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 
 export type KeyHandler = () => void | Promise<void>;
 export type Keybinding = (input: string, key: Key) => void;
@@ -20,7 +20,13 @@ export const KeymapContext = createContext<KeymapContextValue>({
   bindings: [],
 });
 
-export function useKeymap() {
-  const value = useContext(KeymapContext);
-  return value;
+export function useKeymap(binding: Keybinding) {
+  const { addBinding, removeBinding } = useContext(KeymapContext);
+
+  useEffect(() => {
+    const handle = addBinding(binding);
+    return () => {
+      removeBinding(handle);
+    };
+  }, [addBinding, removeBinding, binding]);
 }

@@ -26,7 +26,11 @@ export function KeymapProvider({
 
   const handleInput = useCallback<Keybinding>((input, key) => {
     for (const binding of bindings.values()) {
-      binding(input, key);
+      try {
+        binding(input, key);
+      } catch (e) {
+        continue;
+      }
     }
   }, [bindings]);
 

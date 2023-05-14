@@ -28,6 +28,12 @@
         "types": "./dist/components/index.d.ts",
         "default": "./dist/components/index.js"
       }
+    },
+    "./hooks": {
+      "import": {
+        "types": "./dist/hooks/index.d.ts",
+        "default": "./dist/hooks/index.js"
+      }
     }
   },
   "engines": {
@@ -39,6 +45,7 @@
     "debug": "DEV=true clikit",
     "dev": "nodemon -I --exec node dev/cli.js",
     "dev:any": "nodemon -I --exec node --",
+    "examples:build": "tsc -p examples/tsconfig.json",
     "prebuild": "npm run clean",
     "start": "clikit",
     "start:any": "node --",
@@ -49,10 +56,12 @@
     "dist/*"
   ],
   "dependencies": {
+    "immer": "^10.0.1",
     "ink": "^4.1.0",
     "meow": "^11.0.0",
     "minisearch": "^6.0.1",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
     "@sindresorhus/tsconfig": "^3.0.1",

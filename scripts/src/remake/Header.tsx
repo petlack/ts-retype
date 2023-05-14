@@ -1,7 +1,6 @@
 import React from 'react';
 import { readFileSync } from 'fs';
-import { Text, Box } from 'ink';
-import BigText from 'ink-big-text';
+import { Box, Heading, Text } from '@ts-retype/clikit';
 
 const { version, name, repository, homepage } = JSON.parse(readFileSync('./package.json').toString());
 
@@ -20,14 +19,14 @@ function Links() {
   );
 }
 
-export function Header() {
+export const Header: React.FC<{ label?: string }> = ({ label }) => {
   return (
     <Box flexDirection='column' gap={1} alignItems='flex-start'>
-      <BigText text={name.split('/').at(-1)} font="tiny" space={false} />
+      <Heading>{label || name.split('/').at(-1)}</Heading>
       <Box flexDirection='row' justifyContent="center" gap={2} paddingLeft={2}>
         <Text>v{version}</Text>
       </Box>
       <Links />
     </Box>
   );
-}
+};

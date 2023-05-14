@@ -6,6 +6,29 @@ export type Timing = {
   speed: number;
 };
 
+export type Progress = Timing & {
+  ticks: number;
+  startedAt: number;
+  lastTickAt: number;
+  lastProgress: number;
+};
+
+export function tick(prev: Progress, progress: number): Progress {
+  const now = new Date().getTime();
+  const progressDelta = progress - prev.progress;
+  const durationDelta = now - prev.lastTickAt;
+  const speed = durationDelta !== 0 ? progressDelta / durationDelta : 0;
+  return {
+    startedAt: prev.startedAt,
+    ticks: prev.ticks + 1,
+    lastTickAt: now,
+    lastProgress: prev.progress,
+    progress,
+    duration: prev.duration + durationDelta,
+    speed,
+  };
+}
+
 export function useTiming(): {
   tick: (progress: number) => void;
   timing: Timing;

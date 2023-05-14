@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { ConsoleContext } from '../hooks/useConsole.js';
 import { Key } from 'ink';
 import { useKeymap } from '../hooks/useKeymap.js';
@@ -15,8 +15,7 @@ export function ConsoleProvider({
   const [isFocused, setIsFocused] = useState(false);
   const [offset, setOffset] = useState(0);
   const [isFollow, setIsFollow] = useState(true);
-  const { addBinding, removeBinding } = useKeymap();
-  
+
   const handler = useCallback((input: string, key: Key) => {
     if (!isFocused) return;
     if (key.downArrow || key.upArrow || key.pageDown || key.pageUp) setIsFollow(false);
@@ -27,13 +26,8 @@ export function ConsoleProvider({
     if (input === 'f') setIsFollow(true);
   }, [isFocused]);
 
-  useEffect(() => {
-    const handle = addBinding(handler);
-    return () => {
-      removeBinding(handle);
-    };
-  }, [addBinding, removeBinding, handler]);
-  
+  useKeymap(handler);
+
   return (
     <ConsoleContext.Provider value={{ offset, setOffset, isFollow, setIsFollow, isFocused, setIsFocused, buffer }}>
       {children}

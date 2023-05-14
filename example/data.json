@@ -177,11 +177,11 @@
   "meta": {
     "projectName": "example",
     "projectFilesScanned": 6,
-    "projectLocScanned": 168,
+    "projectLocScanned": 167,
     "projectTypesScanned": 4,
     "projectFilesWithTypesDeclarations": 3,
-    "scannedAt": "2023-05-06T18:11:17+03:00",
-    "scanDuration": 0,
+    "scannedAt": "2023-05-14T12:54:44+03:00",
+    "scanDuration": 1,
     "reportSize": 575967,
     "appSize": 571333,
     "dataSize": 4647

@@ -91,6 +91,7 @@ export const steps: PipelineStepDef<Step>[] = [
   { name: Step.installVis, deps: [Step.install, Step.cleanVis] },
   { name: Step.prepareDist, deps: [Step.buildVis, Step.buildTsRetype] },
   { name: Step.updateDist, deps: [] },
+  { name: Step.echo, deps: [] },
   { name: Step.runCreateCmdHelpSnippet, deps: [Step.prepareDist] },
   { name: Step.runExampleTsRetype, deps: [Step.installExample] },
   { name: Step.runExtractSnippets, deps: [Step.runExampleTsRetype] },
@@ -117,7 +118,7 @@ export const pipelinesDefinitions = new Map<Pipeline, Step[]>([
   [Pipeline.test, [Step.tests, Step.smoke]],
 ]);
 
-export const createDefs = ({ rootDir, npm, npmrun, bash, script }: { rootDir: string } & Runners) =>
+export const createDefs = ({ rootDir, npm, npmrun, script }: { rootDir: string } & Runners) =>
   new Map<Step, () => Promise<ExecResult>>([
     [Step.buildDocs, () => npmrun('docs', 'build')],
     [Step.buildExample, () => npmrun('example', 'build')],
@@ -129,7 +130,7 @@ export const createDefs = ({ rootDir, npm, npmrun, bash, script }: { rootDir: st
     [Step.cleanTsRetype, () => npmrun('retype', 'clean')],
     [Step.cleanUikit, () => npmrun('uikit', 'clean')],
     [Step.cleanVis, () => npmrun('vis', 'clean')],
-    [Step.echo, () => bash('echo', 'ok')],
+    [Step.echo, () => npm('example', ['run', 'check'])],
     [Step.format, () => npmrun(ROOT, 'format')],
     [Step.generateReadme, () => script('generateReadme')],
     [Step.generateThemes, () => script('generateThemes')],

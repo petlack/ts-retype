@@ -7,21 +7,29 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "check": "echo ok",
     "clean": "rm -rf dist",
     "dev": "nodemon --exec 'ts-node --esm --experimental-specifier-resolution=node' --",
+    "dev:any": "nodemon -I --exec node --",
     "dev:docs": "ts-node --esm --experimental-specifier-resolution=node src/generateDocs.ts",
     "dev:extract": "ts-node --esm --experimental-specifier-resolution=node src/extractSnippets.ts",
     "dev:fonts": "nodemon --exec 'ts-node --esm --experimental-specifier-resolution=node' src/fontsBase64.ts",
+    "dev:noin": "nodemon --exec node --",
     "dev:snippets": "ts-node --esm --experimental-specifier-resolution=node  src/syntaxHighlighting.ts",
     "make": "node --experimental-specifier-resolution=node dist/make.js",
     "run:docs": "node --experimental-specifier-resolution=node dist/generateDocs.js",
     "run:readme": "node --experimental-specifier-resolution=node dist/generateReadme.js",
-    "run:snippets": "node --experimental-specifier-resolution=node dist/syntaxHighlighting.js"
+    "run:snippets": "node --experimental-specifier-resolution=node dist/syntaxHighlighting.js",
+    "start:any": "node --",
+    "watch": "rollup -cw"
   },
   "dependencies": {
+    "@ts-retype/clikit": "*",
+    "js-yaml": "^4.1.0",
     "ramda": "^0.29.0"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
     "@types/ramda": "^0.28.24",
     "colors": "^1.4.0",
     "esm": "^3.2.25",

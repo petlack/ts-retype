@@ -24,7 +24,7 @@ const plugins = [
 
 export default [
   {
-    input: 'src/hello.ts',
+    input: 'src/hello.tsx',
     output: {
       file: 'dev/hello.js',
       format: 'es',
