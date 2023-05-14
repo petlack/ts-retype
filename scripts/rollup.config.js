@@ -28,7 +28,7 @@ function script(name) {
   return {
     input: `src/${name}`,
     output: {
-      file: `dev/${name.split('.').at(0)}.js`,
+      file: `dev/${name.split('/').at(-1).split('.').at(0)}.js`,
       format: 'es',
       exports: 'named',
       sourcemap: true,
@@ -38,4 +38,4 @@ function script(name) {
   };
 }
 
-export default [script('remake.tsx'), script('generateTmuxDev.ts'), script('playground.ts')];
+export default [script('remake/remake.tsx'), script('generateTmuxDev.ts'), script('playground.ts')];

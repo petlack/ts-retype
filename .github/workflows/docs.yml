@@ -23,6 +23,7 @@ jobs:
         npm i
         npm run build
         npm run make -- -f -p docs
+        npm -w docs-static install
         npm -w docs-static run rebuild
         npm -w docs-static run start &
         sleep 2
