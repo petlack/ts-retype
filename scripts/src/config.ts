@@ -20,11 +20,13 @@ export enum Pipeline {
 }
 
 export enum Step {
+  buildClikit,
   buildDocs,
   buildExample,
   buildTsRetype,
   buildUikit,
   buildVis,
+  cleanClikit,
   cleanDocs,
   cleanExample,
   cleanTsRetype,
@@ -36,6 +38,7 @@ export enum Step {
   generateThemes,
   generateVisDevData,
   install,
+  installClikit,
   installDocs,
   installExample,
   installTsRetype,
@@ -61,6 +64,8 @@ export const pipelines = new Set<Pipeline>([
 ]);
 
 export const steps: PipelineStepDef<Step>[] = [
+  { name: Step.installClikit, deps: [Step.cleanClikit] },
+  { name: Step.buildClikit, deps: [Step.installClikit] },
   {
     name: Step.buildDocs,
     deps: [
@@ -71,7 +76,7 @@ export const steps: PipelineStepDef<Step>[] = [
     ],
   },
   { name: Step.buildExample, deps: [Step.runExtractSnippets] },
-  { name: Step.buildTsRetype, deps: [Step.installTsRetype] },
+  { name: Step.buildTsRetype, deps: [Step.installTsRetype, Step.buildClikit] },
   { name: Step.buildUikit, deps: [Step.installUikit, Step.buildTsRetype] },
   { name: Step.buildVis, deps: [Step.installVis, Step.buildUikit, Step.generateThemes] },
   { name: Step.cleanDocs, deps: [] },

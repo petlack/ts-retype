@@ -7,5 +7,5 @@ export { useKeymap } from './useKeymap.js';
 export { useLog } from './useLog.js';
 export { useSearch } from './useSearch.js';
 export { useTimer } from './useTimer.js';
-export { useTiming } from './useTiming.js';
+export { useTiming, tick } from './useTiming.js';
 export type { Progress, Timing } from './useTiming.js';

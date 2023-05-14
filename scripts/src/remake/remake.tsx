@@ -13,7 +13,6 @@ import {
   Heading,
   Progress,
   ProgressBar,
-  Spotlight,
   Text,
   UseStore,
   latch,
@@ -26,6 +25,7 @@ import { EmptyExecResult } from '../exec.js';
 import { MakeProps, program, makeConfig } from '../make.js';
 import { execute } from '../cmd.js';
 import { isMain } from '../isMain.js';
+import { Spotlight } from './Spotlight.js';
 
 type Task = {
   step: Step;
