@@ -1,6 +1,6 @@
-import { ArrayElement, TypeDuplicate } from '@ts-retype/retype/src/types';
+import type { ArrayElement, TypeDuplicate } from '@ts-retype/retype';
 import { Badge } from './Badge';
-import { SearchAwareText } from '../SearchAwareText';
+import { SearchAwareText } from '@ts-retype/uikit';
 import { TypeIcon } from './TypeIcon';
 
 import './Title.scss';
@@ -37,8 +37,7 @@ function sortNames(names: TypeDuplicate['names']) {
 function DuplicateName({ selectedFile }: NamesListingProps) {
   return (
     <h2 className="mono">
-      <SearchAwareText>{selectedFile.file}
-      </SearchAwareText>
+      <SearchAwareText>{selectedFile.file}</SearchAwareText>
     </h2>
   );
 }

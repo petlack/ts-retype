@@ -1,6 +1,5 @@
-import { indexWith } from '../Tree/utils';
+import { indexWith, useTree, Cardinality, Pass, Ul, Tree, TreeNode, TreeProps, TreeProvider, TreeProviderProps } from '@ts-retype/uikit';
 import { useCallback, useMemo } from 'react';
-import { useTree } from '../Tree/useTree';
 import { ArrayElement, TypeDuplicate } from '@ts-retype/retype/src/types';
 import {
   ICON_CHEVRON_DOWN,
@@ -9,12 +8,8 @@ import {
   ICON_FOLDER,
   IconLetter,
 } from './icons';
-import { Pass, Ul } from '../Tree/Elements';
-import { Tree, TreeNode, TreeProps } from '../Tree';
-import { TreeProvider, TreeProviderProps } from '../Tree/TreeProvider';
-import { Cardinality } from '../Tree/types';
+import { SearchAwareText } from '@ts-retype/uikit';
 import './Explorer.scss';
-import { SearchAwareText } from '../SearchAwareText';
 
 type File = ArrayElement<TypeDuplicate['files']>;
 type Node = {
@@ -28,7 +23,7 @@ export const FileNode: TreeNode<Node> = ({ node, children }) => {
   const { onClick } = useTree();
   const type = node.data.file?.type;
   const onClickHandler = useCallback(() => onClick(node.id), [node.id]);
-  const iconMarkup = type && node.data.type === 'type' ? 
+  const iconMarkup = type && node.data.type === 'type' ?
     <IconLetter letter={type[0].toUpperCase()} /> :
     { file: ICON_FILE, dir: ICON_FOLDER, type: ICON_CODE }[node.data.type];
   const chevronMarkup = node.data.type === 'type' ?
@@ -77,7 +72,7 @@ const createIndex = indexWith(
     const parts = item.file.split('/');
     if (parts.length < 1) {
       return [];
-    } 
+    }
     const init = parts.slice(0, -1);
     const last = parts.at(-1) || '';
 
@@ -90,7 +85,7 @@ const createIndex = indexWith(
   (part: Node) => part.file ? `${part.name} ${part.file.pos.join('-')}` : part.name,
   { name: 'anonymous', type: 'dir' },
 );
-  
+
 export type ExplorerProps = {
   files: TypeDuplicate['files'];
   onClick?: TreeProviderProps<Node>['onClick'];

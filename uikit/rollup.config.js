@@ -6,31 +6,20 @@ import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
 import { visualizer } from 'rollup-plugin-visualizer';
 
-const packageJson = {
-  main: 'dist/index.cjs',
-  module: 'dist/index.es.js',
-};
-
 export default [
   {
     input: 'src/index.ts',
     output: [
       {
-        file: packageJson.main,
-        format: 'cjs',
-        sourcemap: true,
-        name: '@ts-retype/uikit',
-      },
-      {
-        file: packageJson.module,
+        file: 'dist/index.js',
         format: 'esm',
         sourcemap: true,
+        name: '@ts-retype/uikit',
       },
     ],
     plugins: [
       external(),
       resolve(),
-      commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
       postcss({
         extract: true,
@@ -44,6 +33,34 @@ export default [
       }),
     ],
   },
+
+  {
+    input: 'src/hooks/index.ts',
+    output: [
+      {
+        file: 'dist/hooks/index.js',
+        format: 'esm',
+        sourcemap: true,
+        name: '@ts-retype/uikit/hooks',
+      },
+    ],
+    plugins: [
+      external(),
+      resolve(),
+      typescript({ tsconfig: './tsconfig.json' }),
+      postcss({
+        extract: true,
+        modules: false,
+        sourceMap: true,
+        use: ['sass'],
+      }),
+      visualizer({
+        emitFile: true,
+        filename: 'stats-hooks.html',
+      }),
+    ],
+  },
+
   {
     input: 'src/theme/generate.ts',
     output: [
@@ -65,12 +82,23 @@ export default [
       }),
     ],
   },
+
   {
     input: 'src/index.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     external: [/\.css|\.styl|\.scss$/],
     plugins: [dts()],
   },
+
+  {
+    input: 'src/hooks/index.ts',
+    output: {
+      file: 'dist/hooks/index.d.ts',
+      format: 'es',
+    },
+    plugins: [dts()],
+  },
+
   {
     input: 'src/theme/generate.ts',
     output: [{ file: 'dist/generate.d.ts', format: 'esm' }],

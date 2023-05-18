@@ -185,30 +185,4 @@ main {
     @include darkSxTheme();
   }
   @include sxTheme();
-  @include flexColumn();
-  align-items: center;
-  background-color: var(--clr-bg-main);
-  color: var(--clr-fg-text);
-  gap: var(--space-4);
-  .topbar-container {
-    position: fixed;
-    top: 0;
-    z-index: var(--z-sticky);
-    background-color: var(--clr-bg-topbar);
-    border-bottom: 1px solid var(--clr-border);
-    .strip {
-      position: fixed;
-      z-index: var(--z-overlay);
-    }
-  }
-  .window {
-    background-color: var(--clr-bg-code);
-  }
-  header {
-    @include flexColumn();
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    box-shadow: var(--shadow-base);
-  }
 }

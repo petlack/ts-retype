@@ -6,4 +6,3 @@ export { ProgressBar } from './ProgressBar.js';
 export { TabItem } from './TabItem.js';
 export { Text } from './Text.js';
 export type { TextProps } from './Text.js';
-export * from './Tree/index.js';

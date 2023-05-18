@@ -3,20 +3,19 @@ import { Filters, FiltersMenu } from './components/Filters';
 import { Footer } from './components/Footer/Footer';
 import { FulltextData } from './types';
 import { Listing } from './components/Listing';
-import { Search } from './components/Search';
-import { SearchPhraseProvider } from './hooks/useSearchPhrase';
-import { ThemeMode, ThemeProvider } from '@ts-retype/uikit';
-import { ToastProvider } from './components/Toast';
+// import { Search } from './components/Search';
+import { SearchPhraseProvider, useSearch } from '@ts-retype/uikit/hooks';
+import { Search, ToastProvider, ThemeMode, ThemeProvider } from '@ts-retype/uikit';
+// import { ToastProvider } from './components/Toast';
 import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
 import { TopBar, UiKitApp } from '@ts-retype/uikit';
-import { TypeDuplicate } from '@ts-retype/retype';
+import type { Metadata, TypeDuplicate } from '@ts-retype/retype';
 import { decompressRoot } from '@ts-retype/retype/dist/snippet';
 import { themes } from './themes';
 import { useCallback, useEffect, useState } from 'react';
-import { useSearch } from './hooks/useSearch';
-import type { Metadata } from '@ts-retype/retype/src';
+// import { useSearch } from './hooks/useSearch';
 
-import '@ts-retype/uikit/dist/index.es.css';
+import '@ts-retype/uikit/dist/index.css';
 import './App.scss';
 
 const preferredTheme: ThemeMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -48,17 +47,22 @@ function decompress(td: TypeDuplicate) {
 function App() {
   const [allData, setAllData] = useState([] as FulltextData[]);
   const [meta, setMeta] = useState({} as Metadata);
+  // const [query, setQuery] = useState('');
+  // const initialFilter = { minFiles: 2, minProperties: 3, selectedSimilarity: 'all', selectedType: 'all' };
+  const initialFilter = () => true;
 
-  const [
-    query,
-    filter,
+  const {
+    // query,
+    filter = {},
     results,
     facetsStats,
     updateQuery,
+    setQuery,
+    query,
     updateFilter,
     reindex,
-  ] = useSearch(facets, { minFiles: 2, minProperties: 3, selectedSimilarity: 'all', selectedType: 'all' }, '');
-  
+  } = useSearch(['fulltext'], ['files', 'names', 'group'], '');
+
   useEffect(() => {
     setAllData(
       window.__data__.map(decompress).filter(({ group }) => ['identical', 'renamed'].includes(group))
@@ -70,7 +74,7 @@ function App() {
     );
     setMeta(window.__meta__);
   }, []);
-  
+
   useEffect(() => {
     reindex(allData);
   }, [allData]);
@@ -81,6 +85,13 @@ function App() {
     setFiltersVisible(!filtersVisible);
   }, [filtersVisible]);
 
+  // <FiltersMenu isOpen={filtersVisible} onClick={toggleFiltersVisibility} />
+  // <Filters
+  //   filter={filter}
+  //   updateFilter={updateFilter}
+  //   facetsStats={facetsStats}
+  //   visible={filtersVisible}
+  // />
   return (
     <ThemeProvider theme={themes[preferredTheme]}>
       <UiKitApp>
@@ -89,14 +100,7 @@ function App() {
             <TopBar>
               <Search
                 query={query}
-                setQuery={updateQuery}
-              />
-              <FiltersMenu isOpen={filtersVisible} onClick={toggleFiltersVisibility} />
-              <Filters
-                filter={filter}
-                updateFilter={updateFilter}
-                facetsStats={facetsStats}
-                visible={filtersVisible}
+                setQuery={setQuery}
               />
             </TopBar>
             <div className="main">

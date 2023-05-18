@@ -21,8 +21,6 @@
     "@remix-run/serve": "~1.14.2",
     "@ts-retype/docs": "*",
     "@ts-retype/uikit": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {

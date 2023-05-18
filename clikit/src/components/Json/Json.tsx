@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useCallback, useState } from 'react';
 import { Box, BoxProps, Text, useFocus } from 'ink';
 import { Col, Row } from '../../layouts/index.js';
-import { TreeProvider, Cardinality, TreeProps, Tree, TreeNode, indexWith } from '../Tree/index.js';
+import { TreeProvider, Cardinality, TreeProps, Tree, TreeNode, indexWith } from '@ts-retype/uikit';
 import { useKeymap } from '../../hooks/useKeymap.js';
 
 type Node = {

@@ -14,8 +14,16 @@ export * from './core/Button';
 export * from './core/Icons';
 export * from './core/Example';
 
+export * from './components/Box';
 export * from './components/Logo';
+export * from './components/Options';
+export * from './components/Search';
+export * from './components/SearchAwareText';
+export * from './components/Tag';
+export * from './components/ThemeToggle';
+export * from './components/Toast';
 export * from './components/TopBar';
+export * from './components/Tree';
 export * from './components/UiKitApp';
 
 export * from './theme';

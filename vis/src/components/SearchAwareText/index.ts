@@ -1,1 +1,0 @@
-export { SearchAwareText } from './SearchAwareText';

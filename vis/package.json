@@ -12,10 +12,9 @@
   },
   "dependencies": {
     "@ts-retype/retype": "*",
+    "@ts-retype/uikit": "*",
     "date-fns": "^2.29.3",
-    "minisearch": "^6.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "minisearch": "^6.0.1"
   },
   "devDependencies": {
     "@types/micromatch": "^4.0.2",

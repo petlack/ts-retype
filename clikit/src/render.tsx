@@ -3,7 +3,7 @@ import { render as inkRender } from 'ink';
 import { WriteStream } from './tty.js';
 import { ExitProvider } from './providers/exit.js';
 import { KeymapProvider } from './providers/keymap.js';
-import { ConfigProvider } from './providers/config.js';
+import { ConfigProvider } from '@ts-retype/uikit/hooks';
 
 export type RenderOptions<T> = {
   noUi?: boolean;

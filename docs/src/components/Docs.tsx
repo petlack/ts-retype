@@ -1,13 +1,7 @@
 import { TS_RETYPE_CMD_OPTIONS } from '@ts-retype/retype/dist/types';
 import type { Snippet } from '@ts-retype/retype';
-import { ThemeMode, useTheme } from '@ts-retype/uikit';
 import * as Snippets from '../generated/snippets';
-import { Window } from '@ts-retype/uikit';
-import { Bash } from '@ts-retype/uikit';
-import { Code } from '@ts-retype/uikit';
-import { JsTsCode } from '@ts-retype/uikit';
-import { MultilangWindow } from '@ts-retype/uikit';
-import { Options } from './Options';
+import { Bash, Code, JsTsCode, MultilangWindow, Options, ThemeMode, Window, useTheme } from '@ts-retype/uikit';
 
 import './Docs.styl';
 

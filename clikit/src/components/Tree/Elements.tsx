@@ -1,6 +1,6 @@
 import React from 'react';
-import { Col } from '../Col.js';
-import { Text } from 'ink/build';
+import { Col } from '../../layouts/Col.js';
+import { Text } from 'ink';
 import { Renderable } from './types.js';
 
 export const Ul: React.FC<Renderable> = ({ children, ...rest }) => (

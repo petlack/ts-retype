@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Text, useApp } from 'ink';
 import { Col, Json, burn } from '@ts-retype/clikit';
-import { useFetch } from '@ts-retype/clikit';
+import { useFetch } from '@ts-retype/uikit/hooks';
 
 function Response<T>({ url, method, body }: { url: string, method?: RequestInit['method'], body?: string }) {
   const { exit } = useApp();
