@@ -1,8 +1,8 @@
-import { lighten } from '@theme-ui/color';
+import { readableColor, darken, easeIn, lighten, transparentize } from 'polished';
 import { Termix } from './types';
 
-const text =
-  'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif';
+// const text =
+//   'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif';
 
 const heading = {
   fontFamily: 'heading',
@@ -78,10 +78,44 @@ export const theme: Termix = {
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
 
   buttons: {
+    default: {
+      // transitionProperty: 'background,color',
+      // transition: '150ms ease-in',
+      cursor: 'pointer',
+      colorScheme: 'primary',
+      variant: 'default',
+      fill: 'solid',
+      size: 'md',
+      density: 'airy',
+      weight: 'bold',
+      corners: 'round',
+      energy: 'live',
+      mimic: 'tint',
+    },
     plain: {
-      p: 0,
       backgroundColor: 'transparent',
       color: 'primary',
+      '&:hover': {
+        bg: 'mantle',
+      },
+    },
+    sm: {
+      fontSize: 'sm',
+      lineHeight: 1,
+      px: 3,
+      py: 2,
+    },
+    md: {
+      fontSize: 'md',
+      px: 3,
+      py: 1,
+    },
+    lg: {
+      fontSize: 'lg',
+      px: 4,
+      py: 3,
+      lineHeight: 1,
+      borderWidth: 2,
     },
   },
 
@@ -270,7 +304,11 @@ export const theme: Termix = {
     },
   },
 
-  tags: {},
+  tags: {
+    default: {
+      cursor: 'default',
+    },
+  },
 
   corners: {
     sharp: { borderRadius: 0 },
@@ -281,23 +319,72 @@ export const theme: Termix = {
   },
 
   density: {
-    dense: {},
-    airy: {},
+    dense: { px: 2, py: 1 },
+    airy: { px: 3, py: 2 },
+  },
+
+  energy: {
+    rigid: {
+      transition: 'none',
+    },
+    live: {
+      transitionProperty: 'background,color',
+      transition: `150ms ${easeIn('sine')}`,
+    },
+  },
+
+  mimic: {
+    static: () => ({
+      '&:hover': {},
+    }),
+    tint: () => ({}),
+    morph: () => ({
+      '&:hover': {},
+    }),
   },
 
   fill: {
-    solid: ({ color }) => ({ backgroundColor: color, color: 'white' }),
+    solid: ({ color }) => ({
+      bg: color,
+      color: readableColor(color, 'white', 'black'),
+      '&:hover': {
+        bg: darken(0.1, color),
+        color: readableColor(darken(0.1, color), 'white', 'black', true),
+      },
+    }),
     semi: ({ color }) => ({
-      backgroundColor: lighten(color, 0.4),
+      bg: lighten(0.4, color),
       color,
       border: '1px solid',
       borderColor: color,
+      '&:hover': {
+        bg: lighten(0.3, color),
+        color: readableColor(lighten(0.3, color), 'white', 'black', true),
+      },
     }),
     outline: ({ color }) => ({
-      backgroundColor: 'transparent',
+      bg: 'transparent',
       color,
       border: '1px solid',
       borderColor: color,
+      '&:hover': {
+        bg: transparentize(0.9, color),
+      },
+    }),
+    ghost: ({ color }) => ({
+      bg: 'transparent',
+      color,
+      '&:hover': {
+        bg: transparentize(0.9, color),
+      },
+    }),
+    link: ({ color }) => ({
+      color,
+      bg: 'transparent',
+      textDecoration: 'underline',
+      '&:hover': {
+        color: darken(0.2, color),
+      },
     }),
   },
 

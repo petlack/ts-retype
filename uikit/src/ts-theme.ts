@@ -1,14 +1,10 @@
-import { darken, lighten } from '@theme-ui/color';
-import { TermixTheme } from './theme/theme';
-import { variants, labels } from './theme/ThemeContext/palette.js';
+import { darken } from '@theme-ui/color';
+import { Termix, palette } from './termix';
 
 const primary = '#0a799e';
 const accent = '#c68726';
 
-const paletteColors = (variantName: keyof typeof variants) =>
-  Object.fromEntries(Object.entries(variants[variantName]).map(([key, value]) => [key, value.hsl]));
-
-export const theme: TermixTheme = {
+export const theme: Termix = {
   config: {
     useBorderBox: true,
     initialColorModeName: 'light',
@@ -21,11 +17,11 @@ export const theme: TermixTheme = {
   },
 
   colors: {
-    ...paletteColors('latte'),
+    ...palette('latte'),
     primary: primary,
     accent: accent,
     modes: {
-      dark: paletteColors('mocha'),
+      dark: palette('mocha'),
     },
   },
 
@@ -50,8 +46,10 @@ export const theme: TermixTheme = {
   },
 
   buttons: {
-    plain: {
+    default: {
       cursor: 'pointer',
+    },
+    plain: {
       color: 'text',
       '&:hover': {
         color: 'sky',
@@ -62,15 +60,10 @@ export const theme: TermixTheme = {
       pw: 1,
     },
     primary: {
-      cursor: 'pointer',
       color: 'white',
       bg: 'primary',
-      '&:hover': {
-        bg: 'sky',
-      },
     },
     danger: {
-      cursor: 'pointer',
       color: 'white',
       bg: 'red',
       '&:hover': {
@@ -78,7 +71,6 @@ export const theme: TermixTheme = {
       },
     },
     secondary: {
-      cursor: 'pointer',
       color: 'background',
       bg: 'secondary',
       '&:hover': {
@@ -105,8 +97,6 @@ export const theme: TermixTheme = {
 
   tags: {
     default: {
-      py: 1,
-      px: 2,
       lineHeight: 1,
     },
 
@@ -126,15 +116,6 @@ export const theme: TermixTheme = {
     blue: {
       color: 'white',
       background: 'sky',
-    },
-
-    dense: {
-      py: 1,
-      px: 2,
-    },
-    airy: {
-      py: 1,
-      px: 2,
     },
   },
 };

@@ -1,46 +1,35 @@
 import { Tag } from 'components/Tag';
 import { Text } from 'components/Text';
 import { SidebarLayout } from 'components/Sidebar';
-import { Fullscreen } from 'layouts/Fullscreen';
-import { Stack } from 'layouts/Stack';
 import { FC, useState } from 'react';
 import {
   Box,
-  Button,
   Card,
   Container,
   Flex,
   Grid,
   Heading,
-  InitializeColorMode,
   Input,
   Label,
-  useThemeUI,
 } from 'theme-ui';
-// import { ThemeProvider } from 'theme-ui';
-import { ThemeProvider } from 'theme/ThemeContext';
-import { Editor, importColors } from '@compai/css-gui';
-import { Hamburger } from 'components/Hamburger';
-import { Overlay } from 'layouts/Overlay';
-import { variants, labels } from 'theme/ThemeContext/palette.js';
-import { ControlsTheme } from 'theme/ThemeContext/theme.js';
+import { ThemeProvider, palette, useTermix } from './termix';
+// import { Editor, importColors } from '@compai/css-gui';
+import { Hamburger } from './components/Hamburger';
+import { Overlay } from './layouts/Overlay';
 import { ThemePoster } from 'theme/ThemePoster';
 import { theme } from './ts-theme.js';
 import './App.scss';
+import { Button } from 'components/Button';
+import { Stack } from 'layouts/Stack';
 
-type ThemeMode = 'light' | 'dark';
+// type ThemeMode = 'light' | 'dark';
+//
+// const body = '\'Noto Sans\', sans-serif';
+// const heading = '\'Exo 2\', sans-serif';
+// const mono = '\'Fira Code\', monospace';
+// const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-const body = '\'Noto Sans\', sans-serif';
-const heading = '\'Exo 2\', sans-serif';
-const mono = '\'Fira Code\', monospace';
-const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-const paletteColors = (variantName: keyof typeof variants) => Object.fromEntries(
-  Object.entries(variants[variantName])
-    .map(([key, value]) => ([key, value.hsl]))
-);
-
-console.log({ paletteColors: paletteColors('latte') });
+console.log({ paletteColors: palette('latte') });
 
 const SearchIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={16} height={16}>
@@ -52,7 +41,7 @@ type SearchProps = {
   query: string;
 };
 
-const Search: FC<SearchProps> = ({ }) => {
+const Search: FC<SearchProps> = () => {
   const [query, setQuery] = useState('');
   return (
     <Grid sx={{ gridTemplateColumns: 'min-content 1fr', gap: 3, alignItems: 'center' }}>
@@ -63,23 +52,37 @@ const Search: FC<SearchProps> = ({ }) => {
 };
 
 const Buttons = () => {
-  const context = useThemeUI();
-  const { theme } = context;
+  const theme = useTermix();
 
-  const markup = Object.keys(theme.buttons || {}).map(variant => <Button key={variant} variant={variant}>{variant}</Button>);
+  const markup = Object.keys(theme.colors || {}).map(color => <Button key={color} colorScheme={color} corners='ball' fill='solid' size='sm'>{color}</Button>);
   return (
     <>
-      {markup}
+      <Button size='sm'>Small</Button>
+      <Button colorScheme='primary'>Normal</Button>
+      <Button size='lg' fill='semi' colorScheme='red'>Danger</Button>
+      <Button colorScheme='green' fill='outline'>Green</Button>
+      <Button colorScheme='yellow' fill='outline' corners='pill'>Yellow</Button>
+      <Button colorScheme='text' fill='ghost'>Ghost</Button>
+      <Button colorScheme='sky' fill='link'>Link</Button>
+      {markup.toString().length}
     </>
   );
 };
 
+const ColorsPoster = () => {
+  const theme = useTermix();
+
+  const markup = Object.entries(theme.colors || {}).map(([name, value]) => <Box key={name} sx={{ aspectRatio: 1, bg: value }}></Box>);
+  return (
+    <Grid columns={10}>
+      {markup}
+    </Grid>
+  );
+};
+
 export function App() {
-  // const [styles, setStyles] = useState({ color: 'tomato' })
-  // const colors = importColors(themeColors)
   return (
     <ThemeProvider theme={theme}>
-      <InitializeColorMode />
       <Container content='center' sx={{ display: 'flex', flexDirection: 'column', gap: 4, }}>
 
         <Card>
@@ -89,7 +92,7 @@ export function App() {
 
         <Card>
           <Heading>Buttons</Heading>
-          <Flex sx={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+          <Flex sx={{ flexFlow: 'row wrap', alignItems: 'center', gap: 4 }}>
             <Buttons />
           </Flex>
         </Card>
@@ -97,10 +100,10 @@ export function App() {
         <Card>
           <Heading>Tags</Heading>
           <Flex sx={{ gap: 2, alignItems: 'flex-start' }}>
-            <Tag fill='semi' color='yellow' size='lg' density='airy' corners='round'>test</Tag>
-            <Tag color='red' size='md' weight='bold' corners='sharp'>UPPER</Tag>
-            <Tag fill='outline' color='green' size='sm'>CaMel</Tag>
-            <Tag color='blue' size='xs' corners='pill'>un_der</Tag>
+            <Tag fill='semi' colorScheme='yellow' size='lg' density='airy' corners='round'>test</Tag>
+            <Tag colorScheme='red' size='md' weight='bold' corners='sharp'>UPPER</Tag>
+            <Tag fill='outline' colorScheme='green' size='sm'>CaMel</Tag>
+            <Tag colorScheme='blue' size='xs' corners='pill'>un_der</Tag>
           </Flex>
         </Card>
 
@@ -109,6 +112,7 @@ export function App() {
           <SidebarLayout sx={{
             width: '30vw',
             height: '30vh',
+            minWidth: '400px',
             background: 'mantle',
           }}>
             <Box sx={{ flex: 1, p: 3, paddingTop: 4, background: 'primary', color: 'background' }}>
@@ -126,6 +130,40 @@ export function App() {
             <Hamburger flavor='shoot' />
             <Hamburger flavor='sigma' size={24} weight='black' />
           </Flex>
+        </Card>
+
+        <Card>
+          <Heading>Typography</Heading>
+          <Stack sx={{ gap: 2 }}>
+            <Heading as='h1'>First Level</Heading>
+            <Heading as='h2'>Second Stage</Heading>
+            <Heading as='h3'>Third Category</Heading>
+            <Heading as='h4'>Fourth Indent</Heading>
+            <Heading as='h5'>Fifth Call</Heading>
+            <p>
+              Nullam quis risus eget <a href='#'>urna mollis ornare</a> vel eu leo. Cum sociis natoque
+              penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh
+              ultricies vehicula.
+            </p>
+            <p>
+              <small>This line of text is meant to be treated as fine print.</small>
+            </p>
+            <p>
+              The following snippet of text is <strong>rendered as bold text</strong>.
+            </p>
+            <p>
+              The following snippet of text is <em>rendered as italicized text</em>.
+            </p>
+            <p>
+              An abbreviation of the word attribute is <abbr title='attribute'>attr</abbr>.
+            </p>
+
+          </Stack>
+        </Card>
+
+        <Card>
+          <Heading>Colors</Heading>
+          <ColorsPoster />
         </Card>
 
         <ThemePoster />
