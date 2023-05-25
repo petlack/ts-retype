@@ -1,3 +1,4 @@
+import { lighten } from '@theme-ui/color';
 import { Theme, ThemeUIStyleObject, useThemeUI } from 'theme-ui';
 
 const text =
@@ -9,11 +10,23 @@ const heading = {
   fontWeight: 'heading',
 };
 
-export type ControlsTheme = {
-  tags: Record<string, ThemeUIStyleObject>;
-} & Theme;
+export type Corners = 'sharp' | 'dull' | 'round' | 'ball' | 'pill';
+export type Density = 'airy' | 'dense';
+export type Fill = 'solid' | 'semi' | 'outline';
+export type Size = 'xs' | 'sm' | 'md' | 'lg';
+export type Weight = 'thin' | 'regular' | 'bold';
 
-export const theme: ControlsTheme = {
+export type TermixTheme = Theme &
+  Partial<{
+    tags: Record<string, ThemeUIStyleObject>;
+    corners: Record<Corners, ThemeUIStyleObject>;
+    density: Record<Density, ThemeUIStyleObject>;
+    fill: Record<Fill, (props: { color: string }) => ThemeUIStyleObject>;
+    size: Record<Size, ThemeUIStyleObject>;
+    weight: Record<Weight, ThemeUIStyleObject>;
+  }>;
+
+export const theme: TermixTheme = {
   useCustomProperties: false,
   colors: {
     text: '#454f5b',
@@ -53,11 +66,22 @@ export const theme: ControlsTheme = {
     monospace: 'Menlo, monospace',
   },
 
-  fontSizes: [12, 14, 16, 20, 24, 32, 42, 48, 64, 96],
+  fontSizes: {
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 20,
+    xl: 24,
+    '2xl': 32,
+    '3xl': 42,
+    '4xl': 48,
+    '5xl': 64,
+    '6xl': 96,
+  },
 
   fontWeights: {
-    thin: 300,
-    body: 200,
+    thin: 200,
+    body: 400,
     heading: 600,
     bold: 700,
   },
@@ -72,21 +96,8 @@ export const theme: ControlsTheme = {
   buttons: {
     plain: {
       p: 0,
-      lineHeight: 'normal',
       backgroundColor: 'transparent',
       color: 'primary',
-    },
-    primary: {
-      color: '#333',
-      backgroundColor: '#f3f3f3',
-      borderRadius: '5px',
-      boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 0px 1px inset',
-      ':disabled': {
-        color: '#aaa',
-      },
-    },
-    secondary: {
-      backgroundColor: 'action',
     },
   },
 
@@ -96,13 +107,21 @@ export const theme: ControlsTheme = {
       display: 'flex',
       flexDirection: 'column',
       padding: 2,
-      borderRadius: 8,
       border: '1px solid rgba(0, 0, 0, 0.125)',
       ':hover': {
         border: '1px solid rgba(0, 0, 0, 0.25)',
         boxShadow: '0 0 8px rgba(0, 0, 0, 0.125)',
       },
     },
+  },
+
+  radii: {
+    xs: '2px',
+    sm: '4px',
+    md: '6px',
+    lg: '8px',
+    xl: '12px',
+    max: '100vw',
   },
 
   styles: {
@@ -267,20 +286,55 @@ export const theme: ControlsTheme = {
     },
   },
 
-  tags: {
-    default: {
-      display: 'inline-block',
-      px: 1,
-      borderRadius: 5,
-      whiteSpace: 'nowrap',
-    },
+  tags: {},
+
+  corners: {
+    sharp: { borderRadius: 0 },
+    dull: { borderRadius: 'sm' },
+    round: { borderRadius: 'md' },
+    ball: { borderRadius: 'lg' },
+    pill: { borderRadius: 'max' },
+  },
+
+  density: {
+    dense: {},
+    airy: {},
+  },
+
+  fill: {
+    solid: ({ color }) => ({ backgroundColor: color, color: 'white' }),
+    semi: ({ color }) => ({
+      backgroundColor: lighten(color, 0.4),
+      color,
+      border: '1px solid',
+      borderColor: color,
+    }),
+    outline: ({ color }) => ({
+      backgroundColor: 'transparent',
+      color,
+      border: '1px solid',
+      borderColor: color,
+    }),
+  },
+
+  size: {
+    xs: { fontSize: 'xs' },
+    sm: { fontSize: 'sm' },
+    md: { fontSize: 'md' },
+    lg: { fontSize: 'lg' },
+  },
+
+  weight: {
+    bold: { fontWeight: 'bold' },
+    regular: { fontWeight: 'body' },
+    thin: { fontWeight: 'thin' },
   },
 };
 
-export const useTheme = (): Theme => {
-  const { theme: currentTheme } = useThemeUI();
-  return currentTheme || theme;
-};
+// export const useTheme = (): Theme => {
+//   const { theme: currentTheme } = useThemeUI();
+//   return currentTheme || theme;
+// };
 
 const paletteColorCount = 6;
 

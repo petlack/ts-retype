@@ -1,16 +1,15 @@
 import { FC, createContext, useMemo, PropsWithChildren } from 'react';
-import { merge } from 'theme-ui';
-import { ThemeProvider as ThemeUIProvider, Theme } from 'theme-ui';
-
-import { theme as defaultTheme } from '../theme';
+import { ThemeProvider as ThemeUIProvider, merge, InitializeColorMode } from 'theme-ui';
+import { Termix } from './types.js';
+import { theme as defaultTheme } from './theme.js';
 
 export interface ThemeContextProps {
-  theme?: Theme;
+  theme?: Termix;
 }
 export const ThemeContext = createContext<ThemeContextProps>({});
 
 export interface ThemeProviderProps {
-  theme?: Theme;
+  theme?: Termix;
 }
 
 export const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
@@ -29,6 +28,7 @@ export const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
       <ThemeUIProvider
         theme={theme}
       >
+        <InitializeColorMode />
         {children}
       </ThemeUIProvider>
     </ThemeContext.Provider>

@@ -5,6 +5,7 @@ const latte = {
     hsl: 'hsl(11, 59%, 67%)',
     raw: '220, 138, 120',
   },
+
   flamingo: {
     hex: '#dd7878',
     rgb: 'rgb(221, 120, 120)',
