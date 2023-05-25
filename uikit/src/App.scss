@@ -186,3 +186,16 @@ main {
   }
   @include sxTheme();
 }
+
+.sidebar-container {
+//   position: relative;
+  width: 30vw;
+  height: 30vh;
+//   overflow-x: hidden;
+//   background-color: var(--theme-ui-colors-primary);
+//
+//   --z-sidebar: 10;
+//   --z-sidebar-menu: 20;
+//   --size-sidebar: 40%;
+}
+

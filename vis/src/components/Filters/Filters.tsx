@@ -5,9 +5,9 @@ import { SIMILARITIES, CANDIDATE_TYPES } from '../../types';
 import { Badge } from '../Duplicate/Badge';
 import { IconLetter } from '../Explorer/icons';
 import { IncDecInput } from '../IncDecInput';
-import { ControlsList } from './ControlsList';
+import { ControlsList } from '@ts-retype/uikit';
 import { FeaturesTooltip } from './FeaturesTooltip';
-import { Button, IconMoon, IconSun,useTheme } from '@ts-retype/uikit';
+import { Button, IconMoon, IconSun, useTheme } from '@ts-retype/uikit';
 import { themes } from '../../themes';
 import './Filters.scss';
 
@@ -79,7 +79,7 @@ export function Filters({
       </a>
     );
   }, [facetsStats]);
-  
+
   return (
     <div className={`filters filters-${visible ? 'visible' : 'hidden'}`}>
       <div className="filter">
@@ -121,7 +121,7 @@ export function Filters({
             </ul>
           </Tooltip> */}
         </span>
-        
+
         <IncDecInput
           value={filter.minProperties}
           onChange={updateMinProperties}

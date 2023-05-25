@@ -6,6 +6,7 @@ import { Listing } from './components/Listing';
 // import { Search } from './components/Search';
 import { SearchPhraseProvider, useSearch } from '@ts-retype/uikit/hooks';
 import { Search, ToastProvider, ThemeMode, ThemeProvider } from '@ts-retype/uikit';
+import { Sidebar, SidebarMenu } from '@ts-retype/uikit';
 // import { ToastProvider } from './components/Toast';
 import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
 import { TopBar, UiKitApp } from '@ts-retype/uikit';
@@ -96,12 +97,14 @@ function App() {
     <ThemeProvider theme={themes[preferredTheme]}>
       <UiKitApp>
         <SearchPhraseProvider value={{ phrase: query }}>
+          <Sidebar />
           <ToastProvider>
             <TopBar>
               <Search
                 query={query}
                 setQuery={setQuery}
               />
+              <SidebarMenu />
             </TopBar>
             <div className="main">
               <Listing
@@ -111,8 +114,8 @@ function App() {
               />
               <Footer meta={meta} />
             </div>
+            <TooltipRoot />
           </ToastProvider>
-          <TooltipRoot />
         </SearchPhraseProvider>
       </UiKitApp>
     </ThemeProvider>
