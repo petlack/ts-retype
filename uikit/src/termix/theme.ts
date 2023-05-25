@@ -1,4 +1,5 @@
 import { readableColor, darken, easeIn, lighten, transparentize } from 'polished';
+import { Theme } from 'theme-ui';
 import { Termix } from './types';
 
 // const text =
@@ -92,6 +93,12 @@ export const theme: Termix = {
       energy: 'live',
       mimic: 'tint',
     },
+
+    disabled: {
+      colorScheme: 'overlay1',
+      cursor: 'not-allowed',
+    },
+
     plain: {
       backgroundColor: 'transparent',
       color: 'primary',
@@ -99,21 +106,30 @@ export const theme: Termix = {
         bg: 'mantle',
       },
     },
+
     sm: {
       fontSize: 'sm',
       lineHeight: 1,
       px: 3,
       py: 2,
+      gap: 2,
     },
     md: {
       fontSize: 'md',
+      lineHeight: 1,
       px: 3,
-      py: 1,
+      py: '12px',
+      gap: 2,
+      '&>svg': {
+        width: '1em',
+        height: '1em',
+      },
     },
     lg: {
       fontSize: 'lg',
       px: 4,
       py: 3,
+      gap: 3,
       lineHeight: 1,
       borderWidth: 2,
     },
@@ -157,7 +173,6 @@ export const theme: Termix = {
       ...heading,
       fontSize: 5,
       my: 3,
-      borderBottom: (t: Termix): string => `4px solid ${t.colors?.text}`,
       width: '100%',
     },
     h3: {
@@ -202,7 +217,8 @@ export const theme: Termix = {
       bg: 'muted',
     },
     blockquote: {
-      borderLeft: (t: Termix): string => `4px solid ${t.colors?.shadow}`,
+      borderLeft: '4px solid',
+      borderColor: 'shadow',
       pl: 4,
       m: 0,
     },
@@ -280,7 +296,7 @@ export const theme: Termix = {
       },
     },
     thead: {
-      borderBottom: (t: Termix): string => ` 2px solid  ${t.colors?.shadow}`,
+      borderBottom: (t: Theme): string => ` 2px solid  ${t.colors?.shadow}`,
       backgroundColor: 'background',
       color: 'text',
     },
@@ -300,7 +316,7 @@ export const theme: Termix = {
       alignItems: 'center',
     },
     tr: {
-      borderBottom: (t: Termix): string => ` 1px solid  ${t.colors?.shadow}`,
+      borderBottom: (t: Theme): string => ` 1px solid  ${t.colors?.shadow}`,
     },
   },
 

@@ -21,6 +21,8 @@ import { theme } from './ts-theme.js';
 import './App.scss';
 import { Button } from 'components/Button';
 import { Stack } from 'layouts/Stack';
+import { FaBeer } from 'react-icons/fa';
+import { AiFillMail } from 'react-icons/ai';
 
 // type ThemeMode = 'light' | 'dark';
 //
@@ -51,24 +53,6 @@ const Search: FC<SearchProps> = () => {
   );
 };
 
-const Buttons = () => {
-  const theme = useTermix();
-
-  const markup = Object.keys(theme.colors || {}).map(color => <Button key={color} colorScheme={color} corners='ball' fill='solid' size='sm'>{color}</Button>);
-  return (
-    <>
-      <Button size='sm'>Small</Button>
-      <Button colorScheme='primary'>Normal</Button>
-      <Button size='lg' fill='semi' colorScheme='red'>Danger</Button>
-      <Button colorScheme='green' fill='outline'>Green</Button>
-      <Button colorScheme='yellow' fill='outline' corners='pill'>Yellow</Button>
-      <Button colorScheme='text' fill='ghost'>Ghost</Button>
-      <Button colorScheme='sky' fill='link'>Link</Button>
-      {markup.toString().length}
-    </>
-  );
-};
-
 const ColorsPoster = () => {
   const theme = useTermix();
 
@@ -93,7 +77,16 @@ export function App() {
         <Card>
           <Heading>Buttons</Heading>
           <Flex sx={{ flexFlow: 'row wrap', alignItems: 'center', gap: 4 }}>
-            <Buttons />
+            <Button size='sm'>Small</Button>
+            <Button colorScheme='primary'>Normal</Button>
+            <Button size='lg' fill='semi' colorScheme='red'>Danger</Button>
+            <Button colorScheme='green' fill='outline'>Green</Button>
+            <Button colorScheme='yellow' fill='outline' corners='pill'>Yellow</Button>
+            <Button colorScheme='text' fill='ghost'>Ghost</Button>
+            <Button colorScheme='sky' fill='link'>Link</Button>
+            <Button colorScheme='text' fill='solid' leftIcon={<FaBeer />}>Link</Button>
+            <Button colorScheme='blue' fill='outline' leftIcon={<AiFillMail />}>Link</Button>
+            <Button fill='outline' disabled>Disabled</Button>
           </Flex>
         </Card>
 

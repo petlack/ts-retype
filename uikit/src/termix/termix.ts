@@ -16,7 +16,11 @@ export function useTermixStyle(theme: Termix, { element, ...props }: TermixProps
     corners = 'dull',
     energy = 'rigid',
     mimic = 'static',
-  } = rejectNils({ ...rejectNils(element?.default || ({} as TermixProps)), ...rejectNils(props) });
+  } = rejectNils({
+    ...rejectNils(element?.default || ({} as TermixProps)),
+    ...rejectNils(element?.[props.variant || 'default'] || ({} as TermixProps)),
+    ...rejectNils(props),
+  });
 
   const variants = [...variant.split('.'), fill, size, density, weight, corners];
   // const variants = [...variant.split('.')];

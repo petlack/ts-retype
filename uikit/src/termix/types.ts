@@ -9,7 +9,9 @@ export type Energy = 'rigid' | 'live';
 // export type Energy = 'rigid' | 'agile' | 'liquid' | 'fluid' | 'elastic';
 export type Mimic = 'static' | 'tint' | 'morph';
 
-type TermixComponent = { [k: string]: TermixStyle } & { default?: TermixProps & TermixStyle };
+type TermixComponent = { [k: string]: TermixStyle & TermixProps } & {
+  default?: TermixProps & TermixStyle;
+};
 
 export type Termix = Theme &
   Partial<{

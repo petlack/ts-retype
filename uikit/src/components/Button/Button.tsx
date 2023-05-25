@@ -1,41 +1,38 @@
-import { FC, forwardRef, PropsWithChildren } from 'react';
-import { Button as UiButton, ButtonProps } from 'theme-ui';
+import { FC, forwardRef, PropsWithChildren, ReactNode } from 'react';
+import { Button as UiButton, ButtonProps as UiButtonProps } from 'theme-ui';
 import { TermixProps, useTermix, useTermixStyle } from 'termix';
+
+export type ButtonProps = UiButtonProps & {
+  leftIcon?: ReactNode,
+  rightIcon?: ReactNode,
+}
 
 export const Button: FC<PropsWithChildren<TermixProps & ButtonProps>> = forwardRef(({
   children,
-  // color,
-  // variant = 'default',
-  // fill = 'solid',
-  // size = 'md',
-  // density = 'airy',
-  // weight = 'bold',
-  // corners = 'round',
-  // energy = 'live',
-  // mimic = 'tint',
+  leftIcon,
+  rightIcon,
+  disabled,
   ...buttonProps
 }, ref) => {
   const theme = useTermix();
   const styles = useTermixStyle(theme, {
     element: theme.buttons || ({} as TermixProps['element']),
-    ...buttonProps,
-    // color,
-    // variant,
-    // fill,
-    // size,
-    // density,
-    // weight,
-    // corners,
-    // energy,
-    // mimic,
+    ...{ ...buttonProps, variant: disabled ? 'disabled' : '' },
   });
+  const markup = (
+    <>
+      {leftIcon}
+      {children}
+    </>
+  );
   return (
     <UiButton
       ref={ref}
-      sx={{ display: 'inline-flex', ...styles }}
+      disabled={disabled}
+      sx={{ display: 'inline-flex', alignItems: 'center', ...styles }}
       {...buttonProps}
     >
-      {children}
+      {markup}
     </UiButton>
   );
 });
