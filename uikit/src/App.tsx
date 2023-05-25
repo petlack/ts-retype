@@ -23,6 +23,7 @@ import { Button } from 'components/Button';
 import { Stack } from 'layouts/Stack';
 import { FaBeer } from 'react-icons/fa';
 import { AiFillMail } from 'react-icons/ai';
+import { Spinner } from 'components/Spinner';
 
 // type ThemeMode = 'light' | 'dark';
 //
@@ -79,20 +80,33 @@ export function App() {
           <Flex sx={{ flexFlow: 'row wrap', alignItems: 'center', gap: 4 }}>
             <Button size='sm'>Small</Button>
             <Button colorScheme='primary'>Normal</Button>
-            <Button size='lg' fill='semi' colorScheme='red'>Danger</Button>
+            <Button size='lg' fill='semi' colorScheme='text'>Danger</Button>
             <Button colorScheme='green' fill='outline'>Green</Button>
             <Button colorScheme='yellow' fill='outline' corners='pill'>Yellow</Button>
-            <Button colorScheme='text' fill='ghost'>Ghost</Button>
+            <Button colorScheme='red' fill='ghost'>Ghost</Button>
             <Button colorScheme='sky' fill='link'>Link</Button>
             <Button colorScheme='text' fill='solid' leftIcon={<FaBeer />}>Link</Button>
-            <Button colorScheme='blue' fill='outline' leftIcon={<AiFillMail />}>Link</Button>
+            <Button size='sm' colorScheme='blue' fill='outline' leftIcon={<AiFillMail />}>Link</Button>
             <Button fill='outline' disabled>Disabled</Button>
           </Flex>
         </Card>
 
         <Card>
+          <Heading>Spinners</Heading>
+          <Flex sx={{ gap: 4 }}>
+            <Spinner flavor='grid' />
+            <Spinner flavor='code' />
+            <Spinner flavor='ring' />
+            <Spinner flavor='donut' />
+            <Spinner flavor='comet' />
+            <Spinner flavor='ripple' />
+            <Spinner flavor='ellipsis' />
+          </Flex>
+        </Card>
+
+        <Card>
           <Heading>Tags</Heading>
-          <Flex sx={{ gap: 2, alignItems: 'flex-start' }}>
+          <Flex sx={{ gap: 4, alignItems: 'flex-start' }}>
             <Tag fill='semi' colorScheme='yellow' size='lg' density='airy' corners='round'>test</Tag>
             <Tag colorScheme='red' size='md' weight='bold' corners='sharp'>UPPER</Tag>
             <Tag fill='outline' colorScheme='green' size='sm'>CaMel</Tag>

@@ -78,11 +78,19 @@ export const theme: Termix = {
 
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
 
+  speeds: {
+    slow: '4s',
+    real: '1.5s',
+    fast: '1s',
+  },
+
   buttons: {
+    primary: {
+      cursor: 'pointer',
+    },
     default: {
       // transitionProperty: 'background,color',
       // transition: '150ms ease-in',
-      cursor: 'pointer',
       colorScheme: 'primary',
       variant: 'default',
       fill: 'solid',
@@ -132,6 +140,14 @@ export const theme: Termix = {
       gap: 3,
       lineHeight: 1,
       borderWidth: 2,
+    },
+  },
+
+  spinners: {
+    default: {
+      colorScheme: 'text',
+      fill: 'ghost',
+      speed: 'real',
     },
   },
 

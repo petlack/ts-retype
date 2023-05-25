@@ -1,0 +1,19 @@
+.comet {
+  width: var(--size-spinner);
+  height: var(--size-spinner);
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid var(--clr-dot);
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  animation: rotation var(--duration) linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 

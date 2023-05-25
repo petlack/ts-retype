@@ -46,9 +46,6 @@ export const theme: Termix = {
   },
 
   buttons: {
-    default: {
-      cursor: 'pointer',
-    },
     plain: {
       color: 'text',
       '&:hover': {

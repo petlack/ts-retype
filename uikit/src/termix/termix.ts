@@ -43,7 +43,5 @@ export function useTermixStyle(theme: Termix, { element, ...props }: TermixProps
     {} as TermixStyle,
   ) as TermixStyle;
 
-  console.log({ color, mergedStyles, props, def: element?.default });
-
   return mergedStyles;
 }

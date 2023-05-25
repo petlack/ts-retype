@@ -1,0 +1,40 @@
+.code {
+  --duration-half: calc(var(--duration) / 2);
+  --duration-tenth: calc(var(--duration) / 10);
+
+  position: relative;
+    color: var(--clr-dot);
+    font-family: Consolas, Menlo, Monaco, monospace;
+    font-weight: bold;
+    font-size: var(--size-spinner);
+    width: var(--size-spinner);
+    height: var(--size-spinner);
+    line-height: 1;
+    opacity: 0.8;
+    display: inline-flex;
+    justify-content: center;
+  }
+
+  .code:before {
+    content: "{";
+    position: absolute;
+    right: calc(var(--size-spinner) / 2);
+    display: inline-block;
+    animation: pulse var(--duration-half) alternate infinite ease-in-out;
+  }
+
+  .code:after {
+    content: "}";
+    position: absolute;
+    left: calc(var(--size-spinner) / 2);
+    display: inline-block;
+    animation: pulse var(--duration-half) calc(var(--duration-half) - var(--duration-tenth)) alternate infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+    to {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+  }
+ 
