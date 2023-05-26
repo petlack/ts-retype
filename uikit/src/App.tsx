@@ -1,6 +1,7 @@
 import { Tag } from 'components/Tag';
 import { Text } from 'components/Text';
-import { SidebarLayout } from 'components/Sidebar';
+import { SidebarLayout } from 'layouts/Sidebar';
+import { Wrap } from 'layouts/Wrap';
 import { FC, useState } from 'react';
 import {
   Box,
@@ -21,10 +22,12 @@ import { theme } from './ts-theme.js';
 import './App.scss';
 import { Button } from 'components/Button';
 import { Stack } from 'layouts/Stack';
-import { FaBeer, FaDownload } from 'react-icons/fa';
+import { FaBeer, FaDownload, FaLock } from 'react-icons/fa';
 import { AiFillMail } from 'react-icons/ai';
 import { Spinner } from 'components/Spinner';
 import { IconButton } from 'components/IconButton';
+import { readableColor } from 'polished';
+import { getColor } from '@theme-ui/color';
 
 // type ThemeMode = 'light' | 'dark';
 //
@@ -55,14 +58,35 @@ const Search: FC<SearchProps> = () => {
   );
 };
 
+const ColorTile = ({ color, name }: { color: string, name: string }) => {
+  const text = color && readableColor(color);
+  return (
+    <Box sx={{
+      aspectRatio: 1,
+      bg: color,
+      color: text,
+      fontSize: 'xs',
+      p: 2,
+      gap: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      width: '15ch',
+      borderRadius: 'md',
+    }}>
+      <strong>{name}</strong>
+      <span>{color}</span>
+    </Box>
+  );
+};
+
 const ColorsPoster = () => {
   const theme = useTermix();
 
-  const markup = Object.entries(theme.colors || {}).map(([name, value]) => <Box key={name} sx={{ aspectRatio: 1, bg: value }}></Box>);
+  const markup = Object.entries(theme.rawColors || {}).map(([name, value]) => <ColorTile key={name} name={name} color={getColor(theme, value)} />);
   return (
-    <Grid columns={10}>
+    <Wrap>
       {markup}
-    </Grid>
+    </Wrap>
   );
 };
 
@@ -78,7 +102,7 @@ export function App() {
 
         <Card>
           <Heading>Buttons</Heading>
-          <Flex sx={{ flexFlow: 'row wrap', alignItems: 'center', gap: 4 }}>
+          <Wrap>
             <Button size='sm'>Small</Button>
             <Button colorScheme='primary'>Normal</Button>
             <Button size='lg' fill='semi' colorScheme='text'>Danger</Button>
@@ -87,19 +111,19 @@ export function App() {
             <Button colorScheme='red' fill='ghost'>Ghost</Button>
             <Button colorScheme='sky' fill='link'>Link</Button>
             <Button colorScheme='text' fill='solid' leftIcon={<FaBeer />}>Link</Button>
-            <Button size='sm' colorScheme='blue' fill='outline' rightIcon={<AiFillMail />}>Link</Button>
+            <Button size='sm' colorScheme='sky' fill='outline' rightIcon={<FaLock />}>Lock</Button>
             <Button fill='outline' disabled>Disabled</Button>
             <Button colorScheme='primary' size='md' leftIcon={<Spinner flavor='grid' size='md' />} > Loading</Button>
             <Button colorScheme='primary' p={2} fill='ghost' size='lg' leftIcon={<Hamburger flavor='cross' />}></Button>
             <Button colorScheme='primary' p={2} fill='outline' size='lg' leftIcon={<FaDownload />}></Button>
             <Button colorScheme='primary' isLoading>Loading</Button>
             <Button size='md' colorScheme='primary' fill='solid' leftIcon={<FaDownload />}>Download</Button>
-          </Flex>
+          </Wrap>
         </Card>
 
         <Card>
           <Heading>Spinners</Heading>
-          <Flex sx={{ gap: 4 }}>
+          <Wrap>
             <Spinner flavor='grid' />
             <Spinner flavor='code' />
             <Spinner flavor='ring' />
@@ -107,17 +131,28 @@ export function App() {
             <Spinner flavor='comet' />
             <Spinner flavor='ripple' />
             <Spinner flavor='ellipsis' />
-          </Flex>
+          </Wrap>
+        </Card>
+
+        <Card>
+          <Heading>Hamburger</Heading>
+          <Wrap>
+            <Hamburger flavor='expand' />
+            <Hamburger flavor='collapse' />
+            <Hamburger flavor='cross' />
+            <Hamburger flavor='shoot' />
+            <Hamburger flavor='sigma' size={24} weight='black' />
+          </Wrap>
         </Card>
 
         <Card>
           <Heading>Tags</Heading>
-          <Flex sx={{ gap: 4, alignItems: 'flex-start' }}>
+          <Wrap>
             <Tag fill='semi' colorScheme='yellow' size='lg' density='airy' corners='round'>test</Tag>
             <Tag colorScheme='red' size='md' weight='bold' corners='sharp'>UPPER</Tag>
             <Tag fill='outline' colorScheme='green' size='sm'>CaMel</Tag>
             <Tag colorScheme='blue' size='xs' corners='pill'>un_der</Tag>
-          </Flex>
+          </Wrap>
         </Card>
 
         <Card>
@@ -132,17 +167,6 @@ export function App() {
               <Text>Hello World</Text>
             </Box>
           </SidebarLayout>
-        </Card>
-
-        <Card>
-          <Heading>Hamburger</Heading>
-          <Flex sx={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-            <Hamburger flavor='expand' />
-            <Hamburger flavor='collapse' />
-            <Hamburger flavor='cross' />
-            <Hamburger flavor='shoot' />
-            <Hamburger flavor='sigma' size={24} weight='black' />
-          </Flex>
         </Card>
 
         <Card>
@@ -170,7 +194,9 @@ export function App() {
             <p>
               An abbreviation of the word attribute is <abbr title='attribute'>attr</abbr>.
             </p>
-
+            <p>
+              150 m<sup>2</sup>.
+            </p>
           </Stack>
         </Card>
 
@@ -180,8 +206,6 @@ export function App() {
         </Card>
 
         <ThemePoster />
-        <Overlay>
-        </Overlay>
       </Container>
     </ThemeProvider >
   );

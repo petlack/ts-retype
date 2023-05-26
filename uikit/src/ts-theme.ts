@@ -40,7 +40,7 @@ export const theme: Termix = {
       bg: 'base',
       display: 'flex',
       flexDirection: 'column',
-      gap: 3,
+      gap: 4,
       borderRadius: 'lg',
     },
   },
