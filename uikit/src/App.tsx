@@ -1,6 +1,7 @@
 import { Tag } from 'components/Tag';
 import { Text } from 'components/Text';
 import { SidebarLayout } from 'layouts/Sidebar';
+import { Topbar } from 'layouts/Topbar';
 import { Wrap } from 'layouts/Wrap';
 import { FC, useState } from 'react';
 import {
@@ -167,6 +168,21 @@ export function App() {
               <Text>Hello World</Text>
             </Box>
           </SidebarLayout>
+        </Card>
+
+        <Card>
+          <Heading>Topbar Layout</Heading>
+          <Topbar sx={{
+            width: '30vw',
+            height: '30vh',
+            minWidth: '400px',
+            background: 'mantle',
+          }}>
+            <Box sx={{ bg: 'background', px: 2, minHeight: '2em' }}>
+            </Box>
+            <Box sx={{ flex: 1, p: 2, bg: 'mantle', color: 'text' }}>
+            </Box>
+          </Topbar>
         </Card>
 
         <Card>
