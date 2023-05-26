@@ -43,4 +43,4 @@ export type TermixProps = {
   speed?: Speed;
 };
 
-export type TermixStyle = ThemeUIStyleObject;
+export type TermixStyle = ThemeUIStyleObject & { fontSize?: string | number };

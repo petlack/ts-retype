@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Flex, Box } from '@theme-ui/components';
-import { StyledComponent } from 'components/types';
+import { StyledComponent } from '~/components/types';
 
 export type TopbarProps = {
   children: [JSX.Element, JSX.Element];

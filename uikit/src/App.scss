@@ -29,6 +29,7 @@
   --clr-cp-mantle: #e6e9ef;
   --clr-cp-base: #eff1f5;
 }
+
 @mixin darkSxTheme() {
   --clr-cp-rosewater: #f5e0dc;
   --clr-cp-flamingo: #f2cdcd;
@@ -57,6 +58,7 @@
   --clr-cp-mantle: #181825;
   --clr-cp-crust: #11111b;
 }
+
 @mixin sxTheme() {
   --clr-sx-token: var(--clr-cp-text);
   --clr-sx-builtin: var(--clr-cp-red);
@@ -70,6 +72,7 @@
   --clr-sx-punctuation: var(--clr-cp-overlay2);
   --clr-sx-string: var(--clr-cp-green);
 }
+
 @mixin lightThemeMain() {
   --clr-bg-topbar: var(--clr-bg);
   --clr-bg-main: var(--clr-bg);     
@@ -79,6 +82,7 @@
   --clr-fg-code: var(--clr-fg);
   --clr-border: var(--clr-neutral-100);
 }
+
 @mixin darkThemeMain() {
   --clr-bg-topbar: var(--clr-neutral-50);
   --clr-bg-main: var(--clr-neutral-25);   
@@ -88,14 +92,17 @@
   --clr-fg-code: var(--clr-fg);
   --clr-border: var(--clr-neutral-200);
 }
+
 @mixin lightThemeWindow() {
   --clr-bg-window-header: var(--clr-second-50);
   --clr-fg-code-comment: var(--clr-neutral-300);
 }
+
 @mixin darkThemeWindow() {
   --clr-bg-window-header: var(--clr-neutral-200);
   --clr-fg-code-comment: var(--clr-neutral-500);
 }
+
 @mixin lightThemeDuplicate() {
   --clr-bg-title: var(--clr-second-50);
   --clr-bg-explorer: var(--clr-bg);
@@ -103,6 +110,7 @@
   --clr-bg-snippet: var(--clr-bg);
   --clr-bg-snippet-highlighted: var(--clr-accent-50);
 }
+
 @mixin darkThemeDuplicate() {
   --clr-bg-title: var(--clr-neutral-50);
   --clr-bg-explorer: var(--clr-neutral-50);

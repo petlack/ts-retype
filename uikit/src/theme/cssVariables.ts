@@ -1,6 +1,6 @@
 import { Theme } from './types/theme';
 
-function toCssVars(theme: Theme): string[][] {
+export function toCssVars(theme: Theme): string[][] {
   const colors = Object.entries(theme.colors)
     .map(([name, scale]) =>
       typeof scale === 'string'

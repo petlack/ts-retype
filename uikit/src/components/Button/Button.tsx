@@ -1,8 +1,8 @@
 import { FC, forwardRef, ReactNode } from 'react';
 import { Button as UiButton, ButtonProps as UiButtonProps } from 'theme-ui';
-import { TermixProps, useTermix, useTermixStyle } from 'termix';
-import { Spinner } from 'components/Spinner';
-import { StyledComponent } from 'components/types';
+import { TermixProps, useTermix, useTermixStyle } from '~/termix';
+import { Spinner } from '~/components/Spinner';
+import { StyledComponent } from '~/components/types';
 
 export type ButtonProps = UiButtonProps & {
   leftIcon?: ReactNode;
@@ -27,7 +27,7 @@ export const Button: FC<StyledComponent<TermixProps & ButtonProps>> = forwardRef
   });
   const markup = (
     <>
-      {isLoading ? <Spinner flavor='ring' size='1em' /> : leftIcon}
+      {isLoading ? <Spinner flavor='ring' sx={{ fontSize: styles.fontSize }} /> : leftIcon}
       {children}
       {rightIcon}
     </>

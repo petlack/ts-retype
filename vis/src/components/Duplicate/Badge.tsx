@@ -1,5 +1,5 @@
-import { TypeDuplicate } from '@ts-retype/retype/src/types';
-import './Badge.scss';
+import type { TypeDuplicate } from '@ts-retype/retype';
+import { Tag } from '@ts-retype/uikit';
 
 export type BadgeProps = {
   group: TypeDuplicate['group'];
@@ -9,15 +9,13 @@ export type BadgeProps = {
 export function Badge({ group, names }: BadgeProps) {
   const color = {
     identical: 'yellow',
-    renamed: 'blue',
+    renamed: 'green',
     different: 'black',
   }[group];
   return (
-    <span className={`badge badge--${color}`}>
-      <span className="mono count">
-        ({Object.values(names || []).reduce((a, b) => a + b.count, 0)}x)
-      </span>
+    <Tag colorScheme={color} fill='semi' weight='bold' size='sm' sx={{ textTransform: 'uppercase' }}>
+      ({Object.values(names || []).reduce((a, b) => a + b.count, 0)}x)
       {group}
-    </span>
+    </Tag>
   );
 }

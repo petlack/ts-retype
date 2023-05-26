@@ -2,7 +2,6 @@ import { FC, ReactNode } from 'react';
 import chroma from 'chroma-js';
 import { useTheme } from './theme/useTheme';
 import { ColorScale } from './theme/types/theme';
-import { Layouts } from './Layouts';
 import { Palettes } from './Palettes';
 import './Page.scss';
 
@@ -71,9 +70,6 @@ export function Page() {
     <main>
       <section>
         <Palettes />
-      </section>
-      <section>
-        <Layouts />
       </section>
       <section>
         <h1>Colors</h1>

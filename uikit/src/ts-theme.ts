@@ -1,8 +1,37 @@
 import { darken } from '@theme-ui/color';
+import { toCssVars } from '~/theme/cssVariables';
+import { generateTheme } from '~/theme/generate';
+import { ColorScale } from '~/theme/types';
 import { Termix, palette } from './termix';
 
 const primary = '#0a799e';
 const accent = '#c68726';
+
+const body = "'Noto Sans', sans-serif";
+const heading = "'Exo 2', sans-serif";
+const mono = "'Fira Code', monospace";
+const preferredTheme =
+  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+const light = generateTheme({
+  body,
+  heading,
+  mono,
+  mode: 'light',
+  accent: primary,
+  second: accent,
+});
+const dark = generateTheme({ body, heading, mono, mode: 'dark', accent: primary, second: accent });
+
+console.log({ light, dark });
+
+const lightCssVars = toCssVars(light);
+
+console.log({ lightCssVars });
+
+function colorScale(name: string, scale: ColorScale) {
+  return Object.fromEntries(Object.entries(scale).map(([key, value]) => [`${name}-${key}`, value]));
+}
 
 export const theme: Termix = {
   config: {
@@ -19,11 +48,17 @@ export const theme: Termix = {
     ...palette('latte'),
     primary,
     accent,
+    ...colorScale('neutral', light.colors.neutral),
+    ...colorScale('primary', light.colors.accent),
+    ...colorScale('accent', light.colors.second),
     modes: {
       dark: {
         ...palette('mocha'),
         primary,
         accent,
+        ...colorScale('neutral', dark.colors.neutral),
+        ...colorScale('primary', dark.colors.accent),
+        ...colorScale('accent', dark.colors.second),
       },
     },
   },

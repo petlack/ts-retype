@@ -1,5 +1,5 @@
-import { ThemeProvider } from 'theme';
-import { generateTheme } from 'theme/generate';
+import { ThemeProvider } from '~/theme';
+import { generateTheme } from '~/theme/generate';
 
 const accent = '#0a799e';
 const second = '#c68726';

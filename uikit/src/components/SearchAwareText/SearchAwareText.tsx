@@ -1,4 +1,4 @@
-import { useSearchPhrase } from 'hooks/useSearchPhrase';
+import { useSearchPhrase } from '~/hooks/useSearchPhrase';
 import './SearchAwareText.scss';
 
 function findSubstringIndex(str: string, substr: string): [number, number] | null {

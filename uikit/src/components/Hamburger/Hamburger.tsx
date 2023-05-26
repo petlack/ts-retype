@@ -1,5 +1,5 @@
-import { StyledComponent } from 'components/types';
-import { useBoolean } from 'hooks/useBoolean';
+import { StyledComponent } from '~/components/types';
+import { useBoolean } from '~/hooks/useBoolean';
 import { CSSProperties, FC } from 'react';
 import { Collapse } from './Collapse';
 import { Cross } from './Cross';

@@ -1,4 +1,4 @@
-import { Style, StyledContainer } from 'components/types';
+import { Style, StyledContainer } from '~/components/types';
 import { FC, forwardRef } from 'react';
 import { Button, ButtonProps } from 'theme-ui';
 

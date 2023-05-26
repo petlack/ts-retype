@@ -14,7 +14,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "baseUrl": "src",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    },
     "jsx": "react-jsx"
   },
   "include": ["src", "rollup.config.cjs"],

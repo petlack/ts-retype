@@ -56,6 +56,7 @@ export default [
         name: '@ts-retype/uikit/hooks',
       },
     ],
+    external: externals,
     plugins: [
       // external(),
       // resolve(),
@@ -83,6 +84,7 @@ export default [
         name: '@ts-retype/uikit/components',
       },
     ],
+    external: externals,
     plugins: [
       // external(),
       // resolve(),

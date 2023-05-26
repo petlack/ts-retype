@@ -1,9 +1,9 @@
 import { ThemeUIStyleObject } from 'theme-ui';
 import { Box } from '@theme-ui/components';
-import { Hamburger } from 'components/Hamburger';
-import { Button } from 'components/Button';
-import { Style, StyledComponent, StyledContainer } from 'components/types';
-import { useBoolean } from 'hooks/useBoolean';
+import { Hamburger } from '~/components/Hamburger';
+import { Button } from '~/components/Button';
+import { Style, StyledComponent, StyledContainer } from '~/components/types';
+import { useBoolean } from '~/hooks/useBoolean';
 import { FC, ReactNode } from 'react';
 import './Sidebar.scss';
 

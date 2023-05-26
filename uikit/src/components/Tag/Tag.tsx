@@ -1,9 +1,11 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC } from 'react';
 import { Box } from 'theme-ui';
-import { TermixProps, useTermix, useTermixStyle } from 'termix';
+import { TermixProps, useTermix, useTermixStyle } from '~/termix';
+import { StyledContainer } from '~/components/types';
 
-export const Tag: FC<PropsWithChildren<TermixProps>> = ({
+export const Tag: FC<StyledContainer<TermixProps>> = ({
   children,
+  sx,
   ...tagProps
 }) => {
   const { theme } = useTermix();
@@ -11,10 +13,13 @@ export const Tag: FC<PropsWithChildren<TermixProps>> = ({
     element: theme.tags || {} as TermixProps['element'],
     ...tagProps,
   });
+  const mergedSx = {
+    display: 'inline-flex',
+    ...styles,
+    ...sx,
+  };
   return (
-    <Box
-      sx={{ display: 'inline-flex', ...styles }}
-    >
+    <Box sx={mergedSx}>
       {children}
     </Box>
   );

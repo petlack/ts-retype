@@ -1,5 +1,5 @@
 import { Flex, Text } from '@theme-ui/components';
-import { Box } from 'components/Box';
+import { Box } from '~/components/Box';
 
 export function Logo({ name }: { name: string }) {
   return (

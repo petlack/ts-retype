@@ -50,7 +50,7 @@
     "dev": "vite",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "watch": "rollup -cw"
+    "watch": "rollup -c rollup.config.dev.js -w"
   },
   "files": [
     "dist"
@@ -69,6 +69,7 @@
     "theme-ui": "^0.15.7"
   },
   "devDependencies": {
+    "@rollup/plugin-alias": "^5.0.0",
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
@@ -86,6 +87,7 @@
     "@types/react-dom": "^18.0.11",
     "@types/styled-components": "^5.1.26",
     "@vitejs/plugin-react": "^3.1.0",
+    "esbuild-sass-plugin": "^2.9.0",
     "node-sass": "^8.0.0",
     "polished": "^4.2.2",
     "prop-types": "^15.8.1",
@@ -95,6 +97,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "rollup": "^3.21.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.34.1",

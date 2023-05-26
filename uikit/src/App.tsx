@@ -1,35 +1,26 @@
-import { Tag } from 'components/Tag';
-import { Text } from 'components/Text';
-import { SidebarLayout } from 'layouts/Sidebar';
-import { Topbar } from 'layouts/Topbar';
-import { Wrap } from 'layouts/Wrap';
-import {
-  Box,
-  Card,
-  Container,
-  Heading,
-} from 'theme-ui';
-import { ThemeProvider, palette, useTermix } from './termix';
-import { Hamburger } from './components/Hamburger';
-import { theme } from './ts-theme.js';
-import { Search } from 'components/Search';
-import { Stack } from 'layouts/Stack';
+import { Box, Card, Container, Heading } from 'theme-ui';
+import { Button, Hamburger, Logo, Search, Spinner, Tag, Text } from '~/components';
 import { FaBeer, FaDownload, FaLock, FaMoon, FaSun } from 'react-icons/fa';
-import { Spinner } from 'components/Spinner';
-import { readableColor } from 'polished';
+import { SidebarLayout, Stack, Topbar, Wrap } from '~/layouts';
+import { ThemeProvider, palette, useTermix } from './termix';
 import { getColor } from '@theme-ui/color';
-import { Button } from 'components/Button';
-import { Logo } from 'components/Logo';
+import { generateTheme } from '~/theme/generate';
+import { readableColor } from 'polished';
+import { theme } from './ts-theme.js';
 import './App.scss';
 
 // import { Editor, importColors } from '@compai/css-gui';
 // type ThemeMode = 'light' | 'dark';
 //
-// const body = '\'Noto Sans\', sans-serif';
-// const heading = '\'Exo 2\', sans-serif';
-// const mono = '\'Fira Code\', monospace';
-// const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
+const body = '\'Noto Sans\', sans-serif';
+const heading = '\'Exo 2\', sans-serif';
+const mono = '\'Fira Code\', monospace';
+const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+const generated = generateTheme({ body, heading, mono, mode: preferredTheme, accent: 'blue', second: 'orange' });
+
+console.log({ generated });
 console.log({ paletteColors: palette('latte') });
 
 const ColorTile = ({ color, name }: { color: string, name: string }) => {
