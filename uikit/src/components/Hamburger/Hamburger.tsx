@@ -39,7 +39,7 @@ const ControlledHamburger: FC<StyledComponent<HamburgerProps & HamburgerControls
     sigma: Sigma,
   }[flavor];
   const style: CSSProperties = {
-    '--size-burger': `${size}px`,
+    '--size-burger': '1em',
     '--size-ham': {
       thin: `${size / 16}px`,
       light: `${size / 12}px`,

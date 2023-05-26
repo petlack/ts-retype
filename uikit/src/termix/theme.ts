@@ -87,6 +87,11 @@ export const theme: Termix = {
   buttons: {
     primary: {
       cursor: 'pointer',
+      fontFamily: 'body',
+      '&>svg': {
+        width: '1em',
+        height: '1em',
+      },
     },
     default: {
       // transitionProperty: 'background,color',
@@ -118,25 +123,21 @@ export const theme: Termix = {
     sm: {
       fontSize: 'sm',
       lineHeight: 1,
-      px: 3,
+      px: '10px',
       py: 2,
-      gap: 2,
+      gap: 1,
     },
     md: {
       fontSize: 'md',
       lineHeight: 1,
       px: 3,
-      py: '12px',
-      gap: 2,
-      '&>svg': {
-        width: '1em',
-        height: '1em',
-      },
+      py: '10px',
+      gap: '10px',
     },
     lg: {
       fontSize: 'lg',
-      px: 4,
-      py: 3,
+      px: '18px',
+      py: '14px',
       gap: 3,
       lineHeight: 1,
       borderWidth: 2,
@@ -145,9 +146,20 @@ export const theme: Termix = {
 
   spinners: {
     default: {
-      colorScheme: 'text',
+      color: 'currentColor',
       fill: 'ghost',
       speed: 'real',
+      size: '3xl',
+      p: 0,
+    },
+    sm: {
+      fontSize: 'sm',
+    },
+    md: {
+      fontSize: 'md',
+    },
+    lg: {
+      fontSize: 'lg',
     },
   },
 
@@ -425,6 +437,9 @@ export const theme: Termix = {
     sm: { fontSize: 'sm' },
     md: { fontSize: 'md' },
     lg: { fontSize: 'lg' },
+    xl: { fontSize: 'xl' },
+    '2xl': { fontSize: '2xl' },
+    '3xl': { fontSize: '3xl' },
   },
 
   weight: {

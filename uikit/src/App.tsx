@@ -21,9 +21,10 @@ import { theme } from './ts-theme.js';
 import './App.scss';
 import { Button } from 'components/Button';
 import { Stack } from 'layouts/Stack';
-import { FaBeer } from 'react-icons/fa';
+import { FaBeer, FaDownload } from 'react-icons/fa';
 import { AiFillMail } from 'react-icons/ai';
 import { Spinner } from 'components/Spinner';
+import { IconButton } from 'components/IconButton';
 
 // type ThemeMode = 'light' | 'dark';
 //
@@ -86,8 +87,13 @@ export function App() {
             <Button colorScheme='red' fill='ghost'>Ghost</Button>
             <Button colorScheme='sky' fill='link'>Link</Button>
             <Button colorScheme='text' fill='solid' leftIcon={<FaBeer />}>Link</Button>
-            <Button size='sm' colorScheme='blue' fill='outline' leftIcon={<AiFillMail />}>Link</Button>
+            <Button size='sm' colorScheme='blue' fill='outline' rightIcon={<AiFillMail />}>Link</Button>
             <Button fill='outline' disabled>Disabled</Button>
+            <Button colorScheme='primary' size='md' leftIcon={<Spinner flavor='grid' size='md' />} > Loading</Button>
+            <Button colorScheme='primary' p={2} fill='ghost' size='lg' leftIcon={<Hamburger flavor='cross' />}></Button>
+            <Button colorScheme='primary' p={2} fill='outline' size='lg' leftIcon={<FaDownload />}></Button>
+            <Button colorScheme='primary' isLoading>Loading</Button>
+            <Button size='md' colorScheme='primary' fill='solid' leftIcon={<FaDownload />}>Download</Button>
           </Flex>
         </Card>
 

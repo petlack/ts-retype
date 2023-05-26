@@ -110,34 +110,34 @@
   --clr-bg-snippet: var(--clr-neutral-100);
   --clr-bg-snippet-highlighted: var(--clr-neutral-200);
 }
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
-  ::selection {
-    background-color: var(--clr-accent-500);
-    color: white;
-  }
-  ::-moz-selection {
-    background-color: var(--clr-accent-500);
-    color: white;
-  }
-  ::-o-selection {
-    background-color: var(--clr-accent-500);
-    color: white;
-  }
-  ::-ms-selection {
-    background-color: var(--clr-accent-500);
-    color: white;
-  }
-  ::-webkit-selection {
-    background-color: var(--clr-accent-500);
-    color: white;
-  }
-}
-
+//
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+//
+//   ::selection {
+//     background-color: var(--clr-accent-500);
+//     color: white;
+//   }
+//   ::-moz-selection {
+//     background-color: var(--clr-accent-500);
+//     color: white;
+//   }
+//   ::-o-selection {
+//     background-color: var(--clr-accent-500);
+//     color: white;
+//   }
+//   ::-ms-selection {
+//     background-color: var(--clr-accent-500);
+//     color: white;
+//   }
+//   ::-webkit-selection {
+//     background-color: var(--clr-accent-500);
+//     color: white;
+//   }
+// }
+//
 :root {
   font-size: 16px;
 }
@@ -168,7 +168,6 @@
 
 body {
   min-height: 100vh;
-  font-family: var(--font-body);
 }
 
 main {
@@ -185,17 +184,5 @@ main {
     @include darkSxTheme();
   }
   @include sxTheme();
-}
-
-.sidebar-container {
-//   position: relative;
-  width: 30vw;
-  height: 30vh;
-//   overflow-x: hidden;
-//   background-color: var(--theme-ui-colors-primary);
-//
-//   --z-sidebar: 10;
-//   --z-sidebar-menu: 20;
-//   --size-sidebar: 40%;
 }
 

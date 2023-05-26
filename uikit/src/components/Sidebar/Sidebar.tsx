@@ -1,30 +1,24 @@
+import { ThemeUIStyleObject } from 'theme-ui';
 import { Box } from '@theme-ui/components';
 import { Hamburger } from 'components/Hamburger';
-import { IconButton } from 'components/IconButton';
+import { Button } from 'components/Button';
 import { Style, StyledComponent, StyledContainer } from 'components/types';
 import { useBoolean } from 'hooks/useBoolean';
 import { FC } from 'react';
 import './Sidebar.scss';
 
 export const SidebarButton: FC<StyledComponent<{ isOpen: boolean, onClick: () => void }>> = ({ isOpen, onClick, sx = {} }) => {
-  const baseSx: Style = {
+  const mergedSx: ThemeUIStyleObject = {
     position: 'absolute',
     top: 0,
     right: 0,
     zIndex: 20,
-    p: 2,
-    cursor: 'pointer',
-  };
-
-  const mergedSx: Style = {
-    ...baseSx,
     ...sx,
   };
-
   return (
-    <IconButton variant='plain.small' onClick={onClick} sx={mergedSx}>
-      <Hamburger flavor='shoot' size={16} weight='black' isOpen={isOpen} />
-    </IconButton>
+    <Button colorScheme='primary' onClick={onClick} size='lg' px={2} py={2} fill='solid' sx={mergedSx}>
+      <Hamburger flavor='shoot' weight='black' isOpen={isOpen} />
+    </Button>
   );
 };
 

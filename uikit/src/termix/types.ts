@@ -3,7 +3,7 @@ import { Theme, ThemeUIStyleObject } from 'theme-ui';
 export type Corners = 'sharp' | 'dull' | 'round' | 'ball' | 'pill';
 export type Density = 'airy' | 'dense';
 export type Fill = 'solid' | 'semi' | 'outline' | 'ghost' | 'link';
-export type Size = 'xs' | 'sm' | 'md' | 'lg';
+export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 export type Weight = 'thin' | 'regular' | 'bold';
 export type Energy = 'rigid' | 'live';
 // export type Energy = 'rigid' | 'agile' | 'liquid' | 'fluid' | 'elastic';

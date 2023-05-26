@@ -1,7 +1,8 @@
 .ring {
+  --size-border: calc(var(--size-spinner) / 6);
   width: var(--size-spinner);
   height: var(--size-spinner);
-  border: 5px solid var(--clr-dot);
+  border: var(--size-border) solid var(--clr-dot);
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;

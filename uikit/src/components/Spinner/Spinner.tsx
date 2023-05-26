@@ -24,11 +24,10 @@ export const Spinner: FC<SpinnerProps> = ({ flavor, ...termixProps }) => {
     ripple: Ripple,
   }[flavor] as FC;
   const theme = useTermix();
-  const size = 42;
   const style = useTermixStyle(theme, { ...termixProps, element: theme.spinners });
   const cssProps: CSSProperties = {
-    '--size-spinner': `${size}px`,
-    '--clr-dot': style.color,
+    '--size-spinner': '1em',
+    '--clr-dot': style.color || 'currentColor',
     '--clr-muted': theme.colors?.surface1,
     '--duration': theme.speeds?.[style.speed || 'slow'],
   } as CSSProperties;

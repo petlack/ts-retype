@@ -82,6 +82,7 @@ export const theme: Termix = {
       borderColor: 'overlay2',
       transition: 'box-shadow 150ms ease-in',
       borderRadius: 'md',
+      fontFamily: 'body',
       '&:focus': {
         borderColor: 'primary',
         borderWidth: 1,
