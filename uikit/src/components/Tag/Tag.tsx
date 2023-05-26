@@ -6,7 +6,7 @@ export const Tag: FC<PropsWithChildren<TermixProps>> = ({
   children,
   ...tagProps
 }) => {
-  const theme = useTermix();
+  const { theme } = useTermix();
   const styles = useTermixStyle(theme, {
     element: theme.tags || {} as TermixProps['element'],
     ...tagProps,

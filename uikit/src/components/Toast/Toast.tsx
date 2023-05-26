@@ -15,7 +15,7 @@ export function Toast({ msg }: ToastProps) {
   );
 }
 
-export function ToastProvider({ children }: { children: JSX.Element[] }): JSX.Element {
+export function ToastProvider({ children }: { children: JSX.Element | JSX.Element[] }): JSX.Element {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   let handle: NodeJS.Timeout | null = null;

@@ -9,7 +9,7 @@ export const Box: FC<StyledContainer<TermixProps>> = ({
   sx,
   ...tagProps
 }) => {
-  const theme = useTermix();
+  const { theme } = useTermix();
   const styles = useTermixStyle(theme, {
     ...tagProps,
   });

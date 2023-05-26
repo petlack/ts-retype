@@ -1,5 +1,5 @@
 import { darken } from '@theme-ui/color';
-import { Termix, palette } from './termix';
+import { Termix, palette } from '@ts-retype/uikit';
 
 const primary = '#0a799e';
 const accent = '#c68726';
@@ -30,7 +30,6 @@ export const theme: Termix = {
 
   styles: {
     root: {
-      padding: 4,
       bg: 'mantle',
       color: 'text',
     },

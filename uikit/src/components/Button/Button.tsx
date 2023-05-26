@@ -20,7 +20,7 @@ export const Button: FC<StyledComponent<TermixProps & ButtonProps>> = forwardRef
   ...buttonProps
 }, ref) => {
   const disabledOrLoading = disabled || isLoading;
-  const theme = useTermix();
+  const { theme } = useTermix();
   const styles = useTermixStyle(theme, {
     element: theme.buttons || ({} as TermixProps['element']),
     ...{ ...buttonProps, variant: disabledOrLoading ? 'disabled' : '' },

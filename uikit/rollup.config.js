@@ -6,6 +6,17 @@ import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
 import { visualizer } from 'rollup-plugin-visualizer';
 
+const externals = [
+  'react',
+  'ramda',
+  '@emtion/react',
+  'react/jsx-runtime',
+  'theme-ui',
+  '@theme-ui/components',
+  '@theme-ui/color',
+  'polished',
+];
+
 export default [
   {
     input: 'src/index.ts',
@@ -17,9 +28,10 @@ export default [
         name: '@ts-retype/uikit',
       },
     ],
+    external: externals,
     plugins: [
-      external(),
-      resolve(),
+      // external(),
+      // resolve(),
       typescript({ tsconfig: './tsconfig.json' }),
       postcss({
         extract: true,
@@ -45,8 +57,8 @@ export default [
       },
     ],
     plugins: [
-      external(),
-      resolve(),
+      // external(),
+      // resolve(),
       typescript({ tsconfig: './tsconfig.json' }),
       postcss({
         extract: true,
@@ -57,6 +69,33 @@ export default [
       visualizer({
         emitFile: true,
         filename: 'stats-hooks.html',
+      }),
+    ],
+  },
+
+  {
+    input: 'src/components/index.ts',
+    output: [
+      {
+        file: 'dist/components/index.js',
+        format: 'esm',
+        sourcemap: true,
+        name: '@ts-retype/uikit/components',
+      },
+    ],
+    plugins: [
+      // external(),
+      // resolve(),
+      typescript({ tsconfig: './tsconfig.json' }),
+      postcss({
+        extract: true,
+        modules: false,
+        sourceMap: true,
+        use: ['sass'],
+      }),
+      visualizer({
+        emitFile: true,
+        filename: 'stats-components.html',
       }),
     ],
   },

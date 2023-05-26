@@ -4,7 +4,7 @@ import { Hamburger } from 'components/Hamburger';
 import { Button } from 'components/Button';
 import { Style, StyledComponent, StyledContainer } from 'components/types';
 import { useBoolean } from 'hooks/useBoolean';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import './Sidebar.scss';
 
 export const SidebarButton: FC<StyledComponent<{ isOpen: boolean, onClick: () => void }>> = ({ isOpen, onClick, sx = {} }) => {
@@ -60,7 +60,7 @@ const Sidebar: FC<StyledContainer<{ isOpen: boolean }>> = ({ children, isOpen, s
   );
 };
 
-export const SidebarLayout: FC<StyledContainer> = ({ children, sx }) => {
+export const SidebarLayout: FC<StyledComponent & { children: [ReactNode, ReactNode] }> = ({ children, sx }) => {
   const [isOpen, toggle] = useBoolean(false);
   const baseSx: Style = {
     overflow: 'hidden',
@@ -81,8 +81,9 @@ export const SidebarLayout: FC<StyledContainer> = ({ children, sx }) => {
       <Sidebar
         isOpen={isOpen}
       >
-        {children}
+        {children[0]}
       </Sidebar>
+      {children[1]}
     </Box >
   );
 };

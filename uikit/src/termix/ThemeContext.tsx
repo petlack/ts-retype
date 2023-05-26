@@ -22,7 +22,7 @@ export const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
   return (
     <ThemeContext.Provider
       value={{
-        theme,
+        theme: theme as Termix,
       }}
     >
       <ThemeUIProvider

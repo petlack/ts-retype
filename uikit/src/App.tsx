@@ -3,31 +3,26 @@ import { Text } from 'components/Text';
 import { SidebarLayout } from 'layouts/Sidebar';
 import { Topbar } from 'layouts/Topbar';
 import { Wrap } from 'layouts/Wrap';
-import { FC, useState } from 'react';
 import {
   Box,
   Card,
   Container,
-  Grid,
   Heading,
-  Input,
-  Label,
 } from 'theme-ui';
 import { ThemeProvider, palette, useTermix } from './termix';
-// import { Editor, importColors } from '@compai/css-gui';
 import { Hamburger } from './components/Hamburger';
-import { Overlay } from './layouts/Overlay';
 import { theme } from './ts-theme.js';
-import './App.scss';
-import { Button } from 'components/Button';
+import { Search } from 'components/Search';
 import { Stack } from 'layouts/Stack';
-import { FaBeer, FaDownload, FaLock } from 'react-icons/fa';
+import { FaBeer, FaDownload, FaLock, FaMoon, FaSun } from 'react-icons/fa';
 import { Spinner } from 'components/Spinner';
-import { IconButton } from 'components/IconButton';
 import { readableColor } from 'polished';
 import { getColor } from '@theme-ui/color';
+import { Button } from 'components/Button';
 import { Logo } from 'components/Logo';
+import './App.scss';
 
+// import { Editor, importColors } from '@compai/css-gui';
 // type ThemeMode = 'light' | 'dark';
 //
 // const body = '\'Noto Sans\', sans-serif';
@@ -36,26 +31,6 @@ import { Logo } from 'components/Logo';
 // const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 console.log({ paletteColors: palette('latte') });
-
-const SearchIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={16} height={16}>
-    <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
-  </svg>
-);
-
-type SearchProps = {
-  query: string;
-};
-
-const Search: FC<SearchProps> = () => {
-  const [query, setQuery] = useState('');
-  return (
-    <Grid sx={{ gridTemplateColumns: 'min-content 1fr', gap: 3, alignItems: 'center' }}>
-      <Label htmlFor="search"><SearchIcon /></Label>
-      <Input id="search" name="search" value={query} onChange={e => setQuery(e.currentTarget?.value)} placeholder='Search ...' />
-    </Grid>
-  );
-};
 
 const ColorTile = ({ color, name }: { color: string, name: string }) => {
   const text = color && readableColor(color);
@@ -79,13 +54,23 @@ const ColorTile = ({ color, name }: { color: string, name: string }) => {
 };
 
 const ColorsPoster = () => {
-  const theme = useTermix();
+  const { theme } = useTermix();
 
   const markup = Object.entries(theme.rawColors || {}).map(([name, value]) => <ColorTile key={name} name={name} color={getColor(theme, value)} />);
   return (
     <Wrap>
       {markup}
     </Wrap>
+  );
+};
+
+const ThemeModeToggle = () => {
+  const { setColorMode } = useTermix();
+  return (
+    <>
+      <Button colorScheme='black' leftIcon={<FaMoon />} onClick={() => setColorMode('dark')}>Dark</Button>
+      <Button colorScheme='white' leftIcon={<FaSun />} onClick={() => setColorMode('light')}>Light</Button>
+    </>
   );
 };
 
@@ -96,7 +81,7 @@ export function App() {
 
         <Card>
           <Heading>Search</Heading>
-          <Search query='foo' />
+          <Search query='foo' setQuery={() => {/**/ }} />
         </Card>
 
         <Card>
@@ -104,6 +89,13 @@ export function App() {
           <Wrap>
             <Logo name='retype' />
             <Logo name='search' />
+          </Wrap>
+        </Card>
+
+        <Card>
+          <Heading>Modes</Heading>
+          <Wrap>
+            <ThemeModeToggle />
           </Wrap>
         </Card>
 
@@ -170,8 +162,11 @@ export function App() {
             minWidth: '400px',
             background: 'mantle',
           }}>
-            <Box sx={{ flex: 1, p: 3, paddingTop: 4, background: 'primary', color: 'background' }}>
-              <Text>Hello World</Text>
+            <Box sx={{ flex: 1, p: 3, paddingTop: 5, bg: 'primary', color: 'background' }}>
+              <Text>Sidebar</Text>
+            </Box>
+            <Box sx={{ flex: 1 }}>
+              <Text>Content</Text>
             </Box>
           </SidebarLayout>
         </Card>
@@ -184,8 +179,17 @@ export function App() {
             minWidth: '400px',
             background: 'mantle',
           }}>
-            <Box sx={{ bg: 'background', px: 2, py: 2, minHeight: '2em' }}>
+            <Box sx={{
+              bg: 'base',
+              px: 2,
+              py: 2,
+              gap: 4,
+              minHeight: '2em',
+              display: 'flex',
+              flexDirection: 'row',
+            }}>
               <Logo name='uikit' />
+              <Search query='' setQuery={() => {/**/ }} />
             </Box>
             <Box sx={{ flex: 1, p: 2, bg: 'mantle', color: 'text' }}>
             </Box>

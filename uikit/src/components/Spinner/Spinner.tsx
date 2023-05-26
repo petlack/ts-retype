@@ -23,7 +23,7 @@ export const Spinner: FC<SpinnerProps> = ({ flavor, ...termixProps }) => {
     donut: Donut,
     ripple: Ripple,
   }[flavor] as FC;
-  const theme = useTermix();
+  const { theme } = useTermix();
   const style = useTermixStyle(theme, { ...termixProps, element: theme.spinners });
   const cssProps: CSSProperties = {
     '--size-spinner': '1em',

@@ -5,21 +5,20 @@ import { FulltextData } from './types';
 import { Listing } from './components/Listing';
 // import { Search } from './components/Search';
 import { SearchPhraseProvider, useSearch } from '@ts-retype/uikit/hooks';
-import { Search, ToastProvider, ThemeMode, ThemeProvider } from '@ts-retype/uikit';
-import { Sidebar, SidebarMenu } from '@ts-retype/uikit';
+import { Search, SidebarLayout, ToastProvider, ThemeProvider, Logo, Box, Button } from '@ts-retype/uikit';
 // import { ToastProvider } from './components/Toast';
 import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
-import { TopBar, UiKitApp } from '@ts-retype/uikit';
+import { Topbar, UiKitApp } from '@ts-retype/uikit';
 import type { Metadata, TypeDuplicate } from '@ts-retype/retype';
 import { decompressRoot } from '@ts-retype/retype/dist/snippet';
 import { themes } from './themes';
 import { useCallback, useEffect, useState } from 'react';
+import { Flex, Heading } from '@theme-ui/components';
 // import { useSearch } from './hooks/useSearch';
+import { theme } from './ts-theme';
 
 import '@ts-retype/uikit/dist/index.css';
 import './App.scss';
-
-const preferredTheme: ThemeMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 const facets: Facet<FulltextData>[] = [
   {
@@ -94,31 +93,38 @@ function App() {
   //   visible={filtersVisible}
   // />
   return (
-    <ThemeProvider theme={themes[preferredTheme]}>
-      <UiKitApp>
-        <SearchPhraseProvider value={{ phrase: query }}>
-          <Sidebar />
-          <ToastProvider>
-            <TopBar>
-              <Search
-                query={query}
-                setQuery={setQuery}
-              />
-              <SidebarMenu />
-            </TopBar>
-            <div className="main">
-              <Listing
-                meta={meta}
-                results={results}
-                filter={filter}
-              />
-              <Footer meta={meta} />
-            </div>
-            <TooltipRoot />
-          </ToastProvider>
-        </SearchPhraseProvider>
-      </UiKitApp>
-    </ThemeProvider>
+    // <ThemeProvider theme={themes[preferredTheme]}>
+    <ThemeProvider theme={theme}>
+      <SearchPhraseProvider value={{ phrase: query }}>
+        <ToastProvider>
+          <SidebarLayout sx={{
+            bg: 'mantle',
+          }}>
+            <Box colorScheme='crust'>
+              <Heading>HELLO</Heading>
+            </Box>
+            <Topbar sx={{ flex: 1 }}>
+              <Flex sx={{ gap: 4, p: 1 }}>
+                <Logo name='retype' />
+                <Search
+                  query={query}
+                  setQuery={setQuery}
+                />
+              </Flex>
+              <div className="main">
+                <Listing
+                  meta={meta}
+                  results={results}
+                  filter={filter}
+                />
+                <Footer meta={meta} />
+              </div>
+              <TooltipRoot />
+            </Topbar>
+          </SidebarLayout>
+        </ToastProvider>
+      </SearchPhraseProvider>
+    </ThemeProvider >
   );
 }
 

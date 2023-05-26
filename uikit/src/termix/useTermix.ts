@@ -1,7 +1,8 @@
-import { useThemeUI } from 'theme-ui';
+import { useColorMode, useThemeUI } from 'theme-ui';
 import { Termix } from './types';
 
 export function useTermix() {
   const context = useThemeUI();
-  return context.theme as Termix;
+  const [colorMode, setColorMode] = useColorMode();
+  return { theme: context.theme as Termix, colorMode, setColorMode };
 }

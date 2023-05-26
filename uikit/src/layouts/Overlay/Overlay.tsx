@@ -1,3 +1,4 @@
+import { FC, PropsWithChildren } from 'react';
 import { Box } from 'theme-ui';
 
 export const Overlay: FC<PropsWithChildren> = ({ children }) => {
