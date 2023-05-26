@@ -8,7 +8,6 @@ import {
   Box,
   Card,
   Container,
-  Flex,
   Grid,
   Heading,
   Input,
@@ -18,17 +17,16 @@ import { ThemeProvider, palette, useTermix } from './termix';
 // import { Editor, importColors } from '@compai/css-gui';
 import { Hamburger } from './components/Hamburger';
 import { Overlay } from './layouts/Overlay';
-import { ThemePoster } from 'theme/ThemePoster';
 import { theme } from './ts-theme.js';
 import './App.scss';
 import { Button } from 'components/Button';
 import { Stack } from 'layouts/Stack';
 import { FaBeer, FaDownload, FaLock } from 'react-icons/fa';
-import { AiFillMail } from 'react-icons/ai';
 import { Spinner } from 'components/Spinner';
 import { IconButton } from 'components/IconButton';
 import { readableColor } from 'polished';
 import { getColor } from '@theme-ui/color';
+import { Logo } from 'components/Logo';
 
 // type ThemeMode = 'light' | 'dark';
 //
@@ -99,6 +97,14 @@ export function App() {
         <Card>
           <Heading>Search</Heading>
           <Search query='foo' />
+        </Card>
+
+        <Card>
+          <Heading>Logo</Heading>
+          <Wrap>
+            <Logo name='retype' />
+            <Logo name='search' />
+          </Wrap>
         </Card>
 
         <Card>
@@ -178,7 +184,8 @@ export function App() {
             minWidth: '400px',
             background: 'mantle',
           }}>
-            <Box sx={{ bg: 'background', px: 2, minHeight: '2em' }}>
+            <Box sx={{ bg: 'background', px: 2, py: 2, minHeight: '2em' }}>
+              <Logo name='uikit' />
             </Box>
             <Box sx={{ flex: 1, p: 2, bg: 'mantle', color: 'text' }}>
             </Box>
@@ -221,7 +228,6 @@ export function App() {
           <ColorsPoster />
         </Card>
 
-        <ThemePoster />
       </Container>
     </ThemeProvider >
   );

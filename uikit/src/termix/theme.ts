@@ -67,8 +67,9 @@ export const theme: Termix = {
   fontWeights: {
     thin: 200,
     body: 400,
-    heading: 600,
-    bold: 700,
+    heading: 500,
+    bold: 600,
+    black: 800,
   },
 
   lineHeights: {

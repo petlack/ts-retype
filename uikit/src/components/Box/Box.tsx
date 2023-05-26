@@ -1,25 +1,26 @@
-import { FC, CSSProperties, PropsWithChildren } from 'react';
-import { useTheme } from 'theme';
-import { filterFalsy } from 'utils';
 
-export type BoxProps = {
-  color?: string;
-}
+import { FC } from 'react';
+import { Box as UiBox } from 'theme-ui';
+import { TermixProps, useTermix, useTermixStyle } from 'termix';
+import { StyledContainer } from 'components/types';
 
-export const Box: FC<PropsWithChildren<BoxProps>> = ({
+export const Box: FC<StyledContainer<TermixProps>> = ({
   children,
-  color,
+  sx,
+  ...tagProps
 }) => {
-  const { theme } = useTheme();
-  const resolvedColor = color && theme.colors[color];
-  const style: CSSProperties = filterFalsy({
-    backgroundColor: resolvedColor && resolvedColor.toString(),
+  const theme = useTermix();
+  const styles = useTermixStyle(theme, {
+    ...tagProps,
   });
+  const mergedSx = {
+    ...styles,
+    ...sx,
+  };
   return (
-    <span
-      style={style}
-    >
+    <UiBox sx={mergedSx}>
       {children}
-    </span>
+    </UiBox>
   );
 };
+
