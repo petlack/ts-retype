@@ -1,7 +1,7 @@
 import { Card, Container, Heading, Text } from 'theme-ui';
 import { Box, Button, Hamburger, Logo, Search, Spinner, Tag } from '~/components';
 import { FaBeer, FaDownload, FaLock, FaMoon, FaSun, FaTimes } from 'react-icons/fa';
-import { Center, Drawer, Modal, Stack, Topbar, Wrap } from '~/layouts';
+import { Drawer, Modal, Popover, PopoverContent, PopoverTrigger, Stack, Tooltip, TooltipContent, TooltipTrigger, Topbar, Wrap } from '~/layouts';
 import { palette, useTermix, ThemeProvider } from './termix';
 import { useCallback, useState } from 'react';
 import { getColor } from '@theme-ui/color';
@@ -10,6 +10,8 @@ import { readableColor } from 'polished';
 import { theme } from './ts-theme.js';
 import { useModal } from '~/hooks';
 import { AiFillAlert } from 'react-icons/ai';
+import { MdChatBubble } from 'react-icons/md';
+import { TiInfoLarge } from 'react-icons/ti';
 import './fonts';
 import './App.scss';
 
@@ -93,6 +95,13 @@ export function App() {
               leftIcon={<Hamburger isOpen={isDrawerOpen} flavor='cross' />}
               onClick={openDrawer}
             >Drawer</Button>
+            <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
+              <Box sx={{ bg: 'primary', height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
+                <Heading as='h2'>Sidebar</Heading>
+                <Button onClick={closeDrawer} rightIcon={<FaTimes />}>Close</Button>
+              </Box>
+            </Drawer>
+
             <Button
               colorScheme='accent'
               fill='ghost'
@@ -114,13 +123,38 @@ export function App() {
                 <Text>Hello World</Text>
               </Card>
             </Modal>
+
+            <Popover>
+              <PopoverTrigger>
+                <Button
+                  colorScheme='green'
+                  fill='ghost'
+                  size='lg'
+                  leftIcon={<MdChatBubble />}
+                >Popover</Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <Card sx={{ px: 2, py: 1, opacity: 1 }}>
+                  <Heading as='h3'>Popover</Heading>
+                </Card>
+              </PopoverContent>
+            </Popover>
+
+            <Tooltip>
+              <TooltipTrigger>
+                <Box colorScheme='mauve' fill='ghost' size='lg' density='gapped'>Tooltip</Box>
+              </TooltipTrigger>
+              <TooltipContent>
+                <Box colorScheme='pink' fill='solid' size='sm' density='gapped' corners='pill' _css={{
+                  color: 'pink',
+                  '&[data-state="open"]': {
+                    color: 'red',
+                    padding: '100px',
+                  }
+                }}>Hello World</Box>
+              </TooltipContent>
+            </Tooltip>
           </Wrap>
-          <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
-            <Box sx={{ bg: 'primary', height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
-              <Heading as='h2'>Sidebar</Heading>
-              <Button onClick={closeDrawer} rightIcon={<FaTimes />}>Close</Button>
-            </Box>
-          </Drawer>
         </Card>
 
         <Card>

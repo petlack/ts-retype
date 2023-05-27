@@ -63,6 +63,7 @@
   "dependencies": {
     "@compai/css-gui": "^0.0.246",
     "@emotion/react": "^11.11.0",
+    "@floating-ui/react": "^0.24.1",
     "@fontsource/arvo": "^5.0.1",
     "@fontsource/exo-2": "^5.0.1",
     "@fontsource/fira-code": "^5.0.1",

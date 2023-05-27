@@ -176,8 +176,8 @@ export const theme: Termix = {
       flexDirection: 'column',
       padding: 2,
       border: '1px solid rgba(0, 0, 0, 0.125)',
-      transitionProperty: 'border,box-shadow',
       transition: `350ms ${easeIn('quad')}`,
+      transitionProperty: 'border,box-shadow,opacity',
       ':hover': {
         border: '1px solid rgba(0, 0, 0, 0.25)',
         boxShadow: '0 0 8px rgba(0, 0, 0, 0.125)',

@@ -7,18 +7,16 @@ import { StyledContainer } from '~/components/types';
 export const Box: FC<StyledContainer<TermixProps & BoxProps>> = forwardRef(({
   children,
   sx,
-  ...tagProps
+  ...boxProps
 }, ref) => {
   const { theme } = useTermix();
-  const styles = useTermixStyle(theme, {
-    ...tagProps,
-  });
+  const styles = useTermixStyle(theme, boxProps);
   const mergedSx = {
     ...styles,
     ...sx,
   };
   return (
-    <UiBox ref={ref} sx={mergedSx} {...omit(TermixPropsNames, tagProps)}>
+    <UiBox ref={ref} sx={mergedSx} {...omit(TermixPropsNames, boxProps)}>
       {children}
     </UiBox>
   );
