@@ -1,12 +1,13 @@
-import { Box, Card, Container, Heading } from 'theme-ui';
-import { Button, Hamburger, Logo, Search, Spinner, Tag, Text } from '~/components';
-import { FaBeer, FaDownload, FaLock, FaMoon, FaSun } from 'react-icons/fa';
-import { SidebarLayout, Stack, Topbar, Wrap } from '~/layouts';
+import { Card, Container, Heading } from 'theme-ui';
+import { Box, Button, Hamburger, Logo, Search, Spinner, Tag } from '~/components';
+import { FaBeer, FaDownload, FaLock, FaMoon, FaSun, FaTimes } from 'react-icons/fa';
+import { Drawer, Stack, Topbar, Wrap } from '~/layouts';
 import { ThemeProvider, palette, useTermix } from './termix';
 import { getColor } from '@theme-ui/color';
 import { generateTheme } from '~/theme/generate';
 import { readableColor } from 'polished';
 import { theme } from './ts-theme.js';
+import { useBoolean } from '~/hooks';
 import './App.scss';
 
 // import { Editor, importColors } from '@compai/css-gui';
@@ -66,6 +67,8 @@ const ThemeModeToggle = () => {
 };
 
 export function App() {
+  const [isDrawerOpen, toggleDrawer] = useBoolean(false);
+
   return (
     <ThemeProvider theme={theme}>
       <Container content='center' sx={{ display: 'flex', flexDirection: 'column', gap: 4, }}>
@@ -73,6 +76,25 @@ export function App() {
         <Card>
           <Heading>Search</Heading>
           <Search query='foo' setQuery={() => {/**/ }} />
+        </Card>
+
+        <Card>
+          <Heading>Sidebar Layout</Heading>
+          <Wrap>
+            <Button
+              colorScheme='primary'
+              fill='ghost'
+              size='lg'
+              leftIcon={<Hamburger isOpen={isDrawerOpen} flavor='cross' />}
+              onClick={toggleDrawer}
+            />
+          </Wrap>
+          <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
+            <Box sx={{ bg: 'primary', height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
+              <Heading as='h2'>Sidebar</Heading>
+              <Button onClick={toggleDrawer} rightIcon={<FaTimes />}>Close</Button>
+            </Box>
+          </Drawer>
         </Card>
 
         <Card>
@@ -143,23 +165,6 @@ export function App() {
             <Tag fill='outline' colorScheme='green' size='sm'>CaMel</Tag>
             <Tag colorScheme='blue' size='xs' corners='pill'>un_der</Tag>
           </Wrap>
-        </Card>
-
-        <Card>
-          <Heading>Sidebar Layout</Heading>
-          <SidebarLayout sx={{
-            width: '30vw',
-            height: '30vh',
-            minWidth: '400px',
-            background: 'mantle',
-          }}>
-            <Box sx={{ flex: 1, p: 3, paddingTop: 5, bg: 'primary', color: 'background' }}>
-              <Text>Sidebar</Text>
-            </Box>
-            <Box sx={{ flex: 1 }}>
-              <Text>Content</Text>
-            </Box>
-          </SidebarLayout>
         </Card>
 
         <Card>

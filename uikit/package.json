@@ -45,6 +45,7 @@
     "build:storybook": "storybook build",
     "build:vite": "tsc && vite build",
     "clean": "rm -rf dist",
+    "compile": "tsc",
     "cosmos": "cosmos",
     "cosmos:export": "cosmos-export",
     "dev": "vite",
@@ -65,6 +66,7 @@
     "@theme-ui/color": "^0.15.7",
     "@theme-ui/preset-future": "^0.15.7",
     "chroma-js": "^2.4.2",
+    "focus-trap-react": "^10.1.4",
     "styled-components": "^5.3.10",
     "theme-ui": "^0.15.7"
   },

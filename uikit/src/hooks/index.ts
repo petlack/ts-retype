@@ -1,6 +1,7 @@
 export * from './use-search/index.js';
 export * from './useSearchPhrase.js';
 export { useConfig, ConfigProvider } from './use-config';
+export { useBoolean } from './useBoolean.js';
 export { useDelay } from './useDelay.js';
 export { useFetch } from './useFetch.js';
 export { useLog, LogProvider } from './use-log';

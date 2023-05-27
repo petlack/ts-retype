@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Lines } from 'code/Lines';
+import { Lines } from '~/code/Lines';
 import ThemeDecorator from '../ThemeDecorator';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
   title: 'uikit/code/Lines',
-  component:  Lines,
+  component: Lines,
   decorators: [ThemeDecorator],
   tags: ['autodocs'],
   argTypes: {
-    
+
   },
-} satisfies Meta<typeof  Lines>;
+} satisfies Meta<typeof Lines>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

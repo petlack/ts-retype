@@ -1,14 +1,14 @@
-
-import { FC } from 'react';
-import { Box as UiBox } from 'theme-ui';
-import { TermixProps, useTermix, useTermixStyle } from '~/termix';
+import { FC, forwardRef } from 'react';
+import { Box as UiBox, BoxProps } from 'theme-ui';
+import { TermixProps, TermixPropsNames, useTermix, useTermixStyle } from '~/termix';
+import { omit } from 'ramda';
 import { StyledContainer } from '~/components/types';
 
-export const Box: FC<StyledContainer<TermixProps>> = ({
+export const Box: FC<StyledContainer<TermixProps & BoxProps>> = forwardRef(({
   children,
   sx,
   ...tagProps
-}) => {
+}, ref) => {
   const { theme } = useTermix();
   const styles = useTermixStyle(theme, {
     ...tagProps,
@@ -18,9 +18,9 @@ export const Box: FC<StyledContainer<TermixProps>> = ({
     ...sx,
   };
   return (
-    <UiBox sx={mergedSx}>
+    <UiBox ref={ref} sx={mergedSx} {...omit(TermixPropsNames, tagProps)}>
       {children}
     </UiBox>
   );
-};
+});
 

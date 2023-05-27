@@ -1,6 +1,7 @@
 import { FC, forwardRef, ReactNode } from 'react';
 import { Button as UiButton, ButtonProps as UiButtonProps } from 'theme-ui';
-import { TermixProps, useTermix, useTermixStyle } from '~/termix';
+import { TermixProps, TermixPropsNames, useTermix, useTermixStyle } from '~/termix';
+import { omit } from 'ramda';
 import { Spinner } from '~/components/Spinner';
 import { StyledComponent } from '~/components/types';
 
@@ -37,7 +38,7 @@ export const Button: FC<StyledComponent<TermixProps & ButtonProps>> = forwardRef
       ref={ref}
       disabled={disabledOrLoading}
       sx={{ display: 'inline-flex', alignItems: 'center', ...sx, ...styles }}
-      {...buttonProps}
+      {...omit(TermixPropsNames, buttonProps)}
     >
       {markup}
     </UiButton>

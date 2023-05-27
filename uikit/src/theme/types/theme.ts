@@ -7,6 +7,7 @@ export type ThemeMode = 'light' | 'dark';
 export type Color = string | number | ColorScale;
 
 export type ColorScale = {
+  25: Color;
   50: Color;
   100: Color;
   200: Color;
@@ -17,6 +18,8 @@ export type ColorScale = {
   700: Color;
   800: Color;
   900: Color;
+  950: Color;
+  975: Color;
 };
 
 export type AccentColors = {

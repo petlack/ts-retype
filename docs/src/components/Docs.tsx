@@ -1,4 +1,4 @@
-import { TS_RETYPE_CMD_OPTIONS } from '@ts-retype/retype/dist/types';
+import { TS_RETYPE_CMD_OPTIONS } from '@ts-retype/retype';
 import type { Snippet } from '@ts-retype/retype';
 import * as Snippets from '../generated/snippets';
 import { Bash, Code, JsTsCode, MultilangWindow, Options, ThemeMode, Window, useTheme } from '@ts-retype/uikit';

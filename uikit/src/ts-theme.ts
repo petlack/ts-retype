@@ -1,7 +1,7 @@
 import { darken } from '@theme-ui/color';
-import { toCssVars } from '~/theme/cssVariables';
-import { generateTheme } from '~/theme/generate';
-import { ColorScale } from '~/theme/types';
+import { toCssVars } from './theme/cssVariables';
+import { generateTheme } from './theme/generate';
+import { Color, ColorScale } from './theme/types/theme';
 import { Termix, palette } from './termix';
 
 const primary = '#0a799e';
@@ -29,7 +29,7 @@ const lightCssVars = toCssVars(light);
 
 console.log({ lightCssVars });
 
-function colorScale(name: string, scale: ColorScale) {
+function colorScale(name: string, scale: Color) {
   return Object.fromEntries(Object.entries(scale).map(([key, value]) => [`${name}-${key}`, value]));
 }
 

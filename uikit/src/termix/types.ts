@@ -1,7 +1,7 @@
-import { Theme, ThemeUIStyleObject } from 'theme-ui';
+import { CSSProperties, Theme, ThemeUIStyleObject } from 'theme-ui';
 
 export type Corners = 'sharp' | 'dull' | 'round' | 'ball' | 'pill';
-export type Density = 'airy' | 'dense';
+export type Density = 'airy' | 'gapped' | 'snug' | 'packed';
 export type Fill = 'solid' | 'semi' | 'outline' | 'ghost' | 'link';
 export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 export type Weight = 'thin' | 'regular' | 'bold';
@@ -27,6 +27,7 @@ export type Termix = Theme &
     weight: Record<Weight, TermixStyle>;
     energy: Record<Energy, TermixStyle>;
     mimic: Record<Mimic, (props: { color: string }) => TermixStyle>;
+    speed?: Record<Speed, TermixStyle>;
   }>;
 
 export type TermixProps = {
@@ -43,4 +44,20 @@ export type TermixProps = {
   speed?: Speed;
 };
 
-export type TermixStyle = ThemeUIStyleObject & { fontSize?: string | number };
+export const TermixPropsNames = [
+  'colorScheme',
+  'variant',
+  'size',
+  'density',
+  'fill',
+  'weight',
+  'corners',
+  'energy',
+  'mimic',
+  'element',
+  'speed',
+];
+
+export type TermixStyle = TermixProps &
+  ThemeUIStyleObject &
+  Pick<CSSProperties, 'fontSize' | 'color'>;

@@ -6,6 +6,7 @@ import { Termix } from './types.js';
 import { theme as defaultTheme } from './theme.js';
 import applyCssVariables from '~/theme/cssVariables';
 import { generateTheme } from '~/theme/generate';
+import { Color, ColorScale, Theme } from '~/theme/types/theme';
 
 export interface ThemeContextProps {
   theme?: Termix;
@@ -22,6 +23,20 @@ const body = '\'Noto Sans\', sans-serif';
 const heading = '\'Exo 2\', sans-serif';
 const mono = '\'Fira Code\', monospace';
 
+function getColor(theme: Theme, name: keyof Theme['colors'], value: number): string {
+  const color = theme.colors[name];
+  if (typeof color === 'number') {
+    return color.toString();
+  }
+  if (typeof color === 'string') {
+    return color;
+  }
+  const scale = color;
+  const shade = scale[value as keyof ColorScale] as Color | undefined;
+
+  return shade?.toString() || color[100].toString() || 'transparent';
+}
+
 export const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
   theme: customTheme,
   children,
@@ -32,7 +47,6 @@ export const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
 
   const varsTheme = generateTheme({ body, heading, mono, mode: 'light', accent: primary, second: accent });
 
-  console.log({ varsTheme, theme });
   varsTheme.colors = {
     ...varsTheme.colors,
     'sx-token': theme.colors?.text as string,
@@ -46,20 +60,18 @@ export const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
     'sx-property': theme.colors?.text as string,
     'sx-punctuation': theme.colors?.overlay2 as string,
     'sx-string': theme.colors?.green as string,
-    'bg-topbar': varsTheme.colors['bg'],
-    'bg-main': varsTheme.colors['bg'],
-    'bg-code': varsTheme.colors.neutral[25] as string,
-    'fg-text': varsTheme.colors['fg'],
-    'fg-title': varsTheme.colors['neutral'][600] as string,
+    'bg-topbar': varsTheme.colors.bg,
+    'bg-main': varsTheme.colors.bg,
+    'bg-code': getColor(varsTheme, 'neutral', 25),
+    'fg-text': varsTheme.colors.fg,
+    'fg-title': getColor(varsTheme, 'neutral', 600),
     'fg-code': varsTheme.colors['fg'],
-    'bg-title': varsTheme.colors.accent[50] as string,
-    'bg-explorer': varsTheme.colors.neutral[50] as string,
-    'bg-explorer-selected': varsTheme.colors.accent[100] as string,
-    'bg-snippet': varsTheme.colors.neutral[50] as string,
-    'bg-snippet-highlighted': varsTheme.colors.accent[100] as string,
+    'bg-title': getColor(varsTheme, 'accent', 50),
+    'bg-explorer': getColor(varsTheme, 'neutral', 50),
+    'bg-explorer-selected': getColor(varsTheme, 'accent', 100),
+    'bg-snippet': getColor(varsTheme, 'neutral', 50),
+    'bg-snippet-highlighted': getColor(varsTheme, 'accent', 100),
   };
-
-  console.log('new', { varsTheme });
 
   useEffect(() => {
     applyCssVariables(varsTheme);

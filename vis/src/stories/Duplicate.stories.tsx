@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TypeDuplicate } from '@ts-retype/retype';
 
-import { Duplicate } from '../../../../vis/src/components/Duplicate';
+import { Duplicate } from '../components/Duplicate';
 
-import ThemeDecorator from '../ThemeDecorator';
+import ThemeDecorator from '@ts-retype/uikit/src/stories/ThemeDecorator';
 
 const duplicate: TypeDuplicate = {
   'names': [{ 'name': 'Search', 'count': 2 }],
@@ -156,13 +156,13 @@ const duplicate: TypeDuplicate = {
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
   title: 'uikit/code/Duplicate',
-  component:  Duplicate,
+  component: Duplicate,
   decorators: [ThemeDecorator],
   tags: ['autodocs'],
   argTypes: {
-    
+
   },
-} satisfies Meta<typeof  Duplicate>;
+} satisfies Meta<typeof Duplicate>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

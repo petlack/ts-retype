@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Window } from 'code/Window';
+import { Window } from '~/code/Window';
 import ThemeDecorator from '../ThemeDecorator';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
   title: 'uikit/code/Window',
-  component:  Window,
+  component: Window,
   decorators: [ThemeDecorator],
   tags: ['autodocs'],
   argTypes: {
-    
+
   },
-} satisfies Meta<typeof  Window>;
+} satisfies Meta<typeof Window>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

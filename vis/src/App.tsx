@@ -3,19 +3,16 @@ import { Filters, FiltersMenu } from './components/Filters';
 import { Footer } from './components/Footer/Footer';
 import { FulltextData } from './types';
 import { Listing } from './components/Listing';
-// import { Search } from './components/Search';
-import { SearchPhraseProvider, useSearch } from '@ts-retype/uikit/hooks';
-import { Search, SidebarLayout, ToastProvider, ThemeProvider, Logo, Box, Button } from '@ts-retype/uikit';
-// import { ToastProvider } from './components/Toast';
+import { useBoolean, useSearch, SearchPhraseProvider } from '@ts-retype/uikit/hooks';
+import { Box, Button, Drawer, Hamburger, Logo, Search, ThemeProvider, ToastProvider, Topbar } from '@ts-retype/uikit';
 import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
-import { Topbar, UiKitApp } from '@ts-retype/uikit';
 import type { Metadata, TypeDuplicate } from '@ts-retype/retype';
 import { decompressRoot } from '@ts-retype/retype/dist/snippet';
 import { themes } from './themes';
 import { useCallback, useEffect, useState } from 'react';
 import { Flex, Heading } from '@theme-ui/components';
-// import { useSearch } from './hooks/useSearch';
 import { theme } from './ts-theme';
+import { FaTimes } from 'react-icons/fa';
 
 import '@ts-retype/uikit/dist/index.css';
 import './App.scss';
@@ -47,6 +44,7 @@ function decompress(td: TypeDuplicate) {
 function App() {
   const [allData, setAllData] = useState([] as FulltextData[]);
   const [meta, setMeta] = useState({} as Metadata);
+  const [isDrawerOpen, toggleDrawer] = useBoolean(false);
   // const [query, setQuery] = useState('');
   // const initialFilter = { minFiles: 2, minProperties: 3, selectedSimilarity: 'all', selectedType: 'all' };
   const initialFilter = () => true;
@@ -79,11 +77,6 @@ function App() {
     reindex(allData);
   }, [allData]);
 
-  const [filtersVisible, setFiltersVisible] = useState(false);
-
-  const toggleFiltersVisibility = useCallback(() => {
-    setFiltersVisible(!filtersVisible);
-  }, [filtersVisible]);
 
   // <FiltersMenu isOpen={filtersVisible} onClick={toggleFiltersVisibility} />
   // <Filters
@@ -97,31 +90,45 @@ function App() {
     <ThemeProvider theme={theme}>
       <SearchPhraseProvider value={{ phrase: query }}>
         <ToastProvider>
-          <SidebarLayout sx={{
-            bg: 'mantle',
-          }}>
-            <Box colorScheme='crust'>
-              <Heading>HELLO</Heading>
+          <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
+            <Box sx={{ bg: 'primary', height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
+              <Heading as='h2'>Sidebar</Heading>
+              <Button onClick={toggleDrawer} rightIcon={<FaTimes />}>Close</Button>
             </Box>
-            <Topbar sx={{ flex: 1 }}>
-              <Flex sx={{ gap: 4, p: 1 }}>
-                <Logo name='retype' />
-                <Search
-                  query={query}
-                  setQuery={setQuery}
-                />
-              </Flex>
-              <div className="main">
-                <Listing
-                  meta={meta}
-                  results={results}
-                  filter={filter}
-                />
-                <Footer meta={meta} />
-              </div>
-              <TooltipRoot />
-            </Topbar>
-          </SidebarLayout>
+          </Drawer>
+
+          <Topbar sx={{ flex: 1 }}>
+            <Flex sx={{ gap: 4, py: 1, px: 2 }}>
+              <Logo name='retype' />
+              <Search
+                query={query}
+                setQuery={setQuery}
+              />
+              <Button
+                colorScheme='accent'
+                fill='ghost'
+                size='lg'
+                leftIcon={<Hamburger isOpen={isDrawerOpen} flavor='cross' />}
+                onClick={toggleDrawer}
+                sx={{
+                  position: 'fixed',
+                  right: 0,
+                  top: 0,
+                  zIndex: 50,
+                }}
+              />
+
+            </Flex>
+            <div className="main">
+              <Listing
+                meta={meta}
+                results={results}
+                filter={filter}
+              />
+              <Footer meta={meta} />
+            </div>
+            <TooltipRoot />
+          </Topbar>
         </ToastProvider>
       </SearchPhraseProvider>
     </ThemeProvider >

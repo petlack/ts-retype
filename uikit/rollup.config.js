@@ -15,6 +15,8 @@ const externals = [
   '@theme-ui/components',
   '@theme-ui/color',
   'polished',
+  'minisearch',
+  'chroma-js',
 ];
 
 export default [

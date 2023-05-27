@@ -7,13 +7,13 @@ function rejectNils<T extends Record<string, any>>(obj: T): T {
 
 export function useTermixStyle(theme: Termix, { element, ...props }: TermixProps): TermixStyle {
   const {
-    colorScheme: color = 'hotpink',
+    colorScheme: color = 'transparent',
     variant = 'default',
     fill = 'solid',
     size = 'md',
-    density = 'dense',
+    density = 'packed',
     weight = 'regular',
-    corners = 'dull',
+    corners = 'sharp',
     energy = 'rigid',
     mimic = 'static',
   } = rejectNils({

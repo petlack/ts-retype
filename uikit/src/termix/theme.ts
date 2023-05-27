@@ -371,7 +371,9 @@ export const theme: Termix = {
   },
 
   density: {
-    dense: { px: 2, py: 1 },
+    packed: { p: 0 },
+    snug: { px: 1, py: 1 },
+    gapped: { px: 2, py: 1 },
     airy: { px: 3, py: 2 },
   },
 

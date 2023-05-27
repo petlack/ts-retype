@@ -15,7 +15,6 @@ export * from './core/Example';
 
 export * from './components';
 
-export * from './layouts/Sidebar';
-export * from './layouts/Topbar';
+export * from './layouts';
 
 export * from './termix';

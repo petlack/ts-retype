@@ -21,6 +21,9 @@ const external = [
   '@theme-ui/color',
   'polished',
   'minisearch',
+  'chroma-js',
+  'react-dom',
+  'focus-trap-react',
 ];
 
 const plugins = [
@@ -64,7 +67,6 @@ function module(name) {
       file: `dist/${name.split('.').slice(0, -1).join('.')}.js`,
       format: 'es',
       exports: 'named',
-      sourcemap: true,
     },
     external,
     plugins,

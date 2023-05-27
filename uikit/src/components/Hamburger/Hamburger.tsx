@@ -6,6 +6,8 @@ import { Cross } from './Cross';
 import { Expand } from './Expand';
 import { Shoot } from './Shoot';
 import { Sigma } from './Sigma';
+import { TermixPropsNames } from '~/termix';
+import { omit } from 'ramda';
 import './Hamburger.scss';
 
 export type BurgerProps = StyledComponent<{
@@ -50,7 +52,7 @@ const ControlledHamburger: FC<StyledComponent<HamburgerProps & HamburgerControls
   } as CSSProperties;
   const hamburgerProps = toggle ? { onClick: toggle } : {};
   return (
-    <div style={style} className="hamburger" {...hamburgerProps}>
+    <div style={style} className="hamburger" {...omit(TermixPropsNames, hamburgerProps)}>
       <Burger className={className} size={size} />
     </div>
   );

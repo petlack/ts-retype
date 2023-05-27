@@ -1,3 +1,4 @@
+export * from './Drawer';
 export * from './Fullscreen';
 export * from './Overlay';
 export * from './Sidebar';
