@@ -7,7 +7,7 @@ import { Termix, palette } from './termix';
 const primary = '#0a799e';
 const accent = '#c68726';
 
-const body = "'Noto Sans', sans-serif";
+const body = "'Nunito Sans', sans-serif";
 const heading = "'Exo 2', sans-serif";
 const mono = "'Fira Code', monospace";
 const preferredTheme =
@@ -39,9 +39,9 @@ export const theme: Termix = {
   },
 
   fonts: {
-    body: '"Noto Sans", system-ui, sans-serif',
-    heading: '"Avenir Next", sans-serif',
-    monospace: 'Menlo, monospace',
+    body,
+    heading,
+    monospace: mono,
   },
 
   colors: {

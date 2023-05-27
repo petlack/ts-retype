@@ -1,0 +1,17 @@
+import '@fontsource/oswald';
+import '@fontsource/poppins';
+import '@fontsource/hind';
+import '@fontsource/exo-2/200.css';
+import '@fontsource/exo-2/300.css';
+import '@fontsource/exo-2/400.css';
+import '@fontsource/exo-2/500.css';
+import '@fontsource/exo-2/600.css';
+import '@fontsource/exo-2/700.css';
+import '@fontsource/exo-2/800.css';
+import '@fontsource/nunito-sans/200.css';
+import '@fontsource/nunito-sans/300.css';
+import '@fontsource/nunito-sans/400.css';
+import '@fontsource/nunito-sans/500.css';
+import '@fontsource/nunito-sans/600.css';
+import '@fontsource/nunito-sans/700.css';
+import '@fontsource/nunito-sans/800.css';

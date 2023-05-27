@@ -8,13 +8,15 @@ import { generateTheme } from '~/theme/generate';
 import { readableColor } from 'polished';
 import { theme } from './ts-theme.js';
 import { useBoolean } from '~/hooks';
+import { AiFillAlert } from 'react-icons/ai';
+import './fonts';
 import './App.scss';
 
 // import { Editor, importColors } from '@compai/css-gui';
 // type ThemeMode = 'light' | 'dark';
 //
 
-const body = '\'Noto Sans\', sans-serif';
+const body = '\'Poppins\', sans-serif';
 const heading = '\'Exo 2\', sans-serif';
 const mono = '\'Fira Code\', monospace';
 const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -79,7 +81,7 @@ export function App() {
         </Card>
 
         <Card>
-          <Heading>Sidebar Layout</Heading>
+          <Heading>Overlay</Heading>
           <Wrap>
             <Button
               colorScheme='primary'
@@ -87,7 +89,14 @@ export function App() {
               size='lg'
               leftIcon={<Hamburger isOpen={isDrawerOpen} flavor='cross' />}
               onClick={toggleDrawer}
-            />
+            >Drawer</Button>
+            <Button
+              colorScheme='accent'
+              fill='ghost'
+              size='lg'
+              leftIcon={<AiFillAlert />}
+
+            >Modal</Button>
           </Wrap>
           <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
             <Box sx={{ bg: 'primary', height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
