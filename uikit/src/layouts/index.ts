@@ -1,5 +1,7 @@
+export * from './Center';
 export * from './Drawer';
 export * from './Fullscreen';
+export * from './Modal';
 export * from './Overlay';
 export * from './Sidebar';
 export * from './Stack';

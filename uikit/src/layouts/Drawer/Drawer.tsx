@@ -1,25 +1,19 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import FocusTrap from 'focus-trap-react';
-import { useMountTransition } from '~/hooks/useMountTransition';
 import { StyledContainer } from '~/components/types';
 import { Box } from '~/components';
+import { Overlay, OverlayProps } from '../Overlay';
+import { useKey, usePortalTransition } from '~/hooks';
 
-function createPortalRoot() {
-  const drawerRoot = document.createElement('div');
-  drawerRoot.setAttribute('id', 'drawer-root');
-  return drawerRoot;
-}
-
-export type DrawerProps = StyledContainer<{
-  isOpen: boolean;
-  onClose: () => void;
+export type DrawerOwnProps = OverlayProps & {
   position?: 'left' | 'right';
-  backdropMode?: 'lighten' | 'darken';
   removeWhenClosed?: boolean;
   disableScrollingWhenOpen?: boolean;
   speed?: number;
-}>
+}
+
+export type DrawerProps = StyledContainer<DrawerOwnProps>;
 
 export const Drawer = ({
   isOpen,
@@ -32,24 +26,18 @@ export const Drawer = ({
   speed = 200,
 }: DrawerProps) => {
   const bodyRef = useRef(document.querySelector('body'));
-  const portalRootRef = useRef(
-    document.getElementById('drawer-root') || createPortalRoot()
-  );
-  const isTransitioning = useMountTransition(isOpen, speed);
-
-  useEffect(() => {
-    bodyRef.current?.appendChild(portalRootRef.current);
-    const portal = portalRootRef.current;
+  const cleanup = useCallback(() => {
     const bodyEl = bodyRef.current;
-    return () => {
-      portal.remove();
-      if (disableScrollingWhenOpen) {
-        if (bodyEl && bodyEl.style) {
-          bodyEl.style.overflow = '';
-        }
-      }
-    };
+    if (disableScrollingWhenOpen && bodyEl && bodyEl.style) {
+      bodyEl.style.overflow = '';
+    }
   }, []);
+  const { isTransitioning, portalRootRef } = usePortalTransition({
+    portalId: 'portal-drawer',
+    isVisible: isOpen,
+    onRemove: cleanup,
+    speed,
+  });
 
   useEffect(() => {
     const updatePageScroll = () => {
@@ -67,19 +55,7 @@ export const Drawer = ({
     }
   }, [isOpen]);
 
-  useEffect(() => {
-    const onKeyPress = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
-    if (isOpen) {
-      window.addEventListener('keyup', onKeyPress);
-    }
-    return () => {
-      window.removeEventListener('keyup', onKeyPress);
-    };
-  }, [isOpen, onClose]);
+  useKey({ key: 'Escape', handler: onClose });
 
   if (!isTransitioning && removeWhenClosed && !isOpen) {
     return null;
@@ -111,23 +87,12 @@ export const Drawer = ({
           {children}
         </Box>
 
-        <Box
-          onClick={onClose}
-          sx={{
-            width: '100%',
-            height: '100%',
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            bg: { darken: 'rgba(0, 0, 0, 0.5)', lighten: 'rgba(255, 255, 255, 0.5)' }[backdropMode],
-            // backdropFilter: 'blur(10px)',
-            visibility: isTransitioning && isOpen ? 'visible' : 'hidden',
-            opacity: isTransitioning && isOpen ? 1 : 0,
-            transitionProperty: 'opacity,visibility',
-            transition: `${speed}ms ease`,
-            pointerEvents: isTransitioning && isOpen ? 'auto' : 'none',
-            zIndex: isOpen ? 25 : 0,
-          }}
+        <Overlay
+          isTransitioning={isTransitioning}
+          isOpen={isOpen}
+          onClose={onClose}
+          speed={speed}
+          backdropMode={backdropMode}
         />
       </Box>
     </FocusTrap>,

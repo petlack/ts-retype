@@ -1,13 +1,14 @@
-import { Card, Container, Heading } from 'theme-ui';
+import { Card, Container, Heading, Text } from 'theme-ui';
 import { Box, Button, Hamburger, Logo, Search, Spinner, Tag } from '~/components';
 import { FaBeer, FaDownload, FaLock, FaMoon, FaSun, FaTimes } from 'react-icons/fa';
-import { Drawer, Stack, Topbar, Wrap } from '~/layouts';
-import { ThemeProvider, palette, useTermix } from './termix';
+import { Center, Drawer, Modal, Stack, Topbar, Wrap } from '~/layouts';
+import { palette, useTermix, ThemeProvider } from './termix';
+import { useCallback, useState } from 'react';
 import { getColor } from '@theme-ui/color';
 import { generateTheme } from '~/theme/generate';
 import { readableColor } from 'polished';
 import { theme } from './ts-theme.js';
-import { useBoolean } from '~/hooks';
+import { useModal } from '~/hooks';
 import { AiFillAlert } from 'react-icons/ai';
 import './fonts';
 import './App.scss';
@@ -69,8 +70,10 @@ const ThemeModeToggle = () => {
 };
 
 export function App() {
-  const [isDrawerOpen, toggleDrawer] = useBoolean(false);
-
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { isOpen, open, close, getTriggerProps, getModalProps } = useModal();
+  const openDrawer = useCallback(() => setIsDrawerOpen(true), [setIsDrawerOpen]);
+  const closeDrawer = useCallback(() => setIsDrawerOpen(false), [setIsDrawerOpen]);
   return (
     <ThemeProvider theme={theme}>
       <Container content='center' sx={{ display: 'flex', flexDirection: 'column', gap: 4, }}>
@@ -88,20 +91,34 @@ export function App() {
               fill='ghost'
               size='lg'
               leftIcon={<Hamburger isOpen={isDrawerOpen} flavor='cross' />}
-              onClick={toggleDrawer}
+              onClick={openDrawer}
             >Drawer</Button>
             <Button
               colorScheme='accent'
               fill='ghost'
               size='lg'
               leftIcon={<AiFillAlert />}
-
+              {...getTriggerProps()}
             >Modal</Button>
+            <Modal
+              isOpen={isOpen}
+              onClose={close}
+              sx={{
+                display: 'flex',
+                zIndex: 100,
+              }}
+              {...getModalProps()}
+            >
+              <Card sx={{ flex: 1, width: '300px' }}>
+                <Heading>Modal</Heading>
+                <Text>Hello World</Text>
+              </Card>
+            </Modal>
           </Wrap>
-          <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
+          <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
             <Box sx={{ bg: 'primary', height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
               <Heading as='h2'>Sidebar</Heading>
-              <Button onClick={toggleDrawer} rightIcon={<FaTimes />}>Close</Button>
+              <Button onClick={closeDrawer} rightIcon={<FaTimes />}>Close</Button>
             </Box>
           </Drawer>
         </Card>
