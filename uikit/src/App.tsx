@@ -134,24 +134,19 @@ export function App() {
                 >Popover</Button>
               </PopoverTrigger>
               <PopoverContent>
-                <Card sx={{ px: 2, py: 1, opacity: 1 }}>
+                <Card sx={{ px: 3, py: 3, opacity: 1 }}>
                   <Heading as='h3'>Popover</Heading>
+                  <Text>Hello World</Text>
                 </Card>
               </PopoverContent>
             </Popover>
 
             <Tooltip>
               <TooltipTrigger>
-                <Box colorScheme='mauve' fill='ghost' size='lg' density='gapped'>Tooltip</Box>
+                <Button colorScheme='mauve' fill='ghost' size='lg' density='gapped'>Tooltip</Button>
               </TooltipTrigger>
               <TooltipContent>
-                <Box colorScheme='pink' fill='solid' size='sm' density='gapped' corners='pill' _css={{
-                  color: 'pink',
-                  '&[data-state="open"]': {
-                    color: 'red',
-                    padding: '100px',
-                  }
-                }}>Hello World</Box>
+                <Box colorScheme='pink' fill='solid' size='sm' density='gapped' corners='pill'>Hello World</Box>
               </TooltipContent>
             </Tooltip>
           </Wrap>

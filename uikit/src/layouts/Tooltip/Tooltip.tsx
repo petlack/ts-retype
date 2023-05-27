@@ -11,6 +11,7 @@ import {
   useRole,
   useInteractions,
   useMergeRefs,
+  useTransitionStyles,
   FloatingPortal
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
@@ -131,13 +132,20 @@ export const TooltipContent = React.forwardRef<
   const context = useTooltipContext();
   const ref = useMergeRefs([context.refs.setFloating, propRef]);
 
-  if (!context.open) return null;
+  const { isMounted, styles } = useTransitionStyles(context.context, {
+    initial: {
+      opacity: 0
+    },
+    common: {
+    },
+  });
+  if (!context.open || !isMounted) return null;
 
   return (
     <FloatingPortal>
       <div
         ref={ref}
-        style={context.floatingStyles}
+        style={{ ...context.floatingStyles, ...styles }}
         {...context.getFloatingProps(props)}
       />
     </FloatingPortal>

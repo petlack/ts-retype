@@ -11,6 +11,7 @@ import {
   useRole,
   useInteractions,
   useMergeRefs,
+  useTransitionStyles,
   Placement,
   FloatingPortal,
   FloatingFocusManager,
@@ -155,16 +156,26 @@ export const PopoverContent = React.forwardRef<
   const { context: floatingContext, ...context } = usePopoverContext();
   const ref = useMergeRefs([context.refs.setFloating, propRef]);
 
-  if (!floatingContext.open) return null;
+  const { isMounted, styles } = useTransitionStyles(floatingContext, {
+    initial: { opacity: 0 },
+    open: { opacity: 1 },
+    close: { opacity: 0 },
+    duration: 250,
+  });
+
+  if (!floatingContext.open || !isMounted) return null;
 
   const children = props.children;
   const markup = React.isValidElement(children) ? React.cloneElement(
     children,
     {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       ref,
       style: {
         ...context.floatingStyles,
-        ...children.props.style
+        ...children.props.style,
+        ...styles,
       },
       'aria-labelledby': context.labelId,
       'aria-describedby': context.descriptionId,
