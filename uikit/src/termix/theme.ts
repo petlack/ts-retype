@@ -1,4 +1,5 @@
-import { readableColor, easeIn } from 'polished';
+import { readableColor } from './mixer';
+import { easeIn } from 'polished';
 import { Theme } from 'theme-ui';
 import { Termix } from './types';
 

@@ -1,4 +1,4 @@
-import { desaturate as polishedDesaturate } from 'polished';
+import { desaturate as polishedDesaturate, readableColor as polishedReadableColor } from 'polished';
 import { scale } from './chroma.js';
 
 export type ColorScale = { [shade: string | number]: string };
@@ -9,6 +9,14 @@ export function desaturate(color: string) {
   //   .set('hsl.l', '0.66')
   //   .hex();
   return polishedDesaturate(0.75, color);
+}
+
+export function readableColor(bg: string, white: string, black: string) {
+  try {
+    return polishedReadableColor(bg, white, black);
+  } catch (e: any) {
+    return white;
+  }
 }
 
 const WHITE = 42;

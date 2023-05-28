@@ -12,7 +12,7 @@ export const theme: Termix = {
   fonts: {
     body: '"Noto Sans", system-ui, sans-serif',
     heading: '"Avenir Next", sans-serif',
-    monospace: 'Menlo, monospace',
+    monospace: '"Fira Code",Menlo, monospace',
   },
 
   colors: {

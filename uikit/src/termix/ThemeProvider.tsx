@@ -1,5 +1,5 @@
 import { FC, createContext, useMemo, PropsWithChildren, useEffect } from 'react';
-import { merge, InitializeColorMode } from 'theme-ui';
+import { merge, InitializeColorMode, Theme as UITheme, useColorMode } from 'theme-ui';
 // import { ThemeUIProvider } from 'theme/theme-provider';
 import { ThemeProvider as ThemeUIProvider } from 'theme-ui';
 import { Termix } from './types.js';
@@ -9,7 +9,7 @@ import { generateTheme } from '~/theme/generate';
 import { Color, Theme } from '~/theme/types/theme';
 import { ToastProvider } from '~/layouts';
 import { paletteColorScales } from './termix.js';
-import { ColorScale } from './mixer.js';
+import { ColorScale, desaturate } from './mixer.js';
 import { omit } from 'ramda';
 
 export interface ThemeContextProps {
@@ -41,25 +41,93 @@ function getColor(theme: Theme, name: keyof Theme['colors'], value: number): str
   return shade?.toString() || color[100].toString() || 'transparent';
 }
 
+function applyExtensions(base: UITheme, exts: ((t: UITheme) => UITheme)[]): UITheme {
+  return exts.reduce((res, item) => item(res), base);
+}
+
+function mergeColors(base: UITheme, light: UITheme['colors'], dark: ColorScale): UITheme {
+  return merge(
+    base,
+    {
+      colors: {
+        ...light,
+        modes: {
+          dark,
+        },
+      },
+    }
+  );
+}
+
+function withNeutralColor(base: UITheme): UITheme {
+  if (!base.colors?.primary) {
+    return base;
+  }
+  const neutral = desaturate(base.colors?.primary.toString());
+  return mergeColors(base, { neutral }, { neutral });
+}
+
+function withColorScales(base: UITheme): UITheme {
+  const lightScales = paletteColorScales('light', primary, omit(['modes'], base.colors));
+  const darkScales = paletteColorScales('dark', primary, base.colors?.modes?.dark as ColorScale);
+  const mergedTheme = mergeColors(
+    base,
+    lightScales,
+    darkScales,
+  );
+  return mergedTheme;
+}
+
+function withSyntaxHighlightingColors(base: UITheme): UITheme {
+  const lightColors = {
+    'sx-token': 'var(--clr-text)',
+    'sx-builtin': 'var(--clr-red)',
+    'sx-class-name': 'var(--clr-yellow)',
+    'sx-comment': 'var(--clr-overlay0)',
+    'sx-function': 'var(--clr-blue)',
+    'sx-keyword': 'var(--clr-mauve)',
+    'sx-number': 'var(--clr-peach)',
+    'sx-operator': 'var(--clr-sky)',
+    'sx-property': 'var(--clr-text)',
+    'sx-punctuation': 'var(--clr-overlay2)',
+    'sx-string': 'var(--clr-green)',
+  };
+  const darkColors = {};
+  return mergeColors(base, lightColors, darkColors);
+}
+
+function withTsRetypeColors(base: UITheme): UITheme {
+  const light = {
+    'bg': 'var(--clr-background)',
+    'fg': 'var(--clr-text)',
+    'bg-topbar': 'var(--clr-background)',
+    'bg-main': 'var(--clr-mantle)',
+    'bg-code': 'var(--clr-neutral-25)',
+    'fg-text': 'var(--clr-text)',
+    'fg-title': 'var(--clr-neutral-600)',
+    'fg-code': 'var(--clr-text)',
+    'bg-title': 'var(--clr-crust)',
+    'bg-explorer': 'var(--clr-base)',
+    'bg-explorer-selected': 'var(--clr-primary-100)',
+    'bg-snippet': 'var(--clr-base)',
+    'bg-snippet-highlighted': 'var(--clr-primary-100)',
+  };
+  const dark = {};
+  return mergeColors(base, light, dark);
+}
+
 export const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
   theme: customTheme,
   children,
 }) => {
   const theme = useMemo(() => {
     const baseTheme = customTheme ? merge(defaultTheme, customTheme) : defaultTheme;
-    const lightScales = paletteColorScales('light', primary, omit(['modes'], baseTheme.colors));
-    const darkScales = paletteColorScales('dark', primary, baseTheme.colors?.modes?.dark as ColorScale);
-    const mergedTheme = merge(
-      baseTheme,
-      {
-        colors: {
-          ...lightScales,
-          modes: {
-            dark: darkScales,
-          },
-        },
-      }
-    );
+    const mergedTheme = applyExtensions(baseTheme, [
+      withNeutralColor,
+      withColorScales,
+      withSyntaxHighlightingColors,
+      withTsRetypeColors,
+    ]);
     return mergedTheme;
   }, [customTheme]);
 
@@ -68,35 +136,15 @@ export const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
 
   varsTheme.colors = {
     ...varsTheme.colors,
-    'sx-token': theme.colors?.text as string,
-    'sx-builtin': theme.colors?.red as string,
-    'sx-class-name': theme.colors?.yellow as string,
-    'sx-comment': theme.colors?.overlay0 as string,
-    'sx-function': theme.colors?.blue as string,
-    'sx-keyword': theme.colors?.mauve as string,
-    'sx-number': theme.colors?.peach as string,
-    'sx-operator': theme.colors?.sky as string,
-    'sx-property': theme.colors?.text as string,
-    'sx-punctuation': theme.colors?.overlay2 as string,
-    'sx-string': theme.colors?.green as string,
-    'bg-topbar': varsTheme.colors.bg,
-    'bg-main': varsTheme.colors.bg,
-    'bg-code': getColor(varsTheme, 'neutral', 25),
-    'fg-text': varsTheme.colors.fg,
-    'fg-title': getColor(varsTheme, 'neutral', 600),
-    'fg-code': varsTheme.colors['fg'],
-    'bg-title': getColor(varsTheme, 'accent', 50),
-    'bg-explorer': getColor(varsTheme, 'neutral', 50),
-    'bg-explorer-selected': getColor(varsTheme, 'accent', 100),
-    'bg-snippet': getColor(varsTheme, 'neutral', 50),
-    'bg-snippet-highlighted': getColor(varsTheme, 'accent', 100),
   };
 
   // console.log({ theme, defaultTheme, customTheme, varsTheme });
 
   useEffect(() => {
-    applyCssVariables(varsTheme);
-  }, [varsTheme]);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    applyCssVariables({ ...varsTheme, ...theme });
+  }, [theme]);
 
   return (
     <ThemeUIProvider

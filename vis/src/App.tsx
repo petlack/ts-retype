@@ -105,7 +105,7 @@ function App() {
               setQuery={setQuery}
             />
             <Button
-              colorScheme='accent'
+              colorScheme='primary'
               fill='ghost'
               size='lg'
               leftIcon={<Hamburger isOpen={isDrawerOpen} flavor='cross' />}

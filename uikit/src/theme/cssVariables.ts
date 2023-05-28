@@ -1,14 +1,9 @@
 import { Theme } from './types/theme';
 
-export function toCssVars(theme: Theme): string[][] {
-  const colors = Object.entries(theme.colors)
-    .filter(([name, value]) => !!value)
-    .map(([name, scale]) =>
-      typeof scale === 'string'
-        ? [[`--clr-${name}`, scale]]
-        : Object.entries(scale).map(([step, color]) => [`--clr-${name}-${step}`, color]),
-    )
-    .reduce((res, item) => [...res, ...item], []);
+export function toCssVars(theme: Theme): [string, string | number][] {
+  const colors = Object.entries(theme.colors ?? {})
+    .filter(([name, value]) => !!value || typeof value !== 'string')
+    .map(([name, scale]) => [`--clr-${name}`, `var(--theme-ui-colors-${name})`]);
 
   const fonts = Object.entries(theme.fonts).map(([variant, family]) => [
     `--font-${variant}`,
@@ -17,7 +12,7 @@ export function toCssVars(theme: Theme): string[][] {
 
   const fontSizes = Object.entries(theme.fontSizes).map(([size, dim]) => [
     `--font-size-${size}`,
-    dim,
+    dim.toString(),
   ]);
 
   const fontWeights = Object.entries(theme.fontWeights).map(([variant, weight]) => [
