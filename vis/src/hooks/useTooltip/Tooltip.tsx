@@ -1,11 +1,11 @@
-import { useGlobalTooltip, useTooltip } from './useTooltip';
+import { useGlobalTooltip, useTooltip } from './useTooltip.js';
 import { FC, MouseEvent, useCallback, HTMLAttributes, useMemo, useEffect, ReactNode, ReactElement } from 'react';
-import { TooltipContent, TooltipPosition } from './types';
-import { useBoundingBox } from '../useBoundingBox';
-import { useScreenDimensions } from '../useScreenDimensions';
+import { TooltipContent, TooltipPosition } from './types.js';
+import { useBoundingBox } from '../useBoundingBox.js';
+import { useScreenDimensions } from '../useScreenDimensions.js';
 import './Tooltip.scss';
-import { getAbsoluteBoundingBox } from './utils';
-import { TooltipPortal } from './TooltipRoot';
+import { getAbsoluteBoundingBox } from './utils.js';
+import { TooltipPortal } from './TooltipRoot.js';
 
 function fromEvent(e: MouseEvent<HTMLElement>): TooltipPosition {
   const box = getAbsoluteBoundingBox(e.currentTarget);
@@ -19,7 +19,7 @@ export const Tooltip: FC<{ children: [ReactElement<HTMLElement>, ReactElement<HT
   const { width, height } = useScreenDimensions();
 
   const [trigger, tooltip] = children;
-  
+
   const cap = useMemo<TooltipPosition>(() => {
     if (!box) {
       return { x: 0, y: 0 };

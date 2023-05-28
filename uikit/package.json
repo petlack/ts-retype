@@ -25,14 +25,14 @@
     },
     "./components": {
       "import": {
-        "types": "./dist/components/index.d.ts",
-        "default": "./dist/components/index.js"
+        "types": "./dist/components.d.ts",
+        "default": "./dist/components.js"
       }
     },
     "./hooks": {
       "import": {
-        "types": "./dist/hooks/index.d.ts",
-        "default": "./dist/hooks/index.js"
+        "types": "./dist/hooks.d.ts",
+        "default": "./dist/hooks.js"
       }
     },
     "./dist/index.css": {

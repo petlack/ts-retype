@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TypeDuplicate } from '@ts-retype/retype';
 
-import { Duplicate } from '../components/Duplicate';
+import { Duplicate } from '../components/Duplicate/index.js';
 
-import ThemeDecorator from '@ts-retype/uikit/src/stories/ThemeDecorator';
+import ThemeDecorator from './ThemeDecorator.js';
 
 const duplicate: TypeDuplicate = {
   'names': [{ 'name': 'Search', 'count': 2 }],

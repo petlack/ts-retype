@@ -1,2 +1,2 @@
-export { Filters } from './Filters';
-export { FiltersMenu } from './FiltersMenu';
+export { Filters } from './Filters.js';
+export { FiltersMenu } from './FiltersMenu.js';

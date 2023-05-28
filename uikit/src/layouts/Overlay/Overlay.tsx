@@ -22,7 +22,7 @@ export const Overlay: FC<OverlayProps> = ({
         top: 0,
         left: 0,
         bg: backdropMode && { darken: 'rgba(0, 0, 0, 0.5)', lighten: 'rgba(255, 255, 255, 0.5)' }[backdropMode],
-        // backdropFilter: 'blur(10px)',
+        // backdropFilter: 'blur(4px)',
         visibility: isTransitioning && isOpen ? 'visible' : 'hidden',
         opacity: isTransitioning && isOpen ? 1 : 0,
         transitionProperty: 'opacity',

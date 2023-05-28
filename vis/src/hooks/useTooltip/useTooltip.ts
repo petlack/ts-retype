@@ -1,7 +1,7 @@
 import { MouseEvent, useContext, useState } from 'react';
-import { TooltipContext } from './TooltipContext';
-import { TooltipContent, TooltipContextValue, TooltipPosition } from './types';
-import { getAbsoluteBoundingBox } from './utils';
+import { TooltipContext } from './TooltipContext.js';
+import { TooltipContent, TooltipContextValue, TooltipPosition } from './types.js';
+import { getAbsoluteBoundingBox } from './utils.js';
 
 export function useGlobalTooltip(): TooltipContextValue {
   const context = useContext(TooltipContext);

@@ -16,13 +16,11 @@ export const Modal: FC<StyledContainer & OverlayProps> = ({
   speed = 100,
   backdropMode = 'darken',
 }) => {
-  console.log('modal call');
   const nodeRef = useRef(null);
   const { isTransitioning, portalRootRef } = usePortalTransition({ portalId: 'portal-modal', isVisible: isOpen, speed });
   useKey({ key: 'Escape', handler: onClose });
 
   if (!isTransitioning && !isOpen) {
-    console.log('not open', { isTransitioning, isOpen });
     return null;
   }
 
@@ -63,24 +61,3 @@ export const Modal: FC<StyledContainer & OverlayProps> = ({
   );
 };
 
-// function Modal({ children, isOpen, handleClose }) {
-//   return (
-//     <ReactPortal wrapperId="react-portal-modal-container">
-//       <CSSTransition
-//         in={isOpen}
-//         timeout={{ entry: 0, exit: 300 }}
-//         unmountOnExit
-//         classNames="modal"
-//         nodeRef={nodeRef}
-//       >
-//         <div className="modal" ref={nodeRef}>
-//           <button onClick={handleClose} className="close-btn">
-//             Close
-//           </button>
-//           <div className="modal-content">{children}</div>
-//         </div>
-//       </CSSTransition>
-//     </ReactPortal>
-//   );
-// }
-// export default Modal;

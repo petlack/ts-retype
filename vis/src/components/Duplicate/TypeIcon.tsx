@@ -1,6 +1,6 @@
 
 import { ArrayElement, TypeDuplicate } from '@ts-retype/retype/src/types';
-import { Tooltip } from '../../hooks/useTooltip';
+import { Tooltip } from '../../hooks/useTooltip/index.js';
 
 import './TypeIcon.scss';
 
@@ -27,7 +27,7 @@ export function TypeIcon({ type }: TypeIconProps) {
     alias: '{}',
     interface: '{}',
   }[type];
-  
+
   return (
     <div className="type-icon">
       <Tooltip>

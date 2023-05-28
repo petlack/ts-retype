@@ -1,2 +1,2 @@
-export { Explorer } from './Explorer';
-export type { ExplorerProps } from './Explorer';
+export { Explorer } from './Explorer.js';
+export type { ExplorerProps } from './Explorer.js';

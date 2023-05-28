@@ -1,4 +1,4 @@
-import { SearchAwareText } from '../SearchAwareText';
+import { SearchAwareText } from '@ts-retype/uikit';
 
 export type ValueFeaturesProps = {
   title: string;

@@ -1,7 +1,7 @@
-import { splitLines } from '@ts-retype/retype/dist/snippet';
+import { splitLines } from '@ts-retype/retype/dist/snippet.js';
 import { Lines, TokenElement } from '@ts-retype/uikit';
 import { useSearchPhrase } from '@ts-retype/uikit/hooks';
-import { highlightDefinition, highlightPhrase } from '../../model/snippet';
+import { highlightDefinition, highlightPhrase } from '../../model/snippet.js';
 import type { ArrayElement, Snippet, TokenRoot, TypeDuplicate } from '@ts-retype/retype';
 
 import './DefinitionSnippet.scss';

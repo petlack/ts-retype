@@ -1,14 +1,14 @@
 import { HTMLAttributes, useCallback } from 'react';
 import { TypeDuplicate } from '@ts-retype/retype/src/types';
-import { FacetStats, Filter, getFacetStat } from '../../model/search';
-import { SIMILARITIES, CANDIDATE_TYPES } from '../../types';
-import { Badge } from '../Duplicate/Badge';
-import { IconLetter } from '../Explorer/icons';
-import { IncDecInput } from '../IncDecInput';
+import { FacetStats, Filter, getFacetStat } from '../../model/search.js';
+import { SIMILARITIES, CANDIDATE_TYPES } from '../../types.js';
+import { Badge } from '../Duplicate/Badge.js';
+import { IconLetter } from '../Explorer/icons.js';
+import { IncDecInput } from '../IncDecInput/index.js';
 import { ControlsList } from '@ts-retype/uikit';
-import { FeaturesTooltip } from './FeaturesTooltip';
-import { Button, IconMoon, IconSun, useTheme } from '@ts-retype/uikit';
-import { themes } from '../../themes';
+import { FeaturesTooltip } from './FeaturesTooltip.js';
+import { Button, IconMoon, IconSun, useTermix } from '@ts-retype/uikit';
+import { themes } from '../../themes.js';
 import './Filters.scss';
 
 export type FiltersProps = {
@@ -56,10 +56,10 @@ export function Filters({
   const updateMinProperties = (value: number) => updateFilter({ ...filter, minProperties: value });
   const updateMinFiles = (value: number) => updateFilter({ ...filter, minFiles: value });
 
-  const { setTheme } = useTheme();
-
-  const setLightTheme = useCallback(() => setTheme(themes.light), [setTheme]);
-  const setDarkTheme = useCallback(() => setTheme(themes.dark), [setTheme]);
+  // const { setTheme } = useTheme();
+  //
+  // const setLightTheme = useCallback(() => setTheme(themes.light), [setTheme]);
+  // const setDarkTheme = useCallback(() => setTheme(themes.dark), [setTheme]);
 
   const FilterSimButton = useCallback(({ id, selected, ...props }: { id: string, selected: string } & HTMLAttributes<HTMLElement>) => {
     const isSelected = id === selected;
@@ -133,8 +133,8 @@ export function Filters({
         />
       </div>
 
-      <Button icon={IconSun} caption="light" style="default" size="md" kind="button" onClick={setLightTheme} />
-      <Button icon={IconMoon} caption="dark" style="default" size="md" kind="button" onClick={setDarkTheme} />
+      <Button icon={IconSun} caption="light" style="default" size="md" kind="button" />
+      <Button icon={IconMoon} caption="dark" style="default" size="md" kind="button" />
     </div>
   );
 }

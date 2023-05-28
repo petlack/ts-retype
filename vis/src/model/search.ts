@@ -1,6 +1,6 @@
 import MiniSearch from 'minisearch';
 import { assocPath, path, pluck, zip } from 'ramda';
-import { FulltextData } from '../types';
+import { FulltextData } from '../types.js';
 
 export type Filter = {
   selectedSimilarity: string;

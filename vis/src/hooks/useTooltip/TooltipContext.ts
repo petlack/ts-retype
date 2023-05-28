@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { TooltipContextValue } from './types';
+import { TooltipContextValue } from './types.js';
 
 export const TooltipContext = createContext<TooltipContextValue>({
   content: null,

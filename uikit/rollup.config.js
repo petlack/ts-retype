@@ -68,7 +68,7 @@ export default [
     input: 'src/hooks/index.ts',
     output: [
       {
-        file: 'dist/hooks/index.js',
+        file: 'dist/hooks.js',
         format: 'esm',
         sourcemap: true,
         name: '@ts-retype/uikit/hooks',
@@ -96,7 +96,7 @@ export default [
     input: 'src/components/index.ts',
     output: [
       {
-        file: 'dist/components/index.js',
+        file: 'dist/components.js',
         format: 'esm',
         sourcemap: true,
         name: '@ts-retype/uikit/components',
@@ -152,9 +152,19 @@ export default [
   {
     input: 'src/hooks/index.ts',
     output: {
-      file: 'dist/hooks/index.d.ts',
+      file: 'dist/hooks.d.ts',
       format: 'es',
     },
+    plugins: [dts()],
+  },
+
+  {
+    input: 'src/components/index.ts',
+    output: {
+      file: 'dist/components.d.ts',
+      format: 'es',
+    },
+    external: [/\.css|\.styl|\.scss$/],
     plugins: [dts()],
   },
 

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useScreenDimensions } from './useScreenDimensions';
+import { useScreenDimensions } from './useScreenDimensions.js';
 // import { useScrollPosition } from './useScrollPosition';
-import { getAbsoluteBoundingBox } from './useTooltip/utils';
+import { getAbsoluteBoundingBox } from './useTooltip/utils.js';
 
 interface BoundingBox {
   left: number;

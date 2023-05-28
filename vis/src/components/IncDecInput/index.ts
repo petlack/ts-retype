@@ -1,1 +1,1 @@
-export { IncDecInput } from './IncDecInput';
+export { IncDecInput } from './IncDecInput.js';

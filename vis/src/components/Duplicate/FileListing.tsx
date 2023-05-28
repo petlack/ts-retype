@@ -1,7 +1,6 @@
 import { ArrayElement, TypeDuplicate } from '@ts-retype/retype/src/types';
-import { useCopyToClipboard } from '../../hooks/useCopy';
-import { SearchAwareText } from '../SearchAwareText';
-import { useToast } from '../Toast';
+import { useCopyToClipboard } from '../../hooks/useCopy.js';
+import { SearchAwareText, useToast } from '@ts-retype/uikit';
 
 import './FileListing.scss';
 
@@ -17,9 +16,9 @@ export function FileListing({ files, similarity }: FileListingProps) {
 
   const onFileClick = (file: string, lines: number[]) => {
     copyToClipboard(`${file}:${lines[0]}`);
-    showToast('Copied to clipboard');
+    showToast({ msg: 'Copied to clipboard' });
   };
-  
+
   const filesMarkup = files.map(({ file, lines, type }) => (
     <span
       key={`${file}${lines}`}

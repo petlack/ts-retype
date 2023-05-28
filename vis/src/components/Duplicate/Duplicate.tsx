@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import type { ArrayElement, TypeDuplicate } from '@ts-retype/retype';
-import { Title } from './Title';
-import { DefinitionSnippet } from './DefinitionSnippet';
-import { Explorer, ExplorerProps } from '../Explorer';
+import { Title } from './Title.js';
+import { DefinitionSnippet } from './DefinitionSnippet.js';
+import { Explorer, ExplorerProps } from '../Explorer/index.js';
 import './Duplicate.scss';
 
 export function Duplicate({ files, names, group }: TypeDuplicate) {

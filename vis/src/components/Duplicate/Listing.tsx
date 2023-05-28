@@ -1,5 +1,5 @@
-import { Duplicate } from './Duplicate';
-import { FulltextData } from '../../types';
+import { Duplicate } from './Duplicate.js';
+import { FulltextData } from '../../types.js';
 
 import './Listing.scss';
 

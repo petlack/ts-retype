@@ -1,7 +1,7 @@
 import type { ArrayElement, TypeDuplicate } from '@ts-retype/retype';
-import { Badge } from './Badge';
+import { Badge } from './Badge.js';
 import { SearchAwareText } from '@ts-retype/uikit';
-import { TypeIcon } from './TypeIcon';
+import { TypeIcon } from './TypeIcon.js';
 
 import './Title.scss';
 

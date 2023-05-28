@@ -7,7 +7,7 @@ import {
   ICON_FILE,
   ICON_FOLDER,
   IconLetter,
-} from './icons';
+} from './icons.js';
 import { SearchAwareText } from '@ts-retype/uikit';
 import './Explorer.scss';
 

@@ -1,8 +1,8 @@
-import { CANDIDATE_TYPES, FulltextData, SIMILARITIES } from '../../types';
-import { Listing as DuplicateListing } from '../Duplicate';
-import { Empty } from '../Empty';
-import { FeaturesTooltip } from '../Filters/FeaturesTooltip';
-import { Filter } from '../../model/search';
+import { CANDIDATE_TYPES, FulltextData, SIMILARITIES } from '../../types.js';
+import { Listing as DuplicateListing } from '../Duplicate/index.js';
+import { Empty } from '../Empty/index.js';
+import { FeaturesTooltip } from '../Filters/FeaturesTooltip.js';
+import { Filter } from '../../model/search.js';
 import { Metadata } from '@ts-retype/retype/src/types';
 import { ReactNode } from 'react';
 import './Listing.scss';
@@ -13,9 +13,9 @@ export type ListingProps = {
   meta: Metadata;
 }
 
-export type Entity = (word: string) => (count:number) => string;
+export type Entity = (word: string) => (count: number) => string;
 
-const entity: Entity = (word: string) => (count: number)  => {
+const entity: Entity = (word: string) => (count: number) => {
   if (count === 1) {
     return `${count} ${word}`;
   }
@@ -77,7 +77,7 @@ export function Listing({ meta, results, filter }: ListingProps) {
       </div>
     </>
   );
-  
+
   return (
     <div className="listing">
       <div className="info">

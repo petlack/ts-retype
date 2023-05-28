@@ -1,4 +1,4 @@
-import { Theme } from '@ts-retype/uikit';
+import { Termix } from '@ts-retype/uikit';
 export const themes = {
   light: {
     name: 'light',
@@ -524,4 +524,4 @@ export const themes = {
       tooltip: '1800',
     },
   },
-} as { light: Theme; dark: Theme };
+} as { light: Termix; dark: Termix };

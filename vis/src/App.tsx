@@ -1,17 +1,17 @@
-import { Facet, fulltext } from './model/search';
-import { Filters, FiltersMenu } from './components/Filters';
-import { Footer } from './components/Footer/Footer';
-import { FulltextData } from './types';
-import { Listing } from './components/Listing';
+import { Facet, fulltext } from './model/search.js';
+import { Filters, FiltersMenu } from './components/Filters/index.js';
+import { Footer } from './components/Footer/Footer.js';
+import { FulltextData } from './types.js';
+import { Listing } from './components/Listing/index.js';
 import { useBoolean, useSearch, SearchPhraseProvider } from '@ts-retype/uikit/hooks';
 import { Box, Button, Drawer, Hamburger, Logo, Search, ThemeProvider, ToastProvider, Topbar } from '@ts-retype/uikit';
-import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
+import { TooltipRoot } from './hooks/useTooltip/TooltipRoot.js';
 import type { Metadata, TypeDuplicate } from '@ts-retype/retype';
-import { decompressRoot } from '@ts-retype/retype/dist/snippet';
-import { themes } from './themes';
+import { decompressRoot } from '@ts-retype/retype/dist/snippet.js';
+import { themes } from './themes.js';
 import { useCallback, useEffect, useState } from 'react';
 import { Flex, Heading } from '@theme-ui/components';
-import { theme } from './ts-theme';
+import { theme } from './ts-theme.js';
 import { FaTimes } from 'react-icons/fa';
 
 import '@ts-retype/uikit/dist/index.css';
@@ -51,15 +51,15 @@ function App() {
 
   const {
     // query,
-    filter = {},
+    // filter = {},
     results,
-    facetsStats,
-    updateQuery,
+    // facetsStats,
+    // updateQuery,
     setQuery,
     query,
-    updateFilter,
+    // updateFilter,
     reindex,
-  } = useSearch(['fulltext'], ['files', 'names', 'group'], '');
+  } = useSearch<FulltextData>(['fulltext'], ['files', 'names', 'group'], '');
 
   useEffect(() => {
     setAllData(
@@ -89,47 +89,46 @@ function App() {
     // <ThemeProvider theme={themes[preferredTheme]}>
     <ThemeProvider theme={theme}>
       <SearchPhraseProvider value={{ phrase: query }}>
-        <ToastProvider>
-          <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
-            <Box sx={{ bg: 'primary', height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
-              <Heading as='h2'>Sidebar</Heading>
-              <Button onClick={toggleDrawer} rightIcon={<FaTimes />}>Close</Button>
-            </Box>
-          </Drawer>
+        <ToastProvider />
+        <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
+          <Box sx={{ bg: 'primary', height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
+            <Heading as='h2'>Sidebar</Heading>
+            <Button onClick={toggleDrawer} rightIcon={<FaTimes />}>Close</Button>
+          </Box>
+        </Drawer>
 
-          <Topbar sx={{ flex: 1 }}>
-            <Flex sx={{ gap: 4, py: 1, px: 2 }}>
-              <Logo name='retype' />
-              <Search
-                query={query}
-                setQuery={setQuery}
-              />
-              <Button
-                colorScheme='accent'
-                fill='ghost'
-                size='lg'
-                leftIcon={<Hamburger isOpen={isDrawerOpen} flavor='cross' />}
-                onClick={toggleDrawer}
-                sx={{
-                  position: 'fixed',
-                  right: 0,
-                  top: 0,
-                  zIndex: 50,
-                }}
-              />
+        <Topbar sx={{ flex: 1 }}>
+          <Flex sx={{ gap: 4, py: 1, px: 2 }}>
+            <Logo name='retype' />
+            <Search
+              query={query}
+              setQuery={setQuery}
+            />
+            <Button
+              colorScheme='accent'
+              fill='ghost'
+              size='lg'
+              leftIcon={<Hamburger isOpen={isDrawerOpen} flavor='cross' />}
+              onClick={toggleDrawer}
+              sx={{
+                position: 'fixed',
+                right: 0,
+                top: 0,
+                zIndex: 50,
+              }}
+            />
 
-            </Flex>
-            <div className="main">
-              <Listing
-                meta={meta}
-                results={results}
-                filter={filter}
-              />
-              <Footer meta={meta} />
-            </div>
-            <TooltipRoot />
-          </Topbar>
-        </ToastProvider>
+          </Flex>
+          <div className="main">
+            <Listing
+              meta={meta}
+              results={results}
+              filter={{ minFiles: 0, selectedType: '', minProperties: 0, selectedSimilarity: '' }}
+            />
+            <Footer meta={meta} />
+          </div>
+          <TooltipRoot />
+        </Topbar>
       </SearchPhraseProvider>
     </ThemeProvider >
   );
