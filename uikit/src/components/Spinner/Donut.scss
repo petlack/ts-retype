@@ -2,8 +2,8 @@
   --size-border: calc(var(--size-spinner) / 5);
   width: var(--size-spinner);
   height: var(--size-spinner);
-  border: var(--size-border) solid var(--clr-muted);
-  border-bottom-color: var(--clr-dot);
+  border: var(--size-border) solid var(--clr-dot);
+  border-bottom-color: var(--clr-muted);
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;

@@ -6,8 +6,11 @@ import { Termix } from './types.js';
 import { theme as defaultTheme } from './theme.js';
 import applyCssVariables from '~/theme/cssVariables';
 import { generateTheme } from '~/theme/generate';
-import { Color, ColorScale, Theme } from '~/theme/types/theme';
+import { Color, Theme } from '~/theme/types/theme';
 import { ToastProvider } from '~/layouts';
+import { paletteColorScales } from './termix.js';
+import { ColorScale } from './mixer.js';
+import { omit } from 'ramda';
 
 export interface ThemeContextProps {
   theme?: Termix;
@@ -33,7 +36,7 @@ function getColor(theme: Theme, name: keyof Theme['colors'], value: number): str
     return color;
   }
   const scale = color;
-  const shade = scale[value as keyof ColorScale] as Color | undefined;
+  const shade = scale[value as keyof typeof scale] as Color;
 
   return shade?.toString() || color[100].toString() || 'transparent';
 }
@@ -43,8 +46,23 @@ export const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
   children,
 }) => {
   const theme = useMemo(() => {
-    return customTheme ? merge(defaultTheme, customTheme) : defaultTheme;
+    const baseTheme = customTheme ? merge(defaultTheme, customTheme) : defaultTheme;
+    const lightScales = paletteColorScales('light', primary, omit(['modes'], baseTheme.colors));
+    const darkScales = paletteColorScales('dark', primary, baseTheme.colors?.modes?.dark as ColorScale);
+    const mergedTheme = merge(
+      baseTheme,
+      {
+        colors: {
+          ...lightScales,
+          modes: {
+            dark: darkScales,
+          },
+        },
+      }
+    );
+    return mergedTheme;
   }, [customTheme]);
+
 
   const varsTheme = generateTheme({ body, heading, mono, mode: 'light', accent: primary, second: accent });
 
@@ -74,25 +92,27 @@ export const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
     'bg-snippet-highlighted': getColor(varsTheme, 'accent', 100),
   };
 
+  // console.log({ theme, defaultTheme, customTheme, varsTheme });
+
   useEffect(() => {
     applyCssVariables(varsTheme);
   }, [varsTheme]);
 
   return (
-    <ThemeContext.Provider
-      value={{
-        theme: theme as Termix,
-      }}
+    <ThemeUIProvider
+      theme={theme}
     >
-      <ThemeUIProvider
-        theme={theme}
+      <ThemeContext.Provider
+        value={{
+          theme: theme as Termix,
+        }}
       >
         <>
           <InitializeColorMode />
           {children}
           <ToastProvider />
         </>
-      </ThemeUIProvider>
-    </ThemeContext.Provider>
+      </ThemeContext.Provider>
+    </ThemeUIProvider>
   );
 };

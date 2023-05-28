@@ -28,8 +28,8 @@ export const theme: Termix = {
   },
 
   fonts: {
-    body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-    heading: 'medium-content-title-font,Georgia,Cambria,"Times New Roman",Times,serif',
+    body: '"Nunito Sans",system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    heading: 'Rockwell,medium-content-title-font,Georgia,Cambria,"Times New Roman",Times,serif',
     monospace: 'monospace',
   },
 
@@ -59,7 +59,32 @@ export const theme: Termix = {
     heading: 1.25,
   },
 
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+  radii: {
+    xs: '2px',
+    sm: '4px',
+    md: '6px',
+    lg: '8px',
+    xl: '12px',
+    max: '100vw',
+  },
+
+  space: {
+    0: 0,
+    [0.5]: 2,
+    1: 4,
+    [1.5]: 6,
+    2: 8,
+    [2.5]: 12,
+    3: 16,
+    4: 24,
+    5: 32,
+    6: 48,
+    7: 64,
+    8: 96,
+    9: 128,
+    10: 256,
+    11: 512,
+  },
 
   speeds: {
     slow: '4s',
@@ -70,6 +95,7 @@ export const theme: Termix = {
   buttons: {
     primary: {
       cursor: 'pointer',
+      color: 'text',
       fontFamily: 'body',
       '&>svg': {
         width: '1em',
@@ -127,6 +153,42 @@ export const theme: Termix = {
     },
   },
 
+  cards: {
+    primary: {
+      bg: 'background',
+      color: 'text',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
+      p: 3,
+      gap: 2.5,
+      border: '1px solid rgba(0, 0, 0, 0.125)',
+      transition: `350ms ${easeIn('quad')}`,
+      transitionProperty: 'border,box-shadow,opacity',
+      ':hover': {
+        border: '1px solid rgba(0, 0, 0, 0.25)',
+        boxShadow: '0 0 8px rgba(0, 0, 0, 0.125)',
+      },
+    },
+  },
+
+  forms: {
+    input: {
+      px: 2,
+      py: 0.5,
+      borderColor: 'text',
+      transition: 'box-shadow 150ms ease-in',
+      fontFamily: 'body',
+      '&:focus': {
+        borderColor: 'primary',
+        borderWidth: 1,
+        boxShadow: (t) =>
+          `${t.colors?.primary} 0px 0px 5px -2px, ${t.colors?.primary} 0px 0px 1px 0px`,
+        outline: 'none',
+      },
+    },
+  },
+
   spinners: {
     default: {
       color: 'currentColor',
@@ -146,33 +208,9 @@ export const theme: Termix = {
     },
   },
 
-  cards: {
-    primary: {
-      overflow: 'hidden',
-      display: 'flex',
-      flexDirection: 'column',
-      padding: 2,
-      border: '1px solid rgba(0, 0, 0, 0.125)',
-      transition: `350ms ${easeIn('quad')}`,
-      transitionProperty: 'border,box-shadow,opacity',
-      ':hover': {
-        border: '1px solid rgba(0, 0, 0, 0.25)',
-        boxShadow: '0 0 8px rgba(0, 0, 0, 0.125)',
-      },
-    },
-  },
-
-  radii: {
-    xs: '2px',
-    sm: '4px',
-    md: '6px',
-    lg: '8px',
-    xl: '12px',
-    max: '100vw',
-  },
-
   styles: {
     root: {
+      p: 0,
       fontFamily: 'body',
       lineHeight: 'body',
       fontWeight: 'body',
@@ -336,6 +374,7 @@ export const theme: Termix = {
   tags: {
     default: {
       cursor: 'default',
+      lineHeight: 1,
     },
   },
 
@@ -359,8 +398,8 @@ export const theme: Termix = {
       transition: 'none',
     },
     live: {
-      transitionProperty: 'background,color',
       transition: `150ms ${easeIn('sine')}`,
+      transitionProperty: 'background,color,transform',
     },
   },
 
@@ -370,7 +409,10 @@ export const theme: Termix = {
     }),
     tint: () => ({}),
     morph: () => ({
-      '&:hover': {},
+      transform: 'scale(1)',
+      '&:hover': {
+        transform: 'scale(1.1)',
+      },
     }),
   },
 

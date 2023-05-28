@@ -2,38 +2,33 @@ import { Card, Container, Heading, Text } from 'theme-ui';
 import { Box, Button, Hamburger, Logo, Search, Spinner, Tag } from '~/components';
 import { FaBeer, FaDownload, FaInfo, FaLock, FaMoon, FaSun, FaTimes } from 'react-icons/fa';
 import { Drawer, Modal, Popover, PopoverContent, PopoverTrigger, Stack, Tooltip, TooltipContent, TooltipTrigger, Topbar, useToast, Wrap } from '~/layouts';
-import { palette, useTermix, ThemeProvider } from './termix';
+import { useTermix, ThemeProvider } from './termix';
 import { useCallback, useState } from 'react';
 import { getColor } from '@theme-ui/color';
 import { readableColor } from 'polished';
 import { theme } from './ts-theme.js';
+// import { theme } from './termix/theme.js';
 import { useModal } from '~/hooks';
 import { AiFillAlert } from 'react-icons/ai';
 import { MdChatBubble } from 'react-icons/md';
 import './fonts';
 import './App.scss';
 
-// import { Editor, importColors } from '@compai/css-gui';
-// type ThemeMode = 'light' | 'dark';
-//
-
-
-// console.log({ generated });
-console.log({ paletteColors: palette('latte') });
-
 const ColorTile = ({ color, name }: { color: string, name: string }) => {
   const text = color && readableColor(color);
   return (
-    <Box sx={{
-      aspectRatio: 1,
+    <Box mimic='morph' energy='live' colorScheme={color} sx={{
       bg: color,
       color: text,
       fontSize: 'xs',
+      cursor: 'pointer',
       p: 2,
       gap: 1,
       display: 'flex',
       flexDirection: 'column',
-      width: '15ch',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '18ch',
       borderRadius: 'md',
     }}>
       <strong>{name}</strong>
@@ -44,7 +39,6 @@ const ColorTile = ({ color, name }: { color: string, name: string }) => {
 
 const ColorsPoster = () => {
   const { theme } = useTermix();
-
   const markup = Object.entries(theme.rawColors || {}).map(([name, value]) => <ColorTile key={name} name={name} color={getColor(theme, value)} />);
   return (
     <Wrap>
@@ -69,9 +63,17 @@ export function App() {
   const openDrawer = useCallback(() => setIsDrawerOpen(true), [setIsDrawerOpen]);
   const closeDrawer = useCallback(() => setIsDrawerOpen(false), [setIsDrawerOpen]);
   const toast = useToast();
+
   return (
     <ThemeProvider theme={theme}>
-      <Container content='center' sx={{ display: 'flex', flexDirection: 'column', gap: 4, }}>
+      <Container
+        content='center'
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 4,
+          p: 4,
+        }}>
 
         <Card>
           <Heading>Search</Heading>
@@ -96,7 +98,7 @@ export function App() {
             </Drawer>
 
             <Button
-              colorScheme='accent'
+              colorScheme='blue'
               fill='ghost'
               size='lg'
               leftIcon={<AiFillAlert />}
@@ -136,7 +138,7 @@ export function App() {
 
             <Tooltip>
               <TooltipTrigger>
-                <Button colorScheme='mauve' fill='ghost' size='lg' density='gapped'>Tooltip</Button>
+                <Button colorScheme='purple' fill='ghost' size='lg' density='gapped'>Tooltip</Button>
               </TooltipTrigger>
               <TooltipContent>
                 <Box colorScheme='pink' fill='solid' size='sm' density='gapped' corners='pill'>Hello World</Box>
@@ -144,7 +146,7 @@ export function App() {
             </Tooltip>
 
             <Button
-              colorScheme='flamingo'
+              colorScheme='orange'
               fill='ghost'
               size='lg'
               leftIcon={<FaInfo />}
@@ -178,9 +180,9 @@ export function App() {
             <Button colorScheme='green' fill='outline'>Green</Button>
             <Button colorScheme='yellow' fill='outline' corners='pill'>Yellow</Button>
             <Button colorScheme='red' fill='ghost'>Ghost</Button>
-            <Button colorScheme='sky' fill='link'>Link</Button>
+            <Button colorScheme='blue' fill='link'>Link</Button>
             <Button colorScheme='text' fill='solid' leftIcon={<FaBeer />}>Link</Button>
-            <Button size='sm' colorScheme='sky' fill='outline' rightIcon={<FaLock />}>Lock</Button>
+            <Button size='sm' colorScheme='blue' fill='outline' rightIcon={<FaLock />}>Lock</Button>
             <Button fill='outline' disabled>Disabled</Button>
             <Button colorScheme='primary' size='md' leftIcon={<Spinner flavor='grid' size='md' />} > Loading</Button>
             <Button colorScheme='primary' p={2} fill='ghost' size='lg' leftIcon={<Hamburger flavor='cross' />}></Button>

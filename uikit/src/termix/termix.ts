@@ -1,13 +1,33 @@
-import { getColor } from '@theme-ui/color';
 import { Termix, TermixProps, TermixStyle } from './types';
+import { getColor } from '@theme-ui/color';
+import { fromColors, ofColor } from './mixer';
 
 function rejectNils<T extends Record<string, any>>(obj: T): T {
   return Object.fromEntries(Object.entries(obj).filter(([, value]) => value != null)) as T;
 }
 
+export function paletteColorScales(
+  mode: 'light' | 'dark',
+  primary: string,
+  modeColors: { [k: string]: string },
+) {
+  const paletteColors = fromColors({ ...modeColors, accent: primary, mode });
+  const scales = Object.entries(modeColors)
+    .map(([k, v]) => ({
+      [k]: v.toString(),
+      ...Object.fromEntries(
+        Object.entries(ofColor(v, paletteColors.bg.toString(), paletteColors.fg.toString())).map(
+          ([s, c]) => [`${k}-${s}`, c],
+        ),
+      ),
+    }))
+    .reduce((res, item) => ({ ...res, ...item }));
+  return scales;
+}
+
 export function useTermixStyle(theme: Termix, { element, ...props }: TermixProps): TermixStyle {
   const {
-    colorScheme: color = 'transparent',
+    colorScheme: color = 'text',
     variant = 'default',
     fill = 'solid',
     size = 'md',
@@ -26,6 +46,7 @@ export function useTermixStyle(theme: Termix, { element, ...props }: TermixProps
   // const variants = [...variant.split('.')];
   const fillStyles =
     (color && theme.fill?.[fill]({ colorScheme: color, color: getColor(theme, color) })) || {};
+
   const mimicStyles =
     theme.mimic?.[mimic]({ colorScheme: color, color: getColor(theme, color) }) || {};
 

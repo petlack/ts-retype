@@ -4,7 +4,6 @@ import { generateTheme } from '@ts-retype/uikit/dist/generate';
 import { Docs } from './components/Docs';
 import { Landing } from './components/Landing';
 import { Menu } from './components/Menu';
-import { theme } from './ts-theme';
 import '@ts-retype/uikit/dist/index.css';
 import './App.scss';
 
@@ -35,7 +34,7 @@ const preferredTheme = typeof window !== 'undefined' ? window.matchMedia && wind
 export default function App() {
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={{ colors: { primary: accent } }}>
       <Main />
     </ThemeProvider>
   );

@@ -28,8 +28,8 @@ export const Spinner: FC<StyledComponent<SpinnerProps>> = ({ flavor, sx, ...term
   const style = useTermixStyle(theme, { ...termixProps, element: theme.spinners });
   const cssProps: CSSProperties = {
     '--size-spinner': '1em',
-    '--clr-dot': style.color || 'currentColor',
-    '--clr-muted': theme.colors?.surface1,
+    '--clr-dot': 'currentColor',
+    '--clr-muted': theme.colors?.primary,
     '--duration': theme.speeds?.[style.speed || 'slow'],
   } as CSSProperties;
 

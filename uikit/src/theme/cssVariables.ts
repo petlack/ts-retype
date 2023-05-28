@@ -2,6 +2,7 @@ import { Theme } from './types/theme';
 
 export function toCssVars(theme: Theme): string[][] {
   const colors = Object.entries(theme.colors)
+    .filter(([name, value]) => !!value)
     .map(([name, scale]) =>
       typeof scale === 'string'
         ? [[`--clr-${name}`, scale]]
