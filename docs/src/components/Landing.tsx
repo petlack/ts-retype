@@ -32,8 +32,8 @@ export function Landing({ theme }: LandingProps) {
             ]}
           />
           <div className="links">
-            <Button caption="Docs" icon={IconDocs} style="primary" size="xl" kind="link" href="#docs" />
-            <Button caption="Source" icon={IconGithub} style="secondary" size="xl" kind="link" href="https://github.com/petlack/ts-retype" newWindow />
+            <Button caption="Docs" icon={IconDocs} colorScheme="primary" size="xl" kind="link" href="#docs" />
+            <Button caption="Source" icon={IconGithub} colorScheme="text" size="xl" kind="link" href="https://github.com/petlack/ts-retype" newWindow />
           </div>
         </div>
       </div>

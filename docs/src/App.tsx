@@ -1,23 +1,22 @@
-import { useTheme, ThemeMode, ThemeProvider } from '@ts-retype/uikit';
-import { UiKitApp } from '@ts-retype/uikit';
-import { TopBar } from '@ts-retype/uikit';
-import { generateTheme } from '@ts-retype/uikit/generate';
+import { ThemeProvider, useTermix } from '@ts-retype/uikit';
+import { Topbar } from '@ts-retype/uikit';
+import { generateTheme } from '@ts-retype/uikit/dist/generate';
 import { Docs } from './components/Docs';
 import { Landing } from './components/Landing';
 import { Menu } from './components/Menu';
+import { theme } from './ts-theme';
 import '@ts-retype/uikit/dist/index.css';
 import './App.scss';
 
 function Main() {
-  const { theme } = useTheme();
-  const mode = theme.name as ThemeMode;
+  const { colorMode } = useTermix();
   return (
     <>
-      <TopBar>
+      <Topbar>
         <Menu />
-      </TopBar>
+      </Topbar>
       <section className="bleed" id="about">
-        <Landing theme={mode} />
+        <Landing theme={colorMode as 'dark' | 'light'} />
       </section>
       <Docs />
       <footer></footer>
@@ -34,13 +33,10 @@ const preferredTheme = typeof window !== 'undefined' ? window.matchMedia && wind
 // const preferredTheme = 'dark' as ThemeMode;
 
 export default function App() {
-  const theme = generateTheme({ accent, body, heading, mono, second, mode: preferredTheme });
 
   return (
     <ThemeProvider theme={theme}>
-      <UiKitApp>
-        <Main />
-      </UiKitApp>
+      <Main />
     </ThemeProvider>
   );
 }

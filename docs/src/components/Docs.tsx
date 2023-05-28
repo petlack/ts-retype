@@ -1,13 +1,13 @@
-import { TS_RETYPE_CMD_OPTIONS } from '@ts-retype/retype';
+import { TS_RETYPE_CMD_OPTIONS } from '@ts-retype/retype/dist/types';
 import type { Snippet } from '@ts-retype/retype';
 import * as Snippets from '../generated/snippets';
-import { Bash, Code, JsTsCode, MultilangWindow, Options, ThemeMode, Window, useTheme } from '@ts-retype/uikit';
+import { Bash, Code, JsTsCode, MultilangWindow, Options, Window, useTermix } from '@ts-retype/uikit';
 
 import './Docs.styl';
 
 export function Docs() {
-  const { theme } = useTheme();
-  const mode = theme.name as ThemeMode;
+  const { colorMode } = useTermix();
+  const mode = colorMode as 'dark' | 'light';
   return (
     <>
       <section id="install">

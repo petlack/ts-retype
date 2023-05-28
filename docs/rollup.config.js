@@ -13,6 +13,19 @@ const packageJson = {
   module: 'dist/index.es.js',
 };
 
+const externals = [
+  'react',
+  'ramda',
+  '@emtion/react',
+  'react/jsx-runtime',
+  'theme-ui',
+  '@theme-ui/components',
+  '@theme-ui/color',
+  'polished',
+  'minisearch',
+  'chroma-js',
+];
+
 export default [
   {
     input: 'src/index.ts',
@@ -29,9 +42,10 @@ export default [
         sourcemap: true,
       },
     ],
+    external: externals,
     // assetFileNames: '[name]-[hash][extname]',
     plugins: [
-      external(),
+      // external(),
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
