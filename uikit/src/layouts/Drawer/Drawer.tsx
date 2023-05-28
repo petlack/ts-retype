@@ -1,6 +1,7 @@
 import { useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import FocusTrap from 'focus-trap-react';
+// import FocusTrap from 'focus-trap-react';
+import FocusLock from 'react-focus-lock';
 import { StyledContainer } from '~/components/types';
 import { Box } from '~/components';
 import { Overlay, OverlayProps } from '../Overlay';
@@ -62,7 +63,7 @@ export const Drawer = ({
   }
 
   return createPortal(
-    <FocusTrap active={isOpen} focusTrapOptions={{ allowOutsideClick: true }}>
+    <FocusLock disabled={!isOpen}>
       <Box
         aria-hidden={isOpen ? 'false' : 'true'}
         sx={{ bg: 'none' }}
@@ -95,7 +96,7 @@ export const Drawer = ({
           backdropMode={backdropMode}
         />
       </Box>
-    </FocusTrap>,
+    </FocusLock>,
     portalRootRef.current
   );
 };

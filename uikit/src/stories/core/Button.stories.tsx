@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Button } from 'core/Button';
+import { Button } from '~/core/Button';
 import ThemeDecorator from '../ThemeDecorator';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
@@ -10,7 +10,7 @@ const meta = {
   decorators: [ThemeDecorator],
   tags: ['autodocs'],
   argTypes: {
-    
+
   },
 } satisfies Meta<typeof Button>;
 

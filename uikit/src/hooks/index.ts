@@ -1,5 +1,6 @@
 export * from './use-search/index.js';
 export * from './useSearchPhrase.js';
+export { useAnimatePresence } from './use-animate-presence';
 export { useConfig, ConfigProvider } from './use-config';
 export { useBoolean } from './useBoolean.js';
 export { useDelay } from './useDelay.js';

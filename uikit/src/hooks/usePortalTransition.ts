@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useLayoutEffect } from 'react';
 import { useMountTransition } from './useMountTransition';
 
 function createPortalRoot(portalId: string) {
@@ -24,7 +24,7 @@ export function usePortalTransition({
   const portalRootRef = useRef(document.getElementById(portalId) || createPortalRoot(portalId));
   const isTransitioning = useMountTransition(isVisible, speed);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     bodyRef.current?.appendChild(portalRootRef.current);
     const portal = portalRootRef.current;
     return () => {

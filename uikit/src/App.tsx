@@ -1,20 +1,17 @@
 import { Card, Container, Heading, Text } from 'theme-ui';
 import { Box, Button, Hamburger, Logo, Search, Spinner, Tag } from '~/components';
-import { FaBeer, FaDownload, FaLock, FaMoon, FaSun, FaTimes } from 'react-icons/fa';
+import { FaBeer, FaDownload, FaInfo, FaLock, FaMoon, FaSun, FaTimes } from 'react-icons/fa';
 import { Drawer, Modal, Popover, PopoverContent, PopoverTrigger, Stack, Tooltip, TooltipContent, TooltipTrigger, Topbar, useToast, Wrap } from '~/layouts';
 import { palette, useTermix, ThemeProvider } from './termix';
 import { useCallback, useState } from 'react';
 import { getColor } from '@theme-ui/color';
-import { generateTheme } from '~/theme/generate';
 import { readableColor } from 'polished';
 import { theme } from './ts-theme.js';
 import { useModal } from '~/hooks';
 import { AiFillAlert } from 'react-icons/ai';
 import { MdChatBubble } from 'react-icons/md';
-import { GiToaster } from 'react-icons/gi';
 import './fonts';
 import './App.scss';
-import { namedTheme, withFonts, fromColors } from './theme/builder';
 
 // import { Editor, importColors } from '@compai/css-gui';
 // type ThemeMode = 'light' | 'dark';
@@ -150,7 +147,7 @@ export function App() {
               colorScheme='flamingo'
               fill='ghost'
               size='lg'
-              leftIcon={<GiToaster />}
+              leftIcon={<FaInfo />}
               onClick={() => toast({ msg: 'test' })}
             >Toast</Button>
 

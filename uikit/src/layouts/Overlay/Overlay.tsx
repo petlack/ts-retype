@@ -25,7 +25,7 @@ export const Overlay: FC<OverlayProps> = ({
         // backdropFilter: 'blur(10px)',
         visibility: isTransitioning && isOpen ? 'visible' : 'hidden',
         opacity: isTransitioning && isOpen ? 1 : 0,
-        transitionProperty: 'opacity,visibility',
+        transitionProperty: 'opacity',
         transition: `${speed}ms ease`,
         pointerEvents: isTransitioning && isOpen ? 'auto' : 'none',
         zIndex: isOpen ? 25 : 0,

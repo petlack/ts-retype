@@ -1,7 +1,15 @@
-import chroma from 'chroma-js';
 import { extendStandard } from './types/extend';
 import { Color, ColorScale, Theme, ThemeMode } from './types/theme';
 import chromaPalette from './chroma';
+import curriedDesaturate from 'polished/lib/color/desaturate';
+
+function desaturate(color: string) {
+  // return chroma(color)
+  //   .set('hsl.s', '0.10')
+  //   .set('hsl.l', '0.66')
+  //   .hex();
+  return curriedDesaturate(0.75)(color);
+}
 
 function toColorScale(colors: Color[]): ColorScale {
   const steps = [25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950, 975];
@@ -66,10 +74,7 @@ export function fromColors({
       : [negative, negativeNext, positive, positiveNext];
 
   const accentScale = ofColor(accent as string, white as string, black as string);
-  const neutralAccent = chroma(accent as string)
-    .set('hsl.s', '0.10')
-    .set('hsl.l', '0.66')
-    .hex();
+  const neutralAccent = desaturate(accent as string);
   const neutralAccentScale = ofColor(neutralAccent as string, white as string, black as string);
   return extendStandard({
     colors: {

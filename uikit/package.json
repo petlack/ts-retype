@@ -76,6 +76,7 @@
     "chroma-js": "^2.4.2",
     "focus-trap-react": "^10.1.4",
     "framer-motion": "^10.12.16",
+    "react-focus-lock": "^2.9.4",
     "styled-components": "^5.3.10",
     "theme-ui": "^0.15.7"
   },

@@ -1,10 +1,11 @@
-import { AnimatePresence, motion } from 'framer-motion';
+// import { AnimatePresence, m as motion } from 'framer-motion';
+// import { LazyMotion, domAnimation } from 'framer-motion';
 import { FC, useSyncExternalStore } from 'react';
 import { Stack } from '../Stack';
 import { Toast } from './Toast';
 import { createPortal } from 'react-dom';
 import { store } from './store';
-import { usePortalTransition } from '~/hooks';
+import { usePortalTransition, useAnimatePresence } from '~/hooks';
 
 export const ToastProvider: FC = () => {
   const { portalRootRef } = usePortalTransition({
@@ -31,18 +32,9 @@ export const ToastProvider: FC = () => {
       alignItems: 'center',
       justifyContent: 'flex-end',
     }}>
-      <AnimatePresence initial={false}>
-        {state.toasts.map((toast) => (
-          <motion.div
-            key={toast.id}
-            initial={{ opacity: 0, y: 50, scale: 0.3 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
-          >
-            <Toast toast={toast} />
-          </motion.div>
-        ))}
-      </AnimatePresence>
+      {state.toasts.map((toast) => (
+        <Toast key={toast.id} toast={toast} />
+      ))}
     </Stack>,
     portalRootRef.current
   );

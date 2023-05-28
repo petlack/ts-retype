@@ -6,10 +6,10 @@ import { defineConfig } from 'vite';
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '',
-  esbuild: {
-    jsxFactory: 'jsx',
-    jsxInject: "import { jsx } from 'theme-ui'",
-  },
+  // esbuild: {
+  //   jsxFactory: 'jsx',
+  //   jsxInject: 'import { jsx } from \'theme-ui\'',
+  // },
   plugins: [
     react(),
     tsconfigPaths(),
@@ -19,6 +19,6 @@ export default defineConfig({
     }),
   ],
   optimizeDeps: {
-    include: ['react/jsx-runtime'],
+    // include: ['react/jsx-runtime'],
   },
 });

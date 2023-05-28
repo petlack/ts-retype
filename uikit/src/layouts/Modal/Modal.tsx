@@ -1,6 +1,7 @@
 import { FC, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { FaTimes } from 'react-icons/fa';
+import FocusLock from 'react-focus-lock';
 import { Box } from 'theme-ui';
 import { Button } from '~/components';
 import { StyledContainer } from '~/components/types';
@@ -12,48 +13,52 @@ export const Modal: FC<StyledContainer & OverlayProps> = ({
   isOpen,
   onClose,
   sx,
-  speed = 300,
+  speed = 100,
   backdropMode = 'darken',
 }) => {
+  console.log('modal call');
   const nodeRef = useRef(null);
-  const { isTransitioning, portalRootRef } = usePortalTransition({ portalId: 'portal-modal', isVisible: isOpen });
+  const { isTransitioning, portalRootRef } = usePortalTransition({ portalId: 'portal-modal', isVisible: isOpen, speed });
   useKey({ key: 'Escape', handler: onClose });
 
   if (!isTransitioning && !isOpen) {
+    console.log('not open', { isTransitioning, isOpen });
     return null;
   }
 
   return createPortal(
-    <Box
-      ref={nodeRef}
-      aria-hidden={isOpen ? 'false' : 'true'}
-      sx={{
-        position: 'fixed',
-        inset: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <Box sx={{
-        position: 'relative',
-        transitionProperty: 'transform,opacity',
-        transition: `${speed}ms ease`,
-        opacity: isOpen ? 1 : 0,
-        transform: isTransitioning && isOpen ? 'scale(1)' : 'scale(0.9)',
-        ...sx,
-      }}>
-        <Button onClick={onClose} leftIcon={<FaTimes />} fill='ghost' sx={{ position: 'absolute', right: 0, top: 0 }} />
-        {children}
+    <FocusLock disabled={!isOpen}>
+      <Box
+        ref={nodeRef}
+        aria-hidden={isOpen ? 'false' : 'true'}
+        sx={{
+          position: 'fixed',
+          inset: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Box sx={{
+          position: 'relative',
+          transitionProperty: 'transform,opacity',
+          transition: `${speed}ms ease`,
+          opacity: isOpen ? 1 : 0,
+          transform: isTransitioning && isOpen ? 'scale(1)' : 'scale(0.9)',
+          ...sx,
+        }}>
+          <Button onClick={onClose} leftIcon={<FaTimes />} fill='ghost' sx={{ position: 'absolute', right: 0, top: 0 }} />
+          {children}
+        </Box>
+        <Overlay
+          isTransitioning={isTransitioning}
+          isOpen={isOpen}
+          onClose={onClose}
+          speed={speed}
+          backdropMode={backdropMode}
+        />
       </Box>
-      <Overlay
-        isTransitioning={isTransitioning}
-        isOpen={isOpen}
-        onClose={onClose}
-        speed={speed}
-        backdropMode={backdropMode}
-      />
-    </Box >,
+    </FocusLock>,
     portalRootRef.current,
   );
 };

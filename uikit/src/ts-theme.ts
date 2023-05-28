@@ -34,7 +34,7 @@ function colorScale(name: string, scale: Color) {
 }
 
 function paletteColorScales(mode: 'light' | 'dark') {
-  const modeColors = palette({ light: 'latte', dark: 'mocha' }[mode]);
+  const modeColors = palette({ light: 'latte', dark: 'mocha' }[mode] as 'mocha' | 'latte');
   const paletteColors = fromColors({ ...modeColors, accent: primary, mode });
   const scales = Object.entries(modeColors)
     .map(([k, v]) => ({
