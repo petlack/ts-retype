@@ -4,7 +4,7 @@ import { Footer } from './components/Footer/Footer.js';
 import { FulltextData } from './types.js';
 import { Listing } from './components/Listing/index.js';
 import { useBoolean, useSearch, SearchPhraseProvider } from '@ts-retype/uikit/hooks';
-import { Box, Button, Drawer, Hamburger, Logo, Search, ThemeProvider, ToastProvider, Topbar } from '@ts-retype/uikit';
+import { Box, Button, Drawer, Hamburger, Logo, Search, ThemeProvider, ThemeToggle, ToastProvider, Topbar } from '@ts-retype/uikit';
 import { TooltipRoot } from './hooks/useTooltip/TooltipRoot.js';
 import type { Metadata, TypeDuplicate } from '@ts-retype/retype';
 import { decompressRoot } from '@ts-retype/retype/dist/snippet.js';
@@ -94,6 +94,7 @@ function App() {
           <Box sx={{ bg: 'primary', height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
             <Heading as='h2'>Sidebar</Heading>
             <Button onClick={toggleDrawer} rightIcon={<FaTimes />}>Close</Button>
+            <ThemeToggle />
           </Box>
         </Drawer>
 

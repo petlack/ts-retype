@@ -1,60 +1,59 @@
 import { Theme } from './types/theme';
 
-export function toCssVars(theme: Theme): [string, string | number][] {
+type CssEntry = [string, string | number];
+
+export function toCssVars(theme: Theme): CssEntry[] {
   const colors = Object.entries(theme.colors ?? {})
-    .filter(([name, value]) => !!value || typeof value !== 'string')
-    .map(([name, scale]) => [`--clr-${name}`, `var(--theme-ui-colors-${name})`]);
+    .filter(([, value]) => !!value || typeof value !== 'string')
+    .map(([name]) => [`--clr-${name}`, `var(--theme-ui-colors-${name})`] as CssEntry);
 
-  const fonts = Object.entries(theme.fonts).map(([variant, family]) => [
-    `--font-${variant}`,
-    family,
-  ]);
+  const fonts = Object.entries(theme.fonts).map(
+    ([variant, family]) => [`--font-${variant}`, family] as CssEntry,
+  );
 
-  const fontSizes = Object.entries(theme.fontSizes).map(([size, dim]) => [
-    `--font-size-${size}`,
-    dim.toString(),
-  ]);
+  const fontSizes = Object.entries(theme.fontSizes).map(
+    ([size, dim]) => [`--font-size-${size}`, dim.toString()] as CssEntry,
+  );
 
-  const fontWeights = Object.entries(theme.fontWeights).map(([variant, weight]) => [
-    `--font-weight-${variant}`,
-    weight,
-  ]);
+  const fontWeights = Object.entries(theme.fontWeights).map(
+    ([variant, weight]) => [`--font-weight-${variant}`, weight] as CssEntry,
+  );
 
-  const letterSpacings = Object.entries(theme.letterSpacings).map(([variant, size]) => [
-    `--letter-spacing-${variant}`,
-    size,
-  ]);
+  const letterSpacings = Object.entries(theme.letterSpacings).map(
+    ([variant, size]) => [`--letter-spacing-${variant}`, size] as CssEntry,
+  );
 
-  const radii = Object.entries(theme.radii).map(([variant, radius]) => [
-    `--radius-${variant}`,
-    radius,
-  ]);
+  const radii = Object.entries(theme.radii).map(
+    ([variant, radius]) => [`--radius-${variant}`, radius] as CssEntry,
+  );
 
-  const shadows = Object.entries(theme.shadows).map(([key, val]) => [`--shadow-${key}`, val]);
+  const shadows = Object.entries(theme.shadows).map(
+    ([key, val]) => [`--shadow-${key}`, val] as CssEntry,
+  );
 
-  const sizes = Object.entries(theme.sizes).map(([size, dim]) => [`--size-${size}`, dim]);
+  const sizes = Object.entries(theme.sizes).map(
+    ([size, dim]) => [`--size-${size}`, dim] as CssEntry,
+  );
 
-  const spaces = Object.entries(theme.spaces).map(([space, dim]) => [`--space-${space}`, dim]);
+  const spaces = Object.entries(theme.spaces).map(
+    ([space, dim]) => [`--space-${space}`, dim] as CssEntry,
+  );
 
-  const transitionProps = Object.entries(theme.transition.properties).map(([key, val]) => [
-    `--tr-props-${key}`,
-    val,
-  ]);
+  const transitionProps = Object.entries(theme.transition.properties).map(
+    ([key, val]) => [`--tr-props-${key}`, val] as CssEntry,
+  );
 
-  const transitionDurations = Object.entries(theme.transition.durations).map(([key, val]) => [
-    `--tr-duration-${key}`,
-    val,
-  ]);
+  const transitionDurations = Object.entries(theme.transition.durations).map(
+    ([key, val]) => [`--tr-duration-${key}`, val] as CssEntry,
+  );
 
-  const transitionEasings = Object.entries(theme.transition.easings).map(([key, val]) => [
-    `--tr-easing-${key}`,
-    val,
-  ]);
+  const transitionEasings = Object.entries(theme.transition.easings).map(
+    ([key, val]) => [`--tr-easing-${key}`, val] as CssEntry,
+  );
 
-  const zIndices = Object.entries(theme.zIndices).map(([variant, zIndex]) => [
-    `--z-${variant}`,
-    zIndex,
-  ]);
+  const zIndices = Object.entries(theme.zIndices).map(
+    ([variant, zIndex]) => [`--z-${variant}`, zIndex] as CssEntry,
+  );
 
   return [
     ...colors,
@@ -73,7 +72,7 @@ export function toCssVars(theme: Theme): [string, string | number][] {
   ];
 }
 
-export function toCssVarsString(cssVars: string[][]) {
+export function toCssVarsString(cssVars: CssEntry[]) {
   return cssVars.map((kv) => kv.join(':')).join(';');
 }
 

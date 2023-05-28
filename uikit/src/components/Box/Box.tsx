@@ -1,8 +1,10 @@
 import { FC, forwardRef } from 'react';
 import { Box as UiBox, BoxProps } from 'theme-ui';
-import { TermixProps, TermixPropsNames, useTermix, useTermixStyle } from '~/termix';
-import { omit } from 'ramda';
+import { TermixProps, TermixPropsNames } from '~/termix/types';
 import { StyledContainer } from '~/components/types';
+import { omit } from 'ramda';
+import { useTermix } from '~/termix/useTermix';
+import { useTermixStyle } from '~/termix/termix';
 
 export const Box: FC<StyledContainer<TermixProps & BoxProps>> = forwardRef(({
   children,

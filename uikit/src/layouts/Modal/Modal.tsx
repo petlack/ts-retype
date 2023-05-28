@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { FaTimes } from 'react-icons/fa';
 import FocusLock from 'react-focus-lock';
 import { Box } from 'theme-ui';
-import { Button } from '~/components';
+import { Button } from '~/components/Button';
 import { StyledContainer } from '~/components/types';
 import { useKey, usePortalTransition } from '~/hooks';
 import { Overlay, OverlayProps } from '../Overlay';

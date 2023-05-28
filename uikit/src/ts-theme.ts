@@ -1,6 +1,5 @@
-import { generateTheme } from './theme/generate';
 import { Color } from './theme/types/theme';
-import { Termix, palette, paletteColorScales } from './termix';
+import { Termix, palette } from './termix';
 
 const primary = '#0a799e';
 const accent = '#c68726';
@@ -8,19 +7,7 @@ const accent = '#c68726';
 const body = '"Nunito Sans", sans-serif';
 const heading = '"Exo 2", sans-serif';
 const mono = '"Fira Code", monospace';
-const preferredTheme =
-  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-const light = generateTheme({
-  body,
-  heading,
-  mono,
-  mode: 'light',
-  accent: primary,
-  second: accent,
-});
-const dark = generateTheme({ body, heading, mono, mode: 'dark', accent: primary, second: accent });
-
+window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 export function colorScale(name: string, scale: Color) {
   return Object.fromEntries(Object.entries(scale).map(([key, value]) => [`${name}-${key}`, value]));
 }

@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 // import FocusTrap from 'focus-trap-react';
 import FocusLock from 'react-focus-lock';
 import { StyledContainer } from '~/components/types';
-import { Box } from '~/components';
+import { Box } from '~/components/Box';
 import { Overlay, OverlayProps } from '../Overlay';
 import { useKey, usePortalTransition } from '~/hooks';
 

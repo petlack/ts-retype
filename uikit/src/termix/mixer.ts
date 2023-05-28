@@ -11,9 +11,9 @@ export function desaturate(color: string) {
   return polishedDesaturate(0.75, color);
 }
 
-export function readableColor(bg: string, white: string, black: string) {
+export function readableColor(bg: string, white?: string, black?: string, strict?: boolean) {
   try {
-    return polishedReadableColor(bg, white, black);
+    return polishedReadableColor(bg, white, black, strict);
   } catch (e: any) {
     return white;
   }

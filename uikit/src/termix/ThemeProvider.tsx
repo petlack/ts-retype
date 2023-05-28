@@ -7,7 +7,7 @@ import { theme as defaultTheme } from './theme.js';
 import applyCssVariables from '~/theme/cssVariables';
 import { generateTheme } from '~/theme/generate';
 import { Color, Theme } from '~/theme/types/theme';
-import { ToastProvider } from '~/layouts';
+import { ToastProvider } from '~/layouts/Toast';
 import { paletteColorScales } from './termix.js';
 import { ColorScale, desaturate } from './mixer.js';
 import { omit } from 'ramda';

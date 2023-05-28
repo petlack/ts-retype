@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Box } from '~/components';
+import { Box } from '~/components/Box';
 import { ToastRecord } from './store';
 
 export const Toast: FC<{ toast: ToastRecord }> = ({ toast }) => {
