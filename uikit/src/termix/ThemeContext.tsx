@@ -7,6 +7,7 @@ import { theme as defaultTheme } from './theme.js';
 import applyCssVariables from '~/theme/cssVariables';
 import { generateTheme } from '~/theme/generate';
 import { Color, ColorScale, Theme } from '~/theme/types/theme';
+import { ToastProvider } from '~/layouts';
 
 export interface ThemeContextProps {
   theme?: Termix;
@@ -86,8 +87,11 @@ export const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = ({
       <ThemeUIProvider
         theme={theme}
       >
-        <InitializeColorMode />
-        {children}
+        <>
+          <InitializeColorMode />
+          {children}
+          <ToastProvider />
+        </>
       </ThemeUIProvider>
     </ThemeContext.Provider>
   );

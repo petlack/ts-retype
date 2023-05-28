@@ -1,7 +1,7 @@
 import { Card, Container, Heading, Text } from 'theme-ui';
 import { Box, Button, Hamburger, Logo, Search, Spinner, Tag } from '~/components';
 import { FaBeer, FaDownload, FaLock, FaMoon, FaSun, FaTimes } from 'react-icons/fa';
-import { Drawer, Modal, Popover, PopoverContent, PopoverTrigger, Stack, Tooltip, TooltipContent, TooltipTrigger, Topbar, Wrap } from '~/layouts';
+import { Drawer, Modal, Popover, PopoverContent, PopoverTrigger, Stack, Tooltip, TooltipContent, TooltipTrigger, Topbar, useToast, Wrap } from '~/layouts';
 import { palette, useTermix, ThemeProvider } from './termix';
 import { useCallback, useState } from 'react';
 import { getColor } from '@theme-ui/color';
@@ -11,7 +11,7 @@ import { theme } from './ts-theme.js';
 import { useModal } from '~/hooks';
 import { AiFillAlert } from 'react-icons/ai';
 import { MdChatBubble } from 'react-icons/md';
-import { TiInfoLarge } from 'react-icons/ti';
+import { GiToaster } from 'react-icons/gi';
 import './fonts';
 import './App.scss';
 
@@ -76,6 +76,7 @@ export function App() {
   const { isOpen, open, close, getTriggerProps, getModalProps } = useModal();
   const openDrawer = useCallback(() => setIsDrawerOpen(true), [setIsDrawerOpen]);
   const closeDrawer = useCallback(() => setIsDrawerOpen(false), [setIsDrawerOpen]);
+  const toast = useToast();
   return (
     <ThemeProvider theme={theme}>
       <Container content='center' sx={{ display: 'flex', flexDirection: 'column', gap: 4, }}>
@@ -149,6 +150,15 @@ export function App() {
                 <Box colorScheme='pink' fill='solid' size='sm' density='gapped' corners='pill'>Hello World</Box>
               </TooltipContent>
             </Tooltip>
+
+            <Button
+              colorScheme='flamingo'
+              fill='ghost'
+              size='lg'
+              leftIcon={<GiToaster />}
+              onClick={() => toast({ msg: 'test' })}
+            >Toast</Button>
+
           </Wrap>
         </Card>
 

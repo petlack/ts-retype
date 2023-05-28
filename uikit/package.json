@@ -75,6 +75,7 @@
     "@theme-ui/preset-future": "^0.15.7",
     "chroma-js": "^2.4.2",
     "focus-trap-react": "^10.1.4",
+    "framer-motion": "^10.12.16",
     "styled-components": "^5.3.10",
     "theme-ui": "^0.15.7"
   },

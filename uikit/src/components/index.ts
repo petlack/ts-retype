@@ -10,6 +10,5 @@ export * from './Spinner';
 export * from './Tag';
 export * from './Text';
 export * from './ThemeToggle';
-export * from './Toast';
 export * from './Tree';
 export * from './UiKitApp';

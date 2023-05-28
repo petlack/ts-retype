@@ -4,7 +4,14 @@ import typescript from '@rollup/plugin-typescript';
 import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import dts from 'rollup-plugin-dts';
+import alias from '@rollup/plugin-alias';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { fileURLToPath } from 'url';
+import * as path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectRootDir = path.resolve(__dirname);
 
 const externals = [
   'react',
@@ -34,6 +41,15 @@ export default [
     plugins: [
       // external(),
       // resolve(),
+      alias({
+        customResolver: resolve({ extensions: ['.tsx', '.ts', '.js'] }),
+        entries: Object.entries({
+          '~/*': ['./src/*'],
+        }).map(([alias, value]) => ({
+          find: new RegExp(`${alias.replace('/*', '')}`),
+          replacement: path.resolve(projectRootDir, `${value[0].replace('/*', '')}`),
+        })),
+      }),
       typescript({ tsconfig: './tsconfig.json' }),
       postcss({
         extract: true,

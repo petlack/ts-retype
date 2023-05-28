@@ -6,6 +6,7 @@ export * from './Overlay';
 export * from './Popover';
 export * from './Sidebar';
 export * from './Stack';
+export * from './Toast';
 export * from './Tooltip';
 export * from './Topbar';
 export * from './Wrap';
