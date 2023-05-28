@@ -1,4 +1,4 @@
-import { ThemeProvider, useTermix } from '@ts-retype/uikit';
+import { Stack, ThemeProvider, useTermix } from '@ts-retype/uikit';
 import { Topbar } from '@ts-retype/uikit';
 import { Docs } from './components/Docs';
 import { Landing } from './components/Landing';
@@ -17,7 +17,9 @@ function Main() {
       <section className="bleed" id="about">
         <Landing theme={colorMode as 'dark' | 'light'} />
       </section>
-      <Docs />
+      <Stack bg='mantle' color='text' sx={{ alignItems: 'center' }}>
+        <Docs />
+      </Stack>
       <footer></footer>
     </>
   );

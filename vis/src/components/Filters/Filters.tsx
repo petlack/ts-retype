@@ -65,7 +65,7 @@ export function Filters({
     const isSelected = id === selected;
     return (
       <a className={`button button--default nav ${isSelected ? 'nav--selected' : ''}`} {...props}>
-        <span>{id !== 'all' ? <Badge names={{} as TypeDuplicate['names']} group={id as TypeDuplicate['group']} /> : 'all '}</span>
+        <span>{id !== 'all' ? <Badge sx={{ cursor: 'pointer' }} names={{} as TypeDuplicate['names']} group={id as TypeDuplicate['group']} /> : 'all '}</span>
         <span>{` (${getFacetStat(facetsStats, id, filter.selectedType)})`}</span>
       </a>
     );
@@ -132,9 +132,6 @@ export function Filters({
           onChange={updateMinFiles}
         />
       </div>
-
-      <Button icon={IconSun} caption="light" style="default" size="md" kind="button" />
-      <Button icon={IconMoon} caption="dark" style="default" size="md" kind="button" />
     </div>
   );
 }

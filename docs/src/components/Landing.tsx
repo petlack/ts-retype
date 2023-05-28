@@ -1,4 +1,4 @@
-import { Button, IconDocs, IconGithub, MultilangWindow, TsSnippet } from '@ts-retype/uikit';
+import { Button, Heading, IconDocs, IconGithub, MultilangWindow, TsSnippet } from '@ts-retype/uikit';
 import type { Snippet } from '@ts-retype/retype';
 import * as Snippets from '../generated/snippets';
 import './Landing.styl';
@@ -17,7 +17,7 @@ export function Landing({ theme }: LandingProps) {
           <TsSnippet responsive theme={theme} start={75} snippet={Snippets.Snippet_function as Snippet} name={'src/api.ts'} />
         </div>
         <div className="description">
-          <h1>Discover duplicate types in TypeScript code</h1>
+          <Heading as='h1'>Discover duplicate types in TypeScript code</Heading>
           <p>TS retype statically analyzes code and searches for multiple declarations of the same Literal Types, Function Types and Enums/Unions.</p>
           <p>Run TS retype inside your project folder to get an HTML/JSON report.</p>
         </div>
@@ -32,8 +32,8 @@ export function Landing({ theme }: LandingProps) {
             ]}
           />
           <div className="links">
-            <Button caption="Docs" icon={IconDocs} colorScheme="primary" size="xl" kind="link" href="#docs" />
-            <Button caption="Source" icon={IconGithub} colorScheme="text" size="xl" kind="link" href="https://github.com/petlack/ts-retype" newWindow />
+            <Button caption="Docs" leftIcon={IconDocs} colorScheme="primary" size="lg" kind="link" href="#docs">Docs</Button>
+            <Button caption="Source" leftIcon={IconGithub} colorScheme="text" size="lg" kind="link" href="https://github.com/petlack/ts-retype">Source</Button>
           </div>
         </div>
       </div>

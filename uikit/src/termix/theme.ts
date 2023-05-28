@@ -409,6 +409,14 @@ export const theme: Termix = {
       '&:hover': {},
     }),
     tint: () => ({}),
+    invert: ({ colorScheme }) => ({
+      bg: 'transparent',
+      color: colorScheme,
+      '&:hover': {
+        bg: colorScheme,
+        color: 'background',
+      },
+    }),
     morph: () => ({
       transform: 'scale(1)',
       '&:hover': {

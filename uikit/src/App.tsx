@@ -1,6 +1,6 @@
 import { Card, Container, Heading, Text } from 'theme-ui';
 import { Box, Button, Hamburger, Logo, Search, Spinner, Tag } from '~/components';
-import { FaBeer, FaDownload, FaInfo, FaLock, FaMoon, FaSun, FaTimes } from 'react-icons/fa';
+import { FaBeer, FaDownload, FaInfo, FaLock, FaMoon, FaRocketchat, FaSun, FaTimes } from 'react-icons/fa';
 import { Drawer, Modal, Popover, PopoverContent, PopoverTrigger, Stack, Tooltip, TooltipContent, TooltipTrigger, Topbar, useToast, Wrap } from '~/layouts';
 import { readableColor, useTermix, ThemeProvider } from './termix';
 import { useCallback, useState } from 'react';
@@ -9,7 +9,6 @@ import { theme } from './ts-theme.js';
 // import { theme } from './termix/theme.js';
 import { useModal } from '~/hooks';
 import { AiFillAlert } from 'react-icons/ai';
-import { MdChatBubble } from 'react-icons/md';
 import './fonts';
 import './App.scss';
 
@@ -86,6 +85,7 @@ export function App() {
               colorScheme='primary'
               fill='ghost'
               size='lg'
+              mimic='invert'
               leftIcon={<Hamburger isOpen={isDrawerOpen} flavor='cross' />}
               onClick={openDrawer}
             >Drawer</Button>
@@ -124,7 +124,7 @@ export function App() {
                   colorScheme='green'
                   fill='ghost'
                   size='lg'
-                  leftIcon={<MdChatBubble />}
+                  leftIcon={<FaRocketchat />}
                 >Popover</Button>
               </PopoverTrigger>
               <PopoverContent>
@@ -235,6 +235,7 @@ export function App() {
           }}>
             <Box sx={{
               bg: 'base',
+              color: 'text',
               px: 2,
               py: 2,
               gap: 4,

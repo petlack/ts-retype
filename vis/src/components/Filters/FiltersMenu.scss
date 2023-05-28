@@ -9,9 +9,8 @@
   display: grid;
   place-content: center;
   cursor: pointer;
-  color: blue;
+  // color: blue;
   border: none;
-  background-color: green;
   @include focusable(var(--clr-neutral-50));
   &--square {
     height: 48px;
@@ -22,19 +21,19 @@
   }
   &--default {
     color: var(--clr-fg);
-    background-color: var(--clr-bg-main);
+    // background-color: var(--clr-bg-main);
   }
   &--primary {
     color: var(--clr-transparent);
-    background-color: var(--clr-accent);
+    // background-color: var(--clr-accent);
     @include focusable(var(--clr-bg));
   }
   &--secondary {
     color: var(--clr-accent);
-    background-color: var(--clr-bg);
+    // background-color: var(--clr-bg);
   }
   &--transparent {
-    background-color: transparent;
+    // background-color: transparent;
     @include focusable(var(--clr-accent));
   }
 }

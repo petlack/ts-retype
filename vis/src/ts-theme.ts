@@ -99,6 +99,7 @@ export const theme: Termix = {
   tags: {
     default: {
       lineHeight: 1,
+      corners: 'dull',
     },
 
     green: {

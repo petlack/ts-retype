@@ -224,42 +224,42 @@ main {
     }
   }
 }
-
-.filters {
-  position: fixed;
-  top: 0;
-  right: 0;
-  justify-self: end;
-  height: 100vh;
-  flex-direction: column;
-  z-index: var(--z-sidebar);
-  transition: transform 200ms ease-in-out, opacity 150ms ease-in;
-
-  &-hidden {
-    transform: translateX(20%);
-    user-select: none;
-    touch-action: none;
-    pointer-events: none;
-  }
-  &-visible {
-    transform: translateX(0);
-  }
-
-  @media screen and (max-height: 830px) {
-    max-height: 100vh;
-    @media screen and (min-width: 620px) {
-      height: unset;
-      flex-direction: row;
-      &-hidden {
-        transform: translateY(-10%);
-      }
-      &-visible {
-        transform: translateY(0);
-      }
-    }
-  }
-}
-
+//
+// .filters {
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   justify-self: end;
+//   height: 100vh;
+//   flex-direction: column;
+//   z-index: var(--z-sidebar);
+//   transition: transform 200ms ease-in-out, opacity 150ms ease-in;
+//
+//   &-hidden {
+//     transform: translateX(20%);
+//     user-select: none;
+//     touch-action: none;
+//     pointer-events: none;
+//   }
+//   &-visible {
+//     transform: translateX(0);
+//   }
+//
+//   @media screen and (max-height: 830px) {
+//     max-height: 100vh;
+//     @media screen and (min-width: 620px) {
+//       height: unset;
+//       flex-direction: row;
+//       &-hidden {
+//         transform: translateY(-10%);
+//       }
+//       &-visible {
+//         transform: translateY(0);
+//       }
+//     }
+//   }
+// }
+//
 .main {
   // position: relative;
   /* padding-top: 0; */

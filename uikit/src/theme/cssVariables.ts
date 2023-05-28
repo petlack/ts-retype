@@ -12,7 +12,7 @@ export function toCssVars(theme: Theme): CssEntry[] {
   );
 
   const fontSizes = Object.entries(theme.fontSizes).map(
-    ([size, dim]) => [`--font-size-${size}`, dim.toString()] as CssEntry,
+    ([size, dim]) => [`--font-size-${size}`, `${dim.toString()}px`] as CssEntry,
   );
 
   const fontWeights = Object.entries(theme.fontWeights).map(

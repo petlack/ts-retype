@@ -14,6 +14,7 @@ export * from './core/Icons';
 export * from './core/Example';
 
 export * from './components';
+export type { StyledComponent, StyledContainer } from './components';
 
 export * from './layouts';
 

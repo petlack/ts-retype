@@ -2,12 +2,12 @@
 @import "../vars.styl"
 
 lightTheme()
-  --clr-bg-landing-code: var(--clr-neutral-25);
-  --clr-bg-landing: var(--clr-neutral-50);
+  --clr-bg-landing-code: var(--clr-base);
+  --clr-bg-landing: var(--clr-crust);
 
 darkTheme()
-  --clr-bg-landing-code: var(--clr-neutral-50);
-  --clr-bg-landing: var(--clr-neutral-100);
+  --clr-bg-landing-code: var(--clr-base);
+  --clr-bg-landing: var(--clr-crust);
 
 .landing-container
   flexColumn();
@@ -85,7 +85,7 @@ darkTheme()
       p
         width: 50ch;
         max-width: var(--size-xl);
-        font-size: var(--font-size-xl);
+        font-size: var(--font-size-lg);
         font-weight: var(--font-weight-normal);
         line-height: 1.66;
         color: var(--clr-neutral-800);

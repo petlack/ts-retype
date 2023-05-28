@@ -103,18 +103,27 @@ function withTsRetypeColors(base: UITheme): UITheme {
     'bg': 'var(--clr-background)',
     'fg': 'var(--clr-text)',
     'bg-topbar': 'var(--clr-background)',
-    'bg-main': 'var(--clr-mantle)',
-    'bg-code': 'var(--clr-neutral-25)',
+    'bg-main': 'var(--clr-mantle-300)',
+    'bg-code': 'var(--clr-base)',
     'fg-text': 'var(--clr-text)',
     'fg-title': 'var(--clr-neutral-600)',
     'fg-code': 'var(--clr-text)',
     'bg-title': 'var(--clr-crust)',
-    'bg-explorer': 'var(--clr-base)',
-    'bg-explorer-selected': 'var(--clr-primary-100)',
-    'bg-snippet': 'var(--clr-base)',
+    'bg-explorer': 'var(--clr-crust-300)',
+    'bg-explorer-selected': 'var(--clr-surface1)',
+    'bg-snippet': 'var(--clr-base-200)',
     'bg-snippet-highlighted': 'var(--clr-primary-100)',
+    'bg-window-header': 'var(--clr-crust-300)',
   };
-  const dark = {};
+  const dark = {
+    'bg': 'var(--clr-base)',
+    'bg-topbar': 'var(--clr-base)',
+    'bg-code': 'var(--clr-crust)',
+    'bg-explorer': 'var(--clr-base)',
+    'bg-snippet': 'var(--clr-base-400)',
+    'bg-title': 'var(--clr-surface0)',
+    'bg-explorer-selected': 'var(--clr-surface1)',
+  };
   return mergeColors(base, light, dark);
 }
 

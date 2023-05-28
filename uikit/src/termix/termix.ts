@@ -29,7 +29,7 @@ export function useTermixStyle(theme: Termix, { element, ...props }: TermixProps
   const {
     colorScheme: color = 'text',
     variant = 'default',
-    fill = 'solid',
+    fill = 'ghost',
     size = 'md',
     density = 'packed',
     weight = 'regular',

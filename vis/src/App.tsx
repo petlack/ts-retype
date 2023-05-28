@@ -46,8 +46,9 @@ function App() {
   const [meta, setMeta] = useState({} as Metadata);
   const [isDrawerOpen, toggleDrawer] = useBoolean(false);
   // const [query, setQuery] = useState('');
-  // const initialFilter = { minFiles: 2, minProperties: 3, selectedSimilarity: 'all', selectedType: 'all' };
-  const initialFilter = () => true;
+  const initialFilter = { minFiles: 2, minProperties: 3, selectedSimilarity: 'all', selectedType: 'all' };
+  // const initialFilter = () => true;
+  const filter = initialFilter;
 
   const {
     // query,
@@ -91,31 +92,41 @@ function App() {
       <SearchPhraseProvider value={{ phrase: query }}>
         <ToastProvider />
         <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
-          <Box sx={{ bg: 'primary', height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
+          <Box sx={{ bg: 'primary-700', height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
             <Heading as='h2'>Sidebar</Heading>
-            <Button onClick={toggleDrawer} rightIcon={<FaTimes />}>Close</Button>
             <ThemeToggle />
+            <Filters
+              filter={filter}
+              updateFilter={(...args) => { console.log('update filter', args); }}
+              facetsStats={{}}
+              visible={true}
+            />
           </Box>
         </Drawer>
 
         <Topbar sx={{ flex: 1 }}>
-          <Flex sx={{ gap: 4, py: 1, px: 2 }}>
+          <Flex sx={{ gap: 3, py: 1, px: 2 }}>
             <Logo name='retype' />
             <Search
               query={query}
               setQuery={setQuery}
             />
             <Button
+              data-state={isDrawerOpen ? 'open' : 'closed'}
               colorScheme='primary'
               fill='ghost'
+              mimic='invert'
               size='lg'
               leftIcon={<Hamburger isOpen={isDrawerOpen} flavor='cross' />}
               onClick={toggleDrawer}
               sx={{
-                position: 'fixed',
+                position: 'sticky',
                 right: 0,
-                top: 0,
+                top: 8,
                 zIndex: 50,
+                '&[data-state="open"]': {
+                  color: 'background',
+                }
               }}
             />
 
@@ -124,7 +135,7 @@ function App() {
             <Listing
               meta={meta}
               results={results}
-              filter={{ minFiles: 0, selectedType: '', minProperties: 0, selectedSimilarity: '' }}
+              filter={filter}
             />
             <Footer meta={meta} />
           </div>
