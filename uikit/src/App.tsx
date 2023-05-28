@@ -14,19 +14,14 @@ import { MdChatBubble } from 'react-icons/md';
 import { GiToaster } from 'react-icons/gi';
 import './fonts';
 import './App.scss';
+import { namedTheme, withFonts, fromColors } from './theme/builder';
 
 // import { Editor, importColors } from '@compai/css-gui';
 // type ThemeMode = 'light' | 'dark';
 //
 
-const body = '\'Poppins\', sans-serif';
-const heading = '\'Exo 2\', sans-serif';
-const mono = '\'Fira Code\', monospace';
-const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-const generated = generateTheme({ body, heading, mono, mode: preferredTheme, accent: 'blue', second: 'orange' });
-
-console.log({ generated });
+// console.log({ generated });
 console.log({ paletteColors: palette('latte') });
 
 const ColorTile = ({ color, name }: { color: string, name: string }) => {

@@ -35,7 +35,7 @@ function findBg(color: string): string {
   return scale.at(1) || 'black';
 }
 
-function ofColor(color: string, bg: string, fg: string) {
+export function ofColor(color: string, bg: string, fg: string) {
   const leftHalf = chromaPalette({ colors: [bg, color], numColors: 6 }).slice(1);
   const rightHalf = chromaPalette({ colors: [color, fg], numColors: 8 }).slice(1, -1);
   const beforeLeft = chromaPalette({ colors: [bg, leftHalf.at(0) || bg], numColors: 4 }).slice(

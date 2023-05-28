@@ -1,8 +1,8 @@
-import { darken } from '@theme-ui/color';
 import { toCssVars } from './theme/cssVariables';
 import { generateTheme } from './theme/generate';
-import { Color, ColorScale } from './theme/types/theme';
+import { Color } from './theme/types/theme';
 import { Termix, palette } from './termix';
+import { fromColors, ofColor } from './theme/builder';
 
 const primary = '#0a799e';
 const accent = '#c68726';
@@ -33,6 +33,22 @@ function colorScale(name: string, scale: Color) {
   return Object.fromEntries(Object.entries(scale).map(([key, value]) => [`${name}-${key}`, value]));
 }
 
+function paletteColorScales(mode: 'light' | 'dark') {
+  const modeColors = palette({ light: 'latte', dark: 'mocha' }[mode]);
+  const paletteColors = fromColors({ ...modeColors, accent: primary, mode });
+  const scales = Object.entries(modeColors)
+    .map(([k, v]) => ({
+      [k]: v.toString(),
+      ...Object.fromEntries(
+        Object.entries(
+          ofColor(v, paletteColors.colors.bg.toString(), paletteColors.colors.fg.toString()),
+        ).map(([s, c]) => [`${k}-${s}`, c]),
+      ),
+    }))
+    .reduce((res, item) => ({ ...res, ...item }));
+  return scales;
+}
+
 export const theme: Termix = {
   config: {
     // initialColorModeName: 'dark',
@@ -51,6 +67,7 @@ export const theme: Termix = {
     ...colorScale('neutral', light.colors.neutral),
     ...colorScale('primary', light.colors.accent),
     ...colorScale('accent', light.colors.second),
+    ...paletteColorScales('light'),
     modes: {
       dark: {
         ...palette('mocha'),
@@ -59,6 +76,7 @@ export const theme: Termix = {
         ...colorScale('neutral', dark.colors.neutral),
         ...colorScale('primary', dark.colors.accent),
         ...colorScale('accent', dark.colors.second),
+        ...paletteColorScales('dark'),
       },
     },
   },
@@ -102,7 +120,7 @@ export const theme: Termix = {
       color: 'white',
       bg: 'red',
       '&:hover': {
-        bg: darken('red', 0.1),
+        bg: 'red-200',
       },
     },
     secondary: {

@@ -24,8 +24,10 @@ export function useTermixStyle(theme: Termix, { element, ...props }: TermixProps
 
   const variants = [...variant.split('.'), fill, size, density, weight, corners];
   // const variants = [...variant.split('.')];
-  const fillStyles = (color && theme.fill?.[fill]({ color: getColor(theme, color) })) || {};
-  const mimicStyles = theme.mimic?.[mimic]({ color: getColor(theme, color) }) || {};
+  const fillStyles =
+    (color && theme.fill?.[fill]({ colorScheme: color, color: getColor(theme, color) })) || {};
+  const mimicStyles =
+    theme.mimic?.[mimic]({ colorScheme: color, color: getColor(theme, color) }) || {};
 
   const variantsStyles = [
     fillStyles,

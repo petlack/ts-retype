@@ -1,5 +1,4 @@
-import { lighten } from '@theme-ui/color';
-import { Theme, ThemeUIStyleObject, useThemeUI } from 'theme-ui';
+import { Theme, ThemeUIStyleObject } from 'theme-ui';
 
 const text =
   'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif';
@@ -304,7 +303,7 @@ export const theme: TermixTheme = {
   fill: {
     solid: ({ color }) => ({ backgroundColor: color, color: 'white' }),
     semi: ({ color }) => ({
-      backgroundColor: lighten(color, 0.4),
+      backgroundColor: `${color}-200`,
       color,
       border: '1px solid',
       borderColor: color,

@@ -22,11 +22,11 @@ export type Termix = Theme &
     speeds: Record<string, string>;
     corners: Record<Corners, TermixStyle>;
     density: Record<Density, TermixStyle>;
-    fill: Record<Fill, (props: { color: string }) => TermixStyle>;
+    fill: Record<Fill, (props: { color: string; colorScheme: string }) => TermixStyle>;
     size: Record<Size, TermixStyle>;
     weight: Record<Weight, TermixStyle>;
     energy: Record<Energy, TermixStyle>;
-    mimic: Record<Mimic, (props: { color: string }) => TermixStyle>;
+    mimic: Record<Mimic, (props: { color: string; colorScheme: string }) => TermixStyle>;
     speed?: Record<Speed, TermixStyle>;
   }>;
 
