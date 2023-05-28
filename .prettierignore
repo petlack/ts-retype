@@ -3,4 +3,5 @@ dist
 coverage
 docs/src/snippets
 example/src/api.ts
+uikit/storybook-static
 playwright*

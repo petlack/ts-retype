@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Button } from '~/core/Button';
+import { Button } from '~/Components/Button';
 import ThemeDecorator from '../ThemeDecorator';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
-  title: 'uikit/core/Button',
+  title: 'uikit/components/Button',
   component: Button,
   decorators: [ThemeDecorator],
   tags: ['autodocs'],
@@ -20,36 +20,35 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
   args: {
-    caption: 'uikit',
-    kind: 'button',
+    children: 'uikit',
+    fill: 'solid',
     size: 'md',
-    style: 'primary',
+    colorScheme: 'primary',
   },
 };
 
 export const Secondary: Story = {
   args: {
-    caption: 'uikit',
-    kind: 'button',
+    children: 'uikit',
+    fill: 'ghost',
     size: 'md',
-    style: 'secondary',
+    colorScheme: 'flamingo',
   },
 };
 
 export const Large: Story = {
   args: {
-    caption: 'uikit',
-    kind: 'button',
+    children: 'uikit',
+    fill: 'semi',
     size: 'xl',
-    style: 'primary',
   },
 };
 
 export const Medium: Story = {
   args: {
-    caption: 'uikit',
-    kind: 'button',
+    children: 'uikit',
+    fill: 'outline',
     size: 'md',
-    style: 'primary',
+    colorScheme: 'green',
   },
 };

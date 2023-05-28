@@ -1,19 +1,45 @@
-import { ThemeProvider } from '~/theme';
-import { generateTheme } from '~/theme/generate';
+import { Box } from '~/components/Box';
+import { Fullscreen } from '~/layouts/Fullscreen';
+import { Termix, ThemeProvider, palette } from '~/termix';
 
-const accent = '#0a799e';
-const second = '#c68726';
-const body = '\'Noto Sans\', sans-serif';
-const heading = '\'Exo 2\', sans-serif';
-const mono = '\'Fira Code\', monospace';
-const preferredTheme = typeof window !== 'undefined' ? window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' : 'light';
+const primary = '#0a799e';
+const accent = '#c68726';
 
-const theme = generateTheme({ accent, body, heading, mono, second, mode: preferredTheme });
+export const theme: Termix = {
+  config: {
+  },
+  fonts: {
+    body: '"Noto Sans", system-ui, sans-serif',
+    heading: '"Exo 2", sans-serif',
+    monospace: '"Fira Code",Menlo, monospace',
+  },
 
+  colors: {
+    ...palette('latte'),
+    primary,
+    accent,
+    modes: {
+      dark: {
+        ...palette('mocha'),
+        primary,
+        accent,
+      },
+    },
+  },
+
+  styles: {
+    root: {
+      bg: 'mantle',
+      color: 'text',
+    },
+  },
+};
 export default (Story: React.FC) => (
   <ThemeProvider theme={theme}>
-    <main className="light">
-      <Story />
-    </main>
+    <Box corners='round' sx={{ bg: 'background', width: '100%', height: '100%', p: 4 }}>
+      <Box sx={{ bg: null }}>
+        <Story />
+      </Box>
+    </Box>
   </ThemeProvider>
 );

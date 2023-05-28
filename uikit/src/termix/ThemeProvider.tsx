@@ -27,6 +27,8 @@ const body = '\'Nunito Sans\', sans-serif';
 const heading = '\'Exo 2\', sans-serif';
 const mono = '\'Fira Code\', monospace';
 
+export const Bar = () => <></>;
+
 function getColor(theme: Theme, name: keyof Theme['colors'], value: number): string {
   const color = theme.colors[name];
   if (typeof color === 'number') {
