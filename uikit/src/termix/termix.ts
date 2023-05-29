@@ -1,8 +1,9 @@
 import { Termix, TermixProps, TermixStyle } from './types';
 import { getColor } from '@theme-ui/color';
-import { fromColors, ofColor } from './mixer';
+import { fromColors, ofColor, readableColor } from './mixer';
+import { ThemeUIStyleObject } from 'theme-ui';
 
-function rejectNils<T extends Record<string, any>>(obj: T): T {
+function rejectNils<T extends Record<string, unknown>>(obj: T): T {
   return Object.fromEntries(Object.entries(obj).filter(([, value]) => value != null)) as T;
 }
 
@@ -25,9 +26,12 @@ export function paletteColorScales(
   return scales;
 }
 
-export function useTermixStyle(theme: Termix, { element, ...props }: TermixProps): TermixStyle {
+export function useTermixStyle(
+  theme: Termix,
+  { element, ...props }: TermixProps,
+): ThemeUIStyleObject {
   const {
-    colorScheme: color = 'text',
+    colorScheme: color,
     variant = 'default',
     fill = 'ghost',
     size = 'md',
@@ -44,11 +48,22 @@ export function useTermixStyle(theme: Termix, { element, ...props }: TermixProps
 
   const variants = [...variant.split('.'), fill, size, density, weight, corners];
   // const variants = [...variant.split('.')];
-  const fillStyles =
-    (color && theme.fill?.[fill]({ colorScheme: color, color: getColor(theme, color) })) || {};
-
-  const mimicStyles =
-    theme.mimic?.[mimic]({ colorScheme: color, color: getColor(theme, color) }) || {};
+  const fillStyles = color
+    ? (color &&
+        theme.fill?.[fill]({
+          colorScheme: color,
+          color: getColor(theme, color),
+          readable: readableColor(getColor(theme, color)),
+        })) ||
+      {}
+    : {};
+  const mimicStyles = color
+    ? theme.mimic?.[mimic]({
+        colorScheme: color,
+        color: getColor(theme, color),
+        readable: readableColor(getColor(theme, color)),
+      }) || {}
+    : {};
 
   const variantsStyles = [
     fillStyles,

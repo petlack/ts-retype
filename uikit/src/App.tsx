@@ -1,5 +1,5 @@
 import { Card, Container, Heading, Text } from 'theme-ui';
-import { Box, Button, Hamburger, Logo, Search, Spinner, Tag } from '~/components';
+import { Box, Button, Hamburger, Label, Logo, Search, Spinner, Tag } from '~/components';
 import { FaBeer, FaDownload, FaInfo, FaLock, FaMoon, FaRocketchat, FaSun, FaTimes } from 'react-icons/fa';
 import { Drawer, Modal, Popover, PopoverContent, PopoverTrigger, Stack, Tooltip, TooltipContent, TooltipTrigger, Topbar, useToast, Wrap } from '~/layouts';
 import { readableColor, useTermix, ThemeProvider } from './termix';
@@ -11,6 +11,7 @@ import { useModal } from '~/hooks';
 import { AiFillAlert } from 'react-icons/ai';
 import './fonts';
 import './App.scss';
+import { Radio } from './components/Radio';
 
 const ColorTile = ({ color, name }: { color: string, name: string }) => {
   const text = color && readableColor(color);
@@ -79,6 +80,26 @@ export function App() {
         </Card>
 
         <Card>
+          <Heading>Radio</Heading>
+          <Stack sx={{ gap: 2 }} align='start'>
+            <Stack as='form' p={2} sx={{ gap: 2 }}>
+              <Label>
+                <Radio name='msg' value='hello' />
+                Hello
+              </Label>
+              <Label>
+                <Radio name='msg' value='world' defaultChecked />
+                <Text>World</Text>
+              </Label>
+              <Label>
+                <Radio name='msg' value='foo' />
+                <Text>Foo Bar</Text>
+              </Label>
+            </Stack>
+          </Stack>
+        </Card>
+
+        <Card>
           <Heading>Overlay</Heading>
           <Wrap>
             <Button
@@ -90,7 +111,7 @@ export function App() {
               onClick={openDrawer}
             >Drawer</Button>
             <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
-              <Box sx={{ bg: 'primary', height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
+              <Box colorScheme='primary-600' fill='solid' sx={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
                 <Heading as='h2'>Sidebar</Heading>
                 <Button onClick={closeDrawer} rightIcon={<FaTimes />}>Close</Button>
               </Box>

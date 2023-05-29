@@ -420,14 +420,14 @@ export const theme: Termix = {
     morph: () => ({
       transform: 'scale(1)',
       '&:hover': {
-        transform: 'scale(1.1)',
+        transform: 'scale(1.2)',
       },
     }),
   },
 
   fill: {
-    solid: ({ colorScheme, color }) => ({
-      bg: colorScheme,
+    solid: ({ colorScheme, color, readable }) => ({
+      bg: color,
       color: readableColor(color, 'white', 'black'),
       '&:hover': {
         bg: `${colorScheme}-700`,

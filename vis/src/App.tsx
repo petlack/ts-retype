@@ -92,7 +92,7 @@ function App() {
       <SearchPhraseProvider value={{ phrase: query }}>
         <ToastProvider />
         <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
-          <Box sx={{ bg: 'primary-700', height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
+          <Box colorScheme='primary-600' fill='solid' sx={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
             <Heading as='h2'>Sidebar</Heading>
             <ThemeToggle />
             <Filters

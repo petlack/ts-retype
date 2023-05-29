@@ -66,7 +66,6 @@ export const Drawer = ({
     <FocusLock disabled={!isOpen}>
       <Box
         aria-hidden={isOpen ? 'false' : 'true'}
-        sx={{ bg: 'none' }}
       >
 
         <Box
@@ -77,7 +76,6 @@ export const Drawer = ({
             top: 0,
             left: position === 'left' ? 0 : undefined,
             right: position === 'right' ? 0 : undefined,
-            bg: 'none',
             boxShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
             transitionProperty: 'transform',
             transition: `${speed}ms ease`,

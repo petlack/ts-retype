@@ -11,11 +11,16 @@ export function desaturate(color: string) {
   return polishedDesaturate(0.75, color);
 }
 
-export function readableColor(bg: string, white?: string, black?: string, strict?: boolean) {
+export function readableColor(
+  bg: string,
+  white?: string,
+  black?: string,
+  strict?: boolean,
+): string {
   try {
     return polishedReadableColor(bg, white, black, strict);
   } catch (e: any) {
-    return white;
+    return white ?? 'white';
   }
 }
 

@@ -4,10 +4,10 @@ import { Box } from '~/components/Box';
 export function Logo({ name }: { name: string }) {
   return (
     <Flex>
-      <Box colorScheme='primary' fill='solid' size='md' sx={{
+      <Box colorScheme='primary' fill='solid' size='md' corners='dull' sx={{
         aspectRatio: 1,
         display: 'flex',
-        minWidth: '3.5ch',
+        minWidth: 'unset',
         alignItems: 'flex-end',
         justifyContent: 'flex-end',
         lineHeight: 1,

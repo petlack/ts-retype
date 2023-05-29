@@ -1,9 +1,7 @@
-import { FC } from 'react';
-import { Box } from 'theme-ui';
-import { TermixProps, useTermix, useTermixStyle } from '~/termix';
-import { StyledContainer } from '~/components/types';
+import { Box } from '~/components/Box';
+import { TermixContainer, TermixProps, useTermix, useTermixStyle } from '~/termix';
 
-export const Tag: FC<StyledContainer<TermixProps>> = ({
+export const Tag: TermixContainer = ({
   children,
   sx,
   density = 'snug',
