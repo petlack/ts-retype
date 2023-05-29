@@ -15,6 +15,7 @@ const projectRootDir = path.resolve(__dirname);
 
 const externals = [
   'react',
+  'react-dom',
   'ramda',
   '@emtion/react',
   'react/jsx-runtime',
@@ -24,6 +25,23 @@ const externals = [
   'polished',
   'minisearch',
   'chroma-js',
+  'react-icons/fa',
+  'react-icons/md',
+  'react-focus-lock',
+  '@floating-ui/react',
+];
+
+const plugins = [
+  alias({
+    customResolver: resolve({ extensions: ['.tsx', '.ts', '.js'] }),
+    entries: Object.entries({
+      '~/*': ['./src/*'],
+    }).map(([alias, value]) => ({
+      find: new RegExp(`${alias.replace('/*', '')}`),
+      replacement: path.resolve(projectRootDir, `${value[0].replace('/*', '')}`),
+    })),
+  }),
+  typescript({ tsconfig: './tsconfig.json' }),
 ];
 
 export default [
@@ -41,16 +59,7 @@ export default [
     plugins: [
       // external(),
       // resolve(),
-      alias({
-        customResolver: resolve({ extensions: ['.tsx', '.ts', '.js'] }),
-        entries: Object.entries({
-          '~/*': ['./src/*'],
-        }).map(([alias, value]) => ({
-          find: new RegExp(`${alias.replace('/*', '')}`),
-          replacement: path.resolve(projectRootDir, `${value[0].replace('/*', '')}`),
-        })),
-      }),
-      typescript({ tsconfig: './tsconfig.json' }),
+      ...plugins,
       postcss({
         extract: true,
         modules: false,
@@ -78,13 +87,7 @@ export default [
     plugins: [
       // external(),
       // resolve(),
-      typescript({ tsconfig: './tsconfig.json' }),
-      postcss({
-        extract: true,
-        modules: false,
-        sourceMap: true,
-        use: ['sass'],
-      }),
+      ...plugins,
       visualizer({
         emitFile: true,
         filename: 'stats-hooks.html',
@@ -106,7 +109,7 @@ export default [
     plugins: [
       // external(),
       // resolve(),
-      typescript({ tsconfig: './tsconfig.json' }),
+      ...plugins,
       postcss({
         extract: true,
         modules: false,
@@ -146,7 +149,7 @@ export default [
     input: 'src/index.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     external: [/\.css|\.styl|\.scss$/],
-    plugins: [dts()],
+    plugins: [...plugins, dts()],
   },
 
   {
@@ -155,7 +158,7 @@ export default [
       file: 'dist/hooks.d.ts',
       format: 'es',
     },
-    plugins: [dts()],
+    plugins: [...plugins, dts()],
   },
 
   {
@@ -165,7 +168,7 @@ export default [
       format: 'es',
     },
     external: [/\.css|\.styl|\.scss$/],
-    plugins: [dts()],
+    plugins: [...plugins, dts()],
   },
 
   {

@@ -139,7 +139,6 @@ function App() {
             />
             <Footer meta={meta} />
           </div>
-          <TooltipRoot />
         </Topbar>
       </SearchPhraseProvider>
     </ThemeProvider >

@@ -2,7 +2,9 @@ import { Flex } from '@theme-ui/components';
 import { FC, forwardRef } from 'react';
 import { BoxOwnProps } from '~/components/Box';
 import { Assign } from '~/components/types';
-import { TermixProps, useTermix, useTermixStyle } from '~/termix';
+import { useTermixStyle } from '~/termix/termix';
+import { useTermix } from '~/termix/useTermix';
+import { TermixProps } from '~/termix/types';
 
 export type StackOwnProps = BoxOwnProps & {
   direction?: 'row' | 'column';

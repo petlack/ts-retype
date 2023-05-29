@@ -1,7 +1,6 @@
 import { Termix, TermixProps, TermixStyle } from './types';
 import { getColor } from '@theme-ui/color';
 import { fromColors, ofColor, readableColor } from './mixer';
-import { ThemeUIStyleObject } from 'theme-ui';
 
 function rejectNils<T extends Record<string, unknown>>(obj: T): T {
   return Object.fromEntries(Object.entries(obj).filter(([, value]) => value != null)) as T;
@@ -26,10 +25,7 @@ export function paletteColorScales(
   return scales;
 }
 
-export function useTermixStyle(
-  theme: Termix,
-  { element, ...props }: TermixProps,
-): ThemeUIStyleObject {
+export function useTermixStyle(theme: Termix, { element, ...props }: TermixProps): TermixStyle {
   const {
     colorScheme: color,
     variant = 'default',

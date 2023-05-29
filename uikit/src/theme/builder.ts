@@ -1,14 +1,14 @@
 import { extendStandard } from './types/extend';
 import { Color, ColorScale, Theme, ThemeMode } from './types/theme';
 import chromaPalette from './chroma';
-import curriedDesaturate from 'polished/lib/color/desaturate';
+import { desaturate as polishedDesaturate } from 'polished';
 
 function desaturate(color: string) {
   // return chroma(color)
   //   .set('hsl.s', '0.10')
   //   .set('hsl.l', '0.66')
   //   .hex();
-  return curriedDesaturate(0.75)(color);
+  return polishedDesaturate(0.75, color);
 }
 
 function toColorScale(colors: Color[]): ColorScale {
