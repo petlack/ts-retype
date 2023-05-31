@@ -1,4 +1,5 @@
 import { FC, useState, useCallback, useEffect } from 'react';
+import { Box } from '../Box';
 import { Control } from './Control';
 
 const find = (haystack: string[], needle: string) => haystack.findIndex(id => id === needle);
@@ -14,7 +15,7 @@ export const ControlsList: FC<
 > = ({ children, onSelect, selected, Render, ...props }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [focusedIdx, setFocusedIdx] = useState(find(children, selected));
-  
+
   const onKeyDown = useCallback((e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === 'ArrowDown') {
       if (!isFocused) {
@@ -76,14 +77,15 @@ export const ControlsList: FC<
   }, [children, selected, setFocusedIdx]);
 
   return (
-    <ul
+    <Box
       {...props}
       {...(isFocused ? {} : { tabIndex: 0 })}
+      sx={{ display: 'flex', flexDirection: 'column' }}
       onKeyDown={onKeyDown}
       role="tablist"
       aria-label={props['aria-label']}
     >
       {markup}
-    </ul>
+    </Box>
   );
 };

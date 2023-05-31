@@ -4,7 +4,8 @@ import { BoxOwnProps } from '~/components/Box';
 import { Assign } from '~/components/types';
 import { useTermixStyle } from '~/termix/termix';
 import { useTermix } from '~/termix/useTermix';
-import { TermixProps } from '~/termix/types';
+import { TermixProps, TermixPropsNames } from '~/termix/types';
+import { omit } from 'ramda';
 
 export type StackOwnProps = BoxOwnProps & {
   direction?: 'row' | 'column';
@@ -42,7 +43,7 @@ export const Stack: FC<StackProps> = forwardRef<HTMLDivElement, StackProps>(({
   };
 
   return (
-    <Flex {...props} ref={ref} sx={mergedSx}>
+    <Flex {...omit(TermixPropsNames, props)} ref={ref} sx={mergedSx}>
       {children}
     </Flex>
   );

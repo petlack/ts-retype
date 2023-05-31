@@ -4,9 +4,9 @@ import { Assign, ForwardRef } from '../types';
 
 export type LabelProps = Assign<ComponentPropsWithRef<'label'>, BoxOwnProps>
 
-export const Label: ForwardRef<HTMLLabelElement, LabelProps> = forwardRef(({ children }, ref) => {
+export const Label: ForwardRef<HTMLLabelElement, LabelProps> = forwardRef(({ children, sx }, ref) => {
   return (
-    <Box ref={ref} as='label' sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 2 }}>
+    <Box ref={ref} as='label' sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 2, ...sx }}>
       {children}
     </Box>
   );

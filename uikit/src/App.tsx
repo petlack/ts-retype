@@ -1,7 +1,8 @@
 import { Card, Container, Heading, Text } from 'theme-ui';
-import { Box, Button, Hamburger, Label, Logo, Search, Spinner, Tag } from '~/components';
+import { Box, BoxProps, Button, Hamburger, Label, Logo, Search, Spinner, Tag } from '~/components';
 import { FaBeer, FaDownload, FaInfo, FaLock, FaMoon, FaRocketchat, FaSun, FaTimes } from 'react-icons/fa';
-import { Drawer, Modal, Popover, PopoverContent, PopoverTrigger, Stack, Tooltip, TooltipContent, TooltipTrigger, Topbar, useToast, Wrap } from '~/layouts';
+import { Drawer, Grid, Modal, Popover, PopoverContent, PopoverTrigger, Stack, Tooltip, TooltipContent, TooltipTrigger, Topbar, useToast, Wrap } from '~/layouts';
+import { Options, OptionItem as Option } from './layouts/Options';
 import { readableColor, useTermix, ThemeProvider } from './termix';
 import { useCallback, useState } from 'react';
 import { getColor } from '@theme-ui/color';
@@ -9,9 +10,9 @@ import { theme } from './ts-theme.js';
 // import { theme } from './termix/theme.js';
 import { useModal } from '~/hooks';
 import { AiFillAlert } from 'react-icons/ai';
+import { Radio } from './components/Radio';
 import './fonts';
 import './App.scss';
-import { Radio } from './components/Radio';
 
 const ColorTile = ({ color, name }: { color: string, name: string }) => {
   const text = color && readableColor(color);
@@ -63,6 +64,36 @@ export function App() {
   const closeDrawer = useCallback(() => setIsDrawerOpen(false), [setIsDrawerOpen]);
   const toast = useToast();
 
+  const optionStyles: BoxProps['sx'] = {
+    position: 'relative',
+    px: 2,
+    cursor: 'default',
+    borderRadius: 'md',
+    userSelect: 'none',
+    transition: '150ms ease-in',
+    transitionProperty: 'background,color',
+    '&:before': {
+      content: '""',
+      position: 'absolute',
+      top: 'var(--space-2)',
+      left: '0',
+      bottom: 'var(--space-2)',
+      width: 'var(--size-1)',
+      bg: 'transparent',
+      transition: '150ms ease-in',
+      transitionProperty: 'background,color',
+    },
+    '&:hover': {
+      '&:before': {
+        bg: 'primary-200',
+      },
+    },
+    '&[aria-checked=\'true\']': {
+      bg: 'primary',
+      color: 'white',
+    },
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container
@@ -79,24 +110,72 @@ export function App() {
           <Search query='foo' setQuery={() => {/**/ }} />
         </Card>
 
+        <Stack sx={{ gap: 4, alignItems: 'stretch' }}>
+          <Heading as='h2'>Options</Heading>
+          <Grid sx={{ gap: 4, gridTemplateColumns: 'repeat(3, 1fr)' }}>
+            <Card>
+              <Heading as='h3'>with radio</Heading>
+              <Options name='foo' corners='round' sx={{ p: 2, gap: 2, width: 'max-content', overflow: 'hidden' }}>
+                <Option value='hello'>
+                  <Label>
+                    <Radio name='foo' value='hello' />
+                    <Text>Hello</Text>
+                  </Label>
+                </Option>
+                <Option value='world'>
+                  <Label>
+                    <Radio name='foo' value='world' />
+                    <Text>World</Text>
+                  </Label>
+                </Option>
+              </Options>
+            </Card>
+
+            <Card>
+              <Heading as='h3'>custom element</Heading>
+              <Options name='foo' corners='round' sx={{ p: 2, gap: 2, width: 'max-content', overflow: 'hidden' }}>
+                <Option value='hello'>
+                  <Box sx={optionStyles}>Hello</Box>
+                </Option>
+                <Option value='world'>
+                  <Box sx={optionStyles}>World</Box>
+                </Option>
+                <Option value='bar'>
+                  <Box sx={optionStyles}>Foo Bar</Box>
+                </Option>
+                <Option value='baz'>
+                  <Box sx={optionStyles}>Baz</Box>
+                </Option>
+                <Option value='xyz'>
+                  <Box sx={optionStyles}>XYZ</Box>
+                </Option>
+              </Options>
+            </Card>
+
+            <Card>
+              <Heading as='h3'>Radio</Heading>
+              <Stack sx={{ gap: 2 }} align='start'>
+                <Stack as='form' p={2} sx={{ gap: 2 }}>
+                  <Label>
+                    <Radio colorScheme='accent' name='msg' value='hello' />
+                    Hello
+                  </Label>
+                  <Label>
+                    <Radio name='msg' value='world' defaultChecked />
+                    <Text>World</Text>
+                  </Label>
+                  <Label>
+                    <Radio name='msg' value='foo' />
+                    <Text>Foo Bar</Text>
+                  </Label>
+                </Stack>
+              </Stack>
+            </Card>
+          </Grid>
+        </Stack>
+
         <Card>
-          <Heading>Radio</Heading>
-          <Stack sx={{ gap: 2 }} align='start'>
-            <Stack as='form' p={2} sx={{ gap: 2 }}>
-              <Label>
-                <Radio name='msg' value='hello' />
-                Hello
-              </Label>
-              <Label>
-                <Radio name='msg' value='world' defaultChecked />
-                <Text>World</Text>
-              </Label>
-              <Label>
-                <Radio name='msg' value='foo' />
-                <Text>Foo Bar</Text>
-              </Label>
-            </Stack>
-          </Stack>
+          <Heading>Checkbox</Heading>
         </Card>
 
         <Card>

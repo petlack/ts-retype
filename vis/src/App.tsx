@@ -4,7 +4,7 @@ import { Footer } from './components/Footer/Footer.js';
 import { FulltextData } from './types.js';
 import { Listing } from './components/Listing/index.js';
 import { useBoolean, useSearch, SearchPhraseProvider } from '@ts-retype/uikit/hooks';
-import { Box, Button, Drawer, Hamburger, Logo, Search, ThemeProvider, ThemeToggle, ToastProvider, Topbar } from '@ts-retype/uikit';
+import { Box, Button, Drawer, Hamburger, Logo, Search, Stack, ThemeProvider, ThemeToggle, ToastProvider, Topbar } from '@ts-retype/uikit';
 import { TooltipRoot } from './hooks/useTooltip/TooltipRoot.js';
 import type { Metadata, TypeDuplicate } from '@ts-retype/retype';
 import { decompressRoot } from '@ts-retype/retype/dist/snippet.js';
@@ -92,7 +92,7 @@ function App() {
       <SearchPhraseProvider value={{ phrase: query }}>
         <ToastProvider />
         <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
-          <Box colorScheme='primary-600' fill='solid' sx={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
+          <Stack align='stretch' colorScheme='primary-600' fill='solid' sx={{ height: '100%', gap: 4, p: 4 }}>
             <Heading as='h2'>Sidebar</Heading>
             <ThemeToggle />
             <Filters
@@ -101,7 +101,7 @@ function App() {
               facetsStats={{}}
               visible={true}
             />
-          </Box>
+          </Stack>
         </Drawer>
 
         <Topbar sx={{ flex: 1 }}>
