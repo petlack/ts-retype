@@ -5,7 +5,7 @@ import { Assign, ForwardRef, StyledComponent } from '../types';
 export type ListItemRadioProps = Assign<React.ComponentPropsWithRef<'input'>, StyledComponent<BoxOwnProps>>
 
 export const ListItemRadio: ForwardRef<HTMLInputElement, ListItemRadioProps> = forwardRef((props, ref) => {
-  const { children, colorScheme, fill, size, ...rest } = props;
+  const { children, colorScheme, fill, sizing: size, ...rest } = props;
   return (
     <>
       <Box

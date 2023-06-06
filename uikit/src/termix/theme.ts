@@ -49,10 +49,11 @@ export const theme: Termix = {
 
   fontWeights: {
     thin: 200,
+    light: 300,
     body: 400,
     heading: 500,
-    bold: 600,
-    black: 800,
+    bold: 700,
+    black: 900,
   },
 
   lineHeights: {
@@ -109,7 +110,7 @@ export const theme: Termix = {
       colorScheme: 'primary',
       variant: 'default',
       fill: 'solid',
-      size: 'md',
+      sizing: 'md',
       density: 'airy',
       weight: 'bold',
       corners: 'round',
@@ -173,18 +174,20 @@ export const theme: Termix = {
     },
   },
 
-  forms: {
-    input: {
-      px: 2,
-      py: 0.5,
-      borderColor: 'text',
+  inputs: {
+    default: {
+      bg: 'unset',
+      borderColor: 'text-200',
+      borderWidth: 1,
+      borderStyle: 'solid',
       transition: 'box-shadow 150ms ease-in',
       fontFamily: 'body',
+      fontSize: 'md',
       '&:focus': {
-        borderColor: 'primary',
+        borderColor: 'accent',
         borderWidth: 1,
         boxShadow: (t) =>
-          `${t.colors?.primary} 0px 0px 5px -2px, ${t.colors?.primary} 0px 0px 1px 0px`,
+          `${t.colors?.accent} 0px 0px 5px -2px, ${t.colors?.accent} 0px 0px 1px 0px`,
         outline: 'none',
       },
     },
@@ -195,7 +198,7 @@ export const theme: Termix = {
       color: 'currentColor',
       fill: 'ghost',
       speed: 'real',
-      size: '3xl',
+      sizing: '3xl',
       p: 0,
     },
     sm: {
@@ -470,7 +473,7 @@ export const theme: Termix = {
     }),
   },
 
-  size: {
+  sizing: {
     xs: { fontSize: 'xs' },
     sm: { fontSize: 'sm' },
     md: { fontSize: 'md' },

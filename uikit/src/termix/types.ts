@@ -25,6 +25,7 @@ export type Termix = Theme &
     tags: TermixComponentDefinition;
     buttons: TermixComponentDefinition;
     spinners: TermixComponentDefinition;
+    inputs: TermixComponentDefinition;
     speeds: Record<string, string>;
     corners: Record<Corners, TermixStyle>;
     density: Record<Density, TermixStyle>;
@@ -32,7 +33,7 @@ export type Termix = Theme &
       Fill,
       (props: { color: string; colorScheme: string; readable: string }) => TermixStyle
     >;
-    size: Record<Size, TermixStyle>;
+    sizing: Record<Size, TermixStyle>;
     weight: Record<Weight, TermixStyle>;
     energy: Record<Energy, TermixStyle>;
     mimic: Record<
@@ -45,7 +46,7 @@ export type Termix = Theme &
 export type TermixProps = {
   colorScheme?: string;
   variant?: string;
-  size?: Size;
+  sizing?: Size;
   density?: Density;
   fill?: Fill;
   weight?: Weight;
@@ -59,7 +60,7 @@ export type TermixProps = {
 export const TermixPropsNames = [
   'colorScheme',
   'variant',
-  'size',
+  'sizing',
   'density',
   'fill',
   'weight',

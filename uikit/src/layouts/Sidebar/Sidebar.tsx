@@ -16,7 +16,7 @@ export const SidebarButton: FC<StyledComponent<{ isOpen: boolean, onClick: () =>
     ...sx,
   };
   return (
-    <Button colorScheme='primary' onClick={onClick} size='lg' px={2} py={2} fill='solid' sx={mergedSx}>
+    <Button colorScheme='primary' onClick={onClick} sizing='lg' px={2} py={2} fill='solid' sx={mergedSx}>
       <Hamburger flavor='shoot' weight='black' isOpen={isOpen} />
     </Button>
   );

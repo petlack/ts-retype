@@ -16,7 +16,7 @@ export const Radio: ForwardRef<HTMLInputElement, RadioProps> = forwardRef((props
     corners = 'pill',
     mimic = 'tint',
     energy = 'live',
-    size,
+    sizing: size,
     sx,
     ...rest
   } = props;

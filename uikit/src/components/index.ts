@@ -3,6 +3,7 @@ export * from './Button';
 export * from './Control';
 export * from './Hamburger';
 export * from './Heading';
+export * from './Input';
 export * from './Label';
 export * from './Logo';
 export * from './Radio';

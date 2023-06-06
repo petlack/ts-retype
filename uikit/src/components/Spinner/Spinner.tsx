@@ -42,5 +42,6 @@ export const Spinner: FC<StyledComponent<SpinnerProps>> = ({ flavor, sx, ...term
     aspectRatio: 1,
     ...sx,
   };
+
   return <Box className='spinner' sx={mergedStyle}><Animation /></Box>;
 };

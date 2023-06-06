@@ -1,6 +1,8 @@
 import { FC } from 'react';
-import { Grid, Input, Label } from 'theme-ui';
-import { Box } from '../Box';
+import { Grid } from '~/layouts/Grid';
+import { Input } from '~/components/Input';
+import { Label } from '~/components/Label';
+import { Box } from '~/components/Box';
 import './Search.scss';
 
 export type SearchProps = {

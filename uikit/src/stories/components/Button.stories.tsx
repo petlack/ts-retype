@@ -22,7 +22,7 @@ export const Primary: Story = {
   args: {
     children: 'uikit',
     fill: 'solid',
-    size: 'md',
+    sizing: 'md',
     colorScheme: 'primary',
   },
 };
@@ -31,7 +31,7 @@ export const Secondary: Story = {
   args: {
     children: 'uikit',
     fill: 'ghost',
-    size: 'md',
+    sizing: 'md',
     colorScheme: 'flamingo',
   },
 };
@@ -40,7 +40,7 @@ export const Large: Story = {
   args: {
     children: 'uikit',
     fill: 'semi',
-    size: 'xl',
+    sizing: 'xl',
   },
 };
 
@@ -48,7 +48,7 @@ export const Medium: Story = {
   args: {
     children: 'uikit',
     fill: 'outline',
-    size: 'md',
+    sizing: 'md',
     colorScheme: 'green',
   },
 };
