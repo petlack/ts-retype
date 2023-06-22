@@ -12,6 +12,9 @@ export function colorScale(name: string, scale: Color) {
   return Object.fromEntries(Object.entries(scale).map(([key, value]) => [`${name}-${key}`, value]));
 }
 
+const light = palette('latte');
+const dark = palette('mocha');
+
 export const theme: Termix = {
   config: {
     // initialColorModeName: 'dark',
@@ -24,12 +27,14 @@ export const theme: Termix = {
   },
 
   colors: {
-    ...palette('latte'),
+    ...light,
+    background: light.mantle,
     primary,
     accent,
     modes: {
       dark: {
-        ...palette('mocha'),
+        ...dark,
+        background: dark.mantle,
         primary,
         accent,
       },
@@ -38,60 +43,60 @@ export const theme: Termix = {
 
   styles: {
     root: {
-      bg: 'mantle',
+      bg: 'background',
       color: 'text',
     },
   },
 
-  cards: {
-    primary: {
-      padding: 4,
-      color: 'text',
-      bg: 'base',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 4,
-      borderRadius: 'lg',
-    },
-  },
+  // cards: {
+  //   primary: {
+  //     padding: 4,
+  //     color: 'text',
+  //     bg: 'base',
+  //     display: 'flex',
+  //     flexDirection: 'column',
+  //     gap: 4,
+  //     borderRadius: 'lg',
+  //   },
+  // },
 
-  buttons: {
-    plain: {
-      color: 'text',
-      '&:hover': {
-        color: 'sky',
-      },
-    },
-    icon: {
-      ph: 2,
-      pw: 1,
-    },
-    primary: {
-      color: 'text',
-      bg: 'primary',
-    },
-    danger: {
-      color: 'white',
-      bg: 'red',
-      '&:hover': {
-        bg: 'red-200',
-      },
-    },
-    secondary: {
-      color: 'background',
-      bg: 'secondary',
-      '&:hover': {
-        bg: 'sky',
-      },
-    },
-  },
+  // buttons: {
+  //   plain: {
+  //     color: 'text',
+  //     '&:hover': {
+  //       color: 'sky',
+  //     },
+  //   },
+  //   icon: {
+  //     ph: 2,
+  //     pw: 1,
+  //   },
+  //   primary: {
+  //     color: 'text',
+  //     bg: 'primary',
+  //   },
+  //   danger: {
+  //     color: 'white',
+  //     bg: 'red',
+  //     '&:hover': {
+  //       bg: 'red-200',
+  //     },
+  //   },
+  //   secondary: {
+  //     color: 'background',
+  //     bg: 'secondary',
+  //     '&:hover': {
+  //       bg: 'sky',
+  //     },
+  //   },
+  // },
 
-  forms: {
-    input: {
-      px: 3,
-      py: 1,
-      borderColor: 'overlay2',
-      borderRadius: 'md',
-    },
-  },
+  // forms: {
+  //   input: {
+  //     px: 3,
+  //     py: 1,
+  //     borderColor: 'overlay2',
+  //     borderRadius: 'md',
+  //   },
+  // },
 };

@@ -94,105 +94,105 @@ export const theme: Termix = {
     fast: '1s',
   },
 
-  buttons: {
-    primary: {
-      cursor: 'pointer',
-      color: 'text',
-      fontFamily: 'body',
-      '&>svg': {
-        width: '1em',
-        height: '1em',
-      },
-    },
-    default: {
-      // transitionProperty: 'background,color',
-      // transition: '150ms ease-in',
-      colorScheme: 'primary',
-      variant: 'default',
-      fill: 'solid',
-      sizing: 'md',
-      density: 'airy',
-      weight: 'bold',
-      corners: 'round',
-      energy: 'live',
-      mimic: 'tint',
-    },
-
-    disabled: {
-      colorScheme: 'overlay1',
-      cursor: 'not-allowed',
-    },
-
-    plain: {
-      backgroundColor: 'transparent',
-      color: 'primary',
-      '&:hover': {
-        bg: 'mantle',
-      },
-    },
-
-    sm: {
-      fontSize: 'sm',
-      lineHeight: 1,
-      px: '10px',
-      py: 2,
-      gap: 1,
-    },
-    md: {
-      fontSize: 'md',
-      lineHeight: 1,
-      px: 3,
-      py: '10px',
-      gap: '10px',
-    },
-    lg: {
-      fontSize: 'lg',
-      px: '18px',
-      py: '14px',
-      gap: 3,
-      lineHeight: 1,
-      borderWidth: 2,
-    },
-  },
-
-  cards: {
-    primary: {
-      bg: 'background',
-      color: 'text',
-      overflow: 'hidden',
-      display: 'flex',
-      flexDirection: 'column',
-      p: 3,
-      gap: 2.5,
-      border: '1px solid rgba(0, 0, 0, 0.125)',
-      transition: `350ms ${easeIn('quad')}`,
-      transitionProperty: 'border,box-shadow,opacity',
-      ':hover': {
-        border: '1px solid rgba(0, 0, 0, 0.25)',
-        boxShadow: '0 0 8px rgba(0, 0, 0, 0.125)',
-      },
-    },
-  },
-
-  inputs: {
-    default: {
-      bg: 'unset',
-      borderColor: 'text-200',
-      borderWidth: 1,
-      borderStyle: 'solid',
-      transition: 'box-shadow 150ms ease-in',
-      fontFamily: 'body',
-      fontSize: 'md',
-      '&:focus': {
-        borderColor: 'accent',
-        borderWidth: 1,
-        boxShadow: (t) =>
-          `${t.colors?.accent} 0px 0px 5px -2px, ${t.colors?.accent} 0px 0px 1px 0px`,
-        outline: 'none',
-      },
-    },
-  },
-
+  // buttons: {
+  //   primary: {
+  //     cursor: 'pointer',
+  //     color: 'text',
+  //     fontFamily: 'body',
+  //     '&>svg': {
+  //       width: '1em',
+  //       height: '1em',
+  //     },
+  //   },
+  //   default: {
+  //     // transitionProperty: 'background,color',
+  //     // transition: '150ms ease-in',
+  //     colorScheme: 'primary',
+  //     variant: 'default',
+  //     fill: 'solid',
+  //     sizing: 'md',
+  //     density: 'airy',
+  //     weight: 'bold',
+  //     corners: 'round',
+  //     energy: 'live',
+  //     mimic: 'tint',
+  //   },
+  //
+  //   disabled: {
+  //     colorScheme: 'overlay1',
+  //     cursor: 'not-allowed',
+  //   },
+  //
+  //   plain: {
+  //     backgroundColor: 'transparent',
+  //     color: 'primary',
+  //     '&:hover': {
+  //       bg: 'mantle',
+  //     },
+  //   },
+  //
+  //   sm: {
+  //     fontSize: 'sm',
+  //     lineHeight: 1,
+  //     px: '10px',
+  //     py: 2,
+  //     gap: 1,
+  //   },
+  //   md: {
+  //     fontSize: 'md',
+  //     lineHeight: 1,
+  //     px: 3,
+  //     py: '10px',
+  //     gap: '10px',
+  //   },
+  //   lg: {
+  //     fontSize: 'lg',
+  //     px: '18px',
+  //     py: '14px',
+  //     gap: 3,
+  //     lineHeight: 1,
+  //     borderWidth: 2,
+  //   },
+  // },
+  //
+  // cards: {
+  //   primary: {
+  //     bg: 'background',
+  //     color: 'text',
+  //     overflow: 'hidden',
+  //     display: 'flex',
+  //     flexDirection: 'column',
+  //     p: 3,
+  //     gap: 2.5,
+  //     border: '1px solid rgba(0, 0, 0, 0.125)',
+  //     transition: `350ms ${easeIn('quad')}`,
+  //     transitionProperty: 'border,box-shadow,opacity',
+  //     ':hover': {
+  //       border: '1px solid rgba(0, 0, 0, 0.25)',
+  //       boxShadow: '0 0 8px rgba(0, 0, 0, 0.125)',
+  //     },
+  //   },
+  // },
+  //
+  // inputs: {
+  //   default: {
+  //     bg: 'unset',
+  //     borderColor: 'text-200',
+  //     borderWidth: 1,
+  //     borderStyle: 'solid',
+  //     transition: 'box-shadow 150ms ease-in',
+  //     fontFamily: 'body',
+  //     fontSize: 'md',
+  //     '&:focus': {
+  //       borderColor: 'accent',
+  //       borderWidth: 1,
+  //       boxShadow: (t) =>
+  //         `${t.colors?.accent} 0px 0px 5px -2px, ${t.colors?.accent} 0px 0px 1px 0px`,
+  //       outline: 'none',
+  //     },
+  //   },
+  // },
+  //
   spinners: {
     default: {
       color: 'currentColor',
@@ -375,117 +375,117 @@ export const theme: Termix = {
     },
   },
 
-  tags: {
-    default: {
-      cursor: 'default',
-      lineHeight: 1,
-    },
-  },
+  // tags: {
+  //   default: {
+  //     cursor: 'default',
+  //     lineHeight: 1,
+  //   },
+  // },
 
-  corners: {
-    sharp: { borderRadius: 0 },
-    dull: { borderRadius: 'sm' },
-    round: { borderRadius: 'md' },
-    ball: { borderRadius: 'lg' },
-    pill: { borderRadius: 'max' },
-  },
-
-  density: {
-    packed: { p: 0 },
-    snug: { px: 1, py: 1 },
-    gapped: { px: 2, py: 1 },
-    airy: { px: 3, py: 2 },
-  },
-
-  energy: {
-    rigid: {
-      transition: 'none',
-    },
-    live: {
-      transition: `150ms ${easeIn('sine')}`,
-      transitionProperty: 'background,color,transform',
-    },
-  },
-
-  mimic: {
-    static: () => ({
-      '&:hover': {},
-    }),
-    tint: () => ({}),
-    invert: ({ colorScheme }) => ({
-      bg: 'transparent',
-      color: colorScheme,
-      '&:hover': {
-        bg: colorScheme,
-        color: 'background',
-      },
-    }),
-    morph: () => ({
-      transform: 'scale(1)',
-      '&:hover': {
-        transform: 'scale(1.2)',
-      },
-    }),
-  },
-
-  fill: {
-    solid: ({ colorScheme, color, readable }) => ({
-      bg: color,
-      color: readableColor(color, 'white', 'black'),
-      '&:hover': {
-        bg: `${colorScheme}-700`,
-        color: readableColor(color, 'white', 'black', true),
-      },
-    }),
-    semi: ({ color, colorScheme }) => ({
-      bg: `${colorScheme}-200`,
-      color: colorScheme,
-      border: '1px solid',
-      borderColor: colorScheme,
-      '&:hover': {
-        bg: `${colorScheme}-300`,
-        color: readableColor(color, 'white', 'black', true),
-      },
-    }),
-    outline: ({ colorScheme }) => ({
-      bg: 'transparent',
-      color: colorScheme,
-      border: '1px solid',
-      borderColor: colorScheme,
-      '&:hover': {
-        bg: `${colorScheme}-100`,
-      },
-    }),
-    ghost: ({ colorScheme }) => ({
-      bg: 'transparent',
-      color: colorScheme,
-      '&:hover': {
-        bg: `${colorScheme}-100`,
-      },
-    }),
-    link: ({ colorScheme }) => ({
-      color: colorScheme,
-      bg: 'transparent',
-      textDecoration: 'underline',
-      '&:hover': {
-        color: `${colorScheme}-700`,
-      },
-    }),
-  },
-
-  sizing: {
-    xs: { fontSize: 'xs' },
-    sm: { fontSize: 'sm' },
-    md: { fontSize: 'md' },
-    lg: { fontSize: 'lg' },
-    xl: { fontSize: 'xl' },
-    '2xl': { fontSize: '2xl' },
-    '3xl': { fontSize: '3xl' },
-  },
-
-  weight: {
-    bold: { fontWeight: 'bold' },
-    regular: { fontWeight: 'body' },
-    thin: { fontWeight: 'thin' },
-  },
+  // corners: {
+  //   sharp: { borderRadius: 0 },
+  //   dull: { borderRadius: 'sm' },
+  //   round: { borderRadius: 'md' },
+  //   ball: { borderRadius: 'lg' },
+  //   pill: { borderRadius: 'max' },
+  // },
+  //
+  // density: {
+  //   packed: { p: 0 },
+  //   snug: { px: 1, py: 1 },
+  //   gapped: { px: 2, py: 1 },
+  //   airy: { px: 3, py: 2 },
+  // },
+  //
+  // energy: {
+  //   rigid: {
+  //     transition: 'none',
+  //   },
+  //   live: {
+  //     transition: `150ms ${easeIn('sine')}`,
+  //     transitionProperty: 'background,color,transform',
+  //   },
+  // },
+  //
+  // mimic: {
+  //   static: () => ({
+  //     '&:hover': {},
+  //   }),
+  //   tint: () => ({}),
+  //   invert: ({ colorScheme }) => ({
+  //     bg: 'transparent',
+  //     color: colorScheme,
+  //     '&:hover': {
+  //       bg: colorScheme,
+  //       color: 'background',
+  //     },
+  //   }),
+  //   morph: () => ({
+  //     transform: 'scale(1)',
+  //     '&:hover': {
+  //       transform: 'scale(1.2)',
+  //     },
+  //   }),
+  // },
+  //
+  // fill: {
+  //   solid: ({ colorScheme, color }) => ({
+  //     bg: color,
+  //     color: readableColor(color, 'white', 'black'),
+  //     '&:hover': {
+  //       bg: `${colorScheme}-700`,
+  //       color: readableColor(color, 'white', 'black', true),
+  //     },
+  //   }),
+  //   semi: ({ color, colorScheme }) => ({
+  //     bg: `${colorScheme}-200`,
+  //     color: colorScheme,
+  //     border: '1px solid',
+  //     borderColor: colorScheme,
+  //     '&:hover': {
+  //       bg: `${colorScheme}-300`,
+  //       color: readableColor(color, 'white', 'black', true),
+  //     },
+  //   }),
+  //   outline: ({ colorScheme }) => ({
+  //     bg: 'transparent',
+  //     color: colorScheme,
+  //     border: '1px solid',
+  //     borderColor: colorScheme,
+  //     '&:hover': {
+  //       bg: `${colorScheme}-100`,
+  //     },
+  //   }),
+  //   ghost: ({ colorScheme }) => ({
+  //     bg: 'transparent',
+  //     color: colorScheme,
+  //     '&:hover': {
+  //       bg: `${colorScheme}-100`,
+  //     },
+  //   }),
+  //   link: ({ colorScheme }) => ({
+  //     color: colorScheme,
+  //     bg: 'transparent',
+  //     textDecoration: 'underline',
+  //     '&:hover': {
+  //       color: `${colorScheme}-700`,
+  //     },
+  //   }),
+  // },
+  //
+  // sizing: {
+  //   xs: { fontSize: 'xs' },
+  //   sm: { fontSize: 'sm' },
+  //   md: { fontSize: 'md' },
+  //   lg: { fontSize: 'lg' },
+  //   xl: { fontSize: 'xl' },
+  //   '2xl': { fontSize: '2xl' },
+  //   '3xl': { fontSize: '3xl' },
+  // },
+  //
+  // weight: {
+  //   bold: { fontWeight: 'bold' },
+  //   regular: { fontWeight: 'body' },
+  //   thin: { fontWeight: 'thin' },
+  // },
 };

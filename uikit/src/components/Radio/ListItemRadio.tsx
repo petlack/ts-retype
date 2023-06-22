@@ -1,11 +1,12 @@
 import { forwardRef } from 'react';
+import { Mix } from '~/termix/tx';
 import { Box, BoxOwnProps } from '../Box';
-import { Assign, ForwardRef, StyledComponent } from '../types';
+import { ForwardRef } from '../types';
 
-export type ListItemRadioProps = Assign<React.ComponentPropsWithRef<'input'>, StyledComponent<BoxOwnProps>>
+export type ListItemRadioProps = Mix<'input', BoxOwnProps>;
 
 export const ListItemRadio: ForwardRef<HTMLInputElement, ListItemRadioProps> = forwardRef((props, ref) => {
-  const { children, colorScheme, fill, sizing: size, ...rest } = props;
+  const { children, tx, sx, ...rest } = props;
   return (
     <>
       <Box
@@ -24,11 +25,12 @@ export const ListItemRadio: ForwardRef<HTMLInputElement, ListItemRadioProps> = f
       />
 
       <Box
-        colorScheme={colorScheme}
-        corners='sharp'
-        mimic='static'
-        fill={fill}
-        density='gapped'
+        tx={{
+          corners: 'sharp',
+          mimic: 'static',
+          density: 'gapped',
+          ...tx,
+        }}
         sx={{
           position: 'absolute',
           inset: 0,
@@ -54,6 +56,7 @@ export const ListItemRadio: ForwardRef<HTMLInputElement, ListItemRadioProps> = f
             bg: 'primary-100',
             color: 'base',
           },
+          ...sx,
         }}>
         {children}
       </Box>

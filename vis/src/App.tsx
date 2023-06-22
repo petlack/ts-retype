@@ -92,7 +92,11 @@ function App() {
       <SearchPhraseProvider value={{ phrase: query }}>
         <ToastProvider />
         <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
-          <Stack align='stretch' colorScheme='primary-600' fill='solid' sx={{ height: '100%', gap: 4, p: 4 }}>
+          <Stack
+            align='stretch'
+            tx={{ colorScheme: 'primary-600', fill: 'solid' }}
+            sx={{ height: '100%', gap: 4, p: 4 }}
+          >
             <Heading as='h2'>Sidebar</Heading>
             <ThemeToggle />
             <Filters
@@ -113,10 +117,12 @@ function App() {
             />
             <Button
               data-state={isDrawerOpen ? 'open' : 'closed'}
-              colorScheme='primary'
-              fill='ghost'
-              mimic='invert'
-              size='lg'
+              tx={{
+                colorScheme: 'primary',
+                fill: 'ghost',
+                mimic: 'invert',
+                sizing: 'lg',
+              }}
               leftIcon={<Hamburger isOpen={isDrawerOpen} flavor='cross' />}
               onClick={toggleDrawer}
               sx={{

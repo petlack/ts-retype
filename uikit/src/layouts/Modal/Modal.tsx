@@ -45,7 +45,11 @@ export const Modal: FC<StyledContainer & OverlayProps> = ({
           transform: isTransitioning && isOpen ? 'scale(1)' : 'scale(0.9)',
           ...sx,
         }}>
-          <Button onClick={onClose} leftIcon={<FaTimes />} fill='ghost' sx={{ position: 'absolute', right: 0, top: 0 }} />
+          <Button
+            onClick={onClose}
+            leftIcon={<FaTimes />}
+            tx={{ fill: 'ghost' }}
+            sx={{ position: 'absolute', right: 0, top: 0 }} />
           {children}
         </Box>
         <Overlay

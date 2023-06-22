@@ -1,42 +1,51 @@
 import { Children, cloneElement, FC, forwardRef, isValidElement, useMemo } from 'react';
 import { BoxOwnProps } from '~/components/Box';
 import { Assign } from '~/components/types';
-import { useTermixStyle } from '~/termix/termix';
+import { termix } from '~/termix/termix';
 import { useTermix } from '~/termix/useTermix';
-import { TermixProps, TermixPropsNames } from '~/termix/types';
 import { Stack } from '../Stack';
 import { Heading } from '~/components/Heading';
 import { Option, getOptionValue, useOptionsGroup } from '~/hooks/useOptionsGroup';
 import { VisuallyHidden } from '~/components/VisuallyHidden';
-import { omit } from 'ramda';
+import { Mix } from '~/termix';
 
-export type OptionsOwnProps = BoxOwnProps & {
+export type OptionsOwnProps = {
   name: string;
   direction?: 'row' | 'column';
   align?: 'start' | 'center' | 'end' | 'stretch';
 }
 
-export type OptionsProps = Assign<React.ComponentPropsWithRef<'div'>, OptionsOwnProps>;
+export type OptionsProps = Mix<'div', OptionsOwnProps>;
 
-export const Options: FC<OptionsProps> = forwardRef<HTMLDivElement, OptionsProps>(({
-  children,
-  name,
-  sx,
-  ...props
-}, ref) => {
+export const Options: FC<OptionsProps> = forwardRef<HTMLDivElement, OptionsProps>((props, ref) => {
+  const {
+    children,
+    sx,
+    tx,
+    name,
+    direction,
+    align,
+  } = props;
   const { theme } = useTermix();
-
-  const styles = useTermixStyle(theme, {
-    element: {} as TermixProps['element'],
-    ...props,
-  });
-
+  const styles = termix(theme, tx, 'options');
   const mergedSx = {
-    p: 2,
-    gap: 2,
     ...styles,
     ...sx,
   };
+
+  // const { theme } = useTermix();
+  //
+  // const styles = useTermixStyle(theme, {
+  //   element: {} as TermixProps['element'],
+  //   ...props,
+  // });
+
+  // const mergedSx = {
+  //   p: 2,
+  //   gap: 2,
+  //   ...styles,
+  //   ...sx,
+  // };
 
   const options = Children.map(children, getOptionValue<string>) || [];
   const { containerProps, labelProps, itemProps, selectedOption } = useOptionsGroup<string>(name, options);
@@ -57,7 +66,7 @@ export const Options: FC<OptionsProps> = forwardRef<HTMLDivElement, OptionsProps
       <Stack
         ref={ref}
         align='stretch'
-        {...omit(TermixPropsNames, containerProps)}
+        {...containerProps}
         sx={mergedSx}
       >
         <VisuallyHidden>

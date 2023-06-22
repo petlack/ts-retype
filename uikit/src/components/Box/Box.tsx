@@ -1,33 +1,27 @@
-import { ComponentPropsWithRef, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Box as UiBox, BoxOwnProps as UiBoxOwnProps } from 'theme-ui';
-import { TermixProps, TermixPropsNames } from '~/termix/types';
-import { Assign } from '~/components/types';
-import { omit } from 'ramda';
+import { termix } from '~/termix/termix';
 import { useTermix } from '~/termix/useTermix';
-import { useTermixStyle } from '~/termix/termix';
+import type { Mix } from '~/termix/tx';
 
-export type BoxOwnProps = TermixProps & Omit<UiBoxOwnProps, 'size'>
-export type BoxProps = Omit<
-  Assign<ComponentPropsWithRef<'div'>, BoxOwnProps>,
-  'ref'
->
+export type BoxOwnProps = UiBoxOwnProps;
+export type BoxProps = Mix<'div'>;
 
 export const Box = forwardRef<unknown, BoxProps>(({
-  children,
-  as,
+  element,
   sx,
+  tx,
   ...boxProps
 }, ref) => {
   const { theme } = useTermix();
-  const styles = useTermixStyle(theme, boxProps);
+  const styles = termix(theme, tx, element);
   const mergedSx = {
     ...styles,
     ...sx,
   };
   return (
-    <UiBox ref={ref} as={as} sx={mergedSx} {...omit(TermixPropsNames, boxProps)}>
-      {children}
-    </UiBox>
+    <UiBox ref={ref} sx={mergedSx} {...boxProps} />
   );
 });
+
 

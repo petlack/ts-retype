@@ -1,5 +1,8 @@
 import { easeIn } from 'polished';
 import { getColor } from '@theme-ui/color';
+import { ComponentPropsWithRef, ElementType } from 'react';
+import { Assign } from '../components/types';
+import { BoxOwnProps as UiBoxOwnProps } from 'theme-ui';
 import { Corners, Density, Energy, Fill, Mimic, Size, Speed, TermixStyle, Weight } from './types';
 import { Theme } from 'theme-ui';
 import { readableColor } from './mixer';
@@ -25,6 +28,11 @@ export type TermixProps = {
   element?: keyof ComponentsDef;
 };
 
+export type Mix<T extends ElementType<any>, OwnProps = Record<string, any>> = Omit<
+  Assign<ComponentPropsWithRef<T>, OwnProps & TermixProps & UiBoxOwnProps>,
+  'ref'
+>;
+
 type TermixComponentDefinition = {
   default?: TermixProps;
   overrides?: Partial<TermixDef>;
@@ -37,7 +45,7 @@ export type TermixDef = {
   corners: Record<Corners | 'default', Sx>;
   density: Record<Density | 'default', Sx | ConfigureStyleFn>;
   energy: Record<Energy | 'default', Sx | ConfigureStyleFn>;
-  fill: Record<Fill | 'default', ConfigureStyleFn>;
+  fill: Partial<Record<Fill | 'default', ConfigureStyleFn>>;
   mimic: Record<Mimic | 'default', ConfigureStyleFn>;
   sizing: Record<Size | 'default', Sx>;
   speed: Record<Speed | 'default', Sx>;
@@ -48,6 +56,7 @@ export type ComponentsDef = Partial<{
   button: TermixComponentDefinition;
   card: TermixComponentDefinition;
   input: TermixComponentDefinition;
+  options: TermixComponentDefinition;
   spinner: TermixComponentDefinition;
   tag: TermixComponentDefinition;
 }>;
@@ -98,14 +107,14 @@ export const termixDef: TermixDef = {
       '--_clr-hover-color': getColor(theme, `${colorScheme}-900`),
     }),
     ghost: ({ theme, tx: { colorScheme } }) => ({
-      bg: undefined,
+      bg: 'unset',
       color: colorScheme,
       borderColor: undefined,
       '--_clr-hover-bg': getColor(theme, `${colorScheme}-200`),
       '--_clr-hover-color': getColor(theme, `${colorScheme}-700`),
     }),
     outline: ({ theme, tx: { colorScheme } }) => ({
-      bg: undefined,
+      bg: 'unset',
       color: colorScheme,
       borderColor: colorScheme,
       border: '1px solid',
@@ -113,11 +122,11 @@ export const termixDef: TermixDef = {
       '--_clr-hover-color': getColor(theme, `${colorScheme}-700`),
     }),
     link: ({ theme, tx: { colorScheme } }) => ({
-      bg: undefined,
+      bg: 'unset',
       color: colorScheme,
       borderColor: colorScheme,
       textDecoration: 'underline',
-      '--_clr-hover-color': getColor(theme, `${colorScheme}-700`),
+      '--_clr-hover-color': getColor(theme, `${colorScheme}-800`),
     }),
   },
 
@@ -181,11 +190,11 @@ export const cx: ComponentsDef = {
         default: {},
         xs: { px: 1, py: 0, borderRadius: 'sm' },
         sm: { px: 2, py: 0.5, borderRadius: 'sm' },
-        md: { px: 3, py: 1, borderRadius: 'md' },
-        lg: { px: 3, py: 1, borderRadius: 'md' },
-        xl: { fontSize: 'lg', px: 3, py: 1, borderRadius: 'md' },
-        '2xl': { fontSize: 'xl', px: 4, py: 2, borderRadius: 'md' },
-        '3xl': { fontSize: 'xl', px: 4, py: 2, borderRadius: 'lg' },
+        md: { px: 3, py: 1, gap: 2, borderRadius: 'md' },
+        lg: { px: 3, py: 1.5, gap: 3, borderRadius: 'md' },
+        xl: { fontSize: 'lg', px: 3, py: 1.5, gap: 3, borderRadius: 'md' },
+        '2xl': { fontSize: 'xl', px: 4, py: 2, gap: 3, borderRadius: 'md' },
+        '3xl': { fontSize: 'xl', px: 4, py: 2, gap: 4, borderRadius: 'lg' },
       },
     },
     default: {
@@ -206,7 +215,11 @@ export const cx: ComponentsDef = {
           width: '1em',
           height: '1em',
         },
-        disabled: {
+      },
+    },
+    variants: {
+      disabled: {
+        sx: {
           // colorScheme: 'overlay1',
           cursor: 'not-allowed',
         },
@@ -214,39 +227,137 @@ export const cx: ComponentsDef = {
     },
   },
 
+  card: {
+    default: {
+      tx: {
+        corners: 'round',
+        density: 'airy',
+      },
+      sx: {
+        bg: 'base',
+        color: 'text',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        p: 3,
+        gap: 5,
+        border: '1px solid rgba(0, 0, 0, 0.125)',
+        transitionTimingFunction: `${easeIn('quad')}`,
+        transitionDuration: 'short',
+        transitionProperty: 'border,box-shadow,opacity',
+        ':hover': {
+          border: '1px solid rgba(0, 0, 0, 0.25)',
+          boxShadow: '0 0 8px rgba(0, 0, 0, 0.125)',
+        },
+      },
+    },
+  },
+
   input: {
     overrides: {
+      fill: {
+        default: ({ theme, tx: { colorScheme } }) => ({
+          color: 'text',
+          borderColor: 'surface0',
+          '--_clr-hover-color': getColor(theme, colorScheme),
+        }),
+        solid: ({ theme, tx: { colorScheme } }) => ({
+          color: readableColor(getColor(theme, `${colorScheme}-700`)),
+          bg: `${colorScheme}-700`,
+          borderColor: `${colorScheme}-600`,
+          '--_clr-outer-bg': `${colorScheme}-200`,
+          '--_clr-outer-fg': `${colorScheme}-600`,
+        }),
+      },
       sizing: {
         default: {},
         xs: { borderRadius: 'xs' },
         sm: {},
-        md: { px: 2, py: 1, fontSize: 'md' },
+        md: { px: 2, py: 1.5, fontSize: 'md' },
         lg: { px: 2, py: 1.5, fontSize: 'md' },
         xl: { px: 2, py: 1.5, fontSize: 'lg' },
         '2xl': { px: 3, py: 2, fontSize: 'lg', borderRadius: 'md' },
         '3xl': { px: 4, py: 3, fontSize: 'xl', borderRadius: 'lg' },
       },
     },
+
     default: {
       tx: {
+        colorScheme: 'primary',
         density: 'snug',
         corners: 'dull',
+        sizing: 'md',
       },
       sx: {
         lineHeight: 1,
         bg: 'unset',
-        borderColor: 'text-200',
+        borderColor: 'text-100',
         borderWidth: 1,
         borderStyle: 'solid',
         transition: 'box-shadow 150ms ease-in',
         fontFamily: 'body',
         fontSize: 'md',
         '&:focus': {
-          borderColor: 'accent',
+          borderColor: 'var(--_clr-hover-color)',
           borderWidth: 1,
-          boxShadow: (t) =>
-            `${t.colors?.accent} 0px 0px 5px -2px, ${t.colors?.accent} 0px 0px 1px 0px`,
+          boxShadow:
+            'var(--_clr-hover-color) 0px 0px 5px -2px, var(--_clr-hover-color) 0px 0px 1px 0px',
           outline: 'none',
+        },
+        '&::-webkit-inner-spin-button': {
+          WebkitAppearance: 'none',
+        },
+      },
+    },
+
+    variants: {
+      radio: {
+        tx: {
+          density: 'gapped',
+          corners: 'pill',
+        },
+        sx: {
+          position: 'relative',
+          cursor: 'pointer',
+          aspectRatio: 1,
+          width: '1em',
+          flexShrink: 0,
+          bg: 'none',
+          borderWidth: 2,
+          borderStyle: 'solid',
+          borderColor: 'surface0',
+          transform: 'scale(1)',
+          transition: '150ms ease-in',
+          transitionProperty: 'transform,background,border-color',
+          '&:after': {
+            content: '""',
+            position: 'absolute',
+            inset: 1,
+            borderRadius: '100vw',
+            bg: 'primary',
+            transform: 'scale(0)',
+            transition: '150ms ease-in',
+            transitionProperty: 'transform',
+          },
+          '&:hover, label:hover &': {
+            borderColor: 'overlay2',
+            bg: 'mantle',
+            transform: 'scale(1.05)',
+          },
+          'input:checked ~ &': {
+            '&:after': {
+              transform: 'scale(1)',
+            },
+          },
+          'input:checked ~ &:hover': {
+            '&:after': {
+              transform: 'scale(1.1)',
+            },
+          },
+          'input:focus ~ &': {
+            border: '2px solid',
+            borderColor: 'primary',
+          },
         },
       },
     },
@@ -278,6 +389,7 @@ export const cx: ComponentsDef = {
       },
       sx: {
         lineHeight: 1,
+        display: 'inline-flex',
       },
     },
   },

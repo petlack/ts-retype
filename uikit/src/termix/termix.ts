@@ -83,12 +83,16 @@ export function useTermixStyle(theme: Termix, { element, ...props }: TermixProps
 }
 
 export function mergeTx(tx?: Tx, element?: keyof ComponentsDef): Required<Tx> {
+  // const asTx = element && (tx?.variant && tx?.variant !== 'default' ? cx[element]?.variants?.[tx?.variant]?.tx : cx[element]?.default?.tx) || ({} as Tx);
+
   const asTx =
-    (element &&
-      (tx.variant && tx.variant !== 'default'
-        ? cx[element]?.variants?.[tx.variant]?.tx
-        : cx[element]?.default?.tx)) ||
+    (element && {
+      ...(cx[element]?.default?.tx ?? {}),
+      ...((tx?.variant && tx?.variant !== 'default' && cx[element]?.variants?.[tx?.variant]?.tx) ||
+        {}),
+    }) ||
     ({} as Tx);
+
   const defaultTx: Required<Tx> = {
     colorScheme: asTx.colorScheme || 'text',
     variant: asTx.variant || 'default',
@@ -103,7 +107,7 @@ export function mergeTx(tx?: Tx, element?: keyof ComponentsDef): Required<Tx> {
   };
   const mergedTx = {
     ...defaultTx,
-    ...tx,
+    ...(tx || {}),
   };
   return mergedTx;
 }
@@ -122,7 +126,7 @@ export function termix(theme: Termix, tx?: Tx, element?: keyof ComponentsDef): S
   const sizing = txDef.sizing[mergedTx.sizing];
   const weight = txDef.weight[mergedTx.weight];
 
-  const colorStyles = fill({ tx: mergedTx, theme });
+  const colorStyles = fill?.({ tx: mergedTx, theme }) ?? {};
   const cornersStyles = corners;
   const densityStyles = density;
   const energyStyles = energy;
@@ -132,10 +136,11 @@ export function termix(theme: Termix, tx?: Tx, element?: keyof ComponentsDef): S
   const weightStyles = weight;
 
   const asSx =
-    (element &&
-      (mergedTx.variant && mergedTx.variant !== 'default'
-        ? cx[element]?.variants?.[mergedTx.variant]?.sx
-        : cx[element]?.default?.sx)) ||
+    (element && {
+      ...(cx[element]?.default?.sx ?? {}),
+      ...((tx?.variant && tx?.variant !== 'default' && cx[element]?.variants?.[tx?.variant]?.sx) ||
+        {}),
+    }) ||
     ({} as Sx);
 
   return {

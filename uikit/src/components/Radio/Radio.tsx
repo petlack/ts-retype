@@ -1,23 +1,19 @@
 import { forwardRef } from 'react';
-import { Assign, ForwardRef, StyledComponent } from '../types';
-import { Box, BoxOwnProps } from '../Box';
+import { ForwardRef } from '../types';
+import { Box } from '../Box';
+import { Mix } from '~/termix/tx';
 
-type RadioOwnProps = BoxOwnProps & {
+type RadioOwnProps = {
   selectedIndex?: number;
 }
 
-export type RadioProps = Assign<React.ComponentPropsWithRef<'input'>, StyledComponent<RadioOwnProps>>
+export type RadioProps = Mix<'input', RadioOwnProps>;
 
 export const Radio: ForwardRef<HTMLInputElement, RadioProps> = forwardRef((props, ref) => {
   const {
     className,
-    fill = 'solid',
-    density = 'gapped',
-    corners = 'pill',
-    mimic = 'tint',
-    energy = 'live',
-    sizing: size,
     sx,
+    tx,
     ...rest
   } = props;
   return (
@@ -40,50 +36,9 @@ export const Radio: ForwardRef<HTMLInputElement, RadioProps> = forwardRef((props
       <Box
         className={className}
         aria-hidden={true}
-        {...({ density, corners })}
-        sx={{
-          position: 'relative',
-          cursor: 'pointer',
-          aspectRatio: 1,
-          width: '1em',
-          flexShrink: 0,
-          bg: 'none',
-          border: '2px solid',
-          borderColor: 'overlay0',
-          transform: 'scale(1)',
-          transition: '150ms ease-in',
-          transitionProperty: 'transform,background,border-color',
-          '&:after': {
-            content: '""',
-            position: 'absolute',
-            inset: 1,
-            borderRadius: '100vw',
-            bg: 'primary',
-            transform: 'scale(0)',
-            transition: '150ms ease-in',
-            transitionProperty: 'transform',
-          },
-          '&:hover, label:hover &': {
-            borderColor: 'overlay2',
-            bg: 'mantle',
-            transform: 'scale(1.05)',
-          },
-          'input:checked ~ &': {
-            '&:after': {
-              transform: 'scale(1)',
-            },
-          },
-          'input:checked ~ &:hover': {
-            '&:after': {
-              transform: 'scale(1.1)',
-            },
-          },
-          'input:focus ~ &': {
-            border: '2px solid',
-            borderColor: 'primary',
-          },
-          ...sx,
-        }}
+        element='input'
+        tx={{ ...tx, variant: 'radio' }}
+        sx={sx}
       ></Box>
     </>
   );

@@ -3,16 +3,16 @@ import { Box, BoxOwnProps } from '~/components/Box';
 import { useTermix, termix } from '~/termix';
 import type { Mix } from '~/termix/tx';
 
-export type TagOwnProps = BoxOwnProps;
-export type TagProps = Mix<'div'>;
+export type CardOwnProps = BoxOwnProps;
+export type CardProps = Mix<'div'>;
 
-export const Tag = forwardRef<HTMLDivElement, TagProps>(({
+export const Card = forwardRef<unknown, CardProps>(({
   sx,
   tx,
   ...boxProps
 }, ref) => {
   const { theme } = useTermix();
-  const styles = termix(theme, tx, 'tag');
+  const styles = termix(theme, tx, 'card');
   const mergedSx = {
     ...styles,
     ...sx,
@@ -21,4 +21,5 @@ export const Tag = forwardRef<HTMLDivElement, TagProps>(({
     <Box ref={ref} tx={tx} sx={mergedSx} {...boxProps} />
   );
 });
+
 

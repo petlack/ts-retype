@@ -21,34 +21,42 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     children: 'uikit',
-    fill: 'solid',
-    sizing: 'md',
-    colorScheme: 'primary',
+    tx: {
+      fill: 'solid',
+      sizing: 'md',
+      colorScheme: 'primary',
+    }
   },
 };
 
 export const Secondary: Story = {
   args: {
     children: 'uikit',
-    fill: 'ghost',
-    sizing: 'md',
-    colorScheme: 'flamingo',
+    tx: {
+      fill: 'ghost',
+      sizing: 'md',
+      colorScheme: 'flamingo',
+    },
   },
 };
 
 export const Large: Story = {
   args: {
     children: 'uikit',
-    fill: 'semi',
-    sizing: 'xl',
+    tx: {
+      fill: 'semi',
+      sizing: 'xl',
+    },
   },
 };
 
 export const Medium: Story = {
   args: {
     children: 'uikit',
-    fill: 'outline',
-    sizing: 'md',
-    colorScheme: 'green',
+    tx: {
+      fill: 'outline',
+      sizing: 'md',
+      colorScheme: 'green',
+    },
   },
 };

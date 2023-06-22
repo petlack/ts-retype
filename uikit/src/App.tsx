@@ -1,5 +1,5 @@
-import { Card, Container, Heading, Text } from 'theme-ui';
-import { Box, BoxProps, Button, Hamburger, Input, Label, Logo, Search, Spinner, Tag } from '~/components';
+import { Container, Heading, Text } from 'theme-ui';
+import { Box, BoxProps, Button, Card, Hamburger, Input, Label, Logo, Search, Spinner, Tag } from '~/components';
 import { FaBeer, FaDownload, FaEnvelope, FaInfo, FaKey, FaLock, FaMinus, FaMoon, FaPlus, FaRocketchat, FaSun, FaTimes } from 'react-icons/fa';
 import { Drawer, Grid, Modal, Popover, PopoverContent, PopoverTrigger, Stack, Tooltip, TooltipContent, TooltipTrigger, Topbar, useToast, Wrap } from '~/layouts';
 import { Options, OptionItem as Option } from './layouts/Options';
@@ -13,25 +13,30 @@ import { AiFillAlert } from 'react-icons/ai';
 import { Radio } from './components/Radio';
 import './fonts';
 import './App.scss';
-import { Exotic } from './Exotic';
 
 const ColorTile = ({ color, name }: { color: string, name: string }) => {
   const text = color && readableColor(color);
   return (
-    <Box mimic='morph' energy='live' colorScheme={color} sx={{
-      bg: color,
-      color: text,
-      fontSize: 'xs',
-      cursor: 'pointer',
-      p: 2,
-      gap: 1,
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '18ch',
-      borderRadius: 'md',
-    }}>
+    <Box
+      tx={{
+        mimic: 'morph',
+        energy: 'live',
+        colorScheme: color,
+      }}
+      sx={{
+        bg: color,
+        color: text,
+        fontSize: 'xs',
+        cursor: 'pointer',
+        p: 2,
+        gap: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '18ch',
+        borderRadius: 'md',
+      }}>
       <strong>{name}</strong>
       <span>{color}</span>
     </Box>
@@ -52,15 +57,15 @@ const ThemeModeToggle = () => {
   const { setColorMode } = useTermix();
   return (
     <>
-      <Button colorScheme='black' leftIcon={<FaMoon />} onClick={() => setColorMode('dark')}>Dark</Button>
-      <Button colorScheme='white' leftIcon={<FaSun />} onClick={() => setColorMode('light')}>Light</Button>
+      <Button tx={{ colorScheme: 'text' }} leftIcon={<FaMoon />} onClick={() => setColorMode('dark')}>Dark</Button>
+      <Button tx={{ colorScheme: 'mantle' }} leftIcon={<FaSun />} onClick={() => setColorMode('light')}>Light</Button>
     </>
   );
 };
 
 export function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const { isOpen, open, close, getTriggerProps, getModalProps } = useModal();
+  const { isOpen, close, getTriggerProps, getModalProps } = useModal();
   const openDrawer = useCallback(() => setIsDrawerOpen(true), [setIsDrawerOpen]);
   const closeDrawer = useCallback(() => setIsDrawerOpen(false), [setIsDrawerOpen]);
   const toast = useToast();
@@ -76,10 +81,10 @@ export function App() {
     '&:before': {
       content: '""',
       position: 'absolute',
-      top: 'var(--space-2)',
+      top: 'calc(50% - var(--size-1) / 2)',
       left: '0',
-      bottom: 'var(--space-2)',
       width: 'var(--size-1)',
+      height: 'var(--size-1)',
       bg: 'transparent',
       transition: '150ms ease-in',
       transitionProperty: 'background,color',
@@ -107,43 +112,6 @@ export function App() {
         }}>
 
         <Card>
-          <Heading>Test</Heading>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Exotic
-              element='button'
-              tx={{
-                colorScheme: 'primary',
-                // corners: 'dull',
-                // density: 'snug',
-                // energy: 'live',
-                fill: 'ghost',
-                mimic: 'invert',
-                // sizing: 'md',
-                // speed: 'fast',
-                // weight: 'bold',
-              }}
-              sx={{ cursor: 'pointer' }}
-            >Exotic</Exotic>
-
-            <Exotic
-              as='input'
-              element='input'
-              tx={{
-                colorScheme: 'primary',
-                // corners: 'dull',
-                // density: 'snug',
-                // energy: 'live',
-                // fill: 'ghost',
-                // mimic: 'invert',
-                sizing: 'xs',
-                // speed: 'fast',
-                // weight: 'bold',
-              }}
-            />
-          </Box>
-        </Card>
-
-        <Card>
           <Heading>Search</Heading>
           <Search query='foo' setQuery={() => {/**/ }} />
         </Card>
@@ -153,7 +121,7 @@ export function App() {
           <Grid sx={{ gap: 4, gridTemplateColumns: 'repeat(3, 1fr)' }}>
             <Card>
               <Heading as='h3'>with radio</Heading>
-              <Options name='foo' corners='round' sx={{ p: 2, gap: 2, width: 'max-content', overflow: 'hidden' }}>
+              <Options name='foo' tx={{ corners: 'round' }} sx={{ p: 2, gap: 2, width: 'max-content', overflow: 'hidden' }}>
                 <Option value='hello'>
                   <Label>
                     <Radio name='foo' value='hello' />
@@ -171,7 +139,7 @@ export function App() {
 
             <Card>
               <Heading as='h3'>custom element</Heading>
-              <Options name='foo' corners='round' sx={{ p: 2, gap: 2, width: 'max-content', overflow: 'hidden' }}>
+              <Options name='foo' tx={{ corners: 'round' }} sx={{ p: 2, gap: 2, width: 'max-content', overflow: 'hidden' }}>
                 <Option value='hello'>
                   <Box sx={optionStyles}>Hello</Box>
                 </Option>
@@ -195,7 +163,7 @@ export function App() {
               <Stack sx={{ gap: 2 }} align='start'>
                 <Stack as='form' p={2} sx={{ gap: 2 }}>
                   <Label>
-                    <Radio colorScheme='accent' name='msg' value='hello' />
+                    <Radio tx={{ colorScheme: 'accent' }} name='msg' value='hello' />
                     Hello
                   </Label>
                   <Label>
@@ -225,15 +193,35 @@ export function App() {
               <Heading as='h3'>Input</Heading>
               <Grid sx={{ columnGap: 3, rowGap: 2, gridTemplateColumns: 'max-content 1fr', alignContent: 'center', justifyContent: 'stretch' }}>
                 <Label htmlFor='inputs-number'>Number</Label>
-                <Input type='number' id='inputs-number' colorScheme='mauve' leftIcon={<FaMinus />} rightIcon={<FaPlus />} />
+                <Input
+                  type='number'
+                  id='inputs-number'
+                  tx={{ colorScheme: 'mauve' }}
+                  leftOuter={<Button tx={{ fill: 'ghost' }} sx={{ p: 0, aspectRatio: 1, width: '2em', justifyContent: 'center' }}><FaMinus /></Button>}
+                  rightOuter={<Button tx={{ fill: 'ghost' }} sx={{ p: 0, aspectRatio: 1, width: '2em', justifyContent: 'center' }}><FaPlus /></Button>}
+                />
                 <Label htmlFor='inputs-name'>Name</Label>
-                <Input type='text' id='inputs-name' placeholder='Name' colorScheme='flamingo' />
+                <Input
+                  type='text'
+                  id='inputs-name'
+                  placeholder='Name'
+                  tx={{ colorScheme: 'flamingo' }}
+                  rightInner={<Button tx={{ sizing: 'small', fill: 'ghost' }}>Show</Button>}
+                />
                 <Label htmlFor='inputs-password'>Password</Label>
-                <Input type='password' id='inputs-password' placeholder='Password' rightIcon={<FaKey />} colorScheme='green' />
+                <Input type='password' id='inputs-password' placeholder='Password' rightOuter={<FaKey />} tx={{ colorScheme: 'green' }} />
                 <Label htmlFor='inputs-email'>Email</Label>
-                <Input type='email' id='inputs-email' placeholder='Email' leftIcon={<FaEnvelope />} />
+                <Input type='email' id='inputs-email' placeholder='Email' leftOuter={<FaEnvelope />} />
                 <Label htmlFor='inputs-url'>URL</Label>
-                <Input type='url' id='inputs-url' placeholder='URL' size={4} width='auto' leftIcon={<Text sx={{ lineHeight: 1 }}>https://</Text>} rightIcon={<Text sx={{ lineHeight: 1 }}>.example.com</Text>} />
+                <Input
+                  type='url'
+                  id='inputs-url'
+                  placeholder='URL'
+                  size={4}
+                  width='auto'
+                  leftOuter={<Text sx={{ lineHeight: 1 }}>https://</Text>}
+                  rightOuter={<Text sx={{ lineHeight: 1 }}>.example.com</Text>}
+                />
               </Grid>
             </Card>
           </Wrap>
@@ -243,24 +231,31 @@ export function App() {
           <Heading>Overlay</Heading>
           <Wrap>
             <Button
-              colorScheme='primary'
-              fill='ghost'
-              sizing='lg'
-              mimic='invert'
+              tx={{
+                colorScheme: 'primary',
+                fill: 'ghost',
+                sizing: 'lg',
+                mimic: 'invert',
+              }}
               leftIcon={<Hamburger isOpen={isDrawerOpen} flavor='cross' />}
               onClick={openDrawer}
             >Drawer</Button>
             <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
-              <Box colorScheme='primary-600' fill='solid' sx={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}>
+              <Box
+                tx={{ colorScheme: 'primary-600', fill: 'solid' }}
+                sx={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 3, p: 4 }}
+              >
                 <Heading as='h2'>Sidebar</Heading>
                 <Button onClick={closeDrawer} rightIcon={<FaTimes />}>Close</Button>
               </Box>
             </Drawer>
 
             <Button
-              colorScheme='blue'
-              fill='ghost'
-              sizing='lg'
+              tx={{
+                colorScheme: 'blue',
+                fill: 'ghost',
+                sizing: 'lg',
+              }}
               leftIcon={<AiFillAlert />}
               {...getTriggerProps()}
             >Modal</Button>
@@ -282,9 +277,11 @@ export function App() {
             <Popover>
               <PopoverTrigger>
                 <Button
-                  colorScheme='green'
-                  fill='ghost'
-                  sizing='lg'
+                  tx={{
+                    colorScheme: 'green',
+                    fill: 'ghost',
+                    sizing: 'lg',
+                  }}
                   leftIcon={<FaRocketchat />}
                 >Popover</Button>
               </PopoverTrigger>
@@ -298,17 +295,19 @@ export function App() {
 
             <Tooltip>
               <TooltipTrigger>
-                <Button colorScheme='purple' fill='ghost' sizing='lg' density='gapped'>Tooltip</Button>
+                <Button tx={{ colorScheme: 'purple', fill: 'ghost', sizing: 'lg', density: 'gapped' }}> Tooltip</Button>
               </TooltipTrigger>
               <TooltipContent>
-                <Box colorScheme='pink' fill='solid' sizing='sm' density='gapped' corners='pill'>Hello World</Box>
+                <Box tx={{ colorScheme: 'pink', fill: 'solid', sizing: 'sm', density: 'gapped', corners: 'pill' }}>Hello World</Box>
               </TooltipContent>
             </Tooltip>
 
             <Button
-              colorScheme='orange'
-              fill='ghost'
-              sizing='lg'
+              tx={{
+                colorScheme: 'orange',
+                fill: 'ghost',
+                sizing: 'lg',
+              }}
               leftIcon={<FaInfo />}
               onClick={() => toast({ msg: 'test' })}
             >Toast</Button>
@@ -334,23 +333,24 @@ export function App() {
         <Card>
           <Heading>Buttons</Heading>
           <Wrap>
-            <Button sizing='sm'>Small</Button>
-            <Button colorScheme='primary'>Normal</Button>
-            <Button sizing='lg' fill='semi' colorScheme='text'>Danger</Button>
-            <Button colorScheme='green' fill='outline'>Green</Button>
-            <Button colorScheme='yellow' fill='outline' corners='pill'>Yellow</Button>
-            <Button colorScheme='red' fill='ghost'>Ghost</Button>
-            <Button colorScheme='blue' fill='link'>Link</Button>
-            <Button colorScheme='text' fill='solid' leftIcon={<FaBeer />}>Link</Button>
-            <Button sizing='sm' colorScheme='blue' fill='outline' rightIcon={<FaLock />}>Lock</Button>
-            <Button fill='outline' disabled>Disabled</Button>
-            <Button colorScheme='primary' sizing='md' leftIcon={<Spinner flavor='grid' sizing='md' />} > Loading</Button>
-            <Button colorScheme='primary' p={2} fill='ghost' sizing='lg' leftIcon={<Hamburger flavor='cross' />}></Button>
-            <Button colorScheme='primary' p={2} fill='outline' sizing='lg' leftIcon={<FaDownload />}></Button>
-            <Button colorScheme='primary' isLoading>Loading</Button>
-            <Button sizing='md' colorScheme='primary' fill='solid' leftIcon={<FaDownload />}>Download</Button>
-          </Wrap>
-        </Card>
+            <Button tx={{ sizing: 'sm' }}>Small</Button>
+            <Button tx={{ colorScheme: 'primary' }}>Normal</Button>
+            <Button tx={{ sizing: 'lg', fill: 'semi', colorScheme: 'text' }}>Danger</Button>
+            <Button tx={{ sizing: '3xl', fill: 'solid', colorScheme: 'sky' }}>Extra Large</Button>
+            <Button tx={{ colorScheme: 'green', fill: 'outline' }}>Green</Button>
+            <Button tx={{ colorScheme: 'yellow', fill: 'outline', corners: 'pill' }}>Yellow</Button>
+            <Button tx={{ colorScheme: 'red', fill: 'ghost' }}>Ghost</Button>
+            <Button tx={{ colorScheme: 'blue', fill: 'link' }}>Link</Button>
+            <Button tx={{ colorScheme: 'text', fill: 'solid' }} leftIcon={<FaBeer />}>Link</Button>
+            <Button tx={{ colorScheme: 'blue', fill: 'outline', sizing: 'sm' }} rightIcon={<FaLock />}>Lock</Button>
+            <Button tx={{ fill: 'outline' }} disabled>Disabled</Button>
+            <Button tx={{ colorScheme: 'primary', sizing: 'md' }} leftIcon={<Spinner flavor='grid' sizing='md' />} > Loading</Button>
+            <Button tx={{ colorScheme: 'primary', fill: 'ghost', sizing: 'lg' }} p={2} leftIcon={<Hamburger flavor='cross' />}></Button>
+            <Button tx={{ colorScheme: 'primary', fill: 'outline', sizing: 'lg' }} p={2} leftIcon={<FaDownload />}></Button>
+            <Button tx={{ colorScheme: 'primary' }} isLoading>Loading</Button>
+            <Button tx={{ colorScheme: 'primary', fill: 'solid', sizing: 'md' }} leftIcon={<FaDownload />}>Download</Button>
+          </Wrap >
+        </Card >
 
         <Card>
           <Heading>Spinners</Heading>
@@ -379,10 +379,10 @@ export function App() {
         <Card>
           <Heading>Tags</Heading>
           <Wrap>
-            <Tag fill='semi' colorScheme='yellow' sizing='lg' density='airy' corners='round'>test</Tag>
-            <Tag colorScheme='red' sizing='md' weight='bold' corners='sharp'>UPPER</Tag>
-            <Tag fill='outline' colorScheme='green' sizing='sm'>CaMel</Tag>
-            <Tag colorScheme='blue' sizing='xs' corners='pill'>un_der</Tag>
+            <Tag tx={{ fill: 'semi', colorScheme: 'yellow', sizing: 'lg', density: 'airy', corners: 'round' }}>test</Tag>
+            <Tag tx={{ colorScheme: 'red', sizing: 'md', weight: 'bold', corners: 'sharp' }}>UPPER</Tag>
+            <Tag tx={{ fill: 'outline', colorScheme: 'green', sizing: 'sm' }}>CaMel</Tag>
+            <Tag tx={{ colorScheme: 'blue', sizing: 'xs', corners: 'pill' }}>un_der</Tag>
           </Wrap>
         </Card>
 
@@ -448,7 +448,7 @@ export function App() {
           <ColorsPoster />
         </Card>
 
-      </Container>
+      </Container >
     </ThemeProvider >
   );
 }

@@ -6,8 +6,8 @@ export const ThemeToggle = () => {
   const { setColorMode } = useTermix();
   return (
     <>
-      <Button colorScheme='black' leftIcon={<FaMoon />} onClick={() => setColorMode('dark')}>Dark</Button>
-      <Button colorScheme='white' leftIcon={<FaSun />} onClick={() => setColorMode('light')}>Light</Button>
+      <Button tx={{ colorScheme: 'black' }} leftIcon={<FaMoon />} onClick={() => setColorMode('dark')}>Dark</Button>
+      <Button tx={{ colorScheme: 'white' }} leftIcon={<FaSun />} onClick={() => setColorMode('light')}>Light</Button>
     </>
   );
 };

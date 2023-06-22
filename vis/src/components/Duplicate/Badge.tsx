@@ -14,7 +14,15 @@ export function Badge({ group, names, sx }: StyledComponent<BadgeProps>) {
     different: 'black',
   }[group];
   return (
-    <Tag colorScheme={color} fill='semi' mimic='tint' energy='live' weight='bold' size='sm' sx={{ textTransform: 'uppercase', ...sx }}>
+    <Tag
+      tx={{
+        colorScheme: color,
+        fill: 'semi',
+        mimic: 'tint',
+        energy: 'live',
+        weight: 'bold',
+        sizing: 'sm',
+      }} sx={{ textTransform: 'uppercase', ...sx }}>
       ({Object.values(names || []).reduce((a, b) => a + b.count, 0)}x)
       {group}
     </Tag>
