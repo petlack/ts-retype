@@ -94,7 +94,7 @@ export default [
   },
   example('console.tsx'),
   example('counter.tsx'),
-  example('dynamic-list.ts'),
+  example('dynamic-list.tsx'),
   example('fetch.tsx'),
   example('header.tsx'),
   example('interactive.tsx'),
