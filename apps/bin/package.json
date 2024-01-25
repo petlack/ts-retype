@@ -1,0 +1,16 @@
+{
+  "name": "@ts-retype/bin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo \"building ts-retype-bin\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ts-retype/retype": "workspace:^",
+    "commander": "^11.1.0"
+  }
+}
