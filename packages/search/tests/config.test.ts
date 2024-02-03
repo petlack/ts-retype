@@ -1,6 +1,6 @@
 import { describe, expect, it, afterEach, beforeAll, beforeEach } from 'vitest';
 import fs from 'fs';
-import { DEFAULT_CONFIG } from '../src/types/index.js';
+import { DEFAULT_CONFIG } from '../src/types.js';
 import { RetypeConfig } from '../src/config.js';
 
 function writeConfig(path: string, config: Partial<RetypeConfig>) {

@@ -1,23 +1,25 @@
-import fs from 'fs';
+import { cpSync, readFileSync, writeFileSync } from 'fs';
 import { scan } from './scan.js';
 import { resolveOutputFilePath } from './cmd.js';
-import { createLogger } from './log.js';
 import { Metadata, ReportProps, ReportResult, ScanProps } from './types.js';
-import { dir, stringify } from '@ts-retype/utils';
+import { createLogger, stringify } from '@ts-retype/utils';
 import { compress } from './compress.js';
 
 const log = createLogger(console.log);
 
-function findTemplate(): string | null {
-    let distPath = dir('index.html');
-    if (!fs.existsSync(distPath)) {
-        distPath = dir('../../vis/dist/index.html');
-        log.log('could not find index.html in src/ or dist/');
-    }
-    return distPath;
-}
+// const dir = (p: string) => join(__dirname, p);
+// function findTemplate(): string | null {
+//     let distPath = dir('index.html');
+//     console.log('distPath', distPath);
+//     if (!existsSync(distPath)) {
+//         distPath = dir('../../vis/dist/index.html');
+//         log.log('could not find index.html in src/ or dist/');
+//     }
+//     return distPath;
+// }
 
-export function report(args: ScanProps & ReportProps) {
+
+export function report(args: ScanProps & ReportProps, templateFile: string) {
     log.log('running with args');
     log.log(stringify(args));
     log.log();
@@ -46,17 +48,12 @@ export function report(args: ScanProps & ReportProps) {
     if (!noHtml) {
         const htmlFile = resolveOutputFilePath(output);
 
-        const templateFile = findTemplate();
-        if (!templateFile) {
-            log.log('missing template file. Try running `npm run vis:build`');
-            return;
-        }
-        fs.cpSync(templateFile, htmlFile);
+        cpSync(templateFile, htmlFile);
 
-        const html = fs.readFileSync(htmlFile).toString();
+        const html = readFileSync(htmlFile).toString();
 
         const withDataJson = html.replace(
-            'window.__datajson__="DATA_JSON"',
+            /window\.__datajson__\s*=\s*"DATA_JSON"/,
             `window.__data__ = ${dataJson}`,
         );
 
@@ -69,10 +66,10 @@ export function report(args: ScanProps & ReportProps) {
         const metaJson = JSON.stringify(meta);
 
         const replaced = withDataJson.replace(
-            'window.__metajson__="META_JSON"',
+            /window\.__metajson__\s*=\s*"DATA_JSON"/,
             `window.__meta__ = ${metaJson}`,
         );
-        fs.writeFileSync(htmlFile, replaced);
+        writeFileSync(htmlFile, replaced);
 
         log.log(`report exported to ${htmlFile}`);
         log.log('you can view it by running');
@@ -82,7 +79,7 @@ export function report(args: ScanProps & ReportProps) {
     }
 
     if (typeof json === 'string') {
-        fs.writeFileSync(
+        writeFileSync(
             json,
             JSON.stringify({
                 data: compressed,

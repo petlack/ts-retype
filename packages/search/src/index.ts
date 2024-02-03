@@ -1,5 +1,6 @@
 export { scan } from './scan.js';
 export { report } from './report.js';
+export { compress } from './compress.js';
 export type {
     ArrayElement,
     Metadata,
@@ -10,4 +11,5 @@ export type {
     TokenText,
     TypeDuplicate,
 } from './types.js';
+export { RetypeConfig } from './config.js';
 export { TS_RETYPE_CMD_OPTIONS } from './types.js';

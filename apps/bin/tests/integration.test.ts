@@ -1,12 +1,11 @@
-import { describe, expect, it, beforeEach, afterEach } from 'vitest';
-import fs from 'fs';
-import path from 'path';
-import { scan } from '../src/scan.js';
-import { report } from '../src/report.js';
-import { RetypeConfig } from '../src/config.js';
-
 import * as url from 'url';
-import { compress } from '../src/compress.js';
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
+import { scan, report } from '@ts-retype/search';
+import { RetypeConfig } from '@ts-retype/search';
+import fs from 'fs';
+import { compress } from '@ts-retype/search';
+import path from 'path';
+
 
 global.__dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -32,7 +31,8 @@ describe('report', () => {
             json: path.join(dir, 'report.json'),
         });
         const expected = scan(config);
-        report(config);
+        const templateFile = path.join(__dirname, '../../../apps/vis/dist/index.html');
+        report(config, templateFile);
         const html = fs.readFileSync(path.join(dir, 'index.html')).toString();
         const match = html.match(/window\.__data__\s+=\s+(\[.+?\]);/s);
         expect(match).not.toBeNull();

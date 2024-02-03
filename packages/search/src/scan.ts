@@ -4,10 +4,9 @@ import { globSync } from 'glob';
 import { concat } from 'ramda';
 import { formatISO } from 'date-fns';
 import { clustersToDuplicates, findTypesInFile } from './clusters.js';
-import { createLogger } from './log.js';
 import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity.js';
 import { Metadata, ScanProps, TypeDuplicate } from './types.js';
-import { formatDuration } from '@ts-retype/utils';
+import { createLogger, formatDuration } from '@ts-retype/utils';
 import { SourceCandidateType } from './types/candidate.js';
 import { loadFile } from './utils.js';
 

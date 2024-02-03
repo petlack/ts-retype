@@ -2,12 +2,11 @@
 
 import fs from 'fs';
 import { Command, createCommand } from 'commander';
-import { dir, stringify, readPackageJson } from '@ts-retype/utils';
-import { createLogger } from '@ts-retype/search/log.cjs';
+import { createLogger, dir, stringify, readPackageJson } from '@ts-retype/utils';
 import { report } from '@ts-retype/search';
-import { RetypeConfig } from '@ts-retype/search/config.cjs';
-import { DEFAULT_CONFIG, TS_RETYPE_CMD_OPTIONS } from '@ts-retype/search/types.cjs';
-import type { RetypeCmdProps } from '@ts-retype/search/types.cjs';
+import { RetypeConfig } from '@ts-retype/search/config.js';
+import { DEFAULT_CONFIG, TS_RETYPE_CMD_OPTIONS } from '@ts-retype/search/types.js';
+import type { RetypeCmdProps } from '@ts-retype/search/types.js';
 // import { isMain } from '@ts-retype/scripts/src/isMain';
 
 // TS_RETYPE_CMD_OPTIONS,

@@ -15,7 +15,8 @@
         "copy-assets-from-vis": "mkdir -p ./dist/vis && cp -R ../vis/dist/* ./dist/vis/ && cp ./package.json ./dist/",
         "clean": "rm -rf ./dist",
         "dev": "node dist/index.cjs --help",
-        "start": "node dist/index.cjs --help"
+        "start": "node dist/index.cjs --help",
+        "test": "vitest run --coverage"
     },
     "keywords": [],
     "author": "",
@@ -27,7 +28,9 @@
     },
     "devDependencies": {
         "@types/node": "^20.11.6",
-        "tsup": "^8.0.1"
+        "@vitest/coverage-v8": "^1.2.2",
+        "tsup": "^8.0.1",
+        "vitest": "^1.2.2"
     },
     "nx": {
         "targets": {
@@ -43,6 +46,13 @@
                 "dependsOn": [
                     {
                         "target": "copy-assets-from-vis"
+                    }
+                ]
+            },
+            "test": {
+                "dependsOn": [
+                    {
+                        "target": "build"
                     }
                 ]
             }

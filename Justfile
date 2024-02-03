@@ -17,7 +17,10 @@ install:
     pnpm install
 
 test *args='':
-    npx nx test "@ts-retype/${@}"
+    npx nx test "@ts-retype/${@}" --verbose
+
+test-all:
+    pnpm nx run-many -t test
 
 watch-build *args='':
     npx nx build:watch "@ts-retype/${@}"
