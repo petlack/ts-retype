@@ -8,7 +8,7 @@ build-all:
     pnpm nx run-many -t build
 
 build *args='':
-    npx nx build "@ts-retype/${@}"
+    npx nx build "@ts-retype/${@}" --verbose
 
 dev *args='':
     npx nx dev "@ts-retype/${@}"

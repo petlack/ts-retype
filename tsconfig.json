@@ -19,5 +19,13 @@
         "forceConsistentCasingInFileNames": true,
         "isolatedModules": true,
         "baseUrl": "./",
+        "paths": {
+            "@ts-retype/search/*": [
+                "packages/search/dist/*"
+            ],
+            "@ts-retype/uikit/*": [
+                "packages/uikit/dist/*"
+            ],
+        }
     }
 }
