@@ -1,7 +1,7 @@
 import { parse } from './parse.js';
 import { Similarity, IClusters } from './types/similarity.js';
 import ts from 'typescript';
-import { freq, selectIndices } from './utils.js';
+import { freq, selectIndices } from '@ts-retype/utils';
 import { pluck, uniq } from 'ramda';
 import { highlight } from './highlight.js';
 import { TypeDuplicate } from './types.js';

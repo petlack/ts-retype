@@ -7,8 +7,9 @@ import { clustersToDuplicates, findTypesInFile } from './clusters.js';
 import { createLogger } from './log.js';
 import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity.js';
 import { Metadata, ScanProps, TypeDuplicate } from './types.js';
-import { loadFile, formatDuration } from './utils.js';
+import { formatDuration } from '@ts-retype/utils';
 import { SourceCandidateType } from './types/candidate.js';
+import { loadFile } from './utils.js';
 
 const log = createLogger(console.log);
 

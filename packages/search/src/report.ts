@@ -3,7 +3,7 @@ import { scan } from './scan.js';
 import { resolveOutputFilePath } from './cmd.js';
 import { createLogger } from './log.js';
 import { Metadata, ReportProps, ReportResult, ScanProps } from './types.js';
-import { dir, stringify } from './utils.js';
+import { dir, stringify } from '@ts-retype/utils';
 import { compress } from './compress.js';
 
 const log = createLogger(console.log);

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { filterEmpty, pwd } from './utils.js';
+import { filterEmpty, pwd } from '@ts-retype/utils';
 
 export function resolveConfig<T extends object>(
     configFile: string | undefined | null,
