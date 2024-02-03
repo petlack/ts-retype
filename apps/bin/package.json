@@ -1,16 +1,47 @@
 {
-  "name": "@ts-retype/bin",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "echo \"building ts-retype-bin\""
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@ts-retype/retype": "workspace:^",
-    "commander": "^11.1.0"
-  }
+    "name": "@ts-retype/bin",
+    "sideEffects": false,
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsup",
+        "build:watch": "tsup --watch --onSuccess \"npm run start\"",
+        "copy-assets-from-vis": "mkdir -p ./dist/vis && cp -R ../vis/dist/* ./dist/vis/",
+        "clean": "rm -rf ./dist",
+        "start": "node dist/index.js --help"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@ts-retype/search": "workspace:^",
+        "commander": "^11.1.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.6",
+        "tsup": "^8.0.1"
+    },
+    "nx": {
+        "implicitDependencies": [
+            "@ts-retype/vis"
+        ],
+        "targets": {
+            "copy-assets-from-vis": {
+                "dependsOn": [
+                    {
+                        "projects": "@ts-retype/vis",
+                        "target": "build"
+                    }
+                ]
+            },
+            "build": {
+                "dependsOn": [
+                    {
+                        "target": "copy-assets-from-vis"
+                    }
+                ]
+            }
+        }
+    }
 }
