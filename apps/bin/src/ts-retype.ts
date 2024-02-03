@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 import { Command, createCommand } from 'commander';
-import { dir, stringify, readPackageJson } from '@ts-retype/search/utils.cjs';
+import { dir, stringify, readPackageJson } from '@ts-retype/utils';
 import { createLogger } from '@ts-retype/search/log.cjs';
 import { report } from '@ts-retype/search';
 import { RetypeConfig } from '@ts-retype/search/config.cjs';

@@ -22,6 +22,7 @@
     "license": "ISC",
     "dependencies": {
         "@ts-retype/search": "workspace:^",
+        "@ts-retype/utils": "workspace:^",
         "commander": "^11.1.0"
     },
     "devDependencies": {
