@@ -2,14 +2,10 @@ set positional-arguments
 
 clean:
     rm -rf ./.nx
-    npx nx clean @ts-retype/bin
-    npx nx clean @ts-retype/doc
-    npx nx clean @ts-retype/vis
-    npx nx clean @ts-retype/search
-    npx nx clean @ts-retype/uikit
+    pnpm nx run-many -t clean
 
 build-all:
-    npx nx build @ts-retype/bin
+    pnpm nx run-many -t build
 
 build *args='':
     npx nx build "@ts-retype/${@}"

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { Command, createCommand } from 'commander';
-import { foo, Bar } from '@ts-retype/search';
+import { Bar, foo } from '@ts-retype/search';
 
 const program = createCommand();
 
@@ -49,13 +49,15 @@ buildProgram(
 );
 
 function main() {
+    console.log('maii');
+    foo();
     const cmdProps = parseCmdProps();
     console.log('cmdProps', cmdProps);
     const bar: Bar = {
         bar: 'bar',
     };
     foo();
-    console.log('bay', bar);
+    console.log('byyyy', bar);
 }
 
 if (require.main === module) {

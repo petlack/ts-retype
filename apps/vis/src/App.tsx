@@ -1,11 +1,11 @@
-import { Snippet } from '@ts-retype/uikit';
+import { Foo } from './Foo';
 import './App.css';
 
 function App() {
 
     return (
         <>
-            <Snippet title="foo">Click on the Vite and React logos to learn more</Snippet>
+            <Foo />
         </>
     );
 }

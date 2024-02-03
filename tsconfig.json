@@ -1,31 +1,23 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "strict": true,
-    "preserveConstEnums": true,
-    "sourceMap": true,
-    "module": "nodenext",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
-    "moduleResolution": "nodenext",
-    "moduleDetection": "force",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "allowJs": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "baseUrl": "./",
-    "paths": {
-      "@ts-retype/search/*": [
-        "packages/search/dist/*"
-      ],
-      "@ts-retype/uikit/*": [
-        "packages/uikit/dist/*"
-      ],
+    "compilerOptions": {
+        "target": "esnext",
+        "strict": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "module": "nodenext",
+        "lib": [
+            "es2020",
+            "dom"
+        ],
+        "moduleResolution": "nodenext",
+        "moduleDetection": "force",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "allowJs": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true,
+        "baseUrl": "./",
     }
-  }
 }
