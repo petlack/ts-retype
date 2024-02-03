@@ -26,6 +26,9 @@
             "@ts-retype/uikit/*": [
                 "packages/uikit/dist/*"
             ],
+            "@ts-retype/utils/*": [
+                "packages/utils/dist/*"
+            ],
         }
     }
 }

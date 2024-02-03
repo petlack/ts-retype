@@ -16,6 +16,9 @@ dev *args='':
 install:
     pnpm install
 
+test *args='':
+    npx nx test "@ts-retype/${@}"
+
 watch-build *args='':
     npx nx build:watch "@ts-retype/${@}"
 
