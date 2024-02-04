@@ -48,13 +48,6 @@
                         "target": "copy-assets-from-vis"
                     }
                 ]
-            },
-            "test": {
-                "dependsOn": [
-                    {
-                        "target": "build"
-                    }
-                ]
             }
         }
     }
