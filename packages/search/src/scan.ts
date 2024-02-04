@@ -2,7 +2,6 @@ import path from 'path';
 import Progress from 'progress';
 import { globSync } from 'glob';
 import { concat } from 'ramda';
-import { formatISO } from 'date-fns';
 import { clustersToDuplicates, findTypesInFile } from './clusters.js';
 import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity.js';
 import { Metadata, ScanProps, TypeDuplicate } from './types.js';
@@ -87,7 +86,7 @@ export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
         projectLocScanned: locs,
         projectTypesScanned: allTypes.length,
         projectFilesWithTypesDeclarations: filesWithTypes,
-        scannedAt: formatISO(new Date()),
+        scannedAt: new Date().toISOString(),
         scanDuration: duration,
     };
 
