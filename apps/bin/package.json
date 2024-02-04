@@ -9,7 +9,7 @@
         "ts-retype": "dist/ts-retype.cjs"
     },
     "scripts": {
-        "bin": "./dist/ts-retype.cjs",
+        "bin": "./dist/ts-retype.cjs .",
         "build": "tsup",
         "build:watch": "tsup --watch --onSuccess \"npm run start\"",
         "copy-assets-from-vis": "mkdir -p ./dist/vis && cp -R ../vis/dist/* ./dist/vis/ && cp ./package.json ./dist/",

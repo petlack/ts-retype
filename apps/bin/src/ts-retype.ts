@@ -23,6 +23,7 @@ function buildProgram(command: Command) {
     for (const { short, long, args, desc } of TS_RETYPE_CMD_OPTIONS) {
         command.option(`-${short}, --${long} ${args || ''}`, desc);
     }
+    command.arguments('[rootDir]');
 }
 
 buildProgram(
@@ -70,7 +71,7 @@ function main() {
 
     const config = RetypeConfig.fromCmdProps(cmdProps);
 
-    report(config);
+    report(config, dir('vis/index.html'));
 }
 
 // if (isMain(import.meta)) {
