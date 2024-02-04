@@ -97,6 +97,12 @@ importers:
       '@ts-retype/uikit':
         specifier: workspace:*
         version: link:../../packages/uikit
+      minisearch:
+        specifier: ^6.3.0
+        version: 6.3.0
+      ramda:
+        specifier: ^0.28.0
+        version: 0.28.0
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -104,6 +110,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@types/ramda':
+        specifier: ^0.28.23
+        version: 0.28.23
       '@types/react':
         specifier: ^18.2.43
         version: 18.2.43
@@ -3071,6 +3080,10 @@ packages:
   /minipass@7.0.4:
     resolution: {integrity: sha512-jYofLM5Dam9279rdkWzqHozUo4ybjdZmCsDHePy5V/PbBcVMiSZR97gmAy45aqi8CK1lG2ECd356FU86avfwUQ==}
     engines: {node: '>=16 || 14 >=14.17'}
+
+  /minisearch@6.3.0:
+    resolution: {integrity: sha512-ihFnidEeU8iXzcVHy74dhkxh/dn8Dc08ERl0xwoMMGqp4+LvRSCgicb+zGqWthVokQKvCSxITlh3P08OzdTYCQ==}
+    dev: false
 
   /mlly@1.5.0:
     resolution: {integrity: sha512-NPVQvAY1xr1QoVeG0cy8yUYC7FQcOx6evl/RjT1wL5FvzPnzOysoqB/jmx/DhssT2dYa8nxECLAaFI/+gVLhDQ==}
