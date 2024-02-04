@@ -53,7 +53,7 @@ export function report(args: ScanProps & ReportProps, html: string): string {
         return replaced;
     }
 
-    if (typeof json === 'string') {
+    if (json?.endsWith('.json')) {
         return JSON.stringify({
             data: compressed,
             meta,

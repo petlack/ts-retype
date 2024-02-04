@@ -2,7 +2,7 @@
 
 import { readFileSync, writeFileSync } from 'fs';
 import { Command, createCommand } from 'commander';
-import { createLogger, dir, stringify, readPackageJson } from '@ts-retype/utils';
+import { createLogger, dir, stringify, readPackageJson, pwd } from '@ts-retype/utils';
 import { report } from '@ts-retype/search';
 import { RetypeConfig } from '@ts-retype/search/config.js';
 import { DEFAULT_CONFIG, TS_RETYPE_CMD_OPTIONS } from '@ts-retype/search/types.js';
@@ -72,6 +72,8 @@ function main() {
 
     log.log(JSON.stringify({ config }));
 
+    config.rootDir = pwd(config.rootDir);
+
     const template = readFileSync(dir('vis/index.html')).toString();
     const content = report(config, template);
 
@@ -79,7 +81,7 @@ function main() {
         throw new Error('missing output');
     }
 
-    if (!cmdProps.noHtml) {
+    if (!config.noHtml) {
         const htmlFile = resolveOutputFilePath(config.output);
         writeFileSync(htmlFile, content);
         log.log(`report exported to ${htmlFile}`);
@@ -89,9 +91,9 @@ function main() {
         log.log();
     }
 
-    if (typeof cmdProps.json === 'string') {
-        writeFileSync(cmdProps.json, content);
-        log.log(`json data exported to ${cmdProps.json}`);
+    if (config.json?.endsWith('.json')) {
+        writeFileSync(config.json, content);
+        log.log(`json data exported to ${config.json}`);
         log.log();
     }
 
