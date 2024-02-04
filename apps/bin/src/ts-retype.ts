@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
-import fs from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { Command, createCommand } from 'commander';
 import { createLogger, dir, stringify, readPackageJson } from '@ts-retype/utils';
 import { report } from '@ts-retype/search';
 import { RetypeConfig } from '@ts-retype/search/config.js';
 import { DEFAULT_CONFIG, TS_RETYPE_CMD_OPTIONS } from '@ts-retype/search/types.js';
 import type { RetypeCmdProps } from '@ts-retype/search/types.js';
+import { resolveOutputFilePath } from './cmd.js';
 // import { isMain } from '@ts-retype/scripts/src/isMain';
 
 // TS_RETYPE_CMD_OPTIONS,
@@ -46,7 +47,7 @@ function parseCmdProps(): Partial<RetypeCmdProps> {
 function runGenerate(options: Partial<RetypeCmdProps>) {
     const configPath = typeof options.init === 'string' ? <string>options.init : '.retyperc';
     const config = stringify(DEFAULT_CONFIG);
-    fs.writeFileSync(configPath, config);
+    writeFileSync(configPath, config);
     log.log(config);
     log.log(`written to ${configPath}`);
 }
@@ -64,14 +65,36 @@ function main() {
     }
 
     if (!cmdProps.rootDir) {
-    // throw new Error('missing rootDir');
-        console.dir({ cmdProps });
-        process.exit(1);
+        throw new Error('missing rootDir');
     }
 
     const config = RetypeConfig.fromCmdProps(cmdProps);
 
-    report(config, dir('vis/index.html'));
+    log.log(JSON.stringify({ config }));
+
+    const template = readFileSync(dir('vis/index.html')).toString();
+    const content = report(config, template);
+
+    if (!config.noHtml && !config.output) {
+        throw new Error('missing output');
+    }
+
+    if (!cmdProps.noHtml) {
+        const htmlFile = resolveOutputFilePath(config.output);
+        writeFileSync(htmlFile, content);
+        log.log(`report exported to ${htmlFile}`);
+        log.log('you can view it by running');
+        log.log();
+        log.log(`  open ${htmlFile}`);
+        log.log();
+    }
+
+    if (typeof cmdProps.json === 'string') {
+        writeFileSync(cmdProps.json, content);
+        log.log(`json data exported to ${cmdProps.json}`);
+        log.log();
+    }
+
 }
 
 // if (isMain(import.meta)) {

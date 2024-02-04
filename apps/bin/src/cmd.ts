@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { readFileSync, existsSync, lstatSync, mkdirSync } from 'fs';
 import path from 'path';
 import { filterEmpty, pwd } from '@ts-retype/utils';
 
@@ -9,7 +9,7 @@ export function resolveConfig<T extends object>(
     if (!configFile) {
         return defaults;
     }
-    const configFileData = <T>JSON.parse(fs.readFileSync(configFile).toString());
+    const configFileData = <T>JSON.parse(readFileSync(configFile).toString());
     return {
         ...defaults,
         ...filterEmpty(configFileData),
@@ -40,25 +40,25 @@ export function resolveOptions<O extends object>(
 export function resolveOutputFilePath(configOutput: string): string {
     let htmlFile = configOutput;
     let isDir = false;
-    if (!fs.existsSync(configOutput)) {
+    if (!existsSync(configOutput)) {
         if (!configOutput.endsWith('.html')) {
             isDir = true;
         }
     } else {
-        if (fs.lstatSync(configOutput).isDirectory()) {
+        if (lstatSync(configOutput).isDirectory()) {
             isDir = true;
         }
     }
     if (isDir) {
         htmlFile = path.join(configOutput, 'index.html');
-        if (!fs.existsSync(configOutput)) {
-            fs.mkdirSync(configOutput, { recursive: true });
+        if (!existsSync(configOutput)) {
+            mkdirSync(configOutput, { recursive: true });
         }
     } else {
         htmlFile = configOutput;
         const parentDir = path.dirname(htmlFile);
-        if (!fs.existsSync(parentDir)) {
-            fs.mkdirSync(parentDir, { recursive: true });
+        if (!existsSync(parentDir)) {
+            mkdirSync(parentDir, { recursive: true });
         }
     }
     return htmlFile;

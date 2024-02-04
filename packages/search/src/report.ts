@@ -1,30 +1,16 @@
-import { cpSync, readFileSync, writeFileSync } from 'fs';
 import { scan } from './scan.js';
-import { resolveOutputFilePath } from './cmd.js';
 import { Metadata, ReportProps, ReportResult, ScanProps } from './types.js';
 import { createLogger, stringify } from '@ts-retype/utils';
 import { compress } from './compress.js';
 
 const log = createLogger(console.log);
 
-// const dir = (p: string) => join(__dirname, p);
-// function findTemplate(): string | null {
-//     let distPath = dir('index.html');
-//     console.log('distPath', distPath);
-//     if (!existsSync(distPath)) {
-//         distPath = dir('../../vis/dist/index.html');
-//         log.log('could not find index.html in src/ or dist/');
-//     }
-//     return distPath;
-// }
-
-
-export function report(args: ScanProps & ReportProps, templateFile: string) {
+export function report(args: ScanProps & ReportProps, html: string): string {
     log.log('running with args');
     log.log(stringify(args));
     log.log();
 
-    const { rootDir, noHtml, output, json } = args;
+    const { rootDir, noHtml, json } = args;
 
     log.log(`scanning types in ${rootDir}`);
 
@@ -46,12 +32,6 @@ export function report(args: ScanProps & ReportProps, templateFile: string) {
     };
 
     if (!noHtml) {
-        const htmlFile = resolveOutputFilePath(output);
-
-        cpSync(templateFile, htmlFile);
-
-        const html = readFileSync(htmlFile).toString();
-
         const withDataJson = html.replace(
             /window\.__datajson__\s*=\s*"DATA_JSON"/,
             `window.__data__ = ${dataJson}`,
@@ -69,24 +49,17 @@ export function report(args: ScanProps & ReportProps, templateFile: string) {
             /window\.__metajson__\s*=\s*"DATA_JSON"/,
             `window.__meta__ = ${metaJson}`,
         );
-        writeFileSync(htmlFile, replaced);
 
-        log.log(`report exported to ${htmlFile}`);
-        log.log('you can view it by running');
-        log.log();
-        log.log(`  open ${htmlFile}`);
-        log.log();
+        return replaced;
     }
 
     if (typeof json === 'string') {
-        writeFileSync(
-            json,
-            JSON.stringify({
-                data: compressed,
-                meta,
-            } as ReportResult),
-        );
-        log.log(`json data exported to ${json}`);
-        log.log();
+        return JSON.stringify({
+            data: compressed,
+            meta,
+        } as ReportResult);
     }
+
+    return `If noHtml is set, json must be set to a file path.
+        If no json is set, noHtml must be false.`;
 }
