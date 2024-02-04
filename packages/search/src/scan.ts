@@ -1,13 +1,13 @@
-import path from 'path';
-import Progress from 'progress';
-import { globSync } from 'glob';
-import { concat } from 'ramda';
+import { Metadata, ScanProps, TypeDuplicate } from './types.js';
 import { clustersToDuplicates, findTypesInFile } from './clusters.js';
 import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity.js';
-import { Metadata, ScanProps, TypeDuplicate } from './types.js';
 import { createLogger, formatDuration } from '@ts-retype/utils';
+import Progress from 'progress';
 import { SourceCandidateType } from './types/candidate.js';
+import { concat } from 'ramda';
+import { globSync } from 'glob';
 import { loadFile } from './utils.js';
+import { join, basename, resolve } from 'path';
 
 const log = createLogger(console.log);
 
@@ -37,7 +37,7 @@ export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
     log.log(`searching in ${files.length.toLocaleString()} files`);
 
     for (const relPath of files) {
-        const file = path.join(rootDir, relPath);
+        const file = join(rootDir, relPath);
         log.live(`⏳ loading ${formatFileName(file)}`);
 
         const srcFile = loadFile(file);
@@ -81,7 +81,7 @@ export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
     const duration = new Date().getTime() - start;
 
     const meta: ScanResult['meta'] = {
-        projectName: path.basename(path.resolve(rootDir)),
+        projectName: basename(resolve(rootDir)),
         projectFilesScanned: files.length,
         projectLocScanned: locs,
         projectTypesScanned: allTypes.length,
