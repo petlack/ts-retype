@@ -1,6 +1,6 @@
-import { Snippet } from '@ts-retype/uikit/dist';
-import type { Metadata, TypeDuplicate } from '@ts-retype/search/dist/types';
-import { decompressRoot } from '@ts-retype/search/dist/snippet';
+import { Snippet } from '@ts-retype/uikit';
+import type { Metadata, TypeDuplicate } from '@ts-retype/search/types';
+import { decompressRoot } from '@ts-retype/search/snippet';
 import { useEffect, useState } from 'react';
 import './App.css';
 

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { TypeDuplicate, Metadata } from '@ts-retype/search';
+import type { TypeDuplicate, Metadata } from '@ts-retype/search/types';
 
 declare global {
   interface Window {

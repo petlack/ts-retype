@@ -23,9 +23,6 @@
             "@ts-retype/search/*": [
                 "packages/search/dist/*"
             ],
-            "@ts-retype/search": [
-                "packages/search/dist/index.js"
-            ],
             "@ts-retype/uikit/*": [
                 "packages/uikit/dist/*"
             ],
