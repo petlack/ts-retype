@@ -14,27 +14,9 @@ export type NamesListingProps = {
   selectedFile: ArrayElement<TypeDuplicate['files']>;
 }
 
-export function sortNames(names: TypeDuplicate['names']) {
-    return names.sort((a, b) => {
-        if (a.count < b.count) {
-            return 1;
-        } else if (a.count > b.count) {
-            return -1;
-        } else {
-            if (a.name < b.name) {
-                return -1;
-            } else if (a.name > b.name) {
-                return 1;
-            } else {
-                return 0;
-            }
-        }
-    });
-}
-
 function DuplicateName({ selectedFile }: NamesListingProps) {
     return (
-        <h2 className="mono">
+        <h2 className="text-3xl font-bold underline">
             <SearchAwareText>{selectedFile.file}</SearchAwareText>
         </h2>
     );
