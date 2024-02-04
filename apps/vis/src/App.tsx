@@ -1,5 +1,5 @@
 import { FulltextData } from './types';
-import { Snippet } from '@ts-retype/uikit';
+import { Search, Snippet } from '@ts-retype/uikit';
 import { useEffect } from 'react';
 import { Duplicate } from './components/Duplicate';
 import { Listing } from './components/Listing';
@@ -11,15 +11,13 @@ function App() {
     const { data: allData, meta } = useData();
 
     const {
-    // query,
-    // filter = {},
-        results,
+        // filter = {},
         // facetsStats,
-        // updateQuery,
-        setQuery,
-        query,
         // updateFilter,
+        query,
         reindex,
+        results,
+        setQuery,
     } = useSearch<FulltextData>(['fulltext'], ['files', 'names', 'group'], '');
 
     const initialFilter = {
@@ -41,6 +39,10 @@ function App() {
 
     return (
         <>
+            <Search
+                query={query}
+                setQuery={setQuery}
+            />
             <Listing
                 meta={meta}
                 results={results}

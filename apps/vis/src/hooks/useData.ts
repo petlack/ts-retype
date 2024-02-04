@@ -36,7 +36,9 @@ export function useData() {
 
     useEffect(() => {
         setAllData(
-            window.__data__.map(decompress).filter(({ group }) => ['identical', 'renamed'].includes(group))
+            window.__data__
+                .map(decompress)
+                .filter(({ group }) => ['identical', 'renamed'].includes(group))
                 .map((duplicate, idx) => ({
                     ...duplicate,
                     id: idx,
