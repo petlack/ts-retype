@@ -20,6 +20,9 @@ importers:
       nx:
         specifier: 18.0.0
         version: 18.0.0
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
 
   apps/bin:
     dependencies:
@@ -72,7 +75,7 @@ importers:
         version: 6.19.1(eslint@8.56.0)(typescript@5.3.3)
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.0.8)
+        version: 4.2.1(vite@5.0.12)
       eslint:
         specifier: ^8.56.0
         version: 8.56.0
@@ -86,8 +89,8 @@ importers:
         specifier: ^5.2.2
         version: 5.3.3
       vite:
-        specifier: ^5.0.8
-        version: 5.0.8
+        specifier: ^5.0.11
+        version: 5.0.12(@types/node@20.11.6)
 
   apps/vis:
     dependencies:
@@ -127,7 +130,7 @@ importers:
         version: 6.14.0(eslint@8.55.0)(typescript@5.3.3)
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.0.8)
+        version: 4.2.1(vite@5.0.12)
       eslint:
         specifier: ^8.55.0
         version: 8.55.0
@@ -141,11 +144,14 @@ importers:
         specifier: ^5.2.2
         version: 5.3.3
       vite:
-        specifier: ^5.0.8
-        version: 5.0.8
+        specifier: ^5.0.11
+        version: 5.0.12(@types/node@20.11.6)
+      vite-plugin-singlefile:
+        specifier: ^1.0.0
+        version: 1.0.0(rollup@4.9.6)(vite@5.0.12)
       vite-tsconfig-paths:
         specifier: ^4.3.1
-        version: 4.3.1(typescript@5.3.3)(vite@5.0.8)
+        version: 4.3.1(typescript@5.3.3)(vite@5.0.12)
 
   packages/search:
     dependencies:
@@ -1555,22 +1561,6 @@ packages:
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.0
       vite: 5.0.12(@types/node@20.11.6)
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /@vitejs/plugin-react@4.2.1(vite@5.0.8):
-    resolution: {integrity: sha512-oojO9IDc4nCUUi8qIR11KoQm0XFFLIwsRBwHRR4d/88IWghn1y6ckz/bJ8GHDCsYEJee8mDzqtJxh15/cisJNQ==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    peerDependencies:
-      vite: ^4.2.0 || ^5.0.0
-    dependencies:
-      '@babel/core': 7.23.7
-      '@babel/plugin-transform-react-jsx-self': 7.23.3(@babel/core@7.23.7)
-      '@babel/plugin-transform-react-jsx-source': 7.23.3(@babel/core@7.23.7)
-      '@types/babel__core': 7.20.5
-      react-refresh: 0.14.0
-      vite: 5.0.8
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3989,7 +3979,19 @@ packages:
       - terser
     dev: true
 
-  /vite-tsconfig-paths@4.3.1(typescript@5.3.3)(vite@5.0.8):
+  /vite-plugin-singlefile@1.0.0(rollup@4.9.6)(vite@5.0.12):
+    resolution: {integrity: sha512-iVAxl0t7gndQrznI4kI14hqAGxhVL7FQndeTdvTIH5/CbwpR2asgD3XSTsd7iWC83YTCmwAmsHIQvKdIdnHu7w==}
+    engines: {node: '>18.0.0'}
+    peerDependencies:
+      rollup: ^4.9.5
+      vite: ^5.0.11
+    dependencies:
+      micromatch: 4.0.5
+      rollup: 4.9.6
+      vite: 5.0.12(@types/node@20.11.6)
+    dev: true
+
+  /vite-tsconfig-paths@4.3.1(typescript@5.3.3)(vite@5.0.12):
     resolution: {integrity: sha512-cfgJwcGOsIxXOLU/nELPny2/LUD/lcf1IbfyeKTv2bsupVbTH/xpFtdQlBmIP1GEK2CjjLxYhFfB+QODFAx5aw==}
     peerDependencies:
       vite: '*'
@@ -4000,7 +4002,7 @@ packages:
       debug: 4.3.4
       globrex: 0.1.2
       tsconfck: 3.0.1(typescript@5.3.3)
-      vite: 5.0.8
+      vite: 5.0.12(@types/node@20.11.6)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -4035,41 +4037,6 @@ packages:
         optional: true
     dependencies:
       '@types/node': 20.11.6
-      esbuild: 0.19.12
-      postcss: 8.4.33
-      rollup: 4.9.6
-    optionalDependencies:
-      fsevents: 2.3.3
-    dev: true
-
-  /vite@5.0.8:
-    resolution: {integrity: sha512-jYMALd8aeqR3yS9xlHd0OzQJndS9fH5ylVgWdB+pxTwxLKdO1pgC5Dlb398BUxpfaBxa4M9oT7j1g503Gaj5IQ==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': ^18.0.0 || >=20.0.0
-      less: '*'
-      lightningcss: ^1.21.0
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      lightningcss:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
       esbuild: 0.19.12
       postcss: 8.4.33
       rollup: 4.9.6

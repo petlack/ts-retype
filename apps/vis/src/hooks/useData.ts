@@ -35,17 +35,34 @@ export function useData() {
     const [meta, setMeta] = useState({} as Metadata);
 
     useEffect(() => {
-        setAllData(
-            window.__data__
-                .map(decompress)
-                .filter(({ group }) => ['identical', 'renamed'].includes(group))
-                .map((duplicate, idx) => ({
-                    ...duplicate,
-                    id: idx,
-                    fulltext: fulltext(duplicate as FulltextData),
-                }))
-        );
-        setMeta(window.__meta__);
+        let handle: number;
+        const retries = 0;
+        function pollWindow() {
+            console.log('polling data');
+            if (window.__data__?.length) {
+                setAllData(
+                    window.__data__
+                        .map(decompress)
+                        .filter(({ group }) => ['identical', 'renamed'].includes(group))
+                        .map((duplicate, idx) => ({
+                            ...duplicate,
+                            id: idx,
+                            fulltext: fulltext(duplicate as FulltextData),
+                        }))
+                );
+                setMeta(window.__meta__);
+            } else {
+                if (retries > 10) {
+                    console.log('retries exceeded');
+                    return;
+                }
+                console.log('waiting for data');
+                console.log(window.__data__);
+                handle = setTimeout(pollWindow, 1000);
+            }
+        }
+        pollWindow();
+        return () => clearTimeout(handle);
     }, []);
 
     return {

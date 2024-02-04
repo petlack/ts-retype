@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
-// import { viteSingleFile } from 'vite-plugin-singlefile';
+import { viteSingleFile } from 'vite-plugin-singlefile';
 // import { visualizer } from 'rollup-plugin-visualizer';
 // import dynamicImport from 'vite-plugin-dynamic-import';
 // import json from '@rollup/plugin-json';
@@ -23,7 +23,7 @@ export default defineConfig({
     plugins: [
         react(),
         tsconfigPaths(),
-        // viteSingleFile(),
+        viteSingleFile(),
         // visualizer({
         //     emitFile: true,
         //     filename: 'stats.html',
