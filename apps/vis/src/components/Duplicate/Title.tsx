@@ -16,16 +16,16 @@ export type NamesListingProps = {
 
 function DuplicateName({ selectedFile }: NamesListingProps) {
     return (
-        <h2 className="text-3xl font-bold underline">
+        <h2 className="text-xl font-regular">
             <SearchAwareText>{selectedFile.file}</SearchAwareText>
         </h2>
     );
 }
 
-
 export function Title({ group, type, names, selectedFile }: TitleProps) {
     return (
-        <div className="title">
+        // <div class="grid grid-cols-[var(--size-8)_max-content_1fr] justify-items-end items-center gap-x-[var(--space-2)] p-[var(--space-1)]_[var(--space-2)]">
+        <div className="grid grid-cols-[200px_max-content_1fr] justify-items-end items-center gap-x-2 px-2 py-1">
             <TypeIcon group={group} type={type} />
             <DuplicateName selectedFile={selectedFile} />
             <Badge group={group} names={names} />

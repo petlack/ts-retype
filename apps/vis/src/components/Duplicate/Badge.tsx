@@ -7,13 +7,14 @@ export type BadgeProps = {
 }
 
 export function Badge({ group, names }: BadgeProps) {
-    // const color = {
-    //     identical: 'yellow',
-    //     renamed: 'green',
-    //     different: 'black',
-    // }[group];
+    const color = {
+        identical: 'yellow',
+        renamed: 'green',
+        different: 'black',
+    }[group];
     return (
-        <Tag
+        <span
+            className={`text-sm font-bold text-${color}-500 bg-${color}-100 px-2 py-1 rounded-md`}
             // tx={{
             //     colorScheme: color,
             //     fill: 'semi',
@@ -23,8 +24,7 @@ export function Badge({ group, names }: BadgeProps) {
             //     sizing: 'sm',
             // }} sx={{ textTransform: 'uppercase' }}
         >
-      ({Object.values(names || []).reduce((a, b) => a + b.count, 0)}x)
-            {group}
-        </Tag>
+        ({Object.values(names || []).reduce((a, b) => a + b.count, 0)}x) {group}
+        </span>
     );
 }

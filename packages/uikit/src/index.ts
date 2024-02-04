@@ -1,3 +1,4 @@
+import './index.css';
 export { Button } from './Button/index.js';
 export { Code, Snippet } from './Code/index.js';
 export { Lines } from './Lines/index.js';

@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-// module.exports = require('../../config/tailwind.config.cjs');
-// export { default } from '../../config/tailwind.config.cjs';
-
-export default {
+exports.default = {
     content: [
-        './src/**/*.{ts,tsx,html}',
+        './src/**/*.{ts,tsx}',
     ],
     theme: {
         colors: {

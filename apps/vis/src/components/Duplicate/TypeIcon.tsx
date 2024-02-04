@@ -26,7 +26,7 @@ export function TypeIcon({ type }: TypeIconProps) {
     }[type];
 
     return (
-        <div className="type-icon">
+        <div className="relative cursor-help transition-colors duration-150 ease-in text-bgaa-400 hover:text-bgaa-900">
             <span className="name mono">{typeSymbol}</span>
             <span>{tooltipContent}</span>
             {/* <Tooltip> */}

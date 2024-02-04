@@ -1,14 +1,13 @@
 /** @type {import('tailwindcss').Config} */
-// module.exports = require('../../config/tailwind.config.cjs');
-// export { default } from '../../config/tailwind.config.cjs';
-
 export default {
     content: [
-        './src/**/*.{ts,tsx,html}',
+        '../apps/vis/**/*.{ts,tsx,html}',
+        '../apps/doc/**/*.{ts,tsx,html}',
+        '../packages/uikit/**/*.{ts,tsx}',
     ],
     theme: {
         colors: {
-            bgaa: {
+            'bgaa': {
                 100: '#F7F7F7',
                 200: '#E0E0E0',
                 300: '#C9C9C9',
