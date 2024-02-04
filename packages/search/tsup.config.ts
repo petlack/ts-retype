@@ -6,6 +6,7 @@ export default defineConfig({
         'src/config.ts',
         'src/index.ts',
         'src/log.ts',
+        'src/snippet.ts',
         'src/types.ts',
         'src/utils.ts',
     ],

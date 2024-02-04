@@ -1,6 +1,7 @@
 export { scan } from './scan.js';
 export { report } from './report.js';
 export { compress } from './compress.js';
+export { decompressRoot } from './snippet.js';
 export type {
     ArrayElement,
     Metadata,

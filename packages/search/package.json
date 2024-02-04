@@ -5,6 +5,11 @@
     "type": "module",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "files": [
+        "dist/index.js",
+        "dist/snippet.js",
+        "dist/types.js"
+    ],
     "scripts": {
         "build": "tsup --onSuccess \"tsc --emitDeclarationOnly --declaration\"",
         "build:watch": "tsup --watch --onSuccess \"npm run start\"",
