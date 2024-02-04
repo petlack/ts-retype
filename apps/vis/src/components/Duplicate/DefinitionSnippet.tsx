@@ -6,7 +6,11 @@ import type { ArrayElement, Snippet, TokenRoot, TypeDuplicate } from '@ts-retype
 
 const EMPTY_ROOT: TokenRoot = { type: 'root', children: [] };
 
-export function DefinitionSnippet({ srcHgl, name, lines, offset, pos }: ArrayElement<TypeDuplicate['files']>) {
+export type DefinitionSnippetProps = ArrayElement<TypeDuplicate['files']> & {
+  className?: string;
+}
+
+export function DefinitionSnippet({ srcHgl, name, lines, offset, pos, className }: DefinitionSnippetProps) {
     const { phrase } = useSearchPhrase();
     const code = splitLines(
         highlightPhrase(
@@ -29,7 +33,7 @@ export function DefinitionSnippet({ srcHgl, name, lines, offset, pos }: ArrayEle
         />
     ));
     return (
-        <div className="snippet">
+        <div className={className}>
             <Lines
                 start={lines[0]}
                 type="lineNo"

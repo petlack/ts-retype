@@ -9,6 +9,7 @@ export type TitleProps = {
   names: TypeDuplicate['names'];
   group: TypeDuplicate['group'];
   selectedFile: ArrayElement<TypeDuplicate['files']>;
+  className?: string;
 }
 
 export type NamesListingProps = {
@@ -23,10 +24,9 @@ function DuplicateName({ selectedFile }: NamesListingProps) {
     );
 }
 
-export function Title({ group, type, names, selectedFile }: TitleProps) {
+export function Title({ className, group, type, names, selectedFile }: TitleProps) {
     return (
-        // <div class="grid grid-cols-[var(--size-8)_max-content_1fr] justify-items-end items-center gap-x-[var(--space-2)] p-[var(--space-1)]_[var(--space-2)]">
-        <div className="grid grid-cols-[200px_max-content_1fr] justify-items-end items-center gap-x-2 px-2 py-1">
+        <div className={`${className} grid grid-cols-[200px_max-content_1fr] justify-items-end items-center gap-x-2 px-2 py-1`}>
             <TypeIcon group={group} type={type} />
             <DuplicateName selectedFile={selectedFile} />
             <Badge group={group} names={names} />

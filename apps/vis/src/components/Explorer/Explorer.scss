@@ -1,0 +1,97 @@
+.explorer {
+  --margin: 10px;
+  --icon-size: 16px;
+  --chevron-size: 10px;
+  overflow: scroll;
+  display: flex;
+  padding: 1rem;
+
+  svg {
+    color: var(--clr-fg);
+    width: var(--icon-size);
+    height: var(--icon-size);
+  }
+
+  .icon-chevron {
+    svg {
+      width: var(--chevron-size);
+      height: var(--chevron-size);
+    }
+  }
+
+  .icon-empty {
+    display: flex;
+    width: var(--icon-size);
+  }
+
+  ul {
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      width: 1px;
+      left: calc((var(--margin)) / 2);
+      background-color: var(--clr-border);
+      top: calc(2 * var(--margin));
+      bottom: 0;
+    }
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding-right: var(--space-1);
+    span {
+      display: flex;
+      white-space: nowrap;
+      flex-direction: row;
+      align-items: center;
+      gap: .33rem;
+      &:hover {
+        color: var(--clr-neutral-900);
+      }
+    }
+    &.hoverable {
+      &:hover {
+        background-color: var(--clr-accent-50);
+      }
+    }
+    &.selected {
+      background-color: var(--clr-bg-explorer-selected);
+      &.hoverable {
+        &:hover {
+          background-color: var(--clr-accent-200);
+        }
+      }
+      span {
+        color: var(--clr-fg);
+      }
+    }
+  }
+
+  .italic {
+    font-style: italic;
+  }
+
+  // for the only list
+  & > ul {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    // roots
+    & > li > ul {
+      display: flex;
+      flex-direction: column;
+      margin: 0 0 0 var(--margin);
+      padding: 0;
+    }
+    // every other level
+    & > li > ul ul {
+      display: flex;
+      flex-direction: column;
+      margin: 0 0 0 var(--margin);
+      padding: 0;
+    }
+  }
+}
