@@ -1,6 +1,7 @@
 {
     "targetDefaults": {
         "build": {
+            "cache": true,
             "dependsOn": [
                 "^build"
             ],
@@ -10,10 +11,10 @@
             "inputs": [
                 "production",
                 "^production"
-            ],
-            "cache": true
+            ]
         },
         "test": {
+            "cache": true,
             "dependsOn": [
                 "build",
                 "^build"
