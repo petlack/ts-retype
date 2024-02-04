@@ -1,5 +1,8 @@
 import type { Token, TokenRoot, TypeDuplicate } from '@ts-retype/search/types';
 
+export const SAT_FOUND = 'bg-green-400';
+export const SAT_DEF = 'bg-yellow-400';
+
 function containsPhrase(str: string, phrase: string): boolean {
     const regex = new RegExp(phrase, 'i');
     return regex.test(str);
@@ -11,7 +14,7 @@ export function highlightPhrase(root: TokenRoot, phrase: string): TokenRoot {
             return {
                 ...token,
                 properties: {
-                    className: [...(token.properties?.className || []), 'sat--found'],
+                    className: [...(token.properties?.className || []), SAT_FOUND],
                 },
             };
         }
@@ -49,7 +52,7 @@ export function highlightDefinition(
         if (position >= offset && position < offset + (pos[1] - pos[0])) {
             newToken.properties = {
                 ...(token.properties || {}),
-                className: [...(token.properties?.className || []), 'sat--def'],
+                className: [...(token.properties?.className || []), SAT_DEF],
             };
         }
         position += tokenLength(token);

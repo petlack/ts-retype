@@ -18,8 +18,8 @@ export type LinesProps = {
 
 export const Lines: FC<PropsWithChildren<LinesProps>> = (props) => {
     const linesMarkup = props.lines.map((line, lineNo) => (
-        <span key={lineNo} className="line">
-            <span>{props.type === 'lineNo' ? props.start + lineNo : props.char}</span>
+        <span key={lineNo}>
+            <span className="text-neutral-400 px-2 py-0 cursor-default select-none text-right font-light">{props.type === 'lineNo' ? props.start + lineNo : props.char}</span>
             {line}
         </span>
     ));

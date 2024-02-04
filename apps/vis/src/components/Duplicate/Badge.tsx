@@ -1,20 +1,30 @@
 import type { TypeDuplicate } from '@ts-retype/search/types';
-import { Tag } from '@ts-retype/uikit';
 
 export type BadgeProps = {
   group: TypeDuplicate['group'];
   names: TypeDuplicate['names'];
 }
 
+const style: Record<TypeDuplicate['group'], { bg: string, fg: string }> = {
+    identical: {
+        bg: 'bg-yellow-100',
+        fg: 'text-yellow-500',
+    },
+    renamed: {
+        bg: 'bg-green-100',
+        fg: 'text-green-500',
+    },
+    different: {
+        bg: 'bg-black-100',
+        fg: 'text-black-500',
+    }
+};
+
 export function Badge({ group, names }: BadgeProps) {
-    const color = {
-        identical: 'yellow',
-        renamed: 'green',
-        different: 'black',
-    }[group];
+    console.log(group);
     return (
         <span
-            className={`text-sm font-bold text-${color}-500 bg-${color}-100 px-2 py-1 rounded-md`}
+            className={`text-sm font-bold ${style[group].bg} ${style[group].fg} px-2 py-1 rounded-md uppercase`}
             // tx={{
             //     colorScheme: color,
             //     fill: 'semi',
@@ -24,7 +34,7 @@ export function Badge({ group, names }: BadgeProps) {
             //     sizing: 'sm',
             // }} sx={{ textTransform: 'uppercase' }}
         >
-        ({Object.values(names || []).reduce((a, b) => a + b.count, 0)}x) {group}
+          ({Object.values(names || []).reduce((a, b) => a + b.count, 0)}x) {group}
         </span>
     );
 }

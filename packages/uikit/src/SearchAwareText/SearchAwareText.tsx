@@ -1,5 +1,4 @@
-// import { useSearchPhrase } from '~/hooks/useSearchPhrase';
-// import './SearchAwareText.scss';
+import { useSearchPhrase } from '../hooks/useSearchPhrase.js';
 
 import { FC, PropsWithChildren } from 'react';
 
@@ -16,17 +15,16 @@ function findSubstringIndex(str: string, substr: string): [number, number] | nul
 }
 
 export type SearchAwareTextProps = {
-  foundClassName?: string;
+  foundClassName: string;
   className?: string;
 }
 
 export const SearchAwareText: FC<PropsWithChildren<SearchAwareTextProps>> = ({
-    foundClassName = 'sat--found',
+    foundClassName,
     className,
     children,
 }) => {
-    // const { phrase } = useSearchPhrase();
-    const phrase = '';
+    const { phrase } = useSearchPhrase();
     const text = (children || '').toString();
     const match = findSubstringIndex(text.toLowerCase(), phrase.toLowerCase());
     if (!match) {

@@ -2,6 +2,7 @@ import type { ArrayElement, TypeDuplicate } from '@ts-retype/search/types';
 import { Badge } from './Badge.js';
 import { SearchAwareText } from '@ts-retype/uikit';
 import { TypeIcon } from './TypeIcon.js';
+import { SAT_FOUND } from '../../model/snippet.js';
 
 export type TitleProps = {
   type: ArrayElement<TypeDuplicate['files']>['type'];
@@ -17,7 +18,7 @@ export type NamesListingProps = {
 function DuplicateName({ selectedFile }: NamesListingProps) {
     return (
         <h2 className="text-xl font-regular">
-            <SearchAwareText>{selectedFile.file}</SearchAwareText>
+            <SearchAwareText foundClassName={SAT_FOUND}>{selectedFile.file}</SearchAwareText>
         </h2>
     );
 }

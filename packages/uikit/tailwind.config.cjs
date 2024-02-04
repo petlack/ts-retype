@@ -5,6 +5,16 @@ exports.default = {
     ],
     theme: {
         colors: {
+            'sx-builtin': 'blue',
+            'sx-comment': 'gray',
+            'sx-class-name': 'green',
+            'sx-function': 'hotpink',
+            'sx-keyword': 'orange',
+            'sx-number': 'cyan',
+            'sx-operator': 'purple',
+            'sx-property': 'beige',
+            'sx-punctuation': 'black',
+            'sx-string': 'aqua',
             bgaa: {
                 100: '#F7F7F7',
                 200: '#E0E0E0',
@@ -49,6 +59,17 @@ exports.default = {
                 800: '#595959',
                 900: '#404040',
             },
+            neutral: {
+                100: '#F7F7F7',
+                200: '#E0E0E0',
+                300: '#C9C9C9',
+                400: '#9E9E9E',
+                500: '#737373',
+                600: '#686868',
+                700: '#464646',
+                800: '#363636',
+                900: '#242424',
+            }
         }
     },
 };

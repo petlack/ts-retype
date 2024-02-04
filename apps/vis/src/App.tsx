@@ -1,10 +1,11 @@
 import { FulltextData } from './types';
 import { Listing } from './components/Listing';
+import { Button, SearchAwareText } from '@ts-retype/uikit';
 import { Search } from '@ts-retype/uikit';
+import { SearchPhraseProvider } from '@ts-retype/uikit';
 import { useEffect } from 'react';
 import { useSearch } from './hooks/useSearch';
 import { useData } from './hooks/useData';
-import './App.css';
 
 function App() {
     const { data: allData, meta } = useData();
@@ -36,15 +37,19 @@ function App() {
 
     return (
         <>
-            <Search
-                query={query}
-                setQuery={setQuery}
-            />
-            <Listing
-                meta={meta}
-                results={results}
-                filter={filter}
-            />
+            <SearchPhraseProvider value={{ phrase: query }}>
+                <SearchAwareText foundClassName="bg-green-300">foo bar</SearchAwareText>
+                <Search
+                    query={query}
+                    setQuery={setQuery}
+                />
+                <Button onClick={() => console.log('foo')}>Hit</Button>
+                <Listing
+                    meta={meta}
+                    results={results}
+                    filter={filter}
+                />
+            </SearchPhraseProvider>
         </>
     );
 }

@@ -63,7 +63,7 @@ export function Listing({ meta, results, filter }: ListingProps) {
     const msgMarkup = (
         <>
             <p>Found {span('strong')(duplicate(results.length))} matching criteria in {span('strong')(meta.projectName)}</p>
-            <div className="info-description">
+            <div className="flex flex-row flex-wrap gap-1">
                 <span>Showing</span>
                 <span>{list(types, 'or ')}</span>
                 <span>types that are</span>
@@ -78,8 +78,8 @@ export function Listing({ meta, results, filter }: ListingProps) {
     );
 
     return (
-        <div className="listing">
-            <div className="info">
+        <div className="flex flex-col flex-1">
+            <div className="flex flex-col gap-1 px-2 py-1 text-neutral-600">
                 {msgMarkup}
             </div>
             {resultsMarkup}
