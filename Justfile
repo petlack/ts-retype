@@ -10,6 +10,9 @@ build-all:
 build *args='':
     npx nx build "@ts-retype/${@}" --verbose
 
+rebuild *args='':
+    npx nx build "@ts-retype/${@}" --verbose --skipNxCache
+
 dev *args='':
     npx nx dev "@ts-retype/${@}"
 
