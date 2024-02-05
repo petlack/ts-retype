@@ -1,13 +1,16 @@
+import { Button } from '@ts-retype/uikit';
+import { Drawer } from '@ts-retype/uikit';
 import { FulltextData } from './types';
 import { Listing } from './components/Listing';
-import { Button } from '@ts-retype/uikit';
 import { Search } from '@ts-retype/uikit';
 import { SearchPhraseProvider } from '@ts-retype/uikit/hooks';
+import { useBoolean } from '@ts-retype/uikit/hooks';
+import { useData } from './hooks/useData';
 import { useEffect } from 'react';
 import { useSearch } from './hooks/useSearch';
-import { useData } from './hooks/useData';
 
 function App() {
+    const [isDrawerOpen, toggleDrawer] = useBoolean(false);
     const { data: allData, meta } = useData();
 
     const {
@@ -36,11 +39,16 @@ function App() {
     }
 
     return (
-        <>
+        <div className="clrs-light clrs-core clrs-sx">
             <SearchPhraseProvider value={{ phrase: query }}>
+                <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
+                    <div className="bg-accent-300 gap-4 p-4 h-full">
+                        <h2>Sidebar</h2>
+                    </div>
+                </Drawer>
                 <Button
                     className="fixed right-0 top-0"
-                    onClick={() => console.log('foo')}
+                    onClick={() => toggleDrawer()}
                 >Hit</Button>
                 <div className="flex flex-row justify-center py-4">
                     <Search
@@ -54,7 +62,7 @@ function App() {
                     filter={filter}
                 />
             </SearchPhraseProvider>
-        </>
+        </div>
     );
 }
 
