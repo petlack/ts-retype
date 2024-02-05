@@ -15,7 +15,7 @@ export const Search: FC<SearchProps> = ({ query, setQuery }) => {
     return (
         <div className="relative flex flex-1 max-w-xl">
             <label htmlFor="search" className="flex items-center px-4 sr-only">Search</label>
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none cursor-default">
                 <SearchIcon />
             </div>
             <input

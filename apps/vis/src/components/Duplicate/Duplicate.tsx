@@ -13,7 +13,7 @@ export function Duplicate({ files, names, group }: TypeDuplicate) {
     }, [setSelectedFile]);
 
     return (
-        <div className="grid grid-rows-[min-content_1fr] grid-cols-[30ch_1fr] border border-border rounded-md overflow-hidden bg-bg text-fg">
+        <div className="grid grid-rows-[min-content_1fr] grid-cols-[30ch_1fr] border border-neutral-300 rounded-md overflow-hidden bg-bg text-fg">
             <Title
                 className="col-span-2"
                 names={names}
@@ -22,7 +22,7 @@ export function Duplicate({ files, names, group }: TypeDuplicate) {
                 group={group}
             />
             <Explorer
-                className="border-r border-border bg-bg-explorer text-neutral-700 text-sm"
+                className="border-r border-neutral-300 bg-bg-explorer text-neutral-700 text-sm"
                 files={files}
                 selectedFile={selectedFile}
                 onClick={onClick}

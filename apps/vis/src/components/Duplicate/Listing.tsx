@@ -7,7 +7,7 @@ export function Listing({ duplicates }: { duplicates: FulltextData[] }) {
     });
 
     return (
-        <div className="duplicates">
+        <div className="flex flex-col gap-3 p-3">
             {duplicatesMarkup}
         </div>
     );
