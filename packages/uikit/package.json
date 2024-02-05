@@ -7,6 +7,7 @@
     "exports": {
         ".": "./dist/index.js",
         "./tree": "./dist/tree.js",
+        "./hooks": "./dist/hooks.js",
         "./dist/index.css": "./dist/index.css"
     },
     "scripts": {
