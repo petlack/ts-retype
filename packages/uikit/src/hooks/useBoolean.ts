@@ -1,11 +1,9 @@
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import { useState } from 'react';
 
 export function useBoolean(
     defaultValue: boolean,
-): [boolean, () => void, Dispatch<SetStateAction<boolean>>] {
+): [boolean, () => void, () => void, () => void] {
     const [value, setValue] = useState(defaultValue);
-    const toggle = useCallback(() => {
-        setValue((prev) => !prev);
-    }, [setValue]);
-    return [value, toggle, setValue];
+    const toggle = () => setValue(prev => !prev);
+    return [value, toggle, () => setValue(true), () => setValue(false)];
 }

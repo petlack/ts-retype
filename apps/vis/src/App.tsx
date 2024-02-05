@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { useSearch } from './hooks/useSearch';
 
 function App() {
-    const [isDrawerOpen, toggleDrawer] = useBoolean(false);
+    const [isDrawerOpen, toggleDrawer, _, closeDrawer] = useBoolean(false);
     const { data: allData, meta } = useData();
 
     const {
@@ -41,14 +41,14 @@ function App() {
     return (
         <div className="clrs-light clrs-core clrs-sx">
             <SearchPhraseProvider value={{ phrase: query }}>
-                <Drawer isOpen={isDrawerOpen} onClose={toggleDrawer}>
+                <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
                     <div className="bg-accent-300 gap-4 p-4 h-full">
                         <h2>Sidebar</h2>
                     </div>
                 </Drawer>
                 <Button
                     className="fixed right-0 top-0"
-                    onClick={() => toggleDrawer()}
+                    onClick={toggleDrawer}
                 >Hit</Button>
                 <div className="flex flex-row justify-center py-4">
                     <Search
