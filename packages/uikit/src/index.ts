@@ -2,6 +2,7 @@ import './index.css';
 export { Button } from './Button/index.js';
 export { Code, Snippet } from './Code/index.js';
 export { Drawer } from './Drawer/index.js';
+export { InputNumber } from './InputNumber/index.js';
 export { Lines } from './Lines/index.js';
 export { Overlay } from './Overlay/index.js';
 export { Search } from './Search/index.js';
