@@ -1,13 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
-        '../apps/vis/**/*.{ts,tsx,html}',
-        '../apps/doc/**/*.{ts,tsx,html}',
-        '../packages/uikit/**/*.{ts,tsx}',
+        './src/**/*.{ts,tsx,html}',
+        // '../apps/vis/**/*.{ts,tsx,html}',
+        // '../apps/doc/**/*.{ts,tsx,html}',
+        // '../packages/uikit/**/*.{ts,tsx}',
     ],
     theme: {
         colors: {
-            'bgaa': {
+            bgaa: {
                 100: '#F7F7F7',
                 200: '#E0E0E0',
                 300: '#C9C9C9',
@@ -50,6 +51,29 @@ export default {
                 700: '#737373',
                 800: '#595959',
                 900: '#404040',
+            },
+            neutral: {
+                100: '#F7F7F7',
+                200: '#E0E0E0',
+                300: '#C9C9C9',
+                400: '#9E9E9E',
+                500: '#737373',
+                600: '#686868',
+                700: '#464646',
+                800: '#363636',
+                900: '#242424',
+            },
+            accent: {
+                50: '#F2F9FF',
+                100: '#E6F9FF',
+                200: '#99E6FF',
+                300: '#4DD6FF',
+                400: '#00C3FF',
+                500: '#00A6E6',
+                600: '#007399',
+                700: '#005273',
+                800: '#003A4D',
+                900: '#002633',
             },
         }
     },
