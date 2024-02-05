@@ -2,25 +2,25 @@ import type { Snippet, Token, TokenRoot } from '@ts-retype/search/types';
 import { FC } from 'react';
 
 export const TokenElement: FC<{ token: Token }> = ({ token }) => {
-    const baseClass = 'font-medium text-sx-token'; // Base class for token
+    const baseClass = 'font-medium';
 
-    // Determine additional classes based on token type
     const tokenClass = token.properties?.className?.map(className =>
         ({
             'bold': 'font-bolder',
             'bash': 'text-sx-bash',
-            'builtin': 'text-sx-builtin',
-            'comment': 'text-sx-comment',
-            'class-name': 'text-sx-class-name',
-            'function': 'text-sx-function',
+            'builtin': 'text-[color:var(--clr-sx-builtin)]',
+            'comment': 'text-[color:var(--clr-sx-comment)]',
+            'constant': 'text-sx-constant',
+            'class-name': 'text-[color:var(--clr-sx-class-name)]',
+            'function': 'text-[color:var(--clr-sx-function)]',
             'keyword': 'text-sx-keyword',
-            'number': 'text-sx-number',
-            'operator': 'text-sx-operator',
-            'property': 'text-sx-property',
+            'number': 'text-[color:var(--clr-sx-number)]',
+            'operator': 'text-[color:var(--clr-sx-operator)]',
+            'property': 'text-[color:var(--clr-sx-property)]',
             'punctuation': 'text-sx-punctuation',
-            'string': 'text-sx-string',
-        })[className] || className // Fallback to original className if no match
-    ).join(' ') || '';
+            'string': 'text-[color:var(--clr-sx-string)]',
+        })[className] || className
+    ).join(' ') || 'text-sx-token';
 
     if (token.type === 'element') {
         return (
