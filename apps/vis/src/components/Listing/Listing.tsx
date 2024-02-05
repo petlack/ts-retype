@@ -2,7 +2,7 @@ import { CANDIDATE_TYPES, FulltextData, SIMILARITIES } from '../../types.js';
 import type { Metadata } from '@ts-retype/search/types';
 import { Listing as DuplicateListing } from '../Duplicate/index.js';
 import { Empty } from '../Empty/index.js';
-import { Filter } from '../../model/search.js';
+import type { Filter } from '../../model/filter.js';
 import { FC, ReactNode } from 'react';
 import { Tooltip } from '@ts-retype/uikit';
 
@@ -52,13 +52,18 @@ const duplicate = entity('duplicate');
 const file = entity('file');
 const feature = entity('feature');
 
-export function Listing({ meta, results, filter }: ListingProps) {
+export const Listing: FC<ListingProps> = ({ meta, results, filter }) => {
     const resultsMarkup = results.length === 0 ?
         <Empty /> :
         <DuplicateListing duplicates={results} />;
 
-    const similarities = filter.selectedSimilarity === 'all' ? SIMILARITIES.filter(s => s !== 'all') : [filter.selectedSimilarity];
-    const types = filter.selectedType === 'all' ? CANDIDATE_TYPES.filter(s => s !== 'all') : [filter.selectedType];
+    const similarities = filter.selectedSimilarity === 'all' ?
+        SIMILARITIES.filter(s => s !== 'all') :
+        [filter.selectedSimilarity];
+
+    const types = filter.selectedType === 'all' ?
+        CANDIDATE_TYPES.filter(s => s !== 'all') :
+        [filter.selectedType];
 
     const msgMarkup = (
         <>
@@ -85,7 +90,7 @@ export function Listing({ meta, results, filter }: ListingProps) {
             {resultsMarkup}
         </div>
     );
-}
+};
 
 export const FeaturesTooltip: FC = () =>
     <Tooltip>
