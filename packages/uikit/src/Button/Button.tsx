@@ -13,6 +13,7 @@ export const Button: FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps
     rightIcon,
     disabled,
     isLoading,
+    className,
     ...buttonProps
 }, ref) => {
     const disabledOrLoading = disabled || isLoading;
@@ -30,7 +31,7 @@ export const Button: FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps
         ${'bg-yellow-500 text-white'}
         flex items-center justify-center px-2`;
     return (
-        <button ref={ref} disabled={disabledOrLoading} className={style} {...buttonProps}>
+        <button ref={ref} disabled={disabledOrLoading} className={`${style} ${className}`} {...buttonProps}>
             {markup}
         </button>
     );

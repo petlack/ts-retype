@@ -1,6 +1,6 @@
 import { FulltextData } from './types';
 import { Listing } from './components/Listing';
-import { Button, SearchAwareText } from '@ts-retype/uikit';
+import { Button } from '@ts-retype/uikit';
 import { Search } from '@ts-retype/uikit';
 import { SearchPhraseProvider } from '@ts-retype/uikit';
 import { useEffect } from 'react';
@@ -38,12 +38,16 @@ function App() {
     return (
         <>
             <SearchPhraseProvider value={{ phrase: query }}>
-                <SearchAwareText foundClassName="bg-green-300">foo bar</SearchAwareText>
-                <Search
-                    query={query}
-                    setQuery={setQuery}
-                />
-                <Button onClick={() => console.log('foo')}>Hit</Button>
+                <Button
+                    className="fixed right-0 top-0"
+                    onClick={() => console.log('foo')}
+                >Hit</Button>
+                <div className="flex flex-row justify-center">
+                    <Search
+                        query={query}
+                        setQuery={setQuery}
+                    />
+                </div>
                 <Listing
                     meta={meta}
                     results={results}

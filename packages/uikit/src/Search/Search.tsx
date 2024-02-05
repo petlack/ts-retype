@@ -13,13 +13,14 @@ const SearchIcon = () => (
 
 export const Search: FC<SearchProps> = ({ query, setQuery }) => {
     return (
-        <div className="grid-template-columns-min-content-1fr flex-1 gap-1 align-items-center">
-            <label htmlFor="search">
+        <div className="flex flex-row flex-1 max-w-xl mx-auto">
+            <label htmlFor="search" className="flex items-center px-4">
                 <SearchIcon />
             </label>
             <input
                 id="search"
                 name="search"
+                className="flex-1 bg-transparent text-foreground font-mono text-lg p-4 outline-none focus:bg-neutral-50 placeholder-opacity-60 placeholder-current"
                 value={query}
                 onChange={e => setQuery(e.currentTarget?.value)}
                 placeholder='Search ...'
