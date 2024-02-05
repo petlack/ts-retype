@@ -42,7 +42,7 @@ function App() {
                     className="fixed right-0 top-0"
                     onClick={() => console.log('foo')}
                 >Hit</Button>
-                <div className="flex flex-row justify-center">
+                <div className="flex flex-row justify-center py-4">
                     <Search
                         query={query}
                         setQuery={setQuery}
