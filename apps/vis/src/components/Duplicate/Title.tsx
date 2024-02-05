@@ -26,7 +26,7 @@ function DuplicateName({ selectedFile }: NamesListingProps) {
 
 export function Title({ className, group, type, names, selectedFile }: TitleProps) {
     return (
-        <div className={`${className} grid grid-cols-[200px_max-content_1fr] justify-items-end items-center gap-x-2 px-2 py-1`}>
+        <div className={`${className} grid grid-cols-[24px_max-content_1fr] justify-items-end items-center gap-x-2 px-2 py-1`}>
             <TypeIcon group={group} type={type} />
             <DuplicateName selectedFile={selectedFile} />
             <Badge group={group} names={names} />

@@ -2,9 +2,9 @@ import { CANDIDATE_TYPES, FulltextData, SIMILARITIES } from '../../types.js';
 import type { Metadata } from '@ts-retype/search/types';
 import { Listing as DuplicateListing } from '../Duplicate/index.js';
 import { Empty } from '../Empty/index.js';
-import { FeaturesTooltip } from '../Filters/FeaturesTooltip.js';
 import { Filter } from '../../model/search.js';
 import { ReactNode } from 'react';
+import { Tooltip } from '@ts-retype/uikit';
 
 export type ListingProps = {
   results: FulltextData[];
@@ -72,17 +72,32 @@ export function Listing({ meta, results, filter }: ListingProps) {
                 {span('strong')(file(filter.minFiles))}
                 <span>and having at least</span>
                 {span('strong')(feature(filter.minProperties))}
-                <FeaturesTooltip />
+                {/* <FeaturesTooltip /> */}
             </div>
         </>
     );
 
     return (
         <div className="flex flex-col flex-1">
-            <div className="flex flex-col gap-1 px-2 py-1 text-neutral-600">
+            <div className="flex flex-col self-center gap-1 max-w-3xl py-4 text-neutral-600">
                 {msgMarkup}
             </div>
             {resultsMarkup}
         </div>
     );
 }
+
+const FeaturesTooltip: FC = () =>
+    <Tooltip>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+        </svg>
+        <div className="tooltip-content">
+            <span>Features are</span>
+            <ul>
+                <li>properties in Literal Types</li>
+                <li>parameters in Function Types</li>
+                <li>members in Enum Types</li>
+            </ul>
+        </div>
+    </Tooltip>;
