@@ -3,17 +3,18 @@ import { FC, PropsWithChildren } from 'react';
 import { Code } from '../Code/index.js';
 
 type LinesLineNoProps = {
-  type: 'lineNo';
-  start: number;
+    type: 'lineNo';
+    start: number;
 }
 
 type LinesCustomCharProps = {
-  type: 'custom';
-  char: string;
+    type: 'custom';
+    char: string;
 }
 
 export type LinesProps = {
-  lines: JSX.Element[];
+    lines: JSX.Element[];
+    className?: string;
 } & (LinesLineNoProps | LinesCustomCharProps);
 
 export const Lines: FC<PropsWithChildren<LinesProps>> = (props) => {
@@ -24,6 +25,6 @@ export const Lines: FC<PropsWithChildren<LinesProps>> = (props) => {
         </span>
     ));
     return (
-        <Code>{linesMarkup}</Code>
+        <Code className={props.className}>{linesMarkup}</Code>
     );
 };

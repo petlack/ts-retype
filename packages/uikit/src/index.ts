@@ -7,6 +7,3 @@ export { SearchAwareText } from './SearchAwareText/index.js';
 export { Tag } from './Tag/index.js';
 export { Tooltip } from './Tooltip/index.js';
 export { TokenElement } from './TokenElement/index.js';
-export { useCopyToClipboard } from './hooks/useCopy.js';
-export { useSearchPhrase, SearchPhraseProvider } from './hooks/useSearchPhrase.js';
-export { useToast } from './hooks/useToast.js';

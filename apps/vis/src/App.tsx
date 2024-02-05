@@ -2,7 +2,7 @@ import { FulltextData } from './types';
 import { Listing } from './components/Listing';
 import { Button } from '@ts-retype/uikit';
 import { Search } from '@ts-retype/uikit';
-import { SearchPhraseProvider } from '@ts-retype/uikit';
+import { SearchPhraseProvider } from '@ts-retype/uikit/hooks';
 import { useEffect } from 'react';
 import { useSearch } from './hooks/useSearch';
 import { useData } from './hooks/useData';

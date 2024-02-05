@@ -21,7 +21,7 @@ export const Search: FC<SearchProps> = ({ query, setQuery }) => {
             <input
                 id="search"
                 name="search"
-                className="block w-full flex-1 bg-transparent text-foreground font-mono text-lg p-4 outline-none focus:bg-accent-50 placeholder-opacity-60 placeholder-current lock py-2 ps-10 text-neutral-900 border border-neutral-300 rounded-md focus:ring-accent-500 focus:border-accent-500"
+                className="block w-full flex-1 bg-transparent text-foreground font-mono text-lg outline-none focus:bg-accent-50 placeholder-opacity-60 placeholder-current lock px-4 py-2 ps-10 text-neutral-900 border border-neutral-300 rounded-md focus:ring-accent-500 focus:border-accent-500"
                 value={query}
                 onChange={e => setQuery(e.currentTarget?.value)}
                 placeholder='Search ...'

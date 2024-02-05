@@ -7,14 +7,14 @@ export type TypeIconProps = {
 }
 
 export function TypeIcon({ type }: TypeIconProps) {
-    const tooltipContent = {
-        function: 'Function Type Declaration',
-        union: 'Union Type Declaration',
-        enum: 'Enum Type Declaration',
-        literal: 'Literal Type Declaration',
-        alias: 'Type Alias Declaration',
-        interface: 'Interface Declaration',
-    }[type];
+    // const tooltipContent = {
+    //     function: 'Function Type Declaration',
+    //     union: 'Union Type Declaration',
+    //     enum: 'Enum Type Declaration',
+    //     literal: 'Literal Type Declaration',
+    //     alias: 'Type Alias Declaration',
+    //     interface: 'Interface Declaration',
+    // }[type];
 
     const typeSymbol = {
         function: '=>',

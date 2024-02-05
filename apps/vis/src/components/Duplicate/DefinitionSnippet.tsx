@@ -1,6 +1,6 @@
 import { splitLines } from '@ts-retype/search/snippet';
 import { Lines, TokenElement } from '@ts-retype/uikit';
-import { useSearchPhrase } from '@ts-retype/uikit';
+import { useSearchPhrase } from '@ts-retype/uikit/hooks';
 import { highlightDefinition, highlightPhrase } from '../../model/snippet.js';
 import type { ArrayElement, Snippet, TokenRoot, TypeDuplicate } from '@ts-retype/search/types';
 
@@ -33,12 +33,11 @@ export function DefinitionSnippet({ srcHgl, name, lines, offset, pos, className 
         />
     ));
     return (
-        <div className={className}>
-            <Lines
-                start={lines[0]}
-                type="lineNo"
-                lines={linesMarkup}
-            />
-        </div>
+        <Lines
+            start={lines[0]}
+            type="lineNo"
+            lines={linesMarkup}
+            className={className}
+        />
     );
 }
