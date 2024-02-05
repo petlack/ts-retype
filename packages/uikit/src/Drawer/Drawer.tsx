@@ -1,8 +1,10 @@
 import { Overlay, OverlayProps } from '../Overlay/Overlay.js';
-import { PropsWithChildren, useCallback, useEffect, useRef } from 'react';
-import { usePortalTransition } from '../hooks/usePortalTransition.js';
-import { useKey } from '../hooks/useKey.js';
+import { PropsWithChildren, useMemo } from 'react';
+import { clsx } from '../clsx.js';
 import { createPortal } from 'react-dom';
+import { useDisableScroll } from '../hooks/useDisableScroll.js';
+import { useKey } from '../hooks/useKey.js';
+import { usePortalTransition } from '../hooks/usePortalTransition.js';
 
 export type DrawerProps = PropsWithChildren<OverlayProps & {
     position?: 'left' | 'right';
@@ -21,13 +23,8 @@ export const Drawer = ({
     disableScrollingWhenOpen = true,
     speed = 150,
 }: DrawerProps) => {
-    const bodyRef = useRef(document.querySelector('body'));
-    const cleanup = useCallback(() => {
-        const bodyEl = bodyRef.current;
-        if (disableScrollingWhenOpen && bodyEl && bodyEl.style) {
-            bodyEl.style.overflow = '';
-        }
-    }, [disableScrollingWhenOpen]);
+    const cleanup = useDisableScroll(disableScrollingWhenOpen);
+
     const { isTransitioning, portalRootRef } = usePortalTransition({
         portalId: 'portal-drawer',
         isVisible: isOpen,
@@ -35,23 +32,21 @@ export const Drawer = ({
         speed,
     });
 
-    useEffect(() => {
-        const updatePageScroll = () => {
-            if (!bodyRef.current) {
-                return;
-            }
-            if (isOpen) {
-                bodyRef.current.style.overflow = 'hidden';
-            } else {
-                bodyRef.current.style.overflow = '';
-            }
-        };
-        if (disableScrollingWhenOpen) {
-            updatePageScroll();
-        }
-    }, [isOpen, disableScrollingWhenOpen]);
-
     useKey({ key: 'Escape', handler: onClose });
+
+    const drawerStyles = useMemo(() => clsx(
+        'h-full',
+        'fixed',
+        'top-0',
+        'z-30',
+        'overflow-auto',
+        'transition-transform ease-in duration-150',
+        'shadow-lg',
+        position === 'left' ? 'left-0' : 'right-0',
+        isTransitioning && isOpen ?
+            'translate-x-0' :
+            { left: '-translate-x-105', right: 'translate-x-full' }[position],
+    ), [position, isTransitioning, isOpen]);
 
     if (!isTransitioning && removeWhenClosed && !isOpen) {
         return null;
@@ -61,19 +56,7 @@ export const Drawer = ({
         <div aria-hidden={isOpen ? 'false' : 'true'}>
             <div
                 role="dialog"
-                style={{
-                    height: '100%',
-                    position: 'fixed',
-                    top: 0,
-                    left: position === 'left' ? 0 : undefined,
-                    right: position === 'right' ? 0 : undefined,
-                    boxShadow: '0 0 15px rgba(0, 0, 0, 0.5)',
-                    transitionProperty: 'transform',
-                    transition: `${speed}ms ease`,
-                    transform: isTransitioning && isOpen ? 'translateX(0)' : { left: 'translateX(-105%)', right: 'translateX(100%)' }[position],
-                    overflow: 'auto',
-                    zIndex: 30,
-                }}>
+                className={drawerStyles}>
                 {children}
             </div>
             <Overlay
