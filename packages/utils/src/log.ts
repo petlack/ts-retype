@@ -1,6 +1,6 @@
 import fs from 'fs';
 import readline from 'readline';
-import { dir, readPackageJson } from './utils.js';
+import { dir, readPackageJson } from './files.js';
 
 function findPackageJSON(): string | null {
     const distPath = dir('./package.json');

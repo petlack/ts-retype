@@ -1,32 +1,3 @@
-import { readFileSync, statSync } from 'fs';
-import path from 'path';
-
-// const __dirname = path.join(path.dirname(new URL(import.meta.url).pathname), '..');
-
-export function readPackageJson(dirOrFilePath: string): {
-    version: string;
-    name: string;
-    description: string;
-    homepage: string;
-    repository: { url: string };
-} {
-    const directory = dirOrFilePath.endsWith('package.json') ?
-        path.dirname(dirOrFilePath) :
-        dirOrFilePath;
-    const filePath = path.join(directory, 'package.json');
-    const contents = JSON.parse(readFileSync(filePath).toString());
-    return {
-        version: contents.version ?? 'unknown',
-        name: contents.name ?? 'unknown',
-        description: contents.description ?? 'unknown',
-        homepage: contents.homepage ?? 'unknown',
-        repository: { url: contents.repository?.url ?? 'unknown' },
-    };
-}
-
-export const pwd = (p: string) => path.join(process.cwd(), p);
-export const dir = (p: string) => path.join(__dirname, p);
-
 export const stringify = (args: unknown) =>
     JSON.stringify(
         args,
@@ -75,13 +46,4 @@ export function selectIndices<T>(arr: T[], indices: Iterable<number>): T[] {
         }
     }
     return result;
-}
-
-export function getFileSizeInBytes(filePath: string): number | undefined {
-    try {
-        const stats = statSync(filePath);
-        return stats.size;
-    } catch (err: any) {
-        console.error(`Failed to get file size for "${filePath}": ${err.message}`);
-    }
 }
