@@ -10,15 +10,14 @@ import { useSearch } from './hooks/useSearch';
 import { Controls } from './components/Controls';
 
 function App() {
-    const [isDrawerOpen, toggleDrawer, _, closeDrawer] = useBoolean(true);
+    const [isDrawerOpen, toggleDrawer, _, closeDrawer] = useBoolean(false);
     const { data: allData, meta } = useData();
 
-    const {
-        query,
-        reindex,
-        results,
-        setQuery,
-    } = useSearch<FulltextData>(['fulltext'], ['files', 'names', 'group'], '');
+    const { query, reindex, results, setQuery, } = useSearch<FulltextData>(
+        ['fulltext'],
+        ['name', 'names', 'files', 'properties', 'parameters', 'returnType', 'group'],
+        '',
+    );
 
     const [filter, setFilter] = useState(Filter.empty());
 
