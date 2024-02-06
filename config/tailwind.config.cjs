@@ -1,3 +1,5 @@
+import { colors } from './colors';
+
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
@@ -22,16 +24,12 @@ export default {
                 'default': 'var(--clr-bg-main)',
                 'code': 'var(--clr-bg-code)',
                 'snippet-highlighted': 'var(--clr-bg-snippet-highlighted)',
-                'accent': {
-                    '300': 'var(--clr-accent-300)',
-                    '400': 'var(--clr-accent-400)',
-                    '500': 'var(--clr-accent-500)',
-                }
             },
             colors: {
                 'cp-base': 'var(--clr-cp-base)',
                 'cp-crust': 'var(--clr-cp-crust)',
                 'cp-mantle': 'var(--clr-cp-mantle)',
+                ...colors,
             },
         }
     },

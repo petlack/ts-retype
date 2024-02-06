@@ -47,7 +47,7 @@
                 "dependsOn": [
                     {
                         "projects": "@ts-retype/theme",
-                        "target": "start"
+                        "target": "bin"
                     }
                 ]
             }

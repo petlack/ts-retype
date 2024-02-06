@@ -9,7 +9,7 @@ import { getRootDir } from '@ts-retype/utils';
 async function generateThemes() {
     const accent = '#0a799e';
     const second = '#c68726';
-    const exportJs = false;
+    const exportJs = true;
     const exportCss = true;
 
     const light = fromColors({ accent, second, mode: 'light' });
@@ -38,14 +38,26 @@ async function generateThemes() {
             return Object.entries(value).map(([step, color]) => `--clr-${name}-${step}: ${color};`);
         });
 
+    const twColors = Object.fromEntries(
+        Object.entries(light)
+            .map(([name, value]) => {
+                if (typeof value === 'string') {
+                    return [name, `var(--clr-${name})`];
+                }
+                return [
+                    name,
+                    Object.fromEntries(
+                        Object.keys(value)
+                            .map(step => [+step, `var(--clr-${name}-${step})`])
+                    ),
+                ];
+            })
+    );
+
     if (exportJs) {
         await writeFile(
-            join(rootDir, 'config/themes.cjs'),
-            [
-                `export const light = ${JSON.stringify(light, null, 4)};`,
-                '',
-                `export const dark = ${JSON.stringify(dark, null, 4)};`,
-            ].join('\n'),
+            join(rootDir, 'config/colors.cjs'),
+            `export const colors = ${JSON.stringify(twColors, null, 4)};`,
         );
     }
 
