@@ -5,7 +5,6 @@
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
-        "copy-assets-to-bin": "mkdir -p ../bin/dist/vis && cp -R ../vis/dist/* ../bin/dist/vis/ && date > foo.txt",
         "clean": "rm -rf ./dist",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview"
@@ -35,18 +34,5 @@
         "vite": "^5.0.11",
         "vite-plugin-singlefile": "^1.0.0",
         "vite-tsconfig-paths": "^4.3.1"
-    },
-    "nx": {
-        "targets": {
-            "copy-assets-to-bin": {
-                "outputs": [
-                    "{workspaceRoot}/dist/*.html",
-                    "{workspaceRoot}/dist/assets/*.{js,css}"
-                ],
-                "dependsOn": [
-                    "build"
-                ]
-            }
-        }
     }
 }
