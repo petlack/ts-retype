@@ -1,7 +1,7 @@
 import type { Token, TokenRoot, TypeDuplicate } from '@ts-retype/search/types';
 
 export const SAT_FOUND = 'bg-green-400';
-export const SAT_DEF = 'bg-yellow-400';
+export const SAT_DEF = 'bg-snippet-highlighted';
 
 function containsPhrase(str: string, phrase: string): boolean {
     const regex = new RegExp(phrase, 'i');
