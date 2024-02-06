@@ -1,4 +1,4 @@
-import { Button, Code, Drawer, InputNumber, Search } from '@ts-retype/uikit';
+import { Button, Code, Drawer, Search } from '@ts-retype/uikit';
 import { useEffect, useMemo, useState } from 'react';
 import { Filter } from './model/filter';
 import type { FulltextData } from './types';
@@ -7,6 +7,7 @@ import { SearchPhraseProvider } from '@ts-retype/uikit/hooks';
 import { useBoolean } from '@ts-retype/uikit/hooks';
 import { useData } from './hooks/useData';
 import { useSearch } from './hooks/useSearch';
+import { Controls } from './components/Controls';
 
 function App() {
     const [isDrawerOpen, toggleDrawer, _, closeDrawer] = useBoolean(true);
@@ -22,7 +23,7 @@ function App() {
     const [filter, setFilter] = useState(Filter.empty());
 
     const [data, stats] = useMemo(() => {
-        if (!results) return [[], []];
+        if (!results) return [[], {}];
         const data = filter.filter(results);
         const stats = filter.stats(data);
         return [data, stats];
@@ -40,23 +41,19 @@ function App() {
                 <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
                     <div className="bg-default text-default gap-4 p-4 h-full">
                         <h2>Sidebar</h2>
-                        <InputNumber
-                            value={filter.minFiles || 1}
-                            onChange={minFiles => setFilter(filter.setMinFiles(minFiles))}
-                            min={1}
+                        <Controls
+                            filter={filter}
+                            setFilter={setFilter}
+                            stats={stats}
                         />
-                        <InputNumber
-                            value={filter.minProperties || 1}
-                            onChange={minProperties => setFilter(filter.setMinProperties(minProperties))}
-                            min={1}
-                        />
+                        <Code>{JSON.stringify(filter, null, 2)}</Code>
+                        <Code>{JSON.stringify(stats, null, 2)}</Code>
                     </div>
                 </Drawer>
                 <Button
                     className="fixed right-0 top-0"
                     onClick={toggleDrawer}
                 >Hit</Button>
-                <Code>{JSON.stringify(stats, null, 2)}</Code>
                 <div className="flex flex-row justify-center py-4">
                     <Search
                         query={query}

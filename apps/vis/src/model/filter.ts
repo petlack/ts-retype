@@ -20,6 +20,13 @@ export interface IFilter {
     setMinProperties(minProperties: number): IFilter;
 }
 
+export type FilterProps = {
+    selectedSimilarity: string;
+    selectedType: string;
+    minFiles?: number;
+    minProperties?: number;
+}
+
 export class Filter implements IFilter {
     constructor(
         readonly selectedSimilarity: string,
@@ -29,13 +36,22 @@ export class Filter implements IFilter {
     ) {}
 
     static empty(): Filter {
-        return new Filter('renamed', 'all', 1, 1);
+        return new Filter('all', 'all', 1, 1);
     }
 
     #apply(data: FulltextData): boolean {
         return (
             (!this.minFiles || data.files.length >= this.minFiles) &&
             (!this.minProperties || (data.properties?.length ?? 0) >= this.minProperties)
+        );
+    }
+
+    update(filter: Partial<FilterProps>): Filter {
+        return new Filter(
+            filter.selectedSimilarity ?? this.selectedSimilarity,
+            filter.selectedType ?? this.selectedType,
+            filter.minFiles ?? this.minFiles,
+            filter.minProperties ?? this.minProperties,
         );
     }
 
@@ -61,4 +77,13 @@ export class Filter implements IFilter {
     setMinProperties(minProperties: number): Filter {
         return new Filter(this.selectedSimilarity, this.selectedType, this.minFiles, minProperties);
     }
+
+    setSimilarity(similarity: string): Filter {
+        return new Filter(similarity, this.selectedType, this.minFiles, this.minProperties);
+    }
+
+    setType(type: string): Filter {
+        return new Filter(this.selectedSimilarity, type, this.minFiles, this.minProperties);
+    }
+
 }
