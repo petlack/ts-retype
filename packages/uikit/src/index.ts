@@ -4,6 +4,7 @@ export { Code, Snippet } from './Code/index.js';
 export { Drawer } from './Drawer/index.js';
 export { InputNumber } from './InputNumber/index.js';
 export { Lines } from './Lines/index.js';
+export { Options } from './Options/index.js';
 export { Overlay } from './Overlay/index.js';
 export { Search } from './Search/index.js';
 export { SearchAwareText } from './SearchAwareText/index.js';
