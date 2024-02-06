@@ -15,7 +15,7 @@ function App() {
 
     const { query, reindex, results, setQuery, } = useSearch<FulltextData>(
         ['fulltext'],
-        ['name', 'names', 'files', 'properties', 'parameters', 'returnType', 'group'],
+        ['name', 'type', 'names', 'files', 'properties', 'parameters', 'returnType', 'group'],
         '',
     );
 

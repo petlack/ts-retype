@@ -7,7 +7,7 @@ function fulltext(duplicate: FulltextData): string {
     return [
         `${duplicate.names.map(({ name }) => name)}`,
         `${Object.keys(duplicate.names).join(' ')}`,
-        `${duplicate.files.map(({ file }) => file).join(' ')}`,
+        `${duplicate.files.flatMap(({ file, src }) => [file, src]).join(' ')}`,
         `${(duplicate.properties || []).map(({ name, type }) => `${type} ${name}: ${type}`).join(' ')}`,
         `${(duplicate.parameters || []).map(({ name, type }) => `${type} ${name}: ${type}`).join(' ')}`,
         `${(duplicate.members || []).join(' ')}`,
@@ -18,10 +18,14 @@ function fulltext(duplicate: FulltextData): string {
 function decompress(td: TypeDuplicate) {
     return {
         ...td,
-        files: td.files.map(file => ({
-            ...file,
-            srcHgl: decompressRoot(file.srcHgl),
-        })),
+        files: td.files.map(file => {
+            const srcHgl = decompressRoot(file.srcHgl);
+            return {
+                ...file,
+                srcHgl,
+                src: srcHgl?.children.map(s => s.value).join('') ?? '',
+            };
+        }),
     };
 }
 
@@ -40,16 +44,16 @@ export function useData() {
         function pollWindow() {
             console.log('polling data');
             if (window.__data__?.length) {
-                setAllData(
-                    window.__data__
-                        .map(decompress)
-                        .filter(({ group }) => ['identical', 'renamed'].includes(group))
-                        .map((duplicate, idx) => ({
-                            ...duplicate,
-                            id: idx,
-                            fulltext: fulltext(duplicate as FulltextData),
-                        }))
-                );
+                const data = window.__data__
+                    .map(decompress)
+                    .filter(({ group }) => ['identical', 'renamed'].includes(group))
+                    .map((duplicate, idx) => ({
+                        ...duplicate,
+                        id: idx,
+                        fulltext: fulltext(duplicate as FulltextData),
+                    }));
+                setAllData(data);
+                console.log('setting', data);
                 setMeta(window.__meta__);
             } else {
                 if (retries > 10) {
