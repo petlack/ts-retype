@@ -21,7 +21,6 @@ const style: Record<TypeDuplicate['group'], { bg: string, fg: string }> = {
 };
 
 export function Badge({ group, names }: BadgeProps) {
-    console.log(group);
     return (
         <span
             className={`text-sm font-bold ${style[group].bg} ${style[group].fg} px-2 py-1 rounded-md uppercase`}

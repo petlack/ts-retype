@@ -1,7 +1,7 @@
 import { Filter } from './filter.js';
 import MiniSearch from 'minisearch';
 import { FulltextData } from '../types.js';
-import { Facet, combineFacets, facetStats } from './facet.js';
+import { Facet, facetStats } from './facet.js';
 
 export function fulltext(duplicate: FulltextData): string {
     return [

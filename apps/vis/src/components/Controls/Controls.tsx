@@ -13,7 +13,6 @@ export type FiltersProps = {
 export function Controls({
     filter,
     setFilter,
-    // stats,
 }: FiltersProps) {
     return (
         <div className="flex flex-col gap-4">

@@ -42,5 +42,3 @@ export function clsx() {
     }
     return str;
 }
-
-export default clsx;
