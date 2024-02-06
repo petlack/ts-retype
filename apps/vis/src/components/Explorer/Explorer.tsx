@@ -1,6 +1,11 @@
-import { indexWith, useTree, Cardinality, Pass, Ul, Tree, TreeNode, TreeProps, TreeProvider, TreeProviderProps } from '@ts-retype/uikit/tree';
-import { useCallback, useMemo } from 'react';
 import { ArrayElement, TypeDuplicate } from '@ts-retype/search/types';
+import {
+    Cardinality,
+    Pass, Ul,
+    Tree, TreeNode, TreeProps, TreeProvider, TreeProviderProps,
+    indexWith,
+    useTree,
+} from '@ts-retype/uikit/tree';
 import {
     ICON_CHEVRON_DOWN,
     ICON_CODE,
@@ -8,6 +13,7 @@ import {
     ICON_FOLDER,
     IconLetter,
 } from './icons.js';
+import { useCallback, useMemo } from 'react';
 import { SearchAwareText } from '@ts-retype/uikit';
 import { SAT_FOUND } from '../../model/snippet.js';
 

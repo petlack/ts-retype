@@ -1,9 +1,8 @@
 import { CANDIDATE_TYPES, FulltextData, SIMILARITIES } from '../../types.js';
-import type { Metadata } from '@ts-retype/search/types';
-import { Listing as DuplicateListing } from '../Duplicate/index.js';
-import { Empty } from '../Empty/index.js';
-import type { Filter } from '../../model/filter.js';
 import { FC, ReactNode } from 'react';
+import type { Metadata } from '@ts-retype/search/types';
+import type { Filter } from '../../model/filter.js';
+import { Empty } from '../Empty/index.js';
 import { Tooltip } from '@ts-retype/uikit';
 
 export type ListingProps = {
@@ -91,6 +90,18 @@ export const Listing: FC<ListingProps> = ({ meta, results, filter }) => {
         </div>
     );
 };
+
+export function DuplicateListing({ duplicates }: { duplicates: FulltextData[] }) {
+    const duplicatesMarkup = duplicates.map((duplicate) => {
+        return <Duplicate key={duplicate.id} {...duplicate} />;
+    });
+
+    return (
+        <div className="flex flex-col gap-3 p-3">
+            {duplicatesMarkup}
+        </div>
+    );
+}
 
 export const FeaturesTooltip: FC = () =>
     <Tooltip>

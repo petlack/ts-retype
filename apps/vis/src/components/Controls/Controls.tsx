@@ -1,8 +1,7 @@
+import { CANDIDATE_TYPES, SIMILARITIES } from '../../types.js';
+import { InputNumber, Options } from '@ts-retype/uikit';
 import { FacetStats } from '../../model/facet.js';
 import { Filter } from '../../model/filter.js';
-import { InputNumber } from '@ts-retype/uikit';
-import { Options } from '@ts-retype/uikit';
-import { CANDIDATE_TYPES, SIMILARITIES } from '../../types.js';
 
 export type FiltersProps = {
   filter: Filter,

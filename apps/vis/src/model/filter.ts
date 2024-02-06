@@ -1,6 +1,6 @@
-import { ArrayElement } from '@ts-retype/search/types';
 import { CANDIDATE_TYPES, FulltextData, SIMILARITIES } from '../types';
 import { Facet, FacetStats, combineFacets, facetStats } from './facet';
+import { ArrayElement } from '@ts-retype/search/types';
 
 const facets: Facet<
     FulltextData,
