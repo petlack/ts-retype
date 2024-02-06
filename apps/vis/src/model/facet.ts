@@ -1,13 +1,13 @@
 import { assocPath, path, pluck, zip } from 'ramda';
 
 export type FacetStats = { [facetName: string]: number | FacetStats };
-export type Facet<R> = {
-  name: string;
-  values: (string | number)[];
-  matches: (record: R, value: string | number) => boolean;
+export type Facet<R, V> = {
+    name: string;
+    values: V[];
+    matches: (record: R, value: V) => boolean;
 };
 
-export function combineFacets<R>(facets: Facet<R>[], values: (string | number)[]) {
+export function combineFacets<R, U extends string | number>(facets: Facet<R, U>[], values: U[]) {
     return (d: R) =>
         zip(facets, values)
             .reduce(
@@ -16,13 +16,18 @@ export function combineFacets<R>(facets: Facet<R>[], values: (string | number)[]
             );
 }
 
-export function facetStats<T>(data: T[], facets: Facet<T>[]): FacetStats {
+export function facetStats<T, U>(data: T[], facets: Facet<T, U>[]): FacetStats {
     const combs = combinations(pluck('values', facets));
     let res: FacetStats = {};
     for (const facetValues of combs) {
         res = assocPath(
-            facetValues,
-            data.filter(combineFacets(facets, facetValues)).length,
+            facetValues as (string | number)[],
+            data.filter(
+                combineFacets(
+                    facets as unknown as Facet<T, string | number>[],
+                    facetValues as (number | string)[]
+                )
+            ).length,
             res,
         );
     }

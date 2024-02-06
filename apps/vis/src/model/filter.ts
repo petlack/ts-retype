@@ -1,10 +1,14 @@
+import { ArrayElement } from '@ts-retype/search/types';
 import { CANDIDATE_TYPES, FulltextData, SIMILARITIES } from '../types';
 import { Facet, FacetStats, combineFacets, facetStats } from './facet';
 
-const facets: Facet<FulltextData>[] = [
+const facets: Facet<
+    FulltextData,
+    ArrayElement<typeof SIMILARITIES> | ArrayElement<typeof CANDIDATE_TYPES>
+>[] = [
     {
         name: 'similarity',
-        values: SIMILARITIES,
+        values: CANDIDATE_TYPES,
         matches: (rec, v) => v === 'all' || rec.group === v && rec.group !== 'different',
     },
     {
@@ -58,7 +62,13 @@ export class Filter implements IFilter {
     filter(data: FulltextData[]): FulltextData[] {
         if (this.isEmpty()) return data;
         return data
-            .filter(combineFacets(facets, [this.selectedSimilarity, this.selectedType]))
+            .filter(combineFacets(
+                facets,
+                [
+                    this.selectedSimilarity as ArrayElement<typeof SIMILARITIES>,
+                    this.selectedType as ArrayElement<typeof CANDIDATE_TYPES>
+                ]
+            ))
             .filter(this.#apply.bind(this));
     }
 

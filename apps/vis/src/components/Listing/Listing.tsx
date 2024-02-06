@@ -74,9 +74,9 @@ export const Listing: FC<ListingProps> = ({ meta, results, filter }) => {
                 <span>types that are</span>
                 <span>{list(similarities, 'or ')}</span>
                 <span>appearing in at least</span>
-                {span('strong')(file(filter.minFiles))}
+                {span('strong')(file(filter.minFiles ?? 0))}
                 <span>and having at least</span>
-                {span('strong')(feature(filter.minProperties))}
+                {span('strong')(feature(filter.minProperties ?? 0))}
                 {/* <FeaturesTooltip /> */}
             </div>
         </>

@@ -15,11 +15,11 @@ export function fulltext(duplicate: FulltextData): string {
     ].join(' ');
 }
 
-export type SearchProps = {
-  facets: Facet<FulltextData>[];
+export type SearchProps<T> = {
+  facets: Facet<T, unknown>[];
 };
 
-export function Search({ facets }: SearchProps) {
+export function Search<T>({ facets }: SearchProps<T>) {
     const miniSearch = new MiniSearch({
         fields: ['name', 'fulltext'],
         storeFields: [
@@ -35,10 +35,10 @@ export function Search({ facets }: SearchProps) {
         ],
     });
 
-    let allData: FulltextData[] = [];
+    let allData: T[] = [];
 
     return {
-        refresh(data: FulltextData[]) {
+        refresh(data: T[]) {
             miniSearch.removeAll();
             miniSearch.addAll(data);
             allData = data;
@@ -49,11 +49,11 @@ export function Search({ facets }: SearchProps) {
                 results = miniSearch.search(query, {
                     fuzzy: true,
                     prefix: true,
-                }) as unknown as FulltextData[];
+                }) as unknown as T[];
             }
 
-            const data = filter.filter(results);
-            const facetsStats = facetStats(data, facets);
+            const data = filter.filter(results as FulltextData[]);
+            const facetsStats = facetStats(data as T[], facets);
 
             return {
                 results: data,
