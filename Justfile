@@ -7,6 +7,10 @@ clean:
 build-all:
     pnpm nx run-many -t build
 
+rebuild-all:
+    just clean
+    just build-all
+
 build *args='':
     npx nx build "@ts-retype/${@}" --verbose
 
