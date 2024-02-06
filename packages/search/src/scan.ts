@@ -65,7 +65,7 @@ export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
         total: (allTypes.length * (allTypes.length + 1)) / 2,
     });
 
-    const matrix = computeSimilarityMatrix(allTypes, () => bar.tick());
+    const matrix = computeSimilarityMatrix(allTypes, by => bar.tick(by));
 
     log.log(`took ${formatDuration(new Date().getTime() - start)}`);
     log.log();

@@ -132,16 +132,19 @@ export function similarity(
 
 export function computeSimilarityMatrix(
     types: CandidateType[],
-    callback?: () => void,
+    callback?: (by: number) => void,
 ): ISparseMatrix<Similarity> {
     const matrix = SparseMatrix({ nil: Similarity.Different });
     const idxs = [...Array(types.length).keys()];
+    let batched = 0;
     for (const i of idxs) {
         for (const j of idxs) {
             if (i > j) {
                 continue;
             }
-            callback?.();
+            batched += 1;
+            batched %= 100;
+            if (batched === 0) callback?.(100);
             if (i === j) {
                 matrix.set(i, j, Similarity.Identical);
             } else {
@@ -149,6 +152,7 @@ export function computeSimilarityMatrix(
             }
         }
     }
+    callback?.(batched === 0 ? 100 : batched);
     return matrix;
 }
 

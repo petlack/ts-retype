@@ -1,11 +1,17 @@
 import { scan } from './scan.js';
-import { Metadata, ReportProps, ReportResult, ScanProps } from './types.js';
+import { Metadata, ReportProps, ReportResult, ScanProps, TypeDuplicate } from './types.js';
 import { createLogger, stringify } from '@ts-retype/utils';
 import { compress } from './compress.js';
 
 const log = createLogger(console.log);
 
-export function report(args: ScanProps & ReportProps, html: string): string {
+export function report(
+    args: ScanProps & ReportProps,
+    { html }: { html?: string } = {},
+): {
+    html?: string;
+    json?: string;
+} {
     log.log('running with args');
     log.log(stringify(args));
     log.log();
@@ -31,7 +37,9 @@ export function report(args: ScanProps & ReportProps, html: string): string {
         dataSize: 0,
     };
 
-    if (!noHtml) {
+    const result = { html: '', json: '' };
+
+    if (html && !noHtml) {
         const withDataJson = html.replace(
             /window\.__datajson__\s*=\s*"DATA_JSON"/,
             `window.__data__ = ${dataJson}`,
@@ -50,16 +58,15 @@ export function report(args: ScanProps & ReportProps, html: string): string {
             `window.__meta__ = ${metaJson}`,
         );
 
-        return replaced;
+        result.html = replaced;
     }
 
     if (json?.endsWith('.json')) {
-        return JSON.stringify({
+        result.json = JSON.stringify({
             data: compressed,
             meta,
         } as ReportResult);
     }
 
-    return `If noHtml is set, json must be set to a file path.
-        If no json is set, noHtml must be false.`;
+    return result;
 }
