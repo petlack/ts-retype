@@ -2,7 +2,7 @@
   "exclude": ["**/node_modules/**","**/dist/**"],
   "include": ["**/*.{ts,tsx}"],
   "json": "./apps/vis/src/assets/data.json",
-  "noHtml": true,
+  "noHtml": false,
   "output": "./retype-report.html",
   "rootDir": "."
 }

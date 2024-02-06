@@ -75,7 +75,7 @@ function main() {
     config.rootDir = pwd(config.rootDir);
 
     const template = readFileSync(dir('vis/index.html')).toString();
-    const content = report(config, template);
+    const { html, json } = report(config, { html: template });
 
     if (!config.noHtml && !config.output) {
         throw new Error('missing output');
@@ -83,7 +83,7 @@ function main() {
 
     if (!config.noHtml) {
         const htmlFile = resolveOutputFilePath(config.output);
-        writeFileSync(htmlFile, content);
+        writeFileSync(htmlFile, html);
         log.log(`report exported to ${htmlFile}`);
         log.log('you can view it by running');
         log.log();
@@ -91,12 +91,12 @@ function main() {
         log.log();
     }
 
-    if (config.json?.endsWith('.json')) {
-        writeFileSync(config.json, content);
-        log.log(`json data exported to ${config.json}`);
+    if (config.json?.endsWith('.json') && json) {
+        const jsonFile = config.json;
+        writeFileSync(jsonFile, json);
+        log.log(`json data exported to ${jsonFile}`);
         log.log();
     }
-
 }
 
 // if (isMain(import.meta)) {
