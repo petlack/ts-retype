@@ -63,8 +63,6 @@ export enum Similarity {
   Identical = 4,
 }
 
-export type SimilarityMatrix = Similarity[][];
-
 export type SparseMatrix<T> = Map<number, Map<number, T>>;
 export interface ISparseMatrix<T> {
   set(left: number, right: number, value: T): ISparseMatrix<T>;
