@@ -199,6 +199,28 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2(@types/node@20.11.6)
 
+  packages/theme:
+    dependencies:
+      '@ts-retype/utils':
+        specifier: workspace:*
+        version: link:../utils
+      chroma-js:
+        specifier: ^2.4.2
+        version: 2.4.2
+      polished:
+        specifier: ^4.3.1
+        version: 4.3.1
+    devDependencies:
+      '@types/chroma-js':
+        specifier: ^2.4.3
+        version: 2.4.3
+      '@types/node':
+        specifier: ^20.11.6
+        version: 20.11.6
+      tsup:
+        specifier: ^8.0.1
+        version: 8.0.1(postcss@8.4.33)(typescript@5.3.3)
+
   packages/uikit:
     dependencies:
       '@ts-retype/search':
@@ -210,10 +232,10 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
     devDependencies:
+      '@ts-retype/theme':
+        specifier: workspace:*
+        version: link:../theme
       '@types/react':
         specifier: ^18.2.43
         version: 18.2.43
@@ -250,6 +272,9 @@ importers:
       tsup:
         specifier: ^8.0.1
         version: 8.0.1(postcss@8.4.33)(typescript@5.3.3)
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
 
   packages/utils:
     devDependencies:
@@ -459,6 +484,13 @@ packages:
       '@babel/core': 7.23.7
       '@babel/helper-plugin-utils': 7.22.5
     dev: true
+
+  /@babel/runtime@7.23.9:
+    resolution: {integrity: sha512-0CX6F+BI2s9dkUqr08KFrAIZgNFj75rdBU/DjCyYLIaV/quFjkk6T+EJ2LkZHyZTbEV4L5p97mNkUsHl2wLFAw==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.14.1
+    dev: false
 
   /@babel/template@7.22.15:
     resolution: {integrity: sha512-QPErUVm4uyJa60rkI73qneDacvdvzxshT3kksGqlGWYdOTIUOwJ7RDUL8sGqslY1uXWSL6xMFKEXDS3ox2uF0w==}
@@ -1098,6 +1130,10 @@ packages:
     resolution: {integrity: sha512-WXCyOcRtH37HAUkpXhUduaxdm82b4GSlyTqajXviN4EfiuPgNYR109xMCKvpl6zPIpua0DGlMEDCq+g8EdoheQ==}
     dependencies:
       '@babel/types': 7.23.6
+    dev: true
+
+  /@types/chroma-js@2.4.3:
+    resolution: {integrity: sha512-1ly5ly/7S/YF8aD7MxUQnFOZxdegimuOunJl0xDsLlguu5JrwuSTVGVH3UpIUlh6YauI0RMNT4cqjBonhgbdIQ==}
     dev: true
 
   /@types/estree@1.0.5:
@@ -1946,6 +1982,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
+
+  /chroma-js@2.4.2:
+    resolution: {integrity: sha512-U9eDw6+wt7V8z5NncY2jJfZa+hUH8XEj8FQHgFJTrUFnJfXYf4Ml4adI2vXZOjqRDpFWtYVWypDfZwnJ+HIR4A==}
+    dev: false
 
   /cli-cursor@3.1.0:
     resolution: {integrity: sha512-I/zHAwsKf9FqGoXM4WWRACob9+SNukZTd94DWF57E4toouRulbCxcUh6RKUEOQlYTHJnzkPMySvPNaaSLNfLZw==}
@@ -3462,6 +3502,13 @@ packages:
       pathe: 1.1.2
     dev: true
 
+  /polished@4.3.1:
+    resolution: {integrity: sha512-OBatVyC/N7SCW/FaDHrSd+vn0o5cS855TOmYi4OkdWUMSJCET/xip//ch8xGUvtr3i44X9LVyWwQlRMTN3pwSA==}
+    engines: {node: '>=10'}
+    dependencies:
+      '@babel/runtime': 7.23.9
+    dev: false
+
   /postcss-import@15.1.0(postcss@8.4.33):
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
     engines: {node: '>=14.0.0'}
@@ -3627,6 +3674,10 @@ packages:
       '@types/prismjs': 1.26.3
       hastscript: 7.2.0
       parse-entities: 4.0.1
+    dev: false
+
+  /regenerator-runtime@0.14.1:
+    resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
     dev: false
 
   /require-directory@2.1.1:
