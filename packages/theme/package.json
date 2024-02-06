@@ -1,0 +1,37 @@
+{
+    "name": "@ts-retype/theme",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "main": "dist/index.js",
+    "bin": "dist/bin.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsup --onSuccess \"tsc --emitDeclarationOnly --declaration\"",
+        "build:watch": "tsup --watch --onSuccess \"npm run start\"",
+        "clean": "rm -rf ./dist",
+        "start": "node dist/bin.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@ts-retype/utils": "workspace:*",
+        "chroma-js": "^2.4.2",
+        "polished": "^4.3.1"
+    },
+    "devDependencies": {
+        "@types/chroma-js": "^2.4.3",
+        "@types/node": "^20.11.6",
+        "tsup": "^8.0.1"
+    },
+    "nx": {
+        "targets": {
+            "start": {
+                "dependsOn": [
+                    "build"
+                ]
+            }
+        }
+    }
+}
