@@ -2,6 +2,7 @@ import { CANDIDATE_TYPES, FulltextData, SIMILARITIES } from '../../types.js';
 import { FC, ReactNode } from 'react';
 import type { Metadata } from '@ts-retype/search/types';
 import type { Filter } from '../../model/filter.js';
+import { Duplicate } from '../Duplicate/Duplicate.js';
 import { Empty } from '../Empty/index.js';
 import { Tooltip } from '@ts-retype/uikit';
 

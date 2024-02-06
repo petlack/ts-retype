@@ -20,7 +20,7 @@ export function usePortalTransition({
     onRemove,
     speed = 300,
 }: UseTransitionProps) {
-    const bodyRef = useRef(document.querySelector('body'));
+    const bodyRef = useRef(document.querySelector('#root'));
     const portalRootRef = useRef(document.getElementById(portalId) || createPortalRoot(portalId));
     const isTransitioning = useMountTransition(isVisible, speed);
 

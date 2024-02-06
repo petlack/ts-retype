@@ -38,7 +38,7 @@ function App() {
         <div className="clrs-light clrs-core clrs-sx">
             <SearchPhraseProvider value={{ phrase: query }}>
                 <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
-                    <div className="bg-default text-default gap-4 p-4 h-full">
+                    <div className="clrs-light clrs-core clrs-sx bg-default text-default gap-4 p-4 h-full">
                         <h2>Sidebar</h2>
                         <Controls
                             filter={filter}
