@@ -1,6 +1,8 @@
+import { dirname, join } from 'path';
 import { readFileSync, existsSync, lstatSync, mkdirSync } from 'fs';
-import path from 'path';
-import { filterEmpty, pwd } from '@ts-retype/utils';
+import { filterEmpty } from '@ts-retype/utils';
+
+const pwd = (p: string) => join(process.cwd(), p);
 
 export function resolveConfig<T extends object>(
     configFile: string | undefined | null,
@@ -50,13 +52,13 @@ export function resolveOutputFilePath(configOutput: string): string {
         }
     }
     if (isDir) {
-        htmlFile = path.join(configOutput, 'index.html');
+        htmlFile = join(configOutput, 'index.html');
         if (!existsSync(configOutput)) {
             mkdirSync(configOutput, { recursive: true });
         }
     } else {
         htmlFile = configOutput;
-        const parentDir = path.dirname(htmlFile);
+        const parentDir = dirname(htmlFile);
         if (!existsSync(parentDir)) {
             mkdirSync(parentDir, { recursive: true });
         }

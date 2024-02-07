@@ -3,9 +3,16 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { access, constants, mkdir, readdir, readFile } from 'fs/promises';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-// const __dirname = path.join(path.dirname(new URL(import.meta.url).pathname), '..');
+function getDirname(): string {
+    if (import.meta.url === undefined) {
+        return __dirname;
+    }
+    const fileName = fileURLToPath(import.meta.url);
+    return dirname(fileName);
+}
+
+export const pwd = (p: string): string => join(process.cwd(), p);
+export const dir = (p: string): string => join(getDirname(), p);
 
 export async function hasRootPackageJson(path: string): Promise<boolean> {
     const packageJsonPath = join(path, 'package.json');
@@ -17,7 +24,7 @@ export async function hasRootPackageJson(path: string): Promise<boolean> {
 }
 
 export async function getRootDir(): Promise<string | null> {
-    let dir = __dirname;
+    let dir = getDirname();
     while (dir.length > 1 && !(await hasRootPackageJson(dir))) {
         dir = dir.split('/').slice(0, -1).join('/');
     }
@@ -52,6 +59,7 @@ export function getFileSizeInBytes(filePath: string): number | undefined {
         const stats = statSync(filePath);
         return stats.size;
     } catch (err: any) {
+        // eslint-disable-next-line no-console
         console.error(`Failed to get file size for "${filePath}": ${err.message}`);
     }
 }
@@ -76,6 +84,3 @@ export function readPackageJson(dirOrFilePath: string): {
         repository: { url: contents.repository?.url ?? 'unknown' },
     };
 }
-
-export const pwd = (p: string) => join(process.cwd(), p);
-export const dir = (p: string) => join(__dirname, p);

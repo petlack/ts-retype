@@ -1,21 +1,20 @@
 #!/usr/bin/env node
 
-import { readFileSync, writeFileSync } from 'fs';
 import { Command, createCommand } from 'commander';
-import { createLogger, dir, stringify, readPackageJson, pwd } from '@ts-retype/utils';
-import { report } from '@ts-retype/search';
-import { RetypeConfig } from '@ts-retype/search/config.js';
 import { DEFAULT_CONFIG, TS_RETYPE_CMD_OPTIONS } from '@ts-retype/search/types.js';
+import { createLogger, readPackageJson, stringify } from '@ts-retype/utils';
+import { readFileSync, writeFileSync } from 'fs';
 import type { RetypeCmdProps } from '@ts-retype/search/types.js';
+import { RetypeConfig } from '@ts-retype/search/config.js';
+import { join } from 'path';
+import { report } from '@ts-retype/search';
 import { resolveOutputFilePath } from './cmd.js';
-// import { isMain } from '@ts-retype/scripts/src/isMain';
-
-// TS_RETYPE_CMD_OPTIONS,
-// report,
-// scan
 
 // eslint-disable-next-line no-console
 const log = createLogger(console.log);
+
+const pwd = (p: string) => join(process.cwd(), p);
+const dir = (p: string) => join(__dirname, p);
 
 const { version, name, description } = readPackageJson(dir('.'));
 const program = createCommand();
@@ -81,7 +80,7 @@ function main() {
         throw new Error('missing output');
     }
 
-    if (!config.noHtml) {
+    if (!config.noHtml && html) {
         const htmlFile = resolveOutputFilePath(config.output);
         writeFileSync(htmlFile, html);
         log.log(`report exported to ${htmlFile}`);
