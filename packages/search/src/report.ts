@@ -1,5 +1,5 @@
 import { scan } from './scan.js';
-import { Metadata, ReportProps, ReportResult, ScanProps, TypeDuplicate } from './types.js';
+import { Metadata, ReportProps, ReportResult, ScanProps } from './types.js';
 import { createLogger, stringify } from '@ts-retype/utils';
 import { compress } from './compress.js';
 
