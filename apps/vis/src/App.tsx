@@ -1,5 +1,6 @@
-import { Button, Code, Drawer, Search } from '@ts-retype/uikit';
+import { Button, Drawer, Search } from '@ts-retype/uikit';
 import { useEffect, useMemo, useState } from 'react';
+import { Code } from '@ts-retype/uikit/code';
 import { Filter } from './model/filter';
 import type { FulltextData } from './types';
 import { Listing } from './components/Listing';

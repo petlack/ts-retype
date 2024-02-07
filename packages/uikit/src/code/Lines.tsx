@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 
-import { Code } from '../Code/index.js';
+import { Code } from './Code.js';
 
 type LinesLineNoProps = {
     type: 'lineNo';
