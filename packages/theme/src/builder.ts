@@ -1,4 +1,4 @@
-import { Color, ColorScale, Theme, ThemeMode } from './types/theme.js';
+import type { Color, ColorScale, Theme, ThemeMode } from './theme.js';
 import chromaPalette from './chroma.js';
 import { desaturate as polishedDesaturate } from 'polished';
 

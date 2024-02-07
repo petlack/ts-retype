@@ -1,3 +1,5 @@
+type Any<T> = { [name: string | number]: T };
+
 export type ThemeMode = 'light' | 'dark';
 
 export type Color = string | number | ColorScale;
@@ -50,8 +52,6 @@ export type BackgroundColors = {
   'bg-on-accent': Color;
 };
 
-type Any<T> = { [name: string | number]: T };
-
 export type Theme = {
     white: Color;
     black: Color;
@@ -59,3 +59,11 @@ export type Theme = {
     transparent: Color;
     current: Color;
   } & Any<Color>;
+
+export const Standard: Theme = {
+    black: '#000',
+    white: '#fff',
+    accent: '#f00',
+    transparent: 'transparent',
+    current: 'currentColor',
+};
