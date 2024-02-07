@@ -1,7 +1,12 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-    entry: ['src/index.ts', 'src/tree.ts', 'src/hooks.ts'],
+    entry: [
+        'src/code.ts',
+        'src/hooks.ts',
+        'src/index.ts',
+        'src/tree.ts',
+    ],
     // treeshake: true,
     // sourcemap: 'inline',
     // minify: true,

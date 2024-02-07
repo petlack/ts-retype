@@ -2,15 +2,12 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig({
     entry: [
-        'src/compress.ts',
-        'src/config.ts',
         'src/index.ts',
-        'src/log.ts',
         'src/snippet.ts',
+        'src/highlight.ts',
         'src/types.ts',
-        'src/utils.ts',
     ],
-    format: ['esm'],
+    format: ['esm', 'cjs'],
     splitting: false,
     sourcemap: true,
     clean: true,

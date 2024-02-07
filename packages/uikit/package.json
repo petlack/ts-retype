@@ -6,8 +6,9 @@
     "main": "dist/index.js",
     "exports": {
         ".": "./dist/index.js",
-        "./tree": "./dist/tree.js",
+        "./code": "./dist/code.js",
         "./hooks": "./dist/hooks.js",
+        "./tree": "./dist/tree.js",
         "./dist/index.css": "./dist/index.css"
     },
     "scripts": {
@@ -45,10 +46,8 @@
         "targets": {
             "build": {
                 "dependsOn": [
-                    {
-                        "projects": "@ts-retype/theme",
-                        "target": "bin"
-                    }
+                    "@ts-retype/theme:bin",
+                    "@ts-retype/uikit:build"
                 ]
             }
         }

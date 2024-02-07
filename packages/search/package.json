@@ -6,9 +6,50 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "exports": {
-        ".": "./dist/index.js",
-        "./types": "./dist/types.js",
-        "./snippet": "./dist/snippet.js"
+        ".": {
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            },
+            "require": {
+                "types": "./dist/index.d.cts",
+                "default": "./dist/index.cjs"
+            },
+            "default": "./dist/index.js"
+        },
+        "./highlight": {
+            "import": {
+                "types": "./dist/highlight.d.ts",
+                "default": "./dist/highlight.js"
+            },
+            "require": {
+                "types": "./dist/highlight.d.cts",
+                "default": "./dist/highlight.cjs"
+            },
+            "default": "./dist/highlight.js"
+        },
+        "./snippet": {
+            "import": {
+                "types": "./dist/snippet.d.ts",
+                "default": "./dist/snippet.js"
+            },
+            "require": {
+                "types": "./dist/snippet.d.cts",
+                "default": "./dist/snippet.cjs"
+            },
+            "default": "./dist/snippet.js"
+        },
+        "./types": {
+            "import": {
+                "types": "./dist/types.d.ts",
+                "default": "./dist/types.js"
+            },
+            "require": {
+                "types": "./dist/types.d.cts",
+                "default": "./dist/types.cjs"
+            },
+            "default": "./dist/types.js"
+        }
     },
     "scripts": {
         "build": "tsup --onSuccess \"tsc --emitDeclarationOnly --declaration\"",
@@ -22,9 +63,9 @@
     "license": "ISC",
     "dependencies": {
         "@ts-retype/utils": "workspace:*",
-        "glob": "^9.1.0",
+        "glob": "^10.3.10",
         "progress": "^2.0.3",
-        "ramda": "^0.28.0",
+        "ramda": "^0.29.1",
         "refractor": "^4.8.1",
         "typescript": "^5.3.3"
     },
