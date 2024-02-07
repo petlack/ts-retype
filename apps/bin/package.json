@@ -24,7 +24,7 @@
     "dependencies": {
         "@ts-retype/search": "workspace:^",
         "@ts-retype/utils": "workspace:^",
-        "commander": "^11.1.0"
+        "commander": "^12.0.0"
     },
     "devDependencies": {
         "@types/node": "^20.11.6",
