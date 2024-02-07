@@ -1,4 +1,11 @@
+export { Bash } from './code/Bash.js';
 export { Code } from './code/Code.js';
+export { JsTsCode } from './code/JsTsCode.js';
 export { Lines } from './code/Lines.js';
+export { LanguageTab } from './code/LanguageTab.js';
+export { MultilangWindow } from './code/MultilangWindow.js';
 export { Snippet } from './code/Snippet.js';
+export { Source } from './code/Source.js';
 export { TokenElement } from './code/TokenElement.js';
+export { TypeScript } from './code/TypeScript.js';
+export { Window } from './code/Window.js';
