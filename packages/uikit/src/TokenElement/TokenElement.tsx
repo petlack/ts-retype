@@ -25,7 +25,7 @@ export const TokenElement: FC<{ token: Token }> = ({ token }) => {
     if (token.type === 'element') {
         return (
             <span>
-                {token.children.map((ch, idx) => <TokenElement key={idx} token={ch as Token} />)}
+                {token.children.map((ch, idx) => <TokenElement key={idx} token={ch} />)}
             </span>
         );
     }
