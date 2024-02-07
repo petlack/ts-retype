@@ -7,4 +7,5 @@ export { Overlay } from './Overlay/index.js';
 export { Search } from './Search/index.js';
 export { SearchAwareText } from './SearchAwareText/index.js';
 export { Tag } from './Tag/index.js';
+export { Topbar } from './Topbar/index.js';
 export { Tooltip } from './Tooltip/index.js';
