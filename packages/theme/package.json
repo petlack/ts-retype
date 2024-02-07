@@ -4,7 +4,6 @@
     "description": "",
     "type": "module",
     "main": "dist/index.js",
-    "bin": "dist/bin.js",
     "types": "dist/index.d.ts",
     "scripts": {
         "bin": "node dist/bin.js",

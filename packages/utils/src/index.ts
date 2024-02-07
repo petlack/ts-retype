@@ -1,3 +1,4 @@
+export { execute } from './cli.js';
 export * from './log.js';
 export * from './utils.js';
 export {

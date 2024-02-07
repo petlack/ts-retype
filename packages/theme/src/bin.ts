@@ -4,7 +4,7 @@
 import { writeFile } from 'fs/promises';
 import { join } from 'path';
 import { fromColors } from './builder.js';
-import { getRootDir } from '@ts-retype/utils';
+import { execute, getRootDir } from '@ts-retype/utils';
 
 async function generateThemes() {
     const accent = '#0a799e';
@@ -77,9 +77,4 @@ async function generateThemes() {
     }
 }
 
-generateThemes()
-    .then(() => console.log('Done'))
-    .catch(err => {
-        console.error(err);
-        console.error('Error');
-    });
+execute(generateThemes);
