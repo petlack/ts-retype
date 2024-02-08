@@ -3,7 +3,7 @@ import {
     Code,
     MultilangWindow,
     Terminal,
-    TypeScript,
+    Highlight,
     Window,
 } from '@ts-retype/uikit/code';
 import { FC, PropsWithChildren } from 'react';
@@ -11,14 +11,12 @@ import { Options } from './Options';
 import { TS_RETYPE_CMD_OPTIONS } from '@ts-retype/search/types';
 
 export function Docs() {
-    const mode = 'light';
     return (
         <>
             <Section id="install">
                 <Heading>Install</Heading>
                 <p>Install as a dev dependency</p>
                 <MultilangWindow
-                    theme={mode}
                     codes={[
                         { lang: 'pnpm', code: ['pnpm add -D ts-retype'] },
                         { lang: 'npm', code: ['npm add -D ts-retype'] },
@@ -26,7 +24,6 @@ export function Docs() {
                     ]} />
                 <p>or install globally</p>
                 <MultilangWindow
-                    theme={mode}
                     codes={[
                         { lang: 'pnpm', code: ['pnpm install -g ts-retype'] },
                         { lang: 'npm', code: ['npm install -g ts-retype'] },
@@ -38,14 +35,14 @@ export function Docs() {
                 <Heading>Usage</Heading>
                 <p>To create a report for your project, run</p>
                 <MultilangWindow
-                    theme={mode}
+                    selectedLang="npx"
                     codes={[
                         { lang: 'bash', code: ['ts-retype .'] },
                         { lang: 'npx', code: ['npx ts-retype .'] },
                     ]} />
                 <p>Then open the report HTML file (this file is self contained and offline)</p>
-                <Window theme={mode}>
-                    <Terminal theme={mode}>
+                <Window>
+                    <Terminal>
                         {'open retype-report.html'}
                     </Terminal>
                 </Window>
@@ -54,41 +51,45 @@ export function Docs() {
             <Section id="docs">
                 <Heading>CLI</Heading>
                 <p>Configuration can be done by either CLI options</p>
-                <Window theme={mode}>
-                    <Code><span>{'ts-retype [options] <path-to-project>'}</span></Code>
+                <Window>
+                    <Code>
+                        {'ts-retype [options] <path-to-project>'}
+                    </Code>
                 </Window>
                 <Options options={TS_RETYPE_CMD_OPTIONS} />
                 <p>Or by using the <strong>--config</strong> option and providing path to config .retyperc</p>
-                <Terminal theme={mode}>
-                    {'# generate .retyperc in the current directory'}
-                    {'ts-retype -i'}
-                    {'# run ts-retype using .retyperc in the current directory'}
-                    {'ts-retype -c .'}
+                <Terminal>
+                    {[
+                        '# generate .retyperc in the current directory',
+                        'ts-retype -i',
+                        '# run ts-retype using .retyperc in the current directory',
+                        'ts-retype -c .',
+                    ]}
                 </Terminal>
                 <p>An example of a <strong>.retyperc</strong> file</p>
-                <TypeScript>
+                <Highlight>
                     {Snippets.Snippet_retyperc}
-                </TypeScript>
+                </Highlight>
             </Section>
 
             <Section>
                 <Heading>ts-retype</Heading>
                 <p>You can also run it programatically, using ts-retype package.</p>
-                <TypeScript>
+                <Highlight>
                     {Snippets.Snippet_tsRetype}
-                </TypeScript>
+                </Highlight>
                 <p>The input for <strong>scan</strong> is of type <strong>ScanProps</strong></p>
-                <TypeScript>
+                <Highlight>
                     {Snippets.Snippet_ScanProps}
-                </TypeScript>
+                </Highlight>
                 <p>An example for the snippets in the landing page would look like this</p>
-                <TypeScript>
+                <Highlight>
                     {Snippets.Snippet_duplicate}
-                </TypeScript>
+                </Highlight>
                 <p>The return type of <strong>scan</strong> is an array of <strong>TypeDuplicate</strong></p>
-                <TypeScript>
+                <Highlight>
                     {Snippets.Snippet_TypeDuplicate}
-                </TypeScript>
+                </Highlight>
             </Section>
 
             <Section id="examples">

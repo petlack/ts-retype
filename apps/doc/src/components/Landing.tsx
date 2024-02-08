@@ -1,25 +1,24 @@
 import * as Snippets from '../generated/snippets';
+import { Highlight, MultilangWindow, Window } from '@ts-retype/uikit/code';
 import { IconDocs, IconGithub } from '@ts-retype/uikit/icons';
-import { MultilangWindow, Highlight, Window } from '@ts-retype/uikit/code';
 import { Button } from '@ts-retype/uikit';
 
 export function Landing() {
-    const theme = 'light';
     return (
         <div className="flex flex-col align-center bg-landing p-12 border-b border-border">
             <div className="flex flex-col">
                 <div className="flex flex-row gap-4 items-center justify-between">
-                    <Window theme={theme} name="src/model.ts">
+                    <Window name="src/model.ts">
                         <Highlight start={11}>
                             {Snippets.Snippet_type}
                         </Highlight>
                     </Window>
-                    <Window theme={theme} name="src/auth.ts">
+                    <Window name="src/auth.ts">
                         <Highlight start={41}>
                             {Snippets.Snippet_interface}
                         </Highlight>
                     </Window>
-                    <Window theme={theme} name="src/api.ts">
+                    <Window name="src/api.ts">
                         <Highlight start={75}>
                             {Snippets.Snippet_function}
                         </Highlight>
@@ -32,7 +31,6 @@ export function Landing() {
                 </div>
                 <div className="flex flex-col gap-2 justify-self-end">
                     <MultilangWindow
-                        theme={{ dark: 'light', light: 'dark' }[theme] as 'dark' | 'light'}
                         selectedLang="npx"
                         codes={[
                             { code: ['pnpm add -D ts-retype'], lang: 'pnpm' },

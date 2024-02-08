@@ -4,8 +4,8 @@ import { TokenElement } from './TokenElement.js';
 import { splitLines } from '@ts-retype/search/snippet';
 
 export type HighlightProps = {
-  children: Snippet;
-  start?: number;
+    children: Snippet;
+    start?: number;
 }
 
 export function Highlight({ start, children: snippet }: HighlightProps) {
