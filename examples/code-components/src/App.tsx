@@ -1,4 +1,4 @@
-import { Code, Lines, Terminal, TypeScript, Window } from '@ts-retype/uikit/code';
+import { Code, Lines, Terminal, Highlight, Window } from '@ts-retype/uikit/code';
 import { FC } from 'react';
 import { Snippet } from '@ts-retype/search/types';
 import { clsx } from '@ts-retype/uikit/clsx';
@@ -15,6 +15,7 @@ export const App: FC = () => {
         'transition-shadow duration-200 ease-in-out',
         'hover:shadow-md',
     );
+
     return (
         <div className="clrs-light clrs-core clrs-sx text-default grid grid-cols-2 gap-4 p-4">
             <div className={clsx(cardStyle, 'flex flex-col')}>
@@ -31,16 +32,19 @@ export const App: FC = () => {
                     <Code>ls -ahl | grep -c</Code>
                 </div>
             </div>
+
             <div className={cardStyle}>
                 <Window theme="dark" name="001">
                     const foo = 'bar';
                 </Window>
             </div>
+
             <div className={cardStyle}>
                 <Window theme="dark">
                     <Code>ts-retype .</Code>
                 </Window>
             </div>
+
             <div className={cardStyle}>
                 <Window theme='light' name='100'>
                     <Lines type='lineNo' start={99}>
@@ -54,6 +58,7 @@ export const App: FC = () => {
                     </Lines>
                 </Window>
             </div>
+
             <div className={cardStyle}>
                 <Window theme="light" name='011'>
                     <Lines type='custom' prefix='$'>
@@ -61,6 +66,7 @@ export const App: FC = () => {
                     </Lines>
                 </Window>
             </div>
+
             <div className={cardStyle}>
                 <Window theme="light" name="foo">
                     <Terminal theme="light">
@@ -72,10 +78,9 @@ export const App: FC = () => {
                 </Window>
             </div>
 
-
             <div className={cardStyle}>
-                <Window theme="light" name='110'>
-                    <TypeScript>
+                <Window>
+                    <Highlight noLines>
                         {{
                             name: 'interface',
                             lang: 'ts',
@@ -102,7 +107,7 @@ export const App: FC = () => {
                                 ]
                             },
                         } as Snippet}
-                    </TypeScript>
+                    </Highlight>
                 </Window>
             </div>
         </div>

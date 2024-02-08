@@ -72,7 +72,7 @@ export function Docs() {
                 </Window>
                 <p>An example of a <strong>.retyperc</strong> file</p>
                 <Window>
-                    <Highlight>
+                    <Highlight noLines>
                         {Snippets.Snippet_retyperc}
                     </Highlight>
                 </Window>
@@ -82,25 +82,25 @@ export function Docs() {
                 <Heading>ts-retype</Heading>
                 <p>You can also run it programatically, using ts-retype package.</p>
                 <Window>
-                    <Highlight>
+                    <Highlight noLines>
                         {Snippets.Snippet_tsRetype}
                     </Highlight>
                 </Window>
                 <p>The input for <strong>scan</strong> is of type <strong>ScanProps</strong></p>
                 <Window>
-                    <Highlight>
+                    <Highlight noLines>
                         {Snippets.Snippet_ScanProps}
                     </Highlight>
                 </Window>
                 <p>An example for the snippets in the landing page would look like this</p>
                 <Window>
-                    <Highlight>
+                    <Highlight noLines>
                         {Snippets.Snippet_duplicate}
                     </Highlight>
                 </Window>
                 <p>The return type of <strong>scan</strong> is an array of <strong>TypeDuplicate</strong></p>
                 <Window>
-                    <Highlight>
+                    <Highlight noLines>
                         {Snippets.Snippet_TypeDuplicate}
                     </Highlight>
                 </Window>

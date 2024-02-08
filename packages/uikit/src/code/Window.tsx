@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import { clsx } from '../clsx.js';
 
 export type WindowProps = {
@@ -10,7 +10,14 @@ export type WindowProps = {
     name?: string;
 }
 
-export function Window({ name, theme = 'light', forceHeader: forceHeader = false, header, children, responsive = false }: WindowProps) {
+export const Window: FC<WindowProps> = ({ 
+    children,
+    name,
+    header,
+    theme = 'light',
+    forceHeader = false,
+    responsive = false,
+}) => {
     const iconStyle = clsx(
         'flex',
         'w-3 h-3',
@@ -46,4 +53,4 @@ export function Window({ name, theme = 'light', forceHeader: forceHeader = false
             </div>
         </div>
     );
-}
+};
