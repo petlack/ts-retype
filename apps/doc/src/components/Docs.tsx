@@ -1,3 +1,4 @@
+import { FC, PropsWithChildren } from 'react';
 import * as Snippets from '../generated/snippets';
 import {
     Bash,
@@ -12,7 +13,7 @@ export function Docs() {
     const mode = 'light';
     return (
         <>
-            <section id="install">
+            <Section id="install">
                 <h2>Install</h2>
                 <p>Install as a dev dependency</p>
                 <MultilangWindow
@@ -30,9 +31,9 @@ export function Docs() {
                         { lang: 'npm', code: ['npm install -g ts-retype'] },
                         { lang: 'yarn', code: ['yarn add global ts-retype'] },
                     ]} />
-            </section>
+            </Section>
 
-            <section id="usage">
+            <Section id="usage">
                 <h2>Usage</h2>
                 <p>To create a report for your project, run</p>
                 <MultilangWindow
@@ -43,9 +44,9 @@ export function Docs() {
                     ]} />
                 <p>Then open the report HTML file (this file is self contained and offline)</p>
                 <Bash theme={mode}>{'open retype-report.html'}</Bash>
-            </section>
+            </Section>
 
-            <section id="docs">
+            <Section id="docs">
                 <h2>CLI</h2>
                 <p>Configuration can be done by either CLI options</p>
                 <Window theme={mode} name="bash" showHeader={false}>
@@ -63,9 +64,9 @@ ts-retype -c .`
                 </Source>
                 <p>An example of a <strong>.retyperc</strong> file</p>
                 <JsTsCode theme={mode} snippet={Snippets.Snippet_retyperc} />
-            </section>
+            </Section>
 
-            <section>
+            <Section>
                 <h2>ts-retype</h2>
                 <p>You can also run it programatically, using ts-retype package.</p>
                 <JsTsCode theme={mode} snippet={Snippets.Snippet_tsRetype} />
@@ -75,9 +76,9 @@ ts-retype -c .`
                 <JsTsCode theme={mode} snippet={Snippets.Snippet_duplicate} />
                 <p>The return type of <strong>scan</strong> is an array of <strong>TypeDuplicate</strong></p>
                 <JsTsCode theme={mode} snippet={Snippets.Snippet_TypeDuplicate} />
-            </section>
+            </Section>
 
-            <section id="examples">
+            <Section id="examples">
                 <h2>Examples</h2>
                 <p>See example reports for following projects</p>
                 <ul>
@@ -85,7 +86,13 @@ ts-retype -c .`
                     <li><a href="./report-apollo-client.html" target="_blank">apollographql/apollo-client</a></li>
                     <li><a href="./report-apollo-server.html" target="_blank">apollographql/apollo-server</a></li>
                 </ul>
-            </section>
+            </Section>
         </>
     );
 }
+
+const Section: FC<PropsWithChildren<{ id?: string }>> = ({ children, id }) => (
+    <section id={id} className="flex flex-col min-w-[20ch] max-w-[80ch] w-[80vw] text-md p-12 g-6">
+        {children}
+    </section>
+);

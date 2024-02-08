@@ -6,9 +6,9 @@ import { Button } from '@ts-retype/uikit';
 export function Landing() {
     const theme = 'light';
     return (
-        <div className={'landing-container'}>
-            <div className="landing">
-                <div className="snippets">
+        <div className="landing-container flex flex-col align-center bg-purple-100 p-12 border-b border-neutral-300">
+            <div className="landing flex flex-col">
+                <div className="flex flex-row gap-4 align-center justify-between">
                     <TypeScript
                         responsive
                         theme={theme}
@@ -31,12 +31,12 @@ export function Landing() {
                         name={'src/api.ts'}
                     />
                 </div>
-                <div className="description">
-                    <h1>Discover duplicate types in TypeScript code</h1>
+                <div className="description flex flex-col justify-self-center justify-start">
+                    <h1 className="max-w-xl w-[50ch] text-4xl mb-4 text-neutral-950">Discover duplicate types in TypeScript code</h1>
                     <p>TS retype statically analyzes code and searches for multiple declarations of the same Literal Types, Function Types and Enums/Unions.</p>
                     <p>Run TS retype inside your project folder to get an HTML/JSON report.</p>
                 </div>
-                <div className="code-install">
+                <div className="code-install flex flex-col gap-2 justify-self-end">
                     <MultilangWindow
                         theme={{ dark: 'light', light: 'dark' }[theme] as 'dark' | 'light'}
                         selectedLang="npx"
@@ -47,7 +47,7 @@ export function Landing() {
                             { code: ['npx ts-retype .'], lang: 'npx' },
                         ]}
                     />
-                    <div className="links">
+                    <div className="links flex flex-row gap-2">
                         <Button
                             // leftIcon={IconDocs}
                             // colorScheme="primary"

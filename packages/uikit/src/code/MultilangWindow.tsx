@@ -30,7 +30,7 @@ export function MultilangWindow({ codes, theme, selectedLang }: MultilangWindowP
 
     return (
         <div className="window-multilang">
-            <div className="tabs">
+            <div className="flex flex-row pl-4 pb-1">
                 {tabsMarkup}
             </div>
             <Window theme={theme} name="bash" showHeader={false}>

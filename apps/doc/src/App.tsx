@@ -10,10 +10,10 @@ function App() {
                 <Menu />
                 <></>
             </Topbar>
-            <section className="bleed" id="about">
+            <section className="max-w-full w-full m-0 p-0" id="about">
                 <Landing />
             </section>
-            <div className="flex flex-col align-center bg-mantle text-default">
+            <div className="flex flex-col items-center bg-yellow-100 text-default">
                 <Docs />
             </div>
             <footer></footer>

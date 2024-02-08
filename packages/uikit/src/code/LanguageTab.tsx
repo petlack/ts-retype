@@ -1,3 +1,5 @@
+import { clsx } from '../clsx.js';
+
 export type LanguageTabProps = {
     lang: string;
     selectedLang: string;
@@ -5,9 +7,16 @@ export type LanguageTabProps = {
 }
 
 export function LanguageTab({ lang, selectedLang, setLang }: LanguageTabProps) {
+    const tabStyle = clsx(
+        'tab',
+        'p-2',
+        'cursor-pointer',
+        selectedLang === lang ? 'text-accent-300' : 'text-neutral-700',
+        'hover:text-default',
+    );
     return (
         <span
-            className={`tab ${selectedLang === lang ? 'tab-active' : ''}`}
+            className={tabStyle}
             onClick={() => setLang(lang)}
         >
             <span className="tab-indicator"></span>
