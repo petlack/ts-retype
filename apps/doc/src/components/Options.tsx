@@ -1,15 +1,17 @@
 import { FC } from 'react';
 
+export type Option = {
+    short: string,
+    long: string,
+    desc: string,
+    args?: string,
+};
+
 export type OptionsProps = {
-    options: {
-        short: string,
-        long: string,
-        desc: string,
-        args?: string,
-    }[];
+    children: Option[];
 }
 
-export const Options: FC<OptionsProps> = ({ options }) => {
+export const Options: FC<OptionsProps> = ({ children: options }) => {
     const optionsFlat = options.flatMap(({ short, long, args, desc }) => (
         [
             {

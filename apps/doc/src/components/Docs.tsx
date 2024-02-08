@@ -56,40 +56,54 @@ export function Docs() {
                         {'ts-retype [options] <path-to-project>'}
                     </Code>
                 </Window>
-                <Options options={TS_RETYPE_CMD_OPTIONS} />
+                <Options>
+                    {TS_RETYPE_CMD_OPTIONS}
+                </Options>
                 <p>Or by using the <strong>--config</strong> option and providing path to config .retyperc</p>
-                <Terminal>
-                    {[
-                        '# generate .retyperc in the current directory',
-                        'ts-retype -i',
-                        '# run ts-retype using .retyperc in the current directory',
-                        'ts-retype -c .',
-                    ]}
-                </Terminal>
+                <Window>
+                    <Terminal>
+                        {[
+                            '# generate .retyperc in the current directory',
+                            'ts-retype -i',
+                            '# run ts-retype using .retyperc in the current directory',
+                            'ts-retype -c .',
+                        ]}
+                    </Terminal>
+                </Window>
                 <p>An example of a <strong>.retyperc</strong> file</p>
-                <Highlight>
-                    {Snippets.Snippet_retyperc}
-                </Highlight>
+                <Window>
+                    <Highlight>
+                        {Snippets.Snippet_retyperc}
+                    </Highlight>
+                </Window>
             </Section>
 
             <Section>
                 <Heading>ts-retype</Heading>
                 <p>You can also run it programatically, using ts-retype package.</p>
-                <Highlight>
-                    {Snippets.Snippet_tsRetype}
-                </Highlight>
+                <Window>
+                    <Highlight>
+                        {Snippets.Snippet_tsRetype}
+                    </Highlight>
+                </Window>
                 <p>The input for <strong>scan</strong> is of type <strong>ScanProps</strong></p>
-                <Highlight>
-                    {Snippets.Snippet_ScanProps}
-                </Highlight>
+                <Window>
+                    <Highlight>
+                        {Snippets.Snippet_ScanProps}
+                    </Highlight>
+                </Window>
                 <p>An example for the snippets in the landing page would look like this</p>
-                <Highlight>
-                    {Snippets.Snippet_duplicate}
-                </Highlight>
+                <Window>
+                    <Highlight>
+                        {Snippets.Snippet_duplicate}
+                    </Highlight>
+                </Window>
                 <p>The return type of <strong>scan</strong> is an array of <strong>TypeDuplicate</strong></p>
-                <Highlight>
-                    {Snippets.Snippet_TypeDuplicate}
-                </Highlight>
+                <Window>
+                    <Highlight>
+                        {Snippets.Snippet_TypeDuplicate}
+                    </Highlight>
+                </Window>
             </Section>
 
             <Section id="examples">
