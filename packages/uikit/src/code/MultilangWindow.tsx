@@ -1,10 +1,9 @@
 import { LanguageTab } from './LanguageTab.js';
 import { Terminal } from './Terminal.js';
-import { Window } from './Window.js';
+import { Window, WindowProps } from './Window.js';
 import { useState } from 'react';
 
-export type MultilangWindowProps = {
-  theme: 'dark' | 'light';
+export type MultilangWindowProps = WindowProps & {
   codes: {
     lang: string;
     code: string[];
@@ -12,7 +11,7 @@ export type MultilangWindowProps = {
   selectedLang?: string;
 }
 
-export function MultilangWindow({ codes, theme, selectedLang }: MultilangWindowProps) {
+export function MultilangWindow({ codes, theme, selectedLang, ...props }: MultilangWindowProps) {
     const [lang, setLang] = useState(selectedLang || codes[0].lang);
 
     const langsToCodes = codes.reduce(
@@ -20,17 +19,21 @@ export function MultilangWindow({ codes, theme, selectedLang }: MultilangWindowP
         {} as { [lang: string]: string[] }
     );
     const code = lang in langsToCodes ? langsToCodes[lang] : [''];
-    const tabsMarkup = Object.keys(langsToCodes)
-        .map((lg) => (
-            <LanguageTab key={lg} lang={lg} selectedLang={lang} setLang={setLang} />
-        ));
 
     return (
-        <div className="window-multilang">
+        <div className="flex-col">
             <div className="flex flex-row pl-4 pb-1">
-                {tabsMarkup}
+                {Object.keys(langsToCodes)
+                    .map((lg) => (
+                        <LanguageTab
+                            key={lg}
+                            lang={lg}
+                            selectedLang={lang}
+                            setLang={setLang}
+                        />
+                    ))}
             </div>
-            <Window theme={theme}>
+            <Window theme={theme} {...props}>
                 <Terminal>
                     {code}
                 </Terminal>

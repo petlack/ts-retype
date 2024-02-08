@@ -1,15 +1,15 @@
 import { Button, Drawer, Search } from '@ts-retype/uikit';
 import { useEffect, useMemo, useState } from 'react';
 import { Code } from '@ts-retype/uikit/code';
+import { Controls } from './components/Controls';
 import { Filter } from './model/filter';
 import type { FulltextData } from './types';
 import { Listing } from './components/Listing';
 import { SearchPhraseProvider } from '@ts-retype/uikit/hooks';
+import { clsx } from '@ts-retype/uikit/clsx';
 import { useBoolean } from '@ts-retype/uikit/hooks';
 import { useData } from './hooks/useData';
 import { useSearch } from './hooks/useSearch';
-import { Controls } from './components/Controls';
-import { clsx } from '@ts-retype/uikit/clsx';
 
 function App() {
     const [isDrawerOpen, toggleDrawer, _, closeDrawer] = useBoolean(false);

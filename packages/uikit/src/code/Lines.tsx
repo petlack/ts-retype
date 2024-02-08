@@ -62,7 +62,7 @@ export const Line: FC<PropsWithChildren<LinesProps & {
     );
 
     return <>
-        {prefixMarkup && <span className={prefixStyle}>{prefixMarkup}</span>}
+        {prefixMarkup != null && <span className={prefixStyle}>{prefixMarkup}</span>}
         {children}
     </>;
 };
