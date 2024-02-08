@@ -8,6 +8,8 @@ import {
     Source,
     Window,
 } from '@ts-retype/uikit/code';
+import { Options } from './Options';
+import { TS_RETYPE_CMD_OPTIONS } from '@ts-retype/search/types';
 
 export function Docs() {
     const mode = 'light';
@@ -52,7 +54,7 @@ export function Docs() {
                 <Window theme={mode} name="bash" showHeader={false}>
                     <Code><span>{'ts-retype [options] <path-to-project>'}</span></Code>
                 </Window>
-                {/* <Options options={TS_RETYPE_CMD_OPTIONS} /> */}
+                <Options options={TS_RETYPE_CMD_OPTIONS} />
                 <p>Or by using the <strong>--config</strong> option and providing path to config .retyperc</p>
                 <Source lang="bash" theme={mode}>
                     {

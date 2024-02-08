@@ -34,6 +34,9 @@ export default {
                 'window-header': 'var(--clr-bg-window-header)',
                 ...colors,
             },
+            gridTemplateColumns: {
+                options: 'max-content 1fr',
+            },
         }
     },
 };
