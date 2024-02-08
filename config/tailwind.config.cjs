@@ -4,9 +4,9 @@ import { colors } from './colors';
 export default {
     content: [
         './src/**/*.{ts,tsx,html}',
-        // '../apps/vis/**/*.{ts,tsx,html}',
-        // '../apps/doc/**/*.{ts,tsx,html}',
-        // '../packages/uikit/**/*.{ts,tsx}',
+        '../apps/vis/**/*.{ts,tsx,html}',
+        '../apps/doc/**/*.{ts,tsx,html}',
+        '../packages/uikit/**/*.{ts,tsx}',
     ],
     theme: {
         extend: {
@@ -19,16 +19,19 @@ export default {
                 'sx-operator': 'var(--clr-sx-operator)',
                 'sx-punctuation': 'var(--clr-sx-punctuation)',
                 'cp-teal': 'var(--clr-cp-teal)',
+                'code-comment': 'var(--clr-fg-code-comment)',
             },
             backgroundColor: {
-                'default': 'var(--clr-bg-main)',
                 'code': 'var(--clr-bg-code)',
+                'default': 'var(--clr-bg-main)',
+                'landing': 'var(--clr-bg-landing)',
                 'snippet-highlighted': 'var(--clr-bg-snippet-highlighted)',
+                'topbar': 'var(--clr-bg-topbar)',
             },
             colors: {
-                'cp-base': 'var(--clr-cp-base)',
-                'cp-crust': 'var(--clr-cp-crust)',
-                'cp-mantle': 'var(--clr-cp-mantle)',
+                'border': 'var(--clr-border)',
+                'landing-code': 'var(--clr-bg-landing-code)',
+                'window-header': 'var(--clr-bg-window-header)',
                 ...colors,
             },
         }

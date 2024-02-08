@@ -49,5 +49,50 @@ export const colors = {
         "900": "var(--clr-second-900)",
         "950": "var(--clr-second-950)",
         "975": "var(--clr-second-975)"
+    },
+    "crust": {
+        "25": "var(--clr-crust-25)",
+        "50": "var(--clr-crust-50)",
+        "100": "var(--clr-crust-100)",
+        "200": "var(--clr-crust-200)",
+        "300": "var(--clr-crust-300)",
+        "400": "var(--clr-crust-400)",
+        "500": "var(--clr-crust-500)",
+        "600": "var(--clr-crust-600)",
+        "700": "var(--clr-crust-700)",
+        "800": "var(--clr-crust-800)",
+        "900": "var(--clr-crust-900)",
+        "950": "var(--clr-crust-950)",
+        "975": "var(--clr-crust-975)"
+    },
+    "mantle": {
+        "25": "var(--clr-mantle-25)",
+        "50": "var(--clr-mantle-50)",
+        "100": "var(--clr-mantle-100)",
+        "200": "var(--clr-mantle-200)",
+        "300": "var(--clr-mantle-300)",
+        "400": "var(--clr-mantle-400)",
+        "500": "var(--clr-mantle-500)",
+        "600": "var(--clr-mantle-600)",
+        "700": "var(--clr-mantle-700)",
+        "800": "var(--clr-mantle-800)",
+        "900": "var(--clr-mantle-900)",
+        "950": "var(--clr-mantle-950)",
+        "975": "var(--clr-mantle-975)"
+    },
+    "base": {
+        "25": "var(--clr-base-25)",
+        "50": "var(--clr-base-50)",
+        "100": "var(--clr-base-100)",
+        "200": "var(--clr-base-200)",
+        "300": "var(--clr-base-300)",
+        "400": "var(--clr-base-400)",
+        "500": "var(--clr-base-500)",
+        "600": "var(--clr-base-600)",
+        "700": "var(--clr-base-700)",
+        "800": "var(--clr-base-800)",
+        "900": "var(--clr-base-900)",
+        "950": "var(--clr-base-950)",
+        "975": "var(--clr-base-975)"
     }
 };

@@ -1,14 +1,14 @@
 import * as Snippets from '../generated/snippets';
 import { MultilangWindow, TypeScript } from '@ts-retype/uikit/code';
 import { Button } from '@ts-retype/uikit';
-// import { Button, Heading, IconDocs, IconGithub, MultilangWindow, TsSnippet } from '@ts-retype/uikit';
+import { IconDocs, IconGithub } from '@ts-retype/uikit/icons';
 
 export function Landing() {
     const theme = 'light';
     return (
-        <div className="landing-container flex flex-col align-center bg-purple-100 p-12 border-b border-neutral-300">
+        <div className="landing-container flex flex-col align-center bg-landing p-12 border-b border-border">
             <div className="landing flex flex-col">
-                <div className="flex flex-row gap-4 align-center justify-between">
+                <div className="flex flex-row gap-4 items-center justify-between">
                     <TypeScript
                         responsive
                         theme={theme}
@@ -49,19 +49,11 @@ export function Landing() {
                     />
                     <div className="links flex flex-row gap-2">
                         <Button
-                            // leftIcon={IconDocs}
-                            // colorScheme="primary"
-                            // size="lg"
-                            // kind="link"
-                            // href="#docs"
-                        >Docs</Button>
+                            href="#docs"
+                        >{IconDocs} Docs</Button>
                         <Button
-                            // leftIcon={IconGithub}
-                            // colorScheme="text"
-                            // size="lg"
-                            // kind="link"
-                            // href="https://github.com/petlack/ts-retype"
-                        >Source</Button>
+                            href="https://github.com/petlack/ts-retype"
+                        >{IconGithub} Source</Button>
                     </div>
                 </div>
             </div>

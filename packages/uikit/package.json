@@ -6,8 +6,10 @@
     "main": "dist/index.js",
     "exports": {
         ".": "./dist/index.js",
+        "./clsx": "./dist/clsx.js",
         "./code": "./dist/code.js",
         "./hooks": "./dist/hooks.js",
+        "./icons": "./dist/icons.js",
         "./tree": "./dist/tree.js",
         "./dist/index.css": "./dist/index.css"
     },

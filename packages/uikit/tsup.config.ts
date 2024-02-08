@@ -2,8 +2,10 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig({
     entry: [
+        'src/clsx.js',
         'src/code.ts',
         'src/hooks.ts',
+        'src/icons.tsx',
         'src/index.ts',
         'src/tree.ts',
     ],

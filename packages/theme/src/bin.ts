@@ -5,6 +5,7 @@ import { writeFile } from 'fs/promises';
 import { join } from 'path';
 import { fromColors } from './builder.js';
 import { execute, getRootDir } from '@ts-retype/utils';
+import { variants } from './palette.js';
 
 async function generateThemes() {
     const accent = '#0a799e';
@@ -12,8 +13,22 @@ async function generateThemes() {
     const exportJs = true;
     const exportCss = true;
 
-    const light = fromColors({ accent, second, mode: 'light' });
-    const dark = fromColors({ accent, second, mode: 'dark' });
+    const light = fromColors({
+        accent,
+        second,
+        crust: variants.latte.crust.hex,
+        mantle: variants.latte.mantle.hex,
+        base: variants.latte.base.hex,
+        mode: 'light',
+    });
+    const dark = fromColors({
+        accent,
+        second,
+        crust: variants.mocha.crust.hex,
+        mantle: variants.mocha.mantle.hex,
+        base: variants.mocha.base.hex,
+        mode: 'dark',
+    });
 
     const rootDir = await getRootDir();
 

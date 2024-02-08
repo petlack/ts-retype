@@ -1,3 +1,5 @@
+import { clsx } from '../clsx.js';
+
 export type WindowProps = {
     children: JSX.Element | JSX.Element[];
     header?: JSX.Element | JSX.Element[];
@@ -8,18 +10,32 @@ export type WindowProps = {
 }
 
 export function Window({ name, theme, showHeader = true, header, children, responsive = false }: WindowProps) {
+    const iconStyle = clsx(
+        'flex',
+        'w-3 h-3',
+        'rounded-full',
+    );
+
     const headerMarkup = (
-        <div className="header">
-            <div className="icons">
-                <span className="icon red"></span>
-                <span className="icon yellow"></span>
-                <span className="icon green"></span>
+        <div className="flex flex-rows items-center gap-4 bg-window-header border-border border-b">
+            <div className="flex flex-row gap-2">
+                <span className={clsx(iconStyle, 'bg-red-500')}></span>
+                <span className={clsx(iconStyle, 'bg-yellow-500')}></span>
+                <span className={clsx(iconStyle, 'bg-green-500')}></span>
             </div>
             <div className="name">{name}</div>
         </div>
     );
+
+    const windowStyle = clsx(
+        'window',
+        theme,
+        responsive ? 'window-responsive' : '',
+        'bg-code rounded-md border-border',
+    );
+
     return (
-        <div className={`window ${theme} ${responsive ? 'window-responsive' : ''}`}>
+        <div className={windowStyle}>
             {showHeader ? headerMarkup : <></>}
             {header ? header : <></>}
             <div className="content">
