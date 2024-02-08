@@ -36,6 +36,8 @@ export default {
             },
             gridTemplateColumns: {
                 options: 'max-content 1fr',
+                'lines-numbers': '3ch 1fr',
+                'lines-char': '1ch 1fr',
             },
         }
     },

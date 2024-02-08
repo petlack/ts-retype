@@ -1,30 +1,68 @@
-import { FC, PropsWithChildren } from 'react';
-
+import { FC, PropsWithChildren, ReactNode } from 'react';
 import { Code } from './Code.js';
+import { clsx } from '../clsx.js';
 
 type LinesLineNoProps = {
-    type: 'lineNo';
+    type?: 'lineNo';
     start: number;
 }
 
-type LinesCustomCharProps = {
-    type: 'custom';
-    char: string;
+type LinesCustomPrefixProps = {
+    type?: 'custom';
+    prefix: string;
+}
+
+type LinesRawProps = {
+    type?: 'raw';
 }
 
 export type LinesProps = {
-    lines: JSX.Element[];
+    children: ReactNode | ReactNode[];
     className?: string;
-} & (LinesLineNoProps | LinesCustomCharProps);
+} & (LinesLineNoProps | LinesCustomPrefixProps | LinesRawProps);
 
-export const Lines: FC<PropsWithChildren<LinesProps>> = (props) => {
-    const linesMarkup = props.lines.map((line, lineNo) => (
-        <span key={lineNo}>
-            <span className="inline-block text-neutral-400 px-2 py-0 w-12 cursor-default select-none text-right font-light">{props.type === 'lineNo' ? props.start + lineNo : props.char}</span>
-            {line}
-        </span>
-    ));
+export const Lines: FC<PropsWithChildren<LinesProps>> = ({ children: anyChildren, className, ...props }) => {
+    const children = Array.isArray(anyChildren) ? anyChildren : [anyChildren];
     return (
-        <Code className={props.className}>{linesMarkup}</Code>
+        <Code className={clsx(
+            className,
+            'grid gap-x-3',
+            props.type === 'lineNo' ? 'grid-cols-lines-numbers' : null,
+            props.type === 'custom' ? 'grid-cols-lines-char' : null,
+        )}>
+            {children.map((line, lineNo) => (
+                <Line key={lineNo} idx={lineNo} {...props}>
+                    {line}
+                </Line>
+            ))}
+        </Code>
     );
+};
+
+export const Line: FC<PropsWithChildren<LinesProps & {
+    idx: number;
+    children: ReactNode;
+    className?: string;
+}>> = ({ idx, children, ...props }) => {
+    let prefixMarkup = null;
+
+    switch (props.type) {
+    case 'lineNo':
+        prefixMarkup = props.start + idx;
+        break;
+    case 'custom':
+        prefixMarkup = props.prefix;
+        break;
+    }
+
+    const prefixStyle = clsx(
+        'cursor-default select-none',
+        'inline-block',
+        'text-code-comment text-right font-light',
+    );
+
+    return <>
+        {prefixMarkup && <span className={prefixStyle}>{prefixMarkup}</span>}
+        {children}
+    </>;
 };

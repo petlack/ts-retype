@@ -1,5 +1,5 @@
-import { Code } from './Code.js';
 import { LanguageTab } from './LanguageTab.js';
+import { Terminal } from './Terminal.js';
 import { Window } from './Window.js';
 import { useState } from 'react';
 
@@ -24,17 +24,16 @@ export function MultilangWindow({ codes, theme, selectedLang }: MultilangWindowP
         .map((lg) => (
             <LanguageTab key={lg} lang={lg} selectedLang={lang} setLang={setLang} />
         ));
-    const lines = code.map((line, idx) => (
-        <span key={idx}>{line}</span>
-    ));
 
     return (
         <div className="window-multilang">
             <div className="flex flex-row pl-4 pb-1">
                 {tabsMarkup}
             </div>
-            <Window theme={theme} name="bash" showHeader={false}>
-                {lines}
+            <Window theme={theme}>
+                <Terminal>
+                    {code}
+                </Terminal>
             </Window>
         </div>
     );

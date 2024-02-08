@@ -10,4 +10,4 @@ tmp
 .nx
 .nx/cache
 
-generated
+**/generated/input

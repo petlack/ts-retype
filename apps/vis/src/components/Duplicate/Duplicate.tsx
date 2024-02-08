@@ -3,6 +3,7 @@ import type { ArrayElement, TypeDuplicate } from '@ts-retype/search/types';
 import { Title } from './Title.js';
 import { DefinitionSnippet } from './DefinitionSnippet.js';
 import { Explorer, ExplorerProps } from '../Explorer/index.js';
+import { clsx } from '@ts-retype/uikit/clsx';
 
 export function Duplicate({ files, names, group }: TypeDuplicate) {
     const [selectedFile, setSelectedFile] = useState<ArrayElement<typeof files>>(files[0]);
@@ -12,8 +13,17 @@ export function Duplicate({ files, names, group }: TypeDuplicate) {
         }
     }, [setSelectedFile]);
 
+    const gridStyle = clsx(
+        'grid grid-rows-[min-content_1fr] grid-cols-[30ch_1fr]',
+        'items-start',
+        'bg-bg text-fg',
+        'border border-neutral-300',
+        'rounded-md',
+        'overflow-hidden',
+    );
+
     return (
-        <div className="grid grid-rows-[min-content_1fr] grid-cols-[30ch_1fr] border border-neutral-300 rounded-md overflow-hidden bg-bg text-fg">
+        <div className={gridStyle}>
             <Title
                 className="col-span-2 bg-default text-default"
                 names={names}

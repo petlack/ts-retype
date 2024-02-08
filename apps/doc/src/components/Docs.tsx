@@ -1,13 +1,12 @@
-import { FC, PropsWithChildren } from 'react';
 import * as Snippets from '../generated/snippets';
 import {
-    Bash,
     Code,
-    JsTsCode,
     MultilangWindow,
-    Source,
+    Terminal,
+    TypeScript,
     Window,
 } from '@ts-retype/uikit/code';
+import { FC, PropsWithChildren } from 'react';
 import { Options } from './Options';
 import { TS_RETYPE_CMD_OPTIONS } from '@ts-retype/search/types';
 
@@ -16,7 +15,7 @@ export function Docs() {
     return (
         <>
             <Section id="install">
-                <h2>Install</h2>
+                <Heading>Install</Heading>
                 <p>Install as a dev dependency</p>
                 <MultilangWindow
                     theme={mode}
@@ -36,7 +35,7 @@ export function Docs() {
             </Section>
 
             <Section id="usage">
-                <h2>Usage</h2>
+                <Heading>Usage</Heading>
                 <p>To create a report for your project, run</p>
                 <MultilangWindow
                     theme={mode}
@@ -45,43 +44,55 @@ export function Docs() {
                         { lang: 'npx', code: ['npx ts-retype .'] },
                     ]} />
                 <p>Then open the report HTML file (this file is self contained and offline)</p>
-                <Bash theme={mode}>{'open retype-report.html'}</Bash>
+                <Window theme={mode}>
+                    <Terminal theme={mode}>
+                        {'open retype-report.html'}
+                    </Terminal>
+                </Window>
             </Section>
 
             <Section id="docs">
-                <h2>CLI</h2>
+                <Heading>CLI</Heading>
                 <p>Configuration can be done by either CLI options</p>
-                <Window theme={mode} name="bash" showHeader={false}>
+                <Window theme={mode}>
                     <Code><span>{'ts-retype [options] <path-to-project>'}</span></Code>
                 </Window>
                 <Options options={TS_RETYPE_CMD_OPTIONS} />
                 <p>Or by using the <strong>--config</strong> option and providing path to config .retyperc</p>
-                <Source lang="bash" theme={mode}>
-                    {
-                        `# generate .retyperc in the current directory
-ts-retype -i
-# run ts-retype using .retyperc in the current directory
-ts-retype -c .`
-                    }
-                </Source>
+                <Terminal theme={mode}>
+                    {'# generate .retyperc in the current directory'}
+                    {'ts-retype -i'}
+                    {'# run ts-retype using .retyperc in the current directory'}
+                    {'ts-retype -c .'}
+                </Terminal>
                 <p>An example of a <strong>.retyperc</strong> file</p>
-                <JsTsCode theme={mode} snippet={Snippets.Snippet_retyperc} />
+                <TypeScript>
+                    {Snippets.Snippet_retyperc}
+                </TypeScript>
             </Section>
 
             <Section>
-                <h2>ts-retype</h2>
+                <Heading>ts-retype</Heading>
                 <p>You can also run it programatically, using ts-retype package.</p>
-                <JsTsCode theme={mode} snippet={Snippets.Snippet_tsRetype} />
+                <TypeScript>
+                    {Snippets.Snippet_tsRetype}
+                </TypeScript>
                 <p>The input for <strong>scan</strong> is of type <strong>ScanProps</strong></p>
-                <JsTsCode theme={mode} snippet={Snippets.Snippet_ScanProps} />
+                <TypeScript>
+                    {Snippets.Snippet_ScanProps}
+                </TypeScript>
                 <p>An example for the snippets in the landing page would look like this</p>
-                <JsTsCode theme={mode} snippet={Snippets.Snippet_duplicate} />
+                <TypeScript>
+                    {Snippets.Snippet_duplicate}
+                </TypeScript>
                 <p>The return type of <strong>scan</strong> is an array of <strong>TypeDuplicate</strong></p>
-                <JsTsCode theme={mode} snippet={Snippets.Snippet_TypeDuplicate} />
+                <TypeScript>
+                    {Snippets.Snippet_TypeDuplicate}
+                </TypeScript>
             </Section>
 
             <Section id="examples">
-                <h2>Examples</h2>
+                <Heading>Examples</Heading>
                 <p>See example reports for following projects</p>
                 <ul>
                     <li><a href="./report-ts-retype.html" target="_blank">petlack/ts-retype</a></li>
@@ -94,7 +105,9 @@ ts-retype -c .`
 }
 
 const Section: FC<PropsWithChildren<{ id?: string }>> = ({ children, id }) => (
-    <section id={id} className="flex flex-col min-w-[20ch] max-w-[80ch] w-[80vw] text-md p-12 g-6">
+    <section id={id} className="flex flex-col min-w-[20ch] max-w-[80ch] w-[80vw] text-md p-12 g-6 gap-4">
         {children}
     </section>
 );
+
+const Heading: FC<PropsWithChildren> = ({ children }) => <h2 className="text-2xl font-bold">{children}</h2>;

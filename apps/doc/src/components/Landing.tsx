@@ -1,42 +1,36 @@
 import * as Snippets from '../generated/snippets';
-import { MultilangWindow, TypeScript } from '@ts-retype/uikit/code';
-import { Button } from '@ts-retype/uikit';
 import { IconDocs, IconGithub } from '@ts-retype/uikit/icons';
+import { MultilangWindow, TypeScript, Window } from '@ts-retype/uikit/code';
+import { Button } from '@ts-retype/uikit';
 
 export function Landing() {
     const theme = 'light';
     return (
-        <div className="landing-container flex flex-col align-center bg-landing p-12 border-b border-border">
-            <div className="landing flex flex-col">
+        <div className="flex flex-col align-center bg-landing p-12 border-b border-border">
+            <div className="flex flex-col">
                 <div className="flex flex-row gap-4 items-center justify-between">
-                    <TypeScript
-                        responsive
-                        theme={theme}
-                        start={11}
-                        snippet={Snippets.Snippet_type}
-                        name={'src/model.ts'}
-                    />
-                    <TypeScript
-                        responsive
-                        theme={theme}
-                        start={41}
-                        snippet={Snippets.Snippet_interface}
-                        name={'src/auth.ts'}
-                    />
-                    <TypeScript
-                        responsive
-                        theme={theme}
-                        start={75}
-                        snippet={Snippets.Snippet_function}
-                        name={'src/api.ts'}
-                    />
+                    <Window theme={theme} name="src/model.ts">
+                        <TypeScript start={11}>
+                            {Snippets.Snippet_type}
+                        </TypeScript>
+                    </Window>
+                    <Window theme={theme} name="src/auth.ts">
+                        <TypeScript start={41}>
+                            {Snippets.Snippet_interface}
+                        </TypeScript>
+                    </Window>
+                    <Window theme={theme} name="src/api.ts">
+                        <TypeScript start={75}>
+                            {Snippets.Snippet_function}
+                        </TypeScript>
+                    </Window>
                 </div>
-                <div className="description flex flex-col justify-self-center justify-start">
+                <div className="flex flex-col justify-self-center justify-start">
                     <h1 className="max-w-xl w-[50ch] text-4xl mb-4 text-neutral-950">Discover duplicate types in TypeScript code</h1>
                     <p>TS retype statically analyzes code and searches for multiple declarations of the same Literal Types, Function Types and Enums/Unions.</p>
                     <p>Run TS retype inside your project folder to get an HTML/JSON report.</p>
                 </div>
-                <div className="code-install flex flex-col gap-2 justify-self-end">
+                <div className="flex flex-col gap-2 justify-self-end">
                     <MultilangWindow
                         theme={{ dark: 'light', light: 'dark' }[theme] as 'dark' | 'light'}
                         selectedLang="npx"
@@ -47,13 +41,13 @@ export function Landing() {
                             { code: ['npx ts-retype .'], lang: 'npx' },
                         ]}
                     />
-                    <div className="links flex flex-row gap-2">
-                        <Button
-                            href="#docs"
-                        >{IconDocs} Docs</Button>
-                        <Button
-                            href="https://github.com/petlack/ts-retype"
-                        >{IconGithub} Source</Button>
+                    <div className="flex flex-row gap-2">
+                        <Button href="#docs">
+                            {IconDocs} Docs
+                        </Button>
+                        <Button href="https://github.com/petlack/ts-retype">
+                            {IconGithub} Source
+                        </Button>
                     </div>
                 </div>
             </div>

@@ -44,15 +44,13 @@ export function Bash({ children, theme }: BashProps) {
         lang: 'bash',
         code,
     };
-    const linesMarkup = snippet.code.children.map((token, idx) => (
-        <TokenElement
-            key={idx}
-            token={token}
-        />
-    ));
     return (
-        <Window theme={theme} name="bash" showHeader={false}>
-            <Lines type="custom" char="$" lines={linesMarkup} />
+        <Window theme={theme} name="bash" forceHeader={false}>
+            <Lines type="custom" prefix="$">
+                {snippet.code.children.map((token, idx) => (
+                    <TokenElement key={idx}>{token}</TokenElement>
+                ))}
+            </Lines>
         </Window>
     );
 }
