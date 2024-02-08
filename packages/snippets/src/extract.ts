@@ -28,26 +28,26 @@ export type ExtractSnippetsArgs = {
 
 export async function extractSnippets({ rootDir, output }: ExtractSnippetsArgs) {
     const snippets: SnippetNeedle[] = [
+        { src: '.retyperc', dst: 'retyperc.json' },
         { src: 'packages/search/src/types/duplicate.ts', dst: 'TypeDuplicate.ts', name: 'TypeDuplicate' },
         { src: 'packages/search/src/types/props.ts', dst: 'ScanProps.ts', name: 'ScanProps' },
-        { src: 'apps/example/src/index.ts', dst: 'tsRetype.ts' },
         { src: 'apps/example/src/api.ts', dst: 'function.ts', lines: [16, 25] },
         { src: 'apps/example/src/auth.ts', dst: 'interface.ts', lines: [2, 8] },
+        { src: 'apps/example/src/index.ts', dst: 'tsRetype.ts' },
         { src: 'apps/example/src/model.ts', dst: 'type.ts', lines: [5, 11] },
-        { src: '.retyperc', dst: 'retyperc.json' },
+        {
+            src: 'apps/example/src/duplicate.ts',
+            dst: 'duplicate.ts',
+        },
         {
             src: 'apps/example/data.json',
             dst: `${rootDir}/apps/example/src/duplicate.ts`,
             transform: selectDuplicate,
         },
-        {
-            src: 'apps/example/src/duplicate.ts',
-            dst: 'duplicate.ts',
-        },
     ];
 
     if (!rootDir) {
-        log.log(colors.red('could not find root dir'));
+        log.log(colors.red('Could not find root dir'));
         return;
     }
 
@@ -144,5 +144,10 @@ type SnippetNeedle = {
 
 function trimEmptyLines(src: string): string {
     const isEmptyLine = (l: string) => !l.trim().length;
-    return pipe(split('\n'), dropWhile(isEmptyLine), dropLastWhile(isEmptyLine), join('\n'))(src);
+    return pipe(
+        split('\n'),
+        dropWhile(isEmptyLine),
+        dropLastWhile(isEmptyLine),
+        join('\n'),
+    )(src);
 }
