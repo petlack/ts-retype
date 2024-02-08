@@ -9,6 +9,7 @@ import { useBoolean } from '@ts-retype/uikit/hooks';
 import { useData } from './hooks/useData';
 import { useSearch } from './hooks/useSearch';
 import { Controls } from './components/Controls';
+import { clsx } from '@ts-retype/uikit/clsx';
 
 function App() {
     const [isDrawerOpen, toggleDrawer, _, closeDrawer] = useBoolean(false);
@@ -35,11 +36,22 @@ function App() {
         return <div>Loading...</div>;
     }
 
+    const themeStyle = clsx(
+        'clrs-light clrs-core clrs-sx',
+    );
+
     return (
-        <div className="clrs-light clrs-core clrs-sx">
+        <div className={clsx(
+            themeStyle,
+            'flex flex-col items-center',
+        )}>
             <SearchPhraseProvider value={{ phrase: query }}>
                 <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
-                    <div className="clrs-light clrs-core clrs-sx bg-default text-default gap-4 p-4 h-full">
+                    <div className={clsx(
+                        themeStyle,
+                        'bg-default text-default',
+                        'gap-4 p-4 min-h-full',
+                    )}>
                         <h2>Sidebar</h2>
                         <Controls
                             filter={filter}
@@ -54,17 +66,19 @@ function App() {
                     className="fixed right-0 top-0"
                     onClick={toggleDrawer}
                 >Hit</Button>
-                <div className="flex flex-row justify-center py-4">
+                <div className="flex flex-row justify-center py-4 w-[80vw] max-w-[120ch]">
                     <Search
                         query={query}
                         setQuery={setQuery}
                     />
                 </div>
-                <Listing
-                    meta={meta}
-                    results={data}
-                    filter={filter}
-                />
+                <div className="p-4 max-w-[120ch] self-center">
+                    <Listing
+                        meta={meta}
+                        results={data}
+                        filter={filter}
+                    />
+                </div>
             </SearchPhraseProvider>
         </div>
     );

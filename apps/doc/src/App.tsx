@@ -2,7 +2,6 @@ import { Docs } from './components/Docs.js';
 import { Landing } from './components/Landing.js';
 import { Logo, Topbar } from '@ts-retype/uikit';
 import { clsx } from '@ts-retype/uikit/clsx';
-import { Foo } from './components/Foo.js';
 
 function App() {
     const appStyle = clsx(
@@ -12,7 +11,6 @@ function App() {
     );
     return (
         <div className={appStyle}>
-            <Foo />
             <Topbar className="bg-topbar w-full">
                 <Logo name="retype" />
                 <Menu />

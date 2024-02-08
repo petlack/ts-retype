@@ -32,7 +32,7 @@ export function Window({ name, theme = 'light', forceHeader: forceHeader = false
         'window',
         theme,
         responsive ? 'window-responsive' : '',
-        'bg-code rounded-md border-border',
+        'bg-code text-code rounded-md border-border',
     );
 
     const headerVisible = forceHeader || header || name;

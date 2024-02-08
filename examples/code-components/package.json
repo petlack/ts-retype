@@ -1,18 +1,23 @@
 {
-    "name": "@ts-retype/doc",
-    "private": true,
-    "version": "0.0.0",
+    "name": "@ts-retype/example-code-components",
+    "version": "1.0.0",
+    "description": "",
+    "license": "ISC",
+    "author": "",
+    "main": "src/index.ts",
     "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
-        "clean": "rm -rf ./dist ; rm -rf ./src/generated/input",
-        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-        "preview": "vite preview"
+        "clean": "rm -rf dist && rm -rf node_modules/ts-retype",
+        "report": "ts-retype .",
+        "smoke": "tsc && npm run report && npm run start && npm run ts -- -- src/smoke.ts",
+        "start": "npm run ts -- -- src/index.ts",
+        "ts": "node --experimental-specifier-resolution=node --loader ts-node/esm"
     },
     "dependencies": {
-        "@ts-retype/search": "workspace:^",
-        "@ts-retype/uikit": "workspace:^",
+        "@ts-retype/search": "*",
+        "@ts-retype/uikit": "*",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
@@ -27,18 +32,9 @@
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-refresh": "^0.4.5",
         "postcss": "^8.4.33",
+        "rollup-plugin-visualizer": "^5.12.0",
         "tailwindcss": "^3.4.1",
         "typescript": "^5.2.2",
         "vite": "^5.0.11"
-    },
-    "nx": {
-        "targets": {
-            "build": {
-                "dependsOn": [
-                    "@ts-retype/snippets:bin",
-                    "@ts-retype/uikit:build"
-                ]
-            }
-        }
     }
 }
