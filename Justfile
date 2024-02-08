@@ -20,6 +20,9 @@ rebuild *args='':
 dev *args='':
     npx nx dev "@ts-retype/${@}"
 
+bin *args='':
+    npx nx bin "@ts-retype/${@}"
+
 install:
     pnpm install
 
