@@ -1,14 +1,14 @@
-import { TokenElement } from './TokenElement.js';
-import type { Snippet } from '@ts-retype/search/types';
 import { Lines } from './Lines.js';
+import type { Snippet } from '@ts-retype/search/types';
+import { TokenElement } from './TokenElement.js';
 import { splitLines } from '@ts-retype/search/snippet';
 
-export type TypeScriptProps = {
+export type HighlightProps = {
   children: Snippet;
   start?: number;
 }
 
-export function TypeScript({ start, children: snippet }: TypeScriptProps) {
+export function Highlight({ start, children: snippet }: HighlightProps) {
     return (
         <Lines type="lineNo" start={start ?? 0}>
             {splitLines(snippet.code).children.map((token, idx) => (

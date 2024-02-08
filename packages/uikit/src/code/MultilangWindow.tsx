@@ -3,7 +3,7 @@ import { Terminal } from './Terminal.js';
 import { Window, WindowProps } from './Window.js';
 import { useState } from 'react';
 
-export type MultilangWindowProps = WindowProps & {
+export type MultilangWindowProps = Omit<WindowProps, 'children'> & {
   codes: {
     lang: string;
     code: string[];
