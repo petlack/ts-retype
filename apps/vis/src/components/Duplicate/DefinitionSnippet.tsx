@@ -19,6 +19,7 @@ export const DefinitionSnippet: FC<DefinitionSnippetProps> = ({
     className,
 }) => {
     const { phrase } = useSearchPhrase();
+
     const code = splitLines(
         highlightPhrase(
             highlightDefinition(
@@ -28,6 +29,7 @@ export const DefinitionSnippet: FC<DefinitionSnippetProps> = ({
             phrase,
         )
     );
+
     return (
         <div className={className}>
             <Lines start={lines[0]} type="lineNo">

@@ -1,4 +1,4 @@
-import { Overlay, OverlayProps } from '../Overlay/Overlay.js';
+import { OverlayProps } from '../Overlay/Overlay.js';
 import { PropsWithChildren, useMemo } from 'react';
 import { clsx } from '../clsx.js';
 import { createPortal } from 'react-dom';
@@ -18,7 +18,7 @@ export const Drawer = ({
     children,
     onClose,
     position = 'right',
-    backdropMode = 'darken',
+    // backdropMode = 'darken',
     removeWhenClosed = true,
     disableScrollingWhenOpen = true,
     speed = 150,
@@ -41,7 +41,6 @@ export const Drawer = ({
         'z-30',
         'overflow-auto',
         'transition-transform ease-in duration-150',
-        'shadow-lg',
         position === 'left' ? 'left-0' : 'right-0',
         isTransitioning && isOpen ?
             'translate-x-0' :
@@ -59,13 +58,13 @@ export const Drawer = ({
                 className={drawerStyles}>
                 {children}
             </div>
-            <Overlay
-                isTransitioning={isTransitioning}
-                isOpen={isOpen}
-                onClose={onClose}
-                speed={speed}
-                backdropMode={backdropMode}
-            />
+            {/* <Overlay */}
+            {/*     isTransitioning={isTransitioning} */}
+            {/*     isOpen={isOpen} */}
+            {/*     onClose={onClose} */}
+            {/*     speed={speed} */}
+            {/*     backdropMode={backdropMode} */}
+            {/* /> */}
         </div>,
         portalRootRef.current
     );

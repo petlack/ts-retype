@@ -45,13 +45,17 @@ function App() {
             'flex flex-col items-center',
         )}>
             <SearchPhraseProvider value={{ phrase: query }}>
-                <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
+                <Drawer
+                    isOpen={isDrawerOpen}
+                    onClose={closeDrawer}
+                    disableScrollingWhenOpen={false}
+                >
                     <div className={clsx(
                         themeStyle,
                         'flex flex-col',
                         'bg-default text-default',
                         'rounded-bl-lg rounded-tl-lg',
-                        'shadow-lg',
+                        'shadow-xl',
                         'mt-14',
                         'gap-4 p-6',
                     )}>
