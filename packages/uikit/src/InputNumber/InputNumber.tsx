@@ -30,7 +30,7 @@ export const InputNumber: FC<InputNumberProps> = ({
         if (val === '0-' || val === '-') {
             onChange(-Infinity);
         } else if (val.endsWith('-') || val.startsWith('--')) {
-            onChange(-1 * value);
+            onChange(min == null || -1 * value > min ? -1 * value : value);
         } else {
             const num = +val;
             if (isNaN(num)) return;
