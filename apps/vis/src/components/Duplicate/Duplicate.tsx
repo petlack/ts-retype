@@ -15,9 +15,8 @@ export function Duplicate({ files, names, group }: TypeDuplicate) {
 
     const gridStyle = clsx(
         'grid grid-rows-[min-content_1fr] grid-cols-[30ch_1fr]',
-        'items-start',
         'bg-bg text-fg',
-        'border border-neutral-300',
+        'border border-border',
         'rounded-md',
         'overflow-hidden',
     );

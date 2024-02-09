@@ -1,8 +1,8 @@
 import { Code, Lines, Terminal, Highlight, Window } from '@ts-retype/uikit/code';
 import { FC } from 'react';
+import { Inputs } from './Inputs';
 import { Snippet } from '@ts-retype/search/types';
 import { clsx } from '@ts-retype/uikit/clsx';
-import { Inputs } from './Inputs';
 
 export const App: FC = () => {
     const cardStyle = clsx(

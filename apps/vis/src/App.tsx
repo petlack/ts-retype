@@ -1,6 +1,5 @@
 import { Button, Drawer, Hamburger, Search } from '@ts-retype/uikit';
 import { useEffect, useMemo, useState } from 'react';
-import { Code } from '@ts-retype/uikit/code';
 import { Controls } from './components/Controls';
 import { Filter } from './model/filter';
 import type { FulltextData } from './types';
@@ -51,7 +50,10 @@ function App() {
                         themeStyle,
                         'flex flex-col',
                         'bg-default text-default',
-                        'gap-4 pt-10 min-h-full',
+                        'rounded-bl-lg rounded-tl-lg',
+                        'shadow-lg',
+                        'mt-14',
+                        'gap-4 p-6',
                     )}>
                         <Controls
                             filter={filter}
@@ -68,17 +70,16 @@ function App() {
                     data-state={isDrawerOpen ? 'open' : 'closed'}
                     className={clsx(
                         'fixed right-1 top-1',
-                        'aspect-square',
                         'z-50',
-                        'bg-transparent text-accent-500',
+                        'aspect-square',
+                        'bg-default text-accent-500',
                         'hover:bg-accent-500 hover:text-white',
-                        'transition'
+                        'transition',
                     )}
                     onClick={toggleDrawer}
                 >
                     <Hamburger isOpen={isDrawerOpen} flavor='cross' />
                 </Button>
-
 
                 {/* <Button */}
                 {/*     className="fixed right-0 top-0" */}

@@ -39,9 +39,12 @@ export function Controls({
     );
 
     return (
-        <div className="flex flex-col gap-8 p-4">
+        <div className="flex flex-col gap-8">
             <div className={inputGroupStyle}>
-                <label htmlFor="input-min-files" className={labelStyle}>No. of duplicates</label>
+                <label
+                    htmlFor="input-min-files"
+                    className={labelStyle}
+                >No. of duplicates</label>
                 <InputNumber
                     id="input-min-files"
                     className={inputStyle}
@@ -51,7 +54,10 @@ export function Controls({
                 />
             </div>
             <div className={inputGroupStyle}>
-                <label htmlFor="input-min-props" className={labelStyle}>No. of properties</label>
+                <label
+                    htmlFor="input-min-props"
+                    className={labelStyle}
+                >No. of properties</label>
                 <InputNumber
                     id="input-min-props"
                     className={inputStyle}

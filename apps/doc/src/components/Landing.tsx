@@ -26,7 +26,7 @@ export function Landing() {
                     </Window>
                 </div>
                 <div className="flex flex-col justify-self-center justify-start">
-                    <h1 className="max-w-xl w-[50ch] text-4xl mb-4 text-neutral-950">Discover duplicate types in Highlight code</h1>
+                    <h1 className="max-w-xl w-[50ch] text-4xl mb-4 text-neutral-950">Discover duplicate types in TypeScript code</h1>
                     <p>TS retype statically analyzes code and searches for multiple declarations of the same Literal Types, Function Types and Enums/Unions.</p>
                     <p>Run TS retype inside your project folder to get an HTML/JSON report.</p>
                 </div>
