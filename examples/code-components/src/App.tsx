@@ -79,37 +79,47 @@ export const App: FC = () => {
             </div>
 
             <div className={cardStyle}>
+                <Window forceHeader>
+                    <Highlight>
+                        {snippet}
+                    </Highlight>
+                </Window>
+            </div>
+
+            <div className={cardStyle}>
                 <Window>
                     <Highlight noLines>
-                        {{
-                            name: 'interface',
-                            lang: 'ts',
-                            code: {
-                                type: 'root',
-                                children: [
-                                    {type:'text',tagName:'span',properties:{className:['token','comment']},value:'// ...'},
-                                    {type:'newline'},
-                                    {type:'text',tagName:'span',properties:{className:['token','keyword']},value:'interface'},
-                                    {type:'text',value:' '},
-                                    {type:'text',tagName:'span',properties:{className:['token','class-name']},value:'IUser'},
-                                    {type:'text',value:' '},
-                                    {type:'text',tagName:'span',properties:{className:['token','punctuation']},value:'{'},
-                                    {type:'newline'},
-                                    {type:'text',value:'    displayName'},
-                                    {type:'text',tagName:'span',properties:{className:['token','operator']},value:':'},
-                                    {type:'text',value:' '},
-                                    {type:'text',tagName:'span',properties:{className:['token','builtin']},value:'string'},
-                                    {type:'text',tagName:'span',properties:{className:['token','punctuation']},value:';'},
-                                    {type:'newline'},
-                                    {type:'text',tagName:'span',properties:{className:['token','punctuation']},value:'}'},
-                                    {type:'newline'},
-                                    {type:'text',tagName:'span',properties:{className:['token','comment']},value:'// ...'}
-                                ]
-                            },
-                        } as Snippet}
+                        {snippet}
                     </Highlight>
                 </Window>
             </div>
         </div>
     );
 };
+
+const snippet = {
+    name: 'interface',
+    lang: 'ts',
+    code: {
+        type: 'root',
+        children: [
+            {type:'text',tagName:'span',properties:{className:['token','comment']},value:'// ...'},
+            {type:'newline'},
+            {type:'text',tagName:'span',properties:{className:['token','keyword']},value:'interface'},
+            {type:'text',value:' '},
+            {type:'text',tagName:'span',properties:{className:['token','class-name']},value:'IUser'},
+            {type:'text',value:' '},
+            {type:'text',tagName:'span',properties:{className:['token','punctuation']},value:'{'},
+            {type:'newline'},
+            {type:'text',value:'    displayName'},
+            {type:'text',tagName:'span',properties:{className:['token','operator']},value:':'},
+            {type:'text',value:' '},
+            {type:'text',tagName:'span',properties:{className:['token','builtin']},value:'string'},
+            {type:'text',tagName:'span',properties:{className:['token','punctuation']},value:';'},
+            {type:'newline'},
+            {type:'text',tagName:'span',properties:{className:['token','punctuation']},value:'}'},
+            {type:'newline'},
+            {type:'text',tagName:'span',properties:{className:['token','comment']},value:'// ...'}
+        ]
+    },
+} as Snippet;

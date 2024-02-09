@@ -25,20 +25,26 @@ export const Window: FC<WindowProps> = ({
     );
 
     const headerMarkup = (
-        <div className="flex flex-rows items-center gap-4 bg-window-header border-border rounded-t-md px-2">
+        <div className={clsx(
+            'flex flex-row items-center',
+            'px-2 py-1 gap-4',
+            'bg-window-header',
+            'border-border',
+            'rounded-t-md',
+        )}>
             <div className="flex flex-row gap-2">
                 <span className={clsx(iconStyle, 'bg-red-500')}></span>
                 <span className={clsx(iconStyle, 'bg-yellow-500')}></span>
                 <span className={clsx(iconStyle, 'bg-green-500')}></span>
             </div>
-            <div className="name">{name}</div>
+            <div className="min-h-[1rem]">{name}</div>
         </div>
     );
 
     const windowStyle = clsx(
         'window',
         theme,
-        responsive ? 'window-responsive' : '',
+        responsive ? 'window-responsive' : null,
         'bg-code text-code rounded-md border-border',
     );
 
@@ -46,8 +52,7 @@ export const Window: FC<WindowProps> = ({
 
     return (
         <div className={windowStyle}>
-            {headerVisible ? headerMarkup : null}
-            {header ? header : null}
+            {header ? header : headerVisible ? headerMarkup : null}
             <div className="px-4 py-2">
                 {children}
             </div>
