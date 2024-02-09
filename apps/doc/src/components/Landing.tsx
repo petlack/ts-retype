@@ -41,10 +41,10 @@ export function Landing() {
                     />
                     <div className="flex flex-row gap-2">
                         <Button href="#docs">
-                            {IconDocs} Docs
+                            <IconDocs /> Docs
                         </Button>
                         <Button href="https://github.com/petlack/ts-retype">
-                            {IconGithub} Source
+                            <IconGithub /> Source
                         </Button>
                     </div>
                 </div>
