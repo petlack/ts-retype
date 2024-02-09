@@ -2,6 +2,7 @@ import { Code, Lines, Terminal, Highlight, Window } from '@ts-retype/uikit/code'
 import { FC } from 'react';
 import { Snippet } from '@ts-retype/search/types';
 import { clsx } from '@ts-retype/uikit/clsx';
+import { Inputs } from './Inputs';
 
 export const App: FC = () => {
     const cardStyle = clsx(
@@ -9,7 +10,7 @@ export const App: FC = () => {
         'flex justify-center items-center',
         'p-4',
         'border border-1 border-solid border-gray-300',
-        'bg-neutral-800',
+        'bg-default',
         'rounded-md',
         'shadow-sm',
         'transition-shadow duration-200 ease-in-out',
@@ -18,6 +19,7 @@ export const App: FC = () => {
 
     return (
         <div className="clrs-light clrs-core clrs-sx text-default grid grid-cols-2 gap-4 p-4">
+            <Inputs className={clsx(cardStyle, 'clrs-light')} />
             <div className={clsx(cardStyle, 'flex flex-col')}>
                 <div className="text-crust-400">
                     <Code>use std::hash::Hash;</Code>
