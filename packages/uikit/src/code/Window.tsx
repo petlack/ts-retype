@@ -28,7 +28,7 @@ export const Window: FC<WindowProps> = ({
         <div className={clsx(
             'flex flex-row items-center',
             'px-2 py-1 gap-4',
-            'bg-window-header',
+            'bg-window-header text-window-header',
             'border-border',
             'rounded-t-md',
         )}>

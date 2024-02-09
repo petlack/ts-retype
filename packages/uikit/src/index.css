@@ -95,6 +95,7 @@
 }
 
 .clrs-light.clrs-core {
+  --clr-bg-topbar: var(--clr-cp-base-400);
   --clr-fg-code-comment: var(--clr-neutral-300);
 }
 
@@ -107,6 +108,7 @@
   --clr-bg-landing-code: var(--clr-cp-base);
   --clr-bg-landing: var(--clr-mantle-300);
   --clr-bg-window-header: var(--clr-crust-100);
+  --clr-fg-window-header: var(--clr-neutral-500);
 }
 
 .clrs-dark.clrs-docs {
@@ -114,4 +116,5 @@
   --clr-bg-landing-code: var(--clr-cp-base);
   --clr-bg-landing: var(--clr-crust-300);
   --clr-bg-window-header: var(--clr-neutral-200);
+  --clr-fg-window-header: var(--clr-neutral-500);
 }

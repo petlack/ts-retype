@@ -1,17 +1,19 @@
+import { Window, WindowProps } from './Window.js';
 import { LanguageTab } from './LanguageTab.js';
 import { Terminal } from './Terminal.js';
-import { Window, WindowProps } from './Window.js';
+import { clsx } from '../clsx.js';
 import { useState } from 'react';
 
 export type MultilangWindowProps = Omit<WindowProps, 'children'> & {
-  codes: {
-    lang: string;
-    code: string[];
-  }[];
-  selectedLang?: string;
+    codes: {
+        lang: string;
+        code: string[];
+    }[];
+    selectedLang?: string;
+    className?: string;
 }
 
-export function MultilangWindow({ codes, theme, selectedLang, ...props }: MultilangWindowProps) {
+export function MultilangWindow({ className, codes, theme, selectedLang, ...props }: MultilangWindowProps) {
     const [lang, setLang] = useState(selectedLang || codes[0].lang);
 
     const langsToCodes = codes.reduce(
@@ -22,7 +24,10 @@ export function MultilangWindow({ codes, theme, selectedLang, ...props }: Multil
 
     return (
         <div className="flex-col">
-            <div className="flex flex-row pl-4 pb-1">
+            <div className={clsx(
+                'flex flex-row pl-2',
+                className,
+            )}>
                 {Object.keys(langsToCodes)
                     .map((lg) => (
                         <LanguageTab

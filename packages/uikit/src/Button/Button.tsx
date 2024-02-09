@@ -31,7 +31,7 @@ export const Button: FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps
         disabledOrLoading ? 'cursor-not-allowed' : '',
         isLoading ? 'opacity-50' : '',
         'flex items-center justify-center',
-        'rounded-md px-4 py-2 gap-4',
+        'rounded-md px-4 py-2 gap-2',
         'transition-colors duration-200 ease-in-out',
         className,
     );

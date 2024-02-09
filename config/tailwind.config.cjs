@@ -20,6 +20,7 @@ export default {
                 'sx-punctuation': 'var(--clr-sx-punctuation)',
                 'cp-teal': 'var(--clr-cp-teal)',
                 'code-comment': 'var(--clr-fg-code-comment)',
+                'window-header': 'var(--clr-fg-window-header)',
             },
             backgroundColor: {
                 'code': 'var(--clr-bg-code)',
@@ -36,6 +37,7 @@ export default {
             },
             gridTemplateColumns: {
                 options: 'max-content 1fr',
+                'min-1fr': 'min-content 1fr',
                 'lines-numbers': '3ch 1fr',
                 'lines-char': '1ch 1fr',
             },
