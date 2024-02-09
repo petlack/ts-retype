@@ -1,0 +1,43 @@
+.sigma {
+    width: var(--size-burger);
+    height: var(--size-burger);
+}
+
+.ham {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    user-select: none;
+}
+
+.hamRotate.open {
+    transform: rotate(45deg);
+}
+
+.hamRotate180.open {
+    transform: rotate(180deg);
+}
+
+.line {
+    fill: none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke: currentColor;
+    stroke-width: var(--size-ham);
+    stroke-linecap: round;
+}
+
+.ham4 .top {
+    stroke-dasharray: 40 121;
+}
+
+.ham4 .bottom {
+    stroke-dasharray: 40 121;
+}
+
+.ham4.open .top {
+    stroke-dashoffset: -68px;
+}
+
+.ham4.open .bottom {
+    stroke-dashoffset: -68px;
+}

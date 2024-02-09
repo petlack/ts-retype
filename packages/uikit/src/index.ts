@@ -1,6 +1,7 @@
 import './index.css';
 export { Button } from './Button/index.js';
 export { Drawer } from './Drawer/index.js';
+export { Hamburger } from './Hamburger/index.js';
 export { InputNumber } from './InputNumber/index.js';
 export { Logo } from './Logo/index.js';
 export { Options } from './Options/index.js';

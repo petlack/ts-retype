@@ -1,4 +1,4 @@
-import { Button, Drawer, Search } from '@ts-retype/uikit';
+import { Button, Drawer, Hamburger, Search } from '@ts-retype/uikit';
 import { useEffect, useMemo, useState } from 'react';
 import { Code } from '@ts-retype/uikit/code';
 import { Controls } from './components/Controls';
@@ -63,9 +63,25 @@ function App() {
                     </div>
                 </Drawer>
                 <Button
-                    className="fixed right-0 top-0"
+                    data-state={isDrawerOpen ? 'open' : 'closed'}
+                    className={clsx(
+                        'fixed right-1 top-1',
+                        'aspect-square',
+                        'z-50',
+                        'bg-transparent text-accent-500',
+                        'hover:bg-accent-500 hover:text-white',
+                        'transition'
+                    )}
                     onClick={toggleDrawer}
-                >Hit</Button>
+                >
+                    <Hamburger isOpen={isDrawerOpen} flavor='cross' />
+                </Button>
+
+
+                {/* <Button */}
+                {/*     className="fixed right-0 top-0" */}
+                {/*     onClick={toggleDrawer} */}
+                {/* >Hit</Button> */}
                 <div className="flex flex-row justify-center py-4 w-[80vw] max-w-[120ch]">
                     <Search
                         query={query}
