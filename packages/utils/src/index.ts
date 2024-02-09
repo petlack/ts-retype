@@ -1,6 +1,5 @@
-export { execute } from './cli.js';
+export * from './core.js';
 export * from './log.js';
-export * from './utils.js';
 export {
     dir,
     ensureDirectoryExists,
@@ -12,3 +11,4 @@ export {
     pwd,
     readPackageJson,
 } from './files.js';
+export { execute } from './cli.js';
