@@ -64,7 +64,6 @@
     "dependencies": {
         "@ts-retype/utils": "workspace:*",
         "glob": "^10.3.10",
-        "progress": "^2.0.3",
         "ramda": "^0.29.1",
         "refractor": "^4.8.1",
         "typescript": "^5.3.3"

@@ -2,12 +2,12 @@ import { Metadata, ScanProps, TypeDuplicate } from './types.js';
 import { clustersToDuplicates, findTypesInFile } from './clusters.js';
 import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity.js';
 import { createLogger, formatDuration } from '@ts-retype/utils';
-import Progress from 'progress';
+import { join, basename, resolve } from 'path';
+import { Progress } from '@ts-retype/utils';
 import { SourceCandidateType } from './types/candidate.js';
 import { concat } from 'ramda';
 import { globSync } from 'glob';
 import { loadFile } from './utils.js';
-import { join, basename, resolve } from 'path';
 
 const log = createLogger(console.log);
 
@@ -22,8 +22,8 @@ function formatFileName(file: string, maxLength = 120) {
 }
 
 export type ScanResult = {
-  data: TypeDuplicate[];
-  meta: Omit<Metadata, 'reportSize' | 'dataSize' | 'appSize'>;
+    data: TypeDuplicate[];
+    meta: Omit<Metadata, 'reportSize' | 'dataSize' | 'appSize'>;
 };
 
 export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
@@ -58,14 +58,20 @@ export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
     start = new Date().getTime();
     log.log('computing similarity matrix');
 
-    const bar = new Progress('[:bar] :rate/tps :percent :etas :current/:total', {
-        complete: '=',
-        incomplete: ' ',
-        width: 30,
-        total: (allTypes.length * (allTypes.length + 1)) / 2,
-    });
 
-    const matrix = computeSimilarityMatrix(allTypes, by => bar.tick(by));
+    const bar = Progress.finite((allTypes.length * (allTypes.length + 1)) / 2);
+    let lastDraw = new Date().getTime();
+
+    const matrix = computeSimilarityMatrix(allTypes, by => {
+        bar.advanceBy(by);
+        const now = new Date().getTime();
+        if (now - lastDraw > 100) {
+            lastDraw = now;
+            process.stderr.cursorTo(0);
+            process.stderr.write(bar.format());
+            process.stderr.clearLine(1);
+        }
+    });
 
     log.log(`took ${formatDuration(new Date().getTime() - start)}`);
     log.log();
