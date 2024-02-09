@@ -58,7 +58,6 @@ export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
     start = new Date().getTime();
     log.log('computing similarity matrix');
 
-
     const bar = Progress.finite((allTypes.length * (allTypes.length + 1)) / 2);
     let lastDraw = new Date().getTime();
 

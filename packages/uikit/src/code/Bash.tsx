@@ -3,6 +3,7 @@ import { Lines } from './Lines.js';
 import { PropsWithChildren } from 'react';
 import { TokenElement } from './TokenElement.js';
 import { Window } from './Window.js';
+import { lines } from '@ts-retype/utils/core';
 import { splitLines } from '@ts-retype/search/snippet';
 
 export type BashProps = PropsWithChildren<{
@@ -11,26 +12,26 @@ export type BashProps = PropsWithChildren<{
 }>
 
 function parseBash(code: string): TokenRoot {
-    const lines = code.split('\n')
+    const elements = lines(code)
         .map(line => [
             line.trim().startsWith('#') ?
-      {
-          type: 'element',
-          properties: { className: ['token', 'comment'] },
-          children: [{ type: 'text', value: line }],
-      } as Token :
-      {
-          type: 'element',
-          properties: { className: ['token', 'bold', 'bash'] },
-          children: [{ type: 'text', value: line }],
-      } as Token,
-      { type: 'newline' } as Token
+            {
+                type: 'element',
+                properties: { className: ['token', 'comment'] },
+                children: [{ type: 'text', value: line }],
+            } as Token :
+            {
+                type: 'element',
+                properties: { className: ['token', 'bold', 'bash'] },
+                children: [{ type: 'text', value: line }],
+            } as Token,
+            { type: 'newline' } as Token
         ])
         .reduce((res, item) => [...res, ...item], []);
 
     return {
         type: 'root',
-        children: lines.slice(0, -1),
+        children: elements.slice(0, -1),
     };
 }
 

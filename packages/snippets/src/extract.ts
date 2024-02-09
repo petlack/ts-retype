@@ -1,5 +1,5 @@
-import { readFileSync, writeFileSync } from 'fs';
 import * as path from 'path';
+import { Json, stringifyNice } from './stringify.js';
 import {
     always,
     dropLastWhile,
@@ -12,10 +12,10 @@ import {
     pipe,
     split,
 } from 'ramda';
-import ts from 'typescript';
+import { createLogger, lines } from '@ts-retype/utils';
+import { readFileSync, writeFileSync } from 'fs';
 import type { ReportResult } from '@ts-retype/search/types';
-import { createLogger } from '@ts-retype/utils';
-import { Json, stringifyNice } from './stringify.js';
+import ts from 'typescript';
 
 // eslint-disable-next-line no-console
 const log = createLogger(console.log);
@@ -141,7 +141,7 @@ type SnippetNeedle = {
 function trimEmptyLines(src: string): string {
     const isEmptyLine = (l: string) => !l.trim().length;
     return pipe(
-        split('\n'),
+        lines,
         dropWhile(isEmptyLine),
         dropLastWhile(isEmptyLine),
         join('\n'),

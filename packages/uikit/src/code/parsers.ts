@@ -1,7 +1,8 @@
 import { Token, TokenRoot } from '@ts-retype/search/types';
+import { lines } from '@ts-retype/utils/core';
 
 export function parseBash(code: string): TokenRoot {
-    const lines = code.split('\n')
+    const elements = lines(code)
         .map(line => [
             line.trim().startsWith('#') ?
       {
@@ -20,6 +21,6 @@ export function parseBash(code: string): TokenRoot {
 
     return {
         type: 'root',
-        children: lines.slice(0, -1),
+        children: elements.slice(0, -1),
     };
 }

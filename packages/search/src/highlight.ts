@@ -15,7 +15,7 @@ export function refractorHighlight(src: string, lang?: string): RefractorRoot {
 }
 
 export function highlight(src: string, lang?: string): TokenRoot {
-    const refractorRoot = refractorHighlight(src, lang);
+    const refractorRoot = refractorHighlight(src.replace('\r\n', '\n'), lang);
     const tokenRoot: TokenRoot = refractorRoot as TokenRoot;
     return filterEmpty(insertNewlines(flattenTokens(tokenRoot)));
 }
