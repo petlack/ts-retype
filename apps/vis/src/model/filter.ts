@@ -40,7 +40,7 @@ export class Filter implements IFilter {
     ) {}
 
     static empty(): Filter {
-        return new Filter('all', 'all', 1, 1);
+        return new Filter('all', 'all', 2, 3);
     }
 
     #apply(data: FulltextData): boolean {
