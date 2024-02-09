@@ -52,3 +52,7 @@ export function lines(str: string | undefined | null): string[] {
     if (!str) return [];
     return str.replace('\r\n', '\n').split('\n');
 }
+
+export function round(x: number, decimals: number): number {
+    return Math.round(x * 10 ** decimals) / 10 ** decimals;
+}
