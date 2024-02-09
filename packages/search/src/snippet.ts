@@ -160,21 +160,59 @@ export function flattenTokens(root: TokenRoot): TokenRoot {
     };
 }
 
+function fixNewlines(token: Token): Token {
+    if (token.type === 'text') {
+        return { ...token, value: token.value.replace('\r\n', '\n') };
+    }
+    return token;
+}
+
+function splitNewlines(token: Token): Token[] {
+    if (token.type === 'text') {
+        return token.value
+            .split('\n')
+            .flatMap(value => [{ ...token, value }, { type: 'newline' }] as Token[])
+            .slice(0, -1);
+    }
+    return [token];
+}
+
+function stripNewlines(token: Token): Token {
+    if (token.type === 'text') {
+        return {
+            ...token,
+            value: token.value
+                .replace(/^(\n)+/g, '')
+                .replace(/(\n)+$/g, '')
+        };
+    }
+    return token;
+}
+
 function startsWithNewline(token: Token): token is TokenText {
     return token.type === 'text' && token.value.startsWith('\n');
 }
 
+function endsWithNewline(token: Token): token is TokenText {
+    return token.type === 'text' && token.value.endsWith('\n');
+}
+
 export function insertNewlines(root: TokenRoot): TokenRoot {
-    const newLine: Token = { type: 'newline' };
+    const newline: Token = { type: 'newline' };
     const withNewLines = root.children.reduce(
-        (res, item) => [
-            ...res,
-            ...(startsWithNewline(item)
-                ? [newLine, { ...item, value: item.value.replace('\n', '') }]
-                : [item]),
-        ],
-    [] as Token[],
+        (res, item) => {
+            const token = fixNewlines(item);
+            const hasLeadingNewline = startsWithNewline(token);
+            const hasTrailingNewline = endsWithNewline(token);
+            return res.concat(
+                hasLeadingNewline ? [newline] : [],
+                splitNewlines(stripNewlines(token)),
+                hasTrailingNewline ? [newline] : [],
+            );
+        },
+        [] as Token[],
     );
+
     const code: TokenRoot = {
         type: 'root',
         children: withNewLines || [],
