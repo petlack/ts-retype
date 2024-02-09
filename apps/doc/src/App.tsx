@@ -4,21 +4,31 @@ import { Logo, Topbar } from '@ts-retype/uikit';
 import { clsx } from '@ts-retype/uikit/clsx';
 
 function App() {
-    const appStyle = clsx(
-        'clrs-light clrs-core clrs-sx clrs-docs',
-        'flex flex-col items-center',
-        'text-default',
-    );
     return (
-        <div className={appStyle}>
-            <Topbar className="bg-topbar w-full">
+        <div className={clsx(
+            'clrs-light clrs-core clrs-sx clrs-docs',
+            'flex flex-col items-center',
+            'text-default',
+        )}>
+            <Topbar className={clsx(
+                'bg-topbar',
+                'w-full',
+            )}>
                 <Logo name="retype" />
                 <Menu />
             </Topbar>
-            <section id="about" className="max-w-full w-full m-0 p-0 bg-landing">
+            <section id="about" className={clsx(
+                'max-w-full w-full',
+                'm-0 p-0',
+                'bg-landing',
+            )}>
                 <Landing />
             </section>
-            <div className="flex max-w-full w-full flex-col items-center bg-mantle-50 text-default">
+            <div className={clsx(
+                'flex flex-col items-center',
+                'max-w-full w-full',
+                'bg-mantle-50 text-default',
+            )}>
                 <Docs />
             </div>
             <footer></footer>

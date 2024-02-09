@@ -11,7 +11,8 @@ import { useData } from './hooks/useData';
 import { useSearch } from './hooks/useSearch';
 
 function App() {
-    const [isDrawerOpen, toggleDrawer, _, closeDrawer] = useBoolean(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [isDrawerOpen, toggleDrawer, _openDrawer, closeDrawer] = useBoolean(false);
     const { data: allData, meta } = useData();
 
     const { query, reindex, results, setQuery, } = useSearch<FulltextData>(
@@ -35,9 +36,7 @@ function App() {
         return <div>Loading...</div>;
     }
 
-    const themeStyle = clsx(
-        'clrs-light clrs-core clrs-sx',
-    );
+    const themeStyle = 'clrs-light clrs-core clrs-sx';
 
     return (
         <div className={clsx(
@@ -85,10 +84,6 @@ function App() {
                     <Hamburger isOpen={isDrawerOpen} flavor='cross' />
                 </Button>
 
-                {/* <Button */}
-                {/*     className="fixed right-0 top-0" */}
-                {/*     onClick={toggleDrawer} */}
-                {/* >Hit</Button> */}
                 <div className="flex flex-row justify-center py-4 w-[80vw] max-w-[120ch]">
                     <Search
                         query={query}
