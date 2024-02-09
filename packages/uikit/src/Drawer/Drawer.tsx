@@ -23,7 +23,7 @@ export const Drawer = ({
     disableScrollingWhenOpen = true,
     speed = 150,
 }: DrawerProps) => {
-    const cleanup = useDisableScroll(disableScrollingWhenOpen);
+    const cleanup = useDisableScroll(disableScrollingWhenOpen, isOpen);
 
     const { isTransitioning, portalRootRef } = usePortalTransition({
         portalId: 'portal-drawer',
