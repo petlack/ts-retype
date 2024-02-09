@@ -31,13 +31,12 @@ export const Button: FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps
         disabledOrLoading ? 'cursor-not-allowed' : '',
         isLoading ? 'opacity-50' : '',
         'flex items-center justify-center',
-        'bg-accent-500 text-white',
         'rounded-md px-4 py-2 gap-4',
         'transition-colors duration-200 ease-in-out',
-        'hover:bg-accent-600',
+        className,
     );
     return (
-        <button ref={ref} disabled={disabledOrLoading} className={`${style} ${className}`} {...buttonProps}>
+        <button ref={ref} disabled={disabledOrLoading} className={style} {...buttonProps}>
             {markup}
         </button>
     );

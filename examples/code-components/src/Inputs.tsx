@@ -8,6 +8,7 @@ export const Inputs: FC<{ className: string }> = ({ className }) => {
             <label htmlFor="input-number">Input number</label>
             <InputNumber
                 id="input-number"
+                className="bg-default"
                 value={value}
                 min={0}
                 onChange={setValue}

@@ -49,17 +49,19 @@ function App() {
                 <Drawer isOpen={isDrawerOpen} onClose={closeDrawer}>
                     <div className={clsx(
                         themeStyle,
+                        'flex flex-col',
                         'bg-default text-default',
-                        'gap-4 p-4 min-h-full',
+                        'gap-4 pt-10 min-h-full',
                     )}>
-                        <h2>Sidebar</h2>
                         <Controls
                             filter={filter}
                             setFilter={setFilter}
                             stats={stats}
                         />
-                        <Code>{JSON.stringify(filter, null, 2)}</Code>
-                        <Code>{JSON.stringify(stats, null, 2)}</Code>
+                        {/* <div className="text-xs"> */}
+                        {/*     <Code>{JSON.stringify(filter, null, 2)}</Code> */}
+                        {/*     <Code>{JSON.stringify(stats, null, 2)}</Code> */}
+                        {/* </div> */}
                     </div>
                 </Drawer>
                 <Button

@@ -4,6 +4,7 @@ import { IconDocs, IconGithub } from '@ts-retype/uikit/icons';
 import { Button } from '@ts-retype/uikit';
 
 export function Landing() {
+    const ctaStyle = 'bg-accent-500 text-white hover:bg-accent-600';
     return (
         <div className="flex flex-col align-center bg-landing p-12 border-b border-border">
             <div className="flex flex-col">
@@ -40,10 +41,10 @@ export function Landing() {
                         ]}
                     />
                     <div className="flex flex-row gap-2">
-                        <Button href="#docs">
+                        <Button href="#docs" className={ctaStyle}>
                             <IconDocs /> Docs
                         </Button>
-                        <Button href="https://github.com/petlack/ts-retype">
+                        <Button href="https://github.com/petlack/ts-retype" className={ctaStyle}>
                             <IconGithub /> Source
                         </Button>
                     </div>
