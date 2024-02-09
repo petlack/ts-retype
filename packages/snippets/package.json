@@ -18,7 +18,6 @@
     "dependencies": {
         "@ts-retype/search": "workspace:*",
         "@ts-retype/utils": "workspace:*",
-        "colors": "^1.4.0",
         "commander": "^12.0.0",
         "ramda": "^0.28.0"
     },

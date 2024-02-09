@@ -1,4 +1,3 @@
-import colors from 'colors';
 import { readFileSync, writeFileSync } from 'fs';
 import * as path from 'path';
 import {
@@ -44,7 +43,7 @@ export async function extractSnippets({ rootDir, output }: ExtractSnippetsArgs) 
     ];
 
     if (!rootDir) {
-        log.log(colors.red('Could not find root dir'));
+        log.log('Could not find root dir');
         return;
     }
 
