@@ -1,15 +1,16 @@
-import { FC } from 'react';
+import { IconMinus, IconPlus } from '../icons.js';
+import { FC, useMemo } from 'react';
 import { clsx } from '../clsx.js';
 
-export type InputNumberProps = {
+export type InputNumberProps = React.HTMLAttributes<HTMLInputElement> & {
     value: number;
     onChange: (val: number) => void;
     min?: number;
     max?: number;
     step?: number;
-}
+};
 
-export const InputNumber: FC<InputNumberProps> = ({ value, onChange, min, max, step = 1 }) => {
+export const InputNumber: FC<InputNumberProps> = ({ value, onChange, min, max, step = 1, ...props }) => {
     const clamp = (val: number) => {
         if (min && val < min) return min;
         if (max && val > max) return max;
@@ -17,35 +18,64 @@ export const InputNumber: FC<InputNumberProps> = ({ value, onChange, min, max, s
     };
     const inc = () => onChange(clamp(value + step));
     const dec = () => onChange(clamp(value - step));
+    const parse = (val: string) => {
+        const num = +val;
+        if (isNaN(num)) return;
+        onChange(clamp(num));
+    };
+    const canInc = max == null || value < max;
+    const canDec = min == null || value > min;
+
+    console.log({ value, canInc, canDec, min, max });
     const buttonStyle = clsx(
-        'bg-accent-400',
+        'flex items-center justify-center',
+        'w-8',
+        'aspect-square',
         'px-1',
+        'text-white',
+        'bg-accent-500',
+        'hover:bg-accent-600',
+        'disabled:bg-neutral-200 disabled:text-neutral-50 disabled:hover:bg-neutral-200',
+        'transition',
+        'font-bold',
     );
     const inputStyle = clsx(
         'w-10',
         'px-2 py-1',
-        'bg-slate-300',
+        // 'bg-default',
         'outline-none border-none',
         'text-md text-center',
         '[-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none',
     );
     return (
         <div className="flex flex-row px-2 py-1">
-            <button className={buttonStyle} onClick={dec}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
-                </svg>
+            <button
+                onClick={dec}
+                className={clsx(
+                    buttonStyle,
+                    'rounded-l-md',
+                )}
+                disabled={!canDec}
+            >
+                <IconMinus size={32} />
             </button>
             <input
                 type="text"
                 value={value}
-                onChange={(e) => onChange(clamp(+e.target.value))}
+                onChange={e => typeof e === 'number' ? e : parse(e.currentTarget.value)}
+                onKeyDown={(e) => e.key === 'ArrowUp' ? inc() : e.key === 'ArrowDown' ? dec() : null}
                 className={inputStyle}
+                {...props}
             />
-            <button className={buttonStyle} onClick={inc}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                </svg>
+            <button
+                onClick={inc}
+                className={clsx(
+                    buttonStyle,
+                    'rounded-r-md',
+                )}
+                disabled={!canInc}
+            >
+                <IconPlus size={32} />
             </button>
         </div>
     );
