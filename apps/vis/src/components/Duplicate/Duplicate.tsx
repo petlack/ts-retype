@@ -8,8 +8,8 @@ import { clsx } from '@ts-retype/uikit/clsx';
 export function Duplicate({ files, names, group }: TypeDuplicate) {
     const [selectedFile, setSelectedFile] = useState<ArrayElement<typeof files>>(files[0]);
     const onClick = useCallback<NonNullable<ExplorerProps['onClick']>>((node) => {
-        if (node.data.file) {
-            setSelectedFile(node.data.file);
+        if (node.file) {
+            setSelectedFile(node.file);
         }
     }, [setSelectedFile]);
 
