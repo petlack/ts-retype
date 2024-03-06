@@ -1,14 +1,21 @@
 import { TreeProps, RenderableTreeProps } from './types.js';
 
 export function Tree<T>(
-    { node, byId, Self, Root, Many, One, Node, Leaf }: TreeProps<T> & RenderableTreeProps<T>
+    { nodeId, byId, Self, Root, Many, One, Node, Leaf }:
+    TreeProps<T> & RenderableTreeProps<T>
 ) {
-    const { nodes, parent } = byId[node.id];
-    const isLeaf = !nodes.length;
+    const treeNode = byId.nodeById(nodeId);
+    const node = treeNode as T;
+    const { nodes, parent } = treeNode;
+    const isLeaf = nodes.size === 0;
     const isRoot = parent < 0;
 
-    const nodesMarkup = nodes.map(id => (
-        <Self key={id} node={byId[id]} byId={byId} />
+    const nodesMarkup = [...nodes.keys()].map(id => (
+        <Self
+            key={id}
+            nodeId={id}
+            byId={byId}
+        />
     ));
 
     const childrenMarkup = <Many node={node}>{nodesMarkup}</Many>;
