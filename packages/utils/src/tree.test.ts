@@ -1,6 +1,73 @@
 import { describe, expect, it } from 'vitest';
 import { Separator, Tree } from './tree.js';
 
+type File = {
+    name: string;
+    type: 'interface' | 'alias' | 'enum',
+    pos: [number, number],
+    file: string;
+}
+type Node = {
+    name: string;
+    type: 'dir' | 'file' | 'type';
+    info?: File;
+}
+const StringSeparator: Separator<string> = {
+    join(...parts) {
+        return Tree.Slash.join(...parts);
+    },
+    split(a) {
+        return Tree.Slash.split(a);
+    },
+    equal(left, right) {
+        return left === right;
+    },
+    display(a) {
+        return a;
+    }
+
+};
+const FileSeparator: Separator<Node> = {
+    join(...parts) {
+        const init = parts.slice(0, -1);
+        const last = parts.at(-1);
+        if (!last) return parts[0];
+        return {
+            name: Tree.Slash.join(...init.map(n => n.name).concat([last.name])),
+            type: last?.type,
+        };
+    },
+    split(a) {
+        const [head, ...tail] = Tree.Slash.split(a.name);
+        if (tail.length === 0) {
+            return [{ name: head, type: a.type }];
+        }
+        return [
+            { name: head, type: 'dir' },
+            ...tail.map(name => ({ name, type: a.type })),
+        ];
+    },
+    equal(left, right) {
+        return left.name === right.name;
+    },
+    display(a) {
+        let str = '';
+        switch (a.type) {
+        case 'dir':
+            str = a.name + '/';
+            break;
+        case 'file':
+        case 'type':
+            str = a.name;
+            break;
+        }
+        if (a.info) {
+            str = `${str} 🟢`;
+        }
+        return str;
+    },
+};
+
 expect.extend({
     toTreeEqual<Data>(received: Tree<Data>, expected: Tree<Data>) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -102,6 +169,30 @@ describe('Tree', () => {
             const expected = Tree.withRoot('foo').addNode('bar', 0).addNode('baz', 1).addNode('abc', 2).addNode('xyz', 2);
             expect(actual).toTreeEqual(expected);
         });
+        it('preserves unique ids', () => {
+            const subtree = Tree.fromIndex({
+                5: { id: 5, level: 0, data: 'foo', parent: -1, nodes: new Set([7, 9]) },
+                7: { id: 7, level: 1, data: 'bar', parent: 5, nodes: new Set() },
+                9: { id: 9, level: 1, data: 'baz', parent: 5, nodes: new Set() },
+            });
+            const tree = Tree.fromIndex({
+                2: { id: 2, level: 0, data: 'goo', parent: -1, nodes: new Set([4, 9]) },
+                4: { id: 4, level: 1, data: 'gar', parent: 2, nodes: new Set([7]) },
+                7: { id: 7, level: 2, data: 'ooo', parent: 4, nodes: new Set() },
+                9: { id: 9, level: 1, data: 'gaz', parent: 2, nodes: new Set() },
+            });
+            const actual = tree.clone().attach(subtree, 4);
+            const expected = Tree.fromIndex({
+                2: { id: 2, level: 0, data: 'goo', parent: -1, nodes: new Set([4, 9]) },
+                4: { id: 4, level: 1, data: 'gar', parent: 2, nodes: new Set([7, 10]) },
+                7: { id: 7, level: 2, data: 'ooo', parent: 4, nodes: new Set() },
+                9: { id: 9, level: 1, data: 'gaz', parent: 2, nodes: new Set() },
+                10: { id: 10, level: 2, data: 'foo', parent: 4, nodes: new Set([11, 12]) },
+                11: { id: 11, level: 3, data: 'bar', parent: 10, nodes: new Set() },
+                12: { id: 12, level: 3, data: 'baz', parent: 10, nodes: new Set() },
+            });
+            expect(actual).toTreeEqual(expected);
+        });
     });
 
     describe('collapse', () => {
@@ -166,6 +257,25 @@ describe('Tree', () => {
             const tree = Tree.withRoot('root').addNode('foo', 0).addNode('bar', 1).addNode('baz', 2);
             const expected = Tree.withRoot('root/foo/bar/baz');
             expect(tree.collapse(Tree.Slash)).toTreeEqual(expected);
+        });
+    });
+
+    describe('findByPath', () => {
+        it('returns undefined for an empty tree', () => {
+            expect(Tree.empty<string>().findByPath(['foo'])).toBeUndefined();
+        });
+        it('returns undefined for a non-existing path', () => {
+            const tree = Tree.withRoot('root').addNode('foo', 0);
+            expect(tree.findByPath(['bar'])).toBeUndefined();
+        });
+        it('returns a node by node name', () => {
+            const tree = Tree.withRoot('foo');
+            expect(tree.findByPath(['foo'])).toEqual(0);
+        });
+        it('returns a leaf node by path', () => {
+            const tree = Tree.withRoot('foo').addNode('bar', 0).addNode('baz', 0);
+            expect(tree.findByPath(['foo'])).toEqual(0);
+            expect(tree.findByPath(['foo', 'bar'])).toEqual(1);
         });
     });
 
@@ -337,39 +447,6 @@ describe('Tree', () => {
     });
 
     describe('custom separator', () => {
-        type File = {
-            name: string;
-            file?: string;
-        }
-        type Node = {
-            name: string,
-            type: 'file' | 'dir' | 'type',
-            selected?: boolean,
-            file?: File,
-        };
-
-        const FileSeparator: Separator<Node> = {
-            join: (...parts) => {
-                const init = parts.slice(0, -1);
-                const last = parts.at(-1);
-                if (!last) return parts[0];
-                return {
-                    name: Tree.Slash.join(...init.map(n => n.name).concat([last.name])),
-                    type: last?.type,
-                };
-            },
-            split: a => {
-                const [head, ...tail] = Tree.Slash.split(a.name);
-                if (tail.length === 0) {
-                    return [{ name: head, type: a.type }];
-                }
-                return [
-                    { name: head, type: 'dir' },
-                    ...tail.map(name => ({ name, type: a.type })),
-                ];
-            }
-        };
-
         it('should collapse single file', () => {
             const partiallyExpanded = Tree
                 .withRoot<Node>({ name: '.', type: 'dir' })
@@ -396,6 +473,127 @@ describe('Tree', () => {
                 .toTreeEqual(expanded);
             expect(partiallyExpanded.clone().expand(FileSeparator).collapse(FileSeparator))
                 .toTreeEqual(collapsed);
+        });
+    });
+
+    describe('insertNodeAtPath', () => {
+        it('inserts a node at the root', () => {
+            expect(Tree.withRoot('root').insertNodeAtPath('foo', ['root'], StringSeparator))
+                .toTreeEqual(Tree.withRoot('root').addNode('foo', 0));
+        });
+        it('inserts multiple nodes at the root', () => {
+            const actual = Tree.withRoot('root')
+                .addNode('000', 0)
+                .addNode('111', 1)
+                .insertNodeAtPath('foo', ['root', '000', '111'], StringSeparator)
+                .insertNodeAtPath('bar', ['root', '000', '111'], StringSeparator);
+            const expected = Tree.withRoot('root')
+                .addNode('000', 0)
+                .addNode('111', 1)
+                .addNode('foo', 2)
+                .addNode('bar', 2);
+            expect(actual).toTreeEqual(expected);
+        });
+        it('works with arbitrary objects', () => {
+            const actual = Tree.withRoot<Node>({ name: 'root', type: 'dir' })
+                .addNode({ name: '000', type: 'dir' }, 0)
+                .addNode({ name: '111', type: 'dir' }, 1)
+                .insertNodeAtPath(
+                    { name: 'foo', type: 'dir' },
+                    [
+                        { name: 'root', type: 'dir' },
+                        { name: '000', type: 'dir' },
+                        { name: '111', type: 'dir' },
+                    ],
+                    FileSeparator,
+                )
+                .insertNodeAtPath(
+                    { name: 'bar', type: 'dir' },
+                    [
+                        { name: 'root', type: 'dir' },
+                        { name: '000', type: 'dir' },
+                        { name: '111', type: 'dir' },
+                    ],
+                    FileSeparator,
+                );
+            const expected = Tree.withRoot({ name: 'root', type: 'dir' })
+                .addNode({ name: '000', type: 'dir' }, 0)
+                .addNode({ name: '111', type: 'dir' }, 1)
+                .addNode({ name: 'foo', type: 'dir' }, 2)
+                .addNode({ name: 'bar', type: 'dir' }, 2);
+            expect(actual).toTreeEqual(expected);
+        });
+    });
+
+    describe('longestCommonPrefix', () => {
+        it('returns empty array on empty tree', () => {
+            expect(Tree.empty<string>().longestCommonPrefix(['foo'], StringSeparator))
+                .toStrictEqual([[], ['foo']]);
+        });
+        it('returns empty array on empty path', () => {
+            expect(Tree.withRoot('root').longestCommonPrefix([], StringSeparator))
+                .toStrictEqual([[], []]);
+        });
+        it('returns empty array on missing path', () => {
+            expect(Tree.withRoot('root').longestCommonPrefix(['foo'], StringSeparator))
+                .toStrictEqual([[], ['foo']]);
+        });
+        it('returns the root on the same path', () => {
+            expect(Tree.withRoot('root').longestCommonPrefix(['root'], StringSeparator))
+                .toStrictEqual([[0], []]);
+        });
+        it('returns the longest common prefix', () => {
+            expect(
+                Tree.withRoot('root')
+                    .addNode('foo', 0)
+                    .addNode('abc', 0)
+                    .addNode('bar', 1)
+                    .longestCommonPrefix(['root', 'foo', 'bar', 'baz'], StringSeparator)
+            ).toStrictEqual([[0, 1, 3], ['baz']]);
+        });
+        it('returns the remaining path', () => {
+            expect(
+                Tree.withRoot('root')
+                    .longestCommonPrefix(['root', 'foo', 'bar', 'baz'], StringSeparator)
+            ).toStrictEqual([[0], ['foo', 'bar', 'baz']]);
+        });
+    });
+
+    describe('foo', () => {
+        it('works', () => {
+            const rootNode: Node = { name: '.', type: 'dir' };
+            const files: File[] = [
+                { name: 'IUser', type: 'interface', pos: [14, 99], file: 'tests/example/src/auth.ts' },
+                { name: 'IUser', type: 'interface', pos: [7, 92], file: 'apps/doc/src/generated/input/interface.ts' },
+                { name: 'Foo', type: 'alias', pos: [7, 92], file: 'apps/doc/src/bar.ts' },
+                { name: 'IUser', type: 'alias', pos: [5, 4], file: 'tests/example/src/api.ts' },
+                { name: 'User', type: 'enum', pos: [19, 14], file: 'tests/example/src/api.ts' },
+            ];
+            function mapFileToNodes(file: File): Node[] {
+                const parts = file.file.split('/');
+                if (parts.length < 1) {
+                    return [];
+                }
+                const init = parts.slice(0, -1);
+                const last = parts.at(-1) || '';
+                const nodes = [
+                    ...init.map(part => ({ name: part, type: 'dir' })),
+                    { name: last, type: 'file' },
+                    { name: file.name, type: 'type', info: file },
+                ] as Node[];
+                return nodes;
+            }
+            const nodes = files.map(mapFileToNodes);
+            let tree = Tree.withRoot(rootNode);
+            for (const node of nodes) {
+                const file = node.at(-1);
+                if (!file) continue;
+                const path = node.slice(0, -1);
+                tree = tree.insertNodeAtPath(file, [rootNode, ...path], FileSeparator);
+            }
+            // console.log(tree.display(FileSeparator));
+            // console.log();
+            // console.log(tree.collapse(FileSeparator).display(FileSeparator));
         });
     });
 });
