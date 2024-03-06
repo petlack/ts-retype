@@ -4,7 +4,7 @@ export type IconProps = {
     size?: number;
 }
 
-const SvgIcon: FC<React.SVGAttributes<SVGElement> & IconProps> = ({ size = 16, children, ...props }) => (
+export const SvgIcon: FC<React.SVGAttributes<SVGElement> & IconProps> = ({ size = 16, children, ...props }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} fill="currentColor" viewBox="0 0 16 16" {...props}>
         {children}
     </svg>

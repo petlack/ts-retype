@@ -44,3 +44,6 @@ watch-build-bin:
 
 watch-build-all *args='':
     pnpm nx watch --all --verbose -- nx run \$NX_PROJECT_NAME:build
+
+watch-test *args='':
+    npx nx test:watch "@ts-retype/${@}" --verbose

@@ -4,7 +4,8 @@ export const useMountTransition = (isMounted: boolean, delay: number) => {
     const [isTransitioning, setIsTransitioning] = useState(false);
 
     useEffect(() => {
-        let timeoutId: number;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        let timeoutId: any;
 
         if (isMounted && !isTransitioning) {
             setIsTransitioning(true);
