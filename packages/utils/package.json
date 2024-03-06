@@ -27,13 +27,26 @@
         "default": "./dist/core.cjs"
       },
       "default": "./dist/core.js"
+    },
+    "./tree": {
+      "import": {
+        "types": "./dist/tree.d.ts",
+        "default": "./dist/tree.js"
+      },
+      "require": {
+        "types": "./dist/tree.d.cts",
+        "default": "./dist/tree.cjs"
+      },
+      "default": "./dist/tree.js"
     }
   },
   "scripts": {
     "build": "tsup --onSuccess \"tsc --emitDeclarationOnly --declaration\"",
     "build:watch": "tsup --watch --onSuccess \"npm run start\"",
     "clean": "rm -rf ./dist",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest watch"
   },
   "keywords": [],
   "author": "",
@@ -41,6 +54,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.11.6",
-    "tsup": "^8.0.1"
+    "tsup": "^8.0.1",
+    "vitest": "^1.2.2"
   }
 }

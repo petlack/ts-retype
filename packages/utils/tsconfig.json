@@ -6,6 +6,7 @@
         "rootDir": "src"
     },
     "include": [
+        "vitest.d.ts",
         "src/**/*"
     ],
     "exclude": [
