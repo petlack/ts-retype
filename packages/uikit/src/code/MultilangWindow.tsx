@@ -10,10 +10,26 @@ export type MultilangWindowProps = Omit<WindowProps, 'children'> & {
         code: string[];
     }[];
     selectedLang?: string;
+    size?: keyof typeof sizeVariants;
     className?: string;
 }
 
-export function MultilangWindow({ className, codes, theme, selectedLang, ...props }: MultilangWindowProps) {
+const sizeVariants = {
+    sm: 'w-[20ch]',
+    md: 'w-[40ch]',
+    lg: 'w-[80ch]',
+    xl: 'w-[120ch]',
+    full: 'w-full',
+};
+
+export function MultilangWindow({
+    className,
+    codes,
+    selectedLang,
+    theme,
+    size,
+    ...props
+}: MultilangWindowProps) {
     const [lang, setLang] = useState(selectedLang || codes[0].lang);
 
     const langsToCodes = codes.reduce(
@@ -23,7 +39,10 @@ export function MultilangWindow({ className, codes, theme, selectedLang, ...prop
     const code = lang in langsToCodes ? langsToCodes[lang] : [''];
 
     return (
-        <div className="flex-col">
+        <div className={clsx(
+            'flex-col',
+            size ? sizeVariants[size]: null,
+        )}>
             <div className={clsx(
                 'flex flex-row pl-2',
                 className,

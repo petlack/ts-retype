@@ -12,15 +12,21 @@ function App() {
         )}>
             <Topbar className={clsx(
                 'bg-topbar',
-                'w-full',
+                'w-full h-12 p-4',
+                'fixed top-0',
             )}>
-                <Logo name="retype" />
+                <Logo
+                    initials="TS"
+                    name="retype"
+                />
                 <Menu />
             </Topbar>
             <section id="about" className={clsx(
-                'max-w-full w-full',
+                'flex justify-center items-center',
+                'w-screen h-screen',
                 'm-0 p-0',
                 'bg-landing',
+                'border-b border-border',
             )}>
                 <Landing />
             </section>
@@ -45,7 +51,7 @@ function Menu() {
         'transition-colors duration-200 ease-in-out'
     );
     return (
-        <div className="flex flex-row sticky gap-6 px-12 justify-end">
+        <div className="flex flex-row gap-8 px-12 justify-end">
             <a className={clsx(menuItemStyle, 'text-accent-400')} href="#about">About</a>
             <a className={menuItemStyle} href="#install">Install</a>
             <a className={menuItemStyle} href="#usage">Usage</a>

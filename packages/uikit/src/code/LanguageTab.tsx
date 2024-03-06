@@ -7,12 +7,20 @@ export type LanguageTabProps = {
 }
 
 export function LanguageTab({ lang, selectedLang, setLang }: LanguageTabProps) {
+    const isCurrent = selectedLang === lang;
     const tabStyle = clsx(
         'tab',
         'p-2',
         'cursor-pointer',
-        selectedLang === lang ? 'text-accent-300' : 'text-neutral-700',
-        'hover:text-default',
+        'font-bold',
+        'transition duration-500 ease-in-out',
+        isCurrent ? [
+            'text-accent-600',
+            'hover:text-accent-700',
+        ] : [
+            'text-neutral-300',
+            'hover:text-neutral-900',
+        ],
     );
     return (
         <span

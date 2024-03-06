@@ -9,7 +9,7 @@ export const Topbar: FC<{ className: string, children: ReactNode[] }> = ({ child
     return (
         <div className={topbarStyle}>
             <div className="h-1 bg-accent-400"></div>
-            <div className="flex flex-row items-center justify-between">
+            <div className="flex flex-row justify-between">
                 {children[0]}
                 {children[1]}
             </div>

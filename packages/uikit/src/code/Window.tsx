@@ -18,27 +18,12 @@ export const Window: FC<WindowProps> = ({
     forceHeader = false,
     responsive = false,
 }) => {
+    const headerVisible = forceHeader || header || name;
+
     const iconStyle = clsx(
         'flex',
         'w-3 h-3',
         'rounded-full',
-    );
-
-    const headerMarkup = (
-        <div className={clsx(
-            'flex flex-row items-center',
-            'px-2 py-1 gap-4',
-            'bg-window-header text-window-header',
-            'border-border',
-            'rounded-t-md',
-        )}>
-            <div className="flex flex-row gap-2">
-                <span className={clsx(iconStyle, 'bg-red-500')}></span>
-                <span className={clsx(iconStyle, 'bg-yellow-500')}></span>
-                <span className={clsx(iconStyle, 'bg-green-500')}></span>
-            </div>
-            <div className="min-h-[1rem]">{name}</div>
-        </div>
     );
 
     const windowStyle = clsx(
@@ -48,11 +33,30 @@ export const Window: FC<WindowProps> = ({
         'bg-code text-code rounded-md border-border',
     );
 
-    const headerVisible = forceHeader || header || name;
+    const headerMarkup = (
+        <div className={clsx(
+            'flex flex-row items-center',
+            'px-2 py-1 gap-4',
+            'bg-window-header text-window-header',
+            'font-bold',
+            'border-border',
+            'rounded-t-md',
+            'cursor-default',
+        )}>
+            <div className="flex flex-row gap-2">
+                <span className={clsx(iconStyle, 'bg-red-500')}></span>
+                <span className={clsx(iconStyle, 'bg-yellow-500')}></span>
+                <span className={clsx(iconStyle, 'bg-green-500')}></span>
+            </div>
+            <div className="min-h-[1rem]">
+                {name}
+            </div>
+        </div>
+    );
 
     return (
         <div className={windowStyle}>
-            {header ? header : headerVisible ? headerMarkup : null}
+            {header ?? (headerVisible && headerMarkup)}
             <div className="px-4 py-2">
                 {children}
             </div>
