@@ -26,6 +26,15 @@ bin *args='':
 install:
     pnpm install
 
+stats-build-all *args='*':
+    pnpm nx run-many -t stats
+
+stats-build *args='*':
+    npx nx stats "@ts-retype/${@}" --verbose --skipNxCache
+
+stats-open *args='*':
+    find . -wholename "*/${@}/dist/stats*.html" | fzf | xargs open
+
 test *args='':
     npx nx test "@ts-retype/${@}" --verbose
 
