@@ -2,7 +2,7 @@ import type { ArrayElement, TypeDuplicate } from '@ts-retype/search/types';
 import {
     Cardinality,
     Pass, Ul,
-    TreeNode as TreeNodeElement, TreeProps, TreeProvider, TreeProviderProps, Tree as TreeElement,
+    TreeNode as TreeNodeElement, TreeProps, TreeProvider, Tree as TreeElement,
     useTree,
 } from '@ts-retype/uikit/tree';
 import {
@@ -20,14 +20,13 @@ import { SAT_FOUND } from '../../model/snippet.js';
 type Node = {
     name: string,
     type: 'file' | 'dir' | 'type',
-    selected?: boolean,
-    file?: ArrayElement<TypeDuplicate['files']>,
+    info?: ArrayElement<TypeDuplicate['files']>,
 };
 
 export type ExplorerProps = {
     files: TypeDuplicate['files'];
-    onClick?: TreeProviderProps<Node>['onClick'];
-    selectedFile: Node['file'];
+    onClick?: (node: Node) => void;
+    selectedFile: Node['info'];
     className?: string;
 };
 
@@ -65,7 +64,7 @@ const NodeSeparator: Separator<Node> = {
             str = a.name;
             break;
         }
-        if (a.file) {
+        if (a.info) {
             str = `${str} 🟢`;
         }
         return str;
@@ -111,7 +110,7 @@ export function Explorer({ files, onClick, className }: ExplorerProps) {
 
 const FileNode: TreeNodeElement<TreeNode<Node>> = ({ node, children }) => {
     const { onClick } = useTree();
-    const type = node.data.file?.type;
+    const type = node.data.info?.type;
     const onClickHandler = useCallback(() => onClick(node.id), [node.id, onClick]);
     const iconStyle = 'w-4 h-4';
     const iconMarkup = type && node.data.type === 'type' ?

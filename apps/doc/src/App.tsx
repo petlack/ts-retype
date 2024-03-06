@@ -1,6 +1,6 @@
+import { Logo, Topbar } from '@ts-retype/uikit';
 import { Docs } from './components/Docs.js';
 import { Landing } from './components/Landing.js';
-import { Logo, Topbar } from '@ts-retype/uikit';
 import { clsx } from '@ts-retype/uikit/clsx';
 
 function App() {
