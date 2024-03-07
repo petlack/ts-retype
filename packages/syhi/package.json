@@ -2,6 +2,8 @@
   "name": "@ts-retype/syhi",
   "version": "1.0.0",
   "description": "",
+  "author": "",
+  "license": "ISC",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -60,14 +62,12 @@
     "test": "vitest run --coverage",
     "test:watch": "vitest watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "refractor": "^4.8.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.6",
+    "@vitest/coverage-v8": "^1.2.2",
     "tsup": "^8.0.1",
     "vitest": "^1.2.2"
   }

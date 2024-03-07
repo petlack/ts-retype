@@ -1,14 +1,16 @@
 import { expect, describe, test } from 'vitest';
-import { compress, compressRoot, decompress, decompressRoot } from '../../src/snippet.js';
-import { highlight } from '../../src/highlight.js';
-import type { Token } from '../../src/types/index.js';
+import { compress, compressRoot, decompress, decompressRoot } from './snippet.js';
+import { highlight } from './highlight.js';
+import type { Token } from './types.js';
 
 describe('compress', () => {
     test('newline', () => {
         const given: Token = {
             type: 'newline',
         };
-        expect(compress(given)).toEqual({ t: 'n' });
+        expect(compress(given)).toEqual({
+            t: 'n',
+        });
     });
 
     test('text', () => {
@@ -16,7 +18,10 @@ describe('compress', () => {
             type: 'text',
             value: 'foo',
         };
-        expect(compress(given)).toEqual({ t: 't', v: 'foo' });
+        expect(compress(given)).toEqual({
+            t: 't',
+            v: 'foo',
+        });
     });
 
     test('text with properties', () => {
@@ -25,7 +30,11 @@ describe('compress', () => {
             value: 'foo',
             properties: { className: ['abc', 'xyz'] },
         };
-        expect(compress(given)).toEqual({ t: 't', v: 'foo', p: { c: ['abc', 'xyz'] } });
+        expect(compress(given)).toEqual({
+            t: 't',
+            v: 'foo',
+            p: { c: ['abc', 'xyz'] },
+        });
     });
 
     test('empty element with properties', () => {
@@ -34,7 +43,10 @@ describe('compress', () => {
             children: [],
             properties: { className: ['abc', 'xyz'] },
         };
-        expect(compress(given)).toEqual({ t: 'e', p: { c: ['abc', 'xyz'] } });
+        expect(compress(given)).toEqual({
+            t: 'e',
+            p: { c: ['abc', 'xyz'] },
+        });
     });
 
     test('empty element with tagName', () => {
@@ -43,7 +55,10 @@ describe('compress', () => {
             children: [],
             tagName: 'span',
         };
-        expect(compress(given)).toEqual({ t: 'e', n: 's' });
+        expect(compress(given)).toEqual({
+            t: 'e',
+            n: 's',
+        });
     });
 
     test('empty element with tagName and properties', () => {
@@ -53,7 +68,11 @@ describe('compress', () => {
             tagName: 'span',
             properties: { className: ['foo', 'bar'] },
         };
-        expect(compress(given)).toEqual({ t: 'e', n: 's', p: { c: ['foo', 'bar'] } });
+        expect(compress(given)).toEqual({
+            t: 'e',
+            n: 's',
+            p: { c: ['foo', 'bar'] },
+        });
     });
 
     test('element with one child', () => {
@@ -61,7 +80,10 @@ describe('compress', () => {
             type: 'element',
             children: [{ type: 'newline' }],
         };
-        expect(compress(given)).toEqual({ t: 'e', c: [{ t: 'n' }] });
+        expect(compress(given)).toEqual({
+            t: 'e',
+            c: [{ t: 'n' }],
+        });
     });
 
     test('element with many children', () => {
@@ -69,7 +91,10 @@ describe('compress', () => {
             type: 'element',
             children: [{ type: 'newline' }, { type: 'text', value: 'foo' }],
         };
-        expect(compress(given)).toEqual({ t: 'e', c: [{ t: 'n' }, { t: 't', v: 'foo' }] });
+        expect(compress(given)).toEqual({
+            t: 'e',
+            c: [{ t: 'n' }, { t: 't', v: 'foo' }],
+        });
     });
 
     test('element with nested children', () => {
@@ -83,7 +108,11 @@ describe('compress', () => {
         };
         expect(compress(given)).toEqual({
             t: 'e',
-            c: [{ t: 'n' }, { t: 't', v: 'foo' }, { t: 'e', c: [{ t: 'n' }] }],
+            c: [
+                { t: 'n' },
+                { t: 't', v: 'foo' },
+                { t: 'e', c: [{ t: 'n' }] },
+            ],
         });
     });
 
@@ -114,14 +143,21 @@ describe('decompress', () => {
     });
 
     test('text', () => {
-        expect(decompress({ t: 't', v: 'v' })).toEqual({
+        expect(decompress({
+            t: 't',
+            v: 'v',
+        })).toEqual({
             type: 'text',
             value: 'v',
         });
     });
 
     test('text with properties', () => {
-        expect(decompress({ t: 't', v: 'v', p: { c: ['foo'] } })).toEqual({
+        expect(decompress({
+            t: 't',
+            v: 'v',
+            p: { c: ['foo'] },
+        })).toEqual({
             type: 'text',
             value: 'v',
             properties: { className: ['foo'] },
