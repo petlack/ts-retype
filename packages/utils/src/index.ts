@@ -1,5 +1,6 @@
 export * from './core.js';
-export * from './log.js';
+export { createLogger } from './log.js';
+export { Logger } from './logger.js';
 export * from './progress.js';
 export {
     dir,
