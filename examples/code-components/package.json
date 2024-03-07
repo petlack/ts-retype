@@ -16,7 +16,7 @@
         "ts": "node --experimental-specifier-resolution=node --loader ts-node/esm"
     },
     "dependencies": {
-        "@ts-retype/search": "*",
+        "@ts-retype/syhi": "*",
         "@ts-retype/uikit": "*",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"

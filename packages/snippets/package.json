@@ -17,6 +17,7 @@
     "license": "ISC",
     "dependencies": {
         "@ts-retype/search": "workspace:*",
+        "@ts-retype/syhi": "workspace:*",
         "@ts-retype/utils": "workspace:*",
         "commander": "^12.0.0",
         "ramda": "^0.28.0"

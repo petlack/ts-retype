@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "@ts-retype/search": "workspace:*",
+        "@ts-retype/syhi": "workspace:*",
         "@ts-retype/uikit": "workspace:*",
         "@ts-retype/utils": "workspace:*",
         "minisearch": "^6.3.0",

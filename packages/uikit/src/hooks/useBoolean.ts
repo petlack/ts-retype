@@ -1,9 +1,26 @@
 import { useState } from 'react';
 
+export type UseBoolean = {
+    value: boolean;
+    toggle: () => void;
+    setTrue: () => void;
+    setFalse: () => void;
+}
+
 export function useBoolean(
     defaultValue: boolean,
-): [boolean, () => void, () => void, () => void] {
+): UseBoolean {
     const [value, setValue] = useState(defaultValue);
-    const toggle = () => setValue(prev => !prev);
-    return [value, toggle, () => setValue(true), () => setValue(false)];
+    return {
+        value,
+        toggle() {
+            setValue(prev => !prev);
+        },
+        setTrue() {
+            setValue(true);
+        },
+        setFalse() {
+            setValue(false);
+        },
+    };
 }

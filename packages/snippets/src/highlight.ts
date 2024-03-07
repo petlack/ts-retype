@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'fs/promises';
 import { join, parse, resolve } from 'path';
 import { createCommand } from 'commander';
-import { highlight } from '@ts-retype/search/highlight';
+import { highlight } from '@ts-retype/syhi/highlight';
 import { ensureDirectoryExists, listFiles } from '@ts-retype/utils';
 
 type CmdProps = { dir?: string; list?: string; output?: string };
@@ -44,7 +44,7 @@ export async function syntaxHighlighting(config: Partial<CmdProps>) {
         (snippet) => `export const Snippet_${snippet.name} = ${JSON.stringify(snippet)} as Snippet;`,
     );
     const imports = [
-        'import type { Snippet } from \'@ts-retype/search/types\';',
+        'import type { Snippet } from \'@ts-retype/syhi/types\';',
     ];
     await writeFile(
         join(targetDir, 'snippets.ts'),

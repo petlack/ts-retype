@@ -3,7 +3,7 @@ import { Similarity, IClusters } from './types/similarity.js';
 import ts from 'typescript';
 import { freq, lines, selectIndices } from '@ts-retype/utils';
 import { pluck, uniq } from 'ramda';
-import { highlight } from './highlight.js';
+import { highlight } from '@ts-retype/syhi/highlight';
 import { TypeDuplicate } from './types.js';
 import {
     CandidateType,

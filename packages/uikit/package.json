@@ -2,6 +2,8 @@
     "name": "@ts-retype/uikit",
     "version": "1.0.0",
     "description": "",
+    "author": "",
+    "license": "ISC",
     "type": "module",
     "main": "dist/index.js",
     "exports": {
@@ -23,11 +25,8 @@
         "test": "vitest run --coverage",
         "test:watch": "vitest watch"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
     "dependencies": {
-        "@ts-retype/search": "workspace:*",
+        "@ts-retype/syhi": "workspace:*",
         "@ts-retype/utils": "workspace:*",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"

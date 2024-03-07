@@ -1,8 +1,9 @@
-import type { ArrayElement, TokenRoot, TypeDuplicate } from '@ts-retype/search/types';
+import type { ArrayElement, TypeDuplicate } from '@ts-retype/search/types';
+import type { TokenRoot } from '@ts-retype/syhi/types';
 import { Lines, TokenElement } from '@ts-retype/uikit/code';
 import { highlightDefinition, highlightPhrase } from '../../model/snippet.js';
 import { FC } from 'react';
-import { splitLines } from '@ts-retype/search/snippet';
+import { splitLines } from '@ts-retype/syhi/snippet';
 import { useSearchPhrase } from '@ts-retype/uikit/hooks';
 
 const EMPTY_ROOT: TokenRoot = { type: 'root', children: [] };

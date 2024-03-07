@@ -2,7 +2,7 @@ import { Code } from './Code.js';
 import { Lines } from './Lines.js';
 import { TokenElement } from './TokenElement.js';
 import { parseBash } from './parsers.js';
-import { splitLines } from '@ts-retype/search/snippet';
+import { splitLines } from '@ts-retype/syhi/snippet';
 
 export type TerminalProps = {
   children: string | string[];

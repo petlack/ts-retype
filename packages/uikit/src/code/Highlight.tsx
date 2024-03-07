@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Lines } from './Lines.js';
-import type { Snippet } from '@ts-retype/search/types';
+import type { Snippet } from '@ts-retype/syhi/types';
 import { TokenElement } from './TokenElement.js';
-import { splitLines } from '@ts-retype/search/snippet';
+import { splitLines } from '@ts-retype/syhi/snippet';
 
 export type HighlightProps = {
     children: Snippet;

@@ -1,7 +1,7 @@
 import { Code, Lines, Terminal, Highlight, Window } from '@ts-retype/uikit/code';
 import { FC } from 'react';
 import { Inputs } from './Inputs';
-import { Snippet } from '@ts-retype/search/types';
+import { Snippet } from '@ts-retype/syhi/types';
 import { clsx } from '@ts-retype/uikit/clsx';
 
 export const App: FC = () => {

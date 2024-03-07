@@ -1,4 +1,4 @@
-import type { Snippet, Token, TokenRoot } from '@ts-retype/search/types';
+import type { Snippet, Token, TokenRoot } from '@ts-retype/syhi/types';
 import { FC } from 'react';
 
 const TOKENS_MAP: Record<string, string> = {

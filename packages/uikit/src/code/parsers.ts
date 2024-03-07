@@ -1,4 +1,4 @@
-import { Token, TokenRoot } from '@ts-retype/search/types';
+import { Token, TokenRoot } from '@ts-retype/syhi/types';
 import { lines } from '@ts-retype/utils/core';
 
 export function parseBash(code: string): TokenRoot {

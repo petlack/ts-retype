@@ -1,10 +1,10 @@
-import type { Snippet, Token, TokenRoot } from '@ts-retype/search/types';
+import type { Snippet, Token, TokenRoot } from '@ts-retype/syhi/types';
 import { Lines } from './Lines.js';
 import { PropsWithChildren } from 'react';
 import { TokenElement } from './TokenElement.js';
 import { Window } from './Window.js';
 import { lines } from '@ts-retype/utils/core';
-import { splitLines } from '@ts-retype/search/snippet';
+import { splitLines } from '@ts-retype/syhi/snippet';
 
 export type BashProps = PropsWithChildren<{
   children: string;

@@ -1,4 +1,5 @@
-import type { Token, TokenRoot, TypeDuplicate } from '@ts-retype/search/types';
+import type { Token, TokenRoot } from '@ts-retype/syhi/types';
+import type { TypeDuplicate } from '@ts-retype/search/types';
 
 export const SAT_FOUND = 'bg-green-400';
 export const SAT_DEF = 'bg-snippet-highlighted';

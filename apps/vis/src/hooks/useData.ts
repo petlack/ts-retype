@@ -1,7 +1,7 @@
 import type { Metadata, TypeDuplicate } from '@ts-retype/search/types';
 import { useEffect, useState } from 'react';
 import { FulltextData } from '../types';
-import { decompressRoot } from '@ts-retype/search/snippet';
+import { decompressRoot } from '@ts-retype/syhi/snippet';
 
 function fulltext(duplicate: FulltextData): string {
     return [

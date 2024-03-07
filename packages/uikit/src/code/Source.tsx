@@ -1,10 +1,10 @@
 import { Code } from './Code.js';
 import { Lines } from './Lines.js';
-import { Snippet } from '@ts-retype/search/types';
+import { Snippet } from '@ts-retype/syhi/types';
 import { TokenElement } from './TokenElement.js';
 import { Window } from './Window.js';
 import { parseBash } from './parsers.js';
-import { splitLines } from '@ts-retype/search/snippet';
+import { splitLines } from '@ts-retype/syhi/snippet';
 
 export type SourceProps = {
   children: string;

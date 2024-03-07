@@ -2,8 +2,6 @@ import { tsSource } from '../../rollup.config.stats.mjs';
 
 const config = [
     tsSource('index.ts'),
-    tsSource('snippet.ts'),
-    tsSource('highlight.ts'),
     tsSource('types.ts'),
 ];
 

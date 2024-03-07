@@ -17,28 +17,6 @@
             },
             "default": "./dist/index.js"
         },
-        "./highlight": {
-            "import": {
-                "types": "./dist/highlight.d.ts",
-                "default": "./dist/highlight.js"
-            },
-            "require": {
-                "types": "./dist/highlight.d.cts",
-                "default": "./dist/highlight.cjs"
-            },
-            "default": "./dist/highlight.js"
-        },
-        "./snippet": {
-            "import": {
-                "types": "./dist/snippet.d.ts",
-                "default": "./dist/snippet.js"
-            },
-            "require": {
-                "types": "./dist/snippet.d.cts",
-                "default": "./dist/snippet.cjs"
-            },
-            "default": "./dist/snippet.js"
-        },
         "./types": {
             "import": {
                 "types": "./dist/types.d.ts",
@@ -63,10 +41,10 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@ts-retype/syhi": "workspace:*",
         "@ts-retype/utils": "workspace:*",
         "glob": "^10.3.10",
         "ramda": "^0.29.1",
-        "refractor": "^4.8.1",
         "typescript": "^5.3.3"
     },
     "devDependencies": {

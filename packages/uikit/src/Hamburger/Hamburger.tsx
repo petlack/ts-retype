@@ -56,7 +56,7 @@ const ControlledHamburger: FC<HamburgerProps & HamburgerControlsProps> = ({ flav
 };
 
 const UncontrolledHamburger: FC<HamburgerProps> = (props) => {
-    const [isOpen, toggle] = useBoolean(false);
+    const { value: isOpen, toggle } = useBoolean(false);
     return <ControlledHamburger {...props} isOpen={isOpen} toggle={toggle} />;
 };
 
