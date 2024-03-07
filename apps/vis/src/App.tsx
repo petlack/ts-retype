@@ -36,12 +36,13 @@ function App() {
         return <div>Loading...</div>;
     }
 
-    const themeStyle = 'clrs-light clrs-core clrs-sx';
+    const themeStyle = 'clrs-dark clrs-core clrs-sx';
 
     return (
         <div className={clsx(
             themeStyle,
             'flex flex-col items-center',
+            'bg-default text-default'
         )}>
             <SearchPhraseProvider value={{ phrase: query }}>
                 <Drawer
@@ -63,10 +64,6 @@ function App() {
                             setFilter={setFilter}
                             stats={stats}
                         />
-                        {/* <div className="text-xs"> */}
-                        {/*     <Code>{JSON.stringify(filter, null, 2)}</Code> */}
-                        {/*     <Code>{JSON.stringify(stats, null, 2)}</Code> */}
-                        {/* </div> */}
                     </div>
                 </Drawer>
                 <Button

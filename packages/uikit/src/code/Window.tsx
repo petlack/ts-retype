@@ -44,9 +44,9 @@ export const Window: FC<WindowProps> = ({
             'cursor-default',
         )}>
             <div className="flex flex-row gap-2">
-                <span className={clsx(iconStyle, 'bg-red-500')}></span>
-                <span className={clsx(iconStyle, 'bg-yellow-500')}></span>
-                <span className={clsx(iconStyle, 'bg-green-500')}></span>
+                <span className={clsx(iconStyle, 'bg-neutral-300')}></span>
+                <span className={clsx(iconStyle, 'bg-neutral-500')}></span>
+                <span className={clsx(iconStyle, 'bg-neutral-400')}></span>
             </div>
             <div className="min-h-[1rem]">
                 {name}
@@ -57,7 +57,7 @@ export const Window: FC<WindowProps> = ({
     return (
         <div className={windowStyle}>
             {header ?? (headerVisible && headerMarkup)}
-            <div className="px-4 py-2">
+            <div className="px-8 py-6">
                 {children}
             </div>
         </div>

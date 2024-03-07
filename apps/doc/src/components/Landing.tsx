@@ -8,7 +8,7 @@ export function Landing() {
     const ctaStyle = 'font-bold';
     return (
         <div className="grid bg-landing p-12 justify-center">
-            <div className="grid grid-cols-min-1fr gap-8 max-w-5xl">
+            <div className="grid grid-cols-min-1fr gap-8 max-w-6xl">
                 <div className="col-span-2 flex flex-row gap-4 items-center justify-self-center">
                     <Window name="src/model.ts">
                         <Highlight start={11}>
@@ -29,6 +29,7 @@ export function Landing() {
                 <div className={clsx(
                     'flex flex-col',
                     'justify-self-center justify-start',
+                    'gap-2',
                 )}>
                     <h1 className={clsx(
                         'max-w-xl w-[50ch]',
@@ -38,23 +39,23 @@ export function Landing() {
                     )}>
                         Discover duplicate types in <strong>TypeScript</strong> codebases
                     </h1>
-                    <p className="w-[50ch] leading-7 text-lg mb-2">
+                    <p className="w-[50ch] leading-8 text-lg mb-2">
                         TS retype <strong>statically analyzes code</strong> and
                         searches for <strong>multiple declarations</strong> of the
                         same Literal Types, Function Types and Enums/Unions.
                     </p>
-                    <p className="w-[50ch] leading-7 text-lg">
+                    <p className="w-[50ch] leading-8 text-lg">
                         Run TS retype inside your project folder to get
                         an <strong>HTML</strong>/<strong>JSON</strong> report.
                     </p>
                 </div>
                 <div className="flex flex-col gap-2 justify-center items-center">
                     <div className="flex flex-col gap-2">
-                        <p className="text-neutral-300 text-lg mb-2 pl-4">
+                        <p className="text-dim text-lg mb-2 pl-4">
                             Try it yourself
                         </p>
                         <MultilangWindow
-                            className="w-[28ch]"
+                            className="w-[30ch]"
                             selectedLang="npx"
                             codes={[
                                 { code: ['pnpx ts-retype .'], lang: 'pnpx' },
@@ -62,7 +63,7 @@ export function Landing() {
                                 { code: ['yarn dlx ts-retype .'], lang: 'yarn' },
                             ]}
                         />
-                        <p className="text-neutral-300 text-lg mt-4 mb-4 pl-4">
+                        <p className="text-dim text-lg mt-4 mb-4 pl-4">
                             Or read the docs
                         </p>
                         <div className="grid grid-cols-2 gap-2 justify-self-center">
@@ -78,7 +79,7 @@ export function Landing() {
                                 href="https://github.com/petlack/ts-retype"
                                 className={clsx(
                                     ctaStyle,
-                                    'bg-neutral-700 text-white hover:bg-neutral-500',
+                                    'bg-[#969fb5] text-white hover:bg-[#92a3d9]',
                                 )}>
                                 <IconGithub /> Source
                             </Button>

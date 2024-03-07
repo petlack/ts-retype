@@ -6,7 +6,7 @@ import { clsx } from '@ts-retype/uikit/clsx';
 function App() {
     return (
         <div className={clsx(
-            'clrs-light clrs-core clrs-sx clrs-docs',
+            'clrs-dark clrs-core clrs-sx clrs-docs',
             'flex flex-col items-center',
             'text-default',
         )}>
@@ -33,7 +33,7 @@ function App() {
             <div className={clsx(
                 'flex flex-col items-center',
                 'max-w-full w-full',
-                'bg-mantle-50 text-default',
+                'bg-default text-default',
             )}>
                 <Docs />
             </div>

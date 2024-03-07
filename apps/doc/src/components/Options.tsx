@@ -21,7 +21,7 @@ export const Options: FC<OptionsProps> = ({ children: options }) => {
             },
             {
                 key: long,
-                className: 'leading-normal',
+                className: 'text-dim',
                 title: desc,
             },
         ]

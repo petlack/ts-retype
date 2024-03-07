@@ -12,7 +12,7 @@ import { TS_RETYPE_CMD_OPTIONS } from '@ts-retype/search/types';
 
 export function Docs() {
     return (
-        <>
+        <div className={'py-12'}>
             <Section id="install">
                 <Heading>Install</Heading>
                 <p>Install as a dev dependency</p>
@@ -115,12 +115,12 @@ export function Docs() {
                     <li><a href="./report-apollo-server.html" target="_blank">apollographql/apollo-server</a></li>
                 </ul>
             </Section>
-        </>
+        </div>
     );
 }
 
 const Section: FC<PropsWithChildren<{ id?: string }>> = ({ children, id }) => (
-    <section id={id} className="flex flex-col min-w-[20ch] max-w-[80ch] w-[80vw] text-md p-12 g-6 gap-4">
+    <section id={id} className="flex flex-col min-w-[20ch] max-w-[100ch] w-[80vw] text-md px-12 py-8 gap-8">
         {children}
     </section>
 );

@@ -33,6 +33,7 @@ export default {
                 'border': 'var(--clr-border)',
                 'landing-code': 'var(--clr-bg-landing-code)',
                 'window-header': 'var(--clr-bg-window-header)',
+                'dim': 'var(--clr-fg-dim)',
                 ...colors,
             },
             gridTemplateColumns: {
