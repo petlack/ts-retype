@@ -67,7 +67,7 @@ export class Logger {
         ...args: unknown[]
     ): void {
         this.#loggedMessages++;
-        const tag = this.tag && `[${this.tag}]`;
+        const tag = this.#tag();
         const logArgs: unknown[] = [
             dimmed(this.#duration()),
             ...(tag ? [dimmed(tag)] : []),
@@ -93,6 +93,10 @@ export class Logger {
         this.logFn(logArgs.join(' '));
     }
 
+    #tag(): string | undefined {
+        return this.tag && `[${this.tag}]`.padEnd(8);
+    }
+
     #duration(): string {
         return formatDuration(
             new Date().getTime() - this.#createdAt.getTime(),
@@ -101,7 +105,7 @@ export class Logger {
     }
 
     #pad(msg: unknown): string {
-        const tag = this.tag?.length ?? -1;
+        const tag = this.#tag()?.length ?? -1;
         const duration = this.#duration().length;
         const pad = ' '.repeat(2 + tag + duration + 2);
         return `${pad}  ${msg}`;

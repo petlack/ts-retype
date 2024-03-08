@@ -24,12 +24,11 @@ export function report(
 } {
     const { rootDir, noHtml, json } = args;
 
-    log.info('Arguments:', args, '\n');
+    log.info('Arguments', args, '\n');
     log.info(`Scanning types in ${rootDir}`);
 
     const { data: duplicates, meta: scanMeta } = scan(args);
 
-    log.bare();
     log.info(`Found ${duplicates.length} duplicates`);
     log.bare();
 
@@ -56,6 +55,7 @@ export function report(
         meta.dataSize = dataJson.length;
 
         log.table(meta);
+        log.bare();
 
         const metaJson = JSON.stringify(meta);
         const replaced = withDataJson.replace(

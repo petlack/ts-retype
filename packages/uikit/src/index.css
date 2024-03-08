@@ -33,9 +33,10 @@
     --clr-cp-mantle: #e6e9ef;
     --clr-cp-base: #eff1f5;
 
-    --clr-bg-main: var(--clr-cp-mantle);
     /* --clr-bg-code: var(--clr-cp-base); */
-    --clr-bg-code: white;
+
+    --clr-bg-main: var(--clr-cp-mantle);
+    --clr-bg-code: #ffffff;
     --clr-bg-snippet-highlighted: var(--clr-accent-100);
 }
 
