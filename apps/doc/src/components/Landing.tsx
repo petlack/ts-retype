@@ -79,7 +79,7 @@ export function Landing() {
                                 href="https://github.com/petlack/ts-retype"
                                 className={clsx(
                                     ctaStyle,
-                                    'bg-[#969fb5] text-white hover:bg-[#92a3d9]',
+                                    'bg-[#dbe6f0] text-white hover:bg-[#92a3d9]',
                                 )}>
                                 <IconGithub /> Source
                             </Button>
