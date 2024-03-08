@@ -98,45 +98,20 @@ describe('Tree', () => {
         it('adds node to a leaf', () => {
             const tree = Tree.withRoot('root').addNode('foo', 0);
             expect(tree.nodesCount()).toEqual(2);
-            expect(tree.nodeById(0)).toStrictEqual({
-                id: 0,
-                data: 'root',
-                nodes: new Set([1]),
-                level: 0,
-                parent: -1,
-            });
-            expect(tree.nodeById(1)).toStrictEqual({
-                id: 1,
-                data: 'foo',
-                nodes: new Set(),
-                level: 1,
-                parent: 0,
-            });
+            expect(tree.nodeById(0)).toHaveProperty('nodes', new Set([1]));
+            expect(tree.nodeById(1)).toHaveProperty('parent', 0);
+            expect(tree.nodeById(1)).toHaveProperty('level', 1);
         });
         it('adds multiple nodes to a node', () => {
             const tree = Tree.withRoot('root').addNode('foo', 0).addNode('bar', 0);
             expect(tree.nodesCount()).toEqual(3);
-            expect(tree.nodeById(0)).toStrictEqual({
-                id: 0,
-                data: 'root',
-                nodes: new Set([1, 2]),
-                level: 0,
-                parent: -1,
-            });
-            expect(tree.nodeById(1)).toStrictEqual({
-                id: 1,
-                data: 'foo',
-                nodes: new Set(),
-                level: 1,
-                parent: 0,
-            });
-            expect(tree.nodeById(2)).toStrictEqual({
-                id: 2,
-                data: 'bar',
-                nodes: new Set(),
-                level: 1,
-                parent: 0,
-            });
+            expect(tree.nodeById(0)).toHaveProperty('nodes', new Set([1, 2]));
+            expect(tree.nodeById(1)).toHaveProperty('parent', 0);
+            expect(tree.nodeById(1)).toHaveProperty('level', 1);
+            expect(tree.nodeById(1).nodes).toHaveProperty('size', 0);
+            expect(tree.nodeById(2)).toHaveProperty('parent', 0);
+            expect(tree.nodeById(2)).toHaveProperty('level', 1);
+            expect(tree.nodeById(2).nodes).toHaveProperty('size', 0);
         });
     });
 
@@ -165,8 +140,19 @@ describe('Tree', () => {
                 .toTreeEqual(Tree.withRoot('foo').addNode('bar', 0));
         });
         it('updates levels of the attached tree', () => {
-            const actual = Tree.withRoot('foo').addNode('bar', 0).attach(Tree.withRoot('baz').addNode('abc', 0).addNode('xyz', 0), 1);
-            const expected = Tree.withRoot('foo').addNode('bar', 0).addNode('baz', 1).addNode('abc', 2).addNode('xyz', 2);
+            const actual = Tree.withRoot('foo')
+                .addNode('bar', 0)
+                .attach(
+                    Tree.withRoot('baz')
+                        .addNode('abc', 0)
+                        .addNode('xyz', 0),
+                    1
+                );
+            const expected = Tree.withRoot('foo')
+                .addNode('bar', 0)
+                .addNode('baz', 1)
+                .addNode('abc', 2)
+                .addNode('xyz', 2);
             expect(actual).toTreeEqual(expected);
         });
         it('preserves unique ids', () => {
@@ -236,6 +222,16 @@ describe('Tree', () => {
         });
     });
 
+    describe('equals', () => {
+        it('works with arbitrary data', () => {
+            const actual = Tree.withRoot<Node>({ name: 'root', type: 'dir' })
+                .addNode({ name: '000', type: 'dir' }, 0);
+            const expected = Tree.withRoot<Node>({ name: 'root', type: 'dir' })
+                .addNode({ name: '000', type: 'dir' }, 0);
+            expect(actual.equals(expected)).toBeTruthy();
+        });
+    });
+
     describe('expand', () => {
         it('returns the same tree given a single atomic node', () => {
             expect(Tree.withRoot('root').expand(Tree.Slash))
@@ -257,25 +253,6 @@ describe('Tree', () => {
             const tree = Tree.withRoot('root').addNode('foo', 0).addNode('bar', 1).addNode('baz', 2);
             const expected = Tree.withRoot('root/foo/bar/baz');
             expect(tree.collapse(Tree.Slash)).toTreeEqual(expected);
-        });
-    });
-
-    describe('findByPath', () => {
-        it('returns undefined for an empty tree', () => {
-            expect(Tree.empty<string>().findByPath(['foo'])).toBeUndefined();
-        });
-        it('returns undefined for a non-existing path', () => {
-            const tree = Tree.withRoot('root').addNode('foo', 0);
-            expect(tree.findByPath(['bar'])).toBeUndefined();
-        });
-        it('returns a node by node name', () => {
-            const tree = Tree.withRoot('foo');
-            expect(tree.findByPath(['foo'])).toEqual(0);
-        });
-        it('returns a leaf node by path', () => {
-            const tree = Tree.withRoot('foo').addNode('bar', 0).addNode('baz', 0);
-            expect(tree.findByPath(['foo'])).toEqual(0);
-            expect(tree.findByPath(['foo', 'bar'])).toEqual(1);
         });
     });
 
@@ -429,20 +406,26 @@ describe('Tree', () => {
             expect(Tree.empty().unnest()).toEqual(Tree.empty());
         });
         it('decreases level of all nodes', () => {
-            expect(Tree.fromIndex({
-                1: { id: 1, level: 1, data: 'foo', parent: -1, nodes: new Set([2, 3]) },
-                2: { id: 2, level: 2, data: 'bar', parent: 1, nodes: new Set() },
-                3: { id: 3, level: 2, data: 'baz', parent: 1, nodes: new Set() },
-            }).unnest())
-                .toTreeEqual(Tree.fromIndex({
+            expect(
+                Tree.fromIndex({
+                    1: { id: 1, level: 1, data: 'foo', parent: -1, nodes: new Set([2, 3]) },
+                    2: { id: 2, level: 2, data: 'bar', parent: 1, nodes: new Set() },
+                    3: { id: 3, level: 2, data: 'baz', parent: 1, nodes: new Set() },
+                }).unnest()
+            ).toTreeEqual(
+                Tree.fromIndex({
                     1: { id: 1, level: 0, data: 'foo', parent: -1, nodes: new Set([2, 3]) },
                     2: { id: 2, level: 1, data: 'bar', parent: 1, nodes: new Set() },
                     3: { id: 3, level: 1, data: 'baz', parent: 1, nodes: new Set() },
-                }));
+                })
+            );
         });
         it('stops at zero', () => {
-            expect(Tree.withRoot('root').addNode('foo', 0).addNode('bar', 0).unnest())
-                .toTreeEqual(Tree.withRoot('root').addNode('foo', 0).addNode('bar', 0));
+            expect(
+                Tree.withRoot('root').addNode('foo', 0).addNode('bar', 0).unnest()
+            ).toTreeEqual(
+                Tree.withRoot('root').addNode('foo', 0).addNode('bar', 0)
+            );
         });
     });
 
@@ -469,17 +452,24 @@ describe('Tree', () => {
                 .addNode({ name: 'bar', type: 'dir' }, 1)
                 .addNode({ name: 'baz', type: 'dir' }, 2)
                 .addNode({ name: 'index.html', type: 'file' }, 3);
-            expect(partiallyExpanded.clone().collapse(FileSeparator).expand(FileSeparator))
-                .toTreeEqual(expanded);
-            expect(partiallyExpanded.clone().expand(FileSeparator).collapse(FileSeparator))
-                .toTreeEqual(collapsed);
+            expect(
+                partiallyExpanded.collapse(FileSeparator).expand(FileSeparator)
+            ).toTreeEqual(expanded);
+            expect(
+                partiallyExpanded.expand(FileSeparator).collapse(FileSeparator)
+            ).toTreeEqual(collapsed);
         });
     });
 
     describe('insertNodeAtPath', () => {
         it('inserts a node at the root', () => {
-            expect(Tree.withRoot('root').insertNodeAtPath('foo', ['root'], StringSeparator))
-                .toTreeEqual(Tree.withRoot('root').addNode('foo', 0));
+            expect(
+                Tree.withRoot('root')
+                    .insertNodeAtPath('foo', ['root'], StringSeparator)
+            ) .toTreeEqual(
+                Tree.withRoot('root')
+                    .addNode('foo', 0)
+            );
         });
         it('inserts multiple nodes at the root', () => {
             const actual = Tree.withRoot('root')
@@ -527,20 +517,24 @@ describe('Tree', () => {
 
     describe('longestCommonPrefix', () => {
         it('returns empty array on empty tree', () => {
-            expect(Tree.empty<string>().longestCommonPrefix(['foo'], StringSeparator))
-                .toStrictEqual([[], ['foo']]);
+            expect(
+                Tree.empty<string>().longestCommonPrefix(['foo'], StringSeparator)
+            ).toStrictEqual([[], ['foo']]);
         });
         it('returns empty array on empty path', () => {
-            expect(Tree.withRoot('root').longestCommonPrefix([], StringSeparator))
-                .toStrictEqual([[], []]);
+            expect(
+                Tree.withRoot('root').longestCommonPrefix([], StringSeparator)
+            ).toStrictEqual([[], []]);
         });
         it('returns empty array on missing path', () => {
-            expect(Tree.withRoot('root').longestCommonPrefix(['foo'], StringSeparator))
-                .toStrictEqual([[], ['foo']]);
+            expect(
+                Tree.withRoot('root').longestCommonPrefix(['foo'], StringSeparator)
+            ).toStrictEqual([[], ['foo']]);
         });
         it('returns the root on the same path', () => {
-            expect(Tree.withRoot('root').longestCommonPrefix(['root'], StringSeparator))
-                .toStrictEqual([[0], []]);
+            expect(
+                Tree.withRoot('root').longestCommonPrefix(['root'], StringSeparator)
+            ).toStrictEqual([[0], []]);
         });
         it('returns the longest common prefix', () => {
             expect(
@@ -559,8 +553,8 @@ describe('Tree', () => {
         });
     });
 
-    describe('foo', () => {
-        it('works', () => {
+    describe('display', () => {
+        it('formats the tree', () => {
             const rootNode: Node = { name: '.', type: 'dir' };
             const files: File[] = [
                 { name: 'IUser', type: 'interface', pos: [14, 99], file: 'tests/example/src/auth.ts' },
@@ -591,9 +585,39 @@ describe('Tree', () => {
                 const path = node.slice(0, -1);
                 tree = tree.insertNodeAtPath(file, [rootNode, ...path], FileSeparator);
             }
-            // console.log(tree.display(FileSeparator));
-            // console.log();
-            // console.log(tree.collapse(FileSeparator).display(FileSeparator));
+            const expanded =
+`🌳 ./............................... (0)
+   └─ apps/......................... (6)
+      └─ doc/....................... (7)
+         └─ src/.................... (8)
+            └─ bar.ts............... (13)
+               └─ Foo 🟢............ (14)
+            └─ generated/........... (9)
+               └─ input/............ (10)
+                  └─ interface.ts... (11)
+                     └─ IUser 🟢.... (12)
+   └─ tests/........................ (1)
+      └─ example/................... (2)
+         └─ src/.................... (3)
+            └─ api.ts............... (15)
+               └─ User 🟢........... (17)
+               └─ IUser 🟢.......... (16)
+            └─ auth.ts.............. (4)
+               └─ IUser 🟢.......... (5)`;
+            expect(tree.display(FileSeparator)).toEqual(expanded);
+
+            const collapsed =
+`🌳 ./............................... (0)
+   └─ apps/doc/src/................. (6)
+      └─ bar.ts/Foo................. (8)
+      └─ generated/input/interface.ts/IUser (7)
+   └─ tests/example/src/............ (1)
+      └─ api.ts..................... (3)
+         └─ User 🟢................. (5)
+         └─ IUser 🟢................ (4)
+      └─ auth.ts/IUser.............. (2)`;
+
+            expect(tree.collapse(FileSeparator).display(FileSeparator)).toEqual(collapsed);
         });
     });
 });

@@ -1,5 +1,14 @@
-import { box, dimmedFg, enableColors, greenFg, redFg, yellowFg } from './colors.js';
+import {
+    box,
+    dimmed,
+    enableColors,
+    green,
+    red,
+    yellow,
+} from './colors.js';
+import { clearLine, cursorTo } from 'readline';
 import { formatDuration } from './time.js';
+import { stringify } from './core.js';
 
 type LogFn = (...msgs: unknown[]) => void;
 type Level = 'info' | 'ok' | 'warn' | 'error';
@@ -15,30 +24,17 @@ export class Logger {
         private readonly logFn: LogFn = console.log,
     ) { }
 
-    #log(level: Level, ...args: unknown[]) {
-        this.#loggedMessages++;
-        const logArgs: unknown[] = [
-            dimmedFg(formatDuration((new Date().getTime() - this.#createdAt.getTime()), 'text')),
-        ];
-        switch (level) {
-        case 'info':
-            logArgs.push(box('blue', 'INFO', 4));
-            logArgs.push(...args);
-            break;
-        case 'ok':
-            logArgs.push(box('green', 'OK', 4));
-            logArgs.push(...args.map(a => greenFg(a as string)));
-            break;
-        case 'warn':
-            logArgs.push(box('yellow', 'WARN', 4));
-            logArgs.push(...args.map(a => yellowFg(a as string)));
-            break;
-        case 'error':
-            logArgs.push(box('red', 'ERROR', 4));
-            logArgs.push(...args.map(a => redFg(a as string)));
-            break;
+    amend(msg: string, newline = false) {
+        clearLine(process.stdout, 0);
+        cursorTo(process.stdout, 0);
+        process.stdout.write(msg);
+        if (newline) {
+            process.stdout.write('\n');
         }
-        this.logFn(...logArgs);
+    }
+
+    bare(...msgs: unknown[]) {
+        this.logFn(...msgs.map(stringify));
     }
 
     info(...msgs: unknown[]) {
@@ -56,4 +52,31 @@ export class Logger {
     error(...msgs: unknown[]) {
         this.#log('error', ...msgs);
     }
+
+    #log(level: Level, ...args: unknown[]) {
+        this.#loggedMessages++;
+        const logArgs: unknown[] = [
+            dimmed(formatDuration((new Date().getTime() - this.#createdAt.getTime()), 'text')),
+        ];
+        switch (level) {
+        case 'info':
+            logArgs.push(box('blue', 'INFO', 4));
+            logArgs.push(...args);
+            break;
+        case 'ok':
+            logArgs.push(box('green', 'OK', 4));
+            logArgs.push(...args.map(a => green(a as string)));
+            break;
+        case 'warn':
+            logArgs.push(box('yellow', 'WARN', 4));
+            logArgs.push(...args.map(a => yellow(a as string)));
+            break;
+        case 'error':
+            logArgs.push(box('red', 'ERROR', 4));
+            logArgs.push(...args.map(a => red(a as string)));
+            break;
+        }
+        this.logFn(...logArgs.map(stringify));
+    }
+
 }

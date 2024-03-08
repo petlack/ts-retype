@@ -51,25 +51,25 @@ const withCode = (code: string, text: string): string => isColorsEnabled() ? `\x
  * @param text - The text to format.
  * @returns The formatted text.
  */
-export const blueBg = (text: string): string => withCode(BG_BLUE, text);
-export const dimmedBg = (text: string): string => withCode(BG_DIMMED, text);
-export const greenBg = (text: string): string => withCode(BG_GREEN, text);
-export const purpleBg = (text: string): string => withCode(BG_PURPLE, text);
-export const redBg = (text: string): string => withCode(BG_RED, text);
-export const whiteBg = (text: string): string => withCode(BG_WHITE, text);
-export const yellowBg = (text: string): string => withCode(BG_YELLOW, text);
+export const bgBlue = (text: string): string => withCode(BG_BLUE, text);
+export const bgDimmed = (text: string): string => withCode(BG_DIMMED, text);
+export const bgGreen = (text: string): string => withCode(BG_GREEN, text);
+export const bgPurple = (text: string): string => withCode(BG_PURPLE, text);
+export const bgRed = (text: string): string => withCode(BG_RED, text);
+export const bgWhite = (text: string): string => withCode(BG_WHITE, text);
+export const bgYellow = (text: string): string => withCode(BG_YELLOW, text);
 
 /**
  * Formats the text with a foreground color.
  * @param text - The text to format.
  * @returns The formatted text.
  */
-export const blackFg = (text: string): string => withCode(FG_BLACK, text);
-export const dimmedFg = (text: string): string => withCode(FG_DIMMED, text);
-export const greenFg = (text: string): string => withCode(FG_GREEN, text);
-export const redFg = (text: string): string => withCode(FG_RED, text);
-export const whiteFg = (text: string): string => withCode(FG_WHITE, text);
-export const yellowFg = (text: string): string => withCode(FG_YELLOW, text);
+export const black = (text: string): string => withCode(FG_BLACK, text);
+export const dimmed = (text: string): string => withCode(FG_DIMMED, text);
+export const green = (text: string): string => withCode(FG_GREEN, text);
+export const red = (text: string): string => withCode(FG_RED, text);
+export const white = (text: string): string => withCode(FG_WHITE, text);
+export const yellow = (text: string): string => withCode(FG_YELLOW, text);
 
 /**
  * Formats the text as bold.
@@ -83,13 +83,13 @@ export const bold = (text: string): string => isColorsEnabled() ? `\x1b[1m${text
  * @param text - The text to format.
  * @returns The formatted text.
  */
-export const dim = (text: string): string => dimmedFg(text);
+export const dim = (text: string): string => dimmed(text);
 
 /**
  * Starts color output with given text color. Any text printed to console after this call will be colored.
  * @param color - color of the text
  */
-export const startFg = (color: Color): void => {
+export const fgStart = (color: Color): void => {
     if (!isColorsEnabled()) return;
     const fg = {
         black: FG_BLACK,
@@ -118,7 +118,7 @@ export const resetColors = (): void => {
 * Formats colorful error message
 */
 export function error(...msgs: unknown[]): string {
-    return `${box('red', 'ERROR', BOX_PADDING)} ${redFg(msgs.join(' '))}`;
+    return `${box('red', 'ERROR', BOX_PADDING)} ${red(msgs.join(' '))}`;
 }
 
 /**
@@ -153,19 +153,19 @@ export function ok(...msgs: unknown[]): string {
 export function box(color: Color, text: string, width = -1): string {
     const str = text || '';
     const bg = {
-        red: redBg,
-        blue: blueBg,
-        white: whiteBg,
-        green: greenBg,
-        purple: purpleBg,
-        yellow: yellowBg,
-        dimmed: dimmedBg,
+        red: bgRed,
+        blue: bgBlue,
+        white: bgWhite,
+        green: bgGreen,
+        purple: bgPurple,
+        yellow: bgYellow,
+        dimmed: bgDimmed,
     }[color];
     const padL = 1;
     const padR = width > 0 ? Math.max(1, width - str.length + 1) : 1;
     const padLeft = ' '.repeat(padL);
     const padRight = ' '.repeat(padR);
-    return blackFg(bg(`${padLeft}${str}${padRight}`));
+    return black(bg(`${padLeft}${str}${padRight}`));
 }
 
 /**
@@ -205,6 +205,6 @@ export function confirm(
  */
 export function panic(msg: string, returnCode = 1): never {
     // eslint-disable-next-line no-console
-    console.error(box('red', 'PANIC'), redFg(msg));
+    console.error(box('red', 'PANIC'), red(msg));
     process.exit(returnCode);
 }

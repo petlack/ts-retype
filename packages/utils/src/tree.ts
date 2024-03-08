@@ -23,9 +23,15 @@ export class Tree<Data> {
 
     constructor(index: TreeIndex<Data>, rootId?: number) {
         this.#index = index;
-        const root = rootId ?? (index ? +Object.keys(index)[0] : undefined);
+        const root = rootId ?? (
+            index ?
+                +Object.keys(index)[0] :
+                undefined
+        );
         this.#rootId = root ?? 0;
-        this.#lastId = index ? Math.max(...Object.keys(index).map(Number)) : -1;
+        this.#lastId = index ?
+            Math.max(...Object.keys(index).map(Number)) :
+            -1;
     }
 
     /**
@@ -72,40 +78,17 @@ export class Tree<Data> {
     * Returns a tree with a root node
     */
     static withRoot<Data>(rootData: Data): Tree<Data> {
-        return Tree.empty<Data>().#setRoot(rootData);
-    }
-
-    #cloneIndex(): TreeIndex<Data> {
-        return Object.entries(this.#index)
-            .reduce((tree, [id, node]) => ({ ...tree, [id]: node }), {});
-    }
-
-    #nextId(): number {
-        return this.#lastId + 1;
-    }
-
-    #root(): TreeNode<Data> {
-        return this.#index[this.#rootId];
-    }
-
-    #setRoot(data: Data): Tree<Data> {
-        this.#rootId = 0;
-        this.#lastId = 0;
-        this.#index[this.#rootId] = {
-            id: this.#rootId,
-            level: 0,
-            data,
-            parent: -1,
-            nodes: new Set(),
-        };
-        return this;
+        return Tree.empty<Data>().#reset(rootData);
     }
 
     /**
     * Mutates the tree by adding a new node with `data` as a child of the node with `parentId`
     * @throws Error if the parent node does not exist
     */
-    addNode(data: Data, parentId: number): Tree<Data> {
+    addNode(
+        data: Data,
+        parentId: number,
+    ): Tree<Data> {
         const nodeId = this.#nextId();
         const parent = this.nodeById(parentId);
         if (!parent) {
@@ -126,14 +109,18 @@ export class Tree<Data> {
     /**
     * Helper method to add a node to the root
     */
-    addNodeToLast(data: Data): Tree<Data> {
+    addNodeToLast(
+        data: Data,
+    ): Tree<Data> {
         return this.addNode(data, this.#lastId);
     }
 
     /**
     * Returns a set of ids of the ancestors of the node with `nodeId`
     */
-    ancestors(nodeId: number): Set<number> {
+    ancestors(
+        nodeId: number,
+    ): Set<number> {
         const node = this.#index[nodeId];
         const ancestors = new Set<number>();
         let current = node;
@@ -147,7 +134,10 @@ export class Tree<Data> {
     /**
     * Mutates the tree by adding a subtree as a child of the node with `parentId`
     */
-    attach(tree: Tree<Data>, parentId: number): Tree<Data> {
+    attach(
+        tree: Tree<Data>,
+        parentId: number,
+    ): Tree<Data> {
         const treeRoot = tree.#root();
         if (!treeRoot) return this;
         const nodes = treeRoot.nodes;
@@ -164,7 +154,13 @@ export class Tree<Data> {
     * Returns a clone of the tree
     */
     clone(): Tree<Data> {
-        return Tree.fromIndex(this.#cloneIndex());
+        return Tree.fromIndex(
+            Object.entries(this.#index)
+                .reduce(
+                    (tree, [id, node]) => ({ ...tree, [id]: node }),
+                    {}
+                )
+        );
     }
 
     /**
@@ -193,13 +189,25 @@ export class Tree<Data> {
     /**
     * Returns a debuggable representation of the tree
     */
-    debug({ pretty } = { pretty: false }): string {
+    debug(
+        { pretty } = { pretty: false }
+    ): string {
         const index = Object.entries(this.#index)
             .reduce(
-                (acc, [id, node]) => ({ ...acc, [id]: { ...node, nodes: Array.from(node.nodes) } }),
+                (acc, [id, node]) => ({
+                    ...acc,
+                    [id]: {
+                        ...node,
+                        nodes: Array.from(node.nodes),
+                    }
+                }),
                 {}
             );
-        const obj = { '#index': index, '#lastId': this.#lastId, '#rootId': this.#rootId };
+        const obj = {
+            '#index': index,
+            '#lastId': this.#lastId,
+            '#rootId': this.#rootId,
+        };
         return pretty ?
             JSON.stringify(obj, null, 2) :
             JSON.stringify(obj);
@@ -208,10 +216,17 @@ export class Tree<Data> {
     /**
     * Returns a human-readable representation of the tree
     */
-    display({ display: inDisplay }: Partial<Separator<Data>> = {}): string {
-        const dsp = inDisplay ?? (part => typeof part === 'string' ? part : JSON.stringify(part));
+    display(
+        { display: inDisplay }: Partial<Separator<Data>> = {}
+    ): string {
+        const dsp = inDisplay ??
+            (part => typeof part === 'string' ?
+                part :
+                JSON.stringify(part)
+            );
         const lines: string[] = [];
-        for (const node of this.traverse(this.#rootId, 'depth-first')) {
+        const nodes = this.traverse(this.#rootId, 'depth-first');
+        for (const node of nodes) {
             const prefix = ' '.repeat(3 * node.level);
             const char = node.level === 0 ? '🌳' : '└─';
             const prefixedName = `${prefix}${char} ${dsp(node.data)}`;
@@ -223,7 +238,9 @@ export class Tree<Data> {
     /**
     * Returns a set of ids of the descendants of the node with `nodeId`
     */
-    descendants(nodeId: number): Set<number> {
+    descendants(
+        nodeId: number,
+    ): Set<number> {
         const node = this.#index[nodeId];
         if (!node) return new Set();
         const descendants = new Set<number>();
@@ -238,15 +255,32 @@ export class Tree<Data> {
     /**
     * Returns true if the tree is equal to `other`
     */
-    equals(other: Tree<Data>): boolean {
-        return this.debug() === other.debug();
+    equals(
+        other: Tree<Data>,
+    ): boolean {
+        if (JSON.stringify(this.#root().data) !== JSON.stringify(other.#root().data)) {
+            return false;
+        }
+        const thisNodes = [...this.#root().nodes.keys()];
+        const otherNodes = [...other.#root().nodes.keys()];
+        if (thisNodes.length !== otherNodes.length) {
+            return false;
+        }
+        for (let idx = 0; idx < thisNodes.length; idx++) {
+            if (!this.subtree(thisNodes[idx]).equals(other.subtree(otherNodes[idx]))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
     * Returns a clone of the tree with expanded nodes
     * @param splitter - function to split the data of the root node into children
     */
-    expand(separator: Separator<Data>): Tree<Data> {
+    expand(
+        separator: Separator<Data>,
+    ): Tree<Data> {
         const root = this.#root();
         if (!root) return Tree.empty();
         const [head, ...tail] = separator.split(root.data);
@@ -265,27 +299,13 @@ export class Tree<Data> {
     }
 
     /**
-     * @deprecated
-     */
-    findByPath(path: Data[]): number | undefined {
-        if (path.length === 0) return undefined;
-        const current = this.#root();
-        if (!current) return undefined;
-        const [head, ...tail] = path;
-        if (current.data !== head) return undefined;
-
-        for (const childId of current.nodes) {
-            const foundInChild = this.subtree(childId).findByPath(tail);
-            if (foundInChild) return foundInChild;
-        }
-
-        return current.id;
-    }
-
-    /**
     * Mutates the tree by inserting a new node with `data` at `path`
     */
-    insertNodeAtPath(data: Data, path: Data[], separator: Separator<Data>): Tree<Data> {
+    insertNodeAtPath(
+        data: Data,
+        path: Data[],
+        separator: Separator<Data>,
+    ): Tree<Data> {
         if (path.length === 0) return this;
         const [prefix, remaining] = this.longestCommonPrefix(path, separator);
 
@@ -303,19 +323,24 @@ export class Tree<Data> {
     /**
     * Returns true if the given `nodeId` is the root of the tree
     */
-    isRoot(nodeId: number): boolean {
+    isRoot(
+        nodeId: number,
+    ): boolean {
         return nodeId === this.#rootId;
     }
 
     /**
     * Returns the node with the longest common prefix with `path` and the remaining path
     */
-    longestCommonPrefix(path: Data[], separator: Separator<Data>): [number[], Data[]] {
+    longestCommonPrefix(
+        path: Data[],
+        separator: Separator<Data>,
+    ): [number[], Data[]] {
         if (path.length === 0) return [[], path];
-        let idx = 0;
         const nodeId = this.#rootId;
         let prefix = [] as number[];
         let remainingPath = path;
+        let idx = 0;
         while (idx < path.length) {
             const node = this.nodeById(nodeId);
             if (!node || !separator.equal(node.data, path[idx])) break;
@@ -337,7 +362,10 @@ export class Tree<Data> {
     /**
     * Mutates the tree by mapping the node with `nodeId` to a new node
     */
-    mapNode(nodeId: number, mapper: (node: TreeNode<Data>) => TreeNode<Data>): Tree<Data> {
+    mapNode(
+        nodeId: number,
+        mapper: (node: TreeNode<Data>) => TreeNode<Data>
+    ): Tree<Data> {
         this.#index[nodeId] = mapper(this.#index[nodeId]);
         return this;
     }
@@ -352,7 +380,9 @@ export class Tree<Data> {
     /**
     * Returns the node with `id`
     */
-    nodeById(id: number): TreeNode<Data> {
+    nodeById(
+        id: number,
+    ): TreeNode<Data> {
         return this.#index[id];
     }
 
@@ -360,7 +390,10 @@ export class Tree<Data> {
     * Add a node to the tree and return its id
     * @returns the id of the new node
     */
-    pushNode(data: Data, parentId: number): number {
+    pushNode(
+        data: Data,
+        parentId: number,
+    ): number {
         this.addNode(data, parentId);
         return this.#lastId;
     }
@@ -369,9 +402,11 @@ export class Tree<Data> {
     * Add a node to the root and return its id
     * @returns the id of the new node
     */
-    pushNodeToRoot(data: Data): number {
+    pushNodeToRoot(
+        data: Data,
+    ): number {
         if (!this.#root()) {
-            this.#setRoot(data);
+            this.#reset(data);
             return this.#rootId;
         }
         this.addNode(data, this.#rootId);
@@ -412,7 +447,9 @@ export class Tree<Data> {
     /**
     * Returns a clone of a subtree with root at `nodeId`
     */
-    subtree(nodeId: number): Tree<Data> {
+    subtree(
+        nodeId: number,
+    ): Tree<Data> {
         return Tree.fromIndex(
             [...this.clone().traverse(nodeId)]
                 .reduce((index, node) => ({
@@ -430,8 +467,11 @@ export class Tree<Data> {
     *   - depth-first - LIFO stack
     *   - breadth-first - FIFO queue
      */
-    *traverse(initial?: number, strategy: TraversalStrategy = 'depth-first'): Generator<TreeNode<Data>> {
-        const collection: Array<TreeNode<Data>> = [this.#index[initial ?? 0]];
+    *traverse(
+        initial?: number,
+        strategy: TraversalStrategy = 'depth-first',
+    ): Generator<TreeNode<Data>> {
+        const collection = [this.#index[initial ?? 0]];
         const popMethod = strategy === 'depth-first' ? 'pop' : 'shift';
 
         while (collection.length > 0) {
@@ -498,4 +538,36 @@ export class Tree<Data> {
         }
         return this;
     }
+
+    /**
+    * Returns the next id
+    */
+    #nextId(): number {
+        return this.#lastId + 1;
+    }
+
+    /**
+    * Returns the root node
+    */
+    #root(): TreeNode<Data> {
+        return this.#index[this.#rootId];
+    }
+
+    /**
+    * Reset the tree with a root node
+    */
+    #reset(rootData: Data): Tree<Data> {
+        this.#rootId = 0;
+        this.#lastId = 0;
+        this.#index = {};
+        this.#index[this.#rootId] = {
+            id: this.#rootId,
+            level: 0,
+            data: rootData,
+            parent: -1,
+            nodes: new Set(),
+        };
+        return this;
+    }
+
 }

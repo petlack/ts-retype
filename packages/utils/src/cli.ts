@@ -1,11 +1,15 @@
-/* eslint-disable no-console */
+import { panic } from './colors.js';
 
+/**
+* Executes the Promise and logs the result.
+*/
 export function execute(program: () => Promise<void>) {
+    /* eslint-disable no-console */
     program()
         .then(() => console.log('Done'))
         .catch(err => {
             console.error(err);
-            console.error('Error');
+            panic('Error');
         });
-
+    /* eslint-enable no-console */
 }
