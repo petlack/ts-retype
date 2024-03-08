@@ -4,5 +4,4 @@ export type { ArrayElement } from './types/utils.js';
 export type { Metadata, ReportResult } from './types/report.js';
 export type { ReportProps, ScanProps, RetypeCmdProps } from './types/props.js';
 export type { TypeDuplicate } from './types/duplicate.js';
-// export type { Snippet, Token, TokenRoot, TokenText } from './types/snippet.js';
 export type { RetypeConfig } from './config.js';

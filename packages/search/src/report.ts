@@ -5,6 +5,11 @@ import { compress } from './compress.js';
 
 const log = createLogger(console.log);
 
+/**
+* Runs the scan and generates a report in the given format.
+* @param args - the arguments to run the scan with
+* @param options - additional options
+*/
 export function report(
     args: ScanProps & ReportProps,
     { html }: { html?: string } = {},
@@ -12,12 +17,11 @@ export function report(
     html?: string;
     json?: string;
 } {
+    const { rootDir, noHtml, json } = args;
+
     log.log('running with args');
     log.log(stringify(args));
     log.log();
-
-    const { rootDir, noHtml, json } = args;
-
     log.log(`scanning types in ${rootDir}`);
 
     const { data: duplicates, meta: scanMeta } = scan(args);
@@ -27,7 +31,6 @@ export function report(
     log.log();
 
     const compressed = compress(duplicates);
-
     const dataJson = JSON.stringify(compressed);
 
     const meta: Metadata = {
@@ -52,12 +55,10 @@ export function report(
         log.table(meta);
 
         const metaJson = JSON.stringify(meta);
-
         const replaced = withDataJson.replace(
             /window\.__metajson__\s*=\s*"DATA_JSON"/,
             `window.__meta__ = ${metaJson}`,
         );
-
         result.html = replaced;
     }
 
