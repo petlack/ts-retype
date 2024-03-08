@@ -3,6 +3,7 @@ import readline from 'readline';
 type Color = 'red' | 'purple' | 'white' | 'green' | 'blue' | 'red' | 'yellow' | 'dimmed';
 const BOX_PADDING = 7;
 
+const BG_BLACK = '40';
 const BG_BLUE = '44';
 const BG_DIMMED = '100';
 const BG_GREEN = '42';
@@ -44,32 +45,39 @@ export function stripColors(str: string): string {
     return str.replace(/\x1b\[\d+m/g, '');
 }
 
-const withCode = (code: string, text: string): string => isColorsEnabled() ? `\x1b[${code}m${text}\x1b[0m` : text;
+const withCode = (code: string) =>
+    (text: string): string =>
+        isColorsEnabled() ?
+            `\x1b[${code}m${text}\x1b[0m` :
+            text;
 
 /**
  * Formats the text with a background color.
  * @param text - The text to format.
  * @returns The formatted text.
  */
-export const bgBlue = (text: string): string => withCode(BG_BLUE, text);
-export const bgDimmed = (text: string): string => withCode(BG_DIMMED, text);
-export const bgGreen = (text: string): string => withCode(BG_GREEN, text);
-export const bgPurple = (text: string): string => withCode(BG_PURPLE, text);
-export const bgRed = (text: string): string => withCode(BG_RED, text);
-export const bgWhite = (text: string): string => withCode(BG_WHITE, text);
-export const bgYellow = (text: string): string => withCode(BG_YELLOW, text);
+export const bgBlack = withCode(BG_BLACK);
+export const bgBlue = withCode(BG_BLUE);
+export const bgDimmed = withCode(BG_DIMMED);
+export const bgGreen = withCode(BG_GREEN);
+export const bgPurple = withCode(BG_PURPLE);
+export const bgRed = withCode(BG_RED);
+export const bgWhite = withCode(BG_WHITE);
+export const bgYellow = withCode(BG_YELLOW);
 
 /**
  * Formats the text with a foreground color.
  * @param text - The text to format.
  * @returns The formatted text.
  */
-export const black = (text: string): string => withCode(FG_BLACK, text);
-export const dimmed = (text: string): string => withCode(FG_DIMMED, text);
-export const green = (text: string): string => withCode(FG_GREEN, text);
-export const red = (text: string): string => withCode(FG_RED, text);
-export const white = (text: string): string => withCode(FG_WHITE, text);
-export const yellow = (text: string): string => withCode(FG_YELLOW, text);
+export const black = withCode(FG_BLACK);
+export const blue = withCode(FG_BLUE);
+export const dimmed = withCode(FG_DIMMED);
+export const green = withCode(FG_GREEN);
+export const purple = withCode(FG_PURPLE);
+export const red = withCode(FG_RED);
+export const white = withCode(FG_WHITE);
+export const yellow = withCode(FG_YELLOW);
 
 /**
  * Formats the text as bold.

@@ -65,10 +65,7 @@ export function stringify(
         if (Array.isArray(arg)) {
             return JSON.stringify(arg);
         }
-        if (typeof arg.toString === 'function') {
-            return arg.toString();
-        }
-        return JSON.stringify(arg);
+        return formatJson(arg, 4);
     }
     return String(arg);
 }
@@ -77,13 +74,22 @@ export function stringify(
 * Returns stringified JSON of the given argument
 */
 export function formatJson(
-    args: unknown,
+    args: object,
+    tabsize = 2,
 ) {
+    const keys = Object.keys(args);
+    if (keys.length === 1) {
+        const key = keys[0];
+        const value = JSON.stringify((args as Record<string, unknown>)[key]);
+        return `{ "${key}": ${value} }`;
+    }
     return JSON.stringify(
         args,
         (_key, value) =>
-            Array.isArray(value) ? `[${value.map((v) => '"' + v + '"').join(',')}]` : value,
-        2,
+            Array.isArray(value) ?
+                `[${value.map((v) => '"' + v + '"').join(',')}]` :
+                value,
+        tabsize,
     )
         .replace(/"\[/g, '[')
         .replace(/\]"/g, ']')

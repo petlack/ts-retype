@@ -1,9 +1,14 @@
-import { scan } from './scan.js';
-import { Metadata, ReportProps, ReportResult, ScanProps } from './types.js';
-import { createLogger, stringify } from '@ts-retype/utils';
+import {
+    Metadata,
+    ReportProps,
+    ReportResult,
+    ScanProps,
+} from './types.js';
+import { Logger } from '@ts-retype/utils';
 import { compress } from './compress.js';
+import { scan } from './scan.js';
 
-const log = createLogger(console.log);
+const log = new Logger('report');
 
 /**
 * Runs the scan and generates a report in the given format.
@@ -19,16 +24,14 @@ export function report(
 } {
     const { rootDir, noHtml, json } = args;
 
-    log.log('running with args');
-    log.log(stringify(args));
-    log.log();
-    log.log(`scanning types in ${rootDir}`);
+    log.info('Arguments:', args, '\n');
+    log.info(`Scanning types in ${rootDir}`);
 
     const { data: duplicates, meta: scanMeta } = scan(args);
 
-    log.log();
-    log.log(`found ${duplicates.length} duplicates`);
-    log.log();
+    log.bare();
+    log.info(`Found ${duplicates.length} duplicates`);
+    log.bare();
 
     const compressed = compress(duplicates);
     const dataJson = JSON.stringify(compressed);

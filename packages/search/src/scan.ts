@@ -1,7 +1,7 @@
 import { Logger, formatDuration } from '@ts-retype/utils';
 import { Metadata, ScanProps, TypeDuplicate } from './types.js';
-import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity.js';
 import { clustersToDuplicates, findTypesInFile } from './clusters.js';
+import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity.js';
 import { join, basename, resolve } from 'path';
 import { Progress } from '@ts-retype/utils';
 import { SourceCandidateType } from './types/candidate.js';
@@ -9,7 +9,7 @@ import { concat } from 'ramda';
 import { globSync } from 'glob';
 import { loadFile } from './utils.js';
 
-const log = new Logger();
+const log = new Logger('scan');
 
 export type ScanResult = {
     data: TypeDuplicate[];
@@ -48,7 +48,7 @@ export function scan(
     log.amend(`searched  ${locs.toLocaleString()} lines of code`, true);
     log.info(`found ${allTypes.length.toLocaleString()} types definitions`);
     log.info(`took ${formatDuration(new Date().getTime() - start)}`);
-    log.info();
+    log.bare();
 
     start = new Date().getTime();
     log.info('computing similarity matrix');
@@ -68,7 +68,7 @@ export function scan(
     });
 
     log.info(`took ${formatDuration(new Date().getTime() - start)}`);
-    log.info();
+    log.bare();
 
     start = new Date().getTime();
     log.info('generating output');
@@ -91,7 +91,7 @@ export function scan(
     };
 
     log.info(`took ${formatDuration(duration)}`);
-    log.info();
+    log.bare();
 
     return {
         data,
