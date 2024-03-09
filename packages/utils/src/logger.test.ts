@@ -1,8 +1,17 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Formatter, Logger } from './logger.js';
 import { stripColors } from './colors.js';
 
 describe('Logger', () => {
+    beforeEach(() => {
+        vi.useFakeTimers();
+        vi.setSystemTime(new Date());
+    });
+
+    afterEach(() => {
+        vi.useRealTimers();
+    });
+
     it('logs an info message', () => {
         const buffer: string[] = [];
         const logger = new Logger('foo', (...msgs) => buffer.push(msgs.join(' ')));
