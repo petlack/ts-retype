@@ -17,7 +17,7 @@ jobs:
         run: |
           npm add -g pnpm
           pnpm i
-          pnpm --filter @ts-retype/doc build
+          pnpm nx build @ts-retype/doc --verbose
           mkdir -p ./docs-static/static
           cp -R ./apps/doc/dist/* ./docs-static/static/
         env:
