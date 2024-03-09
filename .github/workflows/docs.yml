@@ -20,6 +20,7 @@ jobs:
           pnpm nx build @ts-retype/doc --verbose
           mkdir -p ./docs-static/static
           cp -R ./apps/doc/dist/* ./docs-static/static/
+          ls -ahl ./docs-static/static
         env:
           CI: true
       - name: Deploy

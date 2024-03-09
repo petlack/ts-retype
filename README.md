@@ -57,7 +57,7 @@ See [Data Format](#data-format) for result format.
 ### CLI options
 
 ```console
-[34m ℹ️ [0m [90m0.000s[0m [90m[main]  [0m Loading project info from /data/projects/tsretype/apps/bin/dist/package.json
+[34m ℹ️ [0m [90m0.001s[0m [90m[main]  [0m Loading project info from /data/projects/tsretype/apps/bin/dist/package.json
 Usage: ts-retype [options] [rootDir]
 
 Options:

@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
 
+import { Logger, bold, execute, formatSize, getRootDir } from '@ts-retype/utils';
 import { writeFile } from 'fs/promises';
 import { join } from 'path';
 import { fromColors } from './builder.js';
-import { execute, getRootDir } from '@ts-retype/utils';
 import { variants } from './palette.js';
+
+const log = new Logger('theme');
 
 async function generateThemes() {
     const accent = '#0a799e';
@@ -33,7 +34,7 @@ async function generateThemes() {
     const rootDir = await getRootDir();
 
     if (!rootDir) {
-        console.error('Could not find rootDir');
+        log.error('Could not find rootDir');
         return;
     }
 
@@ -70,25 +71,25 @@ async function generateThemes() {
     );
 
     if (exportJs) {
-        await writeFile(
-            join(rootDir, 'config/colors.cjs'),
-            `export const colors = ${JSON.stringify(twColors, null, 4)};`,
-        );
+        const content = `export const colors = ${JSON.stringify(twColors, null, 4)};`;
+        const colorsFile = join(rootDir, 'config/colors.cjs');
+        log.info(`Writing ${bold(formatSize(content.length))} to ${colorsFile}`);
+        await writeFile(colorsFile, content);
     }
 
     if (exportCss) {
-        await writeFile(
-            join(rootDir, 'packages/uikit/src/colors.css'),
-            [
-                '.clrs-light {',
-                ...colorsLight.map(c => `    ${c}`),
-                '}',
-                '',
-                '.clrs-dark {',
-                ...colorsDark.map(c => `    ${c}`),
-                '}',
-            ].join('\n'),
-        );
+        const content = [
+            '.clrs-light {',
+            ...colorsLight.map(c => `    ${c}`),
+            '}',
+            '',
+            '.clrs-dark {',
+            ...colorsDark.map(c => `    ${c}`),
+            '}',
+        ].join('\n');
+        const cssFile = join(rootDir, 'packages/uikit/src/colors.css');
+        log.info(`Writing ${bold(formatSize(content.length))} to ${cssFile}`);
+        await writeFile(cssFile, content);
     }
 }
 
