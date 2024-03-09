@@ -40,6 +40,21 @@ export function formatJson(
 }
 
 /**
+* Format the given size in bytes to a human readable string
+*/
+export function formatSize(
+    size: number,
+): string {
+    const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    let unitIndex = 0;
+    while (size >= 1024 && unitIndex < units.length - 1) {
+        size /= 1024;
+        unitIndex++;
+    }
+    return `${size.toFixed(2)} ${units[unitIndex]}`;
+}
+
+/**
 * Calculate the frequency of each item in a list
 * @returns An array of objects with a name and count property
 */
@@ -72,21 +87,6 @@ export function getTerminalDims(): [number, number] | undefined {
 function isInteractive(): boolean {
     return process.stdout.isTTY === true;
 }
-/**
-* Returns an subarray of the given array with the given indices
-*/
-export function selectIndices<T>(
-    arr: T[],
-    indices: Iterable<number>,
-): T[] {
-    const result: T[] = [];
-    for (const index of indices) {
-        if (index >= 0 && index < arr.length) {
-            result.push(arr[index]);
-        }
-    }
-    return result;
-}
 
 /**
 * Split the given string into lines
@@ -106,6 +106,22 @@ export function round(
     decimals: number,
 ): number {
     return Math.round(x * 10 ** decimals) / 10 ** decimals;
+}
+
+/**
+* Returns an subarray of the given array with the given indices
+*/
+export function selectIndices<T>(
+    arr: T[],
+    indices: Iterable<number>,
+): T[] {
+    const result: T[] = [];
+    for (const index of indices) {
+        if (index >= 0 && index < arr.length) {
+            result.push(arr[index]);
+        }
+    }
+    return result;
 }
 
 /**

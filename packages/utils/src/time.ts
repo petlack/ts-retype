@@ -31,7 +31,7 @@ export function formatDuration(
         case 'digital':
             return `${pad(min)}:${sec.toFixed(3).padStart(6, '0')}`;
         case 'text':
-            return `${min}m ${sec.toFixed(3)}s`;
+            return `${min}m ${sec.toFixed(1)}s`;
         }
     }
     const hours = Math.floor(min / 60);
@@ -40,7 +40,7 @@ export function formatDuration(
     case 'digital':
         return `${pad(hours)}:${pad(min)}:${sec.toFixed(3).padStart(6, '0')}`;
     case 'text':
-        return `${hours}h ${min}m ${sec.toFixed(3)}s`;
+        return `${hours}h ${min}m ${Math.round(sec)}s`;
     }
 }
 

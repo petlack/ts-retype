@@ -28,7 +28,10 @@ export function computeSimilarityMatrix(
             if (i === j) {
                 matrix.set(i, j, Similarity.Identical);
             } else {
-                matrix.set(i, j, similarity(types[i], types[j]));
+                const sim = similarity(types[i], types[j]);
+                if (sim !== Similarity.Different) {
+                    matrix.set(i, j, sim);
+                }
             }
         }
     }

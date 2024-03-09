@@ -5,6 +5,7 @@ import { DEFAULT_CONFIG, TS_RETYPE_CMD_OPTIONS } from '@ts-retype/search/types.j
 import {
     Logger,
     bold,
+    panic,
     readPackageJson,
     stringify,
     stripColors,
@@ -20,7 +21,7 @@ const log = new Logger('main');
 const program = createCommand();
 
 function main() {
-    const { version, name, description } = readPackageJson(dir('.'));
+    const { version, name, description } = readProjectInfo();
     buildProgram(
         program
             .name(name)
@@ -30,29 +31,23 @@ function main() {
     const cmdProps = parseCmdProps();
 
     header();
-    log.info('CMD Props', cmdProps);
+    log.debug('CMD Props', cmdProps);
 
     if (cmdProps.init) {
         runGenerate(cmdProps);
         return;
     }
 
-    if (!cmdProps.rootDir) {
-        throw new Error('Missing rootDir');
-    }
+    if (!cmdProps.rootDir) throw new Error('Missing rootDir');
 
     const config = RetypeConfig.fromCmdProps(cmdProps);
-    log.info('Config', config);
+    log.debug('Config', config);
 
-    if (!config.noHtml && !config.output) {
-        throw new Error('Missing output');
-    }
+    if (!config.noHtml && !config.output) throw new Error('Missing output');
 
     config.rootDir = pwd(config.rootDir);
-
-    const template = loadTemplate();
+    const template = readHtmlTemplate();
     const { html, json } = report(config, { html: template });
-
     const saveHtml = !config.noHtml && html;
     const saveJson = config.json?.endsWith('.json') && json;
 
@@ -61,8 +56,8 @@ function main() {
         writeFileSync(htmlFile, html);
         log.info(bold('• HTML Report exported to'));
         log.info(' ', bold(htmlFile));
-        log.info('You can view it by running');
-        log.info(' ', `open ${htmlFile}`);
+        log.info(' ', 'You can view it by running');
+        log.info(' ', `  open ${htmlFile}`);
         if (saveJson) log.bare();
     }
 
@@ -94,7 +89,9 @@ function parseCmdProps(): Partial<RetypeCmdProps> {
 }
 
 function runGenerate(options: Partial<RetypeCmdProps>) {
-    const configPath = typeof options.init === 'string' ? <string>options.init : '.retyperc';
+    const configPath = typeof options.init === 'string' ?
+        <string>options.init :
+        '.retyperc';
     const config = stringify(DEFAULT_CONFIG);
     writeFileSync(configPath, config);
     log.info(config);
@@ -103,36 +100,51 @@ function runGenerate(options: Partial<RetypeCmdProps>) {
 
 
 function header(width = 50) {
-    const pkgFile = findPackageJSON();
-    if (!pkgFile) {
-        log.info(fill(width, '='));
-        log.info(row(width, pad('No package.json found')));
-        return;
-    }
-
-    const pkg = readPackageJson(pkgFile);
+    const pkg = readProjectInfo();
     log.info(fill(width, '='));
     log.info(row(width, bold(pad(pkg.name))));
     log.info(row(width, pad(`v${pkg.version}`)));
     log.info(fill(width, '='));
     log.bare();
-    log.info('Docs:   ', pkg.homepage);
-    log.info('GitHub: ', pkg.repository.url.replace('git+', ''));
+    log.info('Docs:   ', pkg.docs);
+    log.info('GitHub: ', pkg.repo.replace('git+', ''));
     log.bare();
 
 }
 
-function findPackageJSON(): string | null {
-    const distPath = dir('package.json');
-    if (existsSync(distPath)) {
-        return distPath;
-    }
-    return null;
-}
+const HTML_TEMPLATE = 'TS_RETYPE_REPORT_HTML_TEMPLATE';
+const PROJECT_INFO = {
+    name: 'TS_RETYPE_PROJECT_NAME',
+    description: 'TS_RETYPE_PROJECT_DESCRIPTION',
+    version: 'TS_RETYPE_PROJECT_VERSION',
+    docs: 'TS_RETYPE_PROJECT_DOCS',
+    repo: 'TS_RETYPE_PROJECT_REPO',
+};
 
-function loadTemplate() {
+function readHtmlTemplate() {
+    if (!HTML_TEMPLATE.startsWith('TS_RETYPE_')) {
+        return HTML_TEMPLATE;
+    }
     const distPath = dir('vis/index.html');
     return readFileSync(distPath).toString();
+}
+
+function readProjectInfo() {
+    if (PROJECT_INFO.name !== 'TS_RETYPE_PROJECT_NAME') {
+        return PROJECT_INFO;
+    }
+    const pkgFile = dir('package.json');
+    if (!existsSync(pkgFile)) {
+        panic('No package.json found');
+    }
+    const pkg = readPackageJson(pkgFile);
+    return {
+        name: pkg.name,
+        description: pkg.description,
+        version: pkg.version,
+        docs: pkg.homepage,
+        repo: pkg.repository?.url,
+    };
 }
 
 const pwd = (p: string) => join(process.cwd(), p);

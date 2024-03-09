@@ -63,11 +63,10 @@ export function scan(
         const now = new Date().getTime();
         if (now - lastDraw > 100) {
             lastDraw = now;
-            process.stderr.cursorTo(0);
-            process.stderr.write(bar.format());
-            process.stderr.clearLine(1);
+            log.update.info(bar.format());
         }
     });
+    log.bare();
 
     log.info(`took ${formatDuration(new Date().getTime() - start)}`);
     log.bare();
@@ -88,6 +87,7 @@ export function scan(
         projectLocScanned: locs,
         projectTypesScanned: allTypes.length,
         projectFilesWithTypesDeclarations: filesWithTypes,
+        matrixSize: matrix.size(),
         scannedAt: new Date().toISOString(),
         scanDuration: duration,
     };

@@ -4,7 +4,7 @@ import {
     ReportResult,
     ScanProps,
 } from './types.js';
-import { Logger } from '@ts-retype/utils';
+import { Logger, formatDuration, formatSize } from '@ts-retype/utils';
 import { compress } from './compress.js';
 import { scan } from './scan.js';
 
@@ -24,7 +24,7 @@ export function report(
 } {
     const { rootDir, noHtml, json } = args;
 
-    log.info('Arguments', args, '\n');
+    log.debug('Arguments', args, '\n');
     log.info(`Scanning types in ${rootDir}`);
 
     const { data: duplicates, meta: scanMeta } = scan(args);
@@ -54,8 +54,18 @@ export function report(
         meta.appSize = html.length;
         meta.dataSize = dataJson.length;
 
-        log.table(meta);
-        log.bare();
+        const table = [
+            ['Project Name', meta.projectName],
+            ['Project Files', meta.projectFilesScanned.toLocaleString()],
+            ['Project LOC', meta.projectLocScanned.toLocaleString()],
+            ['Project Types', meta.projectTypesScanned.toLocaleString()],
+            ['Matrix Size', meta.matrixSize.toLocaleString()],
+            ['Scan Duration', formatDuration(meta.scanDuration)],
+            ['Report Size', formatSize(meta.reportSize)],
+            ['App Size', formatSize(meta.appSize)],
+            ['Data Size', formatSize(meta.dataSize)],
+        ];
+        log.table('Report Statistics', table);
 
         const metaJson = JSON.stringify(meta);
         const replaced = withDataJson.replace(

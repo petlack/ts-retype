@@ -12,7 +12,7 @@ import { formatDuration } from './time.js';
 import { formatJson, getTerminalDims, stringify } from './core.js';
 
 type LogFn = (msg: string) => void;
-type Level = 'info' | 'ok' | 'warn' | 'error';
+type Level = 'debug' | 'info' | 'ok' | 'warn' | 'error';
 type Dims = [number, number];
 
 enableColors();
@@ -36,6 +36,45 @@ export class Logger {
         info: (...msgs: unknown[]) => this.#amend(this.#buildLog('info', ...msgs)),
     };
 
+    bare(...msgs: unknown[]) {
+        this.logFn(msgs.map(stringify).join(' '));
+    }
+
+    debug(...msgs: unknown[]) {
+        this.#log('debug', ...msgs);
+    }
+
+    info(...msgs: unknown[]) {
+        this.#log('info', ...msgs);
+    }
+
+    ok(...msgs: unknown[]) {
+        this.#log('ok', ...msgs);
+    }
+
+    table(name: string, table: string[][]) {
+        const maxWidth = 1 + table.reduce(
+            (max, [key]) => Math.max(max, key.length),
+            0
+        );
+        this.info(name);
+        this.bare();
+        for (const [key, value] of table) {
+            this.bare(
+                this.#pad([`${key}:`.padEnd(maxWidth, ' '), value].join(' '))
+            );
+        }
+        this.bare();
+    }
+
+    warn(...msgs: unknown[]) {
+        this.#log('warn', ...msgs);
+    }
+
+    error(...msgs: unknown[]) {
+        this.#log('error', ...msgs);
+    }
+
     #amend(msg: string) {
         clearLine(process.stdout, 0);
         cursorTo(process.stdout, 0);
@@ -51,31 +90,6 @@ export class Logger {
         }
     }
 
-    bare(...msgs: unknown[]) {
-        this.logFn(msgs.map(stringify).join(' '));
-    }
-
-    info(...msgs: unknown[]) {
-        this.#log('info', ...msgs);
-    }
-
-    ok(...msgs: unknown[]) {
-        this.#log('ok', ...msgs);
-    }
-
-    table(msg: unknown) {
-        // eslint-disable-next-line no-console
-        console.table(msg);
-    }
-
-    warn(...msgs: unknown[]) {
-        this.#log('warn', ...msgs);
-    }
-
-    error(...msgs: unknown[]) {
-        this.#log('error', ...msgs);
-    }
-
     #buildLog(
         level: Level,
         ...args: unknown[]
@@ -89,6 +103,10 @@ export class Logger {
         case 'info':
             logArgs.unshift(blue(' ℹ️ '));
             logArgs.push(this.#stringify(args));
+            break;
+        case 'debug':
+            logArgs.unshift(dimmed(' 🐛'));
+            logArgs.push(dimmed(this.#stringify(args)));
             break;
         case 'ok':
             logArgs.unshift(green(' ✅'));
@@ -106,23 +124,19 @@ export class Logger {
         return logArgs.join(' ');
     }
 
+    #duration(): string {
+        return formatDuration(
+            new Date().getTime() - this.#createdAt.getTime(),
+            'text'
+        );
+    }
+
     #log(
         level: Level,
         ...args: unknown[]
     ): void {
         this.#loggedMessages++;
         this.logFn(this.#buildLog(level, ...args));
-    }
-
-    #tag(): string | undefined {
-        return this.tag && `[${this.tag}]`.padEnd(8);
-    }
-
-    #duration(): string {
-        return formatDuration(
-            new Date().getTime() - this.#createdAt.getTime(),
-            'text'
-        );
     }
 
     #pad(msg: unknown): string {
@@ -143,6 +157,10 @@ export class Logger {
                     ...lines.slice(1).map(line => this.#pad(line)),
                 ].join('\n');
             }).join(' ');
+    }
+
+    #tag(): string | undefined {
+        return this.tag && `[${this.tag}]`.padEnd(8);
     }
 
 }
