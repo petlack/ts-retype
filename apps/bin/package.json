@@ -37,6 +37,11 @@
     },
     "nx": {
         "targets": {
+            "bin": {
+                "dependsOn": [
+                    "compile"
+                ]
+            },
             "compile": {
                 "dependsOn": [
                     "@ts-retype/dev:run-bin"

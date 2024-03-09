@@ -12,7 +12,7 @@ import {
     pipe,
     split,
 } from 'ramda';
-import { Logger, lines } from '@ts-retype/utils';
+import { Logger, bold, formatSize, lines } from '@ts-retype/utils';
 import { readFileSync, writeFileSync } from 'fs';
 import type { ReportResult } from '@ts-retype/search/types';
 import ts from 'typescript';
@@ -50,8 +50,8 @@ export async function extractSnippets({ rootDir, output }: ExtractSnippetsArgs) 
     for (const snippet of snippets) {
         snippet.src = path.join(rootDir, snippet.src);
         snippet.dst = path.isAbsolute(snippet.dst) ? snippet.dst : path.join(output, snippet.dst);
-        log.info(`writing ${snippet.dst}`);
         const code = await findSnippet(snippet);
+        log.info(`writing ${bold(formatSize(code.length))} to ${snippet.dst}`);
         writeFileSync(snippet.dst, code);
     }
 }

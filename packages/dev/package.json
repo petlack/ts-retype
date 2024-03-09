@@ -49,6 +49,19 @@
           "@ts-retype/bin:build"
         ]
       },
+      "run-cmd": {
+        "dependsOn": [
+          "build",
+          "@ts-retype/bin:compile"
+        ]
+      },
+      "run-readme": {
+        "dependsOn": [
+          "build",
+          "@ts-retype/dev:run-cmd",
+          "@ts-retype/snippets:bin"
+        ]
+      },
       "build": {
         "dependsOn": [
           "@ts-retype/vis:build"

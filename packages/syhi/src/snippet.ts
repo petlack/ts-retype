@@ -116,10 +116,11 @@ export function decompress(compressed: any): Token | undefined {
     return undefined;
 }
 
-export function decompressRoot(compressed: TokenRoot): TokenRoot {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function decompressRoot(compressed: any): TokenRoot {
     return {
         type: 'root',
-        children: compressed.children.map(decompress) as Token[],
+        children: compressed.map(decompress) as Token[],
     };
 }
 

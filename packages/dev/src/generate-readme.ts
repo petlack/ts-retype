@@ -7,7 +7,7 @@ import { createCommand } from 'commander';
 import { execute } from './utils/cmd.js';
 import { isMain } from './utils/is-main.js';
 import { join } from 'path';
-import { Logger } from '@ts-retype/utils';
+import { Logger, bold, formatSize } from '@ts-retype/utils';
 
 // type CmdProps = { verbose: boolean };
 
@@ -29,7 +29,7 @@ export async function generateReadme() {
             if (line.startsWith('@import')) {
                 const path = line.replace('@import ', '');
                 const content = readFileSync(join(rootPath, path));
-                log.info(`${idx}: Imported ${content.length} chars from ${path}`);
+                log.info(`${idx}: Imported ${bold(formatSize(content.length))} chars from ${path}`);
                 return content;
             }
             return line;

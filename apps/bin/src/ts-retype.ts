@@ -115,17 +115,21 @@ function header(width = 50) {
 
 function readHtmlTemplate() {
     if (hasConstants()) {
+        log.info('Using embedded HTML template');
         return HTML_TEMPLATE;
     }
     const distPath = dir('vis/index.html');
+    log.info('Loading HTML template from', distPath);
     return readFileSync(distPath).toString();
 }
 
 function readProjectInfo() {
     if (hasConstants()) {
+        log.info('Using embedded project info');
         return PROJECT_INFO;
     }
     const pkgFile = dir('package.json');
+    log.info('Loading project info from', pkgFile);
     if (!existsSync(pkgFile)) {
         panic('No package.json found');
     }

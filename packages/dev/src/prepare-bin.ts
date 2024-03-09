@@ -46,29 +46,35 @@ export async function prepareBin() {
 
     log.info(`Preparing bin for ${bold(packageJson.name)} v${packageJson.version}`);
 
+    const filesToCopy = [
+        'README.md',
+        'LICENSE.md',
+        'ts-retype.cjs',
+        'index.cjs',
+        'index.cjs.map',
+    ];
+    for (const file of filesToCopy) {
+        log.info(`Copying ${file}`);
+        await copyFile(
+            `${distRoot}/${file}`,
+            `${releaseRoot}/${file}`,
+        );
+    }
+
+    log.info('Writing package.json');
     await writeFile(
         `${releaseRoot}/package.json`,
         distPackageJson,
     );
 
-    await copyFile(
-        `${rootDir}/README.md`,
-        `${releaseRoot}/README.md`,
-    );
-    await copyFile(
-        `${rootDir}/LICENSE.md`,
-        `${releaseRoot}/LICENSE.md`,
-    );
-    await copyFile(
-        `${distRoot}/ts-retype.cjs`,
-        `${releaseRoot}/ts-retype.cjs`,
-    );
-
     const visHtmlFile = `${rootDir}/apps/vis/dist/index.html`;
+    const visHtmlContents = await readFile(visHtmlFile);
+    const escapedVisHtmlContents = visHtmlContents.toString().replace(/`/g, '\\`');
+    log.info('Replacing constants in ts-retype.cjs');
     await fillConstants(
         `${distRoot}/ts-retype.cjs`,
         {
-            TS_RETYPE_REPORT_HTML_TEMPLATE: await readFile(visHtmlFile),
+            TS_RETYPE_REPORT_HTML_TEMPLATE: escapedVisHtmlContents,
             TS_RETYPE_PROJECT_NAME: packageJson.name,
             TS_RETYPE_PROJECT_DESCRIPTION: packageJson.description,
             TS_RETYPE_PROJECT_VERSION: packageJson.version,
