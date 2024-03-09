@@ -15,7 +15,7 @@ program
 
 export async function generateCmdHelp(): Promise<void> {
     const root = (path: string) => join('..', '..', path);
-    const bin = root('apps/bin/dist/ts-retype.cjs');
+    const bin = root('apps/bin/dist/release/ts-retype.cjs');
     log.info(`Running ${bin} -h`);
     const { stdout } = await spawn(
         bin,
