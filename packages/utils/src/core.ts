@@ -12,6 +12,34 @@ export function filterEmpty<T extends object>(
 }
 
 /**
+* Returns stringified JSON of the given argument
+*/
+export function formatJson(
+    args: object,
+    tabsize = 2,
+) {
+    const keys = Object.keys(args);
+    if (keys.length === 1) {
+        const key = keys[0];
+        const value = JSON.stringify(
+            (args as Record<string, unknown>)[key]
+        );
+        return `{ "${key}": ${value} }`;
+    }
+    return JSON.stringify(
+        args,
+        (_key, value) =>
+            Array.isArray(value) ?
+                `[${value.map((v) => '"' + v + '"').join(',')}]` :
+                value,
+        tabsize,
+    )
+        .replace(/"\[/g, '[')
+        .replace(/\]"/g, ']')
+        .replace(/\\"/g, '"');
+}
+
+/**
 * Calculate the frequency of each item in a list
 * @returns An array of objects with a name and count property
 */
@@ -26,6 +54,25 @@ export function freq(
 }
 
 /**
+* Function to get the terminal width if the environment is interactive
+*/
+export function getTerminalDims(): [number, number] | undefined {
+    if (isInteractive()) {
+        return [
+            process.stdout.columns,
+            process.stdout.rows,
+        ];
+    }
+    return undefined;
+}
+/**
+* Returns true if the process is running in an interactive terminal
+* false if it is running in a non-interactive terminal (e.g. CI)
+*/
+function isInteractive(): boolean {
+    return process.stdout.isTTY === true;
+}
+/**
 * Returns an subarray of the given array with the given indices
 */
 export function selectIndices<T>(
@@ -39,6 +86,26 @@ export function selectIndices<T>(
         }
     }
     return result;
+}
+
+/**
+* Split the given string into lines
+*/
+export function lines(
+    str: string | undefined | null,
+): string[] {
+    if (!str) return [];
+    return str.replace('\r\n', '\n').split('\n');
+}
+
+/**
+* Round the given number to the given number of decimal places
+*/
+export function round(
+    x: number,
+    decimals: number,
+): number {
+    return Math.round(x * 10 ** decimals) / 10 ** decimals;
 }
 
 /**
@@ -68,50 +135,4 @@ export function stringify(
         return formatJson(arg, 4);
     }
     return String(arg);
-}
-
-/**
-* Returns stringified JSON of the given argument
-*/
-export function formatJson(
-    args: object,
-    tabsize = 2,
-) {
-    const keys = Object.keys(args);
-    if (keys.length === 1) {
-        const key = keys[0];
-        const value = JSON.stringify((args as Record<string, unknown>)[key]);
-        return `{ "${key}": ${value} }`;
-    }
-    return JSON.stringify(
-        args,
-        (_key, value) =>
-            Array.isArray(value) ?
-                `[${value.map((v) => '"' + v + '"').join(',')}]` :
-                value,
-        tabsize,
-    )
-        .replace(/"\[/g, '[')
-        .replace(/\]"/g, ']')
-        .replace(/\\"/g, '"');
-}
-
-/**
-* Split the given string into lines
-*/
-export function lines(
-    str: string | undefined | null,
-): string[] {
-    if (!str) return [];
-    return str.replace('\r\n', '\n').split('\n');
-}
-
-/**
-* Round the given number to the given number of decimal places
-*/
-export function round(
-    x: number,
-    decimals: number,
-): number {
-    return Math.round(x * 10 ** decimals) / 10 ** decimals;
 }
