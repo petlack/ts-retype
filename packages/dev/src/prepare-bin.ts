@@ -47,16 +47,25 @@ export async function prepareBin() {
     log.info(`Preparing bin for ${bold(packageJson.name)} v${packageJson.version}`);
 
     const filesToCopy = [
-        'README.md',
-        'LICENSE.md',
         'ts-retype.cjs',
         'index.cjs',
         'index.cjs.map',
     ];
     for (const file of filesToCopy) {
-        log.info(`Copying ${file}`);
+        log.info(`Copying from dist ${file}`);
         await copyFile(
             `${distRoot}/${file}`,
+            `${releaseRoot}/${file}`,
+        );
+    }
+    const rootFilesToCopy = [
+        'README.md',
+        'LICENSE.md',
+    ];
+    for (const file of rootFilesToCopy) {
+        log.info(`Copying from root ${file}`);
+        await copyFile(
+            `${rootDir}/${file}`,
             `${releaseRoot}/${file}`,
         );
     }
