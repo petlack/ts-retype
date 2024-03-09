@@ -11,6 +11,7 @@ declare global {
 export async function setupData() {
   if (import.meta.env.DEV) {
     const json = await import('./data.json');
+    // const json = await import('./ts.json');
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { data, meta } = json.default;

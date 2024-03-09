@@ -8,6 +8,7 @@
   },
   "author": "petlack",
   "homepage": "https://petlack.github.io/ts-retype/",
+  "main": "dist/index.js",
   "bin": "dist/cli.js",
   "type": "module",
   "exports": {
@@ -77,6 +78,7 @@
     "ink-big-text": "^2.0.0",
     "ink-gradient": "^2.0.0",
     "ink-testing-library": "^3.0.0",
+    "nodemon": "^3.0.3",
     "prettier": "^2.8.7",
     "react-devtools": "^4.27.6",
     "react-devtools-core": "^4.27.6",

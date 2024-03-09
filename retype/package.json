@@ -29,6 +29,7 @@
     "prebuild": "npm run clean",
     "publish": "cd dist && npm publish",
     "start": "node --",
+    "test": "vitest run --coverage",
     "transpile": "tsc",
     "watch": "rollup -w -c rollup.config.dev.js"
   },

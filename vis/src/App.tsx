@@ -8,7 +8,7 @@ import { Box, Button, Drawer, Hamburger, Logo, Search, Stack, ThemeProvider, The
 import { TooltipRoot } from './hooks/useTooltip/TooltipRoot.js';
 import type { Metadata, TypeDuplicate } from '@ts-retype/retype';
 import { decompressRoot } from '@ts-retype/retype/dist/snippet.js';
-import { themes } from './themes.js';
+// import { themes } from './themes.js';
 import { useCallback, useEffect, useState } from 'react';
 import { Flex, Heading } from '@theme-ui/components';
 import { theme } from './ts-theme.js';
@@ -135,7 +135,6 @@ function App() {
                 }
               }}
             />
-
           </Flex>
           <div className="main">
             <Listing

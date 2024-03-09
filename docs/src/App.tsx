@@ -13,6 +13,7 @@ function Main() {
     <>
       <Topbar>
         <Menu />
+        <></>
       </Topbar>
       <section className="bleed" id="about">
         <Landing theme={colorMode as 'dark' | 'light'} />

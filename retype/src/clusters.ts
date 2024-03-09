@@ -28,7 +28,6 @@ function nonEmptyCandidateType(type: CandidateType): boolean {
     case 'union':
       return (<UnionCandidateType>type).types.length > 0;
   }
-  return true;
 }
 
 export function findTypesInFile(

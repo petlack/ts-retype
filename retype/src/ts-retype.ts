@@ -10,6 +10,7 @@ import { RetypeCmdProps, DEFAULT_CONFIG } from './types/index.js';
 import { TS_RETYPE_CMD_OPTIONS } from './types/props.js';
 // import { isMain } from '@ts-retype/scripts/src/isMain';
 
+// eslint-disable-next-line no-console
 const log = createLogger(console.log);
 
 const { version, name, description } = JSON.parse(
@@ -23,13 +24,7 @@ function buildProgram(command: Command) {
   }
 }
 
-buildProgram(
-  program
-    .name(name)
-    .description(description)
-    .version(version)
-    .argument('<path-to-project>', 'path to project'),
-);
+buildProgram(program.name(name).description(description).version(version));
 
 function parseCmdProps(): Partial<RetypeCmdProps> {
   program.parse();
@@ -62,7 +57,9 @@ function main() {
   }
 
   if (!cmdProps.rootDir) {
-    throw new Error('missing rootDir');
+    // throw new Error('missing rootDir');
+    console.dir({ cmdProps });
+    process.exit(1);
   }
 
   const config = RetypeConfig.fromCmdProps(cmdProps);

@@ -3,7 +3,6 @@ import { render as inkRender } from 'ink';
 import { WriteStream } from './tty.js';
 import { ExitProvider } from './providers/exit.js';
 import { KeymapProvider } from './providers/keymap.js';
-import { ConfigProvider } from '@ts-retype/uikit/hooks';
 
 export type RenderOptions<T> = {
   noUi?: boolean;
@@ -16,7 +15,7 @@ export type RenderOptions<T> = {
 
 export function render<T>(
   markup: ReactElement,
-  { forceUi, flags = {} }: RenderOptions<T> = {},
+  { forceUi }: RenderOptions<T> = {},
 ) {
 
   const nowhere = WriteStream();
@@ -36,12 +35,7 @@ export function render<T>(
     </KeymapProvider>
   ) : markup;
 
-  const instance = inkRender((
-    <ConfigProvider config={flags}>
-      {instanceMarkup}
-    </ConfigProvider>
-  ), inkRenderProps);
+  const instance = inkRender(instanceMarkup, inkRenderProps);
 
   return instance;
 }
-

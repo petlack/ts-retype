@@ -1,19 +1,15 @@
-panes:
-  - row: 1
-    col: 1
-    cmd: "npm -w clikit run watch"
-  - row: 2
-    col: 1
-    cmd: "npm -w retype run watch"
-  - row: 3
-    col: 1
-    cmd: "npm -w scripts run watch"
-  - row: 1
-    col: 2
-    cmd: "npm -w vis run dev"
-  - row: 2
-    col: 2
-    cmd: "npm -w docs run dev"
-  - row: 3
-    col: 2
-    cmd: "npm -w uikit run dev"
+session_name: ts-retype
+windows:
+  - name: code
+    panes:
+      - cmd: node -v && nvim
+  - name: git
+  - name: dev
+    layout: 2-col
+    panes:
+      - cmd: "npm -w vis run dev"
+      - cmd: "npm -w clikit run watch"
+      - cmd: "npm -w docs run dev"
+      - cmd: "npm -w retype run watch"
+      - cmd: "npm -w uikit run dev"
+      - cmd: "npm -w scripts run watch"
