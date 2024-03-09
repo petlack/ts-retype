@@ -23,9 +23,9 @@
         "ramda": "^0.28.0"
     },
     "devDependencies": {
-        "@types/node": "^20.11.6",
-        "@types/ramda": "^0.28.23",
-        "tsup": "^8.0.1"
+        "@types/node": "^20.11.25",
+        "@types/ramda": "^0.28.25",
+        "tsup": "^8.0.2"
     },
     "nx": {
         "targets": {

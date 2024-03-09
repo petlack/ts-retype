@@ -41,6 +41,9 @@ test *args='':
 test-all:
     pnpm nx run-many -t test
 
+update:
+    pnpm -r update
+
 watch-build *args='':
     npx nx build:watch "@ts-retype/${@}"
 
