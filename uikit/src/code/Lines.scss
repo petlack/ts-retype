@@ -1,0 +1,15 @@
+@import "../utils";
+@import "../vars";
+
+.line {
+  @include flexRow();
+  &>span:nth-child(1) {
+    color: var(--clr-fg-code-comment);
+    padding: 0 var(--space-3) 0 var(--space-2);
+    cursor: default;
+    -webkit-user-select: none;
+    user-select: none;
+    text-align: right;
+    font-weight: lighter;
+  }
+}

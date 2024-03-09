@@ -1,0 +1,43 @@
+$codeKeyLight: rgb(54, 54, 156);
+$codeValueLight: rgb(63, 130, 63);
+$codeKeyDark: #77B1C2;
+$codeValueDark: #FEB76E;
+
+$accent: hsl(195deg 88% 33%);
+
+$appIconRed: #ed614e;
+$appIconYellow: #e0b443;
+$appIconGreen: #54cc78;
+
+$gray: #606060;
+$grayLight: #c8c8c8;
+
+$sectionMaxWidth: 700px;
+
+$sectionMinWidth: 320px;
+$sectionMaxWidth: 700px;
+
+$breakHeaderLogo: 600px;
+$breakHeaderMenu: 560px;
+$breakDescCTA: 1000px;
+$breakSnippetsWrap: 768px;
+$breakSnippetsColumn: 570px;
+
+
+$codeFontSize: 1.2em;
+$codeResponsiveFontSize: 1.8vw;
+$codeMinFontSize: 14px;
+$codeMaxFontSize: 20px;
+$codeFontMaxOutWidth: 1111px;
+$codeFontMinOutWidth: 777px;
+
+
+$titleResponsiveFontSize: 3.8vw;
+$titleMinFontSize: 36px;
+$titleMaxFontSize: 50px;
+// 100 * $titleMaxFontSize / $titleResponsiveFontSize
+$titleFontMaxOutWidth: 1368px;
+// 100 * $titleMinFontSize / $titleResponsiveFontSize
+$titleFontMinOutWidth: 842px;
+
+$fontSizeCode: 1em;

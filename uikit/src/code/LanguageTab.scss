@@ -1,0 +1,39 @@
+@import "../utils";
+
+@mixin indicator() {
+  position: absolute;
+  bottom: var(--space-1-5);
+  left: 10%;
+  right: 10%;
+  height: var(--size-1);
+  background-color: var(--clr-second-300);
+  // border-radius: 100vw;
+  transform: scaleX(0);
+  @include commonTransitions();
+}
+
+@mixin indicator-active() {
+  transform: scaleX(1);
+}
+
+.tab {
+  position: relative;
+  color: var(--clr-neutral-400);
+  padding: var(--space-2) var(--space-2);
+  cursor: pointer;
+  &-caption {
+    position: relative;
+  }
+  &-indicator {
+    @include indicator()
+  }
+  &:hover {
+    color: var(--clr-fg);
+  }
+  &-active {
+    .tab-indicator {
+      @include indicator-active()
+    }
+    color: var(--clr-fg);
+  }
+}

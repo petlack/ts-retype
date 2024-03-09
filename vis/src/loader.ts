@@ -1,9 +1,9 @@
-import { Metadata } from '../../src/types';
-import { Data } from './types';
+/* eslint-disable no-console */
+import { TypeDuplicate, Metadata } from '@ts-retype/retype/src/types';
 
 declare global {
   interface Window {
-    __data__: Data[];
+    __data__: TypeDuplicate[];
     __meta__: Metadata;
   }
 }
@@ -11,12 +11,14 @@ declare global {
 export async function setupData() {
   if (import.meta.env.DEV) {
     const json = await import('./data.json');
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const { data, meta } = json.default;
     console.log({ data });
     console.log({ meta });
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    window.__data__ = <Data>data;
+    window.__data__ = <TypeDuplicate>data;
     window.__meta__ = <Metadata>meta;
   } else {
     window.__data__ = [];

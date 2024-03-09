@@ -21,11 +21,18 @@ jobs:
     - name: Generate docs
       run: |
         npm i
-        npm run scripts:build
+        npm run build
         npm run make -- -f -p docs
-        cp -R ./coverage ./docs/dist/coverage
+        npm -w docs-static install
+        npm -w docs-static run rebuild
+        npm -w docs-static run start &
+        sleep 2
+        npm -w docs-static run build-static
+        # pkill -f \"remix-serve dist\"
+        mv ./docs-static/static/ts-retype/* ./docs-static/static/
+        cp -R ./coverage ./docs-static/static/coverage
         npm i coverage-badges-cli -g
-        coverage-badges --output ./docs/dist/badge-coverage.svg
+        coverage-badges --output ./docs-static/static/badge-coverage.svg
       env:
         CI: true
 
@@ -34,4 +41,4 @@ jobs:
       if: ${{ github.ref == 'refs/heads/dev' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs/dist
+        publish_dir: ./docs-static/static

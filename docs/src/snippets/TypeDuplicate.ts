@@ -4,28 +4,17 @@ export type TypeDuplicate = {
     file: string;
     lines: [number, number];
     pos: [number, number];
+    offset: number;
     type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
     src: string;
-    srcHgl?: Token;
-    properties?: {
-      name: string;
-      type: string;
-    }[];
+    srcHgl?: TokenRoot;
+    properties?: { name: string; type: string }[];
   }[];
   group: 'different' | 'renamed' | 'identical';
-  names: {
-    count: number;
-    name: string;
-  }[];
+  names: { count: number; name: string }[];
   members?: string[];
-  parameters?: {
-    name: string;
-    type: string;
-  }[];
-  properties?: {
-    name: string;
-    type: string;
-  }[];
+  parameters?: { name: string; type: string }[];
+  properties?: { name: string; type: string }[];
   returnType?: string;
   signature?: {
     name?: string;

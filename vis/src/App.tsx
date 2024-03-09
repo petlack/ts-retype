@@ -1,23 +1,25 @@
-import { useCallback, useEffect, useState } from 'react';
 import { Facet, fulltext } from './model/search';
 import { Filters, FiltersMenu } from './components/Filters';
 import { Footer } from './components/Footer/Footer';
 import { FulltextData } from './types';
 import { Listing } from './components/Listing';
-import { Metadata } from '../../src/types';
 import { Search } from './components/Search';
 import { SearchPhraseProvider } from './hooks/useSearchPhrase';
+import { ThemeMode, ThemeProvider } from '@ts-retype/uikit';
 import { ToastProvider } from './components/Toast';
 import { TooltipRoot } from './hooks/useTooltip/TooltipRoot';
-import { TopBar } from '../../docs/src/uikit/TopBar';
-import { UiKitApp } from '../../docs/src/uikit/UiKitApp';
+import { TopBar, UiKitApp } from '@ts-retype/uikit';
+import { TypeDuplicate } from '@ts-retype/retype';
+import { decompressRoot } from '@ts-retype/retype/dist/snippet';
+import { themes } from './themes';
+import { useCallback, useEffect, useState } from 'react';
 import { useSearch } from './hooks/useSearch';
+import type { Metadata } from '@ts-retype/retype/src';
 
+import '@ts-retype/uikit/dist/index.es.css';
 import './App.scss';
 
-const theme = 'light';
-// const theme = 'dark';
-// const theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+const preferredTheme: ThemeMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
 const facets: Facet<FulltextData>[] = [
   {
@@ -32,6 +34,16 @@ const facets: Facet<FulltextData>[] = [
     matches: (rec, v) => v === 'all' || !!rec.files.find(({ type }) => type === v),
   },
 ];
+
+function decompress(td: TypeDuplicate) {
+  return {
+    ...td,
+    files: td.files.map(file => ({
+      ...file,
+      srcHgl: decompressRoot(file.srcHgl),
+    })),
+  };
+}
 
 function App() {
   const [allData, setAllData] = useState([] as FulltextData[]);
@@ -49,16 +61,14 @@ function App() {
   
   useEffect(() => {
     setAllData(
-      window.__data__.filter(({ group }) => ['identical', 'renamed'].includes(group))
-        .map((cluster, idx) => ({
-          ...cluster,
+      window.__data__.map(decompress).filter(({ group }) => ['identical', 'renamed'].includes(group))
+        .map((duplicate, idx) => ({
+          ...duplicate,
           id: idx,
-          fulltext: fulltext(cluster as FulltextData),
+          fulltext: fulltext(duplicate as FulltextData),
         }))
     );
-    setMeta(
-      window.__meta__
-    );
+    setMeta(window.__meta__);
   }, []);
   
   useEffect(() => {
@@ -72,34 +82,36 @@ function App() {
   }, [filtersVisible]);
 
   return (
-    <UiKitApp theme={theme}>
-      <SearchPhraseProvider value={{ phrase: query }}>
-        <ToastProvider>
-          <TopBar>
-            <Search
-              query={query}
-              setQuery={updateQuery}
-            />
-            <FiltersMenu onClick={toggleFiltersVisibility} />
-          </TopBar>
-          <div className="main">
-            <Filters
-              filter={filter}
-              updateFilter={updateFilter}
-              facetsStats={facetsStats}
-              visible={filtersVisible}
-            />
-            <Listing
-              meta={meta}
-              results={results}
-              filter={filter}
-            />
-            <Footer meta={meta} />
-          </div>
-        </ToastProvider>
-      </SearchPhraseProvider>
-      <TooltipRoot />
-    </UiKitApp>
+    <ThemeProvider theme={themes[preferredTheme]}>
+      <UiKitApp>
+        <SearchPhraseProvider value={{ phrase: query }}>
+          <ToastProvider>
+            <TopBar>
+              <Search
+                query={query}
+                setQuery={updateQuery}
+              />
+              <FiltersMenu isOpen={filtersVisible} onClick={toggleFiltersVisibility} />
+              <Filters
+                filter={filter}
+                updateFilter={updateFilter}
+                facetsStats={facetsStats}
+                visible={filtersVisible}
+              />
+            </TopBar>
+            <div className="main">
+              <Listing
+                meta={meta}
+                results={results}
+                filter={filter}
+              />
+              <Footer meta={meta} />
+            </div>
+          </ToastProvider>
+          <TooltipRoot />
+        </SearchPhraseProvider>
+      </UiKitApp>
+    </ThemeProvider>
   );
 }
 

@@ -1,0 +1,52 @@
+@mixin commonTransitions() {
+  transition-property: var(--tr-props-common);
+  transition-duration: var(--tr-duration-normal);
+  transition-timing-function: var(--tr-easing-ease-in);
+}
+
+@mixin colorTransitions() {
+  transition-property: var(--tr-props-colors);
+  transition-duration: var(--tr-duration-normal);
+  transition-timing-function: var(--tr-easing-ease-in);
+}
+
+@mixin focusable($color: red, $position: 'inside') {
+  outline: none;
+  &:focus-visible {
+    outline-color: $color;
+    outline-width: 4px;
+    outline-style: double;
+    @if $position == 'inside' {
+      outline-offset: -4px;
+    }
+  }
+}
+
+@mixin flexGapRow($size) {
+  & > * + * {
+    margin-left: $size;
+  }
+}
+@mixin flexGapColumn($size) {
+  & > * + * {
+    margin-top: $size;
+  }
+}
+
+@mixin flexRow($gap: 0) {
+  display: flex;
+  flex-direction: row;
+  @include flexGapRow($gap);
+}
+
+@mixin flexColumn($gap: 0) {
+  display: flex;
+  flex-direction: column;
+  @include flexGapColumn($gap);
+}
+
+@mixin flexCenter() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

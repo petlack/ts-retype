@@ -1,12 +1,20 @@
 import { indexWith } from '../Tree/utils';
 import { useCallback, useMemo } from 'react';
 import { useTree } from '../Tree/useTree';
-import { ArrayElement, TypeDuplicate } from '../../../../src/types';
-import { ICON_CHEVRON_DOWN, ICON_CODE, ICON_FILE, ICON_FOLDER } from './icons';
-import { Pass, Li, Ul } from '../Tree/Elements';
+import { ArrayElement, TypeDuplicate } from '@ts-retype/retype/src/types';
+import {
+  ICON_CHEVRON_DOWN,
+  ICON_CODE,
+  ICON_FILE,
+  ICON_FOLDER,
+  IconLetter,
+} from './icons';
+import { Pass, Ul } from '../Tree/Elements';
 import { Tree, TreeNode, TreeProps } from '../Tree';
 import { TreeProvider, TreeProviderProps } from '../Tree/TreeProvider';
+import { Cardinality } from '../Tree/types';
 import './Explorer.scss';
+import { SearchAwareText } from '../SearchAwareText';
 
 type File = ArrayElement<TypeDuplicate['files']>;
 type Node = {
@@ -18,21 +26,36 @@ type Node = {
 
 export const FileNode: TreeNode<Node> = ({ node, children }) => {
   const { onClick } = useTree();
+  const type = node.data.file?.type;
   const onClickHandler = useCallback(() => onClick(node.id), [node.id]);
-  const iconMarkup = { file: ICON_FILE, dir: ICON_FOLDER, type: ICON_CODE }[node.data.type];
+  const iconMarkup = type && node.data.type === 'type' ? 
+    <IconLetter letter={type[0].toUpperCase()} /> :
+    { file: ICON_FILE, dir: ICON_FOLDER, type: ICON_CODE }[node.data.type];
   const chevronMarkup = node.data.type === 'type' ?
     <span className="icon-empty"></span> :
-    <span>{ICON_CHEVRON_DOWN}</span>;
+    <span className="icon-chevron">{ICON_CHEVRON_DOWN}</span>;
   return (
     <>
       <span onClick={onClickHandler}>
         {chevronMarkup}
         <span>{iconMarkup}</span>
-        <span>{node.data.name}</span>
+        <SearchAwareText>{node.data.name}</SearchAwareText>
       </span>
       {children}
     </>
   );
+};
+
+const One: Cardinality<Node> = ({ node, children }) => {
+  const { selectedId } = useTree();
+  const selectedClass = selectedId === node.id ? 'selected' : '';
+  const hoverableClass = node.data.type === 'type' ? 'hoverable' : '';
+  const classNames = [selectedClass, hoverableClass].join(' ');
+  return <li className={classNames}>{children}</li>;
+};
+
+const Leaf: TreeNode<Node> = ({ node }) => {
+  return <FileNode node={node}><></></FileNode>;
 };
 
 export function FileTree(props: TreeProps<Node>) {
@@ -41,9 +64,10 @@ export function FileTree(props: TreeProps<Node>) {
       {...props}
       Self={FileTree}
       Many={Ul}
-      One={Li}
+      One={One}
       Node={FileNode}
       Root={Pass}
+      Leaf={Leaf}
     />
   );
 }
@@ -70,13 +94,16 @@ const createIndex = indexWith(
 export type ExplorerProps = {
   files: TypeDuplicate['files'];
   onClick?: TreeProviderProps<Node>['onClick'];
+  selectedFile: ArrayElement<TypeDuplicate['files']>;
 };
 
-export function Explorer({ files, onClick }: ExplorerProps) {
+export function Explorer({ files, selectedFile, onClick }: ExplorerProps) {
   const index = useMemo(() => createIndex(files), [files]);
+  const selectedPath = `/${selectedFile.file}/${selectedFile.name} ${selectedFile.pos[0]}-${selectedFile.pos[1]}`;
+  const selectedId = index.byPath[selectedPath]?.id;
   return (
     <div className="explorer">
-      <TreeProvider index={index} onClick={onClick}>
+      <TreeProvider index={index} selectedId={selectedId} onClick={onClick}>
         <FileTree node={index.byId[0]} byId={index.byId} />
       </TreeProvider>
     </div>

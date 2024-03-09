@@ -1,0 +1,32 @@
+@import "../utils";
+@import "../vars";
+
+.logo {
+  @include flexRow(calc(var(--logo-size) / 16));
+  --logo-size: 48px;
+  align-items: flex-end;
+  &-icon {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: calc(var(--logo-size) / 2);
+    width: var(--logo-size);
+    height: var(--logo-size);
+    font-weight: var(--font-weight-black);
+    padding-right: calc(var(--logo-size) / 8);
+    padding-bottom: calc(var(--logo-size) / 8);
+    line-height: 1;
+    border-bottom-left-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+    background-color: var(--clr-accent-500);
+    &:hover {
+      background-color: var(--clr-accent-400);
+    }
+  }
+  &-title {
+    color: var(--clr-accent-500);
+    font-weight: var(--font-weight-bold);
+    font-size: calc(var(--logo-size) * 0.75);
+    line-height: 1.15;
+  }
+}

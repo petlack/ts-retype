@@ -41,7 +41,6 @@ export async function execute<T extends BaseCmdProps>(
     if (config.verbose) {
       console.log(config);
     }
-
     try {
       await fn(config);
     } catch (e: unknown) {
@@ -52,7 +51,6 @@ export async function execute<T extends BaseCmdProps>(
       }
       throw e;
     }
-
     console.log('done');
   }
   run(runner);

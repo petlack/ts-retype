@@ -1,7 +1,7 @@
 import './Napp.styl';
 
 import * as Snippets from './generated/snippets';
-import { Snippet, Token } from '../../src/types/snippet';
+import type { Snippet, Token } from '@ts-retype/retype';
 
 type NappProps = {
   snippet: Snippet;
@@ -9,7 +9,7 @@ type NappProps = {
 
 function renderToken(token: Token) {
   if (token.type === 'element') {
-    return <span className={token.properties.className.join(' ')}>{token.children.map(ch => ch.value).join(' ')}</span>;
+    return <span className={token.properties?.className.join(' ')}>{token.children.map(ch => ch.value).join(' ')}</span>;
   }
   return <span>{token.value}</span>;
 }

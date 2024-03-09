@@ -1,7 +1,11 @@
 node_modules
 coverage
+dev
 dist
 retype-report.html
 .husky
 .ignored
 .eslintcache
+/test-results/
+/playwright-report/
+/playwright/.cache/

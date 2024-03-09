@@ -1,0 +1,33 @@
+@import "../vars";
+@import "../utils";
+
+.topbar-container {
+  @include flexColumn();
+  align-items: center;
+  width: 100%;
+  .strip {
+    width: 100%;
+    height: var(--space-1);
+    background-color: $accent;
+  }
+  .topbar {
+    @include flexRow();
+    width: 100%;
+    max-width: 970px;
+    justify-content: space-between;
+    padding-right: 1em;
+    @media screen and (max-width: $breakHeaderMenu) {
+      flex-direction: column;
+      &-menu {
+        padding-top: var(--space-2);
+      }
+    }
+    &-header {
+      grid-area: header;
+      color: white;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+  }
+}

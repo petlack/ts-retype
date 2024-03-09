@@ -1,20 +1,26 @@
 import colors from 'colors';
-import { difference, reverse } from 'ramda';
+import { difference, mergeDeepRight, reverse } from 'ramda';
+import { createRunners } from './runners.js';
+import {
+  Pipeline,
+  PipelineStepDef,
+  Step,
+  createDefs,
+  pipelinesDefinitions,
+  steps,
+} from './config.js';
+import { ExecResult } from './exec.js';
 
-export type PipelineStepDef<T> = {
-  name: keyof T;
-  deps: (keyof T)[];
-  parallel?: (keyof T)[];
-};
-
+// eslint-disable-next-line no-console
 const log = console.log.bind(console, colors.gray('[make]'));
-const line = (...args: unknown[]) => {
-  process.stdout.write(`${colors.gray('[make]')} ${args.join(' ')}`);
-};
-const eol = (...args: unknown[]) => {
-  process.stdout.write(args.join(' '));
-  process.stdout.write('\n');
-};
+
+// const line = (...args: unknown[]) => {
+//   process.stdout.write(`${colors.gray('[make]')} ${args.join(' ')}`);
+// };
+// const eol = (...args: unknown[]) => {
+// process.stdout.write(args.join(' '));
+// process.stdout.write('\n');
+// };
 
 function formatDuration(later: Date, earlier: Date) {
   let seconds = (later.getTime() - earlier.getTime()) / 1000;
@@ -26,7 +32,7 @@ function formatDuration(later: Date, earlier: Date) {
   return `${minutes.toFixed().padStart(2, '0')}:${seconds.toFixed(2).padStart(5, '0')}`;
 }
 
-function setFnName(fn: () => unknown, name: string) {
+export function setFnName(fn: StepFn, name: string) {
   const descriptor = Object.getOwnPropertyDescriptor(fn, 'name');
   if (descriptor) {
     descriptor.value = name;
@@ -34,35 +40,21 @@ function setFnName(fn: () => unknown, name: string) {
   }
 }
 
+type StepFn = () => ExecResult | Promise<ExecResult>;
+
 export type ParallelOptions = {
   name?: string;
 };
-export function parallel(fns: (() => Promise<unknown>)[], { name }: ParallelOptions = {}) {
+export function parallel(fns: StepFn[], { name }: ParallelOptions = {}) {
   const runner = async () => {
-    await Promise.all(fns.map((step) => step()));
+    const results = await Promise.all(fns.map((step) => step()));
+    return results.reduce(mergeDeepRight);
   };
   setFnName(runner, name || fns.map((fn) => fn.name).join(', '));
   return runner;
 }
 
-async function executeStep(step: () => Promise<unknown>) {
-  line(`${colors.bold.white(step.name).padEnd(45, ' ')} ... `);
-  const start = new Date();
-  let status = colors.bold.green('done');
-  let error = null;
-  try {
-    await step();
-  } catch (err: unknown) {
-    error = err;
-    console.error(err);
-    status = colors.bold.red('fail');
-  }
-  const end = new Date();
-  eol(`${status} in ${formatDuration(end, start)}`);
-  return { status, error };
-}
-
-export async function pipeline(steps: (() => Promise<unknown>)[]): Promise<void> {
+export async function runPipeline(steps: StepFn[]): Promise<void> {
   const start = new Date();
   let status = colors.bold.green('done');
   for (const step of steps) {
@@ -75,8 +67,61 @@ export async function pipeline(steps: (() => Promise<unknown>)[]): Promise<void>
   log(`pipeline ${status} in ${formatDuration(new Date(), start)}`);
 }
 
-export function plan<T>(defs: T, steps: PipelineStepDef<T>[], target: (keyof typeof defs)[]) {
-  const init = new Map<keyof T, PipelineStepDef<T>>();
+export function handleError(err: unknown): { message: string; lines: string[] } {
+  let message = '';
+  let lines: string[] = [];
+  if (err instanceof Error) {
+    message = err.message;
+    lines = [err.stack || ''];
+  } else if (typeof err === 'object') {
+    const obj = err as object;
+    if ('message' in obj) {
+      message = obj.message as string;
+    }
+    lines = [JSON.stringify(err)];
+  } else if (typeof err === 'string') {
+    message = err;
+  } else {
+    message = 'Unknown error';
+  }
+  return { message, lines };
+}
+
+// export async function executeStep(step: () => Promise<unknown>) {
+//   line(`${colors.bold.white(step.name).padEnd(45, ' ')} ... `);
+//   const start = new Date();
+//   let status = colors.bold.green('done');
+//   let error = null;
+//   try {
+//     await step();
+//   } catch (err: unknown) {
+//     error = err;
+//     console.error(err);
+//     status = colors.bold.red('fail');
+//   }
+//   const end = new Date();
+//   eol(`${status} in ${formatDuration(end, start)}`);
+//   return { status, error };
+// }
+
+export async function executeStep(step: StepFn) {
+  let status: 'done' | 'fail' = 'done';
+  let error: unknown = null;
+  let stdout = '';
+  let stderr = '';
+  try {
+    const res = await step();
+    stdout = res.stdout;
+    stderr = res.stderr;
+  } catch (err: unknown) {
+    error = err;
+    status = 'fail';
+  }
+  return { status, error, stdout, stderr };
+}
+
+export function plan<T>(defs: T, steps: PipelineStepDef<keyof T>[], target: (keyof typeof defs)[]) {
+  const init = new Map<keyof T, PipelineStepDef<keyof T>>();
   const stepsByName = steps.reduce((res, item) => res.set(item.name, item), init);
   const deps: (keyof T)[] = [];
   for (const dep of reverse(target)) {
@@ -87,7 +132,7 @@ export function plan<T>(defs: T, steps: PipelineStepDef<T>[], target: (keyof typ
       ...plan(
         defs,
         steps,
-        (stepsByName.get(dep)?.deps || []).filter((dep) => !deps.includes(dep)),
+        (stepsByName.get(dep)?.deps || []).filter((dep: keyof T) => !deps.includes(dep)),
       ).filter((dep) => !deps.includes(dep)),
     );
   }
@@ -96,7 +141,7 @@ export function plan<T>(defs: T, steps: PipelineStepDef<T>[], target: (keyof typ
 
 export function makeSequence<T>(
   defs: T,
-  steps: PipelineStepDef<T>[],
+  steps: PipelineStepDef<keyof T>[],
   target: (keyof typeof defs)[],
 ) {
   const sequence = plan(defs, steps, target);
@@ -125,18 +170,16 @@ export function isBefore<Key>(
   );
 }
 
-export function makePrevious<T>(steps: PipelineStepDef<T>[], target: (keyof T)[]) {
-  type Key = keyof T;
-
+export function makePrevious<T>(steps: PipelineStepDef<T>[], target: T[]) {
   const stepsByName = steps.reduce(
     (res, item) => res.set(item.name, item),
-    new Map<keyof T, PipelineStepDef<T>>(),
+    new Map<T, PipelineStepDef<T>>(),
   );
 
-  const previousSteps = new Map<Key, Set<Key>>();
-  function traversePlan(step: Key) {
+  const previousSteps = new Map<T, Set<T>>();
+  function traversePlan(step: T) {
     if (!previousSteps.has(step)) {
-      previousSteps.set(step, new Set<Key>());
+      previousSteps.set(step, new Set<T>());
     }
     for (const nextStep of stepsByName.get(step)?.deps || []) {
       previousSteps.get(step)?.add(nextStep);
@@ -173,7 +216,7 @@ export function getAllVisited<Key>(previous: Map<Key, Set<Key>>, target: Key[]) 
   return allSteps;
 }
 
-export function sortSteps<T>(steps: PipelineStepDef<T>[], target: (keyof T)[]): (keyof T)[] {
+export function sortSteps<T>(steps: PipelineStepDef<T>[], target: T[]): T[] {
   const previous = makePrevious(steps, target);
   const next = makeNext(previous);
   const allSteps = getAllVisited(previous, target);
@@ -181,7 +224,7 @@ export function sortSteps<T>(steps: PipelineStepDef<T>[], target: (keyof T)[]): 
   return sorted;
 }
 
-export function getStats<T>(steps: PipelineStepDef<T>[], plan: (keyof T)[]) {
+export function getStats<T>(steps: PipelineStepDef<T>[], plan: T[]) {
   const all = steps.map((step) => step.name);
   const missing = difference(all, plan);
 
@@ -192,11 +235,28 @@ export function getStats<T>(steps: PipelineStepDef<T>[], plan: (keyof T)[]) {
   };
 }
 
-export function printPipelineStats<T>(steps: PipelineStepDef<T>[], plan: (keyof T)[]) {
-  const { missing, all } = getStats(steps, plan);
-  const msg = [
-    `not running ${colors.bold.yellow(missing.join(' '))}`,
-    `running ${colors.bold.white(plan.join(' '))}`,
-  ].join('\n');
-  log(msg);
+export function resolveSteps({
+  rootDir,
+  step,
+  pipeline,
+}: {
+  pipeline?: Pipeline;
+  step?: Step;
+  rootDir: string;
+}): { steps: Step[]; defs: Map<Step, () => Promise<ExecResult>> } {
+  const runners = createRunners({
+    rootDir,
+    muteStderr: true,
+    muteStdout: true,
+  });
+
+  // const clean = parallel([cleanTsRetype, cleanVis, cleanDocs, cleanExample], { name: 'cleanAll' });
+  // const install = parallel([installTsRetype, installVis, installDocs], { name: 'install' });
+
+  const defs = createDefs({ ...runners, rootDir });
+  const pipelineSteps =
+    step != null ? [step] : (pipeline != null && pipelinesDefinitions.get(pipeline)) || [];
+  const sortedSteps = sortSteps(steps, pipelineSteps);
+
+  return { defs, steps: sortedSteps };
 }

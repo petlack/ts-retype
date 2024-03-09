@@ -1,17 +1,151 @@
 @import "vars";
 
-@mixin lightTheme() {
-  --clr-codeKey: #{$codeKeyLight};
-  --clr-codeValue: #{$codeValueLight};
+@mixin lightSxTheme() {
+  --clr-cp-rosewater: #dc8a78;
+  --clr-cp-flamingo: #dd7878;
+  --clr-cp-pink: #ea76cb;
+  --clr-cp-mauve: #8839ef;
+  --clr-cp-red: #d20f39;
+  --clr-cp-maroon: #e64553;
+  --clr-cp-peach: #fe640b;
+  --clr-cp-yellow: #df8e1d;
+  --clr-cp-green: #40a02b;
+  --clr-cp-teal: #179299;
+  --clr-cp-sky: #04a5e5;
+  --clr-cp-sapphire: #209fb5;
+  --clr-cp-blue: #1e66f5;
+  --clr-cp-lavender: #7287fd;
+  --clr-cp-text: #4c4f69;
+  --clr-cp-subtext1: #5c5f77;
+  --clr-cp-subtext0: #6c6f85;
+  --clr-cp-overlay2: #7c7f93;
+  --clr-cp-overlay1: #8c8fa1;
+  --clr-cp-overlay0: #9ca0b0;
+  --clr-cp-surface2: #acb0be;
+  --clr-cp-surface1: #bcc0cc;
+  --clr-cp-surface0: #ccd0da;
+  --clr-cp-crust: #dce0e8;
+  --clr-cp-mantle: #e6e9ef;
+  --clr-cp-base: #eff1f5;
 }
+
+@mixin darkSxTheme() {
+  --clr-cp-rosewater: #f5e0dc;
+  --clr-cp-flamingo: #f2cdcd;
+  --clr-cp-pink: #f5c2e7;
+  --clr-cp-mauve: #cba6f7;
+  --clr-cp-red: #f38ba8;
+  --clr-cp-maroon: #eba0ac;
+  --clr-cp-peach: #fab387;
+  --clr-cp-yellow: #f9e2af;
+  --clr-cp-green: #a6e3a1;
+  --clr-cp-teal: #94e2d5;
+  --clr-cp-sky: #89dceb;
+  --clr-cp-sapphire: #74c7ec;
+  --clr-cp-blue: #89b4fa;
+  --clr-cp-lavender: #b4befe;
+  --clr-cp-text: #cdd6f4;
+  --clr-cp-subtext1: #bac2de;
+  --clr-cp-subtext0: #a6adc8;
+  --clr-cp-overlay2: #9399b2;
+  --clr-cp-overlay1: #7f849c;
+  --clr-cp-overlay0: #6c7086;
+  --clr-cp-surface2: #585b70;
+  --clr-cp-surface1: #45475a;
+  --clr-cp-surface0: #313244;
+  --clr-cp-base: #1e1e2e;
+  --clr-cp-mantle: #181825;
+  --clr-cp-crust: #11111b;
+}
+
+@mixin sxTheme() {
+  --clr-sx-token: var(--clr-cp-text);
+  --clr-sx-builtin: var(--clr-cp-red);
+  --clr-sx-class-name: var(--clr-cp-yellow);
+  --clr-sx-comment: var(--clr-cp-overlay0);
+  --clr-sx-function: var(--clr-cp-blue);
+  --clr-sx-keyword: var(--clr-cp-mauve);
+  --clr-sx-number: var(--clr-cp-peach);
+  --clr-sx-operator: var(--clr-cp-sky);
+  --clr-sx-property: var(--clr-cp-white);
+  --clr-sx-punctuation: var(--clr-cp-overlay2);
+  --clr-sx-string: var(--clr-cp-green);
+}
+
+@mixin lightTheme() {
+  --clr-bg-topbar: var(--clr-bg);
+  --clr-bg-main: var(--clr-neutral-25);     
+  --clr-bg-code: var(--clr-neutral-50);
+  --clr-fg-text: var(--clr-fg);
+  --clr-fg-title: var(--clr-neutral-600);
+  --clr-fg-code: var(--clr-fg);
+  --clr-border: var(--clr-neutral-100);
+}
+  
 @mixin darkTheme() {
-  --clr-codeKey: #{$codeKeyDark};
-  --clr-codeValue: #{$codeValueDark};
+  --clr-bg-topbar: var(--clr-cp-crust);
+  --clr-bg-main: var(--clr-cp-mantle);     
+  --clr-bg-code: var(--clr-cp-base);
+  --clr-fg-text: var(--clr-cp-text);
+  --clr-fg-title: var(--clr-cp-text);
+  --clr-fg-code: var(--clr-cp-text);
+  --clr-border: var(--clr-neutral-200);
+  // --clr-bg-topbar: var(--clr-neutral-25);
+  // --clr-bg-main: var(--clr-neutral-200);     
+  // --clr-bg-code: var(--clr-neutral-50);
+  // --clr-fg-text: var(--clr-fg);
+  // --clr-fg-title: var(--clr-neutral-600);
+  // --clr-fg-code: var(--clr-fg);
+  // --clr-border: var(--clr-neutral-200);
+}
+
+@mixin lightThemeWindow() {
+  --clr-bg-window-header: var(--clr-second-50);
+  --shadow-base: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --clr-fg-code-comment: var(--clr-neutral-800);
+}
+
+@mixin darkThemeWindow() {
+  --clr-bg-window-header: var(--clr-second-50);
+  --shadow-base: rgba(0, 0, 0, 0.15) 0px 13px 27px -5px, rgba(0, 0, 0, 0.25) 0px 8px 16px -8px;
+  --clr-fg-code-comment: var(--clr-neutral-800);
+}
+@mixin lightThemeDuplicate() {
+  --clr-bg-title: var(--clr-accent-50);
+  --clr-bg-explorer: var(--clr-neutral-50);
+  --clr-bg-explorer-selected: var(--clr-accent-100);
+  --clr-bg-snippet: var(--clr-neutral-50);
+  --clr-bg-snippet-highlighted: var(--clr-accent-100);
+}
+
+@mixin darkThemeDuplicate() {
+  --clr-bg-title: var(--clr-cp-surface0);
+  --clr-bg-explorer: var(--clr-cp-base);
+  --clr-bg-explorer-selected: var(--clr-cp-surface2);
+  --clr-bg-snippet: var(--clr-cp-base);
+  --clr-bg-snippet-highlighted: var(--clr-cp-surface1);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--clr-accent-400);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--clr-accent-500);
 }
 
 #app {
   min-height: 100vh;
-  background-color: var(--clr-bg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,20 +158,34 @@
 }
 
 main {
+  --z-strip: 100;
+  --z-menu-btn: 95;
+  --z-sidebar: 90;
+  --z-topbar: 80;
   &.light {
     @include lightTheme();
+    @include lightThemeDuplicate();
+    @include lightThemeWindow();
+    @include lightSxTheme();
   }
   &.dark {
     @include darkTheme();
+    @include darkThemeDuplicate();
+    @include darkThemeWindow();
+    @include darkSxTheme();
   }
+  @include sxTheme();
+
   position: relative;
-  overflow-x: scroll;
-  background-color: var(--clr-bgSecondary);
+
   .topbar-container {
+    position: fixed;
+    top: 0;
+    z-index: var(--z-sticky);
+    background-color: var(--clr-bg-topbar);
+    border-bottom: 1px solid var(--clr-border);
     .strip {
-      position: fixed;
-      top: 0;
-      z-index: var(--z-always-visible);
+      z-index: var(--z-overlay);
     }
     .topbar {
       padding-right: 0;
@@ -52,20 +200,15 @@ main {
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 12px;
       }
-      button.logo-icon {
+      .filters-menu {
         position: fixed;
         right: 0;
-        top: 0;
-        z-index: var(--z-always-visible);
-        border-bottom-left-radius: 12px;
-        border-bottom-right-radius: 0px;
+        top: var(--space-2);
+        z-index: var(--z-banner);
       }
       @media screen and (max-width: 1536px) {
         .topbar-header {
           position: unset;
-        }
-        & {
-          padding-right: calc((100vw - 1200px) / 2);
         }
         .logo-icon {
           border-bottom-left-radius: 12px;
@@ -78,15 +221,40 @@ main {
           border-bottom-right-radius: 12px;
         }
       }
-      @media screen and (max-width: 1260px) {
-        & {
-          padding-right: 64px;
-        }
+    }
+  }
+}
+
+.filters {
+  position: fixed;
+  top: 0;
+  right: 0;
+  justify-self: end;
+  height: 100vh;
+  flex-direction: column;
+  z-index: var(--z-sidebar);
+  transition: transform 200ms ease-in-out, opacity 150ms ease-in;
+
+  &-hidden {
+    transform: translateX(20%);
+    user-select: none;
+    touch-action: none;
+    pointer-events: none;
+  }
+  &-visible {
+    transform: translateX(0);
+  }
+
+  @media screen and (max-height: 830px) {
+    max-height: 100vh;
+    @media screen and (min-width: 620px) {
+      height: unset;
+      flex-direction: row;
+      &-hidden {
+        transform: translateY(-10%);
       }
-      @media screen and (max-width: 560px) {
-        & {
-          padding-right: 0;
-        }
+      &-visible {
+        transform: translateY(0);
       }
     }
   }
@@ -98,23 +266,12 @@ main {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr max-content;
+  background-color: var(--clr-bg-main);
+  border-top: 1px solid var(--clr-border);
+  padding-top: 48px;
   justify-items: center;
   flex: 1;
 
-  .filters {
-    position: absolute;
-    top: 0;
-    justify-self: end;
-    height: 100vh;
-    z-index: var(--z-overlay);
-
-    &-hidden {
-      transform: translateX(100%);
-    }
-    &-visible {
-      transform: translateX(0);
-    }
-  }
   .listing, footer {
     max-width: 1200px;
     min-width: 320px;
@@ -124,33 +281,6 @@ main {
   @media screen and (max-width: 1030px) {
     .listing {
       grid-template-columns: 1fr;
-    }
-    .filters {
-      // flex-direction: row;
-    }
-  }
-
-  @media screen and (max-height: 800px) {
-    .filters {
-      max-height: 100vh;
-      &-hidden {
-        transform: translateX(100%);
-      }
-      &-visible {
-        transform: translateX(0);
-      }
-    }
-    @media screen and (min-width: 620px) {
-      .filters {
-        flex-direction: row;
-        height: unset;
-        &-hidden {
-          transform: translateY(-100%);
-        }
-        &-visible {
-          transform: translateY(0);
-        }
-      }
     }
   }
 
@@ -164,7 +294,7 @@ main {
 main {
   .topbar-container {
     .topbar {
-      width: 100vw;
+      width: 100%;
       // max-width: 1200px;
       min-width: 320px;
     }

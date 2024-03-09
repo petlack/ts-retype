@@ -35,7 +35,7 @@ npx ts-retype /path/to/project
 ## Usage with Library
 
 ```typescript
-import { scan } from 'ts-retype';
+import { scan } from '@ts-retype/retype';
 
 const { data, meta } = scan({
   exclude: ['**/node_modules/**', '**/dist/**'],
@@ -59,7 +59,7 @@ See [Data Format](#data-format) for result format.
 ```console
 ==================================================
 =                   ts-retype                    =
-=                     v0.2.4                     =
+=                   v0.2.6-rc                    =
 ==================================================
 
 docs:  https://petlack.github.io/ts-retype/
@@ -74,7 +74,7 @@ Arguments:
 
 Options:
   -V, --version                      output the version number
-  -c, --config [path]                load config - if no path provided, loads
+  -c, --config [file-path]           load config - if no path provided, loads
                                      .retyperc from current directory. if not
                                      set, use default config
   -e, --exclude [glob...]            glob patterns that will be ignored
@@ -83,7 +83,7 @@ Options:
                                      current directory
   -i, --include [glob...]            glob patterns that will be included in
                                      search
-  -j, --json <file-path>             file path to export JSON report. if not
+  -j, --json <file-path>             file path to export JSON report to. if not
                                      set, does not export JSON.
   -n, --noHtml                       if set, does not export HTML
   -o, --output <file-path|dir-path>  HTML report file path - if provided with
@@ -116,28 +116,17 @@ export type TypeDuplicate = {
     file: string;
     lines: [number, number];
     pos: [number, number];
+    offset: number;
     type: 'interface' | 'literal' | 'alias' | 'function' | 'enum' | 'union';
     src: string;
-    srcHgl?: Token;
-    properties?: {
-      name: string;
-      type: string;
-    }[];
+    srcHgl?: TokenRoot;
+    properties?: { name: string; type: string }[];
   }[];
   group: 'different' | 'renamed' | 'identical';
-  names: {
-    count: number;
-    name: string;
-  }[];
+  names: { count: number; name: string }[];
   members?: string[];
-  parameters?: {
-    name: string;
-    type: string;
-  }[];
-  properties?: {
-    name: string;
-    type: string;
-  }[];
+  parameters?: { name: string; type: string }[];
+  properties?: { name: string; type: string }[];
   returnType?: string;
   signature?: {
     name?: string;

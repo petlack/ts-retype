@@ -1,11 +1,14 @@
 import { HTMLAttributes, useCallback } from 'react';
-import { Tooltip } from '../../hooks/useTooltip';
+import { TypeDuplicate } from '@ts-retype/retype/src/types';
 import { FacetStats, Filter, getFacetStat } from '../../model/search';
 import { SIMILARITIES, CANDIDATE_TYPES } from '../../types';
+import { Badge } from '../Duplicate/Badge';
+import { IconLetter } from '../Explorer/icons';
 import { IncDecInput } from '../IncDecInput';
 import { ControlsList } from './ControlsList';
 import { FeaturesTooltip } from './FeaturesTooltip';
-
+import { Button, IconMoon, IconSun,useTheme } from '@ts-retype/uikit';
+import { themes } from '../../themes';
 import './Filters.scss';
 
 export type FiltersProps = {
@@ -53,11 +56,17 @@ export function Filters({
   const updateMinProperties = (value: number) => updateFilter({ ...filter, minProperties: value });
   const updateMinFiles = (value: number) => updateFilter({ ...filter, minFiles: value });
 
+  const { setTheme } = useTheme();
+
+  const setLightTheme = useCallback(() => setTheme(themes.light), [setTheme]);
+  const setDarkTheme = useCallback(() => setTheme(themes.dark), [setTheme]);
+
   const FilterSimButton = useCallback(({ id, selected, ...props }: { id: string, selected: string } & HTMLAttributes<HTMLElement>) => {
     const isSelected = id === selected;
     return (
       <a className={`button button--default nav ${isSelected ? 'nav--selected' : ''}`} {...props}>
-        {`${id} (${getFacetStat(facetsStats, id, filter.selectedType)})`}
+        <span>{id !== 'all' ? <Badge names={{} as TypeDuplicate['names']} group={id as TypeDuplicate['group']} /> : 'all '}</span>
+        <span>{` (${getFacetStat(facetsStats, id, filter.selectedType)})`}</span>
       </a>
     );
   }, [facetsStats]);
@@ -66,7 +75,7 @@ export function Filters({
     const isSelected = id === selected;
     return (
       <a className={`button button--default nav ${isSelected ? 'nav--selected' : ''}`} {...props}>
-        {`${id} (${getFacetStat(facetsStats, filter.selectedSimilarity, id)})`}
+        {id !== 'all' && <IconLetter letter={id[0].toUpperCase()} />} {`${id !== 'all' ? id.slice(1) : id} (${getFacetStat(facetsStats, filter.selectedSimilarity, id)})`}
       </a>
     );
   }, [facetsStats]);
@@ -123,6 +132,9 @@ export function Filters({
           onChange={updateMinFiles}
         />
       </div>
+
+      <Button icon={IconSun} caption="light" style="default" size="md" kind="button" onClick={setLightTheme} />
+      <Button icon={IconMoon} caption="dark" style="default" size="md" kind="button" onClick={setDarkTheme} />
     </div>
   );
 }

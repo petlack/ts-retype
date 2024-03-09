@@ -1,9 +1,8 @@
 @import "../../vars";
 @import "../../utils";
 
-button.logo-icon {
-  --logo-size: 48px;
-  padding: 1rem;
+.filters-menu {
+  z-index: var(--z-always-visible);
 }
 
 .button {
@@ -13,21 +12,29 @@ button.logo-icon {
   color: blue;
   border: none;
   background-color: green;
-  @include focusable(var(--clr-bgMain));
+  @include focusable(var(--clr-neutral-50));
+  &--square {
+    height: 48px;
+    width: 48px;
+  }
+  &--overlay {
+    z-index: var(--z-always-visible);
+  }
   &--default {
-    color: var(--clr-fgText);
-    background-color: var(--clr-bgMain);
+    color: var(--clr-fg);
+    background-color: var(--clr-bg-main);
   }
   &--primary {
-    color: var(--clr-bg);
-    background-color: $accent;
+    color: var(--clr-transparent);
+    background-color: var(--clr-accent);
+    @include focusable(var(--clr-bg));
   }
-  &:focus-visible {
-    &--default {
-      outline-color: $accent;
-    }
-    &--primary {
-      outline-color: white;
-    }
+  &--secondary {
+    color: var(--clr-accent);
+    background-color: var(--clr-bg);
+  }
+  &--transparent {
+    background-color: transparent;
+    @include focusable(var(--clr-accent));
   }
 }

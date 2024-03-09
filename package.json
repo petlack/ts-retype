@@ -1,6 +1,6 @@
 {
   "name": "ts-retype",
-  "version": "0.2.5",
+  "version": "0.2.6-rc",
   "publishConfig": {
     "access": "public"
   },
@@ -13,75 +13,62 @@
   "author": "petlack",
   "homepage": "https://petlack.github.io/ts-retype/",
   "bugs": "https://github.com/petlack/ts-retype/issues",
-  "main": "index.js",
-  "bin": {
-    "ts-retype": "dist/ts-retype.cjs"
-  },
-  "type": "module",
   "scripts": {
-    "bin": "./dist/ts-retype.cjs",
-    "bin:dev": "rollup -c && ./dist/ts-retype.cjs",
-    "bin:perf": "npm run build && node --stack-size=2000 --max-old-space-size=32768 dist/ts-retype.cjs",
-    "bin:rebuild": "npm run build && ./dist/ts-retype.cjs",
-    "build": "rollup -c",
+    "build": "npm -w retype -w uikit -w clikit -w scripts install && npm -w clikit run build && npm -w retype run build && npm -w uikit run build && npm -w scripts run build",
     "build:all": "npm run build && npm run docs:build && npm run scripts:build && npm run example:build",
     "bump": "node config/bump.cjs",
-    "clean": "rm -rf dist",
-    "dev": "ts-node-dev --respawn",
+    "check": "echo ok",
+    "clean": "npm -w retype -w uikit -w scripts run clean",
+    "dev:make": "npm -w scripts run dev src/make.ts --",
+    "dev:script": "npm -w scripts run dev",
     "docs:build": "cd docs && npm run build",
     "docs:dev": "cd docs && npm run dev",
-    "docs:install": "cd docs && npm ci",
-    "docs:readme": "cd scripts && npm run run:readme",
-    "docs:snippets": "cd scripts && npm run run:docs",
+    "e2e": "playwright test --trace on",
+    "e2e:report": "playwright show-report",
     "example:build": "cd example && npm run build",
     "example:report": "cd example && npm run report",
     "format": "prettier --write './**/*.{js,ts,md,json}' --config ./.prettierrc",
     "format:check": "prettier --check .",
-    "link": "cd dist && npm link",
+    "hooks": "husky install",
     "lint": "npm run lint:docs && npm --no-bail run lint:json && npm run lint:package && npm run lint:js",
     "lint:docs": "prettier --write **/*.md",
     "lint:js": "eslint --cache src config tests vis/src --ext .js,.ts,.mjs,.cjs",
     "lint:json": "prettier --write **/tsconfig.json",
     "lint:package": "prettier --write **/package.json",
-    "make": "cd scripts && npm run make --",
-    "postbuild": "echo postbuild",
-    "postinstall": "echo postinstall",
-    "prebuild": "npm run clean",
-    "prepare": "husky install",
-    "publish": "cd dist && npm publish",
-    "scripts:build": "cd scripts && npm i && npm run build",
+    "make": "npm -w scripts run make --",
+    "publish": "npm -w retype run publish",
+    "retype": "npm -w retype run bin -- -c . -j vis/data.json",
+    "scripts:build": "npm -w scripts run build",
+    "scripts:dev": "npm -w scripts run dev",
     "security": "npm audit --audit-level=high",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
-    "test:watchAll": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
-    "transpile": "tsc",
+    "test": "vitest run --coverage",
+    "test:fast": "vitest run --coverage",
+    "test:watchAll": "vitest",
+    "testx": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "testx:fast": "NODE_OPTIONS=--experimental-vm-modules jest --coverage -c jest.fast.config.ts",
+    "testx:fast:watchAll": "NODE_OPTIONS=--experimental-vm-modules jest -c jest.fast.config.ts --watchAll",
+    "testx:watchAll": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll",
     "vis:build": "cd vis && npm run build",
     "vis:clean": "cd vis && npm run clean",
-    "vis:dev": "cd vis && npm run dev",
-    "vis:install": "cd vis && npm i"
+    "vis:dev": "cd vis && npm run dev"
   },
   "keywords": [
     "typescript",
-    "static-analysis"
+    "static-analysis",
+    "nodejs",
+    "cli"
   ],
   "dependencies": {
-    "commander": "^10.0.0",
-    "date-fns": "^2.29.3",
-    "glob": "^9.1.0",
-    "progress": "^2.0.3",
-    "ramda": "^0.28.0",
-    "refractor": "^4.8.1",
-    "typescript": "^4.9.5"
+    "ramda": "^0.28.0"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^24.0.1",
-    "@rollup/plugin-node-resolve": "^15.0.2",
-    "@rollup/plugin-terser": "^0.4.0",
-    "@rollup/plugin-typescript": "^11.1.0",
+    "@playwright/test": "^1.33.0",
     "@types/jest": "^29.4.0",
-    "@types/progress": "^2.0.5",
     "@types/ramda": "^0.28.23",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
+    "@vitest/coverage-c8": "^0.31.0",
+    "c8": "^7.13.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-rollup": "^3.0.0",
@@ -91,12 +78,10 @@
     "magic-string": "^0.30.0",
     "prettier": "^2.8.4",
     "rimraf": "^4.4.1",
-    "rollup": "^3.17.0",
-    "rollup-plugin-dts": "^5.2.0",
-    "rollup-plugin-esbuild": "^5.0.0",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
-    "ts-node-dev": "^2.0.0"
+    "ts-node-dev": "^2.0.0",
+    "vitest": "^0.31.0"
   },
   "husky": {
     "hooks": {
@@ -114,5 +99,15 @@
     "((README)|(**/(README))).md": [
       "prettier --write"
     ]
-  }
+  },
+  "workspaces": [
+    "clikit",
+    "docs",
+    "docs-static",
+    "example",
+    "retype",
+    "scripts",
+    "uikit",
+    "vis"
+  ]
 }

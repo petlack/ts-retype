@@ -9,8 +9,10 @@ export async function prepareDist() {
   if (!rootDir) {
     return;
   }
-  const distRoot = `${rootDir}/dist`;
-  const packageJson = JSON.parse((await readFile(join(rootDir, 'package.json'))).toString());
+  const distRoot = `${rootDir}/retype/dist`;
+  const packageJson = JSON.parse(
+    (await readFile(join(rootDir, 'retype', 'package.json'))).toString(),
+  );
 
   if ('private' in packageJson) {
     packageJson.private = false;
@@ -25,6 +27,8 @@ export async function prepareDist() {
 
   packageJson.bin['ts-retype'] = packageJson.bin['ts-retype'].replace('dist/', '');
   // packageJson.type = 'module';
+
+  packageJson.name = 'ts-retype';
 
   const distPackageJson = JSON.stringify(packageJson, null, 2) + '\n';
 

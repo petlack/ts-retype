@@ -9,43 +9,33 @@
 
   input {
     flex: 1;
-    background: none;
-    // background-color: hsla(185, 30%, 90%);
-    border: 0px;
-    // border-radius: 8px;
-    color: var(--clr-fgText);
-    font-family: monospace;
+    border: none;
+    background-color: transparent;
+    color: var(--clr-fg-text);
+    font-family: var(--font-mono);
     font-size: 1.2rem;
     padding: 1rem 1rem;
-    border: 1px solid var(--clr-border);
-    border-top: none;
-    border-left: none;
-    border-bottom-right-radius: 12px;
-    background-color: var(--clr-bgMain);
     transition: background-color 150ms ease-in;
-    @include focusable($accent);
+    @include focusable(var(--clr-accent));
     
     &::placeholder {
-      color: var(--clr-fgText);
+      color: var(--clr-fg-text);
       opacity: 0.6;
     }
     &:focus-visible {
-      background-color: var(--clr-bgBorder);
+      background-color: var(--clr-neutral-50);
     }
   
   }
 
   button {
-    border: 1px solid var(--clr-border);
-    border-radius: 0;
-    border-bottom-left-radius: 12px;
-    border-right: none;
-    border-top: none;
+    border: none;
+    background-color: transparent;
     padding: 0.6rem 1.2rem;
-    transition: background-color 150ms ease-in;
+    // transition: background-color 150ms ease-in;
 
-    &:hover {
-      background-color: var(--clr-bgBorder);
-    }
+    // &:hover {
+    //   background-color: var(--clr-neutral-50);
+    // }
   }
 }

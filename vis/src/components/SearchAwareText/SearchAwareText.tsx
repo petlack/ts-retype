@@ -15,10 +15,11 @@ function findSubstringIndex(str: string, substr: string): [number, number] | nul
 
 export type SearchAwareTextProps = {
     foundClassName?: string;
+    className?: string;
     children: string | number;
 }
 
-export function SearchAwareText({ foundClassName = 'sat--found', children }: SearchAwareTextProps): JSX.Element {
+export function SearchAwareText({ foundClassName = 'sat--found', className, children }: SearchAwareTextProps): JSX.Element {
   const { phrase } = useSearchPhrase();
   const text = (children || '').toString();
   const match = findSubstringIndex(text.toLowerCase(), phrase.toLowerCase());
@@ -32,7 +33,7 @@ export function SearchAwareText({ foundClassName = 'sat--found', children }: Sea
   return (
     <>
       <span>{left}</span>
-      <span className={foundClassName}>{found}</span>
+      <span className={[foundClassName, className].join(' ')}>{found}</span>
       <span>{right}</span>
     </>
   );

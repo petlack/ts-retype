@@ -1,0 +1,53 @@
+@import "../utils";
+@import "../vars";
+
+.window {
+  @include flexColumn(0);
+  background-color: var(--clr-bg-code);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--clr-border);
+
+  font-size: $codeFontSize;
+  &-responsive {
+    font-size: $codeResponsiveFontSize;
+    @media screen and (min-width: $codeFontMaxOutWidth) {
+      font-size: $codeMaxFontSize
+    }
+    @media screen and (max-width: $codeFontMinOutWidth) {
+      font-size: $codeMinFontSize;
+    }
+  }
+
+  .header {
+    @include flexRow(var(--space-4));
+    padding: var(--space-2) var(--space-4);
+    align-items: center;
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+    background-color: var(--clr-bg-window-header);
+    border-bottom: 1px solid var(--clr-border);
+    .icons {
+      @include flexRow(var(--space-2));
+      .icon {
+        width: var(--size-3);
+        height: var(--size-3);
+        display: flex;
+        border-radius: 50%;
+        &.red {
+          background-color: $appIconRed;
+        }
+        &.yellow {
+          background-color: $appIconYellow;
+        }
+        &.green {
+          background-color: $appIconGreen;
+        }
+      }
+    }
+    .name {
+      line-height: 1;
+      font-size: var(--font-size-md);
+      color: var(--clr-fg-code);
+    }
+  }
+}

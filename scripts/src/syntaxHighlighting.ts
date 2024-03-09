@@ -1,12 +1,10 @@
 import { readFile, writeFile } from 'fs/promises';
 import { join, parse, resolve } from 'path';
 import { createCommand } from 'commander';
-import { refractor } from 'refractor/lib/core.js';
-import ts from 'refractor/lang/typescript.js';
-import json from 'refractor/lang/json.js';
+import { highlight } from '@ts-retype/retype/dist/highlight.js';
 import { BaseCmdProps, execute } from './cmd.js';
 import { isMain } from './isMain.js';
-import { ensureDirectoryExists, listFiles } from './paths.js';
+import { ensureDirectoryExists, getRootDir, listFiles } from './paths.js';
 
 type CmdProps = BaseCmdProps & { dir?: string; list?: string; output?: string };
 
@@ -27,7 +25,7 @@ async function loadSnippets(snippets: string[]) {
       .map(async ({ dir, name, ext }) => ({
         name,
         lang: ext,
-        code: refractor.highlight((await readFile(join(dir, `${name}.${ext}`))).toString(), ext),
+        code: highlight((await readFile(join(dir, `${name}.${ext}`))).toString(), ext),
       })),
   );
 }
@@ -37,9 +35,6 @@ export async function syntaxHighlighting(config: Partial<CmdProps>) {
     console.log('Missing output');
     throw new Error('Missing output');
   }
-
-  refractor.register(ts);
-  refractor.register(json);
 
   const files = config.dir ? await listFiles(config.dir) : [];
 
@@ -54,5 +49,14 @@ export async function syntaxHighlighting(config: Partial<CmdProps>) {
 }
 
 if (isMain(import.meta)) {
-  execute(program, syntaxHighlighting);
+  execute(program, async () => {
+    const rootDir = await getRootDir();
+    if (!rootDir) {
+      throw new Error('rootDir not found');
+    }
+    return syntaxHighlighting({
+      output: join(rootDir, 'docs/src/generated'),
+      dir: join(rootDir, 'docs/src/snippets'),
+    });
+  });
 }

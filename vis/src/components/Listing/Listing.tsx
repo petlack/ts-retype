@@ -1,9 +1,9 @@
 import { CANDIDATE_TYPES, FulltextData, SIMILARITIES } from '../../types';
-import { ClusterListing } from '../Cluster';
+import { Listing as DuplicateListing } from '../Duplicate';
 import { Empty } from '../Empty';
 import { FeaturesTooltip } from '../Filters/FeaturesTooltip';
 import { Filter } from '../../model/search';
-import { Metadata } from '../../../../src/types';
+import { Metadata } from '@ts-retype/retype/src/types';
 import { ReactNode } from 'react';
 import './Listing.scss';
 
@@ -56,7 +56,7 @@ const feature = entity('feature');
 export function Listing({ meta, results, filter }: ListingProps) {
   const resultsMarkup = results.length === 0 ?
     <Empty /> :
-    <ClusterListing clusters={results} />;
+    <DuplicateListing duplicates={results} />;
 
   const similarities = filter.selectedSimilarity === 'all' ? SIMILARITIES.filter(s => s !== 'all') : [filter.selectedSimilarity];
   const types = filter.selectedType === 'all' ? CANDIDATE_TYPES.filter(s => s !== 'all') : [filter.selectedType];

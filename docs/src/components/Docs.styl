@@ -1,0 +1,38 @@
+@import "../utils.styl"
+
+section
+  flexColumn();
+  max-width: var(--size-4xl);
+  min-width: var(--size-2xl);
+  width: 80vw;
+  font-size: var(--font-size-md);
+  // background-color: var(--clr-bg-secondary);
+  padding: var(--space-12);
+  gap: var(--space-6);
+  @media screen and (max-width: $breakSnippetsColumn)
+    width: 100%;
+    padding: 0 var(--space-2);
+    max-width: unset;
+  &.bleed
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  h2 
+    font-family: var(--font-body);
+    font-size: var(--font-size-3xl);
+    color: var(--clr-fg);
+
+  ul.links
+    flexColumn()
+    flex: 1;
+  li
+    display: flex;
+    commonTransitions();
+    a
+      flex: 1;
+      text-decoration: underline;
+      color: var(--clr-fg-text);
+      padding: var(--space-4);
+    &:hover a
+      color: var(--clr-bg-window-header);

@@ -1,4 +1,4 @@
-import { scan } from 'ts-retype';
+import { scan } from '@ts-retype/retype';
 
 const { data, meta } = scan({
   exclude: ['**/node_modules/**', '**/dist/**'],

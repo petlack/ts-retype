@@ -1,0 +1,19 @@
+panes:
+  - row: 1
+    col: 1
+    cmd: "npm -w clikit run watch"
+  - row: 2
+    col: 1
+    cmd: "npm -w retype run watch"
+  - row: 3
+    col: 1
+    cmd: "npm -w scripts run watch"
+  - row: 1
+    col: 2
+    cmd: "npm -w vis run dev"
+  - row: 2
+    col: 2
+    cmd: "npm -w docs run dev"
+  - row: 3
+    col: 2
+    cmd: "npm -w uikit run dev"

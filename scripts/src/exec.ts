@@ -1,4 +1,4 @@
-import { spawn } from 'child_process';
+import { spawn as nodeSpawn, execSync } from 'child_process';
 
 export type ExecOptions = {
   muteStdout?: boolean;
@@ -6,10 +6,37 @@ export type ExecOptions = {
   cwd?: string;
 };
 
-export async function exec(command: string, args: string[] = [], options: ExecOptions = {}) {
+export type ExecResult = {
+  stdout: string;
+  stderr: string;
+};
+
+export const EmptyExecResult = () => Promise.resolve({ stderr: '', stdout: '' } as ExecResult);
+
+export async function exec(
+  command: string,
+  args: string[] = [],
+  options: ExecOptions = {},
+): Promise<ExecResult> {
+  try {
+    const buffer = execSync([command, ...args].join(' '), { stdio: 'pipe', ...options }) || '';
+    const stdout = buffer.toString();
+    const stderr = '';
+
+    return { stdout, stderr };
+  } catch (e: any) {
+    throw e.error?.toString();
+  }
+}
+
+export async function spawn(
+  command: string,
+  args: string[] = [],
+  options: ExecOptions = {},
+): Promise<ExecResult> {
   const { muteStdout = false, muteStderr = false, cwd = process.cwd() } = options;
 
-  const child = spawn(command, args, { cwd, shell: true });
+  const child = nodeSpawn(command, args, { cwd, shell: true, stdio: 'pipe' });
 
   let stdout = '';
   let stderr = '';
