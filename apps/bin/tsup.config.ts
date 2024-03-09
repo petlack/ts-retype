@@ -5,6 +5,7 @@ export default defineConfig({
     splitting: false,
     sourcemap: true,
     clean: false,
+    shims: true,
     format: ['cjs'],
     noExternal: [ /(.*)/ ],
 });
