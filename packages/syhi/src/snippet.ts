@@ -24,17 +24,26 @@ const classNamesMap = new Map<string, string>(
         .reduce((res, item) => [...res, ...item], []),
 );
 
-function filterFalsy(obj: any): any {
+function filterFalsy<T extends Record<string, unknown>>(obj: T): T {
     return Object.fromEntries(
         Object.entries(obj).filter(([, v]) => (typeof v === 'string' && v) || v),
-    );
+    ) as T;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function compressProperties(properties: NonNullable<Token['properties']>): any {
     return Object.fromEntries(Object.entries(properties).map(([k, v]) => [k[0], decodeClassName(v)]));
 }
 
-export function compress(token: Token): any {
+export function compress(token: Token): {
+    t: string;
+    v?: string;
+    n?: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    c?: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    p?: any;
+} {
     switch (token.type) {
     case 'element':
         return {
@@ -60,6 +69,7 @@ export function compress(token: Token): any {
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function compressRoot({ children }: TokenRoot): any {
     return children.map(compress);
 }
@@ -68,6 +78,7 @@ function decodeClassName(compressed: string[]): string[] {
     return compressed.map((c) => classNamesMap.get(c) || c);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function decompressProperties(properties: any): Token['properties'] | undefined {
     if (!properties) {
         return undefined;
@@ -78,6 +89,7 @@ function decompressProperties(properties: any): Token['properties'] | undefined 
     return undefined;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function decompress(compressed: any): Token | undefined {
     if (compressed == null) {
         return undefined;
@@ -92,25 +104,26 @@ export function decompress(compressed: any): Token | undefined {
             children: compressed.c?.map(decompress),
             properties: decompressProperties(compressed.p),
             tagName: compressed.n === 's' ? 'span' : compressed.n,
-        });
+        }) as Token;
     case 'e':
         return filterFalsy({
             type: 'element',
             properties: decompressProperties(compressed.p),
             tagName: compressed.n === 's' ? 'span' : compressed.n,
             children: compressed.c?.map(decompress),
-        });
+        }) as Token;
     }
     return undefined;
 }
 
-export function decompressRoot(compressed: any): TokenRoot | undefined {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function decompressRoot(compressed: any[]): TokenRoot | undefined {
     if (!compressed) {
         return undefined;
     }
     return {
         type: 'root',
-        children: compressed.map(decompress),
+        children: compressed.map(decompress) as Token[],
     };
 }
 

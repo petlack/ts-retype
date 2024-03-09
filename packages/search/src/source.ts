@@ -53,6 +53,7 @@ export function getCodeSnippet(
     ) {
         leftOffset--;
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     for (const _ of range(0, linesBefore)) {
         leftOffset--;
         while (startAt + leftOffset >= 0 && fulltext.at(startAt + leftOffset) !== '\n') {
@@ -62,6 +63,7 @@ export function getCodeSnippet(
     leftOffset++;
 
     let rightOffset = 0;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     for (const _ of range(0, linesAfter + 1)) {
         rightOffset++;
         while (

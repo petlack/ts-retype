@@ -1,6 +1,6 @@
-import { readFileSync, writeFileSync, existsSync, rmSync, mkdtempSync } from 'fs';
 import * as url from 'url';
-import { describe, expect, it, beforeEach, afterEach, afterAll } from 'vitest';
+import { describe, expect, it, beforeEach, afterAll } from 'vitest';
+import { readFileSync, writeFileSync, existsSync, rmSync, mkdtempSync } from 'fs';
 import { scan, report } from '@ts-retype/search';
 import { RetypeConfig } from '@ts-retype/search';
 import { compress } from '@ts-retype/search';

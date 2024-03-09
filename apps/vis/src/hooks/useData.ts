@@ -42,6 +42,7 @@ export function useData() {
         let handle: number;
         const retries = 0;
         function pollWindow() {
+            /* eslint-disable no-console */
             console.log('polling data');
             if (window.__data__?.length) {
                 const data = window.__data__
