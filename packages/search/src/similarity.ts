@@ -13,9 +13,13 @@ import { Clusters, Similarity, SparseMatrix } from './types/similarity.js';
 export function computeSimilarityMatrix(
     types: CandidateType[],
     callback?: (by: number) => void,
+    options?: {
+        updateBy: number;
+    },
 ): ISparseMatrix<Similarity> {
     const matrix = SparseMatrix({ nil: Similarity.Different });
     const idxs = [...Array(types.length).keys()];
+    const updateBy = options?.updateBy || 1_000;
     let batched = 0;
     for (const i of idxs) {
         for (const j of idxs) {
@@ -23,8 +27,8 @@ export function computeSimilarityMatrix(
                 continue;
             }
             batched += 1;
-            batched %= 100;
-            if (batched === 0) callback?.(100);
+            batched %= updateBy;
+            if (batched === 0) callback?.(updateBy);
             if (i === j) {
                 matrix.set(i, j, Similarity.Identical);
             } else {
