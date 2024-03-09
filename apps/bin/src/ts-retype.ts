@@ -27,11 +27,9 @@ function main() {
             .description(description)
             .version(version)
     );
-
-    header();
-
     const cmdProps = parseCmdProps();
 
+    header();
     log.info('CMD Props', cmdProps);
 
     if (cmdProps.init) {
@@ -44,32 +42,34 @@ function main() {
     }
 
     const config = RetypeConfig.fromCmdProps(cmdProps);
-
     log.info('Config', config);
-
-    config.rootDir = pwd(config.rootDir);
-
-    const template = readFileSync(dir('vis/index.html')).toString();
-    const { html, json } = report(config, { html: template });
 
     if (!config.noHtml && !config.output) {
         throw new Error('Missing output');
     }
 
-    if (!config.noHtml && html) {
+    config.rootDir = pwd(config.rootDir);
+
+    const template = loadTemplate();
+    const { html, json } = report(config, { html: template });
+
+    const saveHtml = !config.noHtml && html;
+    const saveJson = config.json?.endsWith('.json') && json;
+
+    if (saveHtml) {
         const htmlFile = resolveOutputFilePath(config.output);
         writeFileSync(htmlFile, html);
-        log.info(bold('• Report exported to'));
+        log.info(bold('• HTML Report exported to'));
         log.info(' ', bold(htmlFile));
         log.info('You can view it by running');
         log.info(' ', `open ${htmlFile}`);
+        if (saveJson) log.bare();
     }
 
-    if (config.json?.endsWith('.json') && json) {
-        const jsonFile = config.json;
-        writeFileSync(jsonFile, json);
+    if (config.json && saveJson) {
+        writeFileSync(config.json, json);
         log.info(bold('• JSON data exported to'));
-        log.info(' ', bold(jsonFile));
+        log.info(' ', bold(config.json));
     }
 
     log.bare();
@@ -123,11 +123,16 @@ function header(width = 50) {
 }
 
 function findPackageJSON(): string | null {
-    const distPath = dir('./package.json');
+    const distPath = dir('package.json');
     if (existsSync(distPath)) {
         return distPath;
     }
     return null;
+}
+
+function loadTemplate() {
+    const distPath = dir('vis/index.html');
+    return readFileSync(distPath).toString();
 }
 
 const pwd = (p: string) => join(process.cwd(), p);

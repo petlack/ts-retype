@@ -1,11 +1,13 @@
-import { Logger, formatDuration } from '@ts-retype/utils';
+import {
+    Logger,
+    Progress,
+    formatDuration,
+} from '@ts-retype/utils';
 import { Metadata, ScanProps, TypeDuplicate } from './types.js';
 import { clustersToDuplicates, findTypesInFile } from './clusters.js';
 import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity.js';
 import { join, basename, resolve } from 'path';
-import { Progress } from '@ts-retype/utils';
 import { SourceCandidateType } from './types/candidate.js';
-import { concat } from 'ramda';
 import { globSync } from 'glob';
 import { loadFile } from './utils.js';
 
@@ -22,36 +24,36 @@ export type ScanResult = {
 export function scan(
     { rootDir, exclude, include }: ScanProps,
 ): ScanResult {
+    let start = new Date().getTime();
+
     const files = globSync(include, { cwd: rootDir, ignore: exclude });
     const filesLengths: { [file: string]: number[] } = {};
     const filesTypesCount: { [file: string]: number } = {};
+    const allTypes: SourceCandidateType[] = [];
 
-    let allTypes: SourceCandidateType[] = [];
-    let start = new Date().getTime();
-
-    log.info(`searching in ${files.length.toLocaleString()} files`);
+    log.info(`Searching in ${files.length.toLocaleString()} files`);
 
     for (const relPath of files) {
         const file = join(rootDir, relPath);
-        log.amend(`⏳ loading ${formatFileName(file)}`);
+        log.update.info(`⏳ Loading ${formatFileName(file)}`);
 
         const srcFile = loadFile(file);
         const { types, lengths } = findTypesInFile(srcFile, relPath);
 
         filesLengths[relPath] = lengths;
         filesTypesCount[relPath] = types.length;
-        allTypes = concat(allTypes, types);
+        allTypes.push(...types);
     }
     const locs = Object.values(filesLengths).reduce((a, b) => a + b.length, 0);
     const filesWithTypes = Object.entries(filesTypesCount).filter(([, count]) => count > 0).length;
 
-    log.amend(`searched  ${locs.toLocaleString()} lines of code`, true);
-    log.info(`found ${allTypes.length.toLocaleString()} types definitions`);
+    log.update.info(`Searched  ${locs.toLocaleString()} lines of code\n`);
+    log.info(`Found ${allTypes.length.toLocaleString()} types definitions`);
     log.info(`took ${formatDuration(new Date().getTime() - start)}`);
     log.bare();
 
     start = new Date().getTime();
-    log.info('computing similarity matrix');
+    log.info('Computing Similarity Matrix');
 
     const bar = Progress.finite((allTypes.length * (allTypes.length + 1)) / 2);
     let lastDraw = new Date().getTime();
@@ -71,7 +73,7 @@ export function scan(
     log.bare();
 
     start = new Date().getTime();
-    log.info('generating output');
+    log.info('Generating output');
 
     const clusters = similarityMatrixToClusters(matrix);
     const data = clustersToDuplicates(allTypes, clusters).filter(
