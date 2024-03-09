@@ -1,4 +1,4 @@
-name: Docs
+name: "Build Docs"
 on: [push]
 jobs:
   build:
@@ -20,17 +20,6 @@ jobs:
           pnpm --filter @ts-retype/doc build
           mkdir -p ./docs-static/static
           cp -R ./apps/doc/dist/* ./docs-static/static/
-          # npm run make -- -f -p docs
-          # npm -w docs-static install
-          # npm -w docs-static run rebuild
-          # npm -w docs-static run start &
-          # sleep 2
-          # npm -w docs-static run build-static
-          # # pkill -f \"remix-serve dist\"
-          # mv ./docs-static/static/ts-retype/* ./docs-static/static/
-          # cp -R ./coverage ./docs-static/static/coverage
-          # npm i coverage-badges-cli -g
-          # coverage-badges --output ./docs-static/static/badge-coverage.svg
         env:
           CI: true
       - name: Deploy
