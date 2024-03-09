@@ -102,6 +102,12 @@ async function fillConstants(path: string, constants: Record<string, string | Bu
     const replaced = Object.entries(constants).reduce(
         (acc, [key, value]) => {
             const str = value?.toString() ?? '';
+            if (key === 'TS_RETYPE_REPORT_HTML_TEMPLATE') {
+                const [before, after] = acc.split(key);
+                const repl = [before, value, after].join('');
+                // const repl = acc.replace(key, str);
+                return repl;
+            }
             log.info(`Written ${bold(formatSize(str.length))} to ${key}`);
             return acc.replace(key, str);
 
