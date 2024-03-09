@@ -5,10 +5,10 @@ describe('formatDuration', () => {
     it('text format - formats milliseconds', () => {
         expect(formatDuration(0)).toBe('0.000s');
         expect(formatDuration(100)).toBe('0.100s');
-        expect(formatDuration(ONE_MINUTE + 100)).toBe('1m 0.100s');
+        expect(formatDuration(ONE_MINUTE + 100)).toBe('1m 0.1s');
         expect(
             formatDuration(65*ONE_MINUTE + 30*ONE_SECOND + 130)
-        ).toBe('1h 5m 30.130s');
+        ).toBe('1h 5m 30s');
     });
     it('digital format - formats durations', () => {
         expect(formatDuration(0, 'digital')).toBe('0.000');

@@ -1,8 +1,8 @@
-import { readFile, writeFile } from 'fs/promises';
+import { ensureDirectoryExists, listFiles, panic } from '@ts-retype/utils';
 import { join, parse, resolve } from 'path';
+import { readFile, writeFile } from 'fs/promises';
 import { createCommand } from 'commander';
 import { highlight } from '@ts-retype/syhi/highlight';
-import { ensureDirectoryExists, listFiles } from '@ts-retype/utils';
 
 type CmdProps = { dir?: string; list?: string; output?: string };
 
@@ -30,13 +30,15 @@ async function loadSnippets(snippets: string[]) {
 
 export async function syntaxHighlighting(config: Partial<CmdProps>) {
     if (!config.output) {
-        console.log('Missing output');
-        throw new Error('Missing output');
+        panic('Missing output');
     }
 
     const files = config.dir ? await listFiles(config.dir) : [];
 
     const targetDir = config.output;
+    if (!targetDir) {
+        panic('Missing output');
+    }
     await ensureDirectoryExists(targetDir);
 
     const snippets = await loadSnippets(files);

@@ -7,20 +7,24 @@ describe('Logger', () => {
         const buffer: string[] = [];
         const logger = new Logger('foo', (...msgs) => buffer.push(msgs.join(' ')));
         logger.info('Hello, world!');
-        expect(buffer.map(stripColors)).toEqual(['foo 0.000s ℹ️  Hello, world!']);
+        expect(buffer.map(stripColors)).toEqual([
+            ' ℹ️  0.000s [foo]    Hello, world!',
+        ]);
     });
     it('stringifies simple objects', () => {
         const buffer: string[] = [];
         const logger = new Logger(undefined, (...msgs) => buffer.push(msgs.join(' ')));
         logger.info({ foo: 'bar' });
-        expect(buffer.map(stripColors)).toEqual(['0.000s ℹ️  { "foo": "bar" }']);
+        expect(buffer.map(stripColors)).toEqual([
+            ' ℹ️  0.000s { "foo": "bar" }',
+        ]);
     });
     it('stringifies simple object with name', () => {
         const buffer: string[] = [];
         const logger = new Logger(undefined, (...msgs) => buffer.push(msgs.join(' ')));
         logger.info('foo', { foo: 'bar' });
         expect(buffer.map(stripColors)).toEqual([
-            '0.000s ℹ️  foo { "foo": "bar" }',
+            ' ℹ️  0.000s foo { "foo": "bar" }',
         ]);
     });
     it('stringifies complex objects', () => {
@@ -28,10 +32,10 @@ describe('Logger', () => {
         const logger = new Logger(undefined, (...msgs) => buffer.push(msgs.join(' ')));
         logger.info('foo', { foo: 'bar', baz: 42 });
         expect(buffer.map(stripColors).join('\n')).toEqual([
-            '0.000s ℹ️  foo {',
-            '              "foo": "bar",',
-            '              "baz": 42',
-            '          }'
+            ' ℹ️  0.000s foo {',
+            '               "foo": "bar",',
+            '               "baz": 42',
+            '           }'
         ].join('\n'));
     });
 });

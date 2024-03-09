@@ -12,13 +12,13 @@ import {
     pipe,
     split,
 } from 'ramda';
-import { createLogger, lines } from '@ts-retype/utils';
+import { Logger, lines } from '@ts-retype/utils';
 import { readFileSync, writeFileSync } from 'fs';
 import type { ReportResult } from '@ts-retype/search/types';
 import ts from 'typescript';
 
 // eslint-disable-next-line no-console
-const log = createLogger(console.log);
+const log = new Logger();
 
 export type ExtractSnippetsArgs = {
     rootDir: string;
@@ -43,14 +43,14 @@ export async function extractSnippets({ rootDir, output }: ExtractSnippetsArgs) 
     ];
 
     if (!rootDir) {
-        log.log('Could not find root dir');
+        log.info('Could not find root dir');
         return;
     }
 
     for (const snippet of snippets) {
         snippet.src = path.join(rootDir, snippet.src);
         snippet.dst = path.isAbsolute(snippet.dst) ? snippet.dst : path.join(output, snippet.dst);
-        log.log(`writing ${snippet.dst}`);
+        log.info(`writing ${snippet.dst}`);
         const code = await findSnippet(snippet);
         writeFileSync(snippet.dst, code);
     }
