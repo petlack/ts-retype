@@ -2,6 +2,7 @@
 
 import { Command, createCommand } from 'commander';
 import { DEFAULT_CONFIG, TS_RETYPE_CMD_OPTIONS } from '@ts-retype/search/types.js';
+import { HTML_TEMPLATE, PROJECT_INFO, hasConstants } from './constants.js';
 import {
     Logger,
     bold,
@@ -112,17 +113,8 @@ function header(width = 50) {
 
 }
 
-const HTML_TEMPLATE = 'TS_RETYPE_REPORT_HTML_TEMPLATE';
-const PROJECT_INFO = {
-    name: 'TS_RETYPE_PROJECT_NAME',
-    description: 'TS_RETYPE_PROJECT_DESCRIPTION',
-    version: 'TS_RETYPE_PROJECT_VERSION',
-    docs: 'TS_RETYPE_PROJECT_DOCS',
-    repo: 'TS_RETYPE_PROJECT_REPO',
-};
-
 function readHtmlTemplate() {
-    if (!HTML_TEMPLATE.startsWith('TS_RETYPE_')) {
+    if (hasConstants()) {
         return HTML_TEMPLATE;
     }
     const distPath = dir('vis/index.html');
@@ -130,7 +122,7 @@ function readHtmlTemplate() {
 }
 
 function readProjectInfo() {
-    if (PROJECT_INFO.name !== 'TS_RETYPE_PROJECT_NAME') {
+    if (hasConstants()) {
         return PROJECT_INFO;
     }
     const pkgFile = dir('package.json');

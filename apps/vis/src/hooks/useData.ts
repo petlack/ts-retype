@@ -19,7 +19,7 @@ function decompress(td: TypeDuplicate) {
     return {
         ...td,
         files: td.files.map(file => {
-            const srcHgl = decompressRoot(file.srcHgl);
+            const srcHgl = file.srcHgl ? decompressRoot(file.srcHgl) : undefined;
             return {
                 ...file,
                 srcHgl,
