@@ -6,7 +6,7 @@
         "sourceMap": true,
         "module": "nodenext",
         "lib": [
-            "es2020",
+            "es2022",
             "dom"
         ],
         "moduleResolution": "nodenext",
@@ -19,5 +19,16 @@
         "forceConsistentCasingInFileNames": true,
         "isolatedModules": true,
         "baseUrl": "./",
+        "paths": {
+            "@ts-retype/search/*": [
+                "packages/search/dist/*"
+            ],
+            "@ts-retype/uikit/*": [
+                "packages/uikit/dist/*"
+            ],
+            "@ts-retype/utils/*": [
+                "packages/utils/dist/*"
+            ],
+        }
     }
 }

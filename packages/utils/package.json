@@ -1,0 +1,62 @@
+{
+  "name": "@ts-retype/utils",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "default": "./dist/index.js"
+    },
+    "./core": {
+      "import": {
+        "types": "./dist/core.d.ts",
+        "default": "./dist/core.js"
+      },
+      "require": {
+        "types": "./dist/core.d.cts",
+        "default": "./dist/core.cjs"
+      },
+      "default": "./dist/core.js"
+    },
+    "./tree": {
+      "import": {
+        "types": "./dist/tree.d.ts",
+        "default": "./dist/tree.js"
+      },
+      "require": {
+        "types": "./dist/tree.d.cts",
+        "default": "./dist/tree.cjs"
+      },
+      "default": "./dist/tree.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup --onSuccess \"tsc --emitDeclarationOnly --declaration\"",
+    "build:watch": "tsup --watch --onSuccess \"npm run start\"",
+    "clean": "rm -rf ./dist",
+    "start": "node dist/test.js",
+    "stats": "rollup -c rollup.config.mjs",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.11.6",
+    "@vitest/coverage-v8": "^1.2.2",
+    "tsup": "^8.0.1",
+    "vitest": "^1.2.2"
+  }
+}

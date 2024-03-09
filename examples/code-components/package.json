@@ -1,0 +1,40 @@
+{
+    "name": "@ts-retype/example-code-components",
+    "version": "1.0.0",
+    "description": "",
+    "license": "ISC",
+    "author": "",
+    "main": "src/index.ts",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "clean": "rm -rf dist && rm -rf node_modules/ts-retype",
+        "report": "ts-retype .",
+        "smoke": "tsc && npm run report && npm run start && npm run ts -- -- src/smoke.ts",
+        "start": "npm run ts -- -- src/index.ts",
+        "ts": "node --experimental-specifier-resolution=node --loader ts-node/esm"
+    },
+    "dependencies": {
+        "@ts-retype/syhi": "*",
+        "@ts-retype/uikit": "*",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@types/react": "^18.2.43",
+        "@types/react-dom": "^18.2.17",
+        "@typescript-eslint/eslint-plugin": "^6.19.1",
+        "@typescript-eslint/parser": "^6.19.1",
+        "@vitejs/plugin-react": "^4.2.1",
+        "autoprefixer": "^10.4.17",
+        "eslint": "^8.56.0",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.4.5",
+        "postcss": "^8.4.35",
+        "rollup-plugin-visualizer": "^5.12.0",
+        "tailwindcss": "^3.4.1",
+        "typescript": "^5.2.2",
+        "vite": "^5.1.0"
+    }
+}

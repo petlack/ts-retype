@@ -1,23 +1,57 @@
 {
-  "name": "@ts-retype/search",
-  "version": "1.0.0",
-  "description": "",
-  "type": "module",
-  "main": "dist/index.cjs",
-  "types": "dist/index.d.cts",
-  "scripts": {
-    "build": "tsup --onSuccess \"tsc --emitDeclarationOnly --declaration\"",
-    "build:watch": "tsup --watch --onSuccess \"npm run start\"",
-    "clean": "rm -rf ./dist",
-    "start": "node dist/index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "typescript": "^5.3.3"
-  },
-  "devDependencies": {
-    "tsup": "^8.0.1"
-  }
+    "name": "@ts-retype/search",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            },
+            "require": {
+                "types": "./dist/index.d.cts",
+                "default": "./dist/index.cjs"
+            },
+            "default": "./dist/index.js"
+        },
+        "./types": {
+            "import": {
+                "types": "./dist/types.d.ts",
+                "default": "./dist/types.js"
+            },
+            "require": {
+                "types": "./dist/types.d.cts",
+                "default": "./dist/types.cjs"
+            },
+            "default": "./dist/types.js"
+        }
+    },
+    "scripts": {
+        "build": "tsup --onSuccess \"tsc --emitDeclarationOnly --declaration\"",
+        "build:watch": "tsup --watch --onSuccess \"npm run start\"",
+        "clean": "rm -rf ./dist",
+        "start": "node dist/index.js",
+        "stats": "rollup -c rollup.config.mjs",
+        "test": "vitest run --coverage"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@ts-retype/syhi": "workspace:*",
+        "@ts-retype/utils": "workspace:*",
+        "glob": "^10.3.10",
+        "ramda": "^0.29.1",
+        "typescript": "^5.3.3"
+    },
+    "devDependencies": {
+        "@types/progress": "^2.0.5",
+        "@types/ramda": "^0.28.23",
+        "@vitest/coverage-v8": "^1.2.2",
+        "tsup": "^8.0.1",
+        "vitest": "^1.2.2"
+    }
 }

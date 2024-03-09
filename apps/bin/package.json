@@ -5,24 +5,35 @@
     "description": "",
     "type": "module",
     "main": "dist/index.cjs",
+    "bin": {
+        "ts-retype": "dist/ts-retype.cjs"
+    },
     "scripts": {
+        "bin": "./dist/ts-retype.cjs .",
         "build": "tsup",
-        "build:watch": "tsup --watch --onSuccess \"npm run start\"",
-        "copy-assets-from-vis": "mkdir -p ./dist/vis && cp -R ../vis/dist/* ./dist/vis/",
+        "build:watch": "tsup --watch --onSuccess \"npm run dev\"",
+        "copy-assets-from-vis": "mkdir -p ./dist/vis && cp -R ../vis/dist/* ./dist/vis/ && cp ./package.json ./dist/",
         "clean": "rm -rf ./dist",
-        "dev": "node dist/index.cjs --help",
-        "start": "node dist/index.cjs --help"
+        "dev": "node dist/index.cjs",
+        "start": "node dist/index.cjs --help",
+        "stats": "rollup -c rollup.config.mjs",
+        "test": "vitest run --coverage"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
         "@ts-retype/search": "workspace:^",
-        "commander": "^11.1.0"
+        "@ts-retype/utils": "workspace:^",
+        "commander": "^12.0.0"
     },
     "devDependencies": {
+        "@rollup/plugin-commonjs": "^25.0.7",
+        "@rollup/plugin-node-resolve": "^15.2.3",
         "@types/node": "^20.11.6",
-        "tsup": "^8.0.1"
+        "@vitest/coverage-v8": "^1.2.2",
+        "tsup": "^8.0.1",
+        "vitest": "^1.2.2"
     },
     "nx": {
         "targets": {

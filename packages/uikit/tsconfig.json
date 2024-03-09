@@ -1,17 +1,18 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "declaration": true,
-    "rootDir": "src",
-    "jsx": "react-jsx"
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "tsup.config.ts"
-  ]
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "declaration": true,
+        "rootDir": "src",
+        "jsx": "react-jsx",
+    },
+    "include": [
+        "vitest.d.ts",
+        "src/**/*",
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "tsup.config.ts"
+    ]
 }

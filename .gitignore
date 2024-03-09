@@ -1,7 +1,13 @@
+.DS_Store
+
 node_modules
+coverage
+
 dist
 build
+tmp
+
 .nx
-
-
 .nx/cache
+
+**/generated/input

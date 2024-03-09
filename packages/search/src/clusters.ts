@@ -1,0 +1,153 @@
+import { parse } from './parse.js';
+import { Similarity, IClusters } from './types/similarity.js';
+import ts from 'typescript';
+import { freq, lines, selectIndices } from '@ts-retype/utils';
+import { pluck, uniq } from 'ramda';
+import { highlight } from '@ts-retype/syhi/highlight';
+import { TypeDuplicate } from './types.js';
+import {
+    CandidateType,
+    LiteralCandidateType,
+    EnumCandidateType,
+    FunctionCandidateType,
+    UnionCandidateType,
+    SourceCandidateType,
+    Property,
+} from './types/candidate.js';
+
+export function clustersToDuplicates(
+    types: SourceCandidateType[],
+    clusters: IClusters<Similarity>,
+): TypeDuplicate[] {
+    const res = clusters.flatMap(
+        (group, idxs) =>
+            ({
+                names: chooseClusterNames(types, idxs),
+                files: chooseClusterFiles(types, idxs),
+                group: similarityToDuplicateGroup(+group as Similarity),
+                ...chooseTypeFeatures(types, idxs),
+            } as TypeDuplicate),
+    );
+    return res;
+}
+
+export function findTypesInFile(
+    srcFile: ts.SourceFile,
+    relPath: string,
+): { types: SourceCandidateType[]; lengths: number[] } {
+    function toSourceCandidateTypes(file: string, types: CandidateType[]): SourceCandidateType[] {
+        return types.map((t) => {
+            const isFunction = t.type === 'function';
+            const src = isFunction
+                ? (t as FunctionCandidateType).signature?.strFull || '() => {}'
+                : t.src;
+            // const src = getCodeSnippet(srcFile, { pos: t.pos[0], end: t.pos[1] });
+            const offset = isFunction
+                ? (t as FunctionCandidateType).signature?.name?.length || 0
+                : t.offset;
+            const pos = isFunction ? ([0, src.length] as typeof t.pos) : t.pos;
+            return {
+                ...t,
+                offset,
+                pos,
+                file,
+                srcHgl: highlight(src),
+                src,
+            };
+        });
+    }
+    const lengths = lines(srcFile.getFullText()).map(l => l.length);
+    const candidateTypes = parse(srcFile);
+    const types = toSourceCandidateTypes(relPath, candidateTypes).filter(nonEmptyCandidateType);
+    return { types, lengths };
+}
+
+function chooseClusterFiles(
+    types: SourceCandidateType[],
+    idxs: Iterable<number>,
+): SourceCandidateType[] {
+    return selectIndices(types, idxs);
+}
+
+function chooseClusterNames(
+    types: SourceCandidateType[],
+    idxs: Iterable<number>,
+): { name: string; count: number }[] {
+    return freq(pluck('name', selectIndices(types, idxs)));
+}
+
+function chooseTypeFeatures(
+    types: SourceCandidateType[],
+    idxs: Iterable<number>,
+) {
+    const selected = selectIndices(types, idxs);
+    const selectedTypes = uniq(pluck('type', selected));
+    // if (selectedTypes.length > 1) {
+    //   console.log('warning: multiple types in a similarity group');
+    // }
+    const type = selectedTypes[0];
+    switch (type) {
+    case 'alias':
+    case 'interface':
+    case 'literal':
+        return {
+            properties: (selected[0] as unknown as LiteralCandidateType).properties.map(
+                propertyToOutput,
+            ),
+        };
+    case 'enum':
+        return {
+            members: (selected[0] as unknown as EnumCandidateType).members,
+        };
+    case 'function':
+        return {
+            parameters: (selected[0] as unknown as FunctionCandidateType).parameters.map(
+                propertyToOutput,
+            ),
+            returnType: (selected[0] as unknown as FunctionCandidateType).returnType,
+        };
+    case 'union':
+        return {
+            types: (selected[0] as unknown as UnionCandidateType).types,
+        };
+    }
+}
+
+function nonEmptyCandidateType(
+    type: CandidateType,
+): boolean {
+    switch (type.type) {
+    case 'alias':
+    case 'interface':
+    case 'literal':
+        return (<LiteralCandidateType>type).properties.length > 0;
+    case 'enum':
+        return (<EnumCandidateType>type).members.length > 0;
+    case 'function':
+        return (<FunctionCandidateType>type).parameters.length > 0;
+    case 'union':
+        return (<UnionCandidateType>type).types.length > 0;
+    }
+}
+
+function propertyToOutput(
+    prop: Property,
+): Property {
+    return {
+        name: prop.name,
+        type: prop.type,
+    };
+}
+
+function similarityToDuplicateGroup(
+    sim: Similarity,
+): TypeDuplicate['group'] {
+    switch (sim) {
+    case Similarity.Identical:
+        return 'identical';
+    case Similarity.HasIdenticalProperties:
+        return 'renamed';
+    default:
+        return 'different';
+    }
+}
