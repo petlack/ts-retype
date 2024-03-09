@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "bin": "pnpm nx bin @ts-retype/bin --verbose",
+    "bin": "pnpm nx bin @ts-retype/bin",
     "build": "pnpm nx run-many -t build",
-    "clean": "pnpm nx run-many -t clean",
+    "clean": "rm -rf .nx && pnpm nx run-many -t clean",
     "lint": "eslint --cache --fix --max-warnings=0 .",
     "postinstall": "husky init && echo \"pnpm lint-staged\" > .husky/pre-commit",
     "prepare": "husky",
