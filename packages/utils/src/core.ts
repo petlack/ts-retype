@@ -51,7 +51,7 @@ export function formatSize(
         size /= 1024;
         unitIndex++;
     }
-    return `${size.toFixed(2)} ${units[unitIndex]}`;
+    return `${unitIndex > 0 ? size.toFixed(2) : size} ${units[unitIndex]}`;
 }
 
 /**

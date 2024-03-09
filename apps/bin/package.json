@@ -9,12 +9,13 @@
         "ts-retype": "dist/ts-retype.cjs"
     },
     "scripts": {
-        "bin": "./dist/ts-retype.cjs .",
+        "bin": "./dist/release/ts-retype.cjs .",
         "build": "tsup",
         "build:watch": "tsup --watch --onSuccess \"npm run dev\"",
         "compile": "cp -R ./dist/release/* ./dist/",
         "clean": "rm -rf ./dist",
         "dev": "node dist/index.cjs",
+        "publish": "cd ./dist/release && npm publish",
         "start": "node dist/index.cjs --help",
         "stats": "rollup -c rollup.config.mjs",
         "test": "vitest run --coverage"
@@ -38,6 +39,11 @@
     "nx": {
         "targets": {
             "bin": {
+                "dependsOn": [
+                    "compile"
+                ]
+            },
+            "publish": {
                 "dependsOn": [
                     "compile"
                 ]

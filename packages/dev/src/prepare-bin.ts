@@ -4,7 +4,7 @@ import { execute } from './utils/cmd.js';
 import { isMain } from './utils/is-main.js';
 import { ensureDirectoryExists, getRootDir } from './utils/paths.js';
 import { createCommand } from 'commander';
-import { Logger, bold } from '@ts-retype/utils/index.js';
+import { Logger, bold, formatSize } from '@ts-retype/utils/index.js';
 
 const log = new Logger('bin');
 
@@ -81,7 +81,7 @@ export async function prepareBin() {
     const escapedVisHtmlContents = visHtmlContents.toString().replace(/`/g, '\\`');
     log.info('Replacing constants in ts-retype.cjs');
     await fillConstants(
-        `${distRoot}/ts-retype.cjs`,
+        `${releaseRoot}/ts-retype.cjs`,
         {
             TS_RETYPE_REPORT_HTML_TEMPLATE: escapedVisHtmlContents,
             TS_RETYPE_PROJECT_NAME: packageJson.name,
@@ -98,7 +98,7 @@ async function fillConstants(path: string, constants: Record<string, string | Bu
     const replaced = Object.entries(constants).reduce(
         (acc, [key, value]) => {
             const str = value?.toString() ?? '';
-            log.info(`Replacing ${key} with ${str.length} chars`);
+            log.info(`Written ${bold(formatSize(str.length))} to ${key}`);
             return acc.replace(key, str);
         },
         contents.toString(),

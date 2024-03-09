@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "bin": "./apps/bin/dist/ts-retype.cjs .",
-    "build": "echo \"build all\"",
+    "bin": "pnpm nx bin @ts-retype/bin --verbose",
+    "build": "pnpm nx run-many -t build",
+    "clean": "pnpm nx run-many -t clean",
     "lint": "eslint --cache --fix --max-warnings=0 .",
     "postinstall": "husky init && echo \"pnpm lint-staged\" > .husky/pre-commit",
-    "prepare": "husky"
+    "prepare": "husky",
+    "publish": "pnpm nx run-many -t publish",
+    "test": "pnpm nx run-many -t test"
   },
   "keywords": [],
   "author": "",
