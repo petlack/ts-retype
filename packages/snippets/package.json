@@ -20,7 +20,7 @@
         "@ts-retype/syhi": "workspace:*",
         "@ts-retype/utils": "workspace:*",
         "commander": "^12.0.0",
-        "ramda": "^0.28.0"
+        "ramda": "^0.29.0"
     },
     "devDependencies": {
         "@types/node": "^20.11.25",
