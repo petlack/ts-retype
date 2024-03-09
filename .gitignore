@@ -10,7 +10,8 @@ tmp
 .nx
 .nx/cache
 
-.husky
+.husky/*
+!.husky/pre-commit
 
 .eslintcache
 

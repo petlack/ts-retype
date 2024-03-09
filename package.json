@@ -7,7 +7,7 @@
     "bin": "./apps/bin/dist/ts-retype.cjs .",
     "build": "echo \"build all\"",
     "lint": "eslint --cache --fix --max-warnings=0 .",
-    "postinstall": "husky init",
+    "postinstall": "husky init && echo \"pnpm lint-staged\" > .husky/pre-commit",
     "prepare": "husky"
   },
   "keywords": [],
@@ -25,6 +25,7 @@
     "rollup": "^4.12.1",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-visualizer": "^5.12.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.2"
   },
   "husky": {
