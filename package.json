@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "bin": "./apps/bin/dist/ts-retype.cjs .",
-    "build": "echo \"build all\""
+    "build": "echo \"build all\"",
+    "postinstall": "husky init",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -15,10 +17,23 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.57.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "nx": "18.0.0",
+    "prettier": "^3.2.5",
     "rollup": "^4.12.1",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-visualizer": "^5.12.0",
     "typescript": "^5.4.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --cache --fix --max-warnings=0"
+    ]
   }
 }
