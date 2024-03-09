@@ -4,14 +4,16 @@ import {
     enableColors,
     green,
     red,
+    stripColors,
     yellow,
 } from './colors.js';
 import { clearLine, cursorTo } from 'readline';
 import { formatDuration } from './time.js';
-import { formatJson, stringify } from './core.js';
+import { formatJson, getTerminalDims, stringify } from './core.js';
 
 type LogFn = (msg: string) => void;
 type Level = 'info' | 'ok' | 'warn' | 'error';
+type Dims = [number, number];
 
 enableColors();
 
@@ -19,6 +21,7 @@ export class Logger {
     #createdAt = new Date();
     #loggedMessages = 0;
     #formatter: Formatter;
+    #dims: Dims | undefined;
 
     constructor(
         private readonly tag: string | undefined = undefined,
@@ -26,14 +29,25 @@ export class Logger {
         private readonly logFn: LogFn = console.log,
     ) {
         this.#formatter = new Formatter();
+        this.#dims = getTerminalDims();
     }
 
-    amend(msg: string, newline = false) {
+    update = {
+        info: (...msgs: unknown[]) => this.#amend(this.#buildLog('info', ...msgs)),
+    };
+
+    #amend(msg: string) {
         clearLine(process.stdout, 0);
         cursorTo(process.stdout, 0);
-        process.stdout.write(msg);
-        if (newline) {
-            process.stdout.write('\n');
+        if (this.#dims) {
+            const [width] = this.#dims;
+            const length = stripColors(msg).length;
+            const trimmed = (length > width) ?
+                stripColors(msg).slice(0, width - 3) + '...' :
+                msg;
+            process.stdout.write(trimmed);
+        } else {
+            process.stdout.write(msg);
         }
     }
 
@@ -62,11 +76,10 @@ export class Logger {
         this.#log('error', ...msgs);
     }
 
-    #log(
+    #buildLog(
         level: Level,
         ...args: unknown[]
-    ): void {
-        this.#loggedMessages++;
+    ): string {
         const tag = this.#tag();
         const logArgs: unknown[] = [
             dimmed(this.#duration()),
@@ -90,7 +103,15 @@ export class Logger {
             logArgs.push(red(this.#stringify(args)));
             break;
         }
-        this.logFn(logArgs.join(' '));
+        return logArgs.join(' ');
+    }
+
+    #log(
+        level: Level,
+        ...args: unknown[]
+    ): void {
+        this.#loggedMessages++;
+        this.logFn(this.#buildLog(level, ...args));
     }
 
     #tag(): string | undefined {
