@@ -6,6 +6,7 @@
   "scripts": {
     "bin": "./apps/bin/dist/ts-retype.cjs .",
     "build": "echo \"build all\"",
+    "lint": "eslint --cache --fix --max-warnings=0 .",
     "postinstall": "husky init",
     "prepare": "husky"
   },
