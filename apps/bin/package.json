@@ -12,7 +12,7 @@
         "bin": "./dist/ts-retype.cjs .",
         "build": "tsup",
         "build:watch": "tsup --watch --onSuccess \"npm run dev\"",
-        "copy-assets-from-vis": "mkdir -p ./dist/vis && cp -R ../vis/dist/* ./dist/vis/ && cp ./package.json ./dist/",
+        "compile": "cp -R ./dist/release/* ./dist/",
         "clean": "rm -rf ./dist",
         "dev": "node dist/index.cjs",
         "start": "node dist/index.cjs --help",
@@ -37,19 +37,14 @@
     },
     "nx": {
         "targets": {
-            "copy-assets-from-vis": {
+            "compile": {
                 "dependsOn": [
-                    {
-                        "projects": "@ts-retype/vis",
-                        "target": "build"
-                    }
+                    "@ts-retype/dev:run-bin"
                 ]
             },
             "build": {
                 "dependsOn": [
-                    {
-                        "target": "copy-assets-from-vis"
-                    }
+                    "@ts-retype/vis:build"
                 ]
             }
         }

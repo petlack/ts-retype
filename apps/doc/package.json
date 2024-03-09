@@ -37,6 +37,8 @@
             "build": {
                 "dependsOn": [
                     "@ts-retype/snippets:bin",
+                    "@ts-retype/dev:run-readme",
+                    "@ts-retype/dev:run-cmd",
                     "@ts-retype/uikit:build"
                 ]
             }

@@ -14,6 +14,9 @@ rebuild-all:
 build *args='':
     npx nx build "@ts-retype/${@}" --verbose
 
+compile *args='':
+    npx nx compile "@ts-retype/${@}" --verbose
+
 rebuild *args='':
     npx nx build "@ts-retype/${@}" --verbose --skipNxCache
 

@@ -2,7 +2,7 @@ import { join } from 'path';
 import { copyFile, readFile, writeFile } from 'fs/promises';
 import { execute } from './utils/cmd.js';
 import { isMain } from './utils/is-main.js';
-import { getRootDir } from './utils/paths.js';
+import { ensureDirectoryExists, getRootDir } from './utils/paths.js';
 import { createCommand } from 'commander';
 import { Logger, bold } from '@ts-retype/utils/index.js';
 
@@ -10,11 +10,17 @@ const log = new Logger('bin');
 
 export async function prepareBin() {
     const rootDir = await getRootDir();
-    log.info(`Root dir: ${rootDir}`);
+    log.info(`Root dir:    ${rootDir}`);
     if (!rootDir) {
         return;
     }
     const distRoot = join(rootDir, 'apps', 'bin', 'dist');
+    const releaseRoot = join(distRoot, 'release');
+    log.info(`Dist dir:    ${distRoot}`);
+    log.info(`Release dir: ${releaseRoot}\n`);
+
+    await ensureDirectoryExists(releaseRoot);
+
     const packageJson = JSON.parse(
         (await readFile(join(rootDir, 'apps', 'bin', 'package.json'))).toString(),
     );
@@ -24,6 +30,7 @@ export async function prepareBin() {
     }
 
     delete packageJson.devDependencies;
+    delete packageJson.dependencies;
     delete packageJson.exports;
     delete packageJson.husky;
     delete packageJson['lint-staged'];
@@ -40,25 +47,24 @@ export async function prepareBin() {
     log.info(`Preparing bin for ${bold(packageJson.name)} v${packageJson.version}`);
 
     await writeFile(
-        `${distRoot}/package.json`,
+        `${releaseRoot}/package.json`,
         distPackageJson,
     );
 
     await copyFile(
         `${rootDir}/README.md`,
-        `${distRoot}/README.md`,
+        `${releaseRoot}/README.md`,
     );
     await copyFile(
         `${rootDir}/LICENSE.md`,
-        `${distRoot}/LICENSE.md`,
+        `${releaseRoot}/LICENSE.md`,
     );
-
     await copyFile(
-        `${rootDir}/apps/vis/dist/index.html`,
-        `${distRoot}/index.html`,
+        `${distRoot}/ts-retype.cjs`,
+        `${releaseRoot}/ts-retype.cjs`,
     );
 
-    const visHtmlFile = `${distRoot}/index.html`;
+    const visHtmlFile = `${rootDir}/apps/vis/dist/index.html`;
     await fillConstants(
         `${distRoot}/ts-retype.cjs`,
         {
@@ -75,7 +81,11 @@ export async function prepareBin() {
 async function fillConstants(path: string, constants: Record<string, string | Buffer>) {
     const contents = await readFile(path);
     const replaced = Object.entries(constants).reduce(
-        (acc, [key, value]) => acc.replace(key, value?.toString()),
+        (acc, [key, value]) => {
+            const str = value?.toString() ?? '';
+            log.info(`Replacing ${key} with ${str.length} chars`);
+            return acc.replace(key, str);
+        },
         contents.toString(),
     );
     await writeFile(path, replaced);
