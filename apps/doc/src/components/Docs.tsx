@@ -108,7 +108,7 @@ export function Docs() {
 
             <Section id="examples">
                 <Heading>Examples</Heading>
-                <p>See example reports for following projects</p>
+                <p>Example reports for following projects</p>
                 <ul>
                     <li><a href="./report-ts-retype.html" target="_blank">petlack/ts-retype</a></li>
                     <li><a href="./report-apollo-client.html" target="_blank">apollographql/apollo-client</a></li>

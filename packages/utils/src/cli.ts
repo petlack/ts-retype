@@ -16,27 +16,6 @@ export async function execute(
     success();
 }
 
-function check<T>(
-    program: () => Promise<T>,
-): () => Promise<T> {
-    return async function boundary() {
-        try {
-            const res = await program();
-            return res;
-        } catch (err) {
-            if (err instanceof Error && err.stack) {
-                log.error((err as Error).stack);
-            }
-            else if (err && typeof err === 'object' && 'message' in err) {
-                log.error((err as { message: string }).message);
-            } else {
-                log.error(err);
-            }
-            panic((err as Error).message ?? 'Error');
-        }
-    };
-}
-
 export function monitor<T>(
     promiseFn: () => Promise<T>,
     name?: string,
@@ -66,6 +45,28 @@ export function monitor<T>(
         }
     };
 }
+
+function check<T>(
+    program: () => Promise<T>,
+): () => Promise<T> {
+    return async function boundary() {
+        try {
+            const res = await program();
+            return res;
+        } catch (err) {
+            if (err instanceof Error && err.stack) {
+                log.error((err as Error).stack);
+            }
+            else if (err && typeof err === 'object' && 'message' in err) {
+                log.error((err as { message: string }).message);
+            } else {
+                log.error(err);
+            }
+            panic((err as Error).message ?? 'Error');
+        }
+    };
+}
+
 
 async function executeFunction(
     fn: () => void | Promise<void>,
