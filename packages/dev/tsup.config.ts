@@ -5,6 +5,7 @@ export default defineConfig({
         'src/generate-readme.ts',
         'src/generate-cmd-help.ts',
         'src/prepare-bin.ts',
+        'src/bump.ts',
     ],
     format: ['cjs'],
     splitting: false,

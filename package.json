@@ -6,11 +6,13 @@
   "scripts": {
     "bin": "pnpm nx bin @ts-retype/bin",
     "build": "pnpm nx run-many -t build",
+    "bump": "pnpm nx run-bump @ts-retype/dev",
     "clean": "rm -rf .nx && pnpm nx run-many -t clean",
     "lint": "eslint --cache --fix --max-warnings=0 .",
     "postinstall": "husky init && echo \"pnpm lint-staged\" > .husky/pre-commit",
     "prepare": "husky",
     "publish": "pnpm nx run-many -t publish",
+    "release": "pnpm nx run @ts-retype/bin:release",
     "test": "pnpm nx run-many -t test"
   },
   "keywords": [],

@@ -16,6 +16,7 @@
         "clean": "rm -rf ./dist",
         "dev": "node dist/index.cjs",
         "publish": "cd ./dist/release && npm publish",
+        "release": "echo 'Released'",
         "start": "node dist/index.cjs --help",
         "stats": "rollup -c rollup.config.mjs",
         "test": "vitest run --coverage"
@@ -38,6 +39,12 @@
     },
     "nx": {
         "targets": {
+            "release": {
+                "dependsOn": [
+                    "compile",
+                    "@ts-retype/dev:run-bump"
+                ]
+            },
             "bin": {
                 "dependsOn": [
                     "compile"
