@@ -1,5 +1,6 @@
 import {
     blue,
+    bold,
     dimmed,
     enableColors,
     green,
@@ -110,7 +111,7 @@ export class Logger {
             break;
         case 'ok':
             logArgs.unshift(green(' ✅'));
-            logArgs.push(green(this.#stringify(args)));
+            logArgs.push(green(bold(this.#stringify(args))));
             break;
         case 'warn':
             logArgs.unshift(yellow(' ⚠️'));

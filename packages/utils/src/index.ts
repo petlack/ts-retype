@@ -13,4 +13,4 @@ export {
     pwd,
     readPackageJson,
 } from './files.js';
-export { execute } from './cli.js';
+export * from './cli.js';
