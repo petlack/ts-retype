@@ -76,10 +76,13 @@ export async function prepareBin() {
         distPackageJson,
     );
 
-    const visHtmlFile = `${rootDir}/apps/vis/dist/index.html`;
+    const visHtmlFile = join(rootDir, 'apps', 'vis', 'dist', 'index.html');
+    await copyFile(`${visHtmlFile}`, `${releaseRoot}/index.html`);
     const visHtmlContents = await readFile(visHtmlFile);
-    const escapedVisHtmlContents = visHtmlContents.toString().replace(/`/g, '\\`');
-    log.info('Replacing constants in ts-retype.cjs');
+    const escapedVisHtmlContents = escapeHTMLContentForJS(
+        visHtmlContents.toString().trim()
+    );
+    log.info(`Replacing constants in ${releaseRoot}/ts-retype.cjs`);
     await fillConstants(
         `${releaseRoot}/ts-retype.cjs`,
         {
@@ -94,18 +97,31 @@ export async function prepareBin() {
 }
 
 async function fillConstants(path: string, constants: Record<string, string | Buffer>) {
-    const contents = await readFile(path);
+    const buffer = await readFile(path);
+    const contents = buffer.toString();
     const replaced = Object.entries(constants).reduce(
         (acc, [key, value]) => {
             const str = value?.toString() ?? '';
             log.info(`Written ${bold(formatSize(str.length))} to ${key}`);
             return acc.replace(key, str);
+
         },
-        contents.toString(),
+        contents,
     );
     await writeFile(path, replaced);
 }
 
+function escapeHTMLContentForJS(htmlContent: string): string {
+    return htmlContent
+        .replace(/\\/g, '\\\\')
+        .replace(/'/g, '\\\'')
+        .replace(/"/g, '\\"')
+        .replace(/`/g, '\\`')
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g, '\\r');
+}
+
+//
 if (isMain()) {
     execute(
         createCommand()

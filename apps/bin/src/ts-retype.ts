@@ -2,16 +2,14 @@
 
 import { Command, createCommand } from 'commander';
 import { DEFAULT_CONFIG, TS_RETYPE_CMD_OPTIONS } from '@ts-retype/search/types.js';
-import { HTML_TEMPLATE, PROJECT_INFO, hasConstants } from './constants.js';
+import { HTML_TEMPLATE, PROJECT_INFO } from './constants.js';
 import {
     Logger,
     bold,
-    panic,
-    readPackageJson,
     stringify,
     stripColors,
 } from '@ts-retype/utils';
-import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { writeFileSync } from 'fs';
 import { RetypeCmdProps } from '@ts-retype/search/types.js';
 import { RetypeConfig } from '@ts-retype/search';
 import { join } from 'path';
@@ -114,37 +112,14 @@ function header(width = 50) {
 }
 
 function readHtmlTemplate() {
-    if (hasConstants()) {
-        log.info('Using embedded HTML template');
-        return HTML_TEMPLATE;
-    }
-    const distPath = dir('vis/index.html');
-    log.info('Loading HTML template from', distPath);
-    return readFileSync(distPath).toString();
+    return HTML_TEMPLATE;
 }
 
 function readProjectInfo() {
-    if (hasConstants()) {
-        log.info('Using embedded project info');
-        return PROJECT_INFO;
-    }
-    const pkgFile = dir('package.json');
-    log.info('Loading project info from', pkgFile);
-    if (!existsSync(pkgFile)) {
-        panic('No package.json found');
-    }
-    const pkg = readPackageJson(pkgFile);
-    return {
-        name: pkg.name,
-        description: pkg.description,
-        version: pkg.version,
-        docs: pkg.homepage,
-        repo: pkg.repository?.url,
-    };
+    return PROJECT_INFO;
 }
 
 const pwd = (p: string) => join(process.cwd(), p);
-const dir = (p: string) => join(__dirname, p);
 
 const safeLength = (msg: string) => stripColors(msg).length;
 const fill = (width: number, ch: string) => ''.padEnd(width, ch);

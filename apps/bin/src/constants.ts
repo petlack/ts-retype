@@ -1,9 +1,7 @@
 /**
 * HTML content of a report template
 */
-export const HTML_TEMPLATE = `
-TS_RETYPE_REPORT_HTML_TEMPLATE
-`;
+export const HTML_TEMPLATE = 'TS_RETYPE_REPORT_HTML_TEMPLATE';
 
 /**
 * The project info (package.json)
@@ -18,7 +16,7 @@ export const PROJECT_INFO = {
 
 export function hasConstants(): boolean {
     return (
-        HTML_TEMPLATE.toString() !== 'TS_RETYPE_REPORT_HTML_TEMPLATE' &&
-        PROJECT_INFO.name !== 'TS_RETYPE_PROJECT_NAME'
+        !HTML_TEMPLATE.toString().slice(0).startsWith('TS_RETYPE_') &&
+        !PROJECT_INFO.name.slice(0).startsWith('TS_RETYPE_')
     );
 }
