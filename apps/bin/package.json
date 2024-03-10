@@ -1,7 +1,7 @@
 {
     "name": "@ts-retype/bin",
     "sideEffects": false,
-    "version": "0.3.0-dev.6",
+    "version": "0.3.0-dev.7",
     "description": "Discover duplicate TypeScript types in your codebase.",
     "license": "MIT",
     "keywords": [
