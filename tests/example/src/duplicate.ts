@@ -1,4 +1,4 @@
-import type { TypeDuplicate } from '@ts-retype/search';
+import type { TypeDuplicate } from 'ts-retype';
 
 export const duplicate: TypeDuplicate = {
   names: [
