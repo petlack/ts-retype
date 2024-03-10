@@ -1,8 +1,8 @@
+import { CmdOptions, execute } from './utils/cmd.js';
 import { Logger, bold } from '@ts-retype/utils/index.js';
 import { panic, ultimatum } from '@ts-retype/utils/std.js';
 import { createCommand } from 'commander';
 import { exec } from 'child_process';
-import { execute } from './utils/cmd.js';
 import { isMain } from './utils/is-main.js';
 import { join } from 'path';
 import packageJson from '../../../apps/bin/package.json';
@@ -10,15 +10,7 @@ import { writeFileSync } from 'fs';
 
 const log = new Logger('bump');
 
-type Level = |
-    'info' |
-    'dev' |
-    'rc' |
-    'patch' |
-    'minor' |
-    'major' |
-    'release';
-
+type Level = 'info' | 'dev' | 'rc' | 'patch' | 'minor' | 'major' | 'release';
 type Version = {
     major: number;
     minor: number;
@@ -28,18 +20,28 @@ type Version = {
 };
 
 export async function bump(
-    options: {
-        level?: Level,
-        verbose?: boolean,
-    },
-) {
-    const distRoot = join(__dirname, '../../../apps/bin');
+    options: CmdOptions & {
+    app: string,
+    ignoreWorkspaceChanges?: boolean,
+    level?: Level,
+    remote?: string,
+    verbose?: boolean,
+}) {
+    const {
+        app,
+        ignoreWorkspaceChanges = true,
+        level = 'info',
+        remote = 'github',
+        verbose,
+    } = options;
 
-    // const level = process.argv[2] as (Level | undefined);
-    const level = options.level ?? 'info';
+    if (!app) panic('App name is required, but missing');
+
+    const distRootRelative = join('apps', app);
+    const distRoot = join(__dirname, '../../..', distRootRelative);
     const version = packageJson.version;
 
-    if (options.verbose) {
+    if (verbose) {
         log.info('Options:', options);
     }
 
@@ -55,7 +57,9 @@ export async function bump(
             '\n',
             modified.join('\n'),
         );
-        panic('Aborting');
+        if (!ignoreWorkspaceChanges) {
+            panic('Aborting');
+        }
     }
 
     const oldVersion = version;
@@ -63,7 +67,7 @@ export async function bump(
 
     log.info(`${oldVersion} - [${level}] -> ${newVersion} `);
 
-    // await ultimatum(`bump to ${newVersion} ? Y/n`);
+    if (!options.noconfirm) await ultimatum(`Bump to ${newVersion}?`);
 
     packageJson.version = newVersion;
 
@@ -72,22 +76,24 @@ export async function bump(
     log.info(`Writing ${distRoot}/package.json`);
     writeFileSync(`${distRoot}/package.json`, distPackageJson);
 
-    await ultimatum('run pnpm i ?');
+    if (!options.noconfirm) await ultimatum('run pnpm i ?');
     log.info(`Running ${bold('pnpm i')}`);
     await execAsync('pnpm i');
 
-    const commitMsg = `chore(bin): bump v${oldVersion} -> v${newVersion}`;
+    const commitMsg = `bump(${app}): release ${level} v${oldVersion} -> v${newVersion}`;
     log.info('Commit message:', '\n', commitMsg);
 
     const gitCommands = [
-        'git add .',
+        `git add ${distRootRelative}/package.json`,
         `git commit -m "${commitMsg}"`,
         `git tag -a v${newVersion} -m "v${newVersion}"`,
-        `git push github v${newVersion}`,
+        `git push ${remote} v${newVersion}`,
     ];
     log.info('Git Commands:', gitCommands);
-    await ultimatum('Run git commands?');
+
+    if (!options.noconfirm) await ultimatum('Run git commands?');
     for (const cmd of gitCommands) {
+        log.debug(`Running ${bold(cmd)}`);
         await execAsync(cmd);
     }
 }
@@ -142,7 +148,7 @@ function increaseVersion(version: string, levelExpr: Level) {
 
 function execAsync(cmd: string): Promise<string> {
     return new Promise((resolve, reject) => {
-        exec(cmd, (error, stdout, stderr) => {
+        exec(cmd, { cwd: '../../' }, (error, stdout, stderr) => {
             if (error) {
                 reject(error.message);
                 return;
@@ -170,7 +176,16 @@ if (isMain()) {
         createCommand()
             .name('bump')
             .description('Bump version of the bin package.')
-            .option('-l, --level <level>', 'Level of the bump - dev, rc, patch, minor, major, release'),
-        bump
+            // .argument('<pkg>', 'Name of the package - one of bin, vis, doc, utils, ...')
+            .option(
+                '-l, --level <level>',
+                'Level of the bump - dev, rc, patch, minor, major, release',
+            )
+            .option(
+                '--app <app>',
+                'Name of the app - one of bin, vis, doc',
+            ),
+        bump,
+        { noConfirm: true }
     );
 }

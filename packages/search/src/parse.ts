@@ -11,7 +11,7 @@ import {
     Property,
     UnionCandidateType,
 } from './types/candidate.js';
-import { getNodeText, toName } from './utils.js';
+import { getNodeText } from './utils.js';
 
 type TypeInFile = Pick<TypeDuplicate['files'][0], 'src' | 'pos' | 'offset' | 'lines'>;
 
@@ -19,6 +19,7 @@ export function getAllCandidates(
     srcFile: ts.SourceFile,
 ): CandidateType[] {
     const all: CandidateType[] = [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const visitor = (node: any) => {
     // console.log(node.kind, toName(node));
     // console.log(getNodeText(srcFile, node));
@@ -87,7 +88,7 @@ function asTypeInFile(
     srcFile: ts.SourceFile,
     node: ts.Node,
 ): TypeInFile {
-    const { src, startAt, endBefore, leftOffset, rightOffset } = getCodeSnippet(srcFile, node);
+    const { src, startAt, endBefore, leftOffset } = getCodeSnippet(srcFile, node);
     const pos: TypeInFile['pos'] = [startAt, endBefore];
     const offset: TypeInFile['offset'] = Math.max(0, -1 * leftOffset);
     const lines: TypeInFile['lines'] = [
@@ -104,6 +105,7 @@ function asTypeInFile(
 
 function getPropertySignature(
     srcFile: ts.SourceFile,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     node: any,
 ): Property | null {
     switch (node.kind) {
@@ -176,6 +178,7 @@ function getFunctionType(
 ): FunctionCandidateType {
     const returnType = getNodeText(srcFile, node.type).trim();
     const parameters = (node.parameters || []).map(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (p: any) =>
       <Property>{
           name: (getNodeText(srcFile, p.name) || '<unknown>').trim(),
@@ -224,6 +227,7 @@ function getEnumType(
     srcFile: ts.SourceFile,
     node: ts.EnumDeclaration,
 ): EnumCandidateType {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const members = (node.members || []).map((m: any) => m.name.escapedText);
     const candidate: EnumCandidateType = {
         name,
@@ -236,6 +240,7 @@ function getEnumType(
 
 function parseCandidate(
     srcFile: ts.SourceFile,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     node: any,
 ): CandidateType | undefined | false {
     switch (node.kind) {

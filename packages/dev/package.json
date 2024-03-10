@@ -13,7 +13,7 @@
     "dev:any": "nodemon -I --exec node --",
     "dev:noin": "nodemon --exec node --",
     "dev:bin": "tsup --watch --onSuccess \"node dist/prepare-bin.cjs\"",
-    "dev:bump": "tsup --watch --onSuccess \"node dist/bump.cjs -v --level dev\"",
+    "dev:bump": "tsup --watch --onSuccess \"node dist/bump.cjs -x --app bin --level dev\"",
     "dev:cmd": "tsup --watch --onSuccess \"node dist/generate-cmd-help.cjs\"",
     "dev:readme": "tsup --watch --onSuccess \"node dist/generate-readme.cjs\"",
     "run-bin": "node dist/prepare-bin.cjs",

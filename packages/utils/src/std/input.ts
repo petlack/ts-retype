@@ -6,14 +6,10 @@ import { panic } from './panic.js';
 */
 export async function confirm(
     message: string,
-    {
-        defaultYes = true,
-    }: {
-        defaultYes?: boolean,
-    } = {},
+    { defaultYes = true }: { defaultYes?: boolean } = {},
 ) {
     const options = defaultYes ? '[Y/n]' : '[y/N]';
-    const answer = await prompt(`${message}? ${options} `);
+    const answer = await prompt(`${message} ${options} `);
     return answer.toLowerCase() === 'y';
 }
 
@@ -44,8 +40,9 @@ export function prompt(
 */
 export async function ultimatum(
     message: string,
+    { defaultYes = false }: { defaultYes?: boolean } = {},
 ) {
-    if (!await confirm(message)) {
+    if (!await confirm(message, { defaultYes })) {
         panic('Aborted');
     }
 }

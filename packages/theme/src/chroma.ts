@@ -30,9 +30,7 @@ type ChromaPaletteProps = {
 export default function chromaPalette({
     colors = ['white', 'red', 'black'],
     colors2 = [],
-    correctLightness = true,
     numColors = 5,
-    bezier = true,
     diverging = false,
 }: ChromaPaletteProps = {}) {
     const even = numColors % 2 === 0;

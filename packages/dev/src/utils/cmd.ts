@@ -3,33 +3,44 @@ import {
     monitor,
 } from '@ts-retype/utils/std.js';
 import { Command } from 'commander';
+import { mergeDeepLeft } from 'ramda';
 
-export type BaseCmdProps = {
+export type CmdOptions = {
     interactive?: boolean;
     noconfirm?: boolean;
     verbose?: boolean;
     args: string[];
 };
 
-export async function execute<T extends BaseCmdProps>(
+export async function execute<T extends CmdOptions>(
     program: Command,
-    fn: (config: Partial<T>) => void | Promise<void>,
+    fn: (config: T) => void | Promise<void>,
+    options?: {
+        name?: string;
+        noConfirm?: boolean;
+        interactive?: boolean;
+        verbose?: boolean;
+    },
 ) {
-    const name = program.name();
+    const opts = mergeDeepLeft({
+        name: program.name(),
+        noConfirm: false,
+        interactive: false,
+        verbose: true,
+    }, options ?? {});
     await baseExecute(monitor(
         async function cmd() {
-            program
-                .option('-v, --verbose', 'Output more information')
-                .option('-y, --noconfirm', 'Skip all confirmations')
-                .option('-i, --interactive', 'Ask for script arguments');
+            if (opts.noConfirm) program.option('-y, --noconfirm', 'Skip all confirmations');
+            if (opts.interactive) program.option('-i, --interactive', 'Ask for script arguments');
+            if (opts.verbose) program.option('-x, --verbose', 'Output more information');
             const config = parseCmdProps<T>(program);
             await fn(config);
-        }, name));
+        }, opts.name));
 }
 
-function parseCmdProps<T extends BaseCmdProps>(program: Command): Partial<T> {
+function parseCmdProps<T extends CmdOptions>(program: Command): T {
     program.parse();
     const options = program.opts();
     const args = program.args;
-    return { ...options, args } as Partial<T>;
+    return { ...options, args } as T;
 }
