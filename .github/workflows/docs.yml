@@ -19,7 +19,7 @@ jobs:
           pnpm install
       - name: ✏️  Generate Docs
         run: |
-          pnpm nx build @ts-retype/doc --verbose
+          pnpm run docs
           mkdir -p ./docs-static/static
           cp -R ./apps/doc/dist/* ./docs-static/static/
           ls -ahl ./docs-static/static

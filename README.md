@@ -59,6 +59,8 @@ See [Data Format](#data-format) for result format.
 ```console
 Usage: ts-retype [options] [rootDir]
 
+Discover duplicate TypeScript types in your codebase.
+
 Options:
   -V, --version                      output the version number
   -c, --config [file-path]           load config - if no path provided, loads
