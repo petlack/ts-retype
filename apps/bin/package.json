@@ -2,7 +2,22 @@
     "name": "@ts-retype/bin",
     "sideEffects": false,
     "version": "0.3.0-dev.3",
-    "description": "",
+    "description": "Discover duplicate TypeScript types in your codebase.",
+    "license": "MIT",
+    "keywords": [
+        "typescript",
+        "static-analysis",
+        "node",
+        "types",
+        "cli"
+    ],
+    "homepage": "https://petlack.github.io/ts-retype/",
+    "bugs": "https://github.com/petlack/ts-retype/issues",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/petlack/ts-retype"
+    },
+    "author": "petlack",
     "type": "module",
     "main": "dist/index.cjs",
     "bin": {
@@ -21,9 +36,6 @@
         "stats": "rollup -c rollup.config.mjs",
         "test": "vitest run --coverage"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
     "dependencies": {
         "@ts-retype/search": "workspace:^",
         "@ts-retype/utils": "workspace:^",
