@@ -18,7 +18,7 @@ jobs:
           npm -v
           node -v
           npm add -g pnpm
-          pnpm --filter @ts-retype/bin compile
+          pnpm run release
       - name: Publish package on NPM 📦
         run: pnpm run publish
         env:
