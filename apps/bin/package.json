@@ -1,7 +1,7 @@
 {
     "name": "@ts-retype/bin",
     "sideEffects": false,
-    "version": "0.3.0-dev.9",
+    "version": "0.3.0-dev.10",
     "description": "",
     "type": "module",
     "main": "dist/index.cjs",
