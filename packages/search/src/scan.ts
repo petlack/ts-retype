@@ -2,6 +2,7 @@ import {
     Logger,
     Progress,
     formatDuration,
+    shortError,
 } from '@ts-retype/utils';
 import { Metadata, ScanProps, TypeDuplicate } from './types.js';
 import { clustersToDuplicates, findTypesInFile } from './clusters.js';
@@ -33,21 +34,32 @@ export function scan(
 
     log.info(`Searching in ${files.length.toLocaleString()} files`);
 
+    const errors = [];
     for (const relPath of files) {
         const file = join(rootDir, relPath);
         log.update.info(`⏳ Loading ${formatFileName(file)}`);
 
-        const srcFile = loadFile(file);
-        const { types, lengths } = findTypesInFile(srcFile, relPath);
-
-        filesLengths[relPath] = lengths;
-        filesTypesCount[relPath] = types.length;
-        allTypes.push(...types);
+        try {
+            const srcFile = loadFile(file);
+            const { types, lengths } = findTypesInFile(srcFile, relPath);
+            filesLengths[relPath] = lengths;
+            filesTypesCount[relPath] = types.length;
+            allTypes.push(...types);
+        } catch (e) {
+            errors.push([file, e]);
+            continue;
+        }
     }
     const locs = Object.values(filesLengths).reduce((a, b) => a + b.length, 0);
     const filesWithTypes = Object.entries(filesTypesCount).filter(([, count]) => count > 0).length;
-
     log.update.info(`Searched  ${locs.toLocaleString()} lines of code\n`);
+
+    if (errors.length > 0) {
+        for (const [file, error] of errors) {
+            log.error(`Error in ${file}: ${shortError(error)}`);
+        }
+    }
+
     log.info(`Found ${allTypes.length.toLocaleString()} types definitions`);
     log.info(`took ${formatDuration(new Date().getTime() - start)}`);
     log.bare();
