@@ -1,4 +1,4 @@
-import { ensureDirectoryExists, listFiles, panic } from '@ts-retype/utils';
+import { ensureDirectoryExists, listFiles, panic } from '@ts-retype/utils/std.js';
 import { join, parse, resolve } from 'path';
 import { readFile, writeFile } from 'fs/promises';
 import { createCommand } from 'commander';

@@ -1,35 +1,39 @@
-import { bold, panic, success } from './colors.js';
-import { Logger } from './logger.js';
-import { formatDuration } from './time.js';
-
-const log = new Logger('cli');
+import { panic, success } from './panic.js';
+import { bold } from '../colors.js';
+import { shortError } from '../core.js';
+import { Logger } from '../logger.js';
+import { formatDuration } from '../time.js';
 
 /**
-* Executes the Promise and logs the result.
+* Executes the Promise and logs OK.
 */
 export async function execute(
     program: () => Promise<void>,
 ): Promise<void> {
     await executeFunction(
-        check(program)
+        panicOnError(program)
     );
     success();
 }
 
+/**
+* Executes the Promise and logs the duration and failures.
+* @returns The Promise result.
+* @throws {Error} if the Promise rejects
+*/
 export function monitor<T>(
     promiseFn: () => Promise<T>,
     name?: string,
 ): () => Promise<T> {
     const tag = name ?? '';
-    const log = new Logger('exe');
+    const log = new Logger(tag);
     return async () => {
         const startedAt = new Date().getTime();
         const logDuration = () => {
             const duration = formatDuration(new Date().getTime() - startedAt);
             log.bare();
-            log.info(`${bold(tag)} finished in ${bold(duration)}`);
+            log.info(`Finished in ${bold(duration)}`);
         };
-
         log.info(`Running ${bold(tag)}`);
         log.bare();
         try {
@@ -40,13 +44,16 @@ export function monitor<T>(
         } catch (e: unknown) {
             logDuration();
             log.bare();
-            log.error(`Failed to run ${bold(tag)}`);
+            log.error(`Failed to run with ${shortError(e)}`);
             throw e;
         }
     };
 }
 
-function check<T>(
+/**
+* Executes the Promise and terminates the process if it fails.
+*/
+function panicOnError<T>(
     program: () => Promise<T>,
 ): () => Promise<T> {
     return async function boundary() {
@@ -54,19 +61,10 @@ function check<T>(
             const res = await program();
             return res;
         } catch (err) {
-            if (err instanceof Error && err.stack) {
-                log.error((err as Error).stack);
-            }
-            else if (err && typeof err === 'object' && 'message' in err) {
-                log.error((err as { message: string }).message);
-            } else {
-                log.error(err);
-            }
-            panic((err as Error).message ?? 'Error');
+            panic(err);
         }
     };
 }
-
 
 async function executeFunction(
     fn: () => void | Promise<void>,

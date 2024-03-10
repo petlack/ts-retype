@@ -9,14 +9,11 @@ import { isMain } from './utils/is-main.js';
 import { join } from 'path';
 import { Logger, bold, formatSize } from '@ts-retype/utils';
 
-// type CmdProps = { verbose: boolean };
-
-const program = createCommand();
 const log = new Logger('readme');
 
-program.name('generateReadme').description('generateReadme program');
-
-export async function generateReadme() {
+export async function generateReadme(
+    options: { verbose?: boolean },
+) {
     const rootPath = join('..', '..');
     const readmeFile = join(rootPath, 'README.template.md');
     if (!existsSync(readmeFile)) {
@@ -29,7 +26,9 @@ export async function generateReadme() {
             if (line.startsWith('@import')) {
                 const path = line.replace('@import ', '');
                 const content = readFileSync(join(rootPath, path));
-                log.info(`${idx}: Imported ${bold(formatSize(content.length))} chars from ${path}`);
+                if (options.verbose) {
+                    log.info(`${idx}: Imported ${bold(formatSize(content.length))} chars from ${path}`);
+                }
                 return content;
             }
             return line;
@@ -39,5 +38,10 @@ export async function generateReadme() {
 }
 
 if (isMain()) {
-    execute(program, generateReadme);
+    execute(
+        createCommand()
+            .name('generateReadme')
+            .description('generateReadme program'),
+        generateReadme,
+    );
 }

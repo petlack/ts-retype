@@ -99,6 +99,27 @@ export function lines(
 }
 
 /**
+* Returns a long string representation of the given error
+* In case of an error object, it returns the stack trace
+*/
+export function longError(err: unknown): string {
+    if (err == null) {
+        return 'Caught Error is null';
+    }
+    if (typeof err === 'string') {
+        return err;
+    }
+    if (err instanceof Error) {
+        const error = err as Error;
+        return error.stack ?? error.toString();
+    }
+    if (err && typeof err === 'object' && 'message' in err) {
+        return (err as { message: string }).message;
+    }
+    return JSON.stringify(err);
+}
+
+/**
 * Round the given number to the given number of decimal places
 */
 export function round(
@@ -122,6 +143,19 @@ export function selectIndices<T>(
         }
     }
     return result;
+}
+
+/**
+* Returns a short string representation of the given error
+*/
+export function shortError(err: unknown): string {
+    if (err instanceof Error) {
+        return err.message;
+    }
+    if (typeof err === 'string') {
+        return err;
+    }
+    return 'Unknown Error';
 }
 
 /**

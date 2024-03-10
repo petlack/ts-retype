@@ -8,6 +8,7 @@
     "build": "pnpm nx run-many -t build",
     "bump": "pnpm nx run-bump @ts-retype/dev",
     "clean": "rm -rf .nx && pnpm nx run-many -t clean",
+    "docs": "pnpm nx run @ts-retype/doc:build",
     "lint": "eslint --cache --fix --max-warnings=0 .",
     "postinstall": "husky init && echo \"pnpm lint-staged\" > .husky/pre-commit",
     "prepare": "husky",

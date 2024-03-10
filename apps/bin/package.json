@@ -41,7 +41,7 @@
         "targets": {
             "release": {
                 "dependsOn": [
-                    "compile",
+                    "@ts-retype/bin:compile",
                     "@ts-retype/dev:run-bump"
                 ]
             },
@@ -57,7 +57,8 @@
             },
             "compile": {
                 "dependsOn": [
-                    "@ts-retype/dev:run-bin"
+                    "@ts-retype/dev:run-bin",
+                    "build"
                 ]
             },
             "build": {

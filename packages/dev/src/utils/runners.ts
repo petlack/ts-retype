@@ -1,12 +1,12 @@
+import { ExecResult, spawn } from '@ts-retype/utils/std.js';
 import { join } from 'path';
-import { ExecResult, spawn } from './exec.js';
 
 export type Runners = {
   npmrun: (workspace: string | null, script: string) => Promise<ExecResult>;
   npm: (workspace: string | null, commands: string[]) => Promise<ExecResult>;
   bash: (...commands: string[]) => Promise<ExecResult>;
   node: (jsPath: string, cwd: string) => Promise<ExecResult>;
-  script: (name: string) => Promise<ExecResult>;
+  // script: (name: string) => Promise<ExecResult>;
 };
 
 export function createRunners({
@@ -52,18 +52,18 @@ export function createRunners({
         return await npm(workspace, ['run', script]);
     }
 
-    async function script(name: string): Promise<ExecResult> {
-        if (!rootDir) {
-            return { stderr: 'rootDir not found', stdout: '' };
-        }
-        return await node(join('dist/', `${name}.js`), join(rootDir, 'scripts'));
-    }
+    // async function script(name: string): Promise<ExecResult> {
+    //     if (!rootDir) {
+    //         return { stderr: 'rootDir not found', stdout: '' };
+    //     }
+    //     return await node(join('dist/', `${name}.js`), join(rootDir, 'scripts'));
+    // }
 
     return {
         bash,
         node,
         npm,
         npmrun,
-        script,
+        // script,
     };
 }

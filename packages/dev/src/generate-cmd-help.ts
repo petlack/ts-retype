@@ -3,7 +3,7 @@ import { createCommand } from 'commander';
 import { execute } from './utils/cmd.js';
 import { isMain } from './utils/is-main.js';
 import { join } from 'path';
-import { spawn } from './utils/exec.js';
+import { spawn } from '@ts-retype/utils/std.js';
 import { writeFile } from 'fs/promises';
 
 const program = createCommand();

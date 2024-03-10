@@ -4,6 +4,7 @@ export default defineConfig({
     entry: [
         'src/index.ts',
         'src/core.ts',
+        'src/std.ts',
         'src/test.ts',
         'src/tree.ts',
     ],

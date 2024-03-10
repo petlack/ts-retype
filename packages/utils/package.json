@@ -28,6 +28,17 @@
       },
       "default": "./dist/core.js"
     },
+    "./std": {
+      "import": {
+        "types": "./dist/std.d.ts",
+        "default": "./dist/std.js"
+      },
+      "require": {
+        "types": "./dist/std.d.cts",
+        "default": "./dist/std.cjs"
+      },
+      "default": "./dist/std.js"
+    },
     "./tree": {
       "import": {
         "types": "./dist/tree.d.ts",

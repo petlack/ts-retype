@@ -1,16 +1,23 @@
-import { Logger, bold, panic } from '@ts-retype/utils/index.js';
+import { Logger, bold } from '@ts-retype/utils/index.js';
+import { panic, ultimatum } from '@ts-retype/utils/std.js';
 import { createCommand } from 'commander';
 import { exec } from 'child_process';
 import { execute } from './utils/cmd.js';
 import { isMain } from './utils/is-main.js';
 import { join } from 'path';
 import packageJson from '../../../apps/bin/package.json';
-import readline from 'readline';
 import { writeFileSync } from 'fs';
 
 const log = new Logger('bump');
 
-type Level = 'dev' | 'rc' | 'patch' | 'minor' | 'major' | 'release';
+type Level = |
+    'info' |
+    'dev' |
+    'rc' |
+    'patch' |
+    'minor' |
+    'major' |
+    'release';
 
 type Version = {
     major: number;
@@ -20,13 +27,23 @@ type Version = {
     level?: Level;
 };
 
-export async function bump() {
+export async function bump(
+    options: {
+        level?: Level,
+        verbose?: boolean,
+    },
+) {
     const distRoot = join(__dirname, '../../../apps/bin');
 
-    const level = process.argv[2] as (Level | undefined);
+    // const level = process.argv[2] as (Level | undefined);
+    const level = options.level ?? 'info';
     const version = packageJson.version;
 
-    if (!level) {
+    if (options.verbose) {
+        log.info('Options:', options);
+    }
+
+    if (level === 'info') {
         log.info(`Current version v${version}`);
         return;
     }
@@ -46,7 +63,7 @@ export async function bump() {
 
     log.info(`${oldVersion} - [${level}] -> ${newVersion} `);
 
-    // await userConfirm(`bump to ${newVersion} ? Y/n`);
+    // await ultimatum(`bump to ${newVersion} ? Y/n`);
 
     packageJson.version = newVersion;
 
@@ -55,7 +72,7 @@ export async function bump() {
     log.info(`Writing ${distRoot}/package.json`);
     writeFileSync(`${distRoot}/package.json`, distPackageJson);
 
-    await userConfirm('run pnpm i ?');
+    await ultimatum('run pnpm i ?');
     log.info(`Running ${bold('pnpm i')}`);
     await execAsync('pnpm i');
 
@@ -69,7 +86,7 @@ export async function bump() {
         `git push github v${newVersion}`,
     ];
     log.info('Git Commands:', gitCommands);
-    await userConfirm('Run git commands?');
+    await ultimatum('Run git commands?');
     for (const cmd of gitCommands) {
         await execAsync(cmd);
     }
@@ -123,26 +140,6 @@ function increaseVersion(version: string, levelExpr: Level) {
     return format(newVersion, levelExpr);
 }
 
-function askQuestion(query: string) {
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-    });
-
-    return new Promise(resolve => rl.question(query, ans => {
-        rl.close();
-        resolve(ans);
-    }));
-}
-
-async function userConfirm(query) {
-    const answer = await askQuestion(`${query}  `);
-
-    if (answer !== 'Y'){
-        throw new Error('abort');
-    }
-}
-
 function execAsync(cmd: string): Promise<string> {
     return new Promise((resolve, reject) => {
         exec(cmd, (error, stdout, stderr) => {
@@ -172,7 +169,8 @@ if (isMain()) {
     execute(
         createCommand()
             .name('bump')
-            .description('Bump version of the bin package.'),
+            .description('Bump version of the bin package.')
+            .option('-l, --level <level>', 'Level of the bump - dev, rc, patch, minor, major, release'),
         bump
     );
 }

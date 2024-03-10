@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-import { Logger, bold, execute, formatSize, getRootDir } from '@ts-retype/utils';
+import { Logger, bold, formatSize } from '@ts-retype/utils';
 import { writeFile } from 'fs/promises';
 import { join } from 'path';
 import { fromColors } from './builder.js';
 import { variants } from './palette.js';
+import { execute, getRootDir } from '@ts-retype/utils/std';
 
 const log = new Logger('theme');
 

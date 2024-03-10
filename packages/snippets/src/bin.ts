@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
-import { execute, getRootDir } from '@ts-retype/utils';
+import { ensureDirectoryExists, execute, getRootDir } from '@ts-retype/utils/std.js';
 import { createCommand } from 'commander';
 import { extractSnippets } from './extract.js';
 import { join } from 'path';
 import { syntaxHighlighting } from './highlight.js';
-import { ensureDirectoryExists } from '@ts-retype/utils/index.js';
 
 const program = createCommand();
 
