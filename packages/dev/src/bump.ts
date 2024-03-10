@@ -79,7 +79,7 @@ export async function bump(
     log.info(`Writing ${distRoot}/package.json`);
     writeFileSync(`${distRoot}/package.json`, distPackageJson);
 
-    if (!options.noconfirm) await ultimatum('run pnpm i ?');
+    if (!options.noconfirm) await ultimatum('Run pnpm i ?');
     log.info(`Running ${bold('pnpm i')}`);
     await execAsync('pnpm i');
 

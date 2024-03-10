@@ -1,4 +1,4 @@
-import { TokenRoot } from '@ts-retype/syhi/types';
+import type { TokenRoot } from '@ts-retype/syhi';
 
 export type TypeDuplicate = {
   files: {

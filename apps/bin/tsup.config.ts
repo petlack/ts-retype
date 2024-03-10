@@ -5,7 +5,7 @@ export default defineConfig({
     splitting: false,
     sourcemap: true,
     dts: true,
-    clean: false,
+    clean: true,
     shims: true,
     format: ['cjs'],
     noExternal: [ /(.*)/ ],
