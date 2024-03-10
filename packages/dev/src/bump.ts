@@ -53,8 +53,7 @@ export async function bump(
     const modified = await checkGit();
     if (modified.length > 0) {
         log.error(
-            'There are currently unstaged changes.',
-            '\n',
+            'There are currently unstaged changes.\n',
             modified.join('\n'),
         );
         if (!ignoreWorkspaceChanges) {
@@ -82,7 +81,7 @@ export async function bump(
 
     const updated = await checkGit();
     if (updated.length > 0) {
-        log.info('Changed', updated.join('\n'));
+        log.info('Changed\n', updated.join('\n'));
     }
 
     const tag = `${app}/v${newVersion}`;
