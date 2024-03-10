@@ -18,6 +18,7 @@ jobs:
           npm -v
           node -v
           npm add -g pnpm
+          pnpm install
           pnpm test
           pnpm run release
           pnpm run publish
