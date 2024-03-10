@@ -1,8 +1,9 @@
 import * as url from 'url';
 import { describe, expect, it, beforeEach, afterAll } from 'vitest';
 import { readFileSync, writeFileSync, existsSync, rmSync, mkdtempSync } from 'fs';
-import { RetypeConfig, scan, report } from '../src/index.js';
-import { compress } from '../src/compress.js';
+import { scan, report } from '@ts-retype/search';
+import { RetypeConfig } from '@ts-retype/search';
+import { compress } from '@ts-retype/search';
 import path from 'path';
 
 global.__dirname = url.fileURLToPath(new URL('.', import.meta.url));
