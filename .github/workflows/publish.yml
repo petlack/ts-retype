@@ -18,7 +18,10 @@ jobs:
           npm -v
           node -v
           npm add -g pnpm
-          pnpm run release
+      - name: Run tests
+        run: pnpm test
+      - name: Build release
+        run: pnpm run release
       - name: Publish package on NPM 📦
         run: pnpm run publish
         env:
