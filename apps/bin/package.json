@@ -31,7 +31,6 @@
         "clean": "rm -rf ./dist",
         "dev": "node dist/index.cjs",
         "publish": "cd ./dist/release && npm publish",
-        "bump": "pnpm --filter @ts-retype/dev run-bump -x --app bin --level dev --noconfirm",
         "start": "node dist/index.cjs --help",
         "stats": "rollup -c rollup.config.mjs",
         "test": "vitest run --coverage"

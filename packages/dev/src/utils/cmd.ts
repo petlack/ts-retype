@@ -3,7 +3,7 @@ import {
     monitor,
 } from '@ts-retype/utils/std.js';
 import { Command } from 'commander';
-import { mergeDeepLeft } from 'ramda';
+import { mergeDeepRight } from 'ramda';
 
 export type CmdOptions = {
     interactive?: boolean;
@@ -22,7 +22,7 @@ export async function execute<T extends CmdOptions>(
         verbose?: boolean;
     },
 ) {
-    const opts = mergeDeepLeft({
+    const opts = mergeDeepRight({
         name: program.name(),
         noConfirm: false,
         interactive: false,
