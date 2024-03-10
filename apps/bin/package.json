@@ -1,7 +1,7 @@
 {
     "name": "@ts-retype/bin",
     "sideEffects": false,
-    "version": "0.3.0-dev.19",
+    "version": "0.3.0-dev.0",
     "description": "",
     "type": "module",
     "main": "dist/index.cjs",
@@ -16,7 +16,7 @@
         "clean": "rm -rf ./dist",
         "dev": "node dist/index.cjs",
         "publish": "cd ./dist/release && npm publish",
-        "release": "pnpm --filter @ts-retype/dev run-bump -x --app bin --level dev",
+        "release": "pnpm --filter @ts-retype/dev run-bump -x --app bin --level dev --noconfirm",
         "start": "node dist/index.cjs --help",
         "stats": "rollup -c rollup.config.mjs",
         "test": "vitest run --coverage"
