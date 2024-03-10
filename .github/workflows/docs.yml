@@ -13,16 +13,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: ✏️  Generate Docs
+      - name: 💾  Install dependencies
         run: |
           npm add -g pnpm
-          pnpm i
+          pnpm install
+      - name: ✏️  Generate Docs
+        run: |
           pnpm nx build @ts-retype/doc --verbose
           mkdir -p ./docs-static/static
           cp -R ./apps/doc/dist/* ./docs-static/static/
           ls -ahl ./docs-static/static
-        env:
-          CI: true
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         # if: ${{ github.ref == 'refs/heads/dev' }}
