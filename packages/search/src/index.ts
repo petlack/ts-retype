@@ -1,3 +1,4 @@
+export { compress } from './compress.js';
 export { scan } from './scan.js';
 export { report } from './report.js';
 export { RetypeConfig } from './config.js';
