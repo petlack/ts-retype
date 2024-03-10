@@ -15,6 +15,8 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies and build 🔧
         run: |
+          npm -v
+          node -v
           npm add -g pnpm
           pnpm --filter @ts-retype/bin compile
       - name: Publish package on NPM 📦

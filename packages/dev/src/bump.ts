@@ -80,21 +80,24 @@ export async function bump(
     log.info(`Running ${bold('pnpm i')}`);
     await execAsync('pnpm i');
 
+    const tag = `${app}-v${newVersion}`;
     const commitMsg = `bump(${app}): release ${level} v${oldVersion} -> v${newVersion}`;
-    log.info('Commit message:', '\n', commitMsg);
-
     const gitCommands = [
         `git add ${distRootRelative}/package.json`,
         `git commit -m "${commitMsg}"`,
-        `git tag -a v${newVersion} -m "v${newVersion}"`,
-        `git push ${remote} v${newVersion}`,
+        `git tag -a ${tag} -m "${app} v${newVersion}"`,
+        `git push ${remote} ${tag}`,
     ];
+
+    log.info('Commit message:', '\n', commitMsg);
+    log.info(`Tagging as ${bold(tag)} on ${remote}`);
     log.info('Git Commands:', gitCommands);
 
     if (!options.noconfirm) await ultimatum('Run git commands?');
     for (const cmd of gitCommands) {
         log.debug(`Running ${bold(cmd)}`);
-        await execAsync(cmd);
+        const output = await execAsync(cmd);
+        log.debug(output);
     }
 }
 
@@ -150,12 +153,12 @@ function execAsync(cmd: string): Promise<string> {
     return new Promise((resolve, reject) => {
         exec(cmd, { cwd: '../../' }, (error, stdout, stderr) => {
             if (error) {
-                reject(error.message);
+                reject(error);
                 return;
             }
             if (stderr) {
-                reject(stderr);
-                return;
+                log.warn(`Command ${bold(cmd)} generated stderr:`);
+                log.warn(stderr);
             }
             resolve(stdout);
         });
