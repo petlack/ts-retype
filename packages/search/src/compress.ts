@@ -1,5 +1,5 @@
 import { compressRoot } from '@ts-retype/syhi/snippet';
-import { TypeDuplicate } from './types.js';
+import type { TypeDuplicate } from './types.js';
 
 /**
 * Compresses the given duplicates by removing the source code and

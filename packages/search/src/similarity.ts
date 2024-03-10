@@ -1,5 +1,5 @@
 import { isEmpty, symmetricDifference, pluck, intersection } from 'ramda';
-import {
+import type {
     CandidateType,
     Property,
     EnumCandidateType,

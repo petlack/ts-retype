@@ -30,7 +30,7 @@
         }
     },
     "scripts": {
-        "build": "tsup --onSuccess \"tsc --emitDeclarationOnly --declaration\"",
+        "build": "tsup --onSuccess \"tsc --declaration --emitDeclarationOnly\"",
         "build:watch": "tsup --watch --onSuccess \"npm run start\"",
         "clean": "rm -rf ./dist",
         "start": "node dist/index.js",
