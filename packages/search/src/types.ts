@@ -6,4 +6,4 @@ export type { ReportProps, ScanProps, RetypeCmdProps } from './types/props.js';
 export type { TypeDuplicate } from './types/duplicate.js';
 export type { RetypeConfig } from './config.js';
 
-export type { TokenRoot, Token, TokenText, TokenElement, TokenNewline } from '@ts-retype/syhi';
+export type { TokenRoot, Token, TokenText, TokenElement, TokenNewline } from './types/syhi.js';

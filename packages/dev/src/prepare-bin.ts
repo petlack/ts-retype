@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { copyFile, readFile, writeFile } from 'fs/promises';
+import { cp, copyFile, readFile, writeFile } from 'fs/promises';
 import { execute } from './utils/cmd.js';
 import { isMain } from './utils/is-main.js';
 import { ensureDirectoryExists, getRootDir } from './utils/paths.js';
@@ -14,52 +14,65 @@ export async function prepareBin() {
     if (!rootDir) {
         return;
     }
-    const distRoot = join(rootDir, 'apps', 'bin', 'dist');
-    const releaseRoot = join(distRoot, 'release');
-    log.info(`Dist dir:    ${distRoot}`);
+    const binDistRoot = join(rootDir, 'apps', 'bin', 'dist');
+    const searchDistRoot = join(rootDir, 'packages', 'search', 'dist');
+    const releaseRoot = join(binDistRoot, 'release');
+    const releaseRootBin = join(releaseRoot, 'bin');
+    const releaseRootDist = join(releaseRoot, 'dist');
+    log.info(`Dist dir:    ${binDistRoot}`);
     log.info(`Release dir: ${releaseRoot}\n`);
 
-    await ensureDirectoryExists(releaseRoot);
+    await ensureDirectoryExists(releaseRootBin);
+    await ensureDirectoryExists(releaseRootDist);
 
-    const packageJson = JSON.parse(
+    const binPackageJson = JSON.parse(
         (await readFile(join(rootDir, 'apps', 'bin', 'package.json'))).toString(),
     );
+    const searchPackageJson = JSON.parse(
+        (await readFile(join(rootDir, 'packages', 'search', 'package.json'))).toString(),
+    );
 
-    if ('private' in packageJson) {
-        packageJson.private = false;
+    if ('private' in binPackageJson) {
+        binPackageJson.private = false;
     }
 
-    delete packageJson.devDependencies;
-    delete packageJson.dependencies;
-    delete packageJson.exports;
-    delete packageJson.husky;
-    delete packageJson['lint-staged'];
-    delete packageJson.nx;
-    delete packageJson.scripts;
+    delete binPackageJson.devDependencies;
+    delete binPackageJson.dependencies;
+    delete binPackageJson.exports;
+    delete binPackageJson.husky;
+    delete binPackageJson['lint-staged'];
+    delete binPackageJson.nx;
+    delete binPackageJson.scripts;
 
-    packageJson.bin['ts-retype'] = packageJson.bin['ts-retype'].replace('dist/', '');
-    packageJson.main = packageJson.main.replace('dist/', '');
-    packageJson.types = packageJson.types.replace('dist/', '');
+    binPackageJson.bin['ts-retype'] = binPackageJson.bin['ts-retype'].replace('dist/', 'bin/');
+    binPackageJson.main = searchPackageJson.main;
+    binPackageJson.types = searchPackageJson.types;
+    binPackageJson.exports = searchPackageJson.exports;
+    binPackageJson.dependencies = Object.fromEntries(
+        Object.entries(searchPackageJson.dependencies)
+            .filter(([key]) => !key.startsWith('@ts-retype'))
+    );
 
-    packageJson.name = 'ts-retype';
+    binPackageJson.name = 'ts-retype';
 
-    const distPackageJson = JSON.stringify(packageJson, null, 2) + '\n';
+    const distPackageJson = JSON.stringify(binPackageJson, null, 2) + '\n';
 
-    log.info(`Preparing bin for ${bold(packageJson.name)} v${packageJson.version}`);
+    log.info(`Preparing bin for ${bold(binPackageJson.name)} v${binPackageJson.version}`);
 
-    const filesToCopy = [
+    const binFilesToCopy = [
         'ts-retype.cjs',
-        'index.d.cts',
-        'index.cjs',
-        'index.cjs.map',
     ];
-    for (const file of filesToCopy) {
-        log.info(`Copying from dist ${file}`);
+    for (const file of binFilesToCopy) {
+        log.info(`Copying from bin dist ${file}`);
         await copyFile(
-            `${distRoot}/${file}`,
-            `${releaseRoot}/${file}`,
+            join(binDistRoot, file),
+            join(releaseRootBin, file),
         );
     }
+
+    log.info('Copying from search dist to bin dist');
+    await cp(searchDistRoot, releaseRootDist, { recursive: true });
+
     const rootFilesToCopy = [
         'README.md',
         'LICENSE.md',
@@ -83,16 +96,17 @@ export async function prepareBin() {
     const escapedVisHtmlContents = escapeHTMLContentForJS(
         visHtmlContents.toString().trim()
     );
-    log.info(`Replacing constants in ${releaseRoot}/ts-retype.cjs`);
+
+    log.info(`Replacing constants in ${releaseRootBin}/ts-retype.cjs`);
     await fillConstants(
-        `${releaseRoot}/ts-retype.cjs`,
+        join(releaseRootBin, 'ts-retype.cjs'),
         {
             TS_RETYPE_REPORT_HTML_TEMPLATE: escapedVisHtmlContents,
-            TS_RETYPE_PROJECT_NAME: packageJson.name,
-            TS_RETYPE_PROJECT_DESCRIPTION: packageJson.description,
-            TS_RETYPE_PROJECT_VERSION: packageJson.version,
-            TS_RETYPE_PROJECT_DOCS: packageJson.homepage,
-            TS_RETYPE_PROJECT_REPO: packageJson.repository?.url,
+            TS_RETYPE_PROJECT_NAME: binPackageJson.name,
+            TS_RETYPE_PROJECT_DESCRIPTION: binPackageJson.description,
+            TS_RETYPE_PROJECT_VERSION: binPackageJson.version,
+            TS_RETYPE_PROJECT_DOCS: binPackageJson.homepage,
+            TS_RETYPE_PROJECT_REPO: binPackageJson.repository?.url,
         },
     );
 }
@@ -128,7 +142,6 @@ function escapeHTMLContentForJS(htmlContent: string): string {
         .replace(/\r/g, '\\r');
 }
 
-//
 if (isMain()) {
     execute(
         createCommand()

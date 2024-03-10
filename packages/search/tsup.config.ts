@@ -10,4 +10,8 @@ export default defineConfig({
     sourcemap: true,
     clean: true,
     dts: true,
+    noExternal: [
+        '@ts-retype/utils',
+        '@ts-retype/syhi',
+    ],
 });
