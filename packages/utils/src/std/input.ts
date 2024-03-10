@@ -1,5 +1,6 @@
 import { createInterface } from 'readline';
 import { panic } from './panic.js';
+import { bold } from '../colors.js';
 
 /**
 * Ask for confirmation with a given message.
@@ -9,7 +10,7 @@ export async function confirm(
     { defaultYes = true }: { defaultYes?: boolean } = {},
 ) {
     const options = defaultYes ? '[Y/n]' : '[y/N]';
-    const answer = await prompt(`${message} ${options} `);
+    const answer = await prompt(`${bold(message)} ${options} `);
     return answer.toLowerCase() === 'y';
 }
 

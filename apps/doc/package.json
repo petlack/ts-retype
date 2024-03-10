@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
-        "clean": "rm -rf ./dist ; rm -rf ./src/generated/input",
+        "clean": "rm -rf ./dist ; rm -rf ./src/generated",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview"
     },

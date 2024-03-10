@@ -1,12 +1,11 @@
 import { CmdOptions, execute } from './utils/cmd.js';
 import { Logger, bold } from '@ts-retype/utils/index.js';
 import { panic, ultimatum } from '@ts-retype/utils/std.js';
+import { readFileSync, writeFileSync } from 'fs';
 import { createCommand } from 'commander';
 import { exec } from 'child_process';
 import { isMain } from './utils/is-main.js';
 import { join } from 'path';
-import packageJson from '../../../apps/bin/package.json';
-import { writeFileSync } from 'fs';
 
 const log = new Logger('bump');
 
@@ -39,7 +38,12 @@ export async function bump(
 
     const distRootRelative = join('apps', app);
     const distRoot = join(__dirname, '../../..', distRootRelative);
+    const packageJson = JSON.parse(
+        readFileSync(`${distRoot}/package.json`, 'utf-8')
+    );
     const version = packageJson.version;
+
+    if (!version) panic('No version found in package.json');
 
     if (verbose) {
         log.info('Options:', options);
