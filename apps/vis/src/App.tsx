@@ -11,7 +11,6 @@ import { useData } from './hooks/useData';
 import { useSearch } from './hooks/useSearch';
 
 export function App() {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {
         value: isDrawerOpen,
         toggle: toggleDrawer,

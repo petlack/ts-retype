@@ -15,6 +15,6 @@
         "ts": "node --experimental-specifier-resolution=node --loader ts-node/esm"
     },
     "dependencies": {
-        "ts-retype": "^0.3.0-dev.5"
+        "ts-retype": "^0.3.0-dev.6"
     }
 }

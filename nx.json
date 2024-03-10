@@ -3,6 +3,7 @@
         "build": {
             "cache": true,
             "dependsOn": [
+                "lint",
                 "^build"
             ],
             "outputs": [
@@ -21,6 +22,9 @@
             ]
         },
         "lint": {
+            "dependsOn": [
+                "^lint"
+            ],
             "cache": true
         }
     },
