@@ -6,7 +6,7 @@
   "scripts": {
     "bin": "pnpm nx bin @ts-retype/bin",
     "build": "pnpm nx run-many -t build",
-    "bump:bin": "pnpm --filter @ts-retype/dev run-bump -x --app bin --level dev --noconfirm",
+    "bump:bin": "pnpm --filter @ts-retype/dev run-bump -x --app bin --level dev",
     "clean": "rm -rf .nx && pnpm nx run-many -t clean",
     "docs": "pnpm nx run @ts-retype/doc:build",
     "lint": "eslint --cache --fix --max-warnings=0 .",
