@@ -4,7 +4,7 @@ import { loadFile } from '../src/utils.js';
 
 describe('stress test', () => {
     test('binderBinaryExpressionStressJs.ts', async () => {
-        const srcFile = loadFile('./tests/sources/binderBinaryExpressionStressJs.ts');
+        const srcFile = loadFile('./tests/sources/binderBinaryExpressionStressJs.fake_ts');
         const types = getAllCandidates(srcFile);
         expect(types).toHaveLength(0);
     });
