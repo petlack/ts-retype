@@ -1,0 +1,8 @@
+{
+  "exclude": ["**/node_modules/**","**/dist/**"],
+  "include": ["**/*.{ts,tsx}"],
+  "json": "./apps/vis/src/assets/data.json",
+  "noHtml": false,
+  "output": "./retype-report.html",
+  "rootDir": "."
+}

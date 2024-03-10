@@ -1,78 +1,90 @@
-import path from 'path';
-import Progress from 'progress';
-import { globSync } from 'glob';
-import { concat } from 'ramda';
-import { formatISO } from 'date-fns';
-import { clustersToDuplicates, findTypesInFile } from './clusters.js';
-import { createLogger } from './log.js';
-import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity.js';
+import {
+    Logger,
+    Progress,
+    formatDuration,
+    shortError,
+} from '@ts-retype/utils';
 import { Metadata, ScanProps, TypeDuplicate } from './types.js';
-import { loadFile, formatDuration } from './utils.js';
+import { clustersToDuplicates, findTypesInFile } from './clusters.js';
+import { computeSimilarityMatrix, similarityMatrixToClusters } from './similarity.js';
+import { join, basename, resolve } from 'path';
 import { SourceCandidateType } from './types/candidate.js';
+import { globSync } from 'glob';
+import { loadFile } from './utils.js';
 
-const log = createLogger(console.log);
-
-function formatFileName(file: string, maxLength = 120) {
-    if (file.length > maxLength) {
-        const ellipsis = '..';
-        const extra = file.length - maxLength + ellipsis.length;
-        const half = Math.floor(extra / 2);
-        return file.slice(0, half) + ellipsis + file.slice(half + extra);
-    }
-    return file;
-}
+const log = new Logger('scan');
 
 export type ScanResult = {
-  data: TypeDuplicate[];
-  meta: Omit<Metadata, 'reportSize' | 'dataSize' | 'appSize'>;
+    data: TypeDuplicate[];
+    meta: Omit<Metadata, 'reportSize' | 'dataSize' | 'appSize'>;
 };
 
-export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
+/**
+* Scans the given directory and returns the duplicates with statistics about the scan
+*/
+export function scan(
+    { rootDir, exclude, include }: ScanProps,
+): ScanResult {
+    let start = new Date().getTime();
+
     const files = globSync(include, { cwd: rootDir, ignore: exclude });
     const filesLengths: { [file: string]: number[] } = {};
     const filesTypesCount: { [file: string]: number } = {};
+    const allTypes: SourceCandidateType[] = [];
 
-    let allTypes: SourceCandidateType[] = [];
-    let start = new Date().getTime();
+    log.info(`Searching in ${files.length.toLocaleString()} files`);
 
-    log.log(`searching in ${files.length.toLocaleString()} files`);
-
+    const errors = [];
     for (const relPath of files) {
-        const file = path.join(rootDir, relPath);
-        log.live(`⏳ loading ${formatFileName(file)}`);
+        const file = join(rootDir, relPath);
+        log.update.info(`⏳ Loading ${formatFileName(file)}`);
 
-        const srcFile = loadFile(file);
-        const { types, lengths } = findTypesInFile(srcFile, relPath);
-
-        filesLengths[relPath] = lengths;
-        filesTypesCount[relPath] = types.length;
-        allTypes = concat(allTypes, types);
+        try {
+            const srcFile = loadFile(file);
+            const { types, lengths } = findTypesInFile(srcFile, relPath);
+            filesLengths[relPath] = lengths;
+            filesTypesCount[relPath] = types.length;
+            allTypes.push(...types);
+        } catch (e) {
+            errors.push([file, e]);
+            continue;
+        }
     }
     const locs = Object.values(filesLengths).reduce((a, b) => a + b.length, 0);
     const filesWithTypes = Object.entries(filesTypesCount).filter(([, count]) => count > 0).length;
+    log.update.info(`Searched  ${locs.toLocaleString()} lines of code\n`);
 
-    log.live(`searched  ${locs.toLocaleString()} lines of code`, true);
-    log.log(`found ${allTypes.length.toLocaleString()} types definitions`);
-    log.log(`took ${formatDuration(new Date().getTime() - start)}`);
-    log.log();
+    if (errors.length > 0) {
+        for (const [file, error] of errors) {
+            log.error(`Error in ${file}: ${shortError(error)}`);
+        }
+    }
+
+    log.info(`Found ${allTypes.length.toLocaleString()} types definitions`);
+    log.info(`took ${formatDuration(new Date().getTime() - start)}`);
+    log.bare();
 
     start = new Date().getTime();
-    log.log('computing similarity matrix');
+    log.info('Computing Similarity Matrix');
 
-    const bar = new Progress('[:bar] :rate/tps :percent :etas :current/:total', {
-        complete: '=',
-        incomplete: ' ',
-        width: 30,
-        total: (allTypes.length * (allTypes.length + 1)) / 2,
+    const bar = Progress.finite((allTypes.length * (allTypes.length + 1)) / 2);
+    let lastDraw = new Date().getTime();
+
+    const matrix = computeSimilarityMatrix(allTypes, by => {
+        bar.advanceBy(by);
+        const now = new Date().getTime();
+        if (now - lastDraw > 100) {
+            lastDraw = now;
+            log.update.info(bar.format());
+        }
     });
+    log.bare();
 
-    const matrix = computeSimilarityMatrix(allTypes, () => bar.tick());
-
-    log.log(`took ${formatDuration(new Date().getTime() - start)}`);
-    log.log();
+    log.info(`took ${formatDuration(new Date().getTime() - start)}`);
+    log.bare();
 
     start = new Date().getTime();
-    log.log('generating output');
+    log.info('Generating output');
 
     const clusters = similarityMatrixToClusters(matrix);
     const data = clustersToDuplicates(allTypes, clusters).filter(
@@ -82,20 +94,34 @@ export function scan({ rootDir, exclude, include }: ScanProps): ScanResult {
     const duration = new Date().getTime() - start;
 
     const meta: ScanResult['meta'] = {
-        projectName: path.basename(path.resolve(rootDir)),
+        projectName: basename(resolve(rootDir)),
         projectFilesScanned: files.length,
         projectLocScanned: locs,
         projectTypesScanned: allTypes.length,
         projectFilesWithTypesDeclarations: filesWithTypes,
-        scannedAt: formatISO(new Date()),
+        matrixSize: matrix.size(),
+        scannedAt: new Date().toISOString(),
         scanDuration: duration,
     };
 
-    log.log(`took ${formatDuration(duration)}`);
-    log.log();
+    log.info(`took ${formatDuration(duration)}`);
+    log.bare();
 
     return {
         data,
         meta,
     };
+}
+
+function formatFileName(
+    file: string,
+    maxLength = 120,
+): string {
+    if (file.length > maxLength) {
+        const ellipsis = '..';
+        const extra = file.length - maxLength + ellipsis.length;
+        const half = Math.floor(extra / 2);
+        return file.slice(0, half) + ellipsis + file.slice(half + extra);
+    }
+    return file;
 }

@@ -5,39 +5,37 @@
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
-        "copy-assets-to-bin": "mkdir -p ../bin/dist/vis && cp -R ../vis/dist/* ../bin/dist/vis/ && date > foo.txt",
         "clean": "rm -rf ./dist",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview"
     },
     "dependencies": {
+        "@ts-retype/search": "workspace:*",
+        "@ts-retype/syhi": "workspace:*",
         "@ts-retype/uikit": "workspace:*",
+        "@ts-retype/utils": "workspace:*",
+        "minisearch": "^6.3.0",
+        "ramda": "^0.28.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
     "devDependencies": {
-        "@types/react": "^18.2.43",
-        "@types/react-dom": "^18.2.17",
-        "@typescript-eslint/eslint-plugin": "^6.14.0",
-        "@typescript-eslint/parser": "^6.14.0",
+        "@types/ramda": "^0.28.25",
+        "@types/react": "^18.2.64",
+        "@types/react-dom": "^18.2.21",
+        "@typescript-eslint/eslint-plugin": "^6.21.0",
+        "@typescript-eslint/parser": "^6.21.0",
         "@vitejs/plugin-react": "^4.2.1",
-        "eslint": "^8.55.0",
+        "autoprefixer": "^10.4.18",
+        "eslint": "^8.57.0",
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-refresh": "^0.4.5",
-        "typescript": "^5.2.2",
-        "vite": "^5.0.8"
-    },
-    "nx": {
-        "targets": {
-            "copy-assets-to-bin": {
-                "outputs": [
-                    "{workspaceRoot}/dist/*.html",
-                    "{workspaceRoot}/dist/assets/*.{js,css}"
-                ],
-                "dependsOn": [
-                    "build"
-                ]
-            }
-        }
+        "postcss": "^8.4.35",
+        "rollup-plugin-visualizer": "^5.12.0",
+        "tailwindcss": "^3.4.1",
+        "typescript": "^5.4.2",
+        "vite": "^5.1.5",
+        "vite-plugin-singlefile": "^1.0.0",
+        "vite-tsconfig-paths": "^4.3.1"
     }
 }

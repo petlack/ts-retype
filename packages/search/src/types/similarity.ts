@@ -13,10 +13,10 @@ export type Cluster = Set<number>;
 export type Clusters<T> = Map<T, Cluster[]>;
 
 export interface IClusters<T> {
-  findCluster(left: number, right: number, value: T): Cluster | undefined;
-  addTuple(left: number, right: number, value: T): IClusters<T>;
-  fromTuples(tuples: [number, number, T][]): IClusters<T>;
-  flatMap<Mapped>(mapper: (value: T, idxs: Set<number>) => Mapped): Mapped[];
+    findCluster(left: number, right: number, value: T): Cluster | undefined;
+    addTuple(left: number, right: number, value: T): IClusters<T>;
+    fromTuples(tuples: [number, number, T][]): IClusters<T>;
+    flatMap<Mapped>(mapper: (value: T, idxs: Set<number>) => Mapped): Mapped[];
 }
 
 export const Clusters: <T>() => IClusters<T> = <T>() => {
@@ -56,33 +56,34 @@ export const Clusters: <T>() => IClusters<T> = <T>() => {
 };
 
 export enum Similarity {
-  Different = 0,
-  HasSimilarProperties = 1,
-  HasSubsetOfProperties = 2,
-  HasIdenticalProperties = 3,
-  Identical = 4,
+    Different = 0,
+    HasSimilarProperties = 1,
+    HasSubsetOfProperties = 2,
+    HasIdenticalProperties = 3,
+    Identical = 4,
 }
-
-export type SimilarityMatrix = Similarity[][];
 
 export type SparseMatrix<T> = Map<number, Map<number, T>>;
 export interface ISparseMatrix<T> {
-  set(left: number, right: number, value: T): ISparseMatrix<T>;
-  get(left: number, right: number): T;
-  keys(): number[];
-  fromDense(matrix: T[][]): ISparseMatrix<T>;
-  toDense(): T[][];
-  toTuples(): [number, number, T][];
-  toString(): string;
+    set(left: number, right: number, value: T): ISparseMatrix<T>;
+    get(left: number, right: number): T;
+    keys(): number[];
+    fromDense(matrix: T[][]): ISparseMatrix<T>;
+    size(): number;
+    toDense(): T[][];
+    toTuples(): [number, number, T][];
+    toString(): string;
 }
 
 export type SparseMatrixProps<T> = {
-  nil: T;
+    nil: T;
 };
 
-export const SparseMatrix: <T>(props: SparseMatrixProps<T>) => ISparseMatrix<T> = <T>({
-    nil,
-}: SparseMatrixProps<T>) => {
+export const SparseMatrix: <T>(
+    props: SparseMatrixProps<T>
+) => ISparseMatrix<T> = <T>(
+    { nil }: SparseMatrixProps<T>,
+) => {
     const sparse = new Map<number, Map<number, T>>();
     const keys = new Set<number>();
 
@@ -106,6 +107,10 @@ export const SparseMatrix: <T>(props: SparseMatrixProps<T>) => ISparseMatrix<T> 
 
         keys() {
             return [...keys.values()];
+        },
+
+        size() {
+            return [...sparse.values()].reduce((acc, m) => acc + m.size, 0);
         },
 
         fromDense(matrix) {

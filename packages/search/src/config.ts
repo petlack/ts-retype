@@ -1,7 +1,8 @@
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { omit } from 'ramda';
-import { DEFAULT_CONFIG, ReportProps, RetypeCmdProps, ScanProps } from './types.js';
+import { DEFAULT_CONFIG } from './types.js';
+import type { ReportProps, RetypeCmdProps, ScanProps } from './types.js';
 
 export type RetypeConfig = ScanProps & ReportProps;
 

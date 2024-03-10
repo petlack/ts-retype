@@ -4,15 +4,44 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "echo \"build all\""
+    "bin": "pnpm nx bin @ts-retype/bin",
+    "build": "pnpm nx run-many -t build",
+    "bump:bin": "pnpm --filter @ts-retype/dev run-bump -x --app bin --level dev",
+    "clean": "rm -rf .nx && pnpm nx run-many -t clean",
+    "docs": "pnpm nx run @ts-retype/doc:build",
+    "lint": "eslint --cache --fix --max-warnings=0 .",
+    "postinstall": "husky init && echo \"pnpm lint-staged\" > .husky/pre-commit",
+    "prepare": "husky",
+    "publish": "pnpm nx run-many -t publish",
+    "compile": "pnpm nx run-many -t compile",
+    "test": "pnpm nx run-many -t test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.20.0",
-    "@typescript-eslint/parser": "^6.20.0",
-    "eslint": "^8.56.0",
-    "nx": "18.0.0"
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "nx": "18.0.0",
+    "prettier": "^3.2.5",
+    "rollup": "^4.12.1",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --cache --fix --max-warnings=0"
+    ]
   }
 }

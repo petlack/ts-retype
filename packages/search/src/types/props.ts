@@ -1,20 +1,20 @@
 export type ScanProps = {
-  exclude: string[];
-  include: string[];
-  rootDir: string;
+    exclude: string[];
+    include: string[];
+    rootDir: string;
 };
 
 export type ReportProps = {
-  json: string | null;
-  noHtml: boolean;
-  output: string;
+    json: string | null;
+    noHtml: boolean;
+    output: string;
 };
 
 export type RetypeCmdProps = ScanProps &
-  ReportProps & {
-    init: boolean;
-    config: string;
-  };
+    ReportProps & {
+        init: boolean;
+        config: string;
+    };
 
 export const TS_RETYPE_CMD_OPTIONS = [
     {

@@ -1,9 +1,9 @@
 import { parse } from './parse.js';
 import { Similarity, IClusters } from './types/similarity.js';
 import ts from 'typescript';
-import { freq, selectIndices } from './utils.js';
+import { freq, lines, selectIndices } from '@ts-retype/utils';
 import { pluck, uniq } from 'ramda';
-import { highlight } from './highlight.js';
+import { highlight } from '@ts-retype/syhi/highlight';
 import { TypeDuplicate } from './types.js';
 import {
     CandidateType,
@@ -15,19 +15,20 @@ import {
     Property,
 } from './types/candidate.js';
 
-function nonEmptyCandidateType(type: CandidateType): boolean {
-    switch (type.type) {
-    case 'alias':
-    case 'interface':
-    case 'literal':
-        return (<LiteralCandidateType>type).properties.length > 0;
-    case 'enum':
-        return (<EnumCandidateType>type).members.length > 0;
-    case 'function':
-        return (<FunctionCandidateType>type).parameters.length > 0;
-    case 'union':
-        return (<UnionCandidateType>type).types.length > 0;
-    }
+export function clustersToDuplicates(
+    types: SourceCandidateType[],
+    clusters: IClusters<Similarity>,
+): TypeDuplicate[] {
+    const res = clusters.flatMap(
+        (group, idxs) =>
+            ({
+                names: chooseClusterNames(types, idxs),
+                files: chooseClusterFiles(types, idxs),
+                group: similarityToDuplicateGroup(+group as Similarity),
+                ...chooseTypeFeatures(types, idxs),
+            } as TypeDuplicate),
+    );
+    return res;
 }
 
 export function findTypesInFile(
@@ -55,31 +56,30 @@ export function findTypesInFile(
             };
         });
     }
-    const lengths = srcFile
-        .getFullText()
-        .split('\n')
-        .map((l) => l.length);
+    const lengths = lines(srcFile.getFullText()).map(l => l.length);
     const candidateTypes = parse(srcFile);
     const types = toSourceCandidateTypes(relPath, candidateTypes).filter(nonEmptyCandidateType);
     return { types, lengths };
 }
 
-function chooseClusterNames(types: SourceCandidateType[], idxs: Iterable<number>) {
-    return freq(pluck('name', selectIndices(types, idxs)));
-}
-
-function chooseClusterFiles(types: SourceCandidateType[], idxs: Iterable<number>) {
+function chooseClusterFiles(
+    types: SourceCandidateType[],
+    idxs: Iterable<number>,
+): SourceCandidateType[] {
     return selectIndices(types, idxs);
 }
 
-function propertyToOutput(prop: Property): Property {
-    return {
-        name: prop.name,
-        type: prop.type,
-    };
+function chooseClusterNames(
+    types: SourceCandidateType[],
+    idxs: Iterable<number>,
+): { name: string; count: number }[] {
+    return freq(pluck('name', selectIndices(types, idxs)));
 }
 
-function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>) {
+function chooseTypeFeatures(
+    types: SourceCandidateType[],
+    idxs: Iterable<number>,
+) {
     const selected = selectIndices(types, idxs);
     const selectedTypes = uniq(pluck('type', selected));
     // if (selectedTypes.length > 1) {
@@ -113,7 +113,35 @@ function chooseTypeFeatures(types: SourceCandidateType[], idxs: Iterable<number>
     }
 }
 
-function similarityToDuplicateGroup(sim: Similarity): TypeDuplicate['group'] {
+function nonEmptyCandidateType(
+    type: CandidateType,
+): boolean {
+    switch (type.type) {
+    case 'alias':
+    case 'interface':
+    case 'literal':
+        return (<LiteralCandidateType>type).properties.length > 0;
+    case 'enum':
+        return (<EnumCandidateType>type).members.length > 0;
+    case 'function':
+        return (<FunctionCandidateType>type).parameters.length > 0;
+    case 'union':
+        return (<UnionCandidateType>type).types.length > 0;
+    }
+}
+
+function propertyToOutput(
+    prop: Property,
+): Property {
+    return {
+        name: prop.name,
+        type: prop.type,
+    };
+}
+
+function similarityToDuplicateGroup(
+    sim: Similarity,
+): TypeDuplicate['group'] {
     switch (sim) {
     case Similarity.Identical:
         return 'identical';
@@ -122,20 +150,4 @@ function similarityToDuplicateGroup(sim: Similarity): TypeDuplicate['group'] {
     default:
         return 'different';
     }
-}
-
-export function clustersToDuplicates(
-    types: SourceCandidateType[],
-    clusters: IClusters<Similarity>,
-): TypeDuplicate[] {
-    const res = clusters.flatMap(
-        (group, idxs) =>
-            ({
-                names: chooseClusterNames(types, idxs),
-                files: chooseClusterFiles(types, idxs),
-                group: similarityToDuplicateGroup(+group as Similarity),
-                ...chooseTypeFeatures(types, idxs),
-            } as TypeDuplicate),
-    );
-    return res;
 }

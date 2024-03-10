@@ -1,0 +1,45 @@
+{
+    "name": "@ts-retype/snippets",
+    "sideEffects": false,
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "main": "dist/index.cjs",
+    "scripts": {
+        "bin": "node dist/bin.cjs",
+        "build": "tsup --onSuccess \"tsc --emitDeclarationOnly --declaration\"",
+        "build:watch": "tsup --watch --onSuccess \"npm run start\"",
+        "clean": "rm -rf ./dist",
+        "start": "node dist/bin.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@ts-retype/search": "workspace:*",
+        "@ts-retype/syhi": "workspace:*",
+        "@ts-retype/utils": "workspace:*",
+        "commander": "^12.0.0",
+        "ramda": "^0.29.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.25",
+        "@types/ramda": "^0.28.25",
+        "tsup": "^8.0.2"
+    },
+    "nx": {
+        "targets": {
+            "bin": {
+                "dependsOn": [
+                    "build"
+                ]
+            },
+            "build": {
+                "dependsOn": [
+                    "@ts-retype/search:build",
+                    "@ts-retype/utils:build"
+                ]
+            }
+        }
+    }
+}

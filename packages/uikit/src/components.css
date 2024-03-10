@@ -1,0 +1,12 @@
+.cursor-capture {
+    position: absolute;
+    top: calc(50% - 10vw);
+    left: calc(50% - 10vw);
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+    background: hsl(190, 100%, 50%);
+    top: calc(var(--clienty)*1px - 10vw);
+    left: calc(var(--clientx)*1px - 10vw);
+    cursor: none;
+}

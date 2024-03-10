@@ -1,0 +1,72 @@
+{
+  "name": "@ts-retype/utils",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "default": "./dist/index.js"
+    },
+    "./core": {
+      "import": {
+        "types": "./dist/core.d.ts",
+        "default": "./dist/core.js"
+      },
+      "require": {
+        "types": "./dist/core.d.cts",
+        "default": "./dist/core.cjs"
+      },
+      "default": "./dist/core.js"
+    },
+    "./std": {
+      "import": {
+        "types": "./dist/std.d.ts",
+        "default": "./dist/std.js"
+      },
+      "require": {
+        "types": "./dist/std.d.cts",
+        "default": "./dist/std.cjs"
+      },
+      "default": "./dist/std.js"
+    },
+    "./tree": {
+      "import": {
+        "types": "./dist/tree.d.ts",
+        "default": "./dist/tree.js"
+      },
+      "require": {
+        "types": "./dist/tree.d.cts",
+        "default": "./dist/tree.cjs"
+      },
+      "default": "./dist/tree.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup --onSuccess \"tsc --emitDeclarationOnly --declaration\"",
+    "build:watch": "tsup --watch --onSuccess \"npm run start\"",
+    "clean": "rm -rf ./dist",
+    "start": "node dist/test.js",
+    "stats": "rollup -c rollup.config.mjs",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.25",
+    "@vitest/coverage-v8": "^1.3.1",
+    "tsup": "^8.0.2",
+    "vitest": "^1.3.1"
+  }
+}

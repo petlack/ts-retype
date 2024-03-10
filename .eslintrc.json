@@ -7,6 +7,13 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended"
     ],
+    "ignorePatterns": [
+        "dist/",
+        "tests/example/",
+        "packages/search/tests/sources/",
+        "generated/",
+        "vitest.d.ts"
+    ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",

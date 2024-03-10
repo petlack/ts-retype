@@ -4,6 +4,9 @@ export default defineConfig({
     entry: ['src/index.ts', 'src/ts-retype.ts'],
     splitting: false,
     sourcemap: true,
-    clean: false,
+    dts: true,
+    clean: true,
+    shims: true,
+    format: ['cjs'],
     noExternal: [ /(.*)/ ],
 });

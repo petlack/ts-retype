@@ -1,4 +1,4 @@
-import { TokenRoot } from './snippet.js';
+import type { TokenRoot } from './syhi.js';
 
 export type TypeDuplicate = {
   files: {

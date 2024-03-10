@@ -11,13 +11,84 @@ import {
     Property,
     UnionCandidateType,
 } from './types/candidate.js';
-
-import { getNodeText, toName } from './utils.js';
+import { getNodeText } from './utils.js';
 
 type TypeInFile = Pick<TypeDuplicate['files'][0], 'src' | 'pos' | 'offset' | 'lines'>;
 
-function asTypeInFile(srcFile: ts.SourceFile, node: ts.Node): TypeInFile {
-    const { src, startAt, endBefore, leftOffset, rightOffset } = getCodeSnippet(srcFile, node);
+export function getAllCandidates(
+    srcFile: ts.SourceFile,
+): CandidateType[] {
+    const all: CandidateType[] = [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const visitor = (node: any) => {
+    // console.log(node.kind, toName(node));
+    // console.log(getNodeText(srcFile, node));
+        const candidate = parseCandidate(srcFile, node);
+        if (candidate) {
+            all.push(candidate);
+        }
+        return node.kind === ts.SyntaxKind.TypeAliasDeclaration;
+    // return false;
+    };
+    visitTopLevelDeclarations(srcFile, visitor);
+    return all;
+}
+
+export function removeAliasDuplicates(
+    candidates: CandidateType[],
+): CandidateType[] {
+    const all = candidates.map(CandidateType);
+    const aliases = all.filter((c) => c.is('alias'));
+    const ofTypes = aliases
+        .map((alias) =>
+            sort(
+                ascend((oftype) =>
+                    !oftype.equals(alias) && oftype.startsAfter(alias) && oftype.endsBefore(alias)
+                        ? oftype.srcLength()
+                        : -1,
+                ),
+                all,
+            ).at(-1),
+        )
+        .filter((c) => c);
+    const ofTypesIds = ofTypes.map((c) => c?.id());
+    const aliasById = zip(aliases, ofTypes).reduce(
+        (res, [alias, ofType]) =>
+            alias && ofType
+                ? assoc(
+                    alias.id(),
+                    CandidateType({
+                        ...ofType.self,
+                        type: ofType.self.type,
+                        name: alias.self.name,
+                        pos: alias.self.pos,
+                    }),
+                    res,
+                )
+                : res,
+    {} as { [key: string]: ICandidateType },
+    );
+    // .filter(c => c)
+    // .reduce((res, item) => item ? ({
+    //   ...res,
+    //   [item.id()]: item,
+    // }) : res, {} as { [key: string]: ICandidateType });
+    // console.log(JSON.stringify({ all, aliases, ofTypes, aliasById }, null, 2));
+    return all.filter((c) => !ofTypesIds.includes(c.id())).map((c) => (aliasById[c.id()] || c).self);
+}
+
+export function parse(
+    srcFile: ts.SourceFile,
+): CandidateType[] {
+    const candidates = getAllCandidates(srcFile);
+    return removeAliasDuplicates(candidates);
+}
+
+function asTypeInFile(
+    srcFile: ts.SourceFile,
+    node: ts.Node,
+): TypeInFile {
+    const { src, startAt, endBefore, leftOffset } = getCodeSnippet(srcFile, node);
     const pos: TypeInFile['pos'] = [startAt, endBefore];
     const offset: TypeInFile['offset'] = Math.max(0, -1 * leftOffset);
     const lines: TypeInFile['lines'] = [
@@ -32,7 +103,11 @@ function asTypeInFile(srcFile: ts.SourceFile, node: ts.Node): TypeInFile {
     };
 }
 
-function getPropertySignature(srcFile: ts.SourceFile, node: any): Property | null {
+function getPropertySignature(
+    srcFile: ts.SourceFile,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    node: any,
+): Property | null {
     switch (node.kind) {
     case ts.SyntaxKind.PropertySignature:
         return {
@@ -96,9 +171,14 @@ function functionSignature(
     return sig;
 }
 
-function getFunctionType(name: string, srcFile: ts.SourceFile, node: ts.FunctionTypeNode) {
+function getFunctionType(
+    name: string,
+    srcFile: ts.SourceFile,
+    node: ts.FunctionTypeNode,
+): FunctionCandidateType {
     const returnType = getNodeText(srcFile, node.type).trim();
     const parameters = (node.parameters || []).map(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (p: any) =>
       <Property>{
           name: (getNodeText(srcFile, p.name) || '<unknown>').trim(),
@@ -116,7 +196,11 @@ function getFunctionType(name: string, srcFile: ts.SourceFile, node: ts.Function
     return candidate;
 }
 
-function getUnionType(name: string, srcFile: ts.SourceFile, node: ts.UnionTypeNode) {
+function getUnionType(
+    name: string,
+    srcFile: ts.SourceFile,
+    node: ts.UnionTypeNode,
+): UnionCandidateType {
     const types = (node.types || [])
         .filter(
             (t) =>
@@ -138,7 +222,12 @@ function getUnionType(name: string, srcFile: ts.SourceFile, node: ts.UnionTypeNo
     return candidate;
 }
 
-function getEnumType(name: string, srcFile: ts.SourceFile, node: ts.EnumDeclaration) {
+function getEnumType(
+    name: string,
+    srcFile: ts.SourceFile,
+    node: ts.EnumDeclaration,
+): EnumCandidateType {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const members = (node.members || []).map((m: any) => m.name.escapedText);
     const candidate: EnumCandidateType = {
         name,
@@ -149,7 +238,11 @@ function getEnumType(name: string, srcFile: ts.SourceFile, node: ts.EnumDeclarat
     return candidate;
 }
 
-function parseCandidate(srcFile: ts.SourceFile, node: any): CandidateType | undefined | false {
+function parseCandidate(
+    srcFile: ts.SourceFile,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    node: any,
+): CandidateType | undefined | false {
     switch (node.kind) {
     case ts.SyntaxKind.InterfaceDeclaration: {
         const name: string = node.name.escapedText;
@@ -219,26 +312,10 @@ function parseCandidate(srcFile: ts.SourceFile, node: any): CandidateType | unde
     }
 }
 
-export function getAllCandidates(srcFile: ts.SourceFile) {
-    const all: CandidateType[] = [];
-    const visitor = (node: any) => {
-    // console.log(node.kind, toName(node));
-    // console.log(getNodeText(srcFile, node));
-        const candidate = parseCandidate(srcFile, node);
-        if (candidate) {
-            all.push(candidate);
-        }
-        return node.kind === ts.SyntaxKind.TypeAliasDeclaration;
-    // return false;
-    };
-    visitTopLevelDeclarations(srcFile, visitor);
-    return all;
-}
-
 function visitTopLevelDeclarations(
     srcFile: ts.Node,
     visitor: (node: ts.Node, level: number) => boolean,
-) {
+): void {
     const visit = function (node: ts.Node, level: number) {
         const skip = visitor(node, level);
         if (skip) {
@@ -250,50 +327,4 @@ function visitTopLevelDeclarations(
         }
     };
     visit(srcFile, 0);
-}
-
-export function removeAliasDuplicates(candidates: CandidateType[]): CandidateType[] {
-    const all = candidates.map(CandidateType);
-    const aliases = all.filter((c) => c.is('alias'));
-    const ofTypes = aliases
-        .map((alias) =>
-            sort(
-                ascend((oftype) =>
-                    !oftype.equals(alias) && oftype.startsAfter(alias) && oftype.endsBefore(alias)
-                        ? oftype.srcLength()
-                        : -1,
-                ),
-                all,
-            ).at(-1),
-        )
-        .filter((c) => c);
-    const ofTypesIds = ofTypes.map((c) => c?.id());
-    const aliasById = zip(aliases, ofTypes).reduce(
-        (res, [alias, ofType]) =>
-            alias && ofType
-                ? assoc(
-                    alias.id(),
-                    CandidateType({
-                        ...ofType.self,
-                        type: ofType.self.type,
-                        name: alias.self.name,
-                        pos: alias.self.pos,
-                    }),
-                    res,
-                )
-                : res,
-    {} as { [key: string]: ICandidateType },
-    );
-    // .filter(c => c)
-    // .reduce((res, item) => item ? ({
-    //   ...res,
-    //   [item.id()]: item,
-    // }) : res, {} as { [key: string]: ICandidateType });
-    // console.log(JSON.stringify({ all, aliases, ofTypes, aliasById }, null, 2));
-    return all.filter((c) => !ofTypesIds.includes(c.id())).map((c) => (aliasById[c.id()] || c).self);
-}
-
-export function parse(srcFile: ts.SourceFile) {
-    const candidates = getAllCandidates(srcFile);
-    return removeAliasDuplicates(candidates);
 }

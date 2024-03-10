@@ -1,5 +1,5 @@
 import { isEmpty, symmetricDifference, pluck, intersection } from 'ramda';
-import {
+import type {
     CandidateType,
     Property,
     EnumCandidateType,
@@ -10,40 +10,37 @@ import {
 import type { ISparseMatrix, IClusters } from './types/similarity.js';
 import { Clusters, Similarity, SparseMatrix } from './types/similarity.js';
 
-const eqValues = (left: unknown[], right: unknown[]) => isEmpty(symmetricDifference(left, right));
-
-function isLiteralType(t: CandidateType) {
-    return ['interface', 'literal'].includes(t.type);
-}
-
-function similarityForArray<T extends Property>(left: T[], right: T[]): Similarity {
-    const propertiesKeysEqual = eqValues(pluck('name', left), pluck('name', right));
-    const propertiesKeysIntersection = intersection(pluck('name', left), pluck('name', right));
-    const propertiesTypesEqual = eqValues(pluck('type', left), pluck('type', right));
-
-    if (propertiesKeysEqual && propertiesTypesEqual) {
-        return Similarity.HasIdenticalProperties;
+export function computeSimilarityMatrix(
+    types: CandidateType[],
+    callback?: (by: number) => void,
+    options?: {
+        updateBy: number;
+    },
+): ISparseMatrix<Similarity> {
+    const matrix = SparseMatrix({ nil: Similarity.Different });
+    const idxs = [...Array(types.length).keys()];
+    const updateBy = options?.updateBy || 1_000;
+    let batched = 0;
+    for (const i of idxs) {
+        for (const j of idxs) {
+            if (i > j) {
+                continue;
+            }
+            batched += 1;
+            batched %= updateBy;
+            if (batched === 0) callback?.(updateBy);
+            if (i === j) {
+                matrix.set(i, j, Similarity.Identical);
+            } else {
+                const sim = similarity(types[i], types[j]);
+                if (sim !== Similarity.Different) {
+                    matrix.set(i, j, sim);
+                }
+            }
+        }
     }
-
-    if (propertiesKeysEqual) {
-        return Similarity.HasSimilarProperties;
-    }
-
-    if (
-        propertiesKeysIntersection.length == left.length ||
-    propertiesKeysIntersection.length == right.length
-    ) {
-        return Similarity.HasSubsetOfProperties;
-    }
-
-    return Similarity.Different;
-}
-
-function simplifyType(type: CandidateType): string {
-    if (isLiteralType(type)) {
-        return 'literal';
-    }
-    return type.type;
+    callback?.(batched === 0 ? 100 : batched);
+    return matrix;
 }
 
 export function similarity(
@@ -130,31 +127,57 @@ export function similarity(
     return Similarity.Different;
 }
 
-export function computeSimilarityMatrix(
-    types: CandidateType[],
-    callback?: () => void,
-): ISparseMatrix<Similarity> {
-    const matrix = SparseMatrix({ nil: Similarity.Different });
-    const idxs = [...Array(types.length).keys()];
-    for (const i of idxs) {
-        for (const j of idxs) {
-            if (i > j) {
-                continue;
-            }
-            callback?.();
-            if (i === j) {
-                matrix.set(i, j, Similarity.Identical);
-            } else {
-                matrix.set(i, j, similarity(types[i], types[j]));
-            }
-        }
-    }
-    return matrix;
-}
-
 export function similarityMatrixToClusters(
     matrix: ISparseMatrix<Similarity>,
 ): IClusters<Similarity> {
     const clusters = Clusters<Similarity>().fromTuples(matrix.toTuples());
     return clusters;
+}
+
+function eqValues(
+    left: unknown[],
+    right: unknown[],
+): boolean {
+    return isEmpty(symmetricDifference(left, right));
+}
+
+function isLiteralType(
+    t: CandidateType,
+): boolean {
+    return ['interface', 'literal'].includes(t.type);
+}
+
+function similarityForArray<T extends Property>(
+    left: T[],
+    right: T[],
+): Similarity {
+    const propertiesKeysEqual = eqValues(pluck('name', left), pluck('name', right));
+    const propertiesKeysIntersection = intersection(pluck('name', left), pluck('name', right));
+    const propertiesTypesEqual = eqValues(pluck('type', left), pluck('type', right));
+
+    if (propertiesKeysEqual && propertiesTypesEqual) {
+        return Similarity.HasIdenticalProperties;
+    }
+
+    if (propertiesKeysEqual) {
+        return Similarity.HasSimilarProperties;
+    }
+
+    if (
+        propertiesKeysIntersection.length == left.length ||
+    propertiesKeysIntersection.length == right.length
+    ) {
+        return Similarity.HasSubsetOfProperties;
+    }
+
+    return Similarity.Different;
+}
+
+function simplifyType(
+    type: CandidateType,
+): string {
+    if (isLiteralType(type)) {
+        return 'literal';
+    }
+    return type.type;
 }

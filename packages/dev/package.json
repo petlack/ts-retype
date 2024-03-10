@@ -1,0 +1,79 @@
+{
+  "name": "@ts-retype/dev",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "check": "echo ok",
+    "clean": "rm -rf dist",
+    "dev": "nodemon --exec 'ts-node --esm --experimental-specifier-resolution=node' --",
+    "dev:any": "nodemon -I --exec node --",
+    "dev:noin": "nodemon --exec node --",
+    "dev:bin": "tsup --watch --onSuccess \"node dist/prepare-bin.cjs\"",
+    "dev:bump": "tsup --watch --onSuccess \"node dist/bump.cjs -h --app bin --level dev\"",
+    "dev:cmd": "tsup --watch --onSuccess \"node dist/generate-cmd-help.cjs\"",
+    "dev:readme": "tsup --watch --onSuccess \"node dist/generate-readme.cjs\"",
+    "run-bin": "node dist/prepare-bin.cjs",
+    "run-bump": "node dist/bump.cjs",
+    "run-cmd": "node dist/generate-cmd-help.cjs",
+    "run-readme": "node dist/generate-readme.cjs",
+    "start:any": "node --",
+    "watch": "rollup -cw"
+  },
+  "dependencies": {
+    "@ts-retype/search": "workspace:*",
+    "@ts-retype/syhi": "workspace:*",
+    "@ts-retype/utils": "workspace:*",
+    "commander": "^12.0.0",
+    "js-yaml": "^4.1.0",
+    "ramda": "^0.29.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
+    "@types/node": "^20.11.25",
+    "@types/ramda": "^0.28.25",
+    "colors": "^1.4.0",
+    "esm": "^3.2.25",
+    "nodemon": "^3.1.0",
+    "refractor": "^4.8.1",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.2"
+  },
+  "nx": {
+    "targets": {
+      "run-bin": {
+        "dependsOn": [
+          "build",
+          "@ts-retype/vis:build",
+          "@ts-retype/bin:build"
+        ]
+      },
+      "run-bump": {
+        "dependsOn": [
+          "build"
+        ]
+      },
+      "run-cmd": {
+        "dependsOn": [
+          "build",
+          "@ts-retype/bin:compile"
+        ]
+      },
+      "run-readme": {
+        "dependsOn": [
+          "build",
+          "@ts-retype/dev:run-cmd",
+          "@ts-retype/snippets:bin"
+        ]
+      },
+      "build": {
+        "dependsOn": [
+          "@ts-retype/vis:build"
+        ]
+      }
+    }
+  }
+}

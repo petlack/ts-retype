@@ -1,33 +1,44 @@
 {
-  "targetDefaults": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ],
-      "cache": true
+    "targetDefaults": {
+        "build": {
+            "cache": true,
+            "dependsOn": [
+                "lint",
+                "^build"
+            ],
+            "outputs": [
+                "{projectRoot}/dist"
+            ],
+            "inputs": [
+                "production",
+                "^production"
+            ]
+        },
+        "test": {
+            "cache": true,
+            "dependsOn": [
+                "build",
+                "^build"
+            ]
+        },
+        "lint": {
+            "dependsOn": [
+                "^lint"
+            ],
+            "cache": true
+        }
     },
-    "lint": {
-      "cache": true
+    "affected": {
+        "defaultBase": "main"
+    },
+    "namedInputs": {
+        "default": [
+            "{projectRoot}/**/*",
+            "sharedGlobals"
+        ],
+        "sharedGlobals": [],
+        "production": [
+            "default"
+        ]
     }
-  },
-  "affected": {
-    "defaultBase": "main"
-  },
-  "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
-    "sharedGlobals": [],
-    "production": [
-      "default"
-    ]
-  }
 }
