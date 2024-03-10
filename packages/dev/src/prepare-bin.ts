@@ -77,7 +77,6 @@ export async function prepareBin() {
     );
 
     const visHtmlFile = join(rootDir, 'apps', 'vis', 'dist', 'index.html');
-    await copyFile(`${visHtmlFile}`, `${releaseRoot}/index.html`);
     const visHtmlContents = await readFile(visHtmlFile);
     const escapedVisHtmlContents = escapeHTMLContentForJS(
         visHtmlContents.toString().trim()

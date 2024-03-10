@@ -1,25 +1,25 @@
-name: 🔬 Run Tests
+name: 🔬  Run Tests
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [20]
     steps:
       - name: Git checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: 💾 Install dependencies
+      - name: 💾  Install dependencies
         run: |
           npm add -g pnpm
           pnpm install
         env:
           CI: true
-      - name: 🔬 Run tests
+      - name: 🔬  Run tests
         run: pnpm run test
         env:
           CI: true

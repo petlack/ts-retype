@@ -1,19 +1,19 @@
-name: 📚 Build Docs
+name: 📚  Build Docs
 on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [20]
     steps:
       - name: Git checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: ✏️ Generate Docs
+      - name: ✏️  Generate Docs
         run: |
           npm add -g pnpm
           pnpm i
