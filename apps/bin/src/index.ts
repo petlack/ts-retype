@@ -1,5 +1,10 @@
-import { main } from './main.js';
+export {
+    report,
+    scan,
+} from '@ts-retype/search';
 
-if (require.main === module) {
-    main();
-}
+export type {
+    ReportResult,
+    RetypeConfig,
+    TypeDuplicate,
+} from '@ts-retype/search';

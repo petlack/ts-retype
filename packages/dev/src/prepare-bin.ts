@@ -39,6 +39,7 @@ export async function prepareBin() {
 
     packageJson.bin['ts-retype'] = packageJson.bin['ts-retype'].replace('dist/', '');
     packageJson.main = packageJson.main.replace('dist/', '');
+    packageJson.types = packageJson.types.replace('dist/', '');
 
     packageJson.name = 'ts-retype';
 
@@ -48,6 +49,7 @@ export async function prepareBin() {
 
     const filesToCopy = [
         'ts-retype.cjs',
+        'index.d.cts',
         'index.cjs',
         'index.cjs.map',
     ];

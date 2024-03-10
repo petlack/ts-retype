@@ -20,6 +20,7 @@
     "author": "petlack",
     "type": "module",
     "main": "dist/index.cjs",
+    "types": "dist/index.d.cts",
     "bin": {
         "ts-retype": "dist/ts-retype.cjs"
     },
