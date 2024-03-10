@@ -5,6 +5,7 @@ import { isMain } from './utils/is-main.js';
 import { join } from 'path';
 import { spawn } from '@ts-retype/utils/std.js';
 import { writeFile } from 'fs/promises';
+import { ensureDirectoryExists } from './utils/paths.js';
 
 const program = createCommand();
 const log = new Logger('cmd');
@@ -22,6 +23,7 @@ export async function generateCmdHelp(): Promise<void> {
         ['-h'],
         { muteStdout: true },
     );
+    await ensureDirectoryExists('apps/doc/src/generated/input');
     const target = root('apps/doc/src/generated/input/cmdHelp.txt');
     log.info(`Writing ${bold(formatSize(stdout.length))} to ${target}`);
     await writeFile(
