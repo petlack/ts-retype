@@ -1,4 +1,4 @@
-name: Run Tests 🔬
+name: 🔬 Run Tests
 on: [push]
 jobs:
   build:
@@ -13,10 +13,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Run tests 🔬
+      - name: 💾 Install dependencies
         run: |
           npm add -g pnpm
           pnpm install
-          pnpm test
+        env:
+          CI: true
+      - name: 🔬 Run tests
+        run: pnpm run test
         env:
           CI: true

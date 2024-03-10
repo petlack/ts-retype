@@ -1,4 +1,4 @@
-name: "Build Docs"
+name: 📚 Build Docs
 on: [push]
 jobs:
   build:
@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Generate docs
+      - name: ✏️ Generate Docs
         run: |
           npm add -g pnpm
           pnpm i

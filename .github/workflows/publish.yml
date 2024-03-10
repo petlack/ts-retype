@@ -1,4 +1,4 @@
-name: "Publish to NPM"
+name: 📦 Publish on NPM
 on:
   release:
     types: [created]
@@ -13,17 +13,15 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies 🔧
+      - name: 💾 Install dependencies
         run: |
-          npm -v
-          node -v
           npm add -g pnpm
           pnpm install
-      - name: Run tests 🔬
+      - name: 🔬 Run tests
         run: pnpm run test
-      - name: Compile 🔧
+      - name: 🔧 Compile
         run: pnpm run compile
-      - name: Publish on NPM 📦
+      - name: 📦 Publish on NPM
         run: pnpm run publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
