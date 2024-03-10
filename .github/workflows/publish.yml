@@ -13,17 +13,17 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies and build 🔧
+      - name: Install dependencies 🔧
         run: |
           npm -v
           node -v
           npm add -g pnpm
           pnpm install
-      - name: Run tests
-        run: pnpm test
-      - name: Compile
-        run: pnpm compile
-      - name: Publish to NPM
-        run: pnpm publish
+      - name: Run tests 🔬
+        run: pnpm run test
+      - name: Compile 🔧
+        run: pnpm run compile
+      - name: Publish on NPM 📦
+        run: pnpm run publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
