@@ -80,7 +80,12 @@ export async function bump(
     log.info(`Running ${bold('pnpm i')}`);
     await execAsync('pnpm i');
 
-    const tag = `${app}-v${newVersion}`;
+    const updated = await checkGit();
+    if (updated.length > 0) {
+        log.info('Changed', updated.join('\n'));
+    }
+
+    const tag = `${app}/v${newVersion}`;
     const commitMsg = `bump(${app}): release ${level} v${oldVersion} -> v${newVersion}`;
     const gitCommands = [
         `git add ${distRootRelative}/package.json`,
