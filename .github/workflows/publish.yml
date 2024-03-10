@@ -18,11 +18,8 @@ jobs:
           npm -v
           node -v
           npm add -g pnpm
-      - name: Run tests
-        run: pnpm test
-      - name: Build release
-        run: pnpm run release
-      - name: Publish package on NPM 📦
-        run: pnpm run publish
+          pnpm test
+          pnpm run release
+          pnpm run publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
