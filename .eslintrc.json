@@ -10,6 +10,7 @@
     "ignorePatterns": [
         "dist/",
         "tests/example/",
+        "packages/search/tests/sources/",
         "generated/",
         "vitest.d.ts"
     ],
