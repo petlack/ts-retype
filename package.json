@@ -13,7 +13,7 @@
     "postinstall": "husky init && echo \"pnpm lint-staged\" > .husky/pre-commit",
     "prepare": "husky",
     "publish": "pnpm nx run-many -t publish",
-    "release": "pnpm nx run @ts-retype/bin:release",
+    "compile": "pnpm nx run @ts-retype/bin:compile",
     "test": "pnpm nx run-many -t test"
   },
   "keywords": [],
